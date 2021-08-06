@@ -414,8 +414,6 @@ int main(int argc, char **argv)
 	myinit();
 
 	glutIgnoreKeyRepeat(1);
-	glutSpecialFunc(movementKeys);
-	glutSpecialUpFunc(releaseKey);
 	glutKeyboardUpFunc (releaseKeys);
 	glutKeyboardFunc(keys);
 
@@ -530,143 +528,94 @@ void reshape(int w, int h)
 }
 
 //--------------------------------------------------------------------------------------
-// Keyboard Functions
-//--------------------------------------------------------------------------------------
-void movementKeys(int key, int x, int y)
-{
-	switch (key)
-	{
-		case GLUT_KEY_LEFT :
-			cam.DirectionRotateLR(-1);
-			break;
-
-		case GLUT_KEY_RIGHT : 
-			cam.DirectionRotateLR(1);
-			break;
-
-		case GLUT_KEY_UP : 
-			cam.DirectionFB(1);
-			break;
-
-		case GLUT_KEY_DOWN : 
-			cam.DirectionFB(-1);
-			break;
-	}
-}
-
-//--------------------------------------------------------------------------------------
-void releaseKey(int key, int x, int y)
-{
-	switch (key)
-	{
-		// rotate left or right
-		case GLUT_KEY_LEFT : 
-		case GLUT_KEY_RIGHT : 
-			cam.DirectionRotateLR(0);			
-		break;
-		// move backwards or forwards
-		case GLUT_KEY_UP : 
-		case GLUT_KEY_DOWN : 
-			cam.DirectionFB(0);
-		break;
-	}
-}
-
-//--------------------------------------------------------------------------------------
 void keys(unsigned char key, int x, int y)
 {
 	int i = 0;
 	switch (key)
 	{
-		// step left
-		case 'Z':
-		case 'z':
-			cam.DirectionLR(-1);
-			break;
-		// step right
-		case 'X':
-		case 'x':
-			cam.DirectionLR(1);
+	// move forwards
+	case 'W':
+	case 'w':
+		cam.DirectionFB(1);
 		break;
-		// look up
-		case 'Q':
-		case 'q':
-			cam.DirectionLookUD(1);
-			break;
-		// look down
-		case 'A':
-		case 'a':
-			cam.DirectionLookUD(-1);
+
+	case 'S':
+	case 's':
+		cam.DirectionFB(-1);
 		break;
-		// display campus map
-		case 'm':
-		case 'M':
+
+	// step left
+	case 'A':
+	case 'a':
+		cam.DirectionLR(-1);
+		break;
+	// step right
+	case 'D':
+	case 'd':
+		cam.DirectionLR(1);
+		break;
+
+	// display campus map
+	case 'm':
+	case 'M':
+		if (DisplayMap)
 		{
-			if (DisplayMap)
-			{
-				DisplayMap = false;
-			}
-			else
-			{
-				DisplayMap = true;
-			}
+			DisplayMap = false;
+		}
+		else
+		{
+			DisplayMap = true;
 		}
 		break;
-		// exit tour (escape key)
-		case 27:
-			{
-				cam.SetRotateSpeed (0.0f);
-				cam.SetMoveSpeed (0.0f);
-				DisplayExit = true;
-			}
+
+	// exit tour (escape key)
+	case 27:
+		cam.SetRotateSpeed (0.0f);
+		cam.SetMoveSpeed (0.0f);
+		DisplayExit = true;
 		break;
-		// display welcome page (space key)
-		case ' ':
-			{
-				if (DisplayWelcome)
-				{
-					cam.SetRotateSpeed (rotationSpeed);
-					cam.SetMoveSpeed (movementSpeed);
-					DisplayWelcome = false;
-				}
-				else
-				{
-					cam.SetRotateSpeed (0.0f);
-					cam.SetMoveSpeed (0.0f);
-					DisplayWelcome = true;
-				}
-			}
-		break;
-		// display light fittings
-		case 'l':
-		case 'L':
+
+	// display welcome page (space key)
+	case ' ':
+		if (DisplayWelcome)
 		{
-			if (lightsOn)
-			{
-				lightsOn = false;
-			}
-			else
-			{
-				lightsOn = true;
-			}
+			cam.SetRotateSpeed (rotationSpeed);
+			cam.SetMoveSpeed (movementSpeed);
+			DisplayWelcome = false;
+		}
+		else
+		{
+			cam.SetRotateSpeed (0.0f);
+			cam.SetMoveSpeed (0.0f);
+			DisplayWelcome = true;
+		}
+		break;
+
+	// display light fittings
+	case 'l':
+	case 'L':
+		if (lightsOn)
+		{
+			lightsOn = false;
+		}
+		else
+		{
+			lightsOn = true;
 		}
 		break;
 		
-		case 'P':
-		case 'p':
+	// Display ECL Block
+	case 'P':
+	case 'p':	
+		if (displayECL)
 		{
-			// Display ECL Block
-			if (displayECL)
-			{
-				displayECL = false;
-			}
-			else
-			{
-				displayECL = true;
-			}
+			displayECL = false;
+		}
+		else
+		{
+			displayECL = true;
 		}
 		break;
-		
 	}
 }
 
@@ -676,19 +625,20 @@ void releaseKeys(unsigned char key, int x, int y)
 	switch (key)
 	{
 		// step left or right
-		case 'x' :
-		case 'X' :
-		case 'z' :
-		case 'Z' :
-			cam.DirectionLR(0);
-		break;
-		// look left up or down
 		case 'a' :
 		case 'A' :
-		case 'q' :
-		case 'Q' :
-			cam.DirectionLookUD(0);
-		break;
+		case 'd' :
+		case 'D' :
+			cam.DirectionLR(0);
+			break;
+
+		// look left up or down
+		case 'w' :
+		case 'W' :
+		case 's' :
+		case 'S' :
+			cam.DirectionFB(0);
+			break;
 	}
 }
 

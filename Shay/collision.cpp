@@ -87,26 +87,22 @@ bool Collision::Collide(GLdouble endX, GLdouble endY, GLdouble endZ)
 {
 	bool Collision = false;
 	// check 1st quadrant (1st linked list)
-	if (((endX <= m_worldSizeX / 2.0) || (endX <= m_worldSizeX / 2.0)) && 
-		((endZ <= m_worldSizeZ / 2.0) || (endZ <= m_worldSizeZ / 2.0)))
+	if (endX <= m_worldSizeX / 2.0 && endZ <= m_worldSizeZ / 2.0)
 	{
 		Collision = CheckCollision(0, endX, endY, endZ);
 	}
 	// check 2nd quadrant (2nd linked list)
-	if (((endX <= m_worldSizeX / 2.0) || (endX <= m_worldSizeX / 2.0)) && 
-		((endZ >= m_worldSizeZ / 2.0) || (endZ >= m_worldSizeZ / 2.0)))
+	if (endX <= m_worldSizeX / 2.0 && endZ >= m_worldSizeZ / 2.0)
 	{
 		Collision = CheckCollision(1, endX, endY, endZ);
 	}
 	// check 3rd quadrant (3rd linked list)
-	if (((endX >= m_worldSizeX / 2.0) || (endX >= m_worldSizeX / 2.0)) && 
-	((endZ <= m_worldSizeZ / 2.0) || (endZ <= m_worldSizeZ / 2.0)))
+	if (endX >= m_worldSizeX / 2.0 && endZ <= m_worldSizeZ / 2.0)
 	{
 		Collision = CheckCollision(2, endX, endY, endZ);
 	}
 	// check 4th quadrant (4th linked list)
-	if (((endX >= m_worldSizeX / 2.0) || (endX >= m_worldSizeX / 2.0)) && 
-	((endZ >= m_worldSizeZ / 2.0) || (endZ >= m_worldSizeZ / 2.0)))
+	if (endX >= m_worldSizeX / 2.0 && endZ >= m_worldSizeZ / 2.0)
 	{
 		Collision = CheckCollision(3, endX, endY, endZ);
 	}

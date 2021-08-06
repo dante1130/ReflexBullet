@@ -3,8 +3,8 @@
 //////////////////////////////////////////////////////////////////////
 #include "EasySound.h"
 
-extern void mixaudio(void *unused, Uint8 *stream, int len){
-	CEasySound::Instance()->CallMixAudio(unused,stream,len);
+extern void mixaudio(void* unused, Uint8* stream, int len) {
+	CEasySound::Instance()->CallMixAudio(unused, stream, len);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -19,36 +19,34 @@ CEasySound* CEasySound::_instance = NULL;
 
 CEasySound::CEasySound()
 {
-
-  if ((SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO|SDL_INIT_NOPARACHUTE)==-1))  {
-      fprintf(stderr, "Unable to init SDL: %s\n", SDL_GetError());
-      exit(1);
-  }
-  atexit(SDL_Quit);
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_NOPARACHUTE) == -1) {
+		fprintf(stderr, "Unable to init SDL: %s\n", SDL_GetError());
+		exit(1);
+	}
+	atexit(SDL_Quit);
 
 	/* Open the audio device */
 
 	/* 22050Hz - FM Radio quality */
-	desired.freq=ES_FREQ;
+	desired.freq = ES_FREQ;
 
 	/* 16-bit signed audio */
-	desired.format=AUDIO_S16;
+	desired.format = AUDIO_S16;
 
 	/* Mono */
-	desired.channels=2;
+	desired.channels = 2;
 
 	/* Large audio buffer reduces risk of dropouts but increases response time */
-	desired.samples=ES_SAMPLE;
+	desired.samples = ES_SAMPLE;
 
 	desired.callback = mixaudio;
 
-	desired.userdata=NULL;
+	desired.userdata = NULL;
 	/* Open the audio device */
-	if ( SDL_OpenAudio(&desired, &obtained) < 0 ){
+	if (SDL_OpenAudio(&desired, &obtained) < 0) {
 		fprintf(stderr, "Couldn't open audio: %s\n", SDL_GetError());
 		exit(-1);
 	}
-
 }
 
 CEasySound::~CEasySound()
@@ -65,11 +63,11 @@ CEasySound* CEasySound::Instance()
 	return _instance;
 }
 
-void CEasySound::CallMixAudio(void *unused, Uint8 *stream, int len)
+void CEasySound::CallMixAudio(void* unused, Uint8* stream, int len)
 {
-
 	//int i;
-    Uint32 amount, data_len, data_pos;
+	Uint32 amount, data_len, data_pos;
+	SDL_memset(stream, 0, len);
 
 	std::list<CSound*>::iterator cs;
 	for (cs = m_listSound.begin(); cs != m_listSound.end(); ++cs) {
@@ -77,24 +75,22 @@ void CEasySound::CallMixAudio(void *unused, Uint8 *stream, int len)
 		data_len = (*cs)->m_stop.GetSDLTime();
 		data_pos = (*cs)->m_pos.GetSDLTime();
 		amount = (data_len - data_pos);
-		if ( amount > len) {
+		if (amount > len) {
 			amount = len;
 		}
-		Uint8 *data = &(*cs)->m_data[data_pos];
+		Uint8* data = &(*cs)->m_data[data_pos];
 		SDL_MixAudio(stream, data, amount, SDL_MIX_MAXVOLUME);
 		(*cs)->m_pos = CSoundTime(data_pos + amount);
 	}
-
 }
 
-
-int CEasySound::Load(char *filename)
+int CEasySound::Load(char* filename)
 {
-	// find ID for sound	
+	// find ID for sound
 	std::list<CSound*>::iterator cs;
 	int iSoundID = 0;
 	bool bFoundID = true;
-	while( bFoundID ) { // while loop until if there no ID match and set that ID for new sound's ID
+	while (bFoundID) { // while loop until if there no ID match and set that ID for new sound's ID
 		bFoundID = false;
 		for (cs = m_listSound.begin(); cs != m_listSound.end(); ++cs) {
 			if ((*cs)->GetSoundID() == iSoundID) {
@@ -106,11 +102,11 @@ int CEasySound::Load(char *filename)
 	}
 
 	// load the sound with new ID
-	CSound* sound = new CSound(filename,iSoundID);
-	if (sound->GetLength() == CSoundTime(0,0,0)) {
+	CSound* sound = new CSound(filename, iSoundID);
+	if (sound->GetLength() == CSoundTime(0, 0, 0)) {
 		return -1; // fail to load
 	}
-	m_listSound.insert(m_listSound.end(),sound);
+	m_listSound.insert(m_listSound.end(), sound);
 	return iSoundID; // fail to load
 }
 
@@ -126,7 +122,7 @@ void CEasySound::Unload(int iSoundID)
 	}
 }
 
-void CEasySound::Unload(CSound *sound)
+void CEasySound::Unload(CSound* sound)
 {
 	std::list<CSound*>::iterator cs;
 	for (cs = m_listSound.begin(); cs != m_listSound.end(); ++cs) {
@@ -149,4 +145,3 @@ CSound* CEasySound::GetSound(int iSoundID)
 
 	return NULL; // empty sound
 }
-
