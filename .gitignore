@@ -1,2 +1,7 @@
 #
 .vs/
+**.cpp.obj
+
+*.json
+*.obj
+*.exe
