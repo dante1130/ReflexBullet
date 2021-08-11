@@ -1,0 +1,15 @@
+# ninja log v5
+28	200	6503570884337963	Shay/CMakeFiles/Shay.dir/cameraMap.cpp.obj	672225ed4d24998d
+19	339	6503570885804039	Shay/CMakeFiles/Shay.dir/SoundTime.cpp.obj	12f734744a46943a
+3	401	6503570886412417	Shay/CMakeFiles/Shay.dir/AABBLinkedList.cpp.obj	5d8c4c761ba236bb
+5	402	6503570886412417	Shay/CMakeFiles/Shay.dir/AABBNode.cpp.obj	848c0a27b8ee57fb
+13	594	6503570888327318	Shay/CMakeFiles/Shay.dir/Sound.cpp.obj	db705eeab449deb2
+7	652	6503570888935672	Shay/CMakeFiles/Shay.dir/EasySound.cpp.obj	44c33bbc5df3b568
+10	753	6503570889952955	Shay/CMakeFiles/Shay.dir/PlainNode.cpp.obj	d2b2499a91ad24f2
+0	761	6503570890032736	Shay/CMakeFiles/Shay.dir/AABB.CPP.obj	8d088a4e825cb935
+16	798	6503570890391789	Shay/CMakeFiles/Shay.dir/PlainLinkedList.cpp.obj	3b5f2be35ac9b6bc
+25	802	6503570890441658	Shay/CMakeFiles/Shay.dir/collision.cpp.obj	48386ccf750f98ba
+34	809	6503570890531415	Shay/CMakeFiles/Shay.dir/texturedPolygons.cpp.obj	ac01cf66ea1819c7
+22	963	6503570892057338	Shay/CMakeFiles/Shay.dir/camera.cpp.obj	26c8c0121a57bdba
+31	1135	6503570893784773	Shay/CMakeFiles/Shay.dir/main.cpp.obj	f4c42c5be748bfa6
+1135	1580	6503570898146800	Shay/Shay.exe	3515eb535aaf0854
