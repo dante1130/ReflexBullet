@@ -106,6 +106,13 @@ build Shay\CMakeFiles\Shay.dir\EasySound.cpp.obj: CXX_COMPILER__Shay_RelWithDebI
   TARGET_COMPILE_PDB = Shay\CMakeFiles\Shay.dir\
   TARGET_PDB = Shay\Shay.pdb
 
+build Shay\CMakeFiles\Shay.dir\LoadTexturesShaysWorld.cpp.obj: CXX_COMPILER__Shay_RelWithDebInfo ..\..\..\Shay\LoadTexturesShaysWorld.cpp || cmake_object_order_depends_target_Shay
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG
+  OBJECT_DIR = Shay\CMakeFiles\Shay.dir
+  OBJECT_FILE_DIR = Shay\CMakeFiles\Shay.dir
+  TARGET_COMPILE_PDB = Shay\CMakeFiles\Shay.dir\
+  TARGET_PDB = Shay\Shay.pdb
+
 build Shay\CMakeFiles\Shay.dir\PlainLinkedList.cpp.obj: CXX_COMPILER__Shay_RelWithDebInfo ..\..\..\Shay\PlainLinkedList.cpp || cmake_object_order_depends_target_Shay
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG
   OBJECT_DIR = Shay\CMakeFiles\Shay.dir
@@ -177,7 +184,7 @@ build Shay\CMakeFiles\Shay.dir\texturedPolygons.cpp.obj: CXX_COMPILER__Shay_RelW
 #############################################
 # Link the executable Shay\Shay.exe
 
-build Shay\Shay.exe: CXX_EXECUTABLE_LINKER__Shay_RelWithDebInfo Shay\CMakeFiles\Shay.dir\AABB.CPP.obj Shay\CMakeFiles\Shay.dir\AABBLinkedList.cpp.obj Shay\CMakeFiles\Shay.dir\AABBNode.cpp.obj Shay\CMakeFiles\Shay.dir\DisplayShaysWorld.cpp.obj Shay\CMakeFiles\Shay.dir\EasySound.cpp.obj Shay\CMakeFiles\Shay.dir\PlainLinkedList.cpp.obj Shay\CMakeFiles\Shay.dir\PlainNode.cpp.obj Shay\CMakeFiles\Shay.dir\Sound.cpp.obj Shay\CMakeFiles\Shay.dir\SoundTime.cpp.obj Shay\CMakeFiles\Shay.dir\camera.cpp.obj Shay\CMakeFiles\Shay.dir\cameraMap.cpp.obj Shay\CMakeFiles\Shay.dir\collision.cpp.obj Shay\CMakeFiles\Shay.dir\main.cpp.obj Shay\CMakeFiles\Shay.dir\texturedPolygons.cpp.obj
+build Shay\Shay.exe: CXX_EXECUTABLE_LINKER__Shay_RelWithDebInfo Shay\CMakeFiles\Shay.dir\AABB.CPP.obj Shay\CMakeFiles\Shay.dir\AABBLinkedList.cpp.obj Shay\CMakeFiles\Shay.dir\AABBNode.cpp.obj Shay\CMakeFiles\Shay.dir\DisplayShaysWorld.cpp.obj Shay\CMakeFiles\Shay.dir\EasySound.cpp.obj Shay\CMakeFiles\Shay.dir\LoadTexturesShaysWorld.cpp.obj Shay\CMakeFiles\Shay.dir\PlainLinkedList.cpp.obj Shay\CMakeFiles\Shay.dir\PlainNode.cpp.obj Shay\CMakeFiles\Shay.dir\Sound.cpp.obj Shay\CMakeFiles\Shay.dir\SoundTime.cpp.obj Shay\CMakeFiles\Shay.dir\camera.cpp.obj Shay\CMakeFiles\Shay.dir\cameraMap.cpp.obj Shay\CMakeFiles\Shay.dir\collision.cpp.obj Shay\CMakeFiles\Shay.dir\main.cpp.obj Shay\CMakeFiles\Shay.dir\texturedPolygons.cpp.obj
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG
   LINK_FLAGS = /machine:X86 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib

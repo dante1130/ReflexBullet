@@ -1,13 +1,11 @@
 #include "DisplayShaysWorld.h"
 
-TexturedPolygons tp;
 GLUquadricObj* glu_cylinder;
 GLdouble step, step2, stepLength;
 
-//--------------------------------------------------------------------------------------
+
 //  Create display lists
 //	Numbers indicate list numbers
-//--------------------------------------------------------------------------------------
 void CreateTextureList()
 {
 	DrawGrass();				// 79, 111, 198, 460-477
@@ -34,9 +32,8 @@ void CreateTextureList()
 	// 455-459
 }
 
-//--------------------------------------------------------------------------------------
+
 //  Called from the main display function to draw the backdrop (all images)
-//--------------------------------------------------------------------------------------
 void DrawBackdrop(bool lightsOn)
 {
 	DisplayAboveWindowBlock();
@@ -61,9 +58,8 @@ void DrawBackdrop(bool lightsOn)
 	if (lightsOn) DisplayLights();
 }
 
-//--------------------------------------------------------------------------------------
+
 // Display the chancellery windoe and door posts
-//--------------------------------------------------------------------------------------
 void DisplayChancPosts()
 {
 	// Windowposts Chanc (downstairs)
@@ -209,6 +205,7 @@ void DisplayChancPosts()
 	glCallList(236);
 	glPopMatrix();
 }
+
 void DrawChancPosts()
 {
 	// Front of Window Post Chanc
@@ -253,9 +250,7 @@ void DrawChancPosts()
 }
 
 
-//--------------------------------------------------------------------------------------
 // Display Door Posts
-//--------------------------------------------------------------------------------------
 void DisplayDoorPosts()
 {
 	// Door Posts Chanc
@@ -290,6 +285,7 @@ void DisplayDoorPosts()
 	glCallList(27);
 	glPopMatrix();
 }
+
 void DrawDoorPosts()
 {
 	// DOORPOSTS_CHANC
@@ -299,9 +295,8 @@ void DrawDoorPosts()
 	tp.CreateDisplayList(YZ_FLIP, 199, 1024.0, 128.0, 33848.0, 10000.0, 10465.0, 0.83, 0.7344);	// post
 }
 
-//--------------------------------------------------------------------------------------
+
 // Display blocks above Windows and Posts
-//--------------------------------------------------------------------------------------
 void DisplayAboveWindowBlock()
 {
 	// Blocks Above Windows Chanc & Phys Sci
@@ -472,8 +467,10 @@ void DisplayAboveWindowBlock()
 	glCallList(424);
 
 }
+
 void DrawAboveWindowBlock()
 {
+	/*
 	tp.CreateDisplayList(YZ, 20, 128.0, 256.0, 33808.0, 10832.0, 9552.0, 1.0, 4.0);		// chanc above bottom window
 	tp.CreateDisplayList(YZ, 223, 128.0, 256.0, 33808.0, 10832.0, 11600.0, 1.0, 30.0);		// chanc above bottom window
 	tp.CreateDisplayList(YZ, 229, 128.0, 256.0, 33808.0, 10832.0, 20304.0, 1.0, 3.0);		// chanc above bottom window
@@ -579,12 +576,11 @@ void DrawAboveWindowBlock()
 
 	// ABOVE CANTEEN
 	tp.CreateDisplayList(YZ, 213, 256.0, 256.0, 2608.0, 10896.0, 10000.0, 0.78, 139.25);
-
+	*/
 }
 
-//--------------------------------------------------------------------------------------
+
 // Display Purple Posts by Guild Shop
-//--------------------------------------------------------------------------------------
 void DisplayPurplePosts()
 {
 	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(PURPLE_POST));
@@ -630,6 +626,7 @@ void DisplayPurplePosts()
 	glPopMatrix();
 	glCallList(32);
 }
+
 void DrawPurplePosts()
 {
 	tp.CreateDisplayList(YZ, 29, 64.0, 128.0, 33802.0, 10000.0, 31407.0, 13.0, 0.875);	// front
@@ -638,9 +635,8 @@ void DrawPurplePosts()
 	tp.CreateDisplayList(XY, 32, 128.0, 64.0, 33802.0, 10000.0, 36319.0, 0.58, 13.0);	// side
 }
 
-//--------------------------------------------------------------------------------------
+
 // Display Red Posts by Sta Travel Shop
-//--------------------------------------------------------------------------------------
 void DisplayRedPosts()
 {
 	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(RED_POST));
@@ -677,6 +673,7 @@ void DisplayRedPosts()
 	glCallList(35);
 	glPopMatrix();
 }
+
 void DrawRedPosts()
 {
 	tp.CreateDisplayList(YZ, 33, 64.0, 128.0, 33802.0, 10000.0, 39200.0, 13.0, 0.125);	// front
@@ -684,9 +681,8 @@ void DrawRedPosts()
 	tp.CreateDisplayList(XY, 35, 64.0, 64.0, 33802.0, 10000.0, 38960.0, 1.0, 13.0);	// side
 }
 
-//--------------------------------------------------------------------------------------
+
 // Display Main Posts
-//--------------------------------------------------------------------------------------
 void DisplayMainPosts()
 {
 	step = 0.0;
@@ -782,17 +778,17 @@ void DisplayMainPosts()
 	glCallList(52);
 	glPopMatrix();
 }
+
 void DrawMainPosts()
 {
 	tp.CreateDisplayList(XY, 18, 128.0, 256.0, 31740.0, 9995.0, 10105.0, 1.0, 4.48);
 	tp.CreateDisplayList(YZ, 19, 256.0, 128.0, 31740.0, 9995.0, 10105.0, 4.48, 1.0);
 	tp.CreateDisplayList(XY, 51, 128.0, 256.0, 31740.0, 9555.0, 8100.0, 1.0, 6.2);		// 1st by steps
 	tp.CreateDisplayList(YZ, 52, 256.0, 128.0, 31740.0, 9555.0, 8100.0, 6.2, 1.0);		// 1st by steps
-}
+	}
 
-//--------------------------------------------------------------------------------------
+
 //  Display Window and Door Posts on Phys SCi Building
-//--------------------------------------------------------------------------------------
 void DisplayPhysSciPosts()
 {
 	step = 0.0;
@@ -891,6 +887,7 @@ void DisplayPhysSciPosts()
 		step += 960.0;
 	}
 }
+
 void DrawPhysSciPosts()
 {
 	// WINDOWPOST_PS
@@ -945,15 +942,15 @@ void DrawPhysSciPosts()
 	glEndList();
 }
 
-//--------------------------------------------------------------------------------------
+
 //  Display Paving Around Shop Doorway
-//--------------------------------------------------------------------------------------
 void DisplayDoorPaving()
 {
 	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(DOORPAVE_1));
 	glCallList(47);
 	glCallList(48);
 }
+
 void DrawDoorPaving()
 {
 	tp.CreateDisplayList(XZ, 47, 128.0, 256.0, 33808.0, 10000.0, 31508.0, 0.75, 7.5);	// phy sci 1st doorway
@@ -961,9 +958,7 @@ void DrawDoorPaving()
 }
 
 
-//--------------------------------------------------------------------------------------
 // Display window and door posts of library
-//--------------------------------------------------------------------------------------
 void DisplayLibraryPosts()
 {
 	stepLength = 0.0;
@@ -1057,6 +1052,7 @@ void DisplayLibraryPosts()
 	glCallList(447);
 	glPopMatrix();
 }
+
 void DrawLibraryPosts()
 {
 	// WINDOWPOST_LIB_FRONT
@@ -1108,9 +1104,8 @@ void DrawLibraryPosts()
 		42992.0, 43056.0, 43056.0, 42992.0, 6, 1);
 }
 
-//--------------------------------------------------------------------------------------
+
 //  Display Pavement
-//--------------------------------------------------------------------------------------
 void DisplayPavement()
 {
 	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(PAVEMENT));
@@ -1171,6 +1166,7 @@ void DisplayPavement()
 	glCallList(240);
 	glPopMatrix();
 }
+
 void DrawPavement()
 {
 	// PAVEMENT
@@ -1289,9 +1285,8 @@ void DrawPavement()
 	tp.CreateDisplayList(XZ, 86, 128.0, 64.0, 33744.0, 10000.0, 28624.0, 2.5, 13.5);	//phys sci toilet doorways
 }
 
-//--------------------------------------------------------------------------------------
+
 // Display Wall Bricks
-//--------------------------------------------------------------------------------------
 void DisplayBricks()
 {
 	// WALL_BRICK_YZ
@@ -1425,6 +1420,7 @@ void DisplayBricks()
 	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(SHADOW_BRICK));
 	glCallList(190);
 }
+
 void DrawBricks()
 {
 	// WALL_BRICK_YZ
@@ -1557,9 +1553,8 @@ void DrawBricks()
 	tp.CreateDisplayList(XY, 184, 8.0, 128.0, 30792.0, 11024.0, 43056.0, 1.0, 6.5);	// as above but upstairs
 }
 
-//--------------------------------------------------------------------------------------
+
 // Display Roof
-//--------------------------------------------------------------------------------------
 void DisplayRoof()
 {
 	// main roof planks
@@ -1775,6 +1770,7 @@ void DisplayRoof()
 	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(ROOF_TOP_LIB));
 	glCallList(216);
 }
+
 void DrawRoof()
 {
 	// Chanc Top of Roof
@@ -2004,9 +2000,8 @@ void DrawRoof()
 	DrawAngledRoofBeam2(174, 33524.0, 11998.0 - 104.16, 43056.0 - 283.0, 2.36);
 }
 
-// --------------------------------------------------------------------------------------
+
 //  Creates Angled Roof Beams
-// --------------------------------------------------------------------------------------
 void DrawAngledRoofBeam(int listNo, GLdouble x, GLdouble y, GLdouble z, GLdouble beamSize)
 {
 	glNewList(listNo, GL_COMPILE);
@@ -2034,6 +2029,7 @@ void DrawAngledRoofBeam(int listNo, GLdouble x, GLdouble y, GLdouble z, GLdouble
 	glEnd();
 	glEndList();
 }
+
 void DrawAngledRoofBeam2(int listNo, GLdouble x, GLdouble y, GLdouble z, GLdouble beamSize)
 {
 	glNewList(listNo, GL_COMPILE);
@@ -2062,9 +2058,8 @@ void DrawAngledRoofBeam2(int listNo, GLdouble x, GLdouble y, GLdouble z, GLdoubl
 	glEndList();
 }
 
-//--------------------------------------------------------------------------------------
+
 // Display Steps
-//--------------------------------------------------------------------------------------
 void DisplayEntranceSteps()
 {
 	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(STEP_PAVING_1));
@@ -2103,6 +2098,7 @@ void DisplayEntranceSteps()
 	glCallList(207);
 	glPopMatrix();
 }
+
 void DrawEntranceSteps()
 {
 	step = 10000.0;
@@ -2135,9 +2131,8 @@ void DrawEntranceSteps()
 
 }
 
-//--------------------------------------------------------------------------------------
+
 // Display Bench
-//--------------------------------------------------------------------------------------
 void DisplayBench()
 {
 	step2 = 3860.0;
@@ -2283,6 +2278,7 @@ void DisplayBench()
 		}
 	}
 }
+
 void DrawBench()
 {
 	tp.CreateDisplayList(XZ, 400, 64.0, 64.0, 31760.0, 10147.0, 10894.0, 3.0, 7.5);
@@ -2303,10 +2299,7 @@ void DrawBench()
 }
 
 
-
-//--------------------------------------------------------------------------------------
 // Display Extras (signs etc)
-//--------------------------------------------------------------------------------------
 void DisplayExtras()
 {
 	// Rusty Man like Sculpture
@@ -2587,6 +2580,7 @@ void DisplayExtras()
 	glCallList(421);
 	glPopMatrix();
 }
+
 void DrawExtras()
 {
 	tp.CreateDisplayList(YZ, 300, 256.0, 1024.0, 33808.0, 10576.0, 25472.0, 1.0, 1.0);		// Rusty Man
@@ -2724,9 +2718,8 @@ void DrawExtras()
 
 }
 
-// --------------------------------------------------------------------------------------
+
 // Display larger textures such as windows and doors
-// --------------------------------------------------------------------------------------
 void DisplayLargerTextures()
 {
 	//Gap betweem chanc and phys sci
@@ -3022,6 +3015,7 @@ void DisplayLargerTextures()
 	glCallList(453);
 
 }
+
 void DrawLargerTextures()
 {
 	// CHANC
@@ -3094,9 +3088,8 @@ void DrawLargerTextures()
 	tp.CreateDisplayList(XZ, 453, 2.0, 2.0, 35856.0, 9400.0, 40500.0, 180.0, 1380.0);  // block at bottom of steps
 }
 
-// --------------------------------------------------------------------------------------
+
 // Display grass and slopes
-// --------------------------------------------------------------------------------------
 void DisplayGrass()
 {
 	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(GRASS));
@@ -3113,6 +3106,7 @@ void DisplayGrass()
 	//glBindTexture(GL_TEXTURE_2D, tp.GetTexture(GRASS_HILL));
 	//for (int i = 461; i < 477; i++) glCallList(i);
 }
+
 void DrawGrass()
 {
 	tp.CreateDisplayList(XZ, 79, 64.0, 64.0, 4848.0, 9086.0, 3408.0, 417.5, 45.0);
@@ -3192,6 +3186,7 @@ void DrawGrass()
 		33000.0, 33000.0, 36000.0, 36000.0, 1, 1);
 }
 
+
 //Display Light Fittings
 void DisplayLights ()
 {
@@ -3269,6 +3264,7 @@ void DisplayLights ()
 	}	
 	
 }
+
 void DrawLights ()
 {
 	// Fittings
@@ -3282,6 +3278,7 @@ void DrawLights ()
 	tp.CreateDisplayList (YZ, 377, 2.0, 8.0, 32900.0, 11330.0, 11150.0, 220.0, 1.0);	// supports
 	tp.CreateDisplayList (XY, 378, 8.0, 2.0, 32900.0, 11330.0, 11150.0, 1.0, 220.0);	// supports
 }
+
 
 // Display drainpipe and tuckshop serving counter
 void DisplayCylinders()
@@ -3320,6 +3317,7 @@ void DisplayCylinders()
 	glPopMatrix();
 
 }
+
 void DrawCylinders()
 {
 	// Drainpipe
@@ -3348,6 +3346,7 @@ void DrawCylinders()
 	tp.CreateDisplayList(XY, 440, 4.0, 16.0, 33800.0, 10324.0, 34710.0, 30.0, 1.0);
 
 }
+
 
 // Display Wall by Entrance
 void DisplayStepBricks()
@@ -3431,6 +3430,7 @@ void DisplayStepBricks()
 	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(WALL_BRICK_STEPS_EDGE_2));
 	glCallList(507);
 }
+
 void DrawStepBricks()
 {
 	tp.CreateDisplayList(YZ, 478.0, 128.0, 128.0, 31582.0, 9914.0, 9872.0, 1.7188, 1.75);
@@ -3481,6 +3481,7 @@ void DrawStepBricks()
 	tp.CreateDisplayList(XY, 506.0, 64.0, 32.0, 31518.0, 10134.0, 10095.84, 1.0, 1.0);
 	tp.CreateDisplayList(XY, 507.0, 64.0, 64.0, 31518.0, 9914.0, 10095.84, 1.0, 3.4376);
 }
+
 
 //Map and welcome screens
 void DrawMapExit()

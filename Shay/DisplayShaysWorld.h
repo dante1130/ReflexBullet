@@ -3,166 +3,345 @@
 
 #include "texturedPolygons.h"
 #include "defines.h"
+#include "LoadTexturesShaysWorld.h"
 #include <GL/glut.h>
 
-extern TexturedPolygons tp;
-// Glut Cylinder
+
+///Glut Cylinder
 extern GLUquadricObj* glu_cylinder;
-// varibles used for tarnslating graphics etc
+
+///varibles used for tarnslating graphics etc
 extern GLdouble step, step2, stepLength;
 
-
-//--------------------------------------------------------------------------------------
-//  Create display lists
-//	Numbers indicate list numbers
-//--------------------------------------------------------------------------------------
+/**
+* @brief	Creates display lists (numbers indicate list numbers) (calls all the display functions)
+* @param	No param
+* @return	Void
+*/
 void CreateTextureList();
 
-//--------------------------------------------------------------------------------------
-//  Called from the main display function to draw the backdrop (all images)
-//--------------------------------------------------------------------------------------
+/**
+* @brief	Draws the backdrop (all images) (Calls all the draw functions)
+* @param	No param
+* @return	Void
+*/
 void DrawBackdrop(bool lightsOn);
 
-//--------------------------------------------------------------------------------------
-// Display the chancellery windoe and door posts
-//--------------------------------------------------------------------------------------
+/**
+* @brief	Displays the chancellery window and door posts
+* @param	No param
+* @return	Void
+*/
 void DisplayChancPosts();
+
+/**
+* @brief	Sets the location for where to display the chanc posts
+* @param	No param
+* @return	Void
+*/
 void DrawChancPosts();
 
-//--------------------------------------------------------------------------------------
-// Display Door Posts
-//--------------------------------------------------------------------------------------
+/**
+* @brief	Displays the door posts
+* @param	No param
+* @return	Void
+*/
 void DisplayDoorPosts();
+
+/**
+* @brief	Sets the location for where to display the door posts
+* @param	No param
+* @return	Void
+*/
 void DrawDoorPosts();
 
-//--------------------------------------------------------------------------------------
-// Display blocks above Windows and Posts
-//--------------------------------------------------------------------------------------
+/**
+* @brief	Displays sections above windows and posts (the bits above the first floor and above the second floor)
+* @param	No param
+* @return	Void
+*/
 void DisplayAboveWindowBlock();
+
+/**
+* @brief	Sets the location for where to display blocks above windows and posts (the bits above 1st and 2nd floor)
+* @param	No param
+* @return	Void
+*/
 void DrawAboveWindowBlock();
 
-//--------------------------------------------------------------------------------------
-// Display Purple Posts by Guild Shop
-//--------------------------------------------------------------------------------------
+/**
+* @brief	Displays the purple posts by the guild shop
+* @param	No param
+* @return	Void
+*/
 void DisplayPurplePosts();
+
+/**
+* @brief	Sets the location for where to display the purple posts by guild shop
+* @param	No param
+* @return	Void
+*/
 void DrawPurplePosts();
 
-//--------------------------------------------------------------------------------------
-// Display Red Posts by Sta Travel Shop
-//--------------------------------------------------------------------------------------
+/**
+* @brief	Displays the red posts by sta travel shop
+* @param	No param
+* @return	Void
+*/
 void DisplayRedPosts();
+
+/**
+* @brief	Sets the location for where to display the red posts by sta travel shop
+* @param	No param
+* @return	Void
+*/
 void DrawRedPosts();
 
-//--------------------------------------------------------------------------------------
-// Display Main Posts
-//--------------------------------------------------------------------------------------
+/**
+* @brief	Displays the main posts (ones closest to the grass)
+* @param	No param
+* @return	Void
+*/
 void DisplayMainPosts();
+
+/**
+* @brief	Sets the location for where to display the main posts (ones closest to the grass)
+* @param	No param
+* @return	Void
+*/
 void DrawMainPosts();
 
 //--------------------------------------------------------------------------------------
 //  Display Window and Door Posts on Phys SCi Building
 //--------------------------------------------------------------------------------------
+
+/**
+* @brief	Displays the windows and door posts on the physical science building
+* @param	No param
+* @return	Void
+*/
 void DisplayPhysSciPosts();
+
+/**
+* @brief	Sets the location for where to display the physical sciences posts
+* @param	No param
+* @return	Void
+*/
 void DrawPhysSciPosts();
 
-//--------------------------------------------------------------------------------------
-//  Display Paving Around Shop Doorway
-//--------------------------------------------------------------------------------------
+/**
+* @brief	Displays the paving around the shop doorway
+* @param	No param
+* @return	Void
+*/
 void DisplayDoorPaving();
+
+/**
+* @brief	Sets the location for where to display the door paving (believe around shop)
+* @param	No param
+* @return	Void
+*/
 void DrawDoorPaving();
 
-
-//--------------------------------------------------------------------------------------
-// Display window and door posts of library
-//--------------------------------------------------------------------------------------
+/**
+* @brief	Displays the library posts
+* @param	No param
+* @return	Void
+*/
 void DisplayLibraryPosts();
+
+/**
+* @brief	Sets the location for where to display the librarys posts
+* @param	No param
+* @return	Void
+*/
 void DrawLibraryPosts();
 
-//--------------------------------------------------------------------------------------
-//  Display Pavement
-//--------------------------------------------------------------------------------------
+/**
+* @brief	Displays the pavement
+* @param	No param
+* @return	Void
+*/
 void DisplayPavement();
+
+/**
+* @brief	Sets the location for where to display the pavement
+* @param	No param
+* @return	Void
+*/
 void DrawPavement();
 
-//--------------------------------------------------------------------------------------
-// Display Wall Bricks
-//--------------------------------------------------------------------------------------
+/**
+* @brief	Displays the wall bricks
+* @param	No param
+* @return	Void
+*/
 void DisplayBricks();
+
+/**
+* @brief	Sets the location for where to display the wall bricks
+* @param	No param
+* @return	Void
+*/
 void DrawBricks();
 
 
+/**
+* @brief	Displays everything related to the roof
+* @param	No param
+* @return	Void
+*/void DisplayRoof();
 
-
-
-
-
-
-
-
-
-
-//--------------------------------------------------------------------------------------
-// Display Roof
-//--------------------------------------------------------------------------------------
-void DisplayRoof();
+/**
+* @brief	Sets the location for where to display every thing involving the roof (including beams)
+* @param	No param
+* @return	Void
+*/
 void DrawRoof();
 
-// --------------------------------------------------------------------------------------
-//  Creates Angled Roof Beams
-// --------------------------------------------------------------------------------------
-void DrawAngledRoofBeam(int listNo, GLdouble x, GLdouble y, GLdouble z, GLdouble beamSize);
+/**
+* @brief	Sets the location for where to display the agneld roof beam (right side of physical sciences)
+* 
+* @param	int listNo			- Where to store the coordiantes
+* @param	GLdouble x			- Location along x coordiante
+* @param	GLdouble y			- Location along y coordinate
+* @param	GLdouble z			- Location along z coordinate
+* @param	Gldouble beamSize	- Size of beam for texture mapping (meters)
+* 
+* @return	Void
+*/void DrawAngledRoofBeam(int listNo, GLdouble x, GLdouble y, GLdouble z, GLdouble beamSize);
+
+/**
+* @brief	Sets the location for where to display the angled roof beam2 (left side of library)
+* 
+* @param	int listNo			- Where to store the coordiantes
+* @param	GLdouble x			- Location along x coordiante
+* @param	GLdouble y			- Location along y coordinate
+* @param	GLdouble z			- Location along z coordinate
+* @param	Gldouble beamSize	- Size of beam for texture mapping (meters)
+* 
+* @return	Void
+*/
 void DrawAngledRoofBeam2(int listNo, GLdouble x, GLdouble y, GLdouble z, GLdouble beamSize);
 
-//--------------------------------------------------------------------------------------
-// Display Steps
-//--------------------------------------------------------------------------------------
+/**
+* @brief	Displays the enterence steps
+* @param	No param
+* @return	Void
+*/
 void DisplayEntranceSteps();
+
+/**
+* @brief	Sets the location for where to display the entrance steps
+* @param	No param
+* @return	Void
+*/
 void DrawEntranceSteps();
 
-//--------------------------------------------------------------------------------------
-// Display Bench
-//--------------------------------------------------------------------------------------
+/**
+* @brief	Displays the benches
+* @param	No param
+* @return	Void
+*/
 void DisplayBench();
+
+/**
+* @brief	Sets the location for where to display the benches
+* @param	No param
+* @return	Void
+*/
 void DrawBench();
 
 
 
-// Display Extras (signs etc)
+/**
+* @brief	Displays all the extra sections (signs etc)
+* @param	No param
+* @return	Void
+*/
 void DisplayExtras();
+/**
+* @brief	Sets the location for where to display all extra textures (signs etc)
+* @param	No param
+* @return	Void
+*/
 void DrawExtras();
 
-// Display larger textures such as windows and doors
+/**
+* @brief	Displays all the larger textures (windows, doors, etc)
+* @param	No param
+* @return	Void
+*/
 void DisplayLargerTextures();
+
+/**
+* @brief	Sets the location for where to display larger textures (windows & doors, etc)
+* @param	No param
+* @return	Void
+*/
 void DrawLargerTextures();
 
-// Display grass and slopes
+/**
+* @brief	Displays the grass area
+* @param	No param
+* @return	Void
+*/
 void DisplayGrass();
+
+/**
+* @brief	Sets the location for where to display the grass area
+* @param	No param
+* @return	Void
+*/
 void DrawGrass();
 
-
-// Display Light Fittings
+/**
+* @brief	Displays the lights on the roof
+* @param	No param
+* @return	Void
+*/
 void DisplayLights();
+
+/**
+* @brief	Sets the location for where to display the lights
+* @param	No param
+* @return	Void
+*/
 void DrawLights();
 
-// Display drainpipe and tuckshop serving counter
+/**
+* @brief	Displays the drainpipe and tuckshop serving counter
+* @param	No param
+* @return	Void
+*/
 void DisplayCylinders();
 
+/**
+* @brief	Sets location for where to display various cylinders (drainpipe and tuckstop counter)
+* @param	No param
+* @return	Void
+*/
 void DrawCylinders();
 
-// Display Wall by Entrance
+/**
+* @brief	Displays the wall by the enterence
+* @param	No param
+* @return	Void
+*/
 void DisplayStepBricks();
 
-
+/**
+* @brief	Sets location for where to display the map and welcome screen
+* @param	No param
+* @return	Void
+*/
 void DrawStepBricks();
 
-//Map and Welcome screens
+/**
+* @brief	Sets location for where to display the map and welcome screen
+* @param	No param
+* @return	Void
+*/
 void DrawMapExit();
-
-
-
-/////////////////////////////////////////
-//DISPLAY DISPLAY LISTS BLOCK
-/////////////////////////////////////////
-
 
 #endif // DISPLAYSHAYSWORLD_H
