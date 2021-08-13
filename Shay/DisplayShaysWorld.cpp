@@ -470,7 +470,6 @@ void DisplayAboveWindowBlock()
 
 void DrawAboveWindowBlock()
 {
-	/*
 	tp.CreateDisplayList(YZ, 20, 128.0, 256.0, 33808.0, 10832.0, 9552.0, 1.0, 4.0);		// chanc above bottom window
 	tp.CreateDisplayList(YZ, 223, 128.0, 256.0, 33808.0, 10832.0, 11600.0, 1.0, 30.0);		// chanc above bottom window
 	tp.CreateDisplayList(YZ, 229, 128.0, 256.0, 33808.0, 10832.0, 20304.0, 1.0, 3.0);		// chanc above bottom window
@@ -576,7 +575,6 @@ void DrawAboveWindowBlock()
 
 	// ABOVE CANTEEN
 	tp.CreateDisplayList(YZ, 213, 256.0, 256.0, 2608.0, 10896.0, 10000.0, 0.78, 139.25);
-	*/
 }
 
 
