@@ -7,12 +7,12 @@ unsigned char* image = NULL;
 //  Delete raw image and clear memory
 void DeleteImageFromMemory()
 {
-	
+	image = NULL;
 	if (image == NULL)
 	{
 		delete[] image;
 	}
-	image = NULL;
+	
 }
 
 // Load and Create Textures
@@ -22,7 +22,7 @@ void CreateTextures()
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
 	// set texture count
-	tp.SetTextureCount(250);
+	tp.SetTextureCount(TEXTURE_END);
 
 	// load and create textures
 	image = tp.LoadTexture("data/abovechanctext.raw", 128, 1024);
@@ -693,4 +693,5 @@ void CreateTextures()
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
 	DeleteImageFromMemory();
+
 }

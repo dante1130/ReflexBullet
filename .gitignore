@@ -4,3 +4,13 @@
 *.json
 *.cpp.obj
 *.obj
+*.exe
+*.ilk
+*.manifest
+*.rc
+*.res
+.ninja_deps
+.nina_log
+out/build/x86-Release/Shay/Shay.exe
+out/build/x86-Release/.ninja_log
+out/build/x86-Release/.ninja_deps

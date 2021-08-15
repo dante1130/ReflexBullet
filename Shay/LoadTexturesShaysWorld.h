@@ -6,6 +6,9 @@
 
 extern TexturedPolygons tp;
 
+
+void DeleteImageFromMemory();
+
 /**
 * @breif	Loads and Creates all the textures for shays world
 * 
