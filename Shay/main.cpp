@@ -14,7 +14,7 @@
 
 // USE THESE STTEINGS TO CHANGE SPEED (on different spec computers)
 // Set speed (steps)
-GLdouble movementSpeed = 4.0;
+GLdouble movementSpeed = 2.0;
 GLdouble rotationSpeed = 1;
 
 GLdouble stepIncrement;
@@ -40,6 +40,7 @@ bool displayECL = true;
 
 // objects
 Camera cam;
+
 
 // initializes setting
 void myinit();
@@ -69,6 +70,8 @@ void CreateBoundingBoxes();
 void CreatePlains();
 
 
+void RenderLoop(int val);
+
 //--------------------------------------------------------------------------------------
 //  Main function 
 //--------------------------------------------------------------------------------------
@@ -88,12 +91,14 @@ int main(int argc, char **argv)
 	glutKeyboardFunc(keys);
 
 	glutDisplayFunc(Display);
-	glutIdleFunc(Display);
+	//glutIdleFunc(Display);
+	glutTimerFunc(FRAMETIME, RenderLoop, 0);
+
 	glutMouseFunc(Mouse);
 	
 
 	glutPassiveMotionFunc(mouseMove);
-	//ShowCursor(FALSE);
+	ShowCursor(FALSE);
 
 	glutReshapeFunc(reshape);
 	glutMainLoop();
@@ -140,13 +145,31 @@ void myinit()
 	CreateTextures();
 }
 
+/**
+* @breif	Handles all the render steps for the program - still needs work, barebones right now
+*
+* @param	val - Currently unused, needed it for glutTimerFunc
+* 
+* @return	Void
+*/
+void RenderLoop(int val)
+{
+	glutTimerFunc(FRAMETIME, RenderLoop, 0);
+
+	cam.KeyboardMovement();
+
+	glutPostRedisplay();
+	return;
+}
+
+
 //--------------------------------------------------------------------------------------
 //  Main Display Function
 //--------------------------------------------------------------------------------------
 void Display()
 {
 	// check for movement
-	cam.CheckCamera();
+	//cam.CheckCamera();
 	
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -176,7 +199,6 @@ void Display()
 	glDisable (GL_TEXTURE_2D); 
 
 	// clear buffers
-	glFlush();
 	glutSwapBuffers();
 }
 
@@ -202,6 +224,8 @@ void reshape(int w, int h)
 void keys(unsigned char key, int x, int y)
 {
 	int i = 0;
+
+	
 	switch (key)
 	{
 	// move forwards
@@ -225,6 +249,7 @@ void keys(unsigned char key, int x, int y)
 	case 'd':
 		cam.DirectionLR(1);
 		break;
+	
 
 	// display campus map
 	case 'm':
@@ -243,6 +268,7 @@ void keys(unsigned char key, int x, int y)
 	case 27:
 		cam.SetRotateSpeed (0.0f);
 		cam.SetMoveSpeed (0.0f);
+		ShowCursor(true);
 		DisplayExit = true;
 		break;
 
@@ -281,6 +307,7 @@ void keys(unsigned char key, int x, int y)
 //--------------------------------------------------------------------------------------
 void releaseKeys(unsigned char key, int x, int y)
 {
+	
 	switch (key)
 	{
 		// step left or right
@@ -299,6 +326,7 @@ void releaseKeys(unsigned char key, int x, int y)
 			cam.DirectionFB(0);
 			break;
 	}
+	
 }
 
 //--------------------------------------------------------------------------------------
@@ -438,41 +466,47 @@ void CreateBoundingBoxes()
 //--------------------------------------------------------------------------------------
 // Set up co-ordinates of different plains
 //--------------------------------------------------------------------------------------
+/**
+* @breif	Set up co-ordinates of different plains. What this actually means is this is where you assign invisible walls for the player to bump into
+* @param	No param
+* @return	Void
+*/
 void CreatePlains()
 {	
-	// grass slope
-	cam.SetPlains (ZY_PLAIN, 4848.0 ,31568.0 ,9536.0, 10450.0 ,6200.0, 10000.0);
+	//						x1, x2				, y1, y2			, z1, z2
+	// grass slope ZY_PLAIN
+	cam.SetPlains(ZY_PLAIN, 4848.0, 31568.0		, 9536.0, 10450.0	, 6200.0, 10000.0);
 
 	// flat land (pavement and grass)
-	cam.SetPlains (FLAT_PLAIN, 0.0, 36000.0 , 10450.0, 10450.0, 10000.0, 17000.0);
-	cam.SetPlains (FLAT_PLAIN, 0.0, 6500.0 , 10450.0, 10450.0, 17000.0, 40000.0);
-	cam.SetPlains (FLAT_PLAIN, 27000.0, 36000.0 , 10450.0, 10450.0, 17000.0, 40000.0);
-	cam.SetPlains (FLAT_PLAIN, 0.0, 36000.0 , 10450.0, 10450.0, 40000.0, 50000.0);
+	cam.SetPlains (FLAT_PLAIN, 0.0, 36000.0		, 10450.0, 10450.0	, 10000.0, 17000.0);
+	cam.SetPlains (FLAT_PLAIN, 0.0, 6500.0		, 10450.0, 10450.0	, 17000.0, 40000.0);
+	cam.SetPlains (FLAT_PLAIN, 27000.0, 36000.0 , 10450.0, 10450.0	, 17000.0, 40000.0);
+	cam.SetPlains (FLAT_PLAIN, 0.0, 36000.0		, 10450.0, 10450.0	, 40000.0, 50000.0);
 	
 	// top of lower hill
-	cam.SetPlains (FLAT_PLAIN, 9000.0, 22000.0 , 10650.0, 10650.0, 19000.0, 23000.0);
-	cam.SetPlains (FLAT_PLAIN, 9000.0, 10000.0 , 10650.0, 10650.0, 28000.0, 33000.0);
-	cam.SetPlains (FLAT_PLAIN, 9000.0, 22000.0 , 10650.0, 10650.0, 36000.0, 37000.0);
+	cam.SetPlains (FLAT_PLAIN, 9000.0, 22000.0	, 10650.0, 10650.0	, 19000.0, 23000.0);
+	cam.SetPlains (FLAT_PLAIN, 9000.0, 10000.0	, 10650.0, 10650.0	, 28000.0, 33000.0);
+	cam.SetPlains (FLAT_PLAIN, 9000.0, 22000.0	, 10650.0, 10650.0	, 36000.0, 37000.0);
 	// sides of lower hill
-	cam.SetPlains (ZY_PLAIN, 6500.0, 27000.0 , 10450.0, 10650.0, 17000.0, 19000.0);
-	cam.SetPlains (ZY_PLAIN, 6500.0, 27000.0 , 10650.0, 10450.0, 37000.0, 40000.0);
-	cam.SetPlains (XY_PLAIN, 6500.0, 9000.0 , 10450.0, 10650.0, 17000.0, 40000.0);
-	cam.SetPlains (XY_PLAIN, 22000.0, 27000.0 , 10650.0, 10450.0, 17000.0, 40000.0);
+	cam.SetPlains (ZY_PLAIN, 6500.0, 27000.0	, 10450.0, 10650.0	, 17000.0, 19000.0);
+	cam.SetPlains (ZY_PLAIN, 6500.0, 27000.0	, 10650.0, 10450.0	, 37000.0, 40000.0);
+	cam.SetPlains (XY_PLAIN, 6500.0, 9000.0		, 10450.0, 10650.0	, 17000.0, 40000.0);
+	cam.SetPlains (XY_PLAIN, 22000.0, 27000.0	, 10650.0, 10450.0	, 17000.0, 40000.0);
 
 	// top of higher hill
-	cam.SetPlains (FLAT_PLAIN, 14000.0, 18000.0 , 10875.0, 108075.0, 28000.0, 33000.0);
+	cam.SetPlains (FLAT_PLAIN, 14000.0, 18000.0 , 10875.0, 108075.0	, 28000.0, 33000.0);
 	// sides of higher hill
-	cam.SetPlains (ZY_PLAIN, 10000.0, 22000.0 , 10650.0, 10875.0, 23000.0, 28000.0);
-	cam.SetPlains (ZY_PLAIN, 10000.0, 22000.0 , 10875.0, 10650.0, 33000.0, 36000.0);
-	cam.SetPlains (XY_PLAIN, 10000.0, 14000.0 , 10650.0, 10875.0, 23000.0, 36000.0);
-	cam.SetPlains (XY_PLAIN, 18000.0, 22000.0 , 10875.0, 10650.0, 23000.0, 36000.0);
+	cam.SetPlains (ZY_PLAIN, 10000.0, 22000.0	, 10650.0, 10875.0	, 23000.0, 28000.0);
+	cam.SetPlains (ZY_PLAIN, 10000.0, 22000.0	, 10875.0, 10650.0	, 33000.0, 36000.0);
+	cam.SetPlains (XY_PLAIN, 10000.0, 14000.0	, 10650.0, 10875.0	, 23000.0, 36000.0);
+	cam.SetPlains (XY_PLAIN, 18000.0, 22000.0	, 10875.0, 10650.0	, 23000.0, 36000.0);
 
 	//entance steps
 	step = 10450.0;
 	stepLength = 9808.0;
 	for (int i = 0; i < 18 ; i ++)
 	{
-		cam.SetPlains (FLAT_PLAIN, 31582.0, 33835, step, step, stepLength, stepLength + 42.0);		
+		cam.SetPlains (FLAT_PLAIN, 31582.0, 33835, step, step		, stepLength, stepLength + 42.0);		
 		step -= 48.0;
 		stepLength -= 142.0;
 		if ((i+3) % 5 == 0) 
@@ -483,7 +517,7 @@ void CreatePlains()
 	}
 
 	// temp plain to take down to ECL1
-	cam.SetPlains (ZY_PLAIN, 3200.0, 4800.0 , 10450.0, 9370.0, 53400.0, 57900.0);
+	cam.SetPlains (ZY_PLAIN, 3200.0, 4800.0		, 10450.0, 9370.0	, 53400.0, 57900.0);
 }
 
 //--------------------------------------------------------------------------------------

@@ -3,6 +3,8 @@
 
 #define PI 3.1415962654
 
+#define FRAMETIME 30
+
 // TEXTURE IMAGE AXISES
 #define XY		0
 #define XZ		1

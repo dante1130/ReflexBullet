@@ -11,6 +11,8 @@
 #include <math.h>
 #include <gl/glut.h>
 
+//SDL event which is used for movement keys
+
 //--------------------------------------------------------------------------------------
 // Set initial values
 //--------------------------------------------------------------------------------------
@@ -57,6 +59,84 @@ void Camera::ResetXYZ()
 	m_lookYY = 1.0f;
 	m_lookZZ = 0.0f;
 }
+
+void Camera::KeyboardMovement()
+{
+	bool shift = false;
+	bool crouch = false;
+
+	if (GetKeyState(VK_LSHIFT) & 0x80) { shift = true; }
+
+	//uses #include <Windows.h>
+	if (GetKeyState('W') & 0x80 && !(GetKeyState('S') & 0x80))
+	{
+		WSKeyboardMovement(true, shift);
+	}
+
+	if (GetKeyState('S') & 0x80 && !(GetKeyState('W') & 0x80))
+	{
+		WSKeyboardMovement(false, shift);
+	}
+
+	if (GetKeyState('A') & 0x80 && !(GetKeyState('D') & 0x80))
+	{
+		ADKeyboardMovement(true, shift);
+	}
+
+	if (GetKeyState('D') & 0x80 && !(GetKeyState('A') & 0x80))
+	{
+		ADKeyboardMovement(false, shift);
+	}
+
+
+	
+	callGLLookAt();
+}
+
+void Camera::WSKeyboardMovement(bool direction, bool sprint)
+{
+	float movementSpeed = m_moveSpeed;
+	if (sprint) { movementSpeed = movementSpeed * 2; }
+	if (!direction) { movementSpeed = movementSpeed * -1; }
+
+	float xMove = m_lookX * movementSpeed;
+	float zMove = m_lookZ * movementSpeed;
+
+	//Checks if player can move in direction based on AABB
+	if (!(m_colDetect.Collide(m_x + xMove, m_y + m_lookYY, m_z + zMove)))
+	{
+		m_x = m_x + xMove;
+		m_z = m_z + zMove;
+
+
+		//Makes sure that the camera object is on the right y height
+		SetPlains(xMove, zMove);
+	}
+	//std::cout << "x: " << m_x << "    y: " << m_y << "     z: " << m_z << std::endl;
+}
+
+void Camera::ADKeyboardMovement(bool direction, bool sprint)
+{
+	float movementSpeed = m_moveSpeed;
+	if (sprint) { movementSpeed = movementSpeed * 2; }
+	if (!direction) { movementSpeed = movementSpeed * -1; }
+
+	float xMove = m_lookZ * movementSpeed;
+	float zMove = -m_lookX * movementSpeed;
+
+	//Checks if player can move in direction based on AABB
+	if (!(m_colDetect.Collide(m_x + xMove, m_y + m_lookYY, m_z + zMove)))
+	{
+		m_x = m_x + xMove;
+		m_z = m_z + zMove;
+
+		//Makes sure that the camera object is on the right y height
+		SetPlains(xMove, zMove);
+	}
+
+}
+
+
 
 //--------------------------------------------------------------------------------------
 //  Determine direction
@@ -215,24 +295,29 @@ bool Camera::LookUDOK()
 //--------------------------------------------------------------------------------------
 // Move camera backwards and forwards
 //--------------------------------------------------------------------------------------
-void Camera::MoveFB()
+void Camera::MoveFB(bool direction, bool sprint)
 {
 	// record previous co-ordinates
 	m_xLast = m_x;
 	m_zLast = m_z;
 
+	GLdouble tempMoveSpeed = m_moveSpeed;
+	if (!direction) { tempMoveSpeed *= -1; }
+	if (sprint) { tempMoveSpeed *= 2; }
+
+	
 	// set movement step
-	GLdouble moveZ = (m_deltaMoveFB * (m_lookZ) * m_moveSpeed);
-	GLdouble moveX = (m_deltaMoveFB * (m_lookX) * m_moveSpeed);
+	GLdouble moveZ = m_lookZ * tempMoveSpeed;
+	GLdouble moveX = m_lookX * tempMoveSpeed;
 
 	if (m_CollisionDetectionOn)
 	{
-		GLdouble startX = m_x + moveX * 5.0;
-		GLdouble startZ = m_z + moveZ * 5.0;
+		GLdouble startX = m_x + moveX * 1.0 * tempMoveSpeed;
+		GLdouble startZ = m_z + moveZ * 1.0 * tempMoveSpeed;
 
 		// check if collsion
-		if (!(m_colDetect.Collide(startX + m_lookX, m_y + m_lookY, startZ + m_lookZ)))
-		{
+		//if (!(m_colDetect.Collide(startX + m_lookX, m_y + m_lookY, startZ + m_lookZ)))
+		//{
 			// increment position
 			m_x += moveX;
 			m_z += moveZ;
@@ -240,7 +325,7 @@ void Camera::MoveFB()
 			SetPlains(moveX, moveZ);
 			// redisplay
 			callGLLookAt();
-		}
+		//}
 	}
 	else
 	{
@@ -257,32 +342,41 @@ void Camera::MoveFB()
 //--------------------------------------------------------------------------------------
 // Move camera left and right (sideways)
 //--------------------------------------------------------------------------------------
-void Camera::MoveLR()
+void Camera::MoveLR(bool direction, bool sprint)
 {
 	// record previous co-ordinates
 	m_zLast = m_z;
 	m_xLast = m_x;
 
+
+	GLdouble tempMoveSpeed = m_moveSpeed;
+	if (!direction) { tempMoveSpeed *= -1; }
+	if (sprint) { tempMoveSpeed *= 2; }
+
+
 	// set movement step
-	GLdouble moveZ = (m_deltaMoveLR * (m_lookZZ) * m_moveSpeed);
-	GLdouble moveX = (m_deltaMoveLR * (m_lookXX) * m_moveSpeed);
+	GLdouble moveZ = (-m_lookX * tempMoveSpeed); //(m_deltaMoveLR * (m_lookZZ) * m_moveSpeed);
+	GLdouble moveX = (m_lookZ * tempMoveSpeed);//(m_deltaMoveLR * (m_lookXX) * m_moveSpeed);
 
 	if (m_CollisionDetectionOn)
 	{
-		GLdouble startX = m_x + moveX * 1.0;
-		GLdouble startZ = m_z + moveZ * m_moveSpeed * 1.0;
+		GLdouble startX = m_x + moveX * tempMoveSpeed * 1.0;
+		GLdouble startZ = m_z + moveZ * tempMoveSpeed * 1.0;
 
 		// check if collsion
-		if (!(m_colDetect.Collide(startX + m_lookXX, m_y + m_lookYY, startZ + m_lookZZ)))
-		{
+		//if (!(m_colDetect.Collide(startX + m_lookXX, m_y + m_lookYY, startZ + m_lookZZ)))
+		//{
 			// increment position
+			//m_x = m_x + (m_lookZ * m_moveSpeed);
+			//m_z = m_z + (-m_lookX * m_moveSpeed);
 			m_x += moveX;
 			m_z += moveZ;
 			// check plain
 			SetPlains(moveX, moveZ);
 			// redisplay
 			callGLLookAt();
-		}
+		//}
+			
 	}
 	else
 	{
@@ -300,6 +394,7 @@ void Camera::MoveLR()
 //----------------------------------------------------------------------------------------
 void Camera::SetPlains(const int & moveX, const int & moveZ)
 {
+
 	// store number of plains (stops from looping through linked list each time)
 	if (m_No_Plains == 0) m_No_Plains = m_Plain.GetListSize();
 
@@ -326,16 +421,15 @@ void Camera::SetPlains(const int & moveX, const int & moveZ)
 			// if plain slopes in z direction
 			if (m_Plain.GetType(i) == 2)
 			{
-				// if plain slopes up or down
-				if (m_zLast > m_z)
-				{
-					m_incrementZ = ((m_y - m_Plain.GetYstart(i)) / (m_z - m_Plain.GetZstart(i)));
-				}
-				else
-				{
-					m_incrementZ = ((m_Plain.GetYend(i) - m_y) / (m_Plain.GetZend(i) - m_z));
-				}
-				m_y += (m_incrementZ * moveZ);
+				float z1 = m_Plain.GetZstart(i);
+				float z2 = m_Plain.GetZend(i);
+				float dif = z1 - z2;
+
+				float dist = m_z - z1;
+				float ratio = (m_Plain.GetYstart(i) - m_Plain.GetYend(i)) / dif;
+
+				m_y = m_Plain.GetYstart(i) + ratio * dist;
+
 			}
 			// if plain slopes in x direction	
 			if (m_Plain.GetType(i) == 1)
@@ -430,9 +524,10 @@ void Camera::Position (GLdouble const & tempX, GLdouble const & tempY,
 //----------------------------------------------------------------------------------------
 void Camera::CheckCamera()
 {
-	if (MoveFBOK()) MoveFB();
-	if (MoveLROK()) MoveLR();
-	if (MoveUDOK()) MoveUD();
+
+	//if (MoveFBOK()) MoveFB();
+	//if (MoveLROK()) MoveLR();
+	//if (MoveUDOK()) MoveUD();
 
 	// Removed for new mouse implementation.
 	// if (RotateLROK()) RotateLR();
