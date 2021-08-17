@@ -227,13 +227,6 @@ void reshape(int w, int h)
 //--------------------------------------------------------------------------------------
 void keys(unsigned char key, int x, int y)
 {
-	int i = 0;
-
-
-	int vaal = glutGetModifiers();
-	std::cout << vaal << std::endl;
-
-	
 	switch (key)
 	{
 	// move forwards
@@ -513,7 +506,13 @@ void CreatePlains()
 	cam.SetPlains (XY_PLAIN, 10000.0, 14000.0	, 10650.0, 10875.0	, 23000.0, 36000.0);
 	cam.SetPlains (XY_PLAIN, 18000.0, 22000.0	, 10875.0, 10650.0	, 23000.0, 36000.0);
 
-	//entance steps
+	// Missing big step
+	cam.SetPlains(FLAT_PLAIN, 31582, 33835, 10258, 10258, 9000, 9300);
+
+	// Missing step 4th step from the top
+	cam.SetPlains(FLAT_PLAIN, 31582, 33835, 10300, 10300, 9400, 9490);
+
+	//entrance steps
 	step = 10450.0;
 	stepLength = 9808.0;
 	for (int i = 0; i < 18 ; i ++)

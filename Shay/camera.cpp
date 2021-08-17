@@ -8,9 +8,6 @@
 
 #include "Camera.h"
 
-#include <math.h>
-#include <gl/glut.h>
-
 const unsigned char  *keysPressed;
 
 //SDL event which is used for movement keys
@@ -40,8 +37,7 @@ Camera::Camera()
 	m_CollisionDetectionOn = true;
 
 	// sound objects
-	es = CEasySound::Instance();
-	stepSound = es->GetSound(es->Load("sounds/step.wav"));
+	m_audio.AddSound("sounds/step.wav", "stairstep");
 }
 
 //--------------------------------------------------------------------------------------
@@ -296,11 +292,14 @@ void Camera::SetPlains(const int & moveX, const int & moveZ)
 			// if flat plain
 			if (m_Plain.GetType(i) == 0)
 			{
+
 				m_y = m_Plain.GetYstart(i);
+
+				std::cout << m_y << " " << m_z << std::endl;
 				
 				if ((m_plainNo != i) && m_plainHeight != m_Plain.GetYstart(i))
 				{
-					stepSound->Play();
+					m_audio.PlaySound("stairstep");
 				}
 
 
