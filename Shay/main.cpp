@@ -75,34 +75,36 @@ void RenderLoop(int val);
 //--------------------------------------------------------------------------------------
 //  Main function 
 //--------------------------------------------------------------------------------------
-int main(int argc, char **argv)
+int main(int argc, char** argv)
 {
 	std::cout << "Hello World!" << std::endl;
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
-	glutInitWindowPosition(100,100);
-	glutInitWindowSize(800,500);
+	glutInitWindowPosition(100, 100);
+	glutInitWindowSize(800, 500);
 	glutCreateWindow("Murdoch University Campus Tour");
 
 	myinit();
 
 	glutIgnoreKeyRepeat(1);
-	glutKeyboardUpFunc (releaseKeys);
 	glutKeyboardFunc(keys);
+	glutKeyboardUpFunc(releaseKeys);
+	
 
 	glutDisplayFunc(Display);
 	//glutIdleFunc(Display);
 	glutTimerFunc(FRAMETIME, RenderLoop, 0);
 
 	glutMouseFunc(Mouse);
-	
+
 
 	glutPassiveMotionFunc(mouseMove);
-	ShowCursor(FALSE);
+	//ShowCursor(FALSE);
+	glutSetCursor(GLUT_CURSOR_NONE);
 
 	glutReshapeFunc(reshape);
 	glutMainLoop();
-	
+
 	return(0);
 }
 
@@ -112,49 +114,51 @@ int main(int argc, char **argv)
 void myinit()
 {
 	// set background (sky colour)
-	glClearColor(97.0/255.0, 140.0/255.0, 185.0/255.0, 1.0);
-	
+	glClearColor(97.0 / 255.0, 140.0 / 255.0, 185.0 / 255.0, 1.0);
+
 	// set perpsective
-	gluLookAt(0.0, 1.75, 0.0, 
-		      0.0, 1.75, -1,
-			  0.0f,1.0f,0.0f);
-	
+	gluLookAt(0.0, 1.75, 0.0,
+		0.0, 1.75, -1,
+		0.0f, 1.0f, 0.0f);
+
 	// settings for glut cylinders
 	glu_cylinder = gluNewQuadric();
-    gluQuadricTexture(glu_cylinder, GL_TRUE );
+	gluQuadricTexture(glu_cylinder, GL_TRUE);
 
 	// set the world co-ordinates (used to set quadrants for bounding boxes)
 	cam.SetWorldCoordinates(36000.0, 43200.0);
 	// turn collision detection on
-	cam.SetCollisionDetectionOn(true);
-	// set number of bounding boxes required
-	cam.SetNoBoundingBoxes(19);
-	// set starting position of user
-	cam.Position(32720.0, 9536.0,	
-				 4800.0, 180.0);
-	
-	CreatePlains();	
-	
-	// creates bounding boxes and places in array
-	CreateBoundingBoxes();
-	// copies bounding boxes from array to linked lists (one fopr each quadrant)
-	cam.InitiateBoundingBoxes();
-	
-	// load texture images and create display lists
-	CreateTextureList();
-	CreateTextures();
+cam.SetCollisionDetectionOn(true);
+// set number of bounding boxes required
+cam.SetNoBoundingBoxes(19);
+// set starting position of user
+cam.Position(32720.0, 9536.0,
+	4800.0, 180.0);
+
+CreatePlains();
+
+// creates bounding boxes and places in array
+CreateBoundingBoxes();
+// copies bounding boxes from array to linked lists (one fopr each quadrant)
+cam.InitiateBoundingBoxes();
+
+// load texture images and create display lists
+CreateTextureList();
+CreateTextures();
 }
 
 /**
 * @breif	Handles all the render steps for the program - still needs work, barebones right now
 *
 * @param	val - Currently unused, needed it for glutTimerFunc
-* 
+*
 * @return	Void
 */
 void RenderLoop(int val)
 {
 	glutTimerFunc(FRAMETIME, RenderLoop, 0);
+
+
 
 	cam.KeyboardMovement();
 
@@ -170,33 +174,33 @@ void Display()
 {
 	// check for movement
 	//cam.CheckCamera();
-	
+
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// DISPLAY TEXTURES
 	//enable texture mapping
-	glEnable (GL_TEXTURE_2D);
-	glPushMatrix();	
-		// displays the welcome screen
-		if (DisplayWelcome) cam.DisplayWelcomeScreen (width, height, 1, tp.GetTexture(WELCOME));	
-		// displays the exit screen
-		if (DisplayExit) cam.DisplayWelcomeScreen (width, height, 0, tp.GetTexture(EXIT) );
-		// displays the map
-		if (DisplayMap) cam.DisplayMap(width, height, tp.GetTexture(MAP));
-		// display no exit sign (position check should really be in an object, but didn't have time)
-		if ((cam.GetLR() > 35500.0) && (cam.GetFB() < 25344.0) ||
-			(cam.GetLR() > 34100.0) && (cam.GetFB() > 41127.0))
-		{
-			cam.DisplayNoExit(width, height,tp.GetTexture(NO_EXIT));
-		}
-				// set the movement and rotation speed according to frame count
-		IncrementFrameCount();
-		cam.SetMoveSpeed (stepIncrement * movementSpeed);
-		cam.SetRotateSpeed (angleIncrement * rotationSpeed);
-		// display images
-		DrawBackdrop(lightsOn);
+	glEnable(GL_TEXTURE_2D);
+	glPushMatrix();
+	// displays the welcome screen
+	if (DisplayWelcome) cam.DisplayWelcomeScreen(width, height, 1, tp.GetTexture(WELCOME));
+	// displays the exit screen
+	if (DisplayExit) cam.DisplayWelcomeScreen(width, height, 0, tp.GetTexture(EXIT));
+	// displays the map
+	if (DisplayMap) cam.DisplayMap(width, height, tp.GetTexture(MAP));
+	// display no exit sign (position check should really be in an object, but didn't have time)
+	if ((cam.GetLR() > 35500.0) && (cam.GetFB() < 25344.0) ||
+		(cam.GetLR() > 34100.0) && (cam.GetFB() > 41127.0))
+	{
+		cam.DisplayNoExit(width, height, tp.GetTexture(NO_EXIT));
+	}
+	// set the movement and rotation speed according to frame count
+	IncrementFrameCount();
+	cam.SetMoveSpeed(stepIncrement * movementSpeed);
+	cam.SetRotateSpeed(angleIncrement * rotationSpeed);
+	// display images
+	DrawBackdrop(lightsOn);
 	glPopMatrix();
-	glDisable (GL_TEXTURE_2D); 
+	glDisable(GL_TEXTURE_2D);
 
 	// clear buffers
 	glutSwapBuffers();
@@ -216,7 +220,7 @@ void reshape(int w, int h)
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glViewport(0, 0, w, h);
-	gluPerspective(45,ratio,1,250000);	
+	gluPerspective(45, ratio, 1, 250000);
 	glMatrixMode(GL_MODELVIEW);
 }
 
@@ -224,6 +228,10 @@ void reshape(int w, int h)
 void keys(unsigned char key, int x, int y)
 {
 	int i = 0;
+
+
+	int vaal = glutGetModifiers();
+	std::cout << vaal << std::endl;
 
 	
 	switch (key)
@@ -238,7 +246,7 @@ void keys(unsigned char key, int x, int y)
 	case 's':
 		cam.DirectionFB(-1);
 		break;
-
+		
 	// step left
 	case 'A':
 	case 'a':
@@ -268,7 +276,7 @@ void keys(unsigned char key, int x, int y)
 	case 27:
 		cam.SetRotateSpeed (0.0f);
 		cam.SetMoveSpeed (0.0f);
-		ShowCursor(true);
+		glutSetCursor(GLUT_CURSOR_RIGHT_ARROW);
 		DisplayExit = true;
 		break;
 
@@ -307,15 +315,19 @@ void keys(unsigned char key, int x, int y)
 //--------------------------------------------------------------------------------------
 void releaseKeys(unsigned char key, int x, int y)
 {
+
+	
 	
 	switch (key)
 	{
 		// step left or right
 		case 'a' :
 		case 'A' :
+			cam.DirectionLR(-2);
+			break;
 		case 'd' :
 		case 'D' :
-			cam.DirectionLR(0);
+			cam.DirectionLR(2);
 			break;
 
 		// look left up or down
@@ -467,7 +479,7 @@ void CreateBoundingBoxes()
 // Set up co-ordinates of different plains
 //--------------------------------------------------------------------------------------
 /**
-* @breif	Set up co-ordinates of different plains. What this actually means is this is where you assign invisible walls for the player to bump into
+* @breif	Set up co-ordinates of different plains. What this actually means is this is where you assign invisible floors for the player to walk on
 * @param	No param
 * @return	Void
 */

@@ -15,8 +15,8 @@
 #include "PlainLinkedList.h"
 #include "EasySound.h"
 
-#include <Windows.h>
 #include <math.h>
+
 
 //--------------------------------------------------------------------------------------
 
