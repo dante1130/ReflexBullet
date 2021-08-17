@@ -11,6 +11,10 @@
 #include <math.h>
 #include <gl/glut.h>
 
+const unsigned char  *keysPressed;
+
+//SDL event which is used for movement keys
+
 //--------------------------------------------------------------------------------------
 // Set initial values
 //--------------------------------------------------------------------------------------
@@ -58,17 +62,138 @@ void Camera::ResetXYZ()
 	m_lookZZ = 0.0f;
 }
 
+void Camera::KeyboardMovement()
+{
+	bool shift = false;
+	bool crouch = false;
+	
+
+	/*
+	if (GetKeyState(VK_LSHIFT) & 0x80) { shift = true; }
+	
+	//uses #include <Windows.h>
+	if (GetKeyState('W') & 0x80 && !(GetKeyState('S') & 0x80))
+	{
+		WSKeyboardMovement(true, shift);
+	}
+
+	if (GetKeyState('S') & 0x80 && !(GetKeyState('W') & 0x80))
+	{
+		WSKeyboardMovement(false, shift);
+	}
+
+	if (GetKeyState('A') & 0x80 && !(GetKeyState('D') & 0x80))
+	{
+		ADKeyboardMovement(true, shift);
+	}
+
+	if (GetKeyState('D') & 0x80 && !(GetKeyState('A') & 0x80))
+	{
+		ADKeyboardMovement(false, shift);
+	}
+	*/
+
+	WSKeyboardMovement(true, false);
+	ADKeyboardMovement(true, false);
+	
+	callGLLookAt();
+}
+
+void Camera::WSKeyboardMovement(bool direction, bool sprint)
+{
+	if (m_deltaMoveFB == 0) { return; }
+
+	float movementSpeed = m_moveSpeed * m_deltaMoveFB;
+	if (sprint) { movementSpeed = movementSpeed * 2; }
+	//if (!direction) { movementSpeed = movementSpeed * -1; }
+
+	float xMove = m_lookX * movementSpeed;
+	float zMove = m_lookZ * movementSpeed;
+
+	//Checks if player can move in direction based on AABB
+	if (!(m_colDetect.Collide(m_x + xMove, m_y + m_lookYY, m_z + zMove)))
+	{
+		m_x = m_x + xMove;
+		m_z = m_z + zMove;
+
+
+		//Makes sure that the camera object is on the right y height
+		SetPlains(xMove, zMove);
+	}
+	//std::cout << "x: " << m_x << "    y: " << m_y << "     z: " << m_z << std::endl;
+}
+
+void Camera::ADKeyboardMovement(bool direction, bool sprint)
+{
+	if (m_deltaMoveLR == 0) { return; }
+
+	float movementSpeed = m_moveSpeed * m_deltaMoveLR * -1;
+	if (sprint) { movementSpeed = movementSpeed * 2; }
+	//if (!direction) { movementSpeed = movementSpeed * -1; }
+
+	float xMove = m_lookZ * movementSpeed;
+	float zMove = -m_lookX * movementSpeed;
+
+	//Checks if player can move in direction based on AABB
+	if (!(m_colDetect.Collide(m_x + xMove, m_y + m_lookYY, m_z + zMove)))
+	{
+		m_x = m_x + xMove;
+		m_z = m_z + zMove;
+
+		//Makes sure that the camera object is on the right y height
+		SetPlains(xMove, zMove);
+	}
+
+}
+
+
+
 //--------------------------------------------------------------------------------------
 //  Determine direction
 //--------------------------------------------------------------------------------------
 void Camera::DirectionFB(int const & tempMove)
 {
 	m_deltaMoveFB = tempMove;
+	
 }
 //--------------------------------------------------------------------------------------
 void Camera::DirectionLR(int const & tempMove)
 {
-	m_deltaMoveLR = tempMove;
+	// tempMove possible values
+	// 1 = D is pressed
+	// 2 = D is released
+	// 1 = A is pressed
+	// 2 = A is released
+
+	if (tempMove == 1 && m_deltaMoveLR == -1){
+		m_deltaMoveLR = 0;
+	}
+	else if (tempMove == -1 && m_deltaMoveLR == 1)
+	{
+		m_deltaMoveLR = 0;
+	}
+	else if (tempMove == 2 && m_deltaMoveLR == 1)
+	{
+		m_deltaMoveLR = 0;
+	}
+	else if (tempMove == 2 && m_deltaMoveLR == 0)
+	{
+		m_deltaMoveLR = -1;
+	}
+	else if (tempMove == -2 && m_deltaMoveLR == -1)
+	{
+		m_deltaMoveLR = 0;
+	}
+	else if (tempMove == -2 && m_deltaMoveLR == 0)
+	{
+		m_deltaMoveLR = 1;
+	}
+	else
+	{
+		m_deltaMoveLR = tempMove;
+	}
+
+
 }
 //--------------------------------------------------------------------------------------
 // Not used but allows up and don movement
@@ -77,17 +202,6 @@ void Camera::DirectionUD(int const & tempMove)
 	m_deltaMoveUD = tempMove;
 }
 
-//--------------------------------------------------------------------------------------
-void Camera::DirectionRotateLR(GLdouble const & tempMove)
-{
-	m_deltaAngleLR = tempMove * m_rotateSpeed;
-}
-
-//--------------------------------------------------------------------------------------
-void Camera::DirectionLookUD(int const & tempMove)
-{
-	m_deltaAngleUD = tempMove * m_rotateSpeed;
-}
 
 //----------------------------------------------------------------------------------------
 //  Rotates camera based on mouse movement
@@ -161,145 +275,15 @@ bool Camera::MoveLROK()
 	return tempReturn;
 }
 
-//--------------------------------------------------------------------------------------
-// Is ok to move camera up and down (not used)
-//--------------------------------------------------------------------------------------
-bool Camera::MoveUDOK()
-{
-	bool tempReturn;
-	if (m_deltaMoveUD < 0 || m_deltaMoveUD > 0)
-	{
-		tempReturn = true;
-	}
-	else
-	{
-		tempReturn = false;
-	}
-	return tempReturn;
-}
 
-//--------------------------------------------------------------------------------------
-// Is ok to rotate sideways
-//--------------------------------------------------------------------------------------
-bool Camera::RotateLROK()
-{
-	bool tempReturn;
-	if ((m_deltaAngleLR/m_rotateSpeed) < 0 || (m_deltaAngleLR/m_rotateSpeed) > 0)
-	{
-		tempReturn = true;
-	}
-	else
-	{
-		tempReturn = false;
-	}
-	return tempReturn;
-}
 
-//--------------------------------------------------------------------------------------
-// Is ok to rotate up and down
-//--------------------------------------------------------------------------------------
-bool Camera::LookUDOK()
-{
-	bool tempReturn;
-	if ((m_deltaAngleUD/m_rotateSpeed) < 0 || (m_deltaAngleUD/m_rotateSpeed) > 0)
-	{
-		tempReturn = true;
-	}
-	else
-	{
-		tempReturn = false;
-	}
-	return tempReturn;
-}
-
-//--------------------------------------------------------------------------------------
-// Move camera backwards and forwards
-//--------------------------------------------------------------------------------------
-void Camera::MoveFB()
-{
-	// record previous co-ordinates
-	m_xLast = m_x;
-	m_zLast = m_z;
-
-	// set movement step
-	GLdouble moveZ = (m_deltaMoveFB * (m_lookZ) * m_moveSpeed);
-	GLdouble moveX = (m_deltaMoveFB * (m_lookX) * m_moveSpeed);
-
-	if (m_CollisionDetectionOn)
-	{
-		GLdouble startX = m_x + moveX * 5.0;
-		GLdouble startZ = m_z + moveZ * 5.0;
-
-		// check if collsion
-		if (!(m_colDetect.Collide(startX + m_lookX, m_y + m_lookY, startZ + m_lookZ)))
-		{
-			// increment position
-			m_x += moveX;
-			m_z += moveZ;
-			// check plain
-			SetPlains(moveX, moveZ);
-			// redisplay
-			callGLLookAt();
-		}
-	}
-	else
-	{
-		// increment position
-		m_x += moveX;
-		m_z += moveZ;
-		// check plain
-		SetPlains(moveX, moveZ);
-		// redisplay
-		callGLLookAt();
-	}	
-}
-
-//--------------------------------------------------------------------------------------
-// Move camera left and right (sideways)
-//--------------------------------------------------------------------------------------
-void Camera::MoveLR()
-{
-	// record previous co-ordinates
-	m_zLast = m_z;
-	m_xLast = m_x;
-
-	// set movement step
-	GLdouble moveZ = (m_deltaMoveLR * (m_lookZZ) * m_moveSpeed);
-	GLdouble moveX = (m_deltaMoveLR * (m_lookXX) * m_moveSpeed);
-
-	if (m_CollisionDetectionOn)
-	{
-		GLdouble startX = m_x + moveX * 1.0;
-		GLdouble startZ = m_z + moveZ * m_moveSpeed * 1.0;
-
-		// check if collsion
-		if (!(m_colDetect.Collide(startX + m_lookXX, m_y + m_lookYY, startZ + m_lookZZ)))
-		{
-			// increment position
-			m_x += moveX;
-			m_z += moveZ;
-			// check plain
-			SetPlains(moveX, moveZ);
-			// redisplay
-			callGLLookAt();
-		}
-	}
-	else
-	{
-		// increment position
-		m_x += moveX;
-		m_z += moveZ;
-		SetPlains(moveX, moveZ);
-		// redisplay
-		callGLLookAt();
-	}
-}
 
 //----------------------------------------------------------------------------------------
 //  Places camera at the correct level on the current plain
 //----------------------------------------------------------------------------------------
 void Camera::SetPlains(const int & moveX, const int & moveZ)
 {
+
 	// store number of plains (stops from looping through linked list each time)
 	if (m_No_Plains == 0) m_No_Plains = m_Plain.GetListSize();
 
@@ -326,16 +310,15 @@ void Camera::SetPlains(const int & moveX, const int & moveZ)
 			// if plain slopes in z direction
 			if (m_Plain.GetType(i) == 2)
 			{
-				// if plain slopes up or down
-				if (m_zLast > m_z)
-				{
-					m_incrementZ = ((m_y - m_Plain.GetYstart(i)) / (m_z - m_Plain.GetZstart(i)));
-				}
-				else
-				{
-					m_incrementZ = ((m_Plain.GetYend(i) - m_y) / (m_Plain.GetZend(i) - m_z));
-				}
-				m_y += (m_incrementZ * moveZ);
+				float z1 = m_Plain.GetZstart(i);
+				float z2 = m_Plain.GetZend(i);
+				float dif = z1 - z2;
+
+				float dist = m_z - z1;
+				float ratio = (m_Plain.GetYstart(i) - m_Plain.GetYend(i)) / dif;
+
+				m_y = m_Plain.GetYstart(i) + ratio * dist;
+
 			}
 			// if plain slopes in x direction	
 			if (m_Plain.GetType(i) == 1)
@@ -425,19 +408,7 @@ void Camera::Position (GLdouble const & tempX, GLdouble const & tempY,
 	callGLLookAt();
 }
 
-//----------------------------------------------------------------------------------------
-// Check ok to move
-//----------------------------------------------------------------------------------------
-void Camera::CheckCamera()
-{
-	if (MoveFBOK()) MoveFB();
-	if (MoveLROK()) MoveLR();
-	if (MoveUDOK()) MoveUD();
 
-	// Removed for new mouse implementation.
-	// if (RotateLROK()) RotateLR();
-	// if (LookUDOK()) LookUD();
-}
 
 
 //----------------------------------------------------------------------------------------
@@ -498,58 +469,3 @@ void Camera::SetPlains (const int tempType,
 {
 	m_Plain.AddToStart(tempType, tempXs, tempXe, tempYs, tempYe, tempZs, tempZe);
 }
-
-//--------------------------------------------------------------------------------------
-// THE BELOW FUNCTIONS ARE NOT IMPLEMENTED
-// Originally created to climb stairs
-// The Plain object is used instead
-//----------------------------------------------------------------------------------------
-void Camera::CheckSteps()
-{
-
-	//ClimbSteps(10000.0, 9430.0, 48.0, 142.0, 4);
-	//ClimbSteps(8920.0, 8210.0, 48.0, 142.0, 5);
-	//ClimbSteps(7698.0, 6988.0, 48.0, 142.0, 5);
-	//ClimbSteps(6476.0, 5766.0, 48.0, 142.0, 5);
-}
-
-//----------------------------------------------------------------------------------------
-
-void Camera::ClimbSteps(GLdouble stepStart, GLdouble stepFinish, GLdouble stepHeight, GLdouble stepWidth, int noSteps)
-{	
-	GLdouble tempUpSteps;
-	if ((m_z < stepStart) && (m_z > stepFinish))
-	{
-		bool stepped = false;
-		if (m_z > m_zLast)
-		{
-			m_direction = 1.0;
-			tempUpSteps = stepWidth;
-		}
-		else
-		{
-			m_direction = -1.0;
-			tempUpSteps = 0.0;
-		}
-
-		for (int i = 0; i < noSteps + 1; i++)
-		{
-			if ((m_z < (stepStart - (i * stepWidth) + stepWidth/2) - tempUpSteps)
-				&& (m_z > (stepStart - (i * stepWidth) - stepWidth/2) - tempUpSteps))
-			{
-				if (stepped== false) 
-				{	
-					m_z = stepStart - (stepWidth * i) + (m_direction * stepWidth) - tempUpSteps;
-					m_y += stepHeight * m_direction;
-				
-					stepped = true;
-					DirectionFB(0);
-					DirectionLR(0);
-				}			
-			}
-		}
-	}
-}
-//----------------------------------------------------------------------------------------
-
-

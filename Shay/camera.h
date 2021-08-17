@@ -15,6 +15,9 @@
 #include "PlainLinkedList.h"
 #include "EasySound.h"
 
+#include <math.h>
+
+
 //--------------------------------------------------------------------------------------
 
 class Camera
@@ -23,6 +26,14 @@ public:
 
 	Camera();
 	virtual ~Camera() {es->Unload(stepSound);}
+
+
+	/**
+	* @brief	Handles all key movement for movement speed
+	* @param	No param
+	* @return	Void
+	*/
+	void KeyboardMovement();
 
 	//----------------------------------------------------------------------------------
 	
@@ -131,9 +142,33 @@ private:
 	GLdouble m_rotateSpeed;
 	GLdouble m_moveSpeed;
 
+
 	// Helper function for rotation
 	GLdouble degreesToRadians(GLdouble degrees);
 	
+
+	/**
+	* @brief	Handles W and S key movement of player
+	* 
+	* @param	direction		- true if forwards (W), false if backwards (S)
+	* @pararm	sprint			- true if player sprinting, false if not
+	* 
+	* @return	Void
+	*/
+	void Camera::WSKeyboardMovement(bool direction, bool sprint);
+
+	/**
+	* @brief	Handles A and D key movement of player
+	* 
+	* @param	direction		- true if left (A), false if right (D)
+	* @pararm	sprint			- true if player sprinting, false if not	
+	* 
+	* @return	Void
+	*/
+	void Camera::ADKeyboardMovement(bool direction, bool sprint);
+
+
+
 	// is it ok to move
 	bool MoveFBOK();
 	bool MoveLROK();
@@ -142,8 +177,8 @@ private:
 	bool LookUDOK();
 
 	// Move around the world
-	void MoveFB();
-	void MoveLR();
+	void MoveFB(bool direction, bool sprint);
+	void MoveLR(bool direction, bool sprint);
 	void MoveUD();
 
 	// Look around the world
