@@ -103,13 +103,18 @@ void Camera::WSKeyboardMovement(bool direction, bool sprint)
 {
 	if (m_deltaMoveFB == 0) { return; }
 
-	float movementSpeed = m_moveSpeed * m_deltaMoveFB;
+	float movementSpeed = m_moveSpeed;
 	if (sprint) { movementSpeed = movementSpeed * 2; }
 	//if (!direction) { movementSpeed = movementSpeed * -1; }
+	if (m_deltaMoveLR != 0) { movementSpeed *= 0.5; } //So you can't run at twice the speed when running diagonally
 
 	float xMove = m_lookX * movementSpeed;
 	float zMove = m_lookZ * movementSpeed;
 
+	float norm = movementSpeed / sqrt(pow(xMove, 2) + pow(zMove, 2)); //So it runs normally when looking up or down
+	xMove *= norm * m_deltaMoveFB; //m_deltaMoveFB is used for the direction
+	zMove *= norm * m_deltaMoveFB;
+	
 	//Checks if player can move in direction based on AABB
 	if (!(m_colDetect.Collide(m_x + xMove, m_y + m_lookYY, m_z + zMove)))
 	{
@@ -120,19 +125,23 @@ void Camera::WSKeyboardMovement(bool direction, bool sprint)
 		//Makes sure that the camera object is on the right y height
 		SetPlains(xMove, zMove);
 	}
-	//std::cout << "x: " << m_x << "    y: " << m_y << "     z: " << m_z << std::endl;
 }
 
 void Camera::ADKeyboardMovement(bool direction, bool sprint)
 {
 	if (m_deltaMoveLR == 0) { return; }
 
-	float movementSpeed = m_moveSpeed * m_deltaMoveLR * -1;
+	float movementSpeed = m_moveSpeed;
 	if (sprint) { movementSpeed = movementSpeed * 2; }
 	//if (!direction) { movementSpeed = movementSpeed * -1; }
+	if (m_deltaMoveFB != 0) { movementSpeed *= 0.5; } //So you can't run at twice the speed when running diagonally
 
 	float xMove = m_lookZ * movementSpeed;
 	float zMove = -m_lookX * movementSpeed;
+
+	float norm = movementSpeed / sqrt(pow(xMove, 2) + pow(zMove, 2)); //So it runs normally when looking up or down
+	xMove *= norm * -m_deltaMoveLR; //m_deltaMoveRL is used for the direction
+	zMove *= norm * -m_deltaMoveLR;
 
 	//Checks if player can move in direction based on AABB
 	if (!(m_colDetect.Collide(m_x + xMove, m_y + m_lookYY, m_z + zMove)))

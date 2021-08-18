@@ -14,7 +14,7 @@
 
 // USE THESE STTEINGS TO CHANGE SPEED (on different spec computers)
 // Set speed (steps)
-GLdouble movementSpeed = 2.0;
+GLdouble movementSpeed = 100;
 GLdouble rotationSpeed = 1;
 
 GLdouble stepIncrement;
@@ -56,6 +56,7 @@ void releaseKey(int key, int x, int y);
 void releaseKeys(unsigned char key, int x, int y);
 void Mouse(int button, int state, int x, int y);
 void mouseMove(int x, int y);
+
 
 void BindBridgeWall(GLint LR);
 void BindBuildingWall();
@@ -158,8 +159,6 @@ void RenderLoop(int val)
 {
 	glutTimerFunc(FRAMETIME, RenderLoop, 0);
 
-
-
 	cam.KeyboardMovement();
 
 	glutPostRedisplay();
@@ -195,7 +194,9 @@ void Display()
 	}
 	// set the movement and rotation speed according to frame count
 	IncrementFrameCount();
-	cam.SetMoveSpeed(stepIncrement * movementSpeed);
+	//cam.SetMoveSpeed(stepIncrement * movementSpeed);
+	cam.SetMoveSpeed(movementSpeed);
+
 	cam.SetRotateSpeed(angleIncrement * rotationSpeed);
 	// display images
 	DrawBackdrop(lightsOn);
@@ -224,16 +225,13 @@ void reshape(int w, int h)
 	glMatrixMode(GL_MODELVIEW);
 }
 
+
 //--------------------------------------------------------------------------------------
 void keys(unsigned char key, int x, int y)
 {
 	int i = 0;
 
 
-	int vaal = glutGetModifiers();
-	std::cout << vaal << std::endl;
-
-	
 	switch (key)
 	{
 	// move forwards
