@@ -8,9 +8,6 @@
 
 #include "Camera.h"
 
-#include <math.h>
-#include <gl/glut.h>
-
 const unsigned char  *keysPressed;
 
 //SDL event which is used for movement keys
@@ -40,8 +37,7 @@ Camera::Camera()
 	m_CollisionDetectionOn = true;
 
 	// sound objects
-	es = CEasySound::Instance();
-	stepSound = es->GetSound(es->Load("sounds/step.wav"));
+	m_audio.AddSound("sounds/step.wav", "stairstep");
 }
 
 //--------------------------------------------------------------------------------------
@@ -239,6 +235,13 @@ void Camera::MouseMove(int x, int y)
 	m_lookY = sin(degreesToRadians(m_rotateAngleUD));
 	m_lookZ = -cos(degreesToRadians(m_rotateAngleLR)) * cos(degreesToRadians(m_rotateAngleUD));
 
+	int winW = glutGet(GLUT_WINDOW_WIDTH);
+	int winH = glutGet(GLUT_WINDOW_HEIGHT);
+
+	m_prevX = winW / 2;   
+	m_prevY = winH / 2;
+	glutWarpPointer(winW / 2, winH / 2);  //centers the cursor
+
 	callGLLookAt();
 }
 
@@ -305,13 +308,14 @@ void Camera::SetPlains(const int & moveX, const int & moveZ)
 			// if flat plain
 			if (m_Plain.GetType(i) == 0)
 			{
+				std::cout << m_y << " " << m_z << std::endl;
+
 				m_y = m_Plain.GetYstart(i);
 				
 				if ((m_plainNo != i) && m_plainHeight != m_Plain.GetYstart(i))
 				{
-					stepSound->Play();
+					m_audio.PlaySound("stairstep");
 				}
-
 
 				m_plainNo = i;
 				m_plainHeight = m_Plain.GetYstart(i);
