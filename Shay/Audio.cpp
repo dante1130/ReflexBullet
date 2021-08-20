@@ -4,7 +4,7 @@ Audio::Audio()
 	: m_sounds()
 {
 	SDL_Init(SDL_INIT_AUDIO);
-	Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096);
+	Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 1024);
 }
 
 Audio::~Audio()

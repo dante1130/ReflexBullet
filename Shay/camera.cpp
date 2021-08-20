@@ -308,8 +308,6 @@ void Camera::SetPlains(const int & moveX, const int & moveZ)
 			// if flat plain
 			if (m_Plain.GetType(i) == 0)
 			{
-				std::cout << m_y << " " << m_z << std::endl;
-
 				m_y = m_Plain.GetYstart(i);
 				
 				if ((m_plainNo != i) && m_plainHeight != m_Plain.GetYstart(i))

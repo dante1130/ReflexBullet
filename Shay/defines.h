@@ -3,7 +3,7 @@
 
 #define PI 3.1415962654
 
-#define FRAMETIME 30
+constexpr auto FRAMETIME = 1000/60;
 
 // TEXTURE IMAGE AXISES
 #define XY		0

@@ -14,7 +14,7 @@
 
 // USE THESE STTEINGS TO CHANGE SPEED (on different spec computers)
 // Set speed (steps)
-GLdouble movementSpeed = 100;
+GLdouble movementSpeed = 50;
 GLdouble rotationSpeed = 1;
 
 GLdouble stepIncrement;
@@ -228,12 +228,6 @@ void reshape(int w, int h)
 //--------------------------------------------------------------------------------------
 void keys(unsigned char key, int x, int y)
 {
-<<<<<<< HEAD
-=======
-	int i = 0;
-
-
->>>>>>> develop
 	switch (key)
 	{
 	// move forwards
