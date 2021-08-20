@@ -97,7 +97,6 @@ int main(int argc, char** argv)
 
 	glutMouseFunc(Mouse);
 
-
 	glutPassiveMotionFunc(mouseMove);
 	//ShowCursor(FALSE);
 	glutSetCursor(GLUT_CURSOR_NONE);
@@ -128,23 +127,23 @@ void myinit()
 	// set the world co-ordinates (used to set quadrants for bounding boxes)
 	cam.SetWorldCoordinates(36000.0, 43200.0);
 	// turn collision detection on
-cam.SetCollisionDetectionOn(true);
-// set number of bounding boxes required
-cam.SetNoBoundingBoxes(19);
-// set starting position of user
-cam.Position(32720.0, 9536.0,
-	4800.0, 180.0);
+	cam.SetCollisionDetectionOn(true);
+	// set number of bounding boxes required
+	cam.SetNoBoundingBoxes(19);
+	// set starting position of user
+	cam.Position(32720.0, 9536.0,
+		4800.0, 180.0);
 
-CreatePlains();
+	CreatePlains();
 
-// creates bounding boxes and places in array
-CreateBoundingBoxes();
-// copies bounding boxes from array to linked lists (one fopr each quadrant)
-cam.InitiateBoundingBoxes();
+	// creates bounding boxes and places in array
+	CreateBoundingBoxes();
+	// copies bounding boxes from array to linked lists (one fopr each quadrant)
+	cam.InitiateBoundingBoxes();
 
-// load texture images and create display lists
-CreateTextureList();
-CreateTextures();
+	// load texture images and create display lists
+	CreateTextureList();
+	CreateTextures();
 }
 
 /**
@@ -157,8 +156,6 @@ CreateTextures();
 void RenderLoop(int val)
 {
 	glutTimerFunc(FRAMETIME, RenderLoop, 0);
-
-
 
 	cam.KeyboardMovement();
 
@@ -308,9 +305,6 @@ void keys(unsigned char key, int x, int y)
 //--------------------------------------------------------------------------------------
 void releaseKeys(unsigned char key, int x, int y)
 {
-
-	
-	
 	switch (key)
 	{
 		// step left or right
@@ -357,11 +351,12 @@ void Mouse(int button, int state, int x, int y)
 void mouseMove(int x, int y)
 {
 	cam.MouseMove(x, y);
+
 	glutPostRedisplay();
 }
 
 //--------------------------------------------------------------------------------------
-// Set up bounding boxes for collsion detection
+// Set up bounding boxes for collision detection
 //--------------------------------------------------------------------------------------
 void CreateBoundingBoxes()
 {
@@ -515,12 +510,12 @@ void CreatePlains()
 	//entrance steps
 	step = 10450.0;
 	stepLength = 9808.0;
-	for (int i = 0; i < 18 ; i ++)
+	for (int i = 0; i < 18; i++)
 	{
-		cam.SetPlains (FLAT_PLAIN, 31582.0, 33835, step, step		, stepLength, stepLength + 42.0);		
+		cam.SetPlains(FLAT_PLAIN, 31582.0, 33835, step, step, stepLength, stepLength + 42.0);
 		step -= 48.0;
 		stepLength -= 142.0;
-		if ((i+3) % 5 == 0) 
+		if ((i + 3) % 5 == 0)
 		{
 			stepLength -= 500.0;
 			step -= 48.0;
