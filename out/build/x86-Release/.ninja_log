@@ -1,4 +1,5 @@
 # ninja log v5
+<<<<<<< HEAD
 22	1037	650919959	Shay/CMakeFiles/Shay.dir/AABBNode.cpp.obj	e709c7c75be619da
 13	1192	650919960	Shay/CMakeFiles/Shay.dir/AABBLinkedList.cpp.obj	394cc4f4af2c8288
 88	1246	650919960	Shay/CMakeFiles/Shay.dir/LoadTexturesShaysWorld.cpp.obj	fae114bcc416c7d9
@@ -27,3 +28,29 @@
 19	1006	651143055	Shay/CMakeFiles/Shay.dir/main.cpp.obj	d04aa081cd6c9956
 3	1034	651143055	Shay/CMakeFiles/Shay.dir/camera.cpp.obj	ab98eb76abab5342
 1034	1883	651143055	Shay/Shay.exe	3b2cdf2abbba20d4
+=======
+31	599	6506979590637570	Shay/CMakeFiles/Shay.dir/cameraMap.cpp.obj	672225ed4d24998d
+22	979	6506979594557083	Shay/CMakeFiles/Shay.dir/Sound.cpp.obj	db705eeab449deb2
+19	1026	6506979595065724	Shay/CMakeFiles/Shay.dir/EasySound.cpp.obj	44c33bbc5df3b568
+3	588	6509774122454405	Shay/CMakeFiles/Shay.dir/main.cpp.obj	f4c42c5be748bfa6
+600	1346	6506979598277132	Shay/CMakeFiles/Shay.dir/texturedPolygons.cpp.obj	ac01cf66ea1819c7
+25	716	6506979591954051	Shay/CMakeFiles/Shay.dir/SoundTime.cpp.obj	12f734744a46943a
+4	788	6506979592652180	Shay/CMakeFiles/Shay.dir/AABBNode.cpp.obj	848c0a27b8ee57fb
+0	792	6506979592682106	Shay/CMakeFiles/Shay.dir/AABBLinkedList.cpp.obj	5d8c4c761ba236bb
+14	1120	6506979595993245	Shay/CMakeFiles/Shay.dir/PlainNode.cpp.obj	d2b2499a91ad24f2
+6	1121	6506979595993245	Shay/CMakeFiles/Shay.dir/AABB.CPP.obj	8d088a4e825cb935
+11	1092	6506979595704020	Shay/CMakeFiles/Shay.dir/PlainLinkedList.cpp.obj	3b5f2be35ac9b6bc
+34	1127	6506979596063061	Shay/CMakeFiles/Shay.dir/collision.cpp.obj	48386ccf750f98ba
+1	549	6509784439931653	Shay/CMakeFiles/Shay.dir/camera.cpp.obj	26c8c0121a57bdba
+549	704	6509784441317952	Shay/Shay.exe	d6872c0602a9d3f0
+8	900	6506979593779164	Shay/CMakeFiles/Shay.dir/DisplayShaysWorld.cpp.obj	e157e2874ada5135
+16	702	6506979591794481	Shay/CMakeFiles/Shay.dir/LoadTexturesShaysWorld.cpp.obj	e391c19e4ee4d629
+1	568	6509784698560088	Shay/CMakeFiles/Shay.dir/camera.cpp.obj	26c8c0121a57bdba
+569	723	6509784699936407	Shay/Shay.exe	d6872c0602a9d3f0
+1	534	6509785460279737	Shay/CMakeFiles/Shay.dir/camera.cpp.obj	26c8c0121a57bdba
+535	865	6509785463452912	Shay/Shay.exe	d6872c0602a9d3f0
+0	605	6509786154784383	Shay/CMakeFiles/Shay.dir/camera.cpp.obj	26c8c0121a57bdba
+606	766	6509786156250140	Shay/Shay.exe	d6872c0602a9d3f0
+0	491	6509786778527487	Shay/CMakeFiles/Shay.dir/camera.cpp.obj	26c8c0121a57bdba
+492	631	6509786779714019	Shay/Shay.exe	d6872c0602a9d3f0
+>>>>>>> develop
