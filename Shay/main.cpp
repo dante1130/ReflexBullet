@@ -8,6 +8,8 @@
 #include "texturedPolygons.h"
 #include "DisplayShaysWorld.h"
 #include "defines.h"
+#include "fileIO.h"
+#include "Object.h"
 
 
 //--------------------------------------------------------------------------------------
