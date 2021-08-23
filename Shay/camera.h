@@ -13,9 +13,10 @@
 #include "collision.h"
 #include "cameraMap.h"
 #include "PlainLinkedList.h"
-#include "EasySound.h"
+#include "Audio.h"
 
 #include <math.h>
+#include <gl/glut.h>
 
 
 //--------------------------------------------------------------------------------------
@@ -25,7 +26,7 @@ class Camera
 public:
 
 	Camera();
-	virtual ~Camera() {es->Unload(stepSound);}
+	virtual ~Camera() {}
 
 
 	/**
@@ -205,8 +206,7 @@ private:
 	void ClimbSteps(GLdouble stepStart, GLdouble stepFinish, GLdouble stepHeight, GLdouble stepWidth, int noSteps);
 	void CheckSteps();
 
-	CEasySound *es;
-	CSound* stepSound;
+	Audio m_audio;
 
 	//----------------------------------------------------------------------------------
 

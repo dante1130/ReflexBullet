@@ -8,13 +8,15 @@
 #include "texturedPolygons.h"
 #include "DisplayShaysWorld.h"
 #include "defines.h"
+#include "fileIO.h"
+#include "Object.h"
 
 
 //--------------------------------------------------------------------------------------
 
 // USE THESE STTEINGS TO CHANGE SPEED (on different spec computers)
 // Set speed (steps)
-GLdouble movementSpeed = 2.0;
+GLdouble movementSpeed = 50;
 GLdouble rotationSpeed = 1;
 
 GLdouble stepIncrement;
@@ -57,6 +59,7 @@ void releaseKeys(unsigned char key, int x, int y);
 void Mouse(int button, int state, int x, int y);
 void mouseMove(int x, int y);
 
+
 void BindBridgeWall(GLint LR);
 void BindBuildingWall();
 void BindWallPosts(GLint LR);
@@ -97,7 +100,6 @@ int main(int argc, char** argv)
 
 	glutMouseFunc(Mouse);
 
-
 	glutPassiveMotionFunc(mouseMove);
 	//ShowCursor(FALSE);
 	glutSetCursor(GLUT_CURSOR_NONE);
@@ -128,23 +130,23 @@ void myinit()
 	// set the world co-ordinates (used to set quadrants for bounding boxes)
 	cam.SetWorldCoordinates(36000.0, 43200.0);
 	// turn collision detection on
-cam.SetCollisionDetectionOn(true);
-// set number of bounding boxes required
-cam.SetNoBoundingBoxes(19);
-// set starting position of user
-cam.Position(32720.0, 9536.0,
-	4800.0, 180.0);
+	cam.SetCollisionDetectionOn(true);
+	// set number of bounding boxes required
+	cam.SetNoBoundingBoxes(19);
+	// set starting position of user
+	cam.Position(32720.0, 9536.0,
+		4800.0, 180.0);
 
-CreatePlains();
+	CreatePlains();
 
-// creates bounding boxes and places in array
-CreateBoundingBoxes();
-// copies bounding boxes from array to linked lists (one fopr each quadrant)
-cam.InitiateBoundingBoxes();
+	// creates bounding boxes and places in array
+	CreateBoundingBoxes();
+	// copies bounding boxes from array to linked lists (one fopr each quadrant)
+	cam.InitiateBoundingBoxes();
 
-// load texture images and create display lists
-CreateTextureList();
-CreateTextures();
+	// load texture images and create display lists
+	CreateTextureList();
+	CreateTextures();
 }
 
 /**
@@ -157,8 +159,6 @@ CreateTextures();
 void RenderLoop(int val)
 {
 	glutTimerFunc(FRAMETIME, RenderLoop, 0);
-
-
 
 	cam.KeyboardMovement();
 
@@ -195,7 +195,9 @@ void Display()
 	}
 	// set the movement and rotation speed according to frame count
 	IncrementFrameCount();
-	cam.SetMoveSpeed(stepIncrement * movementSpeed);
+	//cam.SetMoveSpeed(stepIncrement * movementSpeed);
+	cam.SetMoveSpeed(movementSpeed);
+
 	cam.SetRotateSpeed(angleIncrement * rotationSpeed);
 	// display images
 	DrawBackdrop(lightsOn);
@@ -224,16 +226,10 @@ void reshape(int w, int h)
 	glMatrixMode(GL_MODELVIEW);
 }
 
+
 //--------------------------------------------------------------------------------------
 void keys(unsigned char key, int x, int y)
 {
-	int i = 0;
-
-
-	int vaal = glutGetModifiers();
-	std::cout << vaal << std::endl;
-
-	
 	switch (key)
 	{
 	// move forwards
@@ -315,9 +311,6 @@ void keys(unsigned char key, int x, int y)
 //--------------------------------------------------------------------------------------
 void releaseKeys(unsigned char key, int x, int y)
 {
-
-	
-	
 	switch (key)
 	{
 		// step left or right
@@ -364,11 +357,12 @@ void Mouse(int button, int state, int x, int y)
 void mouseMove(int x, int y)
 {
 	cam.MouseMove(x, y);
+
 	glutPostRedisplay();
 }
 
 //--------------------------------------------------------------------------------------
-// Set up bounding boxes for collsion detection
+// Set up bounding boxes for collision detection
 //--------------------------------------------------------------------------------------
 void CreateBoundingBoxes()
 {
@@ -513,15 +507,21 @@ void CreatePlains()
 	cam.SetPlains (XY_PLAIN, 10000.0, 14000.0	, 10650.0, 10875.0	, 23000.0, 36000.0);
 	cam.SetPlains (XY_PLAIN, 18000.0, 22000.0	, 10875.0, 10650.0	, 23000.0, 36000.0);
 
-	//entance steps
+	// Missing big step
+	cam.SetPlains(FLAT_PLAIN, 31582, 33835, 10258, 10258, 9000, 9300);
+
+	// Missing step 4th step from the top
+	cam.SetPlains(FLAT_PLAIN, 31582, 33835, 10300, 10300, 9400, 9490);
+
+	//entrance steps
 	step = 10450.0;
 	stepLength = 9808.0;
-	for (int i = 0; i < 18 ; i ++)
+	for (int i = 0; i < 18; i++)
 	{
-		cam.SetPlains (FLAT_PLAIN, 31582.0, 33835, step, step		, stepLength, stepLength + 42.0);		
+		cam.SetPlains(FLAT_PLAIN, 31582.0, 33835, step, step, stepLength, stepLength + 42.0);
 		step -= 48.0;
 		stepLength -= 142.0;
-		if ((i+3) % 5 == 0) 
+		if ((i + 3) % 5 == 0)
 		{
 			stepLength -= 500.0;
 			step -= 48.0;
