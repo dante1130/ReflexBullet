@@ -14,6 +14,7 @@
 #include "cameraMap.h"
 #include "PlainLinkedList.h"
 #include "Audio.h"
+#include "defines.h"
 
 #include <cmath>
 #include <gl/glut.h>
@@ -39,7 +40,8 @@ public:
 	//  Set Methods
 	//----------------------------------------------------------------------------------
 	// sets initial value for bounding boxes (in the array AABB)
-	void SetAABBXZ(const int& tempIndex, const GLdouble & tempX1, const GLdouble & tempZ1, const GLdouble & tempX2, const GLdouble & tempZ2)
+
+	void SetAABBXZ(const int& tempIndex, const GLdouble& tempX1, const GLdouble& tempZ1, const GLdouble& tempX2, const GLdouble& tempZ2)
 	{
 		SetAABBMaxX(tempIndex, tempX1);
 		SetAABBMinX(tempIndex, tempX2);
@@ -124,8 +126,12 @@ public:
 	void SetCrouch(bool setCrouch);
 
 private:
-	/// Boolean if a player is crouching.
-	bool crouch = false;
+	/// If the player is crouching or not
+	bool crouch = false; 
+	/// The current crouch depth
+	float crouchDepth = 0; 
+	/// When the function was last called
+	long crouchTime; 
 
 	/// Step incline increments.
 	GLdouble m_incrementX, m_incrementZ;
@@ -170,15 +176,21 @@ private:
 	* @param	No param
 	* @return	Void
 	*/
-	void Camera::WSKeyboardMovement();
+	void WSKeyboardMovement();
 
 	/**
 	* @brief	Handles A and D key movement of player
 	* @param	No param
 	* @return	Void
 	*/
-	void Camera::ADKeyboardMovement();
+	void ADKeyboardMovement();
 
+	/**
+	* @brief	Calculates how far down the player has crouched
+	* @param	No param
+	* @return	Void
+	*/
+	void CrouchDistance();
 
 
 	// is it ok to move
@@ -221,7 +233,7 @@ private:
 
 	//----------------------------------------------------------------------------------
 
-    // Privatised copy constructor and assignment operator
+    // Privatized copy constructor and assignment operator
     Camera (const Camera &cam) {};
     Camera &operator = (const Camera &cam) {};
 };
