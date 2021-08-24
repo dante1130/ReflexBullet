@@ -6,6 +6,7 @@
 constexpr auto FRAMETIME = 1000/60;
 
 #define CROUCH_DEPTH	-210
+#define CROUCH_SPEED	100 //time it takes to fully crouch in milliseconds
 
 
 // TEXTURE IMAGE AXISES

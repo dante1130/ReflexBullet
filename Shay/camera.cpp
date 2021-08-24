@@ -100,8 +100,6 @@ void Camera::WSKeyboardMovement()
 	if (m_deltaMoveFB == 0) { return; }
 
 	float movementSpeed = m_moveSpeed;
-	//if (sprint) { movementSpeed = movementSpeed * 2; }
-	//if (!direction) { movementSpeed = movementSpeed * -1; }
 	if (m_deltaMoveLR != 0) { movementSpeed *= 0.5; } //So you can't run at twice the speed when running diagonally
 	if (crouch) { movementSpeed *= 0.5; }
 
@@ -128,8 +126,6 @@ void Camera::ADKeyboardMovement()
 	if (m_deltaMoveLR == 0) { return; }
 
 	float movementSpeed = m_moveSpeed;
-	//if (sprint) { movementSpeed = movementSpeed * 2; }
-	//if (!direction) { movementSpeed = movementSpeed * -1; }
 	if (m_deltaMoveFB != 0) { movementSpeed *= 0.5; } //So you can't run at twice the speed when running diagonally
 	if (crouch) { movementSpeed *= 0.5; }
 
@@ -423,7 +419,24 @@ void Camera::Position (GLdouble const & tempX, GLdouble const & tempY,
 void Camera::SetCrouch(bool setCrouch)
 {
 	crouch = setCrouch;
+	crouchTime = glutGet(GLUT_ELAPSED_TIME);
 }
+
+void Camera::CrouchDistance()
+{
+	if (crouch && crouchDepth == -210) { return; }
+	if (!crouch && crouchDepth == 0) { return; }
+
+	float change = CROUCH_DEPTH * ((float)(glutGet(GLUT_ELAPSED_TIME) - crouchTime) / CROUCH_SPEED);
+	if (!crouch) { change *= -1; }
+
+	crouchDepth = crouchDepth + change;
+	crouchTime = glutGet(GLUT_ELAPSED_TIME);
+
+	if (crouchDepth < -210) { crouchDepth = -210; }
+	if (crouchDepth > 0) { crouchDepth = 0; }
+}
+
 
 //----------------------------------------------------------------------------------------
 //  Redisplay new camera view
@@ -431,10 +444,9 @@ void Camera::SetCrouch(bool setCrouch)
 void Camera::callGLLookAt()
 {
 	glLoadIdentity();
-	float crouchY = 0;
-	if (crouch) { crouchY = -210; }
-	gluLookAt(m_x, m_y + crouchY, m_z,
-		m_x + m_lookX, m_y + m_lookY + crouchY, m_z + m_lookZ, 0, 1, 0);
+	CrouchDistance();
+	gluLookAt(m_x, m_y + crouchDepth, m_z,
+		m_x + m_lookX, m_y + m_lookY + crouchDepth, m_z + m_lookZ, 0, 1, 0);
 }
 
 //--------------------------------------------------------------------------------------

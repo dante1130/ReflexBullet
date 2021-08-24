@@ -129,7 +129,9 @@ public:
 
 private:
 
-	bool crouch = false;
+	bool crouch = false; //If the player is crouching or not
+	float crouchDepth = 0; //The current crouch depth
+	long crouchTime; //When the function was last called
 
 	//steep incline increments
 	GLdouble m_incrementX;
@@ -170,15 +172,21 @@ private:
 	* @param	No param
 	* @return	Void
 	*/
-	void Camera::WSKeyboardMovement();
+	void WSKeyboardMovement();
 
 	/**
 	* @brief	Handles A and D key movement of player
 	* @param	No param
 	* @return	Void
 	*/
-	void Camera::ADKeyboardMovement();
+	void ADKeyboardMovement();
 
+	/**
+	* @brief	Calculates how far down the player has crouched
+	* @param	No param
+	* @return	Void
+	*/
+	void CrouchDistance();
 
 
 	// is it ok to move
