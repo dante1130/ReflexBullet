@@ -89,20 +89,21 @@ void Camera::KeyboardMovement()
 	}
 	*/
 
-	WSKeyboardMovement(true, false);
-	ADKeyboardMovement(true, false);
+	WSKeyboardMovement();
+	ADKeyboardMovement();
 	
 	callGLLookAt();
 }
 
-void Camera::WSKeyboardMovement(bool direction, bool sprint)
+void Camera::WSKeyboardMovement()
 {
 	if (m_deltaMoveFB == 0) { return; }
 
 	float movementSpeed = m_moveSpeed;
-	if (sprint) { movementSpeed = movementSpeed * 2; }
+	//if (sprint) { movementSpeed = movementSpeed * 2; }
 	//if (!direction) { movementSpeed = movementSpeed * -1; }
 	if (m_deltaMoveLR != 0) { movementSpeed *= 0.5; } //So you can't run at twice the speed when running diagonally
+	if (crouch) { movementSpeed *= 0.5; }
 
 	float xMove = m_lookX * movementSpeed;
 	float zMove = m_lookZ * movementSpeed;
@@ -117,20 +118,20 @@ void Camera::WSKeyboardMovement(bool direction, bool sprint)
 		m_x = m_x + xMove;
 		m_z = m_z + zMove;
 
-
 		//Makes sure that the camera object is on the right y height
 		SetPlains(xMove, zMove);
 	}
 }
 
-void Camera::ADKeyboardMovement(bool direction, bool sprint)
+void Camera::ADKeyboardMovement()
 {
 	if (m_deltaMoveLR == 0) { return; }
 
 	float movementSpeed = m_moveSpeed;
-	if (sprint) { movementSpeed = movementSpeed * 2; }
+	//if (sprint) { movementSpeed = movementSpeed * 2; }
 	//if (!direction) { movementSpeed = movementSpeed * -1; }
 	if (m_deltaMoveFB != 0) { movementSpeed *= 0.5; } //So you can't run at twice the speed when running diagonally
+	if (crouch) { movementSpeed *= 0.5; }
 
 	float xMove = m_lookZ * movementSpeed;
 	float zMove = -m_lookX * movementSpeed;
@@ -197,9 +198,8 @@ void Camera::DirectionLR(int const & tempMove)
 	{
 		m_deltaMoveLR = tempMove;
 	}
-
-
 }
+
 //--------------------------------------------------------------------------------------
 // Not used but allows up and don movement
 void Camera::DirectionUD(int const & tempMove)
@@ -334,16 +334,14 @@ void Camera::SetPlains(const int & moveX, const int & moveZ)
 			// if plain slopes in x direction	
 			if (m_Plain.GetType(i) == 1)
 			{
-				// if plain slopes up or down
-				if (m_xLast > m_x)
-				{
-					m_incrementX = ((m_y - m_Plain.GetYstart(i)) / (m_x - m_Plain.GetXstart(i)));
-				}
-				else
-				{
-					m_incrementX = ((m_Plain.GetYend(i) - m_y) / (m_Plain.GetXend(i) - m_x));
-				}
-				m_y += (m_incrementX * moveX);
+				float x1 = m_Plain.GetXstart(i);
+				float x2 = m_Plain.GetXend(i);
+				float dif = x1 - x2;
+
+				float dist = m_x - x1;
+				float ratio = (m_Plain.GetYstart(i) - m_Plain.GetYend(i)) / dif;
+
+				m_y = m_Plain.GetYstart(i) + ratio * dist;
 			}		
 		}
 	}
@@ -421,6 +419,10 @@ void Camera::Position (GLdouble const & tempX, GLdouble const & tempY,
 
 
 
+void Camera::SetCrouch(bool setCrouch)
+{
+	crouch = setCrouch;
+}
 
 //----------------------------------------------------------------------------------------
 //  Redisplay new camera view
@@ -428,9 +430,10 @@ void Camera::Position (GLdouble const & tempX, GLdouble const & tempY,
 void Camera::callGLLookAt()
 {
 	glLoadIdentity();
-	gluLookAt(m_x, m_y, m_z, 
-		      m_x + m_lookX, m_y + m_lookY, m_z + m_lookZ,
-			  0.0f, 1.0f, 0.0f);
+	float crouchY = 0;
+	if (crouch) { crouchY = -210; }
+	gluLookAt(m_x, m_y + crouchY, m_z,
+		m_x + m_lookX, m_y + m_lookY + crouchY, m_z + m_lookZ, 0, 1, 0);
 }
 
 //--------------------------------------------------------------------------------------

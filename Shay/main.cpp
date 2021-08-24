@@ -27,7 +27,7 @@ clock_t lastClock = 0;
 // ratio of screen
 float ratio;
 // screen width and height
-int width, height;
+int width = 800, height = 500;
 
 // display campus map
 bool DisplayMap = false;
@@ -36,7 +36,7 @@ bool DisplayWelcome = true;
 // display exit screen
 bool DisplayExit = false;
 // display light fittings
-bool lightsOn;
+bool lightsOn = true;
 // display ECL block
 bool displayECL = true;
 
@@ -84,7 +84,7 @@ int main(int argc, char** argv)
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
 	glutInitWindowPosition(100, 100);
-	glutInitWindowSize(800, 500);
+	glutInitWindowSize(width, height);
 	glutCreateWindow("Murdoch University Campus Tour");
 
 	myinit();
@@ -230,6 +230,11 @@ void reshape(int w, int h)
 //--------------------------------------------------------------------------------------
 void keys(unsigned char key, int x, int y)
 {
+
+	int vall = glutGetModifiers();
+	std::cout << vall << std::endl;
+
+
 	switch (key)
 	{
 	// move forwards
@@ -270,8 +275,6 @@ void keys(unsigned char key, int x, int y)
 
 	// exit tour (escape key)
 	case 27:
-		cam.SetRotateSpeed (0.0f);
-		cam.SetMoveSpeed (0.0f);
 		glutSetCursor(GLUT_CURSOR_RIGHT_ARROW);
 		DisplayExit = true;
 		break;
@@ -286,25 +289,16 @@ void keys(unsigned char key, int x, int y)
 		}
 		else
 		{
-			cam.SetRotateSpeed (0.0f);
-			cam.SetMoveSpeed (0.0f);
 			DisplayWelcome = true;
 		}
 		break;
-
-	// display light fittings
-	case 'l':
-	case 'L':
-		if (lightsOn)
-		{
-			lightsOn = false;
-		}
-		else
-		{
-			lightsOn = true;
-		}
-		break;
 	
+	case 'c':
+	case 'C':
+		cam.SetCrouch(true);
+		break;
+
+
 	}
 }
 
@@ -329,6 +323,11 @@ void releaseKeys(unsigned char key, int x, int y)
 		case 's' :
 		case 'S' :
 			cam.DirectionFB(0);
+			break;
+
+		case 'c':
+		case 'C':
+			cam.SetCrouch(false);
 			break;
 	}
 	

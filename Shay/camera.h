@@ -112,7 +112,16 @@ public:
 	void DisplayNoExit (const int & screenWidth, const int & screenHeight, 
 						const GLuint & tempImage);
 	
+	/**
+	* @brief	Sets if the player is crouching
+	* @param	setCrouch	- True if crouching, false if not crouching
+	* @return	Void
+	*/
+	void SetCrouch(bool setCrouch);
+
 private:
+
+	bool crouch = false;
 
 	//steep incline increments
 	GLdouble m_incrementX;
@@ -150,23 +159,17 @@ private:
 
 	/**
 	* @brief	Handles W and S key movement of player
-	* 
-	* @param	direction		- true if forwards (W), false if backwards (S)
-	* @pararm	sprint			- true if player sprinting, false if not
-	* 
+	* @param	No param
 	* @return	Void
 	*/
-	void Camera::WSKeyboardMovement(bool direction, bool sprint);
+	void Camera::WSKeyboardMovement();
 
 	/**
 	* @brief	Handles A and D key movement of player
-	* 
-	* @param	direction		- true if left (A), false if right (D)
-	* @pararm	sprint			- true if player sprinting, false if not	
-	* 
+	* @param	No param
 	* @return	Void
 	*/
-	void Camera::ADKeyboardMovement(bool direction, bool sprint);
+	void Camera::ADKeyboardMovement();
 
 
 
