@@ -329,6 +329,7 @@ void Camera::SetPlains(const int & moveX, const int & moveZ)
 				float ratio = (m_Plain.GetYstart(i) - m_Plain.GetYend(i)) / dif;
 
 				m_y = m_Plain.GetYstart(i) + ratio * dist;
+				
 
 			}
 			// if plain slopes in x direction	

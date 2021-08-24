@@ -29,6 +29,8 @@ float ratio;
 // screen width and height
 int width = 800, height = 500;
 
+bool paused = true;
+
 // display campus map
 bool DisplayMap = false;
 // display welcome screen
@@ -115,6 +117,7 @@ int main(int argc, char** argv)
 //--------------------------------------------------------------------------------------
 void myinit()
 {
+	glEnable(GL_TEXTURE_2D);
 	// set background (sky colour)
 	glClearColor(97.0 / 255.0, 140.0 / 255.0, 185.0 / 255.0, 1.0);
 
@@ -147,6 +150,9 @@ void myinit()
 	// load texture images and create display lists
 	CreateTextureList();
 	CreateTextures();
+
+	cam.SetMoveSpeed(movementSpeed);
+	cam.SetRotateSpeed(angleIncrement * rotationSpeed);
 }
 
 /**
@@ -160,7 +166,10 @@ void RenderLoop(int val)
 {
 	glutTimerFunc(FRAMETIME, RenderLoop, 0);
 
-	cam.KeyboardMovement();
+	if (!paused)
+	{
+		cam.KeyboardMovement();
+	}
 
 	glutPostRedisplay();
 	return;
@@ -178,8 +187,6 @@ void Display()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// DISPLAY TEXTURES
-	//enable texture mapping
-	glEnable(GL_TEXTURE_2D);
 	glPushMatrix();
 	// displays the welcome screen
 	if (DisplayWelcome) cam.DisplayWelcomeScreen(width, height, 1, tp.GetTexture(WELCOME));
@@ -195,14 +202,10 @@ void Display()
 	}
 	// set the movement and rotation speed according to frame count
 	IncrementFrameCount();
-	//cam.SetMoveSpeed(stepIncrement * movementSpeed);
-	cam.SetMoveSpeed(movementSpeed);
-
-	cam.SetRotateSpeed(angleIncrement * rotationSpeed);
+	
 	// display images
 	DrawBackdrop(lightsOn);
 	glPopMatrix();
-	glDisable(GL_TEXTURE_2D);
 
 	// clear buffers
 	glutSwapBuffers();
@@ -230,11 +233,6 @@ void reshape(int w, int h)
 //--------------------------------------------------------------------------------------
 void keys(unsigned char key, int x, int y)
 {
-
-	int vall = glutGetModifiers();
-	std::cout << vall << std::endl;
-
-
 	switch (key)
 	{
 	// move forwards
@@ -263,14 +261,7 @@ void keys(unsigned char key, int x, int y)
 	// display campus map
 	case 'm':
 	case 'M':
-		if (DisplayMap)
-		{
-			DisplayMap = false;
-		}
-		else
-		{
-			DisplayMap = true;
-		}
+		DisplayMap = !DisplayMap;
 		break;
 
 	// exit tour (escape key)
@@ -279,26 +270,31 @@ void keys(unsigned char key, int x, int y)
 		DisplayExit = true;
 		break;
 
-	// display welcome page (space key)
-	case ' ':
-		if (DisplayWelcome)
-		{
-			cam.SetRotateSpeed (rotationSpeed);
-			cam.SetMoveSpeed (movementSpeed);
-			DisplayWelcome = false;
-		}
-		else
-		{
-			DisplayWelcome = true;
-		}
-		break;
 	
 	case 'c':
 	case 'C':
+	case ' ':
 		cam.SetCrouch(true);
 		break;
 
+	case 'p':
+	case 'P':
+		paused = !paused;
+		if (paused)
+		{
+			DisplayWelcome = true;
+			glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
+			glutPassiveMotionFunc(NULL);
 
+		}
+		else
+		{
+			DisplayWelcome = false;
+			glutSetCursor(GLUT_CURSOR_NONE);
+			glutWarpPointer(width / 2, height / 2);
+			glutPassiveMotionFunc(mouseMove);
+		}
+		break;
 	}
 }
 
@@ -327,6 +323,7 @@ void releaseKeys(unsigned char key, int x, int y)
 
 		case 'c':
 		case 'C':
+		case ' ':
 			cam.SetCrouch(false);
 			break;
 	}
@@ -462,10 +459,11 @@ void CreateBoundingBoxes()
 	cam.SetAABBMinZ(15, 25173.0);
 
 	// Wall by Steps
-	cam.SetAABBMaxX(16, 31548.0);
-	cam.SetAABBMinX(16, 31444.0);
-	cam.SetAABBMaxZ(16, 10395.0);
-	cam.SetAABBMinZ(16, 4590.0);
+	cam.SetAABBXZ(16, 31548.0, 10395.0, 31444.0, 4590.0);
+	//cam.SetAABBMaxX(16, 31548.0);
+	//cam.SetAABBMinX(16, 31444.0);
+	//cam.SetAABBMaxZ(16, 10395.0);
+	//cam.SetAABBMinZ(16, 4590.0);
 }
 
 //--------------------------------------------------------------------------------------

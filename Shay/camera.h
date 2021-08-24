@@ -14,6 +14,7 @@
 #include "cameraMap.h"
 #include "PlainLinkedList.h"
 #include "Audio.h"
+#include "defines.h"
 
 #include <math.h>
 #include <gl/glut.h>
@@ -42,6 +43,13 @@ public:
 	//  Set Methods
 	//----------------------------------------------------------------------------------
 	// sets initial value for bounding boxes (in the array AABB)
+	void SetAABBXZ(const int& tempIndex, const GLdouble& tempX1, const GLdouble& tempZ1, const GLdouble& tempX2, const GLdouble& tempZ2)
+	{
+		SetAABBMaxX(tempIndex, tempX1);
+		SetAABBMinX(tempIndex, tempX2);
+		SetAABBMaxZ(tempIndex, tempZ1);
+		SetAABBMinZ(tempIndex, tempZ2);
+	}
 	void SetAABBMaxX(const int & tempIndex, const GLdouble &tempX) {m_colDetect.SetAABBMaxX(tempIndex, tempX);}
 	void SetAABBMinX(const int & tempIndex, const GLdouble &tempX) {m_colDetect.SetAABBMinX(tempIndex, tempX);}
 	void SetAABBMaxY(const int & tempIndex, const GLdouble &tempY) {m_colDetect.SetAABBMaxY(tempIndex, tempY);}

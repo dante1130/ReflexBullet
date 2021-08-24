@@ -5,6 +5,9 @@
 
 constexpr auto FRAMETIME = 1000/60;
 
+#define CROUCH_DEPTH	-210
+
+
 // TEXTURE IMAGE AXISES
 #define XY		0
 #define XZ		1
