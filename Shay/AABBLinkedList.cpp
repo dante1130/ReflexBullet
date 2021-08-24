@@ -14,7 +14,7 @@ void AABBLinkedList::Clear()
 {
 	AABBNode *ptr = m_first;
 
-	while (ptr->GetNext() != NULL)
+	while (ptr->GetNext() != nullptr)
 	
 	// clear memory
 	Delete(ptr);
@@ -29,6 +29,26 @@ void AABBLinkedList::Delete(AABBNode *before)
 	before->SetNext(temp->GetNext());
 
 	delete temp;
+}
+
+AABBLinkedList::AABBLinkedList(const AABBLinkedList& ll)
+{
+
+}
+
+AABBLinkedList::AABBLinkedList() : m_first(new AABBNode)
+{
+
+}
+
+AABBLinkedList::~AABBLinkedList()
+{
+	Clear();
+}
+
+AABBLinkedList& AABBLinkedList::operator=(const AABBLinkedList& ll)
+{
+	return *this;
 }
 
 //--------------------------------------------------------------------------------------
@@ -66,10 +86,8 @@ GLdouble AABBLinkedList::GetMaxX (int ptrCount)
 		ptr = ptr->GetNext();
 	}
 
-	if (ptr->GetNext() != NULL)
-		return ptr->GetNext()->GetMaxX();	
-	else 
-		return NULL;
+	if (ptr->GetNext() != nullptr)
+		return ptr->GetNext()->GetMaxX();
 }
 //--------------------------------------------------------------------------------------
 
@@ -81,10 +99,8 @@ GLdouble AABBLinkedList::GetMinX (int ptrCount)
 		ptr = ptr->GetNext();
 	}
 
-	if (ptr->GetNext() != NULL)
+	if (ptr->GetNext() != nullptr)
 		return ptr->GetNext()->GetMinX();	
-	else 
-		return NULL;
 }
 
 //--------------------------------------------------------------------------------------
@@ -97,10 +113,8 @@ GLdouble AABBLinkedList::GetMaxY (int ptrCount)
 		ptr = ptr->GetNext();
 	}
 
-	if (ptr->GetNext() != NULL)
+	if (ptr->GetNext() != nullptr)
 		return ptr->GetNext()->GetMaxY();	
-	else 
-		return NULL;
 }
 
 //--------------------------------------------------------------------------------------
@@ -113,10 +127,8 @@ GLdouble AABBLinkedList::GetMinY(int ptrCount)
 		ptr = ptr->GetNext();
 	}
 
-	if (ptr->GetNext() != NULL)
+	if (ptr->GetNext() != nullptr)
 		return ptr->GetNext()->GetMinY();	
-	else 
-		return NULL;
 }
 
 //--------------------------------------------------------------------------------------
@@ -129,10 +141,8 @@ GLdouble AABBLinkedList::GetMaxZ (int ptrCount)
 		ptr = ptr->GetNext();
 	}
 
-	if (ptr->GetNext() != NULL)
-		return ptr->GetNext()->GetMaxZ();	
-	else 
-		return NULL;
+	if (ptr->GetNext() != nullptr)
+		return ptr->GetNext()->GetMaxZ();
 }
 
 //--------------------------------------------------------------------------------------
@@ -145,10 +155,8 @@ GLdouble AABBLinkedList::GetMinZ (int ptrCount)
 		ptr = ptr->GetNext();
 	}
 
-	if (ptr->GetNext() != NULL)
+	if (ptr->GetNext() != nullptr)
 		return ptr->GetNext()->GetMinZ();	
-	else 
-		return NULL;
 }
 
 //--------------------------------------------------------------------------------------
@@ -173,11 +181,21 @@ int AABBLinkedList::GetListSize()
 {
 	int tmpSize = 0;
 	// count size of list
-	for (AABBNode *ptr = (m_first); ptr->GetNext() != NULL; ptr = ptr->GetNext())
+	for (AABBNode *ptr = (m_first); ptr->GetNext() != nullptr; ptr = ptr->GetNext())
 	{
 		tmpSize++;
 	}
 	return tmpSize;
+}
+
+AABBNode* AABBLinkedList::GetNext() const
+{
+	return m_first->GetNext();
+}
+
+AABBNode* AABBLinkedList::GetFirst() const
+{
+	return m_first;
 }
 
 //--------------------------------------------------------------------------------------

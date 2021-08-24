@@ -15,7 +15,7 @@
 #include "PlainLinkedList.h"
 #include "Audio.h"
 
-#include <math.h>
+#include <cmath>
 #include <gl/glut.h>
 
 
@@ -26,13 +26,10 @@ class Camera
 public:
 
 	Camera();
-	virtual ~Camera() {}
-
 
 	/**
 	* @brief	Handles all key movement for movement speed
-	* @param	No param
-	* @return	Void
+	* @return	void
 	*/
 	void KeyboardMovement();
 
@@ -42,6 +39,13 @@ public:
 	//  Set Methods
 	//----------------------------------------------------------------------------------
 	// sets initial value for bounding boxes (in the array AABB)
+	void SetAABBXZ(const int& tempIndex, const GLdouble & tempX1, const GLdouble & tempZ1, const GLdouble & tempX2, const GLdouble & tempZ2)
+	{
+		SetAABBMaxX(tempIndex, tempX1);
+		SetAABBMinX(tempIndex, tempX2);
+		SetAABBMaxZ(tempIndex, tempZ1);
+		SetAABBMinZ(tempIndex, tempZ2);
+	}
 	void SetAABBMaxX(const int & tempIndex, const GLdouble &tempX) {m_colDetect.SetAABBMaxX(tempIndex, tempX);}
 	void SetAABBMinX(const int & tempIndex, const GLdouble &tempX) {m_colDetect.SetAABBMinX(tempIndex, tempX);}
 	void SetAABBMaxY(const int & tempIndex, const GLdouble &tempY) {m_colDetect.SetAABBMaxY(tempIndex, tempY);}
@@ -120,38 +124,42 @@ public:
 	void SetCrouch(bool setCrouch);
 
 private:
-
+	/// Boolean if a player is crouching.
 	bool crouch = false;
 
-	//steep incline increments
-	GLdouble m_incrementX;
-	GLdouble m_incrementZ;
+	/// Step incline increments.
+	GLdouble m_incrementX, m_incrementZ;
+	/// Number of plains.
 	int m_No_Plains;
+	/// The plain's number.
 	int m_plainNo;
+	/// Height of the plain.
 	GLdouble m_plainHeight;
 
 	// rotation variables
-	GLdouble m_prevX, m_prevY; // used for mouseMove function to calculate delta
-	// yaw
-	GLdouble m_rotateAngleLR;
-	GLdouble m_deltaAngleLR;
-	// pitch
-	GLdouble m_rotateAngleUD;
-	GLdouble m_deltaAngleUD;
+	/// Used for mouseMove function to calculate delta.
+	GLdouble m_prevX, m_prevY; 
+	/// yaw.
+	GLdouble m_rotateAngleLR, m_deltaAngleLR;
+	/// pitch.
+	GLdouble m_rotateAngleUD, m_deltaAngleUD;
 
 	// movement variables
+	/// The eye or where it is.
 	GLdouble m_x, m_y, m_z, m_zLast, m_xLast;
+	/// The center or where to look at.
 	GLdouble m_lookX, m_lookY,m_lookZ;
 	GLdouble m_lookXX, m_lookYY, m_lookZZ;
-	GLdouble m_deltaMoveLR;
-	GLdouble m_deltaMoveFB;
-	GLdouble m_deltaMoveUD;
+	/// Delta for movement.
+	GLdouble m_deltaMoveLR, m_deltaMoveFB, m_deltaMoveUD;
+	/// Direction of where the player is going.
 	GLdouble m_direction;
 
 	// Movement speed (step size)
+	/// Speed of which the camera rotates.
 	GLdouble m_rotateSpeed;
+	/// Movement speed.
 	GLdouble m_moveSpeed;
-
 
 	// Helper function for rotation
 	GLdouble degreesToRadians(GLdouble degrees);

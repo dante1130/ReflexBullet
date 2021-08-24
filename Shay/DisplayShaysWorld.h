@@ -7,10 +7,10 @@
 #include <GL/glut.h>
 
 
-///Glut Cylinder
+/// glut Cylinder
 extern GLUquadricObj* glu_cylinder;
 
-///varibles used for tarnslating graphics etc
+/// variables used for tarnslating graphics etc
 extern GLdouble step, step2, stepLength;
 
 /**

@@ -1,9 +1,8 @@
-#include <stdlib.h>
+#include <cstdlib>
 #include <GL/glut.h>
-#include <math.h>
-#include <time.h>
+#include <cmath>
+#include <ctime>
 
-//#include <windows.h> // only used if mouse is required (not portable)
 #include "camera.h"
 #include "texturedPolygons.h"
 #include "DisplayShaysWorld.h"
@@ -11,10 +10,9 @@
 #include "fileIO.h"
 #include "Object.h"
 
-
 //--------------------------------------------------------------------------------------
 
-// USE THESE STTEINGS TO CHANGE SPEED (on different spec computers)
+// USE THESE SETTINGS TO CHANGE SPEED (on different spec computers)
 // Set speed (steps)
 GLdouble movementSpeed = 50;
 GLdouble rotationSpeed = 1;

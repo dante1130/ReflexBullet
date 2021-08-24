@@ -8,6 +8,95 @@
 
 #include "collision.h"
 
+Collision::Collision()
+	: m_AABB(), m_list(), m_listSize(), m_worldSizeX(0.0), m_worldSizeZ(0.0)
+{
+	for (int& i : m_listSize)
+	{
+		i = 0;
+	}
+}
+
+void Collision::SetAABBMaxX(const int& tempIndex, const double& tempX)
+{
+	m_AABB.SetMaxX(tempIndex, tempX);
+}
+
+void Collision::SetAABBMinX(const int& tempIndex, const double& tempX)
+{
+	m_AABB.SetMinX(tempIndex, tempX);
+}
+
+void Collision::SetAABBMaxY(const int& tempIndex, const double& tempY)
+{
+	m_AABB.SetMaxY(tempIndex, tempY);
+}
+
+void Collision::SetAABBMinY(const int& tempIndex, const double& tempY)
+{
+	m_AABB.SetMinY(tempIndex, tempY);
+}
+
+void Collision::SetAABBMaxZ(const int& tempIndex, const double& tempZ)
+{
+	m_AABB.SetMaxZ(tempIndex, tempZ);
+}
+
+void Collision::SetAABBMinZ(const int& tempIndex, const double& tempZ)
+{
+	m_AABB.SetMinZ(tempIndex, tempZ);
+}
+
+void Collision::SetWorldX(const double& tempX)
+{
+	m_worldSizeX = tempX;
+}
+
+void Collision::SetWorldZ(const double& tempZ)
+{
+	m_worldSizeZ = tempZ;
+}
+
+void Collision::SetNoBoundingBoxes(const int& tempSize)
+{
+	m_AABB.SetNoBoundingBoxes(tempSize);
+}
+
+double Collision::GetAABBMaxX(const int& tempIndex)
+{
+	return m_AABB.GetMaxX(tempIndex);
+}
+
+double Collision::GetAABBMinX(const int& tempIndex)
+{
+	return m_AABB.GetMinX(tempIndex);
+}
+
+double Collision::GetAABBMaxY(const int& tempIndex)
+{
+	return m_AABB.GetMaxY(tempIndex);
+}
+
+double Collision::GetAABBMinY(const int& tempIndex)
+{
+	return m_AABB.GetMinY(tempIndex);
+}
+
+double Collision::GetAABBMaxZ(const int& tempIndex)
+{
+	return m_AABB.GetMaxZ(tempIndex);
+}
+
+double Collision::GetAABBMinZ(const int& tempIndex)
+{
+	return m_AABB.GetMinZ(tempIndex);
+}
+
+int Collision::GetNoBoundingBoxes()
+{
+	return m_AABB.GetNoBoundingBoxes();
+}
+
 //--------------------------------------------------------------------------------------
 //  Creates a linked list for each quadrant and then copies the bounding box data from
 //  AABB (array) to the required linked list.
@@ -125,4 +214,7 @@ bool Collision::CheckCollision(int index, GLdouble endX, GLdouble endY, GLdouble
 	}
 	return CollisionFound;
 }
+
+
+
 //--------------------------------------------------------------------------------------

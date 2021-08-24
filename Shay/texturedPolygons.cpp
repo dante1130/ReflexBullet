@@ -6,18 +6,24 @@
 //  Shay Leary, March 2005
 //--------------------------------------------------------------------------------------
 
-#include <iostream>
 #include "texturedPolygons.h"
 
+TexturedPolygons::TexturedPolygons()
+	: m_texture() {}
+
+
+GLuint TexturedPolygons::GetTexture(const int& tempIndex) const
+{
+	return m_texture[tempIndex];
+}
 
 //--------------------------------------------------------------------------------------
 //  Declares datatype to store a raw image file and calls method to load image
 //--------------------------------------------------------------------------------------
-
 GLubyte* TexturedPolygons::LoadTexture(char* filename, int imgWidth, int imgHeight)
 {
 	//
-	unsigned char* image = NULL;
+	unsigned char* image = nullptr;
 	image = LoadRawImageFile(filename, imgWidth, imgHeight);
 	// inform user if file loaded
 	std::cout << "Loading image file " << filename << "...\n";
@@ -33,10 +39,10 @@ GLubyte* TexturedPolygons::LoadRawImageFile(char* filename, int width, int heigh
 	FILE* file;
 	unsigned char* image;
 	// create memory space w x h x 3 (3 stores RGB values)
-	image = (unsigned char*)malloc(sizeof(unsigned char) * width * height * 3);
-	file = fopen(filename, "rb" );
+	image = new unsigned char[width * height * 3];
+	file = fopen(filename, "rb");
 	// exit program if image not found and inform user
-	if (file == NULL)
+	if (file == nullptr)
 	{
 		std::cout << "ERROR loading image file: " << filename << "...\n";
 		exit(0);
@@ -52,21 +58,8 @@ GLubyte* TexturedPolygons::LoadRawImageFile(char* filename, int width, int heigh
 
 void TexturedPolygons::SetTextureCount(const int &textureNo)
 {
-	m_texture = new GLuint[textureNo];
+	m_texture.resize(textureNo);
 	glGenTextures(textureNo, &m_texture[0]);
-}
-
-//--------------------------------------------------------------------------------------
-//  Clears memory used to store textures when program terminates (very important)
-//--------------------------------------------------------------------------------------
-
-void TexturedPolygons::Clear()
-{
-	m_texture = NULL;
-	if (m_texture == NULL)
-	{
-		delete [] m_texture;
-	}
 }
 
 //--------------------------------------------------------------------------------------

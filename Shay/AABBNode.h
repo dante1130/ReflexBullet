@@ -1,6 +1,6 @@
 //  AABBNODE.h
 //  Header file for the AABBNODE class
-//  Stores details for each bounding box used for collsion detection.  Each node is stored
+//  Stores details for each bounding box used for collision detection.  Each node is stored
 //  in each link of the AABB Linked List
 
 //  Shay Leary, March 2005
@@ -9,67 +9,133 @@
 #ifndef AABBNODE_H
 #define AABBNODE_H
 
-#include <vector>
 #include <gl/glut.h>
+#include "BoundingBox.h"
 
 //--------------------------------------------------------------------------------------
 
+/** 
+ * @class	AABBNode
+ * @brief	Stores details for each bounding box used for collision detection.
+ */
 class AABBNode
 {
 public:
-	AABBNode() : m_BBox(), m_next(nullptr) {}
-    virtual ~AABBNode() {Clear();}
+	/**
+	 * @brief Default constructor..
+	 */
+	AABBNode();
 
-	//----------------------------------------------------------------------------------
+	/**
+	 * @brief Deconstructor..
+	 */
+    virtual ~AABBNode();
 
-	void Clear();
+
 
 	//----------------------------------------------------------------------------------
 	//  Get Methods
 	//----------------------------------------------------------------------------------
-	GLdouble GetMaxX () {return m_BBox.max.x;}
-	GLdouble GetMinX () {return m_BBox.min.x;}
-	GLdouble GetMaxY () {return m_BBox.max.y;}
-	GLdouble GetMinY () {return m_BBox.min.y;}
-	GLdouble GetMaxZ () {return m_BBox.max.z;}
-	GLdouble GetMinZ () {return m_BBox.min.z;}
 
-    // Return the address of the link to the next node in the list
-    AABBNode *GetNext () const {return m_next;}
+	/**
+	 * @brief	Gets the maximum extent of X.
+	 * @return	GLdouble
+	 */
+	GLdouble GetMaxX() const;
+
+	/**
+	 * @brief	Gets the minimum extent of X.
+	 * @return	GLdouble
+	 */
+	GLdouble GetMinX() const;
+
+	/**
+	 * @brief	Gets the maximum extent of Y.
+	 * @return	GLdouble
+	 */
+	GLdouble GetMaxY() const;
+
+	/**
+	 * @brief	Gets the minimum extent of Y.
+	 * @return	GLdouble
+	 */
+	GLdouble GetMinY() const;
+
+	/**
+	 * @brief	Gets the maximum extent of Z.
+	 * @return	GLdouble
+	 */
+	GLdouble GetMaxZ() const;
+
+	/**
+	 * @brief	Gets the minimum extent of Z.
+	 * @return	GLdouble
+	 */
+	GLdouble GetMinZ() const;
+
+	/**
+	 * @brief	Gets the next node.
+	 * @return	AABBNode*
+	 */
+	AABBNode* GetNext() const;
 
 	//----------------------------------------------------------------------------------
 	//  Set Methods
 	//----------------------------------------------------------------------------------
+
+	/**
+	 * @brief	Sets the extents of the BoundingBox.
+	 * @param	maxX const GLdouble
+	 * @param	minX const GLdouble
+	 * @param	maxY const GLdouble
+	 * @param	minY const GLdouble
+	 * @param	maxZ const GLdouble
+	 * @param	minZ const GLdouble
+	 * @return	void
+	 */
 	void SetData(const GLdouble maxX, const GLdouble minX,
 				 const GLdouble maxY, const GLdouble minY,
 				 const GLdouble maxZ, const GLdouble minZ);
 
-    // Set the address of the link to the next node in the list
-    void SetNext (AABBNode *next) {m_next = next;}
+    /**
+     * @brief	Set the address of the link to the next node in the list.
+     * @param	next AABBNode*
+     * @return	void
+     */
+	void SetNext(AABBNode* next);
 
 private:
-    // The address of the next node in the list
-    AABBNode *m_next;
+    /// The address of the next node in the list
+	AABBNode* m_next;
 
-	// stores x,y,z co-ordinates
-	struct XYZ 
-	{ 
-		GLdouble x, y, z; 
-	}; 
-	// stores max and min values of co-ordinates
-	struct BoundingBox 
-	{ 
-		XYZ max; 
-		XYZ min; 
-	}; 
-	// stores above info
-	BoundingBox m_BBox;
+	/// stores above info
+	BoundingBox m_bBox;
 
 	//----------------------------------------------------------------------------------
 
-    // Privatised copy constructor and assignment operator
-    AABBNode (const AABBNode &newNode) {};
-    AABBNode &operator = (const AABBNode &newNode) {};
+	/**
+	 * @brief	Helper function for copy constructor and assignment operator.
+	 * @return	void
+	 */
+	void Copy(const AABBNode& newNode);
+
+	/**
+	 * @brief	Helper function for Deconstructor.
+	 * @return	void
+	 */
+	void Clear();
+
+    /**
+     * @brief	Privatized copy constructor.
+     * @param	newNode const AABBNode&
+     */
+	AABBNode(const AABBNode& newNode);
+
+	/**
+	 * @brief	Privatized assignment operator overload.
+	 * @param	newNode const AABBNode&
+	 */
+	AABBNode& operator=(const AABBNode& newNode);
 };
 
 #endif

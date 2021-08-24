@@ -10,8 +10,7 @@
 
 //--------------------------------------------------------------------------------------
 
-#include <iostream>
-#include <math.h>
+#include <cmath>
 #include <gl/glut.h>
 
 class PlainNode
@@ -59,7 +58,6 @@ private:
 	// (1: incline from z to y)
 	// (2: incline from x to y)
 	GLdouble m_type;
-	
 
 	// stores start and end co-ordinates of plane on x, y and z axis
 	GLdouble m_xPlainStart, m_xPlainEnd;
@@ -68,7 +66,7 @@ private:
 
 	//----------------------------------------------------------------------------------
 
-    // Privatised copy constructor and assignment operator
+    // Privatized copy constructor and assignment operator
     PlainNode (const PlainNode &newNode) {};
     PlainNode &operator = (const PlainNode &newNode) {};
 };

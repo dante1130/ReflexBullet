@@ -16,17 +16,19 @@
 //--------------------------------------------------------------------------------------
 
 #include "AABBNode.h"
-#include <gl/glut.h>
 
 //--------------------------------------------------------------------------------------
 
+/** @class	AABBLinkedList
+ * 
+ */
 class AABBLinkedList
 {
 public:
 	// constructor creates pointer to first node
-	AABBLinkedList() : m_first(new AABBNode) {}
+	AABBLinkedList();
 
-	virtual ~AABBLinkedList() {Clear();}
+	virtual ~AABBLinkedList();
 
 	//----------------------------------------------------------------------------------
 
@@ -57,22 +59,25 @@ public:
 	int GetListSize ();
 	
 	// Return the address of the link to the next node in the list
-    AABBNode *GetNext () const {return m_first->GetNext();}
+    AABBNode *GetNext () const;
 	// Return the address of the link to the first node in the list
-	AABBNode *GetFirst() const {return m_first;}
+	AABBNode *GetFirst() const;
 
 //--------------------------------------------------------------------------------------
 
 private:
-	// pointer to first node in list
+	/// pointer to first node in list
 	AABBNode *m_first;
+
+	/// number of nodes in the list
+	int listSize;
 
 	// used to clear memory
 	void Delete (AABBNode *before);
 
-	// Privatised copy constructor and assignment operator
-	AABBLinkedList (const AABBLinkedList &ll) {};
-	AABBLinkedList &operator = (const AABBLinkedList &ll) {};
+	// Privatized copy constructor and assignment operator
+	AABBLinkedList (const AABBLinkedList &ll);
+	AABBLinkedList &operator = (const AABBLinkedList &ll);
 };
 
 #endif

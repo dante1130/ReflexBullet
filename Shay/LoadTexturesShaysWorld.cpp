@@ -1,21 +1,18 @@
 #include "LoadTexturesShaysWorld.h"
 
 TexturedPolygons tp;
-unsigned char* image = NULL;
+unsigned char* image = nullptr;
 
-
-//  Delete raw image and clear memory
 void DeleteImageFromMemory()
 {
-	image = NULL;
-	if (image == NULL)
+	image = nullptr;
+	if (image == nullptr)
 	{
 		delete[] image;
 	}
 	
 }
 
-// Load and Create Textures
 void CreateTextures()
 {
 	glEnable(GL_DEPTH_TEST);
@@ -693,5 +690,4 @@ void CreateTextures()
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
 	DeleteImageFromMemory();
-
 }
