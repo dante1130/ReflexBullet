@@ -1,15 +1,7 @@
 #ifndef BOUNDINGBOX_H
 #define BOUNDINGBOX_H
 
-/**
- * @struct XYZ
- * @brief Stores x,y,z co-ordinates.
- */
-struct XYZ
-{
-	/// Coordinates represented in x, y and z
-	GLdouble x, y, z;
-};
+#include <glm/vec3.hpp>
 
 /**
  * @struct BoundingBox
@@ -18,9 +10,10 @@ struct XYZ
 struct BoundingBox
 {
 	/// Maximum extent
-	XYZ max;
+	glm::vec3 max;
 	/// Minimum extent
-	XYZ min;
+	glm::vec3 min;
 };
+
 
 #endif 

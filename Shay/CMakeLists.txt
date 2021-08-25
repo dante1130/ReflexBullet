@@ -3,8 +3,12 @@
 #
 cmake_minimum_required (VERSION 3.8)
 
-# Add source to this project's executable.
-file(GLOB SRC_FILES *.cpp)
-add_executable (Shay ${SRC_FILES}  "DisplayShaysWorld.h" "DisplayShaysWorld.cpp" "defines.h" "LoadTexturesShaysWorld.h" "LoadTexturesShaysWorld.cpp" "Audio.h" "Audio.cpp" "BoundingBox.h")
+# Add source files to this project
+file(GLOB SOURCE_FILES *.cpp)
+
+# Add header files to this project
+file(GLOB HEADER_FILES *.h)
+
+add_executable(Shay ${HEADER_FILES} ${SOURCE_FILES})
 
 # TODO: Add tests and install targets if needed.

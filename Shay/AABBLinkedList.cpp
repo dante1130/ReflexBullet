@@ -10,35 +10,18 @@
 
 //--------------------------------------------------------------------------------------
 
-void AABBLinkedList::Clear()
-{
-	AABBNode *ptr = m_first;
-
-	while (ptr->GetNext() != nullptr)
-	
-	// clear memory
-	Delete(ptr);
-}
-
-//--------------------------------------------------------------------------------------
-
-void AABBLinkedList::Delete(AABBNode *before)
-{
-	AABBNode *temp = before->GetNext();
-
-	before->SetNext(temp->GetNext());
-
-	delete temp;
-}
+AABBLinkedList::AABBLinkedList()
+	: m_first(new AABBNode), m_listSize(1) {}
 
 AABBLinkedList::AABBLinkedList(const AABBLinkedList& ll)
 {
-
+	Copy(ll);
 }
 
-AABBLinkedList::AABBLinkedList() : m_first(new AABBNode)
+AABBLinkedList& AABBLinkedList::operator=(const AABBLinkedList& ll)
 {
-
+	Copy(ll);
+	return *this;
 }
 
 AABBLinkedList::~AABBLinkedList()
@@ -46,15 +29,36 @@ AABBLinkedList::~AABBLinkedList()
 	Clear();
 }
 
-AABBLinkedList& AABBLinkedList::operator=(const AABBLinkedList& ll)
+void AABBLinkedList::Copy(const AABBLinkedList& ll)
 {
-	return *this;
+	m_first = ll.m_first;
+	m_listSize = ll.m_listSize;
+}
+
+void AABBLinkedList::Clear()
+{
+	AABBNode* ptr = m_first;
+
+	while (ptr->GetNext() != nullptr)
+		Delete(ptr); // clear memory
+}
+
+//--------------------------------------------------------------------------------------
+
+void AABBLinkedList::Delete(AABBNode *before)
+{
+	AABBNode* temp = before->GetNext();
+
+	before->SetNext(temp->GetNext());
+
+	delete temp;
+	temp = nullptr;
 }
 
 //--------------------------------------------------------------------------------------
 
 bool AABBLinkedList::AddToStart (GLdouble maxX, GLdouble minX, GLdouble maxY,
-				             GLdouble minY, GLdouble maxZ, GLdouble minZ)
+								 GLdouble minY, GLdouble maxZ, GLdouble minZ)
 {
 	AABBNode *newNode;
 	try
@@ -78,7 +82,7 @@ bool AABBLinkedList::AddToStart (GLdouble maxX, GLdouble minX, GLdouble maxY,
 
 //--------------------------------------------------------------------------------------
 
-GLdouble AABBLinkedList::GetMaxX (int ptrCount)
+GLdouble AABBLinkedList::GetMaxX(int ptrCount) const
 {
 	AABBNode *ptr = (m_first);
 	for (int count = 0; count < ptrCount; count++)
@@ -91,7 +95,7 @@ GLdouble AABBLinkedList::GetMaxX (int ptrCount)
 }
 //--------------------------------------------------------------------------------------
 
-GLdouble AABBLinkedList::GetMinX (int ptrCount)
+GLdouble AABBLinkedList::GetMinX(int ptrCount) const
 {
 	AABBNode *ptr = (m_first);
 	for (int count = 0; count < ptrCount; count++)
@@ -105,7 +109,7 @@ GLdouble AABBLinkedList::GetMinX (int ptrCount)
 
 //--------------------------------------------------------------------------------------
 
-GLdouble AABBLinkedList::GetMaxY (int ptrCount)
+GLdouble AABBLinkedList::GetMaxY(int ptrCount) const
 {
 	AABBNode *ptr = (m_first);
 	for (int count = 0; count < ptrCount; count++)
@@ -119,7 +123,7 @@ GLdouble AABBLinkedList::GetMaxY (int ptrCount)
 
 //--------------------------------------------------------------------------------------
 
-GLdouble AABBLinkedList::GetMinY(int ptrCount)
+GLdouble AABBLinkedList::GetMinY(int ptrCount) const
 {
 	AABBNode *ptr = (m_first);
 	for (int count = 0; count < ptrCount; count++)
@@ -133,7 +137,7 @@ GLdouble AABBLinkedList::GetMinY(int ptrCount)
 
 //--------------------------------------------------------------------------------------
 
-GLdouble AABBLinkedList::GetMaxZ (int ptrCount)
+GLdouble AABBLinkedList::GetMaxZ(int ptrCount) const
 {
 	AABBNode *ptr = (m_first);
 	for (int count = 0; count < ptrCount; count++)
@@ -147,7 +151,7 @@ GLdouble AABBLinkedList::GetMaxZ (int ptrCount)
 
 //--------------------------------------------------------------------------------------
 
-GLdouble AABBLinkedList::GetMinZ (int ptrCount)
+GLdouble AABBLinkedList::GetMinZ(int ptrCount) const
 {
 	AABBNode *ptr = (m_first);
 	for (int count = 0; count < ptrCount; count++)
@@ -161,10 +165,10 @@ GLdouble AABBLinkedList::GetMinZ (int ptrCount)
 
 //--------------------------------------------------------------------------------------
 
-void AABBLinkedList::SetData (const int &ptrCount,
-							  const GLdouble maxX, const GLdouble minX,
-				              const GLdouble maxY, const GLdouble minY,
-				              const GLdouble maxZ, const GLdouble minZ)
+void AABBLinkedList::SetData(const int &ptrCount,
+							 const GLdouble maxX, const GLdouble minX,
+				             const GLdouble maxY, const GLdouble minY,
+				             const GLdouble maxZ, const GLdouble minZ)
 {
 	AABBNode *ptr = (m_first);
 
@@ -177,7 +181,7 @@ void AABBLinkedList::SetData (const int &ptrCount,
 
 //--------------------------------------------------------------------------------------
 
-int AABBLinkedList::GetListSize()
+int AABBLinkedList::GetListSize() const
 {
 	int tmpSize = 0;
 	// count size of list

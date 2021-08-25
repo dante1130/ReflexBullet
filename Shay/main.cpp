@@ -1,7 +1,7 @@
 #include <cstdlib>
-#include <GL/glut.h>
 #include <cmath>
 #include <ctime>
+#include <GL/glut.h>
 
 #include "camera.h"
 #include "texturedPolygons.h"
@@ -25,7 +25,7 @@ clock_t lastClock = 0;
 // ratio of screen
 float ratio;
 // screen width and height
-int width = 800, height = 500;
+int width = 1280, height = 720;
 
 bool paused = true;
 
@@ -43,7 +43,6 @@ bool displayECL = true;
 // objects
 Camera cam;
 
-
 // initializes setting
 void myinit();
 
@@ -53,25 +52,16 @@ void reshape(int w, int h);
 void keys(unsigned char key, int x, int y);
 
 // keyboard and mouse functions
-void movementKeys(int key, int x, int y);
-void releaseKey(int key, int x, int y);
 void releaseKeys(unsigned char key, int x, int y);
 void Mouse(int button, int state, int x, int y);
 void mouseMove(int x, int y);
 
-
-void BindBridgeWall(GLint LR);
-void BindBuildingWall();
-void BindWallPosts(GLint LR);
-
 void IncrementFrameCount();
 
-
-// creates bounding boxes for collsion detection
+// creates bounding boxes for collision detection
 void CreateBoundingBoxes();
 // creates different plains
 void CreatePlains();
-
 
 void RenderLoop(int val);
 
@@ -92,22 +82,20 @@ int main(int argc, char** argv)
 	glutIgnoreKeyRepeat(1);
 	glutKeyboardFunc(keys);
 	glutKeyboardUpFunc(releaseKeys);
-	
 
 	glutDisplayFunc(Display);
-	//glutIdleFunc(Display);
 	glutTimerFunc(FRAMETIME, RenderLoop, 0);
 
 	glutMouseFunc(Mouse);
 
 	glutPassiveMotionFunc(mouseMove);
-	//ShowCursor(FALSE);
+	glutMotionFunc(mouseMove);
 	glutSetCursor(GLUT_CURSOR_NONE);
 
 	glutReshapeFunc(reshape);
 	glutMainLoop();
 
-	return(0);
+	return 0;
 }
 
 //--------------------------------------------------------------------------------------
@@ -119,10 +107,10 @@ void myinit()
 	// set background (sky colour)
 	glClearColor(97.0 / 255.0, 140.0 / 255.0, 185.0 / 255.0, 1.0);
 
-	// set perpsective
+	// set perspective
 	gluLookAt(0.0, 1.75, 0.0,
-		0.0, 1.75, -1,
-		0.0f, 1.0f, 0.0f);
+			  0.0, 1.75, -1,
+			  0.0f, 1.0f, 0.0f);
 
 	// settings for glut cylinders
 	glu_cylinder = gluNewQuadric();
@@ -135,14 +123,13 @@ void myinit()
 	// set number of bounding boxes required
 	cam.SetNoBoundingBoxes(19);
 	// set starting position of user
-	cam.Position(32720.0, 9536.0,
-		4800.0, 180.0);
+	cam.Position(32720.0, 9536.0, 4800.0, 180.0);
 
 	CreatePlains();
 
 	// creates bounding boxes and places in array
 	CreateBoundingBoxes();
-	// copies bounding boxes from array to linked lists (one fopr each quadrant)
+	// copies bounding boxes from array to linked lists (one for each quadrant)
 	cam.InitiateBoundingBoxes();
 
 	// load texture images and create display lists
@@ -154,10 +141,8 @@ void myinit()
 }
 
 /**
-* @breif	Handles all the render steps for the program - still needs work, barebones right now
-*
+* @brief	Handles all the render steps for the program - still needs work, barebones right now
 * @param	val - Currently unused, needed it for glutTimerFunc
-*
 * @return	Void
 */
 void RenderLoop(int val)
@@ -170,7 +155,6 @@ void RenderLoop(int val)
 	}
 
 	glutPostRedisplay();
-	return;
 }
 
 
@@ -223,10 +207,9 @@ void reshape(int w, int h)
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glViewport(0, 0, w, h);
-	gluPerspective(45, ratio, 1, 250000);
+	gluPerspective(60, ratio, 1, 250000);
 	glMatrixMode(GL_MODELVIEW);
 }
-
 
 //--------------------------------------------------------------------------------------
 void keys(unsigned char key, int x, int y)
@@ -239,6 +222,7 @@ void keys(unsigned char key, int x, int y)
 		cam.DirectionFB(1);
 		break;
 
+	// move backwards
 	case 'S':
 	case 's':
 		cam.DirectionFB(-1);
@@ -249,13 +233,13 @@ void keys(unsigned char key, int x, int y)
 	case 'a':
 		cam.DirectionLR(-1);
 		break;
+
 	// step right
 	case 'D':
 	case 'd':
 		cam.DirectionLR(1);
 		break;
 	
-
 	// display campus map
 	case 'm':
 	case 'M':
@@ -267,7 +251,6 @@ void keys(unsigned char key, int x, int y)
 		glutSetCursor(GLUT_CURSOR_RIGHT_ARROW);
 		DisplayExit = true;
 		break;
-
 	
 	case 'c':
 	case 'C':
@@ -283,7 +266,7 @@ void keys(unsigned char key, int x, int y)
 			DisplayWelcome = true;
 			glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
 			glutPassiveMotionFunc(NULL);
-
+			glutMotionFunc(NULL);
 		}
 		else
 		{
@@ -291,6 +274,7 @@ void keys(unsigned char key, int x, int y)
 			glutSetCursor(GLUT_CURSOR_NONE);
 			glutWarpPointer(width / 2, height / 2);
 			glutPassiveMotionFunc(mouseMove);
+			glutMotionFunc(mouseMove);
 		}
 		break;
 	}
@@ -336,8 +320,8 @@ void Mouse(int button, int state, int x, int y)
 	// exit tour if clicked on exit splash screen
 	if ((button == GLUT_LEFT_BUTTON) && (state == GLUT_DOWN))
 	{
-		if ((DisplayExit) && (x <= width/2.0 + 256.0) && (x >= width/2.0 - 256.0)
-			&& (y <= height/2.0 + 256.0) && (y >= height/2.0 - 256.0))
+		if ((DisplayExit) && (x <= width / 2.0 + 256.0) && (x >= width / 2.0 - 256.0)
+						  && (y <= height / 2.0 + 256.0) && (y >= height / 2.0 - 256.0))
 		{
 			exit(1);
 		}
@@ -361,146 +345,94 @@ void mouseMove(int x, int y)
 void CreateBoundingBoxes()
 {
 	// chanc block
-	cam.SetAABBMaxX(0, 35879.0);
-	cam.SetAABBMinX(0, 33808.0);
-	cam.SetAABBMaxZ(0, 22096.0);
-	cam.SetAABBMinZ(0, 4688.0);
+	cam.SetAABBXZ(0, 35879.0, 22096.0, 33808.0, 4688.0);
 
 	// between chanc block and phys sci
-	cam.SetAABBMaxX(1, 35999.0);
-	cam.SetAABBMinX(1, 35730.0);
-	cam.SetAABBMaxZ(1, 25344.0);
-	cam.SetAABBMinZ(1, 22096.0);
+	cam.SetAABBXZ(1, 35999.0, 25344.0, 35730.0, 22096.0);
 
 	// phy sci block panel 1
-	cam.SetAABBMaxX(2, 35879.0);
-	cam.SetAABBMinX(2, 33808.0);
-	cam.SetAABBMaxZ(2, 26752.0);
-	cam.SetAABBMinZ(2, 25344.0);
+	cam.SetAABBXZ(2, 35879.0, 26752.0, 33808.0, 25344.0);
 
 	// phy sci block 1st doorway
-	cam.SetAABBMaxX(3, 35879.0);
-	cam.SetAABBMinX(3, 34256.0);
-	cam.SetAABBMaxZ(3, 27559.0);
-	cam.SetAABBMinZ(3, 26752.0);
+	cam.SetAABBXZ(3, 35879.0, 27559.0, 34256.0, 26752.0);
 
 	// phy sci block 2nd panel
-	cam.SetAABBMaxX(4, 35879.0);
-	cam.SetAABBMinX(4, 33808.0);
-	cam.SetAABBMaxZ(4, 36319.0);
-	cam.SetAABBMinZ(4, 27559.0);
+	cam.SetAABBXZ(4, 35879.0, 36319.0, 33808.0, 27559.0);
 
 	// phy sci block 2nd doorway
-	cam.SetAABBMaxX(5, 35879.0);
-	cam.SetAABBMinX(5, 34260.0);
-	cam.SetAABBMaxZ(5, 37855.0);
-	cam.SetAABBMinZ(5, 36319.0);
+	cam.SetAABBXZ(5, 35879.0, 37855.0, 34260.0, 36319.0);
 
 	// phy sci block 3rd panel
-	cam.SetAABBMaxX(6, 35879.0);
-	cam.SetAABBMinX(6, 33808.0);
-	cam.SetAABBMaxZ(6, 41127.0);
-	cam.SetAABBMinZ(6, 37855.0);
+	cam.SetAABBXZ(6, 35879.0, 41127.0, 33808.0, 37855.0);
 
 	// drinks machine
-	cam.SetAABBMaxX(7, 35879.0);
-	cam.SetAABBMinX(7, 34704.0);
-	cam.SetAABBMaxZ(7, 25344.0);
-	cam.SetAABBMinZ(7, 24996.0);
-		
+	cam.SetAABBXZ(7, 35879.0, 25344.0, 34704.0, 24996.0);
+
 	// bottom of steps
-	cam.SetAABBMaxX(8, 33808.0);
-	cam.SetAABBMinX(8, 0.0);
-	cam.SetAABBMaxZ(8, 4688.0);
-	cam.SetAABBMinZ(8, 0.0);
+	cam.SetAABBXZ(8, 33808.0, 4688.0, 0.0, 0.0);
 
 	// end of phy sci block exit (top of steps)
-	cam.SetAABBMaxX(9, 35879.0);
-	cam.SetAABBMinX(9, 34320.0);
-	cam.SetAABBMaxZ(9, 43056.0);
-	cam.SetAABBMinZ(9, 41127.0);
+	cam.SetAABBXZ(9, 35879.0, 43056.0, 41127.0, 34320.0);
 
 	// library end panel
-	cam.SetAABBMaxX(10, 34320.0);
-	cam.SetAABBMinX(10, 6514.0);
-	cam.SetAABBMaxZ(10, 50000.0);
-	cam.SetAABBMinZ(10, 43036.0);
+	cam.SetAABBXZ(10, 34320.0, 50000.0, 6514.0, 43036.0);
 
 	// KBLT
-	cam.SetAABBMaxX(11, 28104.0);
-	cam.SetAABBMinX(11, 25608.0);
-	cam.SetAABBMaxZ(11, 43046.0);
-	cam.SetAABBMinZ(11, 42754.0);
+	cam.SetAABBXZ(11, 28104.0, 43046.0, 25608.0, 42754.0);
 
 	// Canteen block
-	cam.SetAABBMaxX(12, 2608.0);
-	cam.SetAABBMinX(12, 0.0);
-	cam.SetAABBMaxZ(12, 49046.0);
-	cam.SetAABBMinZ(12, 0.0);
+	cam.SetAABBXZ(12, 2608.0, 49046.0, 0.0, 0.0);
 
 	// Telephones
-	cam.SetAABBMaxX(13, 33892.0);
-	cam.SetAABBMinX(13, 33872.0);
-	cam.SetAABBMaxZ(13, 25344.0);
-	cam.SetAABBMinZ(13, 25173.0);
+	cam.SetAABBXZ(13, 33892.0, 25344.0, 33872.0, 25173.0);
 
 	// Telephones
-	cam.SetAABBMaxX(14, 34277.0);
-	cam.SetAABBMinX(14, 34157.0);
-	cam.SetAABBMaxZ(14, 25344.0);
-	cam.SetAABBMinZ(14, 25173.0);
+	cam.SetAABBXZ(14, 34277.0, 25344.0, 34157.0, 25173.0);
 
 	// Telephones
-	cam.SetAABBMaxX(15, 35462.0);
-	cam.SetAABBMinX(15, 34541.0);
-	cam.SetAABBMaxZ(15, 25344.0);
-	cam.SetAABBMinZ(15, 25173.0);
+	cam.SetAABBXZ(15, 35462.0, 25344.0, 34541.0, 25173.0);
 
 	// Wall by Steps
 	cam.SetAABBXZ(16, 31548.0, 10395.0, 31444.0, 4590.0);
-	//cam.SetAABBMaxX(16, 31548.0);
-	//cam.SetAABBMinX(16, 31444.0);
-	//cam.SetAABBMaxZ(16, 10395.0);
-	//cam.SetAABBMinZ(16, 4590.0);
 }
 
 //--------------------------------------------------------------------------------------
 // Set up co-ordinates of different plains
 //--------------------------------------------------------------------------------------
 /**
-* @breif	Set up co-ordinates of different plains. What this actually means is this is where you assign invisible floors for the player to walk on
+* @brief	Set up co-ordinates of different plains. What this actually means is this is where you assign invisible floors for the player to walk on
 * @param	No param
 * @return	Void
 */
 void CreatePlains()
 {	
-	//						x1, x2				, y1, y2			, z1, z2
+	//						x1, x2				, y1, y2		, z1, z2
 	// grass slope ZY_PLAIN
-	cam.SetPlains(ZY_PLAIN, 4848.0, 31568.0		, 9536.0, 10450.0	, 6200.0, 10000.0);
+	cam.SetPlains(ZY_PLAIN, 4848.0, 31568.0, 9536.0, 10450.0, 6200.0, 10000.0);
 
 	// flat land (pavement and grass)
-	cam.SetPlains (FLAT_PLAIN, 0.0, 36000.0		, 10450.0, 10450.0	, 10000.0, 17000.0);
-	cam.SetPlains (FLAT_PLAIN, 0.0, 6500.0		, 10450.0, 10450.0	, 17000.0, 40000.0);
-	cam.SetPlains (FLAT_PLAIN, 27000.0, 36000.0 , 10450.0, 10450.0	, 17000.0, 40000.0);
-	cam.SetPlains (FLAT_PLAIN, 0.0, 36000.0		, 10450.0, 10450.0	, 40000.0, 50000.0);
+	cam.SetPlains(FLAT_PLAIN, 0.0, 36000.0, 10450.0, 10450.0, 10000.0, 17000.0);
+	cam.SetPlains(FLAT_PLAIN, 0.0, 6500.0, 10450.0, 10450.0, 17000.0, 40000.0);
+	cam.SetPlains(FLAT_PLAIN, 27000.0, 36000.0, 10450.0, 10450.0, 17000.0, 40000.0);
+	cam.SetPlains(FLAT_PLAIN, 0.0, 36000.0, 10450.0, 10450.0, 40000.0, 50000.0);
 	
 	// top of lower hill
-	cam.SetPlains (FLAT_PLAIN, 9000.0, 22000.0	, 10650.0, 10650.0	, 19000.0, 23000.0);
-	cam.SetPlains (FLAT_PLAIN, 9000.0, 10000.0	, 10650.0, 10650.0	, 28000.0, 33000.0);
-	cam.SetPlains (FLAT_PLAIN, 9000.0, 22000.0	, 10650.0, 10650.0	, 36000.0, 37000.0);
+	cam.SetPlains(FLAT_PLAIN, 9000.0, 22000.0, 10650.0, 10650.0, 19000.0, 23000.0);
+	cam.SetPlains(FLAT_PLAIN, 9000.0, 10000.0, 10650.0, 10650.0, 28000.0, 33000.0);
+	cam.SetPlains(FLAT_PLAIN, 9000.0, 22000.0, 10650.0, 10650.0, 36000.0, 37000.0);
 	// sides of lower hill
-	cam.SetPlains (ZY_PLAIN, 6500.0, 27000.0	, 10450.0, 10650.0	, 17000.0, 19000.0);
-	cam.SetPlains (ZY_PLAIN, 6500.0, 27000.0	, 10650.0, 10450.0	, 37000.0, 40000.0);
-	cam.SetPlains (XY_PLAIN, 6500.0, 9000.0		, 10450.0, 10650.0	, 17000.0, 40000.0);
-	cam.SetPlains (XY_PLAIN, 22000.0, 27000.0	, 10650.0, 10450.0	, 17000.0, 40000.0);
+	cam.SetPlains(ZY_PLAIN, 6500.0, 27000.0, 10450.0, 10650.0, 17000.0, 19000.0);
+	cam.SetPlains(ZY_PLAIN, 6500.0, 27000.0, 10650.0, 10450.0, 37000.0, 40000.0);
+	cam.SetPlains(XY_PLAIN, 6500.0, 9000.0, 10450.0, 10650.0, 17000.0, 40000.0);
+	cam.SetPlains(XY_PLAIN, 22000.0, 27000.0, 10650.0, 10450.0, 17000.0, 40000.0);
 
 	// top of higher hill
-	cam.SetPlains (FLAT_PLAIN, 14000.0, 18000.0 , 10875.0, 108075.0	, 28000.0, 33000.0);
+	cam.SetPlains(FLAT_PLAIN, 14000.0, 18000.0, 10875.0, 108075.0, 28000.0, 33000.0);
 	// sides of higher hill
-	cam.SetPlains (ZY_PLAIN, 10000.0, 22000.0	, 10650.0, 10875.0	, 23000.0, 28000.0);
-	cam.SetPlains (ZY_PLAIN, 10000.0, 22000.0	, 10875.0, 10650.0	, 33000.0, 36000.0);
-	cam.SetPlains (XY_PLAIN, 10000.0, 14000.0	, 10650.0, 10875.0	, 23000.0, 36000.0);
-	cam.SetPlains (XY_PLAIN, 18000.0, 22000.0	, 10875.0, 10650.0	, 23000.0, 36000.0);
+	cam.SetPlains(ZY_PLAIN, 10000.0, 22000.0, 10650.0, 10875.0, 23000.0, 28000.0);
+	cam.SetPlains(ZY_PLAIN, 10000.0, 22000.0, 10875.0, 10650.0, 33000.0, 36000.0);
+	cam.SetPlains(XY_PLAIN, 10000.0, 14000.0, 10650.0, 10875.0, 23000.0, 36000.0);
+	cam.SetPlains(XY_PLAIN, 18000.0, 22000.0, 10875.0, 10650.0, 23000.0, 36000.0);
 
 	// Missing big step
 	cam.SetPlains(FLAT_PLAIN, 31582, 33835, 10258, 10258, 9000, 9300);
@@ -524,7 +456,7 @@ void CreatePlains()
 	}
 
 	// temp plain to take down to ECL1
-	cam.SetPlains (ZY_PLAIN, 3200.0, 4800.0		, 10450.0, 9370.0	, 53400.0, 57900.0);
+	cam.SetPlains(ZY_PLAIN, 3200.0, 4800.0, 10450.0, 9370.0, 53400.0, 57900.0);
 }
 
 //--------------------------------------------------------------------------------------
@@ -532,14 +464,14 @@ void CreatePlains()
 //--------------------------------------------------------------------------------------
 void IncrementFrameCount()
 {
-	double t = ((GLdouble)(clock()-lastClock))/(GLdouble)CLOCKS_PER_SEC;  
-	frameCount ++;
+	double t = ((GLdouble)(clock() - lastClock)) / (GLdouble)CLOCKS_PER_SEC;
+	++frameCount;
 
 	// reset after t
 	if (t > 0.1)
 	{
-		stepIncrement = t/frameCount * 1400;
-		angleIncrement = t/frameCount;
+		stepIncrement = t / frameCount * 1400;
+		angleIncrement = t / frameCount;
 		frameCount = 0;
 		lastClock = clock();
 	}

@@ -12,30 +12,52 @@
 
 //--------------------------------------------------------------------------------------
 
+/**
+ * @class CameraMap
+ * @brief Provides methods that display a 2D map and welcome screen.
+ */
 class CameraMap
 {
 public:
-	CameraMap() {};
-	virtual ~CameraMap() {};
+	/**
+	 * @brief Constructor.
+	 */
+	CameraMap();
 
 	//----------------------------------------------------------------------------------
 
-	// display the map
-	void DisplayMap(const int & screenWidth, const int & screenHeight,
-				    const GLdouble & xPos, const GLdouble & zPos,
-					const GLuint & tempImage);
+	/**
+	 * @brief Display the map.
+	 * @param screenWidth const int&
+	 * @param screenHeight const int&
+	 * @param xPos const GLdouble&
+	 * @param zPos const GLdouble&
+	 * @param tempImage const GLuint&
+	 * @return void
+	 */
+	void DisplayMap(const int& screenWidth, const int& screenHeight,
+					const GLdouble& xPos, const GLdouble& zPos,
+					const GLuint& tempImage);
 
-	// display the welcome screen
-	void DisplayWelcomeScreen (const int & screenWidth, const int & screenHeight, 
-		                       const int & tempExit, const GLuint & tempImage);
+	/**
+	 * @brief Display the welcome screen.
+	 * @param screenWidth const int&
+	 * @param screenHeight const int&
+	 * @param tempExit const int&
+	 * @param tempImage const GLuint& 
+	 * @return void
+	 */
+	void DisplayWelcomeScreen(const int& screenWidth, const int& screenHeight,
+							  const int& tempExit, const GLuint& tempImage);
 
-	void DisplayNoExit (const int & screenWidth, const int & screenHeight, 
-						const GLuint & tempImage);
-
-private:
-    // Privatised copy constructor and assignment operator
-    CameraMap (const CameraMap &cam) {};
-    CameraMap &operator = (const CameraMap &cam) {};
+	/**
+	 * @brief Display the no exit screen.
+	 * @param screenWidth const int&
+	 * @param screenHeight const int&
+	 * @param tempImage const GLuint&
+	 */
+	void DisplayNoExit(const int& screenWidth, const int& screenHeight,
+					   const GLuint& tempImage);
 };
 
 #endif

@@ -4,19 +4,13 @@
 #include <string>
 #include <vector>
 #include <array>
+#include <glm/vec2.hpp>
+#include <glm/vec3.hpp>
 
-struct Vertex
-{
-	/// storing 3d points
-	float x, y, z; 
-};
-
-struct Coord
-{
-	/// storing 2d points
-	float x, y; 
-};
-
+/**
+ * @struct FaceBase
+ * @brief Vertices or texture coordinate positions of an .obj file.
+ */
 struct FaceBase
 {
 	/// stores vertices/texture coordinate position from .obj file
@@ -74,16 +68,16 @@ public:
 	/**
 	 * @brief Returns a vertex of index i.
 	 * @param i unsigned
-	 * @return const Vertex&
+	 * @return const glm::vec3&
 	 */
-	const Vertex& GetVertex(unsigned i) const; 
+	const glm::vec3& GetVertex(unsigned i) const; 
 
 	/**
 	 * @brief Returns a texture coordinate of index i.
 	 * @param i unsigned
-	 * @return const Coord&
+	 * @return const glm::vec2&
 	 */
-	const Coord& GetCoord(unsigned i) const; 
+	const glm::vec2& GetCoord(unsigned i) const; 
 
 	/**
 	 * @brief Returns a set of vertex and coordinate pairs of index i.
@@ -100,15 +94,15 @@ public:
 
 	/**
 	 * @brief Allows access to the contents of vertices vector.
-	 * @return const std::vector<Vertex>&
+	 * @return const std::vector<glm::vec3>&
 	 */
-	const std::vector<Vertex>& GetVertexVector() const; 
+	const std::vector<glm::vec3>& GetVertexVector() const; 
 
 	/**
 	 * @brief Allows access to the contents of texCoord vector.
-	 * @return const std::vector<Coord>&
+	 * @return const std::vector<glm::vec2>&
 	 */
-	const std::vector<Coord>& GetCoordVector() const;
+	const std::vector<glm::vec2>& GetCoordVector() const;
 
 	/**
 	 * @brief Allows access to the contents of faces vector.
@@ -118,9 +112,9 @@ public:
 
 private:
 	/// stores the vertices
-	std::vector<Vertex> vertices; 
+	std::vector<glm::vec3> vertices; 
 	/// stores the texture coordinates
-	std::vector<Coord> texCoord; 
+	std::vector<glm::vec2> texCoord; 
 	/// saves the links to v and vt for faces
 	std::vector<std::array<FaceBase, 4>> faces; 
 	/// stores image name (and extension)

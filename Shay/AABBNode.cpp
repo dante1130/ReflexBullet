@@ -31,18 +31,20 @@ AABBNode& AABBNode::operator=(const AABBNode& newNode)
 
 void AABBNode::Copy(const AABBNode& newNode)
 {
-	SetData(newNode.GetMaxX(), newNode.GetMinX(),
-			newNode.GetMaxY(), newNode.GetMinY(),
-			newNode.GetMaxZ(), newNode.GetMinZ());
+	m_bBox = newNode.m_bBox;
 
-	m_next->SetData(newNode.GetNext()->GetMaxX(), newNode.GetNext()->GetMinX(),
-					newNode.GetNext()->GetMaxY(), newNode.GetNext()->GetMinY(),
-					newNode.GetNext()->GetMaxZ(), newNode.GetNext()->GetMinZ());
+	if (newNode.m_next != nullptr)
+	{
+		m_next->Copy(*newNode.m_next);
+	}
 }	
 
 void AABBNode::Clear()
 {
-	m_next = nullptr;
+	if (m_next != nullptr)
+	{
+		m_next = nullptr;
+	}
 }
 
 GLdouble AABBNode::GetMaxX() const

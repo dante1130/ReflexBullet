@@ -18,7 +18,8 @@
 
 #include <cmath>
 #include <gl/glut.h>
-
+#include <glm/vec2.hpp>
+#include <glm/vec3.hpp>
 
 //--------------------------------------------------------------------------------------
 
@@ -41,34 +42,28 @@ public:
 	//----------------------------------------------------------------------------------
 	// sets initial value for bounding boxes (in the array AABB)
 
-	void SetAABBXZ(const int& tempIndex, const GLdouble& tempX1, const GLdouble& tempZ1, const GLdouble& tempX2, const GLdouble& tempZ2)
-	{
-		SetAABBMaxX(tempIndex, tempX1);
-		SetAABBMinX(tempIndex, tempX2);
-		SetAABBMaxZ(tempIndex, tempZ1);
-		SetAABBMinZ(tempIndex, tempZ2);
-	}
-	void SetAABBMaxX(const int & tempIndex, const GLdouble &tempX) {m_colDetect.SetAABBMaxX(tempIndex, tempX);}
-	void SetAABBMinX(const int & tempIndex, const GLdouble &tempX) {m_colDetect.SetAABBMinX(tempIndex, tempX);}
-	void SetAABBMaxY(const int & tempIndex, const GLdouble &tempY) {m_colDetect.SetAABBMaxY(tempIndex, tempY);}
-	void SetAABBMinY(const int & tempIndex, const GLdouble &tempY) {m_colDetect.SetAABBMinY(tempIndex, tempY);}
-	void SetAABBMaxZ(const int & tempIndex, const GLdouble &tempZ) {m_colDetect.SetAABBMaxZ(tempIndex, tempZ);}
-	void SetAABBMinZ(const int & tempIndex, const GLdouble &tempZ) {m_colDetect.SetAABBMinZ(tempIndex, tempZ);}
+	void SetAABBXZ(const int& tempIndex, const GLdouble& tempX1, const GLdouble& tempZ1, const GLdouble& tempX2, const GLdouble& tempZ2);
+	void SetAABBMaxX(const int & tempIndex, const GLdouble &tempX);
+	void SetAABBMinX(const int & tempIndex, const GLdouble &tempX);
+	void SetAABBMaxY(const int & tempIndex, const GLdouble &tempY);
+	void SetAABBMinY(const int & tempIndex, const GLdouble &tempY);
+	void SetAABBMaxZ(const int & tempIndex, const GLdouble &tempZ);
+	void SetAABBMinZ(const int & tempIndex, const GLdouble &tempZ);
 
 	// set step and rotation size
-	void SetRotateSpeed (const GLdouble &tempSpeed) {m_rotateSpeed = tempSpeed;}
-	void SetMoveSpeed (const GLdouble &tempSpeed) {m_moveSpeed = tempSpeed;}
+	void SetRotateSpeed (const GLdouble &tempSpeed);
+	void SetMoveSpeed (const GLdouble &tempSpeed);
 
 	// COLLSION DETECTION FUNCTIONS
 	// set collision detection (TRUE = on)
-	void SetCollisionDetectionOn (const bool &tempCol) {m_CollisionDetectionOn = tempCol;}
+	void SetCollisionDetectionOn (const bool &tempCol);
 	// set number of bounding boxes
-	void SetNoBoundingBoxes(const int & tempSize) {m_colDetect.SetNoBoundingBoxes(tempSize);}
+	void SetNoBoundingBoxes(const int & tempSize);
 	// set the co-ordinates of the world
 	void SetWorldCoordinates (const GLdouble &tempX, const GLdouble &tempZ);
 	// creates a linked list for each quadrant of the world and places the bounding box
 	// data in each.  Then clears and deletes AABB array.
-	void InitiateBoundingBoxes() {m_colDetect.CreateLinkedList();}
+	void InitiateBoundingBoxes();
 
 	// sets the co-ordinate of each plain
 	void SetPlains (const int tempType,
@@ -79,15 +74,15 @@ public:
 	//----------------------------------------------------------------------------------
 	//  Get Methods
 	//----------------------------------------------------------------------------------
-	GLdouble GetLR () {return m_x;}
-	GLdouble GetUD () {return m_y;}
-	GLdouble GetFB () {return m_z;}	
-	GLdouble GetAABBMaxX (const int & tempIndex) {return m_colDetect.GetAABBMaxX (tempIndex);}
-	GLdouble GetAABBMinX (const int & tempIndex) {return m_colDetect.GetAABBMinX (tempIndex);}
-	GLdouble GetAABBMaxY (const int & tempIndex) {return m_colDetect.GetAABBMaxY (tempIndex);}
-	GLdouble GetAABBMinY (const int & tempIndex) {return m_colDetect.GetAABBMinY (tempIndex);}
-	GLdouble GetAABBMaxZ (const int & tempIndex) {return m_colDetect.GetAABBMaxZ (tempIndex);}
-	GLdouble GetAABBMinZ (const int & tempIndex) {return m_colDetect.GetAABBMinZ (tempIndex);}
+	GLdouble GetLR () const;
+	GLdouble GetUD () const;
+	GLdouble GetFB () const;	
+	GLdouble GetAABBMaxX (const int & tempIndex) const;
+	GLdouble GetAABBMinX (const int & tempIndex) const;
+	GLdouble GetAABBMaxY (const int & tempIndex) const;
+	GLdouble GetAABBMinY (const int & tempIndex) const;
+	GLdouble GetAABBMaxZ (const int & tempIndex) const;
+	GLdouble GetAABBMinZ (const int & tempIndex) const;
 	
 	// position the camera
 	void Position (GLdouble const & tempX,
@@ -95,15 +90,10 @@ public:
 				   GLdouble const & tempZ,
 				   GLdouble const & tempAngle);
 
-	// check whether ok to move
-	void CheckCamera();
-
 	// Used to pass direction to move or rotate  (i.e. 1, -1 or 0)
 	void DirectionFB(int const & tempMove);
 	void DirectionLR(int const & tempMove);
 	void DirectionUD(int const & tempMove);
-	void DirectionRotateLR(GLdouble const & tempMove);
-	void DirectionLookUD(int const & tempMove);
 
 	// Use mouse to look around
 	void MouseMove(int x, int y);
@@ -127,9 +117,9 @@ public:
 
 private:
 	/// If the player is crouching or not
-	bool crouch = false; 
+	bool crouch;
 	/// The current crouch depth
-	float crouchDepth = 0; 
+	GLdouble crouchDepth;
 	/// When the function was last called
 	long crouchTime; 
 
@@ -143,19 +133,23 @@ private:
 	GLdouble m_plainHeight;
 
 	// rotation variables
-	/// Used for mouseMove function to calculate delta.
-	GLdouble m_prevX, m_prevY; 
+	/// Previous mouse position.
+	glm::dvec2 m_prev; 
 	/// yaw.
 	GLdouble m_rotateAngleLR, m_deltaAngleLR;
 	/// pitch.
 	GLdouble m_rotateAngleUD, m_deltaAngleUD;
 
 	// movement variables
-	/// The eye or where it is.
-	GLdouble m_x, m_y, m_z, m_zLast, m_xLast;
+	/// The position.
+	glm::dvec3 m_pos;
+		
+	/// The previous position.
+	GLdouble m_zLast, m_xLast;
+
 	/// The center or where to look at.
-	GLdouble m_lookX, m_lookY,m_lookZ;
-	GLdouble m_lookXX, m_lookYY, m_lookZZ;
+	glm::dvec3 m_look;
+	glm::dvec3 m_lookK; // I don't know what this is yet.
 	/// Delta for movement.
 	GLdouble m_deltaMoveLR, m_deltaMoveFB, m_deltaMoveUD;
 	/// Direction of where the player is going.
@@ -192,23 +186,6 @@ private:
 	*/
 	void CrouchDistance();
 
-
-	// is it ok to move
-	bool MoveFBOK();
-	bool MoveLROK();
-	bool MoveUDOK();
-	bool RotateLROK();
-	bool LookUDOK();
-
-	// Move around the world
-	void MoveFB(bool direction, bool sprint);
-	void MoveLR(bool direction, bool sprint);
-	void MoveUD();
-
-	// Look around the world
-	void RotateLR();
-	void LookUD();
-	
 	// overloaded function for setting plain
 	void SetPlains(const int & moveX, const int & moveZ);
 
@@ -226,8 +203,8 @@ private:
 
 	// These functions were set up to climb stairs, but are not used.
 	// The Plain object is used instead
-	void ClimbSteps(GLdouble stepStart, GLdouble stepFinish, GLdouble stepHeight, GLdouble stepWidth, int noSteps);
-	void CheckSteps();
+// 	void ClimbSteps(GLdouble stepStart, GLdouble stepFinish, GLdouble stepHeight, GLdouble stepWidth, int noSteps);
+// 	void CheckSteps();
 
 	Audio m_audio;
 

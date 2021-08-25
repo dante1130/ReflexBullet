@@ -14,7 +14,7 @@ Object3D::~Object3D()
 
 void Object3D::AddVertex(float x, float y, float z)
 {
-	Vertex temp;
+	glm::vec3 temp;
 	temp.x = x;
 	temp.y = y;
 	temp.z = z;
@@ -23,7 +23,7 @@ void Object3D::AddVertex(float x, float y, float z)
 }
 void Object3D::AddCoord(float x, float y)
 {
-	Coord temp;
+	glm::vec2 temp;
 	temp.x = x;
 	temp.y = y;
 
@@ -45,12 +45,12 @@ void Object3D::SetTextureName(std::string fileName)
 	textureFile = fileName;
 }
 
-const Vertex& Object3D::GetVertex(unsigned i) const
+const glm::vec3& Object3D::GetVertex(unsigned i) const
 {
 	return vertices[i];
 }
 
-const Coord& Object3D::GetCoord(unsigned i) const
+const glm::vec2& Object3D::GetCoord(unsigned i) const
 {
 	return texCoord[i];
 }
@@ -65,12 +65,12 @@ const std::string& Object3D::GetName() const
 	return textureFile;
 }
 
-const std::vector<Vertex>& Object3D::GetVertexVector() const
+const std::vector<glm::vec3>& Object3D::GetVertexVector() const
 {
 	return vertices;
 }
 
-const std::vector<Coord>& Object3D::GetCoordVector() const
+const std::vector<glm::vec2>& Object3D::GetCoordVector() const
 {
 	return texCoord;
 }

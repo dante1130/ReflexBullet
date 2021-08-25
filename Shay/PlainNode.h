@@ -10,33 +10,34 @@
 
 //--------------------------------------------------------------------------------------
 
-#include <cmath>
+#include <glm/vec3.hpp>
 #include <gl/glut.h>
 
 class PlainNode
 {
 
 public:
-	PlainNode() : m_next(nullptr) {}
-    virtual ~PlainNode () {Clear();}
+	PlainNode();
+	virtual ~PlainNode();
 
 	//----------------------------------------------------------------------------------
 
-	void  Clear   ();
+	void Copy(const PlainNode& newNode);
+	void Clear();
 
 	//----------------------------------------------------------------------------------
 	//  Get Methods
 	//----------------------------------------------------------------------------------
-	GLdouble GetType () {return m_type;}
-	GLdouble GetXstart () {return m_xPlainStart;}
-	GLdouble GetXend () {return m_xPlainEnd;}
-	GLdouble GetYstart () {return m_yPlainStart;}
-	GLdouble GetYend () {return m_yPlainEnd;}
-	GLdouble GetZstart () {return m_zPlainStart;}
-	GLdouble GetZend () {return m_zPlainEnd;}
+	GLdouble GetType() const;
+	GLdouble GetXStart() const;
+	GLdouble GetXEnd() const;
+	GLdouble GetYStart() const;
+	GLdouble GetYEnd() const;
+	GLdouble GetZStart() const;
+	GLdouble GetZEnd() const;
 
     // Return the address of the link to the next node in the list
-    PlainNode *GetNext () const {return m_next;}
+    PlainNode *GetNext () const;
 
 	//----------------------------------------------------------------------------------
 	//  Set Methods
@@ -47,7 +48,7 @@ public:
 				 const GLdouble tempZs, const GLdouble tempZe);
 
     // Set the address of the link to the next node in the list
-    void SetNext (PlainNode *next) {m_next = next;}
+    void SetNext (PlainNode *next);
 
 private:
     // The address of the next node in the list
@@ -57,18 +58,17 @@ private:
 	// (0: flat plane)
 	// (1: incline from z to y)
 	// (2: incline from x to y)
-	GLdouble m_type;
+	GLint m_type;
 
 	// stores start and end co-ordinates of plane on x, y and z axis
-	GLdouble m_xPlainStart, m_xPlainEnd;
-	GLdouble m_yPlainStart, m_yPlainEnd;
-	GLdouble m_zPlainStart, m_zPlainEnd;
+	glm::vec3 m_plainStart;
+	glm::vec3 m_plainEnd;
 
 	//----------------------------------------------------------------------------------
 
     // Privatized copy constructor and assignment operator
-    PlainNode (const PlainNode &newNode) {};
-    PlainNode &operator = (const PlainNode &newNode) {};
+	PlainNode(const PlainNode& newNode);
+	PlainNode& operator=(const PlainNode& newNode);
 };
 
 #endif

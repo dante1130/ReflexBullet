@@ -9,8 +9,8 @@
 #ifndef AABBNODE_H
 #define AABBNODE_H
 
-#include <gl/glut.h>
 #include "BoundingBox.h"
+#include <gl/glut.h>
 
 //--------------------------------------------------------------------------------------
 
@@ -22,16 +22,14 @@ class AABBNode
 {
 public:
 	/**
-	 * @brief Default constructor..
+	 * @brief Default constructor.
 	 */
 	AABBNode();
 
 	/**
-	 * @brief Deconstructor..
+	 * @brief Deconstructor.
 	 */
     virtual ~AABBNode();
-
-
 
 	//----------------------------------------------------------------------------------
 	//  Get Methods

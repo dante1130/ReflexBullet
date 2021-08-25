@@ -112,48 +112,48 @@ public:
 	 * @param tempIndex const int&
 	 * @return double
 	 */
-	double GetAABBMaxX(const int& tempIndex);
+	double GetAABBMaxX(const int& tempIndex) const;
 
 	/**
 	 * @brief Returns co-ordinates of bounding boxes of minimum X
 	 * @param tempIndex const int&
 	 * @return double
 	 */
-	double GetAABBMinX(const int& tempIndex);
+	double GetAABBMinX(const int& tempIndex) const;
 
 	/**
 	 * @brief Returns co-ordinates of bounding boxes of maximum Y
 	 * @param tempIndex const int&
 	 * @return double
 	 */
-	double GetAABBMaxY(const int& tempIndex);
+	double GetAABBMaxY(const int& tempIndex) const;
 
 	/**
 	 * @brief Returns co-ordinates of bounding boxes of minimum Y
 	 * @param tempIndex const int&
 	 * @return double
 	 */
-	double GetAABBMinY(const int& tempIndex);
+	double GetAABBMinY(const int& tempIndex) const;
 
 	/**
 	 * @brief Returns co-ordinates of bounding boxes of maximum Z
 	 * @param tempIndex const int&
 	 * @return double
 	 */
-	double GetAABBMaxZ(const int& tempIndex);
+	double GetAABBMaxZ(const int& tempIndex) const;
 
 	/**
 	 * @brief Returns co-ordinates of bounding boxes of minimum Z
 	 * @param tempIndex const int&
 	 * @return double
 	 */
-	double GetAABBMinZ(const int& tempIndex);
+	double GetAABBMinZ(const int& tempIndex) const;
 
 	/**
 	 * @brief Returns number of bounding boxes.
 	 * @return int
 	 */
-	int GetNoBoundingBoxes();
+	int GetNoBoundingBoxes() const;
 
 	/**
 	 * @brief Returns TRUE if a collision occurred.

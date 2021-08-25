@@ -62,37 +62,37 @@ void Collision::SetNoBoundingBoxes(const int& tempSize)
 	m_AABB.SetNoBoundingBoxes(tempSize);
 }
 
-double Collision::GetAABBMaxX(const int& tempIndex)
+double Collision::GetAABBMaxX(const int& tempIndex) const
 {
 	return m_AABB.GetMaxX(tempIndex);
 }
 
-double Collision::GetAABBMinX(const int& tempIndex)
+double Collision::GetAABBMinX(const int& tempIndex) const
 {
 	return m_AABB.GetMinX(tempIndex);
 }
 
-double Collision::GetAABBMaxY(const int& tempIndex)
+double Collision::GetAABBMaxY(const int& tempIndex) const
 {
 	return m_AABB.GetMaxY(tempIndex);
 }
 
-double Collision::GetAABBMinY(const int& tempIndex)
+double Collision::GetAABBMinY(const int& tempIndex) const
 {
 	return m_AABB.GetMinY(tempIndex);
 }
 
-double Collision::GetAABBMaxZ(const int& tempIndex)
+double Collision::GetAABBMaxZ(const int& tempIndex) const
 {
 	return m_AABB.GetMaxZ(tempIndex);
 }
 
-double Collision::GetAABBMinZ(const int& tempIndex)
+double Collision::GetAABBMinZ(const int& tempIndex) const
 {
 	return m_AABB.GetMinZ(tempIndex);
 }
 
-int Collision::GetNoBoundingBoxes()
+int Collision::GetNoBoundingBoxes() const
 {
 	return m_AABB.GetNoBoundingBoxes();
 }

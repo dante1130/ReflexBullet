@@ -19,28 +19,51 @@
 
 //--------------------------------------------------------------------------------------
 
-/** @class	AABBLinkedList
- * 
+/** 
+ * @class AABBLinkedList
+ * @brief Linked list to store bounding box details
  */
 class AABBLinkedList
 {
 public:
-	// constructor creates pointer to first node
+	/**
+	 * @brief Constructor creates pointer to first node.
+	 */
 	AABBLinkedList();
 
+	/**
+	 * @brief Deconstructor.
+	 */
 	virtual ~AABBLinkedList();
 
 	//----------------------------------------------------------------------------------
 
-	// clears linked list and frees memory
-	void Clear();
 
-	// add a node to the start of the linked list
-	bool AddToStart (GLdouble maxX, GLdouble minX, GLdouble maxY,
-				     GLdouble minY, GLdouble maxZ, GLdouble minZ);
+
+	/**
+	 * @brief Add a node to the start of the linked list.
+	 * @param maxX GLdouble
+	 * @param minX GLdouble
+	 * @param maxY GLdouble
+	 * @param minY GLdouble
+	 * @param maxZ GLdouble
+	 * @param minZ GLdouble
+	 * @return bool
+	 */
+	bool AddToStart(GLdouble maxX, GLdouble minX, GLdouble maxY,
+				    GLdouble minY, GLdouble maxZ, GLdouble minZ);
 	
-	//  set the values of the node data
-	void SetData(const int &ptrCount,
+	/**
+	 * @brief Set the values of the node data.
+	 * @param maxX GLdouble
+	 * @param minX GLdouble
+	 * @param maxY GLdouble
+	 * @param minY GLdouble
+	 * @param maxZ GLdouble
+	 * @param minZ GLdouble
+	 * @return void
+	 */
+	void SetData(const int& ptrCount,
 				 const GLdouble maxX, const GLdouble minX,
 				 const GLdouble maxY, const GLdouble minY,
 				 const GLdouble maxZ, const GLdouble minZ);
@@ -48,19 +71,73 @@ public:
 	//----------------------------------------------------------------------------------
 	//  Get Methods
 	//----------------------------------------------------------------------------------
-	GLdouble GetMaxX (int ptrCount);
-	GLdouble GetMinX (int ptrCount);
-	GLdouble GetMaxY (int ptrCount);
-	GLdouble GetMinY (int ptrCount);
-	GLdouble GetMaxZ (int ptrCount);
-	GLdouble GetMinZ (int ptrCount);
+	/**
+	 * @brief Get the maximum X extent
+	 * 
+	 * @param ptrCount int
+	 * @return GLdouble 
+	 */
+	GLdouble GetMaxX(int ptrCount) const;
+
+	/**
+	 * @brief Get the minimum X extent
+	 * 
+	 * @param ptrCount int
+	 * @return GLdouble 
+	 */
+	GLdouble GetMinX(int ptrCount) const;
+
+ss	/**
+	 * @brief Get the maximum Y extent
+	 * 
+	 * @param ptrCount int
+	 * @return GLdouble 
+	 */
+	GLdouble GetMaxY(int ptrCount) const;
+
+	/**
+	 * @brief Get the minimum Y extent
+	 * 
+	 * @param ptrCount int
+	 * @return GLdouble 
+	 */
+	GLdouble GetMinY(int ptrCount) const;
+
+	/**
+	 * @brief Get the maximum Z extent
+	 * 
+	 * @param ptrCount int
+	 * @return GLdouble 
+	 */
+	GLdouble GetMaxZ(int ptrCount) const;
+
+	/**
+	 * @brief Get the minimum Z extent
+	 * 
+	 * @param ptrCount int
+	 * @return GLdouble 
+	 */
+	GLdouble GetMinZ(int ptrCount) const;
 	
-	// Return size of list
-	int GetListSize ();
+	/**
+	 * @brief Return size of list
+	 * 
+	 * @return int 
+	 */
+	int GetListSize() const;
 	
-	// Return the address of the link to the next node in the list
-    AABBNode *GetNext () const;
-	// Return the address of the link to the first node in the list
+	/**
+	 * @brief Return the address of the link to the next node in the list
+	 * 
+	 * @return AABBNode* 
+	 */
+	AABBNode* GetNext() const;
+
+	/**
+	 * @brief Return the address of the link to the first node in the list
+	 * 
+	 * @return AABBNode* 
+	 */
 	AABBNode *GetFirst() const;
 
 //--------------------------------------------------------------------------------------
@@ -70,14 +147,44 @@ private:
 	AABBNode *m_first;
 
 	/// number of nodes in the list
-	int listSize;
+	int m_listSize;
 
-	// used to clear memory
-	void Delete (AABBNode *before);
+	/**
+	 * @brief Helper function to be used in the copy constructor and assignment operator.
+	 * 
+	 * @param ll AABBLinkedList&
+	 * @return void
+	 */
+	void Copy(const AABBLinkedList& ll);
 
-	// Privatized copy constructor and assignment operator
-	AABBLinkedList (const AABBLinkedList &ll);
-	AABBLinkedList &operator = (const AABBLinkedList &ll);
+	/**
+	 * @brief Clears linked list and frees memory, to be used in the deconstructor.
+	 * @return void
+	 */
+	void Clear();
+
+	/**
+	 * @brief Helper function to be used in the deconstructor.
+	 * 
+	 * @param before AABBNode*
+	 * @return void
+	 */
+	void Delete (AABBNode* before);
+
+	/**
+	 * @brief Privatized copy constructor
+	 * 
+	 * @param ll const AABBLinkedList&
+	 */
+	AABBLinkedList(const AABBLinkedList& ll);
+
+	/**
+	 * @brief Privatized assignment operator overload 
+	 * 
+	 * @param ll const AABBLinkedList&
+	 * @return AABBLinkedList& 
+	 */
+	AABBLinkedList& operator=(const AABBLinkedList& ll);
 };
 
 #endif

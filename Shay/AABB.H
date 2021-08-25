@@ -17,8 +17,6 @@
 
 //--------------------------------------------------------------------------------------
 
-#include <iostream>
-#include <cmath>
 #include <vector>
 #include <gl/glut.h>
 #include "BoundingBox.h"

@@ -8,13 +8,37 @@
 
 #include "PlainLinkedList.h"
 
+PlainLinkedList::PlainLinkedList() 
+	: m_first(new PlainNode) {}
+
+PlainLinkedList::PlainLinkedList(const PlainLinkedList& ll)
+{
+	Copy(ll);
+}
+
+PlainLinkedList& PlainLinkedList::operator=(const PlainLinkedList& ll)
+{
+	Copy(ll);
+	return *this;
+}
+
+PlainLinkedList::~PlainLinkedList()
+{
+	Clear();
+}
+
+void PlainLinkedList::Copy(const PlainLinkedList& ll)
+{
+	m_first = ll.m_first;
+}
+
 //--------------------------------------------------------------------------------------
 
 void PlainLinkedList::Clear()
 {
 	PlainNode *ptr = m_first;
 
-	while (ptr->GetNext() != NULL)
+	while (ptr->GetNext() != nullptr)
 	
 	// clear memory
 	Delete(ptr);
@@ -29,6 +53,7 @@ void PlainLinkedList::Delete(PlainNode *before)
 	before->SetNext(temp->GetNext());
 
 	delete temp;
+	temp = nullptr;
 }
 
 //--------------------------------------------------------------------------------------
@@ -62,7 +87,7 @@ bool PlainLinkedList::AddToStart (const int tempType,
 
 //--------------------------------------------------------------------------------------
 
-GLdouble PlainLinkedList::GetType (int ptrCount)
+GLdouble PlainLinkedList::GetType(int ptrCount) const
 {
 	PlainNode *ptr = (m_first);
 	for (int count = 0; count < ptrCount; count++)
@@ -70,15 +95,13 @@ GLdouble PlainLinkedList::GetType (int ptrCount)
 		ptr = ptr->GetNext();
 	}
 
-	if (ptr->GetNext() != NULL)
+	if (ptr->GetNext() != nullptr)
 		return ptr->GetNext()->GetType();	
-	else 
-		return NULL;
 }
 
 //--------------------------------------------------------------------------------------
 
-GLdouble PlainLinkedList::GetXstart (int ptrCount)
+GLdouble PlainLinkedList::GetXStart(int ptrCount) const
 {
 	PlainNode *ptr = (m_first);
 	for (int count = 0; count < ptrCount; count++)
@@ -86,15 +109,13 @@ GLdouble PlainLinkedList::GetXstart (int ptrCount)
 		ptr = ptr->GetNext();
 	}
 
-	if (ptr->GetNext() != NULL)
-		return ptr->GetNext()->GetXstart();	
-	else 
-		return NULL;
+	if (ptr->GetNext() != nullptr)
+		return ptr->GetNext()->GetXStart();	
 }
 
 //--------------------------------------------------------------------------------------
 
-GLdouble PlainLinkedList::GetXend (int ptrCount)
+GLdouble PlainLinkedList::GetXEnd(int ptrCount) const
 {
 	PlainNode *ptr = (m_first);
 	for (int count = 0; count < ptrCount; count++)
@@ -102,15 +123,13 @@ GLdouble PlainLinkedList::GetXend (int ptrCount)
 		ptr = ptr->GetNext();
 	}
 
-	if (ptr->GetNext() != NULL)
-		return ptr->GetNext()->GetXend();	
-	else 
-		return NULL;
+	if (ptr->GetNext() != nullptr)
+		return ptr->GetNext()->GetXEnd();	
 }
 
 //--------------------------------------------------------------------------------------
 
-GLdouble PlainLinkedList::GetYstart (int ptrCount)
+GLdouble PlainLinkedList::GetYStart(int ptrCount) const
 {
 	PlainNode *ptr = (m_first);
 	for (int count = 0; count < ptrCount; count++)
@@ -118,15 +137,13 @@ GLdouble PlainLinkedList::GetYstart (int ptrCount)
 		ptr = ptr->GetNext();
 	}
 
-	if (ptr->GetNext() != NULL)
-		return ptr->GetNext()->GetYstart();	
-	else 
-		return NULL;
+	if (ptr->GetNext() != nullptr)
+		return ptr->GetNext()->GetYStart();	
 }
 
 //--------------------------------------------------------------------------------------
 
-GLdouble PlainLinkedList::GetYend (int ptrCount)
+GLdouble PlainLinkedList::GetYEnd(int ptrCount) const
 {
 	PlainNode *ptr = (m_first);
 	for (int count = 0; count < ptrCount; count++)
@@ -134,15 +151,13 @@ GLdouble PlainLinkedList::GetYend (int ptrCount)
 		ptr = ptr->GetNext();
 	}
 
-	if (ptr->GetNext() != NULL)
-		return ptr->GetNext()->GetYend();	
-	else 
-		return NULL;
+	if (ptr->GetNext() != nullptr)
+		return ptr->GetNext()->GetYEnd();	
 }
 
 //--------------------------------------------------------------------------------------
 
-GLdouble PlainLinkedList::GetZstart (int ptrCount)
+GLdouble PlainLinkedList::GetZStart(int ptrCount) const
 {
 	PlainNode *ptr = (m_first);
 	for (int count = 0; count < ptrCount; count++)
@@ -150,15 +165,13 @@ GLdouble PlainLinkedList::GetZstart (int ptrCount)
 		ptr = ptr->GetNext();
 	}
 
-	if (ptr->GetNext() != NULL)
-		return ptr->GetNext()->GetZstart();	
-	else 
-		return NULL;
+	if (ptr->GetNext() != nullptr)
+		return ptr->GetNext()->GetZStart();	
 }
 
 //--------------------------------------------------------------------------------------
 
-GLdouble PlainLinkedList::GetZend (int ptrCount)
+GLdouble PlainLinkedList::GetZEnd(int ptrCount) const
 {
 	PlainNode *ptr = (m_first);
 	for (int count = 0; count < ptrCount; count++)
@@ -166,16 +179,14 @@ GLdouble PlainLinkedList::GetZend (int ptrCount)
 		ptr = ptr->GetNext();
 	}
 
-	if (ptr->GetNext() != NULL)
-		return ptr->GetNext()->GetZend();	
-	else 
-		return NULL;
+	if (ptr->GetNext() != nullptr)
+		return ptr->GetNext()->GetZEnd();	
 }
 
 
 //--------------------------------------------------------------------------------------
 
-void PlainLinkedList::SetData (const int &ptrCount, const int tempType,
+void PlainLinkedList::SetData (const int ptrCount, const int tempType,
 							   const GLdouble tempXs, const GLdouble tempXe,
 				               const GLdouble tempYs, const GLdouble tempYe,
 				               const GLdouble tempZs, const GLdouble tempZe)
@@ -191,15 +202,25 @@ void PlainLinkedList::SetData (const int &ptrCount, const int tempType,
 
 //--------------------------------------------------------------------------------------
 
-int PlainLinkedList::GetListSize()
+int PlainLinkedList::GetListSize() const
 {
 	int tmpSize = 0;
 	// count size of list
-	for (PlainNode *ptr = (m_first); ptr->GetNext() != NULL; ptr = ptr->GetNext())
+	for (PlainNode *ptr = (m_first); ptr->GetNext() != nullptr; ptr = ptr->GetNext())
 	{
 		tmpSize++;
 	}
 	return tmpSize;
+}
+
+PlainNode* PlainLinkedList::GetNext() const
+{
+	return m_first->GetNext();
+}
+
+PlainNode* PlainLinkedList::GetFirst() const
+{
+	return m_first;
 }
 
 //--------------------------------------------------------------------------------------
