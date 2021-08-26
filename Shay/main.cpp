@@ -216,6 +216,13 @@ void keys(unsigned char key, int x, int y)
 {
 	switch (key)
 	{
+	case 'I':
+		cam.SetMoveSpeed(movementSpeed);
+		break;
+	case 'O':
+		cam.SetMoveSpeed(movementSpeed * 10);
+		break;
+
 	// move forwards
 	case 'W':
 	case 'w':
@@ -344,6 +351,8 @@ void mouseMove(int x, int y)
 //--------------------------------------------------------------------------------------
 void CreateBoundingBoxes()
 {
+	cam.SetNoBoundingBoxes(50);
+
 	// chanc block
 	cam.SetAABBXZ(0, 35879.0, 22096.0, 33808.0, 4688.0);
 
@@ -381,7 +390,7 @@ void CreateBoundingBoxes()
 	cam.SetAABBXZ(11, 28104.0, 43046.0, 25608.0, 42754.0);
 
 	// Canteen block
-	cam.SetAABBXZ(12, 2608.0, 49046.0, 0.0, 0.0);
+	cam.SetAABBXZ(12, 2608.0, 49046.0, -2580, 9990); //////////////////
 
 	// Telephones
 	cam.SetAABBXZ(13, 33892.0, 25344.0, 33872.0, 25173.0);
@@ -394,6 +403,16 @@ void CreateBoundingBoxes()
 
 	// Wall by Steps
 	cam.SetAABBXZ(16, 31548.0, 10395.0, 31444.0, 4590.0);
+
+	//Walters restaurant
+	cam.SetAABBXZ(17, 2608.0, 8490, -2580, 0);
+
+	//No modelling area sign
+	cam.SetAABBXZ(18, 34520, 43193, 34130, 41136);
+
+	//Other unfinished area
+	cam.SetAABBXZ(19, 6812, 45400, 2417, 44600);
+
 }
 
 //--------------------------------------------------------------------------------------

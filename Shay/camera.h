@@ -16,6 +16,7 @@
 #include "Audio.h"
 #include "defines.h"
 
+#include <iostream>
 #include <cmath>
 #include <gl/glut.h>
 #include <glm/vec2.hpp>

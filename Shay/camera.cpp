@@ -92,6 +92,8 @@ void Camera::KeyboardMovement()
 	}
 	*/
 
+	std::cout << m_pos.x << " - " << m_pos.z << std::endl;
+
 	WSKeyboardMovement();
 	ADKeyboardMovement();
 	

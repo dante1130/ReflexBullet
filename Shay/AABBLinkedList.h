@@ -87,7 +87,7 @@ public:
 	 */
 	GLdouble GetMinX(int ptrCount) const;
 
-ss	/**
+	/**
 	 * @brief Get the maximum Y extent
 	 * 
 	 * @param ptrCount int
