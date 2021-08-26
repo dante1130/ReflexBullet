@@ -270,8 +270,9 @@ constexpr auto FRAMETIME = 1000/60;
 #define NO_EXIT						222
 
 
+#define TEXT_ENVIRONMENT			223
 
-#define TEXTURE_END					223
-// 223 Next
+#define TEXTURE_END					230
+// 224 Next
 
 #endif

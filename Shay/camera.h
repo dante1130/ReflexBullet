@@ -116,6 +116,15 @@ public:
 	*/
 	void SetCrouch(bool setCrouch);
 
+	/**
+	* @brief	Sets the players camera location
+	* @param	x	- X coordinate
+	* @param	y	- Y coordinate
+	* @param	z	- Z coordiante
+	* @return	Void
+	*/
+	void SetCameraLocation(float x, float y, float z);
+
 private:
 	/// If the player is crouching or not
 	bool crouch;

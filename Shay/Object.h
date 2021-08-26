@@ -6,6 +6,8 @@
 #include <array>
 #include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
+#include <glut.h>
+#include "LoadTexturesShaysWorld.h"
 
 /**
  * @struct FaceBase
@@ -109,6 +111,13 @@ public:
 	 * @return const std::vector<std::array<Facebase,4>>&
 	 */
 	const std::vector<std::array<FaceBase, 4>>& GetFaceVector() const;
+
+	/**
+	* @breif	Displays the stored object based on the texture
+	* @param	textureID	- The define value of the texture
+	* @return	Void
+	*/
+	void DisplayObject(int textureID);
 
 private:
 	/// stores the vertices

@@ -79,3 +79,23 @@ const std::vector<std::array<FaceBase, 4>>& Object3D::GetFaceVector() const
 {
 	return faces;
 }
+
+
+void Object3D::DisplayObject(int textureID)
+{
+	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(textureID));
+	for (unsigned i = 0; i < GetFaceVector().size(); ++i)
+	{
+		glBegin(GL_POLYGON);
+		for (unsigned j = 0; j < 4; ++j)
+		{
+			unsigned temp_v = GetFace(i)[j].v - 1;
+			unsigned temp_vt = GetFace(i)[j].vt - 1;
+			glTexCoord2f(GetCoord(temp_vt).x, GetCoord(temp_vt).y);
+			glVertex3f((GetVertex(temp_v).x * 300), (GetVertex(temp_v).y * 300), (GetVertex(temp_v).z * 300));
+		}
+		glEnd();
+	}
+
+	return;
+}

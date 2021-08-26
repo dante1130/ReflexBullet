@@ -686,6 +686,12 @@ void CreateTextures()
 	image = tp.LoadTexture("data/thanks.raw", 512, 512);
 	tp.CreateTexture(219, image, 512, 512);
 
+
+	image = tp.LoadTexture("data/object/tetris.raw", 562, 499);
+	tp.CreateTexture(TEXT_ENVIRONMENT, image, 562, 499);
+
+
+
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 

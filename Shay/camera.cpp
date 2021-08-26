@@ -92,7 +92,7 @@ void Camera::KeyboardMovement()
 	}
 	*/
 
-	std::cout << m_pos.x << " - " << m_pos.z << std::endl;
+	
 
 	WSKeyboardMovement();
 	ADKeyboardMovement();
@@ -187,6 +187,8 @@ void Camera::WSKeyboardMovement()
 void Camera::ADKeyboardMovement()
 {
 	if (m_deltaMoveLR == 0) { return; }
+
+	std::cout << m_pos.x << " - " << m_pos.y << " - " << m_pos.z << std::endl;
 
 	float movementSpeed = m_moveSpeed;
 	if (m_deltaMoveFB != 0) { movementSpeed *= 0.5; } //So you can't run at twice the speed when running diagonally
@@ -521,4 +523,12 @@ void Camera::SetPlains (const int tempType,
 				        const GLdouble tempZs, const GLdouble tempZe)
 {
 	m_Plain.AddToStart(tempType, tempXs, tempXe, tempYs, tempYe, tempZs, tempZe);
+}
+
+
+void Camera::SetCameraLocation(float x, float y, float z)
+{
+	m_pos.x = x;
+	m_pos.y = y;
+	m_pos.z = z;
 }

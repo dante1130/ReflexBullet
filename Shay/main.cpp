@@ -9,6 +9,7 @@
 #include "defines.h"
 #include "fileIO.h"
 #include "Object.h"
+#include "DisplayEXTRAShaysWorld.h"
 
 //--------------------------------------------------------------------------------------
 
@@ -43,6 +44,7 @@ bool displayECL = true;
 // objects
 Camera cam;
 
+
 // initializes setting
 void myinit();
 
@@ -63,7 +65,11 @@ void CreateBoundingBoxes();
 // creates different plains
 void CreatePlains();
 
-void RenderLoop(int val);
+void RenderLoop(int val); //The main render loop
+
+void CreateBoundingBoxesExtendedArea(); //Does all the bounding boxes for the extended area
+void CreatePlanesExtendedArea(); //Does all the plains for the extended area
+
 
 //--------------------------------------------------------------------------------------
 //  Main function 
@@ -71,6 +77,9 @@ void RenderLoop(int val);
 int main(int argc, char** argv)
 {
 	std::cout << "Hello World!" << std::endl;
+	readObjFile("data/object/EnvironmentTest.obj", EnvironmentOBJ);
+
+
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
 	glutInitWindowPosition(100, 100);
@@ -163,10 +172,14 @@ void RenderLoop(int val)
 //--------------------------------------------------------------------------------------
 void Display()
 {
+
 	// check for movement
 	//cam.CheckCamera();
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+
+	DisplayExtension();
 
 	// DISPLAY TEXTURES
 	glPushMatrix();
@@ -216,11 +229,17 @@ void keys(unsigned char key, int x, int y)
 {
 	switch (key)
 	{
+	case 'U':
+		cam.SetMoveSpeed(movementSpeed / 10);
+		break;
 	case 'I':
 		cam.SetMoveSpeed(movementSpeed);
 		break;
 	case 'O':
 		cam.SetMoveSpeed(movementSpeed * 10);
+		break;
+	case 'Y':
+		cam.SetCameraLocation(2613.56, 10450, 9250);
 		break;
 
 	// move forwards
@@ -390,7 +409,7 @@ void CreateBoundingBoxes()
 	cam.SetAABBXZ(11, 28104.0, 43046.0, 25608.0, 42754.0);
 
 	// Canteen block
-	cam.SetAABBXZ(12, 2608.0, 49046.0, -2580, 9990); //////////////////
+	cam.SetAABBXZ(12, 2608.0, 49046.0, -10, 9990);
 
 	// Telephones
 	cam.SetAABBXZ(13, 33892.0, 25344.0, 33872.0, 25173.0);
@@ -405,13 +424,47 @@ void CreateBoundingBoxes()
 	cam.SetAABBXZ(16, 31548.0, 10395.0, 31444.0, 4590.0);
 
 	//Walters restaurant
-	cam.SetAABBXZ(17, 2608.0, 8490, -2580, 0);
+	cam.SetAABBXZ(17, 2608.0, 8540, -4644, 0);
 
 	//No modelling area sign
 	cam.SetAABBXZ(18, 34520, 43193, 34130, 41136);
 
 	//Other unfinished area
 	cam.SetAABBXZ(19, 6812, 45400, 2417, 44600);
+
+
+
+	CreateBoundingBoxesExtendedArea();
+
+}
+
+void CreateBoundingBoxesExtendedArea()
+{
+	//Gamming hub
+	cam.SetAABBXZ(20, 0, 13500, -17200, 10540);
+
+	//Left side of main stair plant area
+	cam.SetAABBXZ(21, -4350, 10600, -7780, 9840);
+
+
+	//Side area of main stairs
+	cam.SetAABBXZ(22, -2346, 8500, -5174, 8275); //First barrier off to right of stairs
+	cam.SetAABBXZ(23, -5420, 8500, -6032, 8275); //Second barrier off to right of stairs
+	cam.SetAABBXZ(24, -6278, 8500, -6890, 8275); //Third barrier off to right of stairs
+	cam.SetAABBXZ(25, -7136, 8500, -7748, 8275); //Fourth barrier off to right of stairs
+
+	cam.SetAABBXZ(26, -4622, 5875, -5072, 2875); //First tree/bush section on row 1
+	cam.SetAABBXZ(27, -5072, 5875, -5522, 5125); //First tree/bush section on row 2
+	cam.SetAABBXZ(28, -5072, 4675, -5522, 3775); //Second tree/bush section on row 2
+	cam.SetAABBXZ(29, -5522, 7375, -5972, 6925); //First tree/bush section on row 3
+	cam.SetAABBXZ(30, -5972, 6025, -6381, 5125); //First tree/bush section on row 4
+	cam.SetAABBXZ(31, -6381, 8275, -6788, 7825); //First tree/bush section on row 5
+	cam.SetAABBXZ(32, -6381, 5575, -6788, 4675); //Second tree/bush section on row 5
+	cam.SetAABBXZ(33, -6381, 4225, -6788, 3325); //Third tree/bush section on row 5
+	cam.SetAABBXZ(34, -6788, 4225, -7238, 3775); //First tree/bush section on row 6
+	cam.SetAABBXZ(35, -7238, 7825, -7688, 7375); //First tree/bush section on row 7
+	cam.SetAABBXZ(36, -7238, 6025, -7688, 5575); //Second tree/bush section on row 7
+
 
 }
 
@@ -476,6 +529,65 @@ void CreatePlains()
 
 	// temp plain to take down to ECL1
 	cam.SetPlains(ZY_PLAIN, 3200.0, 4800.0, 10450.0, 9370.0, 53400.0, 57900.0);
+
+	CreatePlanesExtendedArea();
+}
+
+void CreatePlanesExtendedArea()
+{
+	//						x1, x2				, y1, y2		, z1, z2
+	//Missing part infront of entrance
+	cam.SetPlains(FLAT_PLAIN, 2636, 4841, 10450, 10450, 6360, 10019);
+
+
+	//Entrance
+	cam.SetPlains(FLAT_PLAIN, -4613, 2636, 10450, 10450, 6360, 10019);
+
+	//Bottom of stairs/Side area of stairs
+	cam.SetPlains(FLAT_PLAIN, -9296, -7874, 9430, 9430, 1421, 10540);
+
+	//Stairs Main
+	//glTranslatef(2613.56, 10000, 9250);
+	float stepDepth = 51, stepLength = 102, largeStepLength = 450;
+	float zStart = 10000, zEnd = 8500;	//9250 +- 750
+	float xPos = -4664.44; //2613.56 - 7278
+	float height = 10399;
+
+	for (int count = 1; count <= 20; count++)
+	{
+		cam.SetPlains(FLAT_PLAIN, xPos - stepLength, xPos, height, height, zEnd, zStart);
+		xPos -= stepLength;
+		height -= stepDepth;
+		
+		if (count % 5 == 0){ xPos -= largeStepLength - stepLength; }
+	}
+
+	//Left stairs by small area
+
+
+	//Right stairs by small area
+
+
+	//Side area of main stairs
+	cam.SetPlains(FLAT_PLAIN, -5072, -4622, 10324, 10324, 5575, 8275); //First wood section - main //Level 2
+	cam.SetPlains(FLAT_PLAIN, -5522, -5072, 10195, 10195, 5575, 8275); //First concrete section - main //Level 3
+	cam.SetPlains(FLAT_PLAIN, -5972, -5522, 10066, 10066, 5125, 8275); //Second wood section - main //Level 4
+	cam.SetPlains(FLAT_PLAIN, -6381, -5972, 9937, 9937, 5125, 8275); //Second concrete section - main //Level 5
+	cam.SetPlains(FLAT_PLAIN, -6788, -6381, 9808, 9808, 4675, 8275); //Third wood section - main //Level 6
+	cam.SetPlains(FLAT_PLAIN, -7238, -6788, 9679, 9679, 4225, 8275); //Third concrete section - main //Level 7
+	cam.SetPlains(FLAT_PLAIN, -7688, -7238, 9556, 9556, 4225, 8275); //Fourth wood section - main //Level 8
+
+	//The messy part of the area - ask Dan if you need to know. level 2 is top wood, level 8 is lowest wood block
+	cam.SetPlains(FLAT_PLAIN, -6381, -5072, 9937, 9937, 4675, 5125); //Block over second, third and fourth at level 5
+	cam.SetPlains(FLAT_PLAIN, -6788, -5522, 9808, 9808, 4225, 4675); //Block over third, fourth and fifth at level 6\
+
+	cam.SetPlains(FLAT_PLAIN, -5522, -5072, 9679, 9679, 2875, 3775); //Block over Second at level 7
+	cam.SetPlains(FLAT_PLAIN, -5972, -5522, 9679, 9679, 3325, 3775); //Block over third at level 7
+	cam.SetPlains(FLAT_PLAIN, -5972, -5522, 9808, 9808, 3775, 4225); //Block over third at level 6
+	cam.SetPlains(FLAT_PLAIN, -6381, -5972, 9679, 9679, 3325, 4225); //Block over fourth at level 7
+
+
+
 }
 
 //--------------------------------------------------------------------------------------
