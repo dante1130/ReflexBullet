@@ -55,13 +55,13 @@ void DisplayExtraArea::DisplayFixedStartUpArea()
 	glBegin(GL_POLYGON);
 	glTexCoord2f(0, 0);
 	glTexCoord2f(0.0, 0.0);
-	glVertex3f(2608.0, 12137.72, 6500.0);
+	glVertex3f(2608.0, 12105.72, 6500.0);
 	glTexCoord2f(0.0, 250);
-	glVertex3f(2608.0, 12137.72, 8100.0 + (128.0 * 273.4));
+	glVertex3f(2608.0, 12105.72, 8100.0 + (128.0 * 273.4));
 	glTexCoord2f(15, 250);
-	glVertex3f(4716.0, 11361.0, 8100.0 + (128.0 * 257.9));
+	glVertex3f(4716.0, 11335.0, 8100.0 + (128.0 * 257.9));
 	glTexCoord2f(15, 0.0);
-	glVertex3f(4716.0, 11361.0, 6500.0);
+	glVertex3f(4716.0, 11335.0, 6500.0);
 	glEnd();
 
 }

@@ -1174,7 +1174,7 @@ void DisplayPavement()
 void DrawPavement()
 {
 	// PAVEMENT
-	tp.CreateDisplayList(XZ, 87, 128.0, 64.0, 2608.0, 10000.0, 6500.0, 17.0, 482.5);
+	tp.CreateDisplayList(XZ, 87, 128.0, 64.0, 2608.0, 10000.0, 10000, 17.0, 482.5);
 	tp.CreateDisplayList(XZ, 73, 128.0, 64.0, 31632.0, 10000.0, 10000.0, 17.0, 482.5);
 	tp.CreateDisplayList(XZ, 88, 128.0, 64.0, 33744.0, 10000.0, 41104.0, 4.75, 30.5);	// by steps between phys sci and library
 	tp.CreateDisplayList(XZ, 428, 128.0, 64.0, 34256.0, 10000.0, 26704.0, 1.0, 9.5); // phys sci doorway (behind carpet)
@@ -1271,7 +1271,7 @@ void DrawPavement()
 	tp.CreateDisplayList(XZ, 75, 64.0, 64.0, 31568.0, 10000.0, 10096.0, 1.0, 480.0);
 	tp.CreateDisplayList(XZ, 436, 64.0, 64.0, 31568.0, 9086.0, 3408.0, 1.0, 45.0);	// Side paving at entrance
 	// PAVEMENTSIDE_RIGHT
-	tp.CreateDisplayList(XZ, 76, 64.0, 64.0, 4784.0, 10000.0, 6500.0, 1.0, 481.5); //////////////////////////////
+	tp.CreateDisplayList(XZ, 76, 64.0, 64.0, 4784.0, 10000.0, 10000, 1.0, 481.5); //////////////////////////////
 	// PAVEMENTSIDE_TOP
 	tp.CreateDisplayList(XZ, 77, 64.0, 64.0, 4848.0, 10000.0, 40816.0, 417.5, 1.0);
 	// PAVEMENT_STEPS_CORNER
