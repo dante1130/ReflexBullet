@@ -293,8 +293,9 @@ constexpr auto FRAMETIME = 1000/60;
 
 #define WOOD_WALKWAY_TEXTURE		224
 #define CONCRETE_WALKWAY_TEXTURE	225
+#define DRAIN						226
 
 #define TEXTURE_END					230
-// 226 Next
+// 227 Next
 
 #endif

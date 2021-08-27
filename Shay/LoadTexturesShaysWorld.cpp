@@ -696,8 +696,8 @@ void CreateTextures()
 	image = tp.LoadTexture("data/WoodWalkway.raw", 1024, 1024);
 	tp.CreateTexture(WOOD_WALKWAY_TEXTURE, image, 1024, 1024);
 
-	//image = tp.LoadTexture("data/Drain.raw", 256, 256);
-	//tp.CreateTexture(DRAIN_TEXTURE, image, 256, 256);
+	image = tp.LoadTexture("data/Drain.raw", 256, 256);
+	tp.CreateTexture(DRAIN, image, 256, 256);
 
 
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
