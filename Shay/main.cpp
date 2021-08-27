@@ -77,7 +77,7 @@ void CreatePlanesExtendedArea(); //Does all the plains for the extended area
 int main(int argc, char** argv)
 {
 	std::cout << "Hello World!" << std::endl;
-	readObjFile("data/object/EnvironmentTest.obj", EnvironmentOBJ);
+	readObjFile("data/object/Environment.obj", EnvironmentOBJ);
 
 
 	glutInit(&argc, argv);
@@ -179,7 +179,7 @@ void Display()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 
-	DisplayExtension();
+	DisplayExtraArea::DisplayExtension();
 
 	// DISPLAY TEXTURES
 	glPushMatrix();

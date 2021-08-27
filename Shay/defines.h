@@ -8,6 +8,25 @@ constexpr auto FRAMETIME = 1000/60;
 #define CROUCH_DEPTH	-210
 #define CROUCH_SPEED	100 //time it takes to fully crouch in milliseconds
 
+//2 - 9874, 3 - 9745, 4 - , 5 - , 6 - , 7 - , 8 -
+#define LEVEL_1_HEIGHT	9874
+#define LEVEL_2_HEIGHT	9745
+#define LEVEL_3_HEIGHT	9616
+#define LEVEL_4_HEIGHT	9489.25
+#define LEVEL_5_HEIGHT	9358
+#define LEVEL_6_HEIGHT	9235
+#define LEVEL_7_HEIGHT	9106
+
+#define ROW_1_START		-4622.44
+#define ROW_2_START		-5072.44
+#define ROW_3_START		-5537.44
+#define ROW_4_START		-5972.44
+#define ROW_5_START		-6381.04
+#define ROW_6_START		-6788.44
+#define ROW_7_START		-7238.44
+#define ROW_7_END		-7688.44
+
+
 
 // TEXTURE IMAGE AXISES
 #define XY		0
@@ -272,7 +291,10 @@ constexpr auto FRAMETIME = 1000/60;
 
 #define TEXT_ENVIRONMENT			223
 
+#define WOOD_WALKWAY_TEXTURE		224
+#define CONCRETE_WALKWAY_TEXTURE	225
+
 #define TEXTURE_END					230
-// 224 Next
+// 226 Next
 
 #endif
