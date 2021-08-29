@@ -12,22 +12,14 @@ Object3D::~Object3D()
 	faces.clear();
 }
 
-void Object3D::AddVertex(float x, float y, float z)
+void Object3D::AddVertex(const glm::vec3& vertex)
 {
-	glm::vec3 temp;
-	temp.x = x;
-	temp.y = y;
-	temp.z = z;
-
-	vertices.push_back(temp);
+	vertices.push_back(vertex);
 }
-void Object3D::AddCoord(float x, float y)
-{
-	glm::vec2 temp;
-	temp.x = x;
-	temp.y = y;
 
-	texCoord.push_back(temp);
+void Object3D::AddCoord(const glm::vec2& coord)
+{
+	texCoord.push_back(coord);
 }
 
 void Object3D::AddFaces(const FaceBase face_arr[4])
@@ -40,7 +32,7 @@ void Object3D::AddFaces(const FaceBase face_arr[4])
 	faces.push_back(too);
 }
 
-void Object3D::SetTextureName(std::string fileName)
+void Object3D::SetTextureName(const std::string& fileName)
 {
 	textureFile = fileName;
 }

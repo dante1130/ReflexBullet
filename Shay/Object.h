@@ -6,7 +6,7 @@
 #include <array>
 #include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
-#include <glut.h>
+#include <gl/glut.h>
 #include "LoadTexturesShaysWorld.h"
 
 /**
@@ -38,12 +38,10 @@ public:
 
 	/**
 	 * @brief Creates a vertex based of float parameters.
-	 * @param x float
-	 * @param y float
-	 * @param z float
+	 * @param vertex glm::vec3
 	 * @return void
 	 */
-	void AddVertex(float x, float y, float z);
+	void AddVertex(const glm::vec3& vertex);
 
 	/**
 	 * @brief Creates a texture coordinate based of float parameters.
@@ -51,7 +49,7 @@ public:
 	 * @param y float
 	 * @return void
 	 */
-	void AddCoord(float x, float y); 
+	void AddCoord(const glm::vec2& coord); 
 
 	/**
 	 * @brief Creates faces using FaceBase array.
@@ -65,7 +63,7 @@ public:
 	 * @param fileName std::string
 	 * @return void
 	 */
-	void SetTextureName(std::string fileName); 
+	void SetTextureName(const std::string& fileName); 
 
 	/**
 	 * @brief Returns a vertex of index i.

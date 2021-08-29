@@ -1,10 +1,11 @@
 #include "fileIO.h"
 
-void readObjFile(std::string fileName, Object3D& obj)
+void readObjFile(const std::string& fileName, Object3D& obj)
 {
 	FaceBase temp_face[4];
 	std::string temp_line, prefix, name;
-	float temp_x, temp_y, temp_z;
+	glm::vec3 tempVertex;
+	glm::vec2 tempCoord;
 
 	std::ifstream temp_file(fileName);
 	if (!temp_file) return;
@@ -15,12 +16,12 @@ void readObjFile(std::string fileName, Object3D& obj)
 
 		getline(ss, prefix, ' ');
 		if (prefix.compare("v") == 0) {
-			ss >> temp_x >> temp_y >> temp_z;
-			obj.AddVertex(temp_x, temp_y, temp_z);
+			ss >> tempVertex.x >> tempVertex.y >> tempVertex.z;
+			obj.AddVertex(glm::vec3(tempVertex));
 		}
 		if (prefix.compare("vt") == 0) {
-			ss >> temp_x >> temp_y;
-			obj.AddCoord(temp_x, temp_y);
+			ss >> tempCoord.x >> tempCoord.y;
+			obj.AddCoord(tempCoord);
 		}
 		if (prefix.compare("usemtl") == 0) {
 			getline(ss, name, ' ');
@@ -38,7 +39,7 @@ void readObjFile(std::string fileName, Object3D& obj)
 	temp_file.close();
 }
 
-FaceBase StringToFace(std::string str)
+FaceBase StringToFace(const std::string& str)
 {
 	std::stringstream temp_line(str);
 	std::string temp_A, temp_B, temp_C;

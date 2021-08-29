@@ -57,8 +57,7 @@ void AABBLinkedList::Delete(AABBNode *before)
 
 //--------------------------------------------------------------------------------------
 
-bool AABBLinkedList::AddToStart (GLdouble maxX, GLdouble minX, GLdouble maxY,
-								 GLdouble minY, GLdouble maxZ, GLdouble minZ)
+bool AABBLinkedList::AddToStart(const glm::vec3& max, const glm::vec3& min)
 {
 	AABBNode *newNode;
 	try
@@ -71,7 +70,7 @@ bool AABBLinkedList::AddToStart (GLdouble maxX, GLdouble minX, GLdouble maxY,
 	}
 	
 	// add the value to the node
-	newNode->SetData(maxX, minX, maxY, minY, maxZ, minZ);
+	newNode->SetData(max, min);
 	// set the address of the net node
 	newNode->SetNext(m_first->GetNext());
 	// reset the address of the first node
@@ -82,93 +81,37 @@ bool AABBLinkedList::AddToStart (GLdouble maxX, GLdouble minX, GLdouble maxY,
 
 //--------------------------------------------------------------------------------------
 
-GLdouble AABBLinkedList::GetMaxX(int ptrCount) const
+const glm::vec3& AABBLinkedList::GetMax(int ptrCount) const
 {
-	AABBNode *ptr = (m_first);
+	AABBNode* ptr = (m_first);
 	for (int count = 0; count < ptrCount; count++)
 	{
 		ptr = ptr->GetNext();
 	}
 
 	if (ptr->GetNext() != nullptr)
-		return ptr->GetNext()->GetMaxX();
+		return ptr->GetNext()->GetMax();
 }
-//--------------------------------------------------------------------------------------
 
-GLdouble AABBLinkedList::GetMinX(int ptrCount) const
+/**
+ * @brief	Gets the maximum extent.
+ * @return	const glm::vec3&
+ */
+const glm::vec3& AABBLinkedList::GetMin(int ptrCount) const
 {
-	AABBNode *ptr = (m_first);
+	AABBNode* ptr = (m_first);
 	for (int count = 0; count < ptrCount; count++)
 	{
 		ptr = ptr->GetNext();
 	}
 
 	if (ptr->GetNext() != nullptr)
-		return ptr->GetNext()->GetMinX();	
+		return ptr->GetNext()->GetMin();
 }
 
 //--------------------------------------------------------------------------------------
 
-GLdouble AABBLinkedList::GetMaxY(int ptrCount) const
-{
-	AABBNode *ptr = (m_first);
-	for (int count = 0; count < ptrCount; count++)
-	{
-		ptr = ptr->GetNext();
-	}
-
-	if (ptr->GetNext() != nullptr)
-		return ptr->GetNext()->GetMaxY();	
-}
-
-//--------------------------------------------------------------------------------------
-
-GLdouble AABBLinkedList::GetMinY(int ptrCount) const
-{
-	AABBNode *ptr = (m_first);
-	for (int count = 0; count < ptrCount; count++)
-	{
-		ptr = ptr->GetNext();
-	}
-
-	if (ptr->GetNext() != nullptr)
-		return ptr->GetNext()->GetMinY();	
-}
-
-//--------------------------------------------------------------------------------------
-
-GLdouble AABBLinkedList::GetMaxZ(int ptrCount) const
-{
-	AABBNode *ptr = (m_first);
-	for (int count = 0; count < ptrCount; count++)
-	{
-		ptr = ptr->GetNext();
-	}
-
-	if (ptr->GetNext() != nullptr)
-		return ptr->GetNext()->GetMaxZ();
-}
-
-//--------------------------------------------------------------------------------------
-
-GLdouble AABBLinkedList::GetMinZ(int ptrCount) const
-{
-	AABBNode *ptr = (m_first);
-	for (int count = 0; count < ptrCount; count++)
-	{
-		ptr = ptr->GetNext();
-	}
-
-	if (ptr->GetNext() != nullptr)
-		return ptr->GetNext()->GetMinZ();	
-}
-
-//--------------------------------------------------------------------------------------
-
-void AABBLinkedList::SetData(const int &ptrCount,
-							 const GLdouble maxX, const GLdouble minX,
-				             const GLdouble maxY, const GLdouble minY,
-				             const GLdouble maxZ, const GLdouble minZ)
+void AABBLinkedList::SetData(const int &ptrCount, const glm::vec3& max, const glm::vec3& min)
 {
 	AABBNode *ptr = (m_first);
 
@@ -176,7 +119,7 @@ void AABBLinkedList::SetData(const int &ptrCount,
 	{
 		ptr = ptr->GetNext();
 	}
-	ptr->GetNext()->SetData(maxX, minX, maxY, minY, maxZ, minZ);	
+	ptr->GetNext()->SetData(max, min);	
 }
 
 //--------------------------------------------------------------------------------------

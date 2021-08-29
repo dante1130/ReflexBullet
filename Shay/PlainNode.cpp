@@ -50,39 +50,19 @@ void PlainNode::Clear()
 	}
 }
 
-GLdouble PlainNode::GetType() const
+GLint PlainNode::GetType() const
 {
 	return m_type;
 }
 
-GLdouble PlainNode::GetXStart() const
+const glm::vec3& PlainNode::GetStart() const
 {
-	return m_plainStart.x;
+	return m_plainStart;
 }
 
-GLdouble PlainNode::GetXEnd() const
+const glm::vec3& PlainNode::GetEnd() const
 {
-	return m_plainEnd.x;
-}
-
-GLdouble PlainNode::GetYStart() const
-{
-	return m_plainStart.y;
-}
-
-GLdouble PlainNode::GetYEnd() const
-{
-	return m_plainEnd.y;
-}
-
-GLdouble PlainNode::GetZStart() const
-{
-	return m_plainStart.z;
-}
-
-GLdouble PlainNode::GetZEnd() const
-{
-	return m_plainEnd.z;
+	return m_plainEnd;
 }
 
 PlainNode* PlainNode::GetNext() const
@@ -92,18 +72,11 @@ PlainNode* PlainNode::GetNext() const
 
 //----------------------------------------------------------------
 
-void PlainNode::SetData(const int tempType,
-						const GLdouble tempXs, const GLdouble tempXe,
-						const GLdouble tempYs, const GLdouble tempYe,
-						const GLdouble tempZs, const GLdouble tempZe)
+void PlainNode::SetData(const GLint tempType, const glm::vec3& tempStart, const glm::vec3& tempEnd)
 {
 	m_type = tempType;
-	m_plainStart.x = tempXs;
-	m_plainEnd.x = tempXe;
-	m_plainStart.y = tempYs;
-	m_plainEnd.y = tempYe;
-	m_plainStart.z = tempZs;
-	m_plainEnd.z = tempZe;
+	m_plainStart = tempStart;
+	m_plainEnd = tempEnd;
 }
 
 void PlainNode::SetNext(PlainNode* next)

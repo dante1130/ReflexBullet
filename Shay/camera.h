@@ -43,13 +43,9 @@ public:
 	//----------------------------------------------------------------------------------
 	// sets initial value for bounding boxes (in the array AABB)
 
-	void SetAABBXZ(const int& tempIndex, const GLdouble& tempX1, const GLdouble& tempZ1, const GLdouble& tempX2, const GLdouble& tempZ2);
-	void SetAABBMaxX(const int & tempIndex, const GLdouble &tempX);
-	void SetAABBMinX(const int & tempIndex, const GLdouble &tempX);
-	void SetAABBMaxY(const int & tempIndex, const GLdouble &tempY);
-	void SetAABBMinY(const int & tempIndex, const GLdouble &tempY);
-	void SetAABBMaxZ(const int & tempIndex, const GLdouble &tempZ);
-	void SetAABBMinZ(const int & tempIndex, const GLdouble &tempZ);
+	void Camera::SetAABBMaxMin(const int& tempIndex, const glm::vec3& tempMax, const glm::vec3& tempMin);
+	void SetAABBMax(const int & tempIndex, const glm::vec3& tempMax);
+	void SetAABBMin(const int & tempIndex, const glm::vec3& tempMin);
 
 	// set step and rotation size
 	void SetRotateSpeed (const GLdouble &tempSpeed);
@@ -67,10 +63,7 @@ public:
 	void InitiateBoundingBoxes();
 
 	// sets the co-ordinate of each plain
-	void SetPlains (const int tempType,
-				    const GLdouble tempXs, const GLdouble tempXe,
-				    const GLdouble tempYs, const GLdouble tempYe,
-				    const GLdouble tempZs, const GLdouble tempZe);
+	void SetPlains(const GLint tempType, const glm::vec3& tempStart, const glm::vec3& tempEnd);
 
 	//----------------------------------------------------------------------------------
 	//  Get Methods
@@ -78,18 +71,11 @@ public:
 	GLdouble GetLR () const;
 	GLdouble GetUD () const;
 	GLdouble GetFB () const;	
-	GLdouble GetAABBMaxX (const int & tempIndex) const;
-	GLdouble GetAABBMinX (const int & tempIndex) const;
-	GLdouble GetAABBMaxY (const int & tempIndex) const;
-	GLdouble GetAABBMinY (const int & tempIndex) const;
-	GLdouble GetAABBMaxZ (const int & tempIndex) const;
-	GLdouble GetAABBMinZ (const int & tempIndex) const;
+	const glm::vec3& GetAABBMax (const int & tempIndex) const;
+	const glm::vec3& GetAABBMin (const int & tempIndex) const;
 	
 	// position the camera
-	void Position (GLdouble const & tempX,
-				   GLdouble const & tempY,
-				   GLdouble const & tempZ,
-				   GLdouble const & tempAngle);
+	void Position(const glm::vec3& tempPos, const GLdouble& tempAngle);
 
 	// Used to pass direction to move or rotate  (i.e. 1, -1 or 0)
 	void DirectionFB(int const & tempMove);
@@ -144,7 +130,7 @@ private:
 
 	// rotation variables
 	/// Previous mouse position.
-	glm::dvec2 m_prev; 
+	glm::ivec2 m_prev; 
 	/// yaw.
 	GLdouble m_rotateAngleLR, m_deltaAngleLR;
 	/// pitch.
@@ -204,12 +190,12 @@ private:
 	// display new view
 	void callGLLookAt();
 
-	bool m_CollisionDetectionOn;
+	bool m_collisionDetectionOn;
 
 	// objects
 	Collision m_colDetect;
 	CameraMap m_map;
-	PlainLinkedList m_Plain;
+	PlainLinkedList m_plain;
 
 	// These functions were set up to climb stairs, but are not used.
 	// The Plain object is used instead

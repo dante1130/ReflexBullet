@@ -28,13 +28,9 @@ public:
 	//----------------------------------------------------------------------------------
 	//  Get Methods
 	//----------------------------------------------------------------------------------
-	GLdouble GetType() const;
-	GLdouble GetXStart() const;
-	GLdouble GetXEnd() const;
-	GLdouble GetYStart() const;
-	GLdouble GetYEnd() const;
-	GLdouble GetZStart() const;
-	GLdouble GetZEnd() const;
+	GLint GetType() const;
+	const glm::vec3& GetStart() const;
+	const glm::vec3& GetEnd() const;
 
     // Return the address of the link to the next node in the list
     PlainNode *GetNext () const;
@@ -42,10 +38,7 @@ public:
 	//----------------------------------------------------------------------------------
 	//  Set Methods
 	//----------------------------------------------------------------------------------
-	void SetData(const int tempType,
-				 const GLdouble tempXs, const GLdouble tempXe,
-				 const GLdouble tempYs, const GLdouble tempYe,
-				 const GLdouble tempZs, const GLdouble tempZe);
+	void SetData(const GLint tempType, const glm::vec3& tempStart, const glm::vec3& tempEnd);
 
     // Set the address of the link to the next node in the list
     void SetNext (PlainNode *next);

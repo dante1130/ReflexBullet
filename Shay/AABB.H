@@ -50,7 +50,7 @@ public:
 	 * @param	tempX const GLdouble&
 	 * @return	void
 	 */
-	void SetMaxX(const int& tempIndex, const GLdouble& tempX);
+	void SetMax(const int& tempIndex, const glm::vec3& tempMax);
 
 	/** 
 	 * @brief	Sets the minimum extent of X.
@@ -58,39 +58,7 @@ public:
 	 * @param	tempX const GLdouble&
 	 * @return	void
 	 */
-	void SetMinX(const int& tempIndex, const GLdouble& tempX);
-
-	/** 
-	 * @brief	Sets the maximum extent of Y.
-	 * @param	tempIndex const int&
-	 * @param	tempY const GLdouble&
-	 * @return	void
-	 */
-	void SetMaxY(const int& tempIndex, const GLdouble& tempY);
-
-	/** 
-	 * @brief	Sets the minimum extent of Y.
-	 * @param	tempIndex const int&
-	 * @param	tempY const GLdouble&
-	 * @return	void
-	 */
-	void SetMinY(const int& tempIndex, const GLdouble& tempY);
-
-	/** 
-	 * @brief	Sets the maximum extent of Z.
-	 * @param	tempIndex const int&
-	 * @param	tempZ const GLdouble&
-	 * @return	void
-	 */
-	void SetMaxZ(const int& tempIndex, const GLdouble& tempZ);
-
-	/** 
-	 * @brief	Sets the minimum extent of Z.
-	 * @param	tempIndex const int&
-	 * @param	tempZ const GLdouble&
-	 * @return	void
-	 */
-	void SetMinZ(const int& tempIndex, const GLdouble& tempZ);
+	void SetMin(const int& tempIndex, const glm::vec3& tempMin);
 
 	/** 
 	 * @brief	Sets the number of bounding boxes.
@@ -108,42 +76,14 @@ public:
 	 * @param	tempIndex const int&
 	 * @return	GLdouble
 	 */
-	GLdouble GetMaxX(const int& tempIndex) const;
+	const glm::vec3& GetMax(const int& tempIndex) const;
 
 	/*
 	 * @brief	Gets the maximum extent of X.
 	 * @param	tempIndex const int&
 	 * @return	GLdouble
 	 */
-	GLdouble GetMinX(const int& tempIndex) const;
-
-	/** 
-	 * @brief	Gets the maximum extent of Y.
-	 * @param	tempIndex const int&
-	 * @return	GLdouble
-	 */
-	GLdouble GetMaxY(const int& tempIndex) const;
-
-	/** 
-	 * @brief	Gets the minimum extent of Y.
-	 * @param	tempIndex const int&
-	 * @return	GLdouble
-	 */
-	GLdouble GetMinY(const int& tempIndex) const;
-
-	/** 
-	 * @brief	Gets the maximum extent of Z.
-	 * @param	tempIndex const int&
-	 * @return	GLdouble
-	 */
-	GLdouble GetMaxZ(const int& tempIndex) const;
-
-	/** 
-	 * @brief	Gets the minimum extent of Z.
-	 * @param	tempIndex const int&
-	 * @return	GLdouble
-	 */
-	GLdouble GetMinZ(const int& tempIndex) const;
+	const glm::vec3& GetMin(const int& tempIndex) const;
 
 	/** 
 	 * @brief	Gets the maximum extent of X.

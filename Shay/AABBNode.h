@@ -36,45 +36,17 @@ public:
 	//----------------------------------------------------------------------------------
 
 	/**
-	 * @brief	Gets the maximum extent of X.
-	 * @return	GLdouble
+	 * @brief	Gets the maximum extent.
+	 * @return	const glm::vec3&
 	 */
-	GLdouble GetMaxX() const;
+	const glm::vec3& GetMax() const;
 
 	/**
-	 * @brief	Gets the minimum extent of X.
-	 * @return	GLdouble
+	 * @brief	Gets the maximum extent.
+	 * @return	const glm::vec3&
 	 */
-	GLdouble GetMinX() const;
+	const glm::vec3& GetMin() const;
 
-	/**
-	 * @brief	Gets the maximum extent of Y.
-	 * @return	GLdouble
-	 */
-	GLdouble GetMaxY() const;
-
-	/**
-	 * @brief	Gets the minimum extent of Y.
-	 * @return	GLdouble
-	 */
-	GLdouble GetMinY() const;
-
-	/**
-	 * @brief	Gets the maximum extent of Z.
-	 * @return	GLdouble
-	 */
-	GLdouble GetMaxZ() const;
-
-	/**
-	 * @brief	Gets the minimum extent of Z.
-	 * @return	GLdouble
-	 */
-	GLdouble GetMinZ() const;
-
-	/**
-	 * @brief	Gets the next node.
-	 * @return	AABBNode*
-	 */
 	AABBNode* GetNext() const;
 
 	//----------------------------------------------------------------------------------
@@ -91,9 +63,7 @@ public:
 	 * @param	minZ const GLdouble
 	 * @return	void
 	 */
-	void SetData(const GLdouble maxX, const GLdouble minX,
-				 const GLdouble maxY, const GLdouble minY,
-				 const GLdouble maxZ, const GLdouble minZ);
+	void SetData(const glm::vec3& max, const glm::vec3& min);
 
     /**
      * @brief	Set the address of the link to the next node in the list.

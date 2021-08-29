@@ -59,10 +59,7 @@ void PlainLinkedList::Delete(PlainNode *before)
 //--------------------------------------------------------------------------------------
 
 
-bool PlainLinkedList::AddToStart (const int tempType,
-							      const GLdouble tempXs, const GLdouble tempXe,
-								  const GLdouble tempYs, const GLdouble tempYe,
-				                  const GLdouble tempZs, const GLdouble tempZe)
+bool PlainLinkedList::AddToStart (const GLint tempType, const glm::vec3& tempStart, const glm::vec3& tempEnd)
 {
 	PlainNode *newNode;
 
@@ -76,7 +73,7 @@ bool PlainLinkedList::AddToStart (const int tempType,
 	}
 	
 	// add the value to the node
-	newNode->SetData(tempType, tempXs, tempXe, tempYs, tempYe, tempZs, tempZe);
+	newNode->SetData(tempType, tempStart, tempEnd);
 	// set the address of the net node
 	newNode->SetNext(m_first->GetNext());
 	// reset the address of the first node
@@ -87,7 +84,7 @@ bool PlainLinkedList::AddToStart (const int tempType,
 
 //--------------------------------------------------------------------------------------
 
-GLdouble PlainLinkedList::GetType(int ptrCount) const
+GLint PlainLinkedList::GetType(int ptrCount) const
 {
 	PlainNode *ptr = (m_first);
 	for (int count = 0; count < ptrCount; count++)
@@ -101,7 +98,7 @@ GLdouble PlainLinkedList::GetType(int ptrCount) const
 
 //--------------------------------------------------------------------------------------
 
-GLdouble PlainLinkedList::GetXStart(int ptrCount) const
+const glm::vec3& PlainLinkedList::GetStart(int ptrCount) const
 {
 	PlainNode *ptr = (m_first);
 	for (int count = 0; count < ptrCount; count++)
@@ -110,12 +107,12 @@ GLdouble PlainLinkedList::GetXStart(int ptrCount) const
 	}
 
 	if (ptr->GetNext() != nullptr)
-		return ptr->GetNext()->GetXStart();	
+		return ptr->GetNext()->GetStart();	
 }
 
 //--------------------------------------------------------------------------------------
 
-GLdouble PlainLinkedList::GetXEnd(int ptrCount) const
+const glm::vec3& PlainLinkedList::GetEnd(int ptrCount) const
 {
 	PlainNode *ptr = (m_first);
 	for (int count = 0; count < ptrCount; count++)
@@ -124,72 +121,13 @@ GLdouble PlainLinkedList::GetXEnd(int ptrCount) const
 	}
 
 	if (ptr->GetNext() != nullptr)
-		return ptr->GetNext()->GetXEnd();	
-}
-
-//--------------------------------------------------------------------------------------
-
-GLdouble PlainLinkedList::GetYStart(int ptrCount) const
-{
-	PlainNode *ptr = (m_first);
-	for (int count = 0; count < ptrCount; count++)
-	{
-		ptr = ptr->GetNext();
-	}
-
-	if (ptr->GetNext() != nullptr)
-		return ptr->GetNext()->GetYStart();	
-}
-
-//--------------------------------------------------------------------------------------
-
-GLdouble PlainLinkedList::GetYEnd(int ptrCount) const
-{
-	PlainNode *ptr = (m_first);
-	for (int count = 0; count < ptrCount; count++)
-	{
-		ptr = ptr->GetNext();
-	}
-
-	if (ptr->GetNext() != nullptr)
-		return ptr->GetNext()->GetYEnd();	
-}
-
-//--------------------------------------------------------------------------------------
-
-GLdouble PlainLinkedList::GetZStart(int ptrCount) const
-{
-	PlainNode *ptr = (m_first);
-	for (int count = 0; count < ptrCount; count++)
-	{
-		ptr = ptr->GetNext();
-	}
-
-	if (ptr->GetNext() != nullptr)
-		return ptr->GetNext()->GetZStart();	
-}
-
-//--------------------------------------------------------------------------------------
-
-GLdouble PlainLinkedList::GetZEnd(int ptrCount) const
-{
-	PlainNode *ptr = (m_first);
-	for (int count = 0; count < ptrCount; count++)
-	{
-		ptr = ptr->GetNext();
-	}
-
-	if (ptr->GetNext() != nullptr)
-		return ptr->GetNext()->GetZEnd();	
+		return ptr->GetNext()->GetEnd();	
 }
 
 
 //--------------------------------------------------------------------------------------
 
-void PlainLinkedList::SetData (const int ptrCount, const int tempType,
-							   const GLdouble tempXs, const GLdouble tempXe,
-				               const GLdouble tempYs, const GLdouble tempYe,
-				               const GLdouble tempZs, const GLdouble tempZe)
+void PlainLinkedList::SetData (const int ptrCount, const GLint tempType, const glm::vec3& tempStart, const glm::vec3& tempEnd)
 {
 	PlainNode *ptr = (m_first);
 
@@ -197,7 +135,7 @@ void PlainLinkedList::SetData (const int ptrCount, const int tempType,
 	{
 		ptr = ptr->GetNext();
 	}
-	ptr->GetNext()->SetData(tempType, tempXs, tempXe, tempYs, tempYe, tempZs, tempZe);
+	ptr->GetNext()->SetData(tempType, tempStart, tempEnd);
 }
 
 //--------------------------------------------------------------------------------------

@@ -12,34 +12,14 @@ AABB::AABB()
 	: m_bBox()
 {}
 
-void AABB::SetMaxX(const int& tempIndex, const GLdouble& tempX)
+void AABB::SetMax(const int& tempIndex, const glm::vec3& tempMax)
 {
-	m_bBox[tempIndex].max.x = tempX;
+	m_bBox[tempIndex].max = tempMax;
 }
 
-void AABB::SetMinX(const int& tempIndex, const GLdouble& tempX)
+void AABB::SetMin(const int& tempIndex, const glm::vec3& tempMin)
 {
-	m_bBox[tempIndex].min.x = tempX;
-}
-
-void AABB::SetMaxY(const int& tempIndex, const GLdouble& tempY)
-{
-	m_bBox[tempIndex].max.y = tempY;
-}
-
-void AABB::SetMinY(const int& tempIndex, const GLdouble& tempY)
-{
-	m_bBox[tempIndex].min.y = tempY;
-}
-
-void AABB::SetMaxZ(const int& tempIndex, const GLdouble& tempZ) 
-{ 
-	m_bBox[tempIndex].max.z = tempZ; 
-}
-
-void AABB::SetMinZ(const int& tempIndex, const GLdouble& tempZ) 
-{ 
-	m_bBox[tempIndex].min.z = tempZ; 
+	m_bBox[tempIndex].min = tempMin;
 }
 
 void AABB::SetNoBoundingBoxes(const int& tempSize)
@@ -47,34 +27,14 @@ void AABB::SetNoBoundingBoxes(const int& tempSize)
 	m_bBox.resize(tempSize);
 }
 
-GLdouble AABB::GetMaxX(const int& tempIndex) const
+const glm::vec3& AABB::GetMax(const int& tempIndex) const
 { 
-	return m_bBox[tempIndex].max.x; 
+	return m_bBox[tempIndex].max; 
 }
 
-GLdouble AABB::GetMinX(const int& tempIndex) const
+const glm::vec3& AABB::GetMin(const int& tempIndex) const
 { 
-	return m_bBox[tempIndex].min.x; 
-}
-
-GLdouble AABB::GetMaxY(const int& tempIndex) const
-{ 
-	return m_bBox[tempIndex].max.y; 
-}
-
-GLdouble AABB::GetMinY(const int& tempIndex) const
-{ 
-	return m_bBox[tempIndex].min.y; 
-}
-
-GLdouble AABB::GetMaxZ(const int& tempIndex) const
-{ 
-	return m_bBox[tempIndex].max.z; 
-}
-
-GLdouble AABB::GetMinZ(const int& tempIndex) const
-{ 
-	return m_bBox[tempIndex].min.z; 
+	return m_bBox[tempIndex].min; 
 }
 
 int AABB::GetNoBoundingBoxes() const

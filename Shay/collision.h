@@ -40,7 +40,7 @@ public:
 	 * @param tempX const double&
 	 * @return void
 	 */
-	void SetAABBMaxX(const int& tempIndex, const double& tempX);
+	void SetAABBMax(const int& tempIndex, const glm::vec3& tempMax);
 
 	/**
 	 * @brief Sets initial co-ordinates of bounding boxes of minimum X.
@@ -48,39 +48,7 @@ public:
 	 * @param tempX const double&
 	 * @return void
 	 */
-	void SetAABBMinX(const int& tempIndex, const double& tempX);
-
-	/**
-	 * @brief Sets initial co-ordinates of bounding boxes of maximum Y.
-	 * @param tempIndex const int&
-	 * @param tempY const double&
-	 * @return void
-	 */
-	void SetAABBMaxY(const int& tempIndex, const double& tempY);
-
-	/**
-	 * @brief Sets initial co-ordinates of bounding boxes of minimum Y.
-	 * @param tempIndex const int&
-	 * @param tempY const double&
-	 * @return void
-	 */
-	void SetAABBMinY(const int& tempIndex, const double& tempY);
-
-	/**
-	 * @brief Sets initial co-ordinates of bounding boxes of maximum Z.
-	 * @param tempIndex const int&
-	 * @param tempZ const double&
-	 * @return void
-	 */
-	void SetAABBMaxZ(const int& tempIndex, const double& tempZ);
-
-	/**
-	 * @brief Sets initial co-ordinates of bounding boxes of minimum Z.
-	 * @param tempIndex const int&
-	 * @param tempZ const double&
-	 * @return void
-	 */
-	void SetAABBMinZ(const int& tempIndex, const double& tempZ);
+	void SetAABBMin(const int& tempIndex, const glm::vec3& tempMin);
 
 	/**
 	 * @brief Sets the actual world co-ordinates X.
@@ -112,42 +80,14 @@ public:
 	 * @param tempIndex const int&
 	 * @return double
 	 */
-	double GetAABBMaxX(const int& tempIndex) const;
+	const glm::vec3& GetAABBMax(const int& tempIndex) const;
 
 	/**
 	 * @brief Returns co-ordinates of bounding boxes of minimum X
 	 * @param tempIndex const int&
 	 * @return double
 	 */
-	double GetAABBMinX(const int& tempIndex) const;
-
-	/**
-	 * @brief Returns co-ordinates of bounding boxes of maximum Y
-	 * @param tempIndex const int&
-	 * @return double
-	 */
-	double GetAABBMaxY(const int& tempIndex) const;
-
-	/**
-	 * @brief Returns co-ordinates of bounding boxes of minimum Y
-	 * @param tempIndex const int&
-	 * @return double
-	 */
-	double GetAABBMinY(const int& tempIndex) const;
-
-	/**
-	 * @brief Returns co-ordinates of bounding boxes of maximum Z
-	 * @param tempIndex const int&
-	 * @return double
-	 */
-	double GetAABBMaxZ(const int& tempIndex) const;
-
-	/**
-	 * @brief Returns co-ordinates of bounding boxes of minimum Z
-	 * @param tempIndex const int&
-	 * @return double
-	 */
-	double GetAABBMinZ(const int& tempIndex) const;
+	const glm::vec3& GetAABBMin(const int& tempIndex) const;
 
 	/**
 	 * @brief Returns number of bounding boxes.
@@ -162,7 +102,7 @@ public:
 	 * @param endZ double
 	 * @return bool
 	 */
-	bool Collide(double endX, double endY, double endZ);
+	bool Collide(GLdouble endX, GLdouble endY, GLdouble endZ);
 
 	/**
 	 * @brief Reads the BB info from AABB (dynamic array) and creates a Linked List containing BB data.
@@ -190,7 +130,7 @@ private:
 	 * @param endY double
 	 * @param endZ double
 	 */
-	bool CheckCollision(int index, double endX, double endY, double endZ);
+	bool CheckCollision(int index, GLdouble endX, GLdouble endY, GLdouble endZ);
 };
 
 #endif

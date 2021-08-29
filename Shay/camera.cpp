@@ -8,7 +8,7 @@
 
 #include "Camera.h"
 
-const unsigned char  *keysPressed;
+const unsigned char* keysPressed;
 
 //SDL event which is used for movement keys
 
@@ -37,7 +37,7 @@ Camera::Camera()
 	m_deltaAngleLR = 0.0;
 	m_deltaAngleUD = 0.0;
 
-	m_CollisionDetectionOn = true;
+	m_collisionDetectionOn = true;
 
 	// sound objects
 	m_audio.AddSound("sounds/step.wav", "stairstep");
@@ -100,42 +100,20 @@ void Camera::KeyboardMovement()
 	callGLLookAt();
 }
 
-void Camera::SetAABBXZ(const int& tempIndex, const GLdouble& tempX1, const GLdouble& tempZ1, const GLdouble& tempX2, const GLdouble& tempZ2)
+void Camera::SetAABBMaxMin(const int& tempIndex, const glm::vec3& tempMax, const glm::vec3& tempMin)
 {
-	SetAABBMaxX(tempIndex, tempX1);
-	SetAABBMinX(tempIndex, tempX2);
-	SetAABBMaxZ(tempIndex, tempZ1);
-	SetAABBMinZ(tempIndex, tempZ2);
+	SetAABBMax(tempIndex, tempMax);
+	SetAABBMin(tempIndex, tempMin);
 }
 
-void Camera::SetAABBMaxX(const int& tempIndex, const GLdouble& tempX)
+void Camera::SetAABBMax(const int& tempIndex, const glm::vec3& tempMax)
 {
-	m_colDetect.SetAABBMaxX(tempIndex, tempX);
+	m_colDetect.SetAABBMax(tempIndex, tempMax);
 }
 
-void Camera::SetAABBMinX(const int& tempIndex, const GLdouble& tempX)
+void Camera::SetAABBMin(const int& tempIndex, const glm::vec3& tempMin)
 {
-	m_colDetect.SetAABBMinX(tempIndex, tempX);
-}
-
-void Camera::SetAABBMaxY(const int& tempIndex, const GLdouble& tempY)
-{
-	m_colDetect.SetAABBMaxY(tempIndex, tempY);
-}
-
-void Camera::SetAABBMinY(const int& tempIndex, const GLdouble& tempY)
-{
-	m_colDetect.SetAABBMinY(tempIndex, tempY);
-}
-
-void Camera::SetAABBMaxZ(const int& tempIndex, const GLdouble& tempZ)
-{
-	m_colDetect.SetAABBMaxZ(tempIndex, tempZ);
-}
-
-void Camera::SetAABBMinZ(const int& tempIndex, const GLdouble& tempZ)
-{
-	m_colDetect.SetAABBMinZ(tempIndex, tempZ);
+	m_colDetect.SetAABBMin(tempIndex, tempMin);
 }
 
 void Camera::SetRotateSpeed(const GLdouble& tempSpeed)
@@ -150,7 +128,7 @@ void Camera::SetMoveSpeed(const GLdouble& tempSpeed)
 
 void Camera::SetCollisionDetectionOn(const bool& tempCol)
 {
-	m_CollisionDetectionOn = tempCol;
+	m_collisionDetectionOn = tempCol;
 }
 
 void Camera::SetNoBoundingBoxes(const int& tempSize)
@@ -318,50 +296,53 @@ void Camera::SetPlains(const int & moveX, const int & moveZ)
 {
 
 	// store number of plains (stops from looping through linked list each time)
-	if (m_No_Plains == 0) m_No_Plains = m_Plain.GetListSize();
+	if (m_No_Plains == 0) m_No_Plains = m_plain.GetListSize();
 
 	for (int i = 0;  i < m_No_Plains; i++)
 	{
+		glm::vec3 plainStart = m_plain.GetStart(i);
+		glm::vec3 plainEnd = m_plain.GetEnd(i);
+
 		// if camera is positioned on a plain
-		if ((m_pos.z <= m_Plain.GetZEnd(i)) && (m_pos.z >= m_Plain.GetZStart(i))
-			&& (m_pos.x <= m_Plain.GetXEnd(i)) && (m_pos.x >= m_Plain.GetXStart(i)))
+		if ((m_pos.z <= plainEnd.z) && (m_pos.z >= plainStart.z)
+			&& (m_pos.x <= plainEnd.x) && (m_pos.x >= plainStart.x))
 		{
 			// if flat plain
-			if (m_Plain.GetType(i) == 0)
+			if (m_plain.GetType(i) == 0)
 			{
-				m_pos.y = m_Plain.GetYStart(i);
+				m_pos.y = plainEnd.y;
 				
-				if ((m_plainNo != i) && m_plainHeight != m_Plain.GetYStart(i))
+				if ((m_plainNo != i) && m_plainHeight != plainStart.y)
 				{
 					m_audio.PlaySound("stairstep");
 				}
 
 				m_plainNo = i;
-				m_plainHeight = m_Plain.GetYStart(i);
+				m_plainHeight = plainStart.y;
 			}
 			// if plain slopes in z direction
-			if (m_Plain.GetType(i) == 2)
+			if (m_plain.GetType(i) == 2)
 			{
-				float z1 = m_Plain.GetZStart(i);
-				float z2 = m_Plain.GetZEnd(i);
+				float z1 = plainStart.z;
+				float z2 = plainEnd.z;
 				float dif = z1 - z2;
 
 				float dist = m_pos.z - z1;
-				float ratio = (m_Plain.GetYStart(i) - m_Plain.GetYEnd(i)) / dif;
+				float ratio = (plainStart.y - plainEnd.y) / dif;
 
-				m_pos.y = m_Plain.GetYStart(i) + ratio * dist;
+				m_pos.y = plainStart.y + ratio * dist;
 			}
 			// if plain slopes in x direction	
-			if (m_Plain.GetType(i) == 1)
+			if (m_plain.GetType(i) == 1)
 			{
-				float x1 = m_Plain.GetXStart(i);
-				float x2 = m_Plain.GetXEnd(i);
+				float x1 = plainStart.x;
+				float x2 = plainEnd.x;
 				float dif = x1 - x2;
 
 				float dist = m_pos.x - x1;
-				float ratio = (m_Plain.GetYStart(i) - m_Plain.GetYEnd(i)) / dif;
+				float ratio = (plainStart.y - plainEnd.y) / dif;
 
-				m_pos.y = m_Plain.GetYStart(i) + ratio * dist;
+				m_pos.y = plainStart.y + ratio * dist;
 			}		
 		}
 	}
@@ -382,47 +363,24 @@ GLdouble Camera::GetFB() const
 	return m_pos.z;
 }
 
-GLdouble Camera::GetAABBMaxX(const int& tempIndex) const
+const glm::vec3& Camera::GetAABBMax(const int& tempIndex) const
 {
-	return m_colDetect.GetAABBMaxX(tempIndex);
+	return m_colDetect.GetAABBMax(tempIndex);
 }
 
-GLdouble Camera::GetAABBMinX(const int& tempIndex) const
+const glm::vec3& Camera::GetAABBMin(const int& tempIndex) const
 {
-	return m_colDetect.GetAABBMinX(tempIndex);
-}
-
-GLdouble Camera::GetAABBMaxY(const int& tempIndex) const
-{
-	return m_colDetect.GetAABBMaxY(tempIndex);
-}
-
-GLdouble Camera::GetAABBMinY(const int& tempIndex) const
-{
-	return m_colDetect.GetAABBMinY(tempIndex);
-}
-
-GLdouble Camera::GetAABBMaxZ(const int& tempIndex) const
-{
-	return m_colDetect.GetAABBMaxZ(tempIndex);
-}
-
-GLdouble Camera::GetAABBMinZ(const int& tempIndex) const
-{
-	return m_colDetect.GetAABBMinZ(tempIndex);
+	return m_colDetect.GetAABBMin(tempIndex);
 }
 
 //----------------------------------------------------------------------------------------
 // Positions camera at co-ordinates of parameters
 //----------------------------------------------------------------------------------------
-void Camera::Position (GLdouble const & tempX, GLdouble const & tempY,
-			           GLdouble const & tempZ, GLdouble const & tempAngle)
+void Camera::Position (const glm::vec3& tempPos, const GLdouble& tempAngle)
 {
 	ResetXYZ();
 	
-	m_pos.x = tempX;
-	m_pos.y = tempY;
-	m_pos.z = tempZ;
+	m_pos = tempPos;
 
 	// rotate to correct angle
 	m_rotateAngleLR = tempAngle * (PI / 180);
@@ -517,12 +475,9 @@ void Camera::InitiateBoundingBoxes()
 
 //----------------------------------------------------------------------------------------
 
-void Camera::SetPlains (const int tempType,
-				        const GLdouble tempXs, const GLdouble tempXe,
-				        const GLdouble tempYs, const GLdouble tempYe,
-				        const GLdouble tempZs, const GLdouble tempZe)
+void Camera::SetPlains(const GLint tempType, const glm::vec3& tempStart, const glm::vec3& tempEnd)
 {
-	m_Plain.AddToStart(tempType, tempXs, tempXe, tempYs, tempYe, tempZs, tempZe);
+	m_plain.AddToStart(tempType, tempStart, tempEnd);
 }
 
 

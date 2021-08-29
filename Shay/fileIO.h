@@ -16,13 +16,13 @@
  * \return void
  *
  */
-void readObjFile(std::string fileName, Object3D& obj);
+void readObjFile(const std::string& fileName, Object3D& obj);
 /** 
  * \brief Converts combined v and vt string into values
  * \param str std::string
  * \return FaceBase
  *
  */
-FaceBase StringToFace(std::string str);
+FaceBase StringToFace(const std::string& str);
 
 #endif

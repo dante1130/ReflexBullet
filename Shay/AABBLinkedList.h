@@ -38,86 +38,37 @@ public:
 
 	//----------------------------------------------------------------------------------
 
-
-
 	/**
 	 * @brief Add a node to the start of the linked list.
-	 * @param maxX GLdouble
-	 * @param minX GLdouble
-	 * @param maxY GLdouble
-	 * @param minY GLdouble
-	 * @param maxZ GLdouble
-	 * @param minZ GLdouble
+	 * @param max const glm::dvec3&
+	 * @param min const glm::dvec3&
 	 * @return bool
 	 */
-	bool AddToStart(GLdouble maxX, GLdouble minX, GLdouble maxY,
-				    GLdouble minY, GLdouble maxZ, GLdouble minZ);
+	bool AddToStart(const glm::vec3& max, const glm::vec3& min);
 	
 	/**
 	 * @brief Set the values of the node data.
-	 * @param maxX GLdouble
-	 * @param minX GLdouble
-	 * @param maxY GLdouble
-	 * @param minY GLdouble
-	 * @param maxZ GLdouble
-	 * @param minZ GLdouble
+	 * @param ptrCount const int&
+	 * @param max const glm::dvec3&
+	 * @param min const glm::dvec3&
 	 * @return void
 	 */
-	void SetData(const int& ptrCount,
-				 const GLdouble maxX, const GLdouble minX,
-				 const GLdouble maxY, const GLdouble minY,
-				 const GLdouble maxZ, const GLdouble minZ);
+	void SetData(const int& ptrCount, const glm::vec3& max, const glm::vec3& min);
 
 	//----------------------------------------------------------------------------------
 	//  Get Methods
 	//----------------------------------------------------------------------------------
 	/**
-	 * @brief Get the maximum X extent
-	 * 
-	 * @param ptrCount int
-	 * @return GLdouble 
+	 * @brief	Gets the maximum extent.
+	 * @return	const glm::vec3&
 	 */
-	GLdouble GetMaxX(int ptrCount) const;
+	const glm::vec3& GetMax(int ptrCount) const;
 
 	/**
-	 * @brief Get the minimum X extent
-	 * 
-	 * @param ptrCount int
-	 * @return GLdouble 
+	 * @brief	Gets the maximum extent.
+	 * @return	const glm::vec3&
 	 */
-	GLdouble GetMinX(int ptrCount) const;
-
-	/**
-	 * @brief Get the maximum Y extent
-	 * 
-	 * @param ptrCount int
-	 * @return GLdouble 
-	 */
-	GLdouble GetMaxY(int ptrCount) const;
-
-	/**
-	 * @brief Get the minimum Y extent
-	 * 
-	 * @param ptrCount int
-	 * @return GLdouble 
-	 */
-	GLdouble GetMinY(int ptrCount) const;
-
-	/**
-	 * @brief Get the maximum Z extent
-	 * 
-	 * @param ptrCount int
-	 * @return GLdouble 
-	 */
-	GLdouble GetMaxZ(int ptrCount) const;
-
-	/**
-	 * @brief Get the minimum Z extent
-	 * 
-	 * @param ptrCount int
-	 * @return GLdouble 
-	 */
-	GLdouble GetMinZ(int ptrCount) const;
+	const glm::vec3& GetMin(int ptrCount) const;
 	
 	/**
 	 * @brief Return size of list

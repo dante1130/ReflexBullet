@@ -17,34 +17,14 @@ Collision::Collision()
 	}
 }
 
-void Collision::SetAABBMaxX(const int& tempIndex, const double& tempX)
+void Collision::SetAABBMax(const int& tempIndex, const glm::vec3 &tempMax)
 {
-	m_AABB.SetMaxX(tempIndex, tempX);
+	m_AABB.SetMax(tempIndex, tempMax);
 }
 
-void Collision::SetAABBMinX(const int& tempIndex, const double& tempX)
+void Collision::SetAABBMin(const int& tempIndex, const glm::vec3 &tempMin)
 {
-	m_AABB.SetMinX(tempIndex, tempX);
-}
-
-void Collision::SetAABBMaxY(const int& tempIndex, const double& tempY)
-{
-	m_AABB.SetMaxY(tempIndex, tempY);
-}
-
-void Collision::SetAABBMinY(const int& tempIndex, const double& tempY)
-{
-	m_AABB.SetMinY(tempIndex, tempY);
-}
-
-void Collision::SetAABBMaxZ(const int& tempIndex, const double& tempZ)
-{
-	m_AABB.SetMaxZ(tempIndex, tempZ);
-}
-
-void Collision::SetAABBMinZ(const int& tempIndex, const double& tempZ)
-{
-	m_AABB.SetMinZ(tempIndex, tempZ);
+	m_AABB.SetMin(tempIndex, tempMin);
 }
 
 void Collision::SetWorldX(const double& tempX)
@@ -62,35 +42,16 @@ void Collision::SetNoBoundingBoxes(const int& tempSize)
 	m_AABB.SetNoBoundingBoxes(tempSize);
 }
 
-double Collision::GetAABBMaxX(const int& tempIndex) const
+const glm::vec3& Collision::GetAABBMax(const int& tempIndex) const
 {
-	return m_AABB.GetMaxX(tempIndex);
+	return m_AABB.GetMax(tempIndex);
 }
 
-double Collision::GetAABBMinX(const int& tempIndex) const
+const glm::vec3& Collision::GetAABBMin(const int& tempIndex) const
 {
-	return m_AABB.GetMinX(tempIndex);
+	return m_AABB.GetMin(tempIndex);
 }
 
-double Collision::GetAABBMaxY(const int& tempIndex) const
-{
-	return m_AABB.GetMaxY(tempIndex);
-}
-
-double Collision::GetAABBMinY(const int& tempIndex) const
-{
-	return m_AABB.GetMinY(tempIndex);
-}
-
-double Collision::GetAABBMaxZ(const int& tempIndex) const
-{
-	return m_AABB.GetMaxZ(tempIndex);
-}
-
-double Collision::GetAABBMinZ(const int& tempIndex) const
-{
-	return m_AABB.GetMinZ(tempIndex);
-}
 
 int Collision::GetNoBoundingBoxes() const
 {
@@ -116,47 +77,44 @@ void Collision::CreateLinkedList()
 
 	for (int count = 0; count < tempNoBoxes; count++)
 	{
-		GLdouble maxX = GetAABBMaxX(count);
-		GLdouble minX = GetAABBMinX(count);
-		GLdouble maxY = GetAABBMaxY(count);
-		GLdouble minY = GetAABBMinY(count);
-		GLdouble maxZ = GetAABBMaxZ(count);
-		GLdouble minZ = GetAABBMinZ(count);
+		glm::vec3 max = GetAABBMax(count);
+		glm::vec3 min = GetAABBMin(count);
+
 		// 1st quadrant
-		if (((minX <= m_worldSizeX / 2.0) || (maxX <= m_worldSizeX / 2.0)) && 
-			((minZ <= m_worldSizeZ / 2.0) || (maxZ <= m_worldSizeZ / 2.0)))
+		if (((min.x <= m_worldSizeX / 2.0) || (max.x <= m_worldSizeX / 2.0)) && 
+			((min.z <= m_worldSizeZ / 2.0) || (max.z <= m_worldSizeZ / 2.0)))
 		{
 			// increment list size
 			m_listSize[0]++;
 			// add bb data to list
-			m_list[0].AddToStart(maxX, minX, maxY, minY, maxZ, minZ);
+			m_list[0].AddToStart(max, min);
 		}
 		// 2nd quadrant
-		if (((minX <= m_worldSizeX / 2.0) || (maxX <= m_worldSizeX / 2.0)) &&
-			((minZ >= m_worldSizeZ / 2.0) || (maxZ >= m_worldSizeZ / 2.0)))
+		if (((min.x <= m_worldSizeX / 2.0) || (max.x <= m_worldSizeX / 2.0)) &&
+			((min.z >= m_worldSizeZ / 2.0) || (max.z >= m_worldSizeZ / 2.0)))
 		{
 			// increment list size
 			m_listSize[1]++;
 			// add bb data to list
-			m_list[1].AddToStart(maxX, minX, maxY, minY, maxZ, minZ);
+			m_list[1].AddToStart(max, min);
 		}
 		// 3rd quadrant
-		if (((minX >= m_worldSizeX / 2.0) || (maxX >= m_worldSizeX / 2.0)) && 
-			((minZ <= m_worldSizeZ / 2.0) || (maxZ <= m_worldSizeZ / 2.0)))
+		if (((min.x >= m_worldSizeX / 2.0) || (max.x >= m_worldSizeX / 2.0)) && 
+			((min.z <= m_worldSizeZ / 2.0) || (max.z <= m_worldSizeZ / 2.0)))
 		{
 			// increment list size
 			m_listSize[2]++;
 			// add bb data to list
-			m_list[2].AddToStart(maxX, minX, maxY, minY, maxZ, minZ);
+			m_list[2].AddToStart(max, min);
 		}
 		// 4th quadrant
-		if (((minX >= m_worldSizeX / 2.0) || (maxX >= m_worldSizeX / 2.0)) && 
-			((minZ >= m_worldSizeZ / 2.0) || (maxZ >= m_worldSizeZ / 2.0)))
+		if (((min.x >= m_worldSizeX / 2.0) || (max.x >= m_worldSizeX / 2.0)) && 
+			((min.z >= m_worldSizeZ / 2.0) || (max.z >= m_worldSizeZ / 2.0)))
 		{
 			// increment list size
 			m_listSize[3]++;
 			// add bb data to list
-			m_list[3].AddToStart(maxX, minX, maxY, minY, maxZ, minZ);
+			m_list[3].AddToStart(max, min);
 		}
 	}
 	// Call AABB constructor the delete array and clear memory
@@ -204,10 +162,13 @@ bool Collision::Collide(GLdouble endX, GLdouble endY, GLdouble endZ)
 bool Collision::CheckCollision(int index, GLdouble endX, GLdouble endY, GLdouble endZ)
 {
 	bool CollisionFound = false;
+
 	for (int count = 0; count < m_listSize[index]; count++)
 	{
-		if (((endX < m_list[index].GetMaxX(count)) && (endX > m_list[index].GetMinX(count))) &&
-			((endZ < m_list[index].GetMaxZ(count)) && (endZ > m_list[index].GetMinZ(count))))
+		glm::vec3 max = m_list[index].GetMax(count);
+		glm::vec3 min = m_list[index].GetMin(count);
+
+		if ((endX < max.x && endX > min.x) && (endZ < max.z && endZ > min.z))
 		{
 			CollisionFound = true;
 		}

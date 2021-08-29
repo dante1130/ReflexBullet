@@ -42,37 +42,23 @@ public:
 	/**
 	 * @brief Add a node to the start of the linked list
 	 * 
-	 * @param tempType const GLdouble
-	 * @param tempXs const GLdouble
-	 * @param tempXe const GLdouble
-	 * @param tempYs const GLdouble
-	 * @param tempYe const GLdouble
-	 * @param tempZs const GLdouble
-	 * @param tempZe const GLdouble
+	 * @param tempType const GLint
+	 * @param tempStart const glm::vec3&
+	 * @param tempEnd const glm::vec3&
 	 * @return bool
 	 */
-	bool AddToStart (const int tempType,
-				     const GLdouble tempXs, const GLdouble tempXe,
-				     const GLdouble tempYs, const GLdouble tempYe,
-				     const GLdouble tempZs, const GLdouble tempZe);
+	bool AddToStart(const GLint tempType, const glm::vec3& tempStart, const glm::vec3& tempEnd);
 
 	/**
 	 * @brief Set the values of the node data
 	 * 
 	 * @param ptrCount const int
-	 * @param tempType const int
-	 * @param tempXs const GLdouble
-	 * @param tempXe const GLdouble
-	 * @param tempYs const GLdouble
-	 * @param tempYe const GLdouble
-	 * @param tempZs const GLdouble
-	 * @param tempZe const GLdouble
+	 * @param tempType const GLint
+	 * @param tempStart const glm::vec3&
+	 * @param tempEnd const glm::vec3&
 	 * @return void
 	 */
-	void SetData(const int ptrCount, const int tempType,
-				 const GLdouble tempXs, const GLdouble tempXe,
-				 const GLdouble tempYs, const GLdouble tempYe,
-				 const GLdouble tempZs, const GLdouble tempZe);
+	void SetData(const int ptrCount, const GLint tempType, const glm::vec3& tempStart, const glm::vec3& tempEnd);
 
 	//----------------------------------------------------------------------------------
 	//  Get Methods
@@ -81,9 +67,9 @@ public:
 	 * @brief Get the Type
 	 * 
 	 * @param ptrCount int
-	 * @return GLdouble 
+	 * @return GLint 
 	 */
-	GLdouble GetType(int ptrCount) const;
+	GLint GetType(int ptrCount) const;
 
 	/**
 	 * @brief Get the starting X coordinates.
@@ -91,7 +77,7 @@ public:
 	 * @param ptrCount int
 	 * @return GLdouble 
 	 */
-	GLdouble GetXStart(int ptrCount) const;
+	const glm::vec3& GetStart(int ptrCount) const;
 
 	/**
 	 * @brief Get the ending X coordinates.
@@ -99,39 +85,7 @@ public:
 	 * @param ptrCount int
 	 * @return GLdouble 
 	 */
-	GLdouble GetXEnd(int ptrCount) const;
-
-	/**
-	 * @brief Get the starting Y coordinates.
-	 * 
-	 * @param ptrCount int
-	 * @return GLdouble 
-	 */
-	GLdouble GetYStart(int ptrCount) const;
-
-	/**
-	 * @brief Get the ending Y coordinates.
-	 * 
-	 * @param ptrCount int
-	 * @return GLdouble 
-	 */
-	GLdouble GetYEnd(int ptrCount) const;
-
-	/**
-	 * @brief Get the starting Z coordinates.
-	 * 
-	 * @param ptrCount int
-	 * @return GLdouble 
-	 */
-	GLdouble GetZStart(int ptrCount) const;
-
-	/**
-	 * @brief Get the ending Z coordinates.
-	 * 
-	 * @param ptrCount int
-	 * @return GLdouble 
-	 */
-	GLdouble GetZEnd(int ptrCount) const;
+	const glm::vec3& GetEnd(int ptrCount) const;
 
 	/**
 	 * @brief Return size of list
