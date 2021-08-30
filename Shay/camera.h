@@ -8,11 +8,9 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#define PI 3.1415962654
-
 #include "collision.h"
 #include "cameraMap.h"
-#include "PlainLinkedList.h"
+#include "PlainVector.h"
 #include "Audio.h"
 #include "defines.h"
 
@@ -37,17 +35,13 @@ public:
 	* @return	void
 	*/
 	void KeyboardMovement();
-
-	//----------------------------------------------------------------------------------
 	
 	//----------------------------------------------------------------------------------
 	//  Set Methods
 	//----------------------------------------------------------------------------------
 	// sets initial value for bounding boxes (in the array AABB)
 
-	void Camera::SetAABBMaxMin(const int& tempIndex, const glm::vec3& tempMax, const glm::vec3& tempMin);
-	void SetAABBMax(const int & tempIndex, const glm::vec3& tempMax);
-	void SetAABBMin(const int & tempIndex, const glm::vec3& tempMin);
+	void AddAABB(const glm::vec3& max, const glm::vec3& min);
 
 	// set step and rotation size
 	void SetRotateSpeed (const GLdouble &tempSpeed);
@@ -55,17 +49,13 @@ public:
 
 	// COLLSION DETECTION FUNCTIONS
 	// set collision detection (TRUE = on)
-	void SetCollisionDetectionOn (const bool &tempCol);
-	// set number of bounding boxes
-	void SetNoBoundingBoxes(const int & tempSize);
+	void SetCollisionDetectionOn(bool tempCol);
+
 	// set the co-ordinates of the world
 	void SetWorldCoordinates (const GLdouble &tempX, const GLdouble &tempZ);
-	// creates a linked list for each quadrant of the world and places the bounding box
-	// data in each.  Then clears and deletes AABB array.
-	void InitiateBoundingBoxes();
 
 	// sets the co-ordinate of each plain
-	void SetPlains(const GLint tempType, const glm::vec3& tempStart, const glm::vec3& tempEnd);
+	void AddPlain(const GLint tempType, const glm::vec3& tempStart, const glm::vec3& tempEnd);
 
 	//----------------------------------------------------------------------------------
 	//  Get Methods
@@ -73,8 +63,6 @@ public:
 	GLdouble GetLR () const;
 	GLdouble GetUD () const;
 	GLdouble GetFB () const;	
-	const glm::vec3& GetAABBMax (const int & tempIndex) const;
-	const glm::vec3& GetAABBMin (const int & tempIndex) const;
 	
 	// position the camera
 	void Position(const glm::vec3& tempPos, const GLdouble& tempAngle);
@@ -194,10 +182,12 @@ private:
 
 	bool m_collisionDetectionOn;
 
-	// objects
+	/// Collision object
 	Collision m_colDetect;
+	/// The map of the camera
 	CameraMap m_map;
-	PlainLinkedList m_plain;
+	/// PlainVector object
+	PlainVector m_plain;
 
 	// These functions were set up to climb stairs, but are not used.
 	// The Plain object is used instead

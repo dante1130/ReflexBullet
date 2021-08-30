@@ -1,4 +1,4 @@
-//  collsion.h
+//  collision.h
 //  Header file for the collision class
 // 
 //
@@ -9,8 +9,7 @@
 
 //--------------------------------------------------------------------------------------
 
-#include "AABB.h"
-#include "AABBLinkedList.h"
+#include "AABBVector.h"
 
 //--------------------------------------------------------------------------------------
 
@@ -28,27 +27,11 @@ public:
 	 */
 	Collision();
 
+	void Push(const glm::vec3& max, const glm::vec3& min);
+
 	//----------------------------------------------------------------------------------
 	//  Set Methods
 	//----------------------------------------------------------------------------------
-	
-	// (these set the co-ords is AABB, the array, the values for the list are copied from the array using CreateLinkedList).
-	
-	/**
-	 * @brief Sets initial co-ordinates of bounding boxes of maximum X.
-	 * @param tempIndex const int&
-	 * @param tempX const double&
-	 * @return void
-	 */
-	void SetAABBMax(const int& tempIndex, const glm::vec3& tempMax);
-
-	/**
-	 * @brief Sets initial co-ordinates of bounding boxes of minimum X.
-	 * @param tempIndex const int&
-	 * @param tempX const double&
-	 * @return void
-	 */
-	void SetAABBMin(const int& tempIndex, const glm::vec3& tempMin);
 
 	/**
 	 * @brief Sets the actual world co-ordinates X.
@@ -64,36 +47,9 @@ public:
 	 */
 	void SetWorldZ(const double &tempZ);
 
-	/**
-	 * @brief Set number of bounding boxes.
-	 * @param tempSize const int&
-	 * @return void
-	 */
-	void SetNoBoundingBoxes(const int & tempSize);
-
 	//----------------------------------------------------------------------------------
 	//  Returns Methods
 	//----------------------------------------------------------------------------------
-	
-	/**
-	 * @brief Returns co-ordinates of bounding boxes of maximum X
-	 * @param tempIndex const int&
-	 * @return double
-	 */
-	const glm::vec3& GetAABBMax(const int& tempIndex) const;
-
-	/**
-	 * @brief Returns co-ordinates of bounding boxes of minimum X
-	 * @param tempIndex const int&
-	 * @return double
-	 */
-	const glm::vec3& GetAABBMin(const int& tempIndex) const;
-
-	/**
-	 * @brief Returns number of bounding boxes.
-	 * @return int
-	 */
-	int GetNoBoundingBoxes() const;
 
 	/**
 	 * @brief Returns TRUE if a collision occurred.
@@ -102,23 +58,17 @@ public:
 	 * @param endZ double
 	 * @return bool
 	 */
-	bool Collide(GLdouble endX, GLdouble endY, GLdouble endZ);
+	bool Collide(const glm::dvec3& end);
 
 	/**
 	 * @brief Reads the BB info from AABB (dynamic array) and creates a Linked List containing BB data.
 	 * @return void
 	 */
-	void CreateLinkedList();
+	int GetQuadrant(const glm::vec3& max, const glm::vec3& min);
 
 private:
-	/// initially stores BB info in AABB (dynamic array) before copying to Linked List
-	AABB m_AABB;
-
-	/// lists to store bounding box info in each quadrant
-	AABBLinkedList m_list[4];
-
-	/// Stores the list size of each linked list, set to 4 has the world is split into 4 quadrants
-	int m_listSize[4];
+	/// vectors to store bounding box info in each quadrant
+	AABBVector m_list[4];
 
 	/// stores world co-ordinates
 	double m_worldSizeX, m_worldSizeZ;
@@ -130,7 +80,7 @@ private:
 	 * @param endY double
 	 * @param endZ double
 	 */
-	bool CheckCollision(int index, GLdouble endX, GLdouble endY, GLdouble endZ);
+	bool CheckCollision(int index, const glm::dvec3& end);
 };
 
 #endif
