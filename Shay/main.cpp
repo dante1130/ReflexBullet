@@ -375,7 +375,7 @@ void mouseMove(int x, int y)
 //--------------------------------------------------------------------------------------
 void CreateBoundingBoxes()
 {
-	cam.SetNoBoundingBoxes(90);
+	cam.SetNoBoundingBoxes(100);
 
 	cam.SetAABBMaxMin(0, glm::vec3(35879, 0, 22096) , glm::vec3(33808, 0, 4688)); // chanc block
 	cam.SetAABBMaxMin(1, glm::vec3(35999, 0, 25344), glm::vec3(35730, 0, 22096)); // between chanc block and phys sci
@@ -448,6 +448,29 @@ void CreateBoundingBoxesExtendedArea()
 	cam.SetAABBMaxMin(82, glm::vec3(-6788, 0, 4225), glm::vec3(-7238, 0, 3775)); //First tree/bush section on row 6
 	cam.SetAABBMaxMin(83, glm::vec3(-7238, 0, 7825), glm::vec3(-7688, 0, 7375)); //First tree/bush section on row 7
 	cam.SetAABBMaxMin(84, glm::vec3(-7238, 0, 6025), glm::vec3(-7688, 0, 5575)); //Second tree/bush section on row 7
+
+
+	//boundary walls
+	cam.SetAABBMaxMin(85, glm::vec3(-15993, 0, 10600), glm::vec3(-16993, 0, 6613)); //far back
+
+	//cam.SetAABBMaxMin(86, glm::vec3(-7238, 0, 6025), glm::vec3(-7688, 0, 5575)); //far back diagonal 1
+	//cam.SetAABBMaxMin(87, glm::vec3(-7238, 0, 6025), glm::vec3(-7688, 0, 5575)); //far back diagonal 2
+	cam.SetAABBMaxMin(88, glm::vec3(-4500, 0, 1551.5), glm::vec3(-17000, 0, 0)); //right
+
+	//cylinders on Area B
+	cam.SetAABBMaxMin(89, glm::vec3(-14620.84, 0, 7343.56), glm::vec3(-17000, 0, 6030.1));
+	//cam.SetAABBMaxMin(90, glm::vec3(-7238, 0, 6025), glm::vec3(-7688, 0, 5575));
+
+	//Area C
+	cam.SetAABBMaxMin(91, glm::vec3(-8844.34, 0, 4586), glm::vec3(-11207.44, 0, 2050));
+
+	//Wall next to Area C 
+	cam.SetAABBMaxMin(92, glm::vec3(-8225.74, 0, 2763.7), glm::vec3(-11816.44, 0, 1551.5));
+	cam.SetAABBMaxMin(93, glm::vec3(-7688, 0, 2508), glm::vec3(-8225.74, 0, 1000));
+
+	cam.SetAABBMaxMin(94, glm::vec3(-7286, 0, 2050), glm::vec3(-7688, 0, 1000));
+	cam.SetAABBMaxMin(95, glm::vec3(-6386, 0, 1750), glm::vec3(-7286, 0, 1000));
+
 }
 
 //--------------------------------------------------------------------------------------
@@ -526,6 +549,9 @@ void CreatePlainsExtendedArea()
 
 	//Bottom of stairs/Side area of stairs
 	cam.SetPlains(FLAT_PLAIN, glm::vec3(-9296, 9430, 1421), glm::vec3(-7874, 9430, 10540));
+	cam.SetPlains(FLAT_PLAIN, glm::vec3(-9296, 9430, 3325), glm::vec3(-6974, 9430, 4225));
+	cam.SetPlains(FLAT_PLAIN, glm::vec3(-9296, 9430, 2875), glm::vec3(-5674, 9430, 3325));
+	cam.SetPlains(FLAT_PLAIN, glm::vec3(-9296, 9430, 1421), glm::vec3(-4774, 9430, 2875));
 
 	//Stairs Main
 	//glTranslatef(2613.56, 10000, 9250);
