@@ -62,13 +62,17 @@ void IncrementFrameCount();
 
 // creates bounding boxes for collision detection
 void CreateBoundingBoxes();
+
+// creates bounding boxes for pillars
+void CreateBoundingBoxesPillar();
+
 // creates different plains
 void CreatePlains();
 
-void RenderLoop(int val); //The main render loop
+void RenderLoop(int val); // The main render loop
 
-void CreateBoundingBoxesExtendedArea(); //Does all the bounding boxes for the extended area
-void CreatePlanesExtendedArea(); //Does all the plains for the extended area
+void CreateBoundingBoxesExtendedArea(); // Does all the bounding boxes for the extended area
+void CreatePlainsExtendedArea(); // Does all the plains for the extended area
 
 
 //--------------------------------------------------------------------------------------
@@ -77,8 +81,6 @@ void CreatePlanesExtendedArea(); //Does all the plains for the extended area
 int main(int argc, char** argv)
 {
 	std::cout << "Hello World!" << std::endl;
-	
-
 
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
@@ -124,8 +126,6 @@ void myinit()
 	cam.SetWorldCoordinates(36000.0, 43200.0);
 	// turn collision detection on
 	cam.SetCollisionDetectionOn(true);
-	// set number of bounding boxes required
-	cam.SetNoBoundingBoxes(19);
 	// set starting position of user
 	cam.Position(glm::vec3(32720.0, 9536.0, 4800.0), 180.0);
 
@@ -235,6 +235,10 @@ void keys(unsigned char key, int x, int y)
 		break;
 	case 'Y':
 		cam.SetCameraLocation(2613.56, 10450, 9250);
+		break;
+
+	case 'x':
+		std::cout << cam.m_pos.x << " " << cam.m_pos.z << std::endl;
 		break;
 
 	// move forwards
@@ -365,96 +369,79 @@ void mouseMove(int x, int y)
 //--------------------------------------------------------------------------------------
 void CreateBoundingBoxes()
 {
-	cam.SetNoBoundingBoxes(50);
+	cam.SetNoBoundingBoxes(90);
 
-	// chanc block
-	cam.SetAABBMaxMin(0, glm::vec3(35879, 0, 22096) , glm::vec3(33808, 0, 4688));
+	cam.SetAABBMaxMin(0, glm::vec3(35879, 0, 22096) , glm::vec3(33808, 0, 4688)); // chanc block
+	cam.SetAABBMaxMin(1, glm::vec3(35999, 0, 25344), glm::vec3(35730, 0, 22096)); // between chanc block and phys sci
+	cam.SetAABBMaxMin(2, glm::vec3(35879, 0, 26752), glm::vec3(33808, 0, 25344)); // phy sci block panel 1
+	cam.SetAABBMaxMin(3, glm::vec3(35879, 0, 27559), glm::vec3(34256, 0, 26752)); // phy sci block 1st doorway
+	cam.SetAABBMaxMin(4, glm::vec3(35879, 0, 36319), glm::vec3(33808, 0, 27559)); // phy sci block 2nd panel
+	cam.SetAABBMaxMin(5, glm::vec3(35879, 0, 37855), glm::vec3(34260, 0, 36319)); // phy sci block 2nd doorway
+	cam.SetAABBMaxMin(6, glm::vec3(35879, 0, 41127.0), glm::vec3(33808.0, 0, 37855)); // phy sci block 3rd panel
+	cam.SetAABBMaxMin(7, glm::vec3(35879, 0, 25344.0), glm::vec3(34704, 0, 24996)); // drinks machine
+	cam.SetAABBMaxMin(8, glm::vec3(33808, 0, 4688), glm::vec3(0, 0, 0)); // bottom of steps
+	cam.SetAABBMaxMin(9, glm::vec3(35879, 0, 43056), glm::vec3(41127, 0, 34320)); // end of phy sci block exit (top of steps)
+	cam.SetAABBMaxMin(10, glm::vec3(34320, 0, 50000), glm::vec3(6514, 0, 43036)); // library end panel
+	cam.SetAABBMaxMin(11, glm::vec3(28104, 0, 43046), glm::vec3(25608, 0, 42754)); // KBLT
+	cam.SetAABBMaxMin(12, glm::vec3(2608, 0, 49046), glm::vec3(-10, 0, 9990)); // Canteen block
+	cam.SetAABBMaxMin(13, glm::vec3(33892, 0, 25344.0), glm::vec3(33872, 0, 25173)); // Telephones
+	cam.SetAABBMaxMin(14, glm::vec3(34277, 0, 25344.0), glm::vec3(34157, 0, 25173)); // Telephones
+	cam.SetAABBMaxMin(15, glm::vec3(35462, 0, 25344.0), glm::vec3(34541, 0, 25173)); // Telephones
+	cam.SetAABBMaxMin(16, glm::vec3(31548, 0, 10395), glm::vec3(31444, 0, 4590)); // Wall by Steps
+	cam.SetAABBMaxMin(17, glm::vec3(2608, 0, 8540), glm::vec3(-4644, 0, 0)); //Walters restaurant
+	cam.SetAABBMaxMin(18, glm::vec3(34520, 0, 43193), glm::vec3(34130, 0, 41136)); //No modelling area sign
+	cam.SetAABBMaxMin(19, glm::vec3(6812, 0, 45400), glm::vec3(2417, 0, 44600)); //Other unfinished area
 
-	// between chanc block and phys sci
-	cam.SetAABBMaxMin(1, glm::vec3(35999, 0, 25344), glm::vec3(35730, 0, 22096));
-
-	// phy sci block panel 1
-	cam.SetAABBMaxMin(2, glm::vec3(35879, 0, 26752), glm::vec3(33808, 0, 25344));
-
-	// phy sci block 1st doorway
-	cam.SetAABBMaxMin(3, glm::vec3(35879, 0, 27559), glm::vec3(34256, 0, 26752));
-
-	// phy sci block 2nd panel
-	cam.SetAABBMaxMin(4, glm::vec3(35879, 0, 36319), glm::vec3(33808, 0, 27559));
-
-	// phy sci block 2nd doorway
-	cam.SetAABBMaxMin(5, glm::vec3(35879, 0, 37855), glm::vec3(34260, 0, 36319));
-
-	// phy sci block 3rd panel
-	cam.SetAABBMaxMin(6, glm::vec3(35879, 0, 41127.0), glm::vec3(33808.0, 0, 37855));
-
-	// drinks machine
-	cam.SetAABBMaxMin(7, glm::vec3(35879, 0, 25344.0), glm::vec3(34704, 0, 24996));
-
-	// bottom of steps
-	cam.SetAABBMaxMin(8, glm::vec3(33808, 0, 4688), glm::vec3(0, 0, 0));
-
-	// end of phy sci block exit (top of steps)
-	cam.SetAABBMaxMin(9, glm::vec3(35879, 0, 43056), glm::vec3(41127, 0, 34320));
-
-	// library end panel
-	cam.SetAABBMaxMin(10, glm::vec3(34320, 0, 50000), glm::vec3(6514, 0, 43036));
-
-	// KBLT
-	cam.SetAABBMaxMin(11, glm::vec3(28104, 0, 43046), glm::vec3(25608, 0, 42754));
-
-	// Canteen block
-	cam.SetAABBMaxMin(12, glm::vec3(2608, 0, 49046), glm::vec3(-10, 0, 9990));
-
-	// Telephones
-	cam.SetAABBMaxMin(13, glm::vec3(33892, 0, 25344.0), glm::vec3(33872, 0, 25173));
-
-	// Telephones
-	cam.SetAABBMaxMin(14, glm::vec3(34277, 0, 25344.0), glm::vec3(34157, 0, 25173));
-
-	// Telephones
-	cam.SetAABBMaxMin(15, glm::vec3(35462, 0, 25344.0), glm::vec3(34541, 0, 25173));
-
-	// Wall by Steps
-	cam.SetAABBMaxMin(16, glm::vec3(31548, 0, 10395), glm::vec3(31444, 0, 4590));
-
-	//Walters restaurant
-	cam.SetAABBMaxMin(17, glm::vec3(2608, 0, 8540), glm::vec3(-4644, 0, 0));
-
-	//No modelling area sign
-	cam.SetAABBMaxMin(18, glm::vec3(34520, 0, 43193), glm::vec3(34130, 0, 41136));
-
-	//Other unfinished area
-	cam.SetAABBMaxMin(19, glm::vec3(6812, 0, 45400), glm::vec3(2417, 0, 44600));
-
+	// Pillars
+	CreateBoundingBoxesPillar();
+	
+	// Extended area (Outdoor of student hub)
 	CreateBoundingBoxesExtendedArea();
+}
+
+void CreateBoundingBoxesPillar()
+{
+	glm::vec3 pillarMax(31900, 0, 8300);
+	glm::vec3 pillarMin(31700, 0, 8100);
+
+	// Left
+	for (int i = 20; i < 37; ++i, pillarMax.z += 1930, pillarMin.z += 1930)
+		cam.SetAABBMaxMin(i, glm::vec3(pillarMax), glm::vec3(pillarMin));
+
+	// Middle
+	for (int i = 37; i < 51; ++i, pillarMax.x -= 1940, pillarMin.x -= 1940)
+		cam.SetAABBMaxMin(i, glm::vec3(pillarMax), glm::vec3(pillarMin));
+
+	// Right
+	for (int i = 51; i < 68; ++i, pillarMax.z -= 1930, pillarMin.z -= 1930)
+		cam.SetAABBMaxMin(i, glm::vec3(pillarMax), glm::vec3(pillarMin));
 }
 
 void CreateBoundingBoxesExtendedArea()
 {
-	//Gamming hub
-	cam.SetAABBMaxMin(20, glm::vec3(0, 0, 13500), glm::vec3(-17200, 0, 10540));
+	//Gaming hub
+	cam.SetAABBMaxMin(68, glm::vec3(0, 0, 13500), glm::vec3(-17200, 0, 10540));
 
 	//Left side of main stair plant area
-	cam.SetAABBMaxMin(21, glm::vec3(-4350, 0, 10600), glm::vec3(-7780, 0, 9840));
+	cam.SetAABBMaxMin(69, glm::vec3(-4350, 0, 10600), glm::vec3(-7780, 0, 9840));
 
 	//Side area of main stairs
-	cam.SetAABBMaxMin(22, glm::vec3(-2346, 0, 8500), glm::vec3(-5174, 0, 8275)); //First barrier off to right of stairs
-	cam.SetAABBMaxMin(23, glm::vec3(-5420, 0, 8500), glm::vec3(-6032, 0, 8275)); //Second barrier off to right of stairs
-	cam.SetAABBMaxMin(24, glm::vec3(-6278, 0, 8500), glm::vec3(-6890, 0, 8275)); //Third barrier off to right of stairs
-	cam.SetAABBMaxMin(25, glm::vec3(-7136, 0, 8500), glm::vec3(-7748, 0, 8275)); //Fourth barrier off to right of stairs
+	cam.SetAABBMaxMin(70, glm::vec3(-2346, 0, 8500), glm::vec3(-5174, 0, 8275)); //First barrier off to right of stairs
+	cam.SetAABBMaxMin(71, glm::vec3(-5420, 0, 8500), glm::vec3(-6032, 0, 8275)); //Second barrier off to right of stairs
+	cam.SetAABBMaxMin(72, glm::vec3(-6278, 0, 8500), glm::vec3(-6890, 0, 8275)); //Third barrier off to right of stairs
+	cam.SetAABBMaxMin(73, glm::vec3(-7136, 0, 8500), glm::vec3(-7748, 0, 8275)); //Fourth barrier off to right of stairs
 
-	cam.SetAABBMaxMin(26, glm::vec3(-4622, 0, 5875), glm::vec3(-5072, 0, 2875)); //First tree/bush section on row 1
-	cam.SetAABBMaxMin(27, glm::vec3(-5072, 0, 5875), glm::vec3(-5522, 0, 5125)); //First tree/bush section on row 2
-	cam.SetAABBMaxMin(28, glm::vec3(-5072, 0, 4675), glm::vec3(-5522, 0, 3775)); //Second tree/bush section on row 2
-	cam.SetAABBMaxMin(29, glm::vec3(-5522, 0, 7375), glm::vec3(-5972, 0, 6925)); //First tree/bush section on row 3
-	cam.SetAABBMaxMin(30, glm::vec3(-5972, 0, 6025), glm::vec3(-6381, 0, 5125)); //First tree/bush section on row 4
-	cam.SetAABBMaxMin(31, glm::vec3(-6381, 0, 8275), glm::vec3(-6788, 0, 7825)); //First tree/bush section on row 5
-	cam.SetAABBMaxMin(32, glm::vec3(-6381, 0, 5575), glm::vec3(-6788, 0, 4675)); //Second tree/bush section on row 5
-	cam.SetAABBMaxMin(33, glm::vec3(-6381, 0, 4225), glm::vec3(-6788, 0, 3325)); //Third tree/bush section on row 5
-	cam.SetAABBMaxMin(34, glm::vec3(-6788, 0, 4225), glm::vec3(-7238, 0, 3775)); //First tree/bush section on row 6
-	cam.SetAABBMaxMin(35, glm::vec3(-7238, 0, 7825), glm::vec3(-7688, 0, 7375)); //First tree/bush section on row 7
-	cam.SetAABBMaxMin(36, glm::vec3(-7238, 0, 6025), glm::vec3(-7688, 0, 5575)); //Second tree/bush section on row 7
+	cam.SetAABBMaxMin(74, glm::vec3(-4622, 0, 5875), glm::vec3(-5072, 0, 2875)); //First tree/bush section on row 1
+	cam.SetAABBMaxMin(75, glm::vec3(-5072, 0, 5875), glm::vec3(-5522, 0, 5125)); //First tree/bush section on row 2
+	cam.SetAABBMaxMin(76, glm::vec3(-5072, 0, 4675), glm::vec3(-5522, 0, 3775)); //Second tree/bush section on row 2
+	cam.SetAABBMaxMin(77, glm::vec3(-5522, 0, 7375), glm::vec3(-5972, 0, 6925)); //First tree/bush section on row 3
+	cam.SetAABBMaxMin(78, glm::vec3(-5972, 0, 6025), glm::vec3(-6381, 0, 5125)); //First tree/bush section on row 4
+	cam.SetAABBMaxMin(79, glm::vec3(-6381, 0, 8275), glm::vec3(-6788, 0, 7825)); //First tree/bush section on row 5
+	cam.SetAABBMaxMin(80, glm::vec3(-6381, 0, 5575), glm::vec3(-6788, 0, 4675)); //Second tree/bush section on row 5
+	cam.SetAABBMaxMin(81, glm::vec3(-6381, 0, 4225), glm::vec3(-6788, 0, 3325)); //Third tree/bush section on row 5
+	cam.SetAABBMaxMin(82, glm::vec3(-6788, 0, 4225), glm::vec3(-7238, 0, 3775)); //First tree/bush section on row 6
+	cam.SetAABBMaxMin(83, glm::vec3(-7238, 0, 7825), glm::vec3(-7688, 0, 7375)); //First tree/bush section on row 7
+	cam.SetAABBMaxMin(84, glm::vec3(-7238, 0, 6025), glm::vec3(-7688, 0, 5575)); //Second tree/bush section on row 7
 }
 
 //--------------------------------------------------------------------------------------
@@ -519,10 +506,10 @@ void CreatePlains()
 	// temp plain to take down to ECL1
 	cam.SetPlains(ZY_PLAIN, glm::vec3(3200, 10450, 53400), glm::vec3(4800, 9370, 57900));
 
-	CreatePlanesExtendedArea();
+	CreatePlainsExtendedArea();
 }
 
-void CreatePlanesExtendedArea()
+void CreatePlainsExtendedArea()
 {
 	//						x1, x2				, y1, y2		, z1, z2
 	//Missing part infront of entrance

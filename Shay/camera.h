@@ -28,6 +28,8 @@ class Camera
 {
 public:
 
+	glm::dvec3 m_pos;
+
 	Camera();
 
 	/**
@@ -138,7 +140,7 @@ private:
 
 	// movement variables
 	/// The position.
-	glm::dvec3 m_pos;
+	
 		
 	/// The previous position.
 	GLdouble m_zLast, m_xLast;

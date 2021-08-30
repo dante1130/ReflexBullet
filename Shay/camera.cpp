@@ -92,8 +92,6 @@ void Camera::KeyboardMovement()
 	}
 	*/
 
-	
-
 	WSKeyboardMovement();
 	ADKeyboardMovement();
 	
@@ -165,8 +163,6 @@ void Camera::WSKeyboardMovement()
 void Camera::ADKeyboardMovement()
 {
 	if (m_deltaMoveLR == 0) { return; }
-
-	std::cout << m_pos.x << " - " << m_pos.y << " - " << m_pos.z << std::endl;
 
 	float movementSpeed = m_moveSpeed;
 	if (m_deltaMoveFB != 0) { movementSpeed *= 0.5; } //So you can't run at twice the speed when running diagonally
