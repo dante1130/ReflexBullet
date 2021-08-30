@@ -1,7 +1,7 @@
 #ifndef DEFINES_H
 #define DEFINES_H
 
-#define PI 3.1415962654
+constexpr auto PI = 3.1415962654;
 
 constexpr auto FRAMETIME = 1000/60;
 

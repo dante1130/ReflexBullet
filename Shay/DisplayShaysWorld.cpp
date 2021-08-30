@@ -245,8 +245,6 @@ void DrawChancPosts()
 	glVertex3f(33872.0, 10247.0, 20112.0);
 	glEnd();
 	glEndList();
-
-
 }
 
 
@@ -899,7 +897,6 @@ void DrawPhysSciPosts()
 	tp.CreateDisplayList(XY, 37, 64.0, 512.0, 33848.0, 11347.0, 26625.0, 1.0, 1.0);
 	tp.CreateDisplayList(XY, 38, 64.0, 512.0, 33848.0, 11347.0, 26625.0, 1.0, 1.0);
 
-
 	// WINDOWLEDGE_PS_FRONT & TOP (shorter phys sci ds)
 	// first shop
 	glNewList(40, GL_COMPILE);
@@ -946,7 +943,6 @@ void DrawPhysSciPosts()
 	glEndList();
 }
 
-
 //  Display Paving Around Shop Doorway
 void DisplayDoorPaving()
 {
@@ -960,7 +956,6 @@ void DrawDoorPaving()
 	tp.CreateDisplayList(XZ, 47, 128.0, 256.0, 33808.0, 10000.0, 31508.0, 0.75, 7.5);	// phy sci 1st doorway
 	tp.CreateDisplayList(XZ, 48, 128.0, 256.0, 33808.0, 10000.0, 35324.0, 0.75, 3.5);	// phy sci 2nd doorway
 }
-
 
 // Display window and door posts of library
 void DisplayLibraryPosts()

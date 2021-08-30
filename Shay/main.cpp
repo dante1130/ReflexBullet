@@ -133,8 +133,6 @@ void myinit()
 
 	// creates bounding boxes and places in array
 	CreateBoundingBoxes();
-	// copies bounding boxes from array to linked lists (one for each quadrant)
-	cam.InitiateBoundingBoxes();
 
 	// load texture images and create display lists
 	CreateTextureList();
@@ -375,28 +373,26 @@ void mouseMove(int x, int y)
 //--------------------------------------------------------------------------------------
 void CreateBoundingBoxes()
 {
-	cam.SetNoBoundingBoxes(100);
-
-	cam.SetAABBMaxMin(0, glm::vec3(35879, 0, 22096) , glm::vec3(33808, 0, 4688)); // chanc block
-	cam.SetAABBMaxMin(1, glm::vec3(35999, 0, 25344), glm::vec3(35730, 0, 22096)); // between chanc block and phys sci
-	cam.SetAABBMaxMin(2, glm::vec3(35879, 0, 26752), glm::vec3(33808, 0, 25344)); // phy sci block panel 1
-	cam.SetAABBMaxMin(3, glm::vec3(35879, 0, 27559), glm::vec3(34256, 0, 26752)); // phy sci block 1st doorway
-	cam.SetAABBMaxMin(4, glm::vec3(35879, 0, 36319), glm::vec3(33808, 0, 27559)); // phy sci block 2nd panel
-	cam.SetAABBMaxMin(5, glm::vec3(35879, 0, 37855), glm::vec3(34260, 0, 36319)); // phy sci block 2nd doorway
-	cam.SetAABBMaxMin(6, glm::vec3(35879, 0, 41127.0), glm::vec3(33808.0, 0, 37855)); // phy sci block 3rd panel
-	cam.SetAABBMaxMin(7, glm::vec3(35879, 0, 25344.0), glm::vec3(34704, 0, 24996)); // drinks machine
-	cam.SetAABBMaxMin(8, glm::vec3(33808, 0, 4688), glm::vec3(0, 0, 0)); // bottom of steps
-	cam.SetAABBMaxMin(9, glm::vec3(35879, 0, 43056), glm::vec3(41127, 0, 34320)); // end of phy sci block exit (top of steps)
-	cam.SetAABBMaxMin(10, glm::vec3(34320, 0, 50000), glm::vec3(6514, 0, 43036)); // library end panel
-	cam.SetAABBMaxMin(11, glm::vec3(28104, 0, 43046), glm::vec3(25608, 0, 42754)); // KBLT
-	cam.SetAABBMaxMin(12, glm::vec3(2608, 0, 49046), glm::vec3(-10, 0, 9990)); // Canteen block
-	cam.SetAABBMaxMin(13, glm::vec3(33892, 0, 25344.0), glm::vec3(33872, 0, 25173)); // Telephones
-	cam.SetAABBMaxMin(14, glm::vec3(34277, 0, 25344.0), glm::vec3(34157, 0, 25173)); // Telephones
-	cam.SetAABBMaxMin(15, glm::vec3(35462, 0, 25344.0), glm::vec3(34541, 0, 25173)); // Telephones
-	cam.SetAABBMaxMin(16, glm::vec3(31548, 0, 10395), glm::vec3(31444, 0, 4590)); // Wall by Steps
-	cam.SetAABBMaxMin(17, glm::vec3(2608, 0, 8540), glm::vec3(-4644, 0, 0)); //Walters restaurant
-	cam.SetAABBMaxMin(18, glm::vec3(34520, 0, 43193), glm::vec3(34130, 0, 41136)); //No modelling area sign
-	cam.SetAABBMaxMin(19, glm::vec3(6812, 0, 45400), glm::vec3(2417, 0, 44600)); //Other unfinished area
+	cam.AddAABB(glm::vec3(35879, 0, 22096), glm::vec3(33808, 0, 4688)); // chanc block
+	cam.AddAABB(glm::vec3(35999, 0, 25344), glm::vec3(35730, 0, 22096)); // between chanc block and phys sci
+	cam.AddAABB(glm::vec3(35879, 0, 26752), glm::vec3(33808, 0, 25344)); // phy sci block panel 1
+	cam.AddAABB(glm::vec3(35879, 0, 27559), glm::vec3(34256, 0, 26752)); // phy sci block 1st doorway
+	cam.AddAABB(glm::vec3(35879, 0, 36319), glm::vec3(33808, 0, 27559)); // phy sci block 2nd panel
+	cam.AddAABB(glm::vec3(35879, 0, 37855), glm::vec3(34260, 0, 36319)); // phy sci block 2nd doorway
+	cam.AddAABB(glm::vec3(35879, 0, 41127.0), glm::vec3(33808.0, 0, 37855)); // phy sci block 3rd panel
+	cam.AddAABB(glm::vec3(35879, 0, 25344.0), glm::vec3(34704, 0, 24996)); // drinks machine
+	cam.AddAABB(glm::vec3(33808, 0, 4688), glm::vec3(0, 0, 0)); // bottom of steps
+	cam.AddAABB(glm::vec3(35879, 0, 43056), glm::vec3(41127, 0, 34320)); // end of phy sci block exit (top of steps)
+	cam.AddAABB(glm::vec3(34320, 0, 50000), glm::vec3(6514, 0, 43036)); // library end panel
+	cam.AddAABB(glm::vec3(28104, 0, 43046), glm::vec3(25608, 0, 42754)); // KBLT
+	cam.AddAABB(glm::vec3(2608, 0, 49046), glm::vec3(-10, 0, 9990)); // Canteen block
+	cam.AddAABB(glm::vec3(33892, 0, 25344.0), glm::vec3(33872, 0, 25173)); // Telephones
+	cam.AddAABB(glm::vec3(34277, 0, 25344.0), glm::vec3(34157, 0, 25173)); // Telephones
+	cam.AddAABB(glm::vec3(35462, 0, 25344.0), glm::vec3(34541, 0, 25173)); // Telephones
+	cam.AddAABB(glm::vec3(31548, 0, 10395), glm::vec3(31444, 0, 4590)); // Wall by Steps
+	cam.AddAABB(glm::vec3(2608, 0, 8540), glm::vec3(-4644, 0, 0)); //Walters restaurant
+	cam.AddAABB(glm::vec3(34520, 0, 43193), glm::vec3(34130, 0, 41136)); //No modelling area sign
+	cam.AddAABB(glm::vec3(6812, 0, 45400), glm::vec3(2417, 0, 44600)); //Other unfinished area
 
 	// Pillars
 	CreateBoundingBoxesPillar();
@@ -411,31 +407,31 @@ void CreateBoundingBoxesPillar()
 	glm::vec3 pillarMin(31700, 0, 8100);
 
 	// Left
-	for (int i = 20; i < 37; ++i, pillarMax.z += 1930, pillarMin.z += 1930)
-		cam.SetAABBMaxMin(i, glm::vec3(pillarMax), glm::vec3(pillarMin));
+	for (int i = 0; i < 17; ++i, pillarMax.z += 1930, pillarMin.z += 1930)
+		cam.AddAABB(glm::vec3(pillarMax), glm::vec3(pillarMin));
 
 	// Middle
-	for (int i = 37; i < 51; ++i, pillarMax.x -= 1940, pillarMin.x -= 1940)
-		cam.SetAABBMaxMin(i, glm::vec3(pillarMax), glm::vec3(pillarMin));
+	for (int i = 0; i < 14; ++i, pillarMax.x -= 1940, pillarMin.x -= 1940)
+		cam.AddAABB(glm::vec3(pillarMax), glm::vec3(pillarMin));
 
 	// Right
-	for (int i = 51; i < 68; ++i, pillarMax.z -= 1930, pillarMin.z -= 1930)
-		cam.SetAABBMaxMin(i, glm::vec3(pillarMax), glm::vec3(pillarMin));
+	for (int i = 0; i < 17; ++i, pillarMax.z -= 1930, pillarMin.z -= 1930)
+		cam.AddAABB(glm::vec3(pillarMax), glm::vec3(pillarMin));
 }
 
 void CreateBoundingBoxesExtendedArea()
 {
 	//Gaming hub
-	cam.SetAABBMaxMin(68, glm::vec3(0, 0, 13500), glm::vec3(-17200, 0, 10540));
+	cam.AddAABB(glm::vec3(0, 0, 13500), glm::vec3(-17200, 0, 10540));
 
 	//Left side of main stair plant area
-	cam.SetAABBMaxMin(69, glm::vec3(-4350, 0, 10600), glm::vec3(-7780, 0, 9840));
+	cam.AddAABB(glm::vec3(-4350, 0, 10600), glm::vec3(-7780, 0, 9840));
 
 	//Side area of main stairs
-	cam.SetAABBMaxMin(70, glm::vec3(-2346, 0, 8500), glm::vec3(-5174, 0, 8275)); //First barrier off to right of stairs
-	cam.SetAABBMaxMin(71, glm::vec3(-5420, 0, 8500), glm::vec3(-6032, 0, 8275)); //Second barrier off to right of stairs
-	cam.SetAABBMaxMin(72, glm::vec3(-6278, 0, 8500), glm::vec3(-6890, 0, 8275)); //Third barrier off to right of stairs
-	cam.SetAABBMaxMin(73, glm::vec3(-7136, 0, 8500), glm::vec3(-7748, 0, 8275)); //Fourth barrier off to right of stairs
+	cam.AddAABB(glm::vec3(-2346, 0, 8500), glm::vec3(-5174, 0, 8275)); //First barrier off to right of stairs
+	cam.AddAABB(glm::vec3(-5420, 0, 8500), glm::vec3(-6032, 0, 8275)); //Second barrier off to right of stairs
+	cam.AddAABB(glm::vec3(-6278, 0, 8500), glm::vec3(-6890, 0, 8275)); //Third barrier off to right of stairs
+	cam.AddAABB(glm::vec3(-7136, 0, 8500), glm::vec3(-7748, 0, 8275)); //Fourth barrier off to right of stairs
 
 	cam.SetAABBMaxMin(74, glm::vec3(-4622, 0, 5875), glm::vec3(-5072, 0, 2875)); //First tree/bush section on row 1
 	cam.SetAABBMaxMin(75, glm::vec3(-5072, 0, 5875), glm::vec3(-5522, 0, 5125)); //First tree/bush section on row 2
@@ -485,44 +481,44 @@ void CreatePlains()
 {	
 	//						x1, x2				, y1, y2		, z1, z2
 	// grass slope ZY_PLAIN
-	cam.SetPlains(ZY_PLAIN, glm::vec3(4848, 9536, 6200), glm::vec3(31568, 10450, 10000));
+	cam.AddPlain(ZY_PLAIN, glm::vec3(4848, 9536, 6200), glm::vec3(31568, 10450, 10000));
 
 	// flat land (pavement and grass)
-	cam.SetPlains(FLAT_PLAIN, glm::vec3(0, 10450, 10000), glm::vec3(36000, 10450, 17000));
-	cam.SetPlains(FLAT_PLAIN, glm::vec3(0, 10450, 17000), glm::vec3(6500, 10450, 40000));
-	cam.SetPlains(FLAT_PLAIN, glm::vec3(27000, 10450, 17000), glm::vec3(36000, 10450, 40000));
-	cam.SetPlains(FLAT_PLAIN, glm::vec3(0, 10450, 40000), glm::vec3(36000, 10450, 50000));
+	cam.AddPlain(FLAT_PLAIN, glm::vec3(0, 10450, 10000), glm::vec3(36000, 10450, 17000));
+	cam.AddPlain(FLAT_PLAIN, glm::vec3(0, 10450, 17000), glm::vec3(6500, 10450, 40000));
+	cam.AddPlain(FLAT_PLAIN, glm::vec3(27000, 10450, 17000), glm::vec3(36000, 10450, 40000));
+	cam.AddPlain(FLAT_PLAIN, glm::vec3(0, 10450, 40000), glm::vec3(36000, 10450, 50000));
 	
 	// top of lower hill
-	cam.SetPlains(FLAT_PLAIN, glm::vec3(9000, 10650, 19000), glm::vec3(22000, 10650, 23000));
-	cam.SetPlains(FLAT_PLAIN, glm::vec3(9000, 10650, 28000), glm::vec3(10000, 10650, 33000));
-	cam.SetPlains(FLAT_PLAIN, glm::vec3(9000, 10650, 36000), glm::vec3(22000, 10650, 37000));
+	cam.AddPlain(FLAT_PLAIN, glm::vec3(9000, 10650, 19000), glm::vec3(22000, 10650, 23000));
+	cam.AddPlain(FLAT_PLAIN, glm::vec3(9000, 10650, 28000), glm::vec3(10000, 10650, 33000));
+	cam.AddPlain(FLAT_PLAIN, glm::vec3(9000, 10650, 36000), glm::vec3(22000, 10650, 37000));
 	// sides of lower hill
-	cam.SetPlains(ZY_PLAIN, glm::vec3(6500, 10450, 17000), glm::vec3(27000, 10650, 19000));
-	cam.SetPlains(ZY_PLAIN, glm::vec3(6500, 10650, 37000), glm::vec3(27000, 10450, 40000));
-	cam.SetPlains(XY_PLAIN, glm::vec3(6500, 10450, 17000), glm::vec3(9000, 10650, 40000));
-	cam.SetPlains(XY_PLAIN, glm::vec3(22000, 10650, 17000), glm::vec3(27000, 10450, 40000));
+	cam.AddPlain(ZY_PLAIN, glm::vec3(6500, 10450, 17000), glm::vec3(27000, 10650, 19000));
+	cam.AddPlain(ZY_PLAIN, glm::vec3(6500, 10650, 37000), glm::vec3(27000, 10450, 40000));
+	cam.AddPlain(XY_PLAIN, glm::vec3(6500, 10450, 17000), glm::vec3(9000, 10650, 40000));
+	cam.AddPlain(XY_PLAIN, glm::vec3(22000, 10650, 17000), glm::vec3(27000, 10450, 40000));
 
 	// top of higher hill
-	cam.SetPlains(FLAT_PLAIN, glm::vec3(14000, 10875, 28000), glm::vec3(18000, 108075, 33000));
+	cam.AddPlain(FLAT_PLAIN, glm::vec3(14000, 10875, 28000), glm::vec3(18000, 108075, 33000));
 	// sides of higher hill
-	cam.SetPlains(ZY_PLAIN, glm::vec3(10000, 10650, 23000), glm::vec3(22000, 10875, 28000));
-	cam.SetPlains(ZY_PLAIN, glm::vec3(10000, 10875, 33000), glm::vec3(22000, 10650, 36000));
-	cam.SetPlains(XY_PLAIN, glm::vec3(10000, 10650, 23000), glm::vec3(14000, 10875, 36000));
-	cam.SetPlains(XY_PLAIN, glm::vec3(18000, 10875, 23000), glm::vec3(22000, 10650, 36000));
+	cam.AddPlain(ZY_PLAIN, glm::vec3(10000, 10650, 23000), glm::vec3(22000, 10875, 28000));
+	cam.AddPlain(ZY_PLAIN, glm::vec3(10000, 10875, 33000), glm::vec3(22000, 10650, 36000));
+	cam.AddPlain(XY_PLAIN, glm::vec3(10000, 10650, 23000), glm::vec3(14000, 10875, 36000));
+	cam.AddPlain(XY_PLAIN, glm::vec3(18000, 10875, 23000), glm::vec3(22000, 10650, 36000));
 
 	// Missing big step
-	cam.SetPlains(FLAT_PLAIN, glm::vec3(31582, 10258, 9000), glm::vec3(33835, 10258, 9300));
+	cam.AddPlain(FLAT_PLAIN, glm::vec3(31582, 10258, 9000), glm::vec3(33835, 10258, 9300));
 
 	// Missing step 4th step from the top
-	cam.SetPlains(FLAT_PLAIN, glm::vec3(31582, 10300, 9400), glm::vec3(33835, 10300, 9490));
+	cam.AddPlain(FLAT_PLAIN, glm::vec3(31582, 10300, 9400), glm::vec3(33835, 10300, 9490));
 
 	//entrance steps
 	step = 10450.0;
 	stepLength = 9808.0;
 	for (int i = 0; i < 18; i++)
 	{
-		cam.SetPlains(FLAT_PLAIN, glm::vec3(31582, step, stepLength), glm::vec3(33835, step, stepLength + 42));
+		cam.AddPlain(FLAT_PLAIN, glm::vec3(31582, step, stepLength), glm::vec3(33835, step, stepLength + 42));
 		step -= 48.0;
 		stepLength -= 142.0;
 		if ((i + 3) % 5 == 0)
@@ -533,7 +529,7 @@ void CreatePlains()
 	}
 
 	// temp plain to take down to ECL1
-	cam.SetPlains(ZY_PLAIN, glm::vec3(3200, 10450, 53400), glm::vec3(4800, 9370, 57900));
+	cam.AddPlain(ZY_PLAIN, glm::vec3(3200, 10450, 53400), glm::vec3(4800, 9370, 57900));
 
 	CreatePlainsExtendedArea();
 }
@@ -542,10 +538,10 @@ void CreatePlainsExtendedArea()
 {
 	//						x1, x2				, y1, y2		, z1, z2
 	//Missing part infront of entrance
-	cam.SetPlains(FLAT_PLAIN, glm::vec3(2636, 10450, 6360), glm::vec3(4841, 10450, 10019));
+	cam.AddPlain(FLAT_PLAIN, glm::vec3(2636, 10450, 6360), glm::vec3(4841, 10450, 10019));
 
 	//Entrance
-	cam.SetPlains(FLAT_PLAIN, glm::vec3(-4613, 10450, 6360), glm::vec3(2636, 10450, 10019));
+	cam.AddPlain(FLAT_PLAIN, glm::vec3(-4613, 10450, 6360), glm::vec3(2636, 10450, 10019));
 
 	//Bottom of stairs/Side area of stairs
 	cam.SetPlains(FLAT_PLAIN, glm::vec3(-9296, 9430, 1421), glm::vec3(-7874, 9430, 10540));
@@ -562,7 +558,7 @@ void CreatePlainsExtendedArea()
 
 	for (int count = 1; count <= 20; count++)
 	{
-		cam.SetPlains(FLAT_PLAIN, glm::vec3(xPos - stepLength, height, zEnd), glm::vec3(xPos, height, zStart));
+		cam.AddPlain(FLAT_PLAIN, glm::vec3(xPos - stepLength, height, zEnd), glm::vec3(xPos, height, zStart));
 		xPos -= stepLength;
 		height -= stepDepth;
 		
@@ -576,22 +572,22 @@ void CreatePlainsExtendedArea()
 
 
 	//Side area of main stairs
-	cam.SetPlains(FLAT_PLAIN, glm::vec3(-5072, 10324, 5575), glm::vec3(-4622, 10324, 8275)); //First wood section - main //Level 2
-	cam.SetPlains(FLAT_PLAIN, glm::vec3(-5522, 10195, 5575), glm::vec3(-5072, 10195, 8275)); //First concrete section - main //Level 3
-	cam.SetPlains(FLAT_PLAIN, glm::vec3(-5972, 10066, 5125), glm::vec3(-5522, 10066, 8275)); //Second wood section - main //Level 4
-	cam.SetPlains(FLAT_PLAIN, glm::vec3(-6381, 9937, 5125), glm::vec3(-5972, 9937, 8275)); //Second concrete section - main //Level 5
-	cam.SetPlains(FLAT_PLAIN, glm::vec3(-6788, 9808, 4675), glm::vec3(-6381, 9808, 8275)); //Third wood section - main //Level 6
-	cam.SetPlains(FLAT_PLAIN, glm::vec3(-7238, 9679, 4225), glm::vec3(-6788, 9679, 8275)); //Third concrete section - main //Level 7
-	cam.SetPlains(FLAT_PLAIN, glm::vec3(-7688, 9556, 4225), glm::vec3(-7238, 9556, 8275)); //Fourth wood section - main //Level 8
+	cam.AddPlain(FLAT_PLAIN, glm::vec3(-5072, 10324, 5575), glm::vec3(-4622, 10324, 8275)); //First wood section - main //Level 2
+	cam.AddPlain(FLAT_PLAIN, glm::vec3(-5522, 10195, 5575), glm::vec3(-5072, 10195, 8275)); //First concrete section - main //Level 3
+	cam.AddPlain(FLAT_PLAIN, glm::vec3(-5972, 10066, 5125), glm::vec3(-5522, 10066, 8275)); //Second wood section - main //Level 4
+	cam.AddPlain(FLAT_PLAIN, glm::vec3(-6381, 9937, 5125), glm::vec3(-5972, 9937, 8275)); //Second concrete section - main //Level 5
+	cam.AddPlain(FLAT_PLAIN, glm::vec3(-6788, 9808, 4675), glm::vec3(-6381, 9808, 8275)); //Third wood section - main //Level 6
+	cam.AddPlain(FLAT_PLAIN, glm::vec3(-7238, 9679, 4225), glm::vec3(-6788, 9679, 8275)); //Third concrete section - main //Level 7
+	cam.AddPlain(FLAT_PLAIN, glm::vec3(-7688, 9556, 4225), glm::vec3(-7238, 9556, 8275)); //Fourth wood section - main //Level 8
 
 	//The messy part of the area - ask Dan if you need to know. level 2 is top wood, level 8 is lowest wood block
-	cam.SetPlains(FLAT_PLAIN, glm::vec3(-6381, 9937, 4675), glm::vec3(-5072, 9937, 5125)); //Block over second, third and fourth at level 5
-	cam.SetPlains(FLAT_PLAIN, glm::vec3(-6788, 9808, 4225), glm::vec3(-5522, 9808, 4675)); //Block over third, fourth and fifth at level 6\
+	cam.AddPlain(FLAT_PLAIN, glm::vec3(-6381, 9937, 4675), glm::vec3(-5072, 9937, 5125)); //Block over second, third and fourth at level 5
+	cam.AddPlain(FLAT_PLAIN, glm::vec3(-6788, 9808, 4225), glm::vec3(-5522, 9808, 4675)); //Block over third, fourth and fifth at level 6\
 
-	cam.SetPlains(FLAT_PLAIN, glm::vec3(-5522, 9679, 2875), glm::vec3(-5072, 9679, 3775)); //Block over Second at level 7
-	cam.SetPlains(FLAT_PLAIN, glm::vec3(-5972, 9679, 3325), glm::vec3(-5522, 9679, 3775)); //Block over third at level 7
-	cam.SetPlains(FLAT_PLAIN, glm::vec3(-5972, 9808, 3775), glm::vec3(-5522, 9808, 4225)); //Block over third at level 6
-	cam.SetPlains(FLAT_PLAIN, glm::vec3(-6381, 9679, 3325), glm::vec3(-5972, 9679, 4225)); //Block over fourth at level 7
+	cam.AddPlain(FLAT_PLAIN, glm::vec3(-5522, 9679, 2875), glm::vec3(-5072, 9679, 3775)); //Block over Second at level 7
+	cam.AddPlain(FLAT_PLAIN, glm::vec3(-5972, 9679, 3325), glm::vec3(-5522, 9679, 3775)); //Block over third at level 7
+	cam.AddPlain(FLAT_PLAIN, glm::vec3(-5972, 9808, 3775), glm::vec3(-5522, 9808, 4225)); //Block over third at level 6
+	cam.AddPlain(FLAT_PLAIN, glm::vec3(-6381, 9679, 3325), glm::vec3(-5972, 9679, 4225)); //Block over fourth at level 7
 }
 
 //--------------------------------------------------------------------------------------

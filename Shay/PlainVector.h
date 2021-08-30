@@ -1,6 +1,6 @@
-//  PlainLinkedList.h
-//  Header file for the PlainLinkedList class
-//  Linked List used to store nodes (PlainNode) which contain the co-ordinates of the 
+//  PlainVector.h
+//  Header file for the PlainVector class
+//  Linked List used to store nodes (Plain) which contain the co-ordinates of the 
 //  of each plain used in the program.
 //
 //	The program will split the world into four quadrants and creates a linked list to
@@ -10,47 +10,43 @@
 //  April 2005
 //--------------------------------------------------------------------------------------
 
-#ifndef PLAINLINKED_LIST_H
-#define PLAINLINKED_LIST_H
+#ifndef PLAINVECTOR_H
+#define PLAINVECTOR_H
 
 //--------------------------------------------------------------------------------------
 
-#include "PlainNode.h"
+#include "Plain.h"
+#include <vector>
 
 //--------------------------------------------------------------------------------------
 
 /**
- * @class PlainLinkedList
- * @brief A linkedlist to store nodes of PlainNodes
+ * @class PlainVector
+ * @brief A vector to store nodes of PlainNodes
  * 
  */
-class PlainLinkedList
+class PlainVector
 {
 public:
 	/**
-	 * @brief Constructor creates pointer to first node
+	 * @brief Default constructor
 	 */
-	PlainLinkedList();
-
-	/**
-	 * @brief Destroy the Plain Linked List object
-	 */
-	virtual ~PlainLinkedList();
+	PlainVector();
 
 	//----------------------------------------------------------------------------------
 
 	/**
-	 * @brief Add a node to the start of the linked list
+	 * @brief Pushes new plain into the vector
 	 * 
 	 * @param tempType const GLint
 	 * @param tempStart const glm::vec3&
 	 * @param tempEnd const glm::vec3&
-	 * @return bool
+	 * @return void
 	 */
-	bool AddToStart(const GLint tempType, const glm::vec3& tempStart, const glm::vec3& tempEnd);
+	void Push(const GLint tempType, const glm::vec3& tempStart, const glm::vec3& tempEnd);
 
 	/**
-	 * @brief Set the values of the node data
+	 * @brief Set the values of the data at an index
 	 * 
 	 * @param ptrCount const int
 	 * @param tempType const GLint
@@ -92,65 +88,13 @@ public:
 	 * 
 	 * @return int 
 	 */
-	int GetListSize() const;
-	
-	/**
-	 * @brief Return the address of the link to the next node in the list
-	 * 
-	 * @return PlainNode* 
-	 */
-	PlainNode* GetNext() const;
-
-	/**
-	 * @brief Return the address of the link to the first node in the list
-	 * 
-	 * @return PlainNode* 
-	 */
-	PlainNode* GetFirst() const;
-
+	int Size() const;
 
 //--------------------------------------------------------------------------------------
 
 private:
-	/// pointer to first node in list
-	PlainNode* m_first;
-
-	/**
-	 * @brief Helper function to be used in the copy constructor and assignment operator.
-	 * 
-	 * @param ll const PlainLinkedList&
-	 * @return void
-	 */
-	void Copy(const PlainLinkedList& ll);
-
-	/**
-	 * @brief Clears linked list and frees memory, to be used in the deconstructor.
-	 * @return void
-	 */
-	void Clear();
-
-	/**
-	 * @brief Helper function to be used in the deconstructor.
-	 * 
-	 * @param before PlainNode*
-	 * @return void
-	 */
-	void Delete(PlainNode* before);
-
-	/**
-	 * @brief Privatized copy constructor
-	 * 
-	 * @param ll const PlainLinkedList&
-	 */
-	PlainLinkedList (const PlainLinkedList &ll);
-
-	/**
-	 * @brief Privatized assignment operator overload 
-	 * 
-	 * @param ll const PlainLinkedList&
-	 * @return PlainLinkedList& 
-	 */
-	PlainLinkedList& operator=(const PlainLinkedList& ll);
+	/// vector of Plain
+	std::vector<Plain> m_plains;
 };
 
 #endif

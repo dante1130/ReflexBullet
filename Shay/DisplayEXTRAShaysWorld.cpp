@@ -14,11 +14,9 @@ void DisplayExtraArea::DisplayExtension()
 
 	EnvironmentOBJ.DisplayObject(TEXT_ENVIRONMENT);
 
-
 	glPopMatrix();
 
 	DisplayNonBlendObjects();
-
 
 	return;
 }
@@ -26,13 +24,11 @@ void DisplayExtraArea::DisplayExtension()
 
 void DisplayExtraArea::DisplayNonBlendObjects()
 {
-
 	DisplayFixedStartUpArea();
 	DisplayCanteen();
 	DisplayPathways();
 	DisplayWaltersResturant();
 	DisplayLeftAreaOfStairs();
-
 }
 
 void DisplayExtraArea::DisplayFixedStartUpArea()

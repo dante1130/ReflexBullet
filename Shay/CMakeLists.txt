@@ -9,6 +9,6 @@ file(GLOB SOURCE_FILES *.cpp)
 # Add header files to this project
 file(GLOB HEADER_FILES *.h)
 
-add_executable(Shay ${HEADER_FILES} ${SOURCE_FILES} "DisplayEXTRAShaysWorld.cpp" "DisplayEXTRAShaysWorld.h")
+add_executable(Shay ${HEADER_FILES} ${SOURCE_FILES})
 
 # TODO: Add tests and install targets if needed.

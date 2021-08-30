@@ -8,8 +8,6 @@
 
 #include "Camera.h"
 
-const unsigned char* keysPressed;
-
 //SDL event which is used for movement keys
 
 //--------------------------------------------------------------------------------------
@@ -98,20 +96,9 @@ void Camera::KeyboardMovement()
 	callGLLookAt();
 }
 
-void Camera::SetAABBMaxMin(const int& tempIndex, const glm::vec3& tempMax, const glm::vec3& tempMin)
+void Camera::AddAABB(const glm::vec3& max, const glm::vec3& min)
 {
-	SetAABBMax(tempIndex, tempMax);
-	SetAABBMin(tempIndex, tempMin);
-}
-
-void Camera::SetAABBMax(const int& tempIndex, const glm::vec3& tempMax)
-{
-	m_colDetect.SetAABBMax(tempIndex, tempMax);
-}
-
-void Camera::SetAABBMin(const int& tempIndex, const glm::vec3& tempMin)
-{
-	m_colDetect.SetAABBMin(tempIndex, tempMin);
+	m_colDetect.Push(max, min);
 }
 
 void Camera::SetRotateSpeed(const GLdouble& tempSpeed)
@@ -124,14 +111,9 @@ void Camera::SetMoveSpeed(const GLdouble& tempSpeed)
 	m_moveSpeed = tempSpeed;
 }
 
-void Camera::SetCollisionDetectionOn(const bool& tempCol)
+void Camera::SetCollisionDetectionOn(bool tempCol)
 {
 	m_collisionDetectionOn = tempCol;
-}
-
-void Camera::SetNoBoundingBoxes(const int& tempSize)
-{
-	m_colDetect.SetNoBoundingBoxes(tempSize);
 }
 
 void Camera::WSKeyboardMovement()
@@ -150,7 +132,7 @@ void Camera::WSKeyboardMovement()
 	zMove *= norm * m_deltaMoveFB;
 	
 	//Checks if player can move in direction based on AABB
-	if (!(m_colDetect.Collide(m_pos.x + xMove, m_pos.y + m_lookK.y, m_pos.z + zMove)))
+	if (!(m_colDetect.Collide(glm::dvec3(m_pos.x + xMove, m_pos.y + m_lookK.y, m_pos.z + zMove))))
 	{
 		m_pos.x += xMove;
 		m_pos.z += zMove;
@@ -176,7 +158,7 @@ void Camera::ADKeyboardMovement()
 	zMove *= norm * -m_deltaMoveLR;
 
 	//Checks if player can move in direction based on AABB
-	if (!(m_colDetect.Collide(m_pos.x + xMove, m_pos.y + m_lookK.y, m_pos.z + zMove)))
+	if (!(m_colDetect.Collide(glm::dvec3(m_pos.x + xMove, m_pos.y + m_lookK.y, m_pos.z + zMove))))
 	{
 		m_pos.x += xMove;
 		m_pos.z += zMove;
@@ -290,9 +272,8 @@ GLdouble Camera::degreesToRadians(GLdouble degrees)
 //----------------------------------------------------------------------------------------
 void Camera::SetPlains(const int & moveX, const int & moveZ)
 {
-
 	// store number of plains (stops from looping through linked list each time)
-	if (m_No_Plains == 0) m_No_Plains = m_plain.GetListSize();
+	if (m_No_Plains == 0) m_No_Plains = m_plain.Size();
 
 	for (int i = 0;  i < m_No_Plains; i++)
 	{
@@ -357,16 +338,6 @@ GLdouble Camera::GetUD() const
 GLdouble Camera::GetFB() const
 {
 	return m_pos.z;
-}
-
-const glm::vec3& Camera::GetAABBMax(const int& tempIndex) const
-{
-	return m_colDetect.GetAABBMax(tempIndex);
-}
-
-const glm::vec3& Camera::GetAABBMin(const int& tempIndex) const
-{
-	return m_colDetect.GetAABBMin(tempIndex);
 }
 
 //----------------------------------------------------------------------------------------
@@ -464,16 +435,11 @@ void Camera::SetWorldCoordinates (const GLdouble &tempX, const GLdouble &tempZ)
 	m_colDetect.SetWorldZ(tempZ);
 }
 
-void Camera::InitiateBoundingBoxes()
-{
-	m_colDetect.CreateLinkedList();
-}
-
 //----------------------------------------------------------------------------------------
 
-void Camera::SetPlains(const GLint tempType, const glm::vec3& tempStart, const glm::vec3& tempEnd)
+void Camera::AddPlain(const GLint tempType, const glm::vec3& tempStart, const glm::vec3& tempEnd)
 {
-	m_plain.AddToStart(tempType, tempStart, tempEnd);
+	m_plain.Push(tempType, tempStart, tempEnd);
 }
 
 
