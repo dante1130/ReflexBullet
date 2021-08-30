@@ -256,12 +256,14 @@ void keys(unsigned char key, int x, int y)
 	// step left
 	case 'A':
 	case 'a':
+	case 1:
 		cam.DirectionLR(-1);
 		break;
 
 	// step right
 	case 'D':
 	case 'd':
+	case 4:
 		cam.DirectionLR(1);
 		break;
 	
@@ -313,10 +315,12 @@ void releaseKeys(unsigned char key, int x, int y)
 		// step left or right
 		case 'a' :
 		case 'A' :
+		case 1: //In case of ctrl + a
 			cam.DirectionLR(-2);
 			break;
 		case 'd' :
 		case 'D' :
+		case 4: //In case of ctrl + d
 			cam.DirectionLR(2);
 			break;
 
@@ -325,6 +329,8 @@ void releaseKeys(unsigned char key, int x, int y)
 		case 'W' :
 		case 's' :
 		case 'S' :
+		case 23: //In case of ctrl + w
+		case 19: //In case of ctrl + s
 			cam.DirectionFB(0);
 			break;
 

@@ -278,6 +278,19 @@ void DisplayExtraArea::LeftOfStairs1ROW()
 	glVertex3f(ROW_1_START, LEVEL_1_HEIGHT + 1, 5575);
 	glEnd();
 
+	//First top depth section
+	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(WOOD_WALKWAY_TEXTURE));
+	glBegin(GL_POLYGON);
+	glTexCoord2f(0, 0);
+	glVertex3f(ROW_2_START - 1, LEVEL_2_HEIGHT, 8275);
+	glTexCoord2f(1, 0);
+	glVertex3f(ROW_2_START - 1, LEVEL_1_HEIGHT, 8275);
+	glTexCoord2f(1, 6);
+	glVertex3f(ROW_2_START - 1, LEVEL_1_HEIGHT, 5575);
+	glTexCoord2f(0, 6);
+	glVertex3f(ROW_2_START - 1, LEVEL_2_HEIGHT, 5575);
+	glEnd();
+
 }
 
 void DisplayExtraArea::LeftOfStairs2ROW()
@@ -293,6 +306,19 @@ void DisplayExtraArea::LeftOfStairs2ROW()
 	glVertex3f(ROW_3_START, LEVEL_2_HEIGHT + 1, 5575);
 	glTexCoord2f(0, 8);
 	glVertex3f(ROW_2_START, LEVEL_2_HEIGHT + 1, 5575);
+	glEnd();
+
+	//First top depth section
+	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(CONCRETE_WALKWAY_TEXTURE));
+	glBegin(GL_POLYGON);
+	glTexCoord2f(0, 0);
+	glVertex3f(ROW_3_START - 1, LEVEL_3_HEIGHT, 10000);
+	glTexCoord2f(1, 0);
+	glVertex3f(ROW_3_START - 1, LEVEL_2_HEIGHT, 10000);
+	glTexCoord2f(1, 8);
+	glVertex3f(ROW_3_START - 1, LEVEL_2_HEIGHT, 5575);
+	glTexCoord2f(0, 8);
+	glVertex3f(ROW_3_START - 1, LEVEL_3_HEIGHT, 5575);
 	glEnd();
 
 	//Second top section
@@ -320,6 +346,7 @@ void DisplayExtraArea::LeftOfStairs2ROW()
 	glTexCoord2f(0, 2);
 	glVertex3f(ROW_2_START, LEVEL_6_HEIGHT + 1, 2875);
 	glEnd();
+
 }
 
 void DisplayExtraArea::LeftOfStairs3ROW()
@@ -335,6 +362,19 @@ void DisplayExtraArea::LeftOfStairs3ROW()
 	glVertex3f(ROW_4_START, LEVEL_3_HEIGHT + 1, 7375);
 	glTexCoord2f(0, 2);
 	glVertex3f(ROW_3_START, LEVEL_3_HEIGHT + 1, 7375);
+	glEnd();
+
+	//First top depth section
+	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(WOOD_WALKWAY_TEXTURE));
+	glBegin(GL_POLYGON);
+	glTexCoord2f(0, 0);
+	glVertex3f(ROW_4_START - 1, LEVEL_4_HEIGHT, 8275);
+	glTexCoord2f(1, 0);
+	glVertex3f(ROW_4_START - 1, LEVEL_3_HEIGHT, 8275);
+	glTexCoord2f(1, 7);
+	glVertex3f(ROW_4_START - 1, LEVEL_3_HEIGHT, 5125);
+	glTexCoord2f(0, 7);
+	glVertex3f(ROW_4_START - 1, LEVEL_4_HEIGHT, 5125);
 	glEnd();
 
 	//Second top section
@@ -404,6 +444,19 @@ void DisplayExtraArea::LeftOfStairs4ROW()
 	glTexCoord2f(0, 7);
 	glVertex3f(ROW_4_START, LEVEL_4_HEIGHT + 1, 6025);
 	glEnd();
+
+	//First top depth section
+	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(CONCRETE_WALKWAY_TEXTURE));
+	glBegin(GL_POLYGON);
+	glTexCoord2f(0, 0);
+	glVertex3f(ROW_5_START - 1, LEVEL_5_HEIGHT, 10000);
+	glTexCoord2f(1, 0);
+	glVertex3f(ROW_5_START - 1, LEVEL_4_HEIGHT, 10000);
+	glTexCoord2f(1, 10);
+	glVertex3f(ROW_5_START - 1, LEVEL_4_HEIGHT, 4675);
+	glTexCoord2f(0, 10);
+	glVertex3f(ROW_5_START - 1, LEVEL_5_HEIGHT, 4675);
+	glEnd();
 	
 	//Second top section
 	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(CONCRETE_WALKWAY_TEXTURE));
@@ -459,6 +512,19 @@ void DisplayExtraArea::LeftOfStairs5ROW()
 	glTexCoord2f(0, 4);
 	glVertex3f(ROW_5_START, LEVEL_5_HEIGHT + 1, 5575);
 	glEnd();
+
+	//First top depth section
+	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(WOOD_WALKWAY_TEXTURE));
+	glBegin(GL_POLYGON);
+	glTexCoord2f(0, 0);
+	glVertex3f(ROW_6_START - 1, LEVEL_6_HEIGHT, 8275);
+	glTexCoord2f(1, 0);
+	glVertex3f(ROW_6_START - 1, LEVEL_5_HEIGHT, 8275);
+	glTexCoord2f(1, 9);
+	glVertex3f(ROW_6_START - 1, LEVEL_5_HEIGHT, 4225);
+	glTexCoord2f(0, 9);
+	glVertex3f(ROW_6_START - 1, LEVEL_6_HEIGHT, 4225);
+	glEnd();
 	
 	//Second top section
 	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(WOOD_WALKWAY_TEXTURE));
@@ -490,6 +556,19 @@ void DisplayExtraArea::LeftOfStairs6ROW()
 	glVertex3f(ROW_6_START, LEVEL_6_HEIGHT + 1, 4225);
 	glEnd();
 
+	//First top depth section
+	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(CONCRETE_WALKWAY_TEXTURE));
+	glBegin(GL_POLYGON);
+	glTexCoord2f(0, 0);
+	glVertex3f(ROW_7_START - 1, LEVEL_7_HEIGHT, 10000);
+	glTexCoord2f(1, 0);
+	glVertex3f(ROW_7_START - 1, LEVEL_6_HEIGHT, 10000);
+	glTexCoord2f(1, 11);
+	glVertex3f(ROW_7_START - 1, LEVEL_6_HEIGHT, 4225);
+	glTexCoord2f(0, 11);
+	glVertex3f(ROW_7_START - 1, LEVEL_7_HEIGHT, 4225);
+	glEnd();
+
 }
 
 void DisplayExtraArea::LeftOfStairs7ROW()
@@ -505,6 +584,19 @@ void DisplayExtraArea::LeftOfStairs7ROW()
 	glVertex3f(ROW_7_END, LEVEL_7_HEIGHT + 1, 7825);
 	glTexCoord2f(0, 1);
 	glVertex3f(ROW_7_START, LEVEL_7_HEIGHT + 1, 7825);
+	glEnd();
+
+	//First top depth section
+	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(WOOD_WALKWAY_TEXTURE));
+	glBegin(GL_POLYGON);
+	glTexCoord2f(0, 0);
+	glVertex3f(ROW_7_END - 1, 8710, 8275);
+	glTexCoord2f(1, 0);
+	glVertex3f(ROW_7_END - 1, LEVEL_7_HEIGHT, 8275);
+	glTexCoord2f(1, 9);
+	glVertex3f(ROW_7_END - 1, LEVEL_7_HEIGHT, 4225);
+	glTexCoord2f(0, 9);
+	glVertex3f(ROW_7_END - 1, 8710, 4225);
 	glEnd();
 
 	//Second top section
