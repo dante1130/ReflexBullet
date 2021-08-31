@@ -245,8 +245,6 @@ void DrawChancPosts()
 	glVertex3f(33872.0, 10247.0, 20112.0);
 	glEnd();
 	glEndList();
-
-
 }
 
 
@@ -690,6 +688,7 @@ void DisplayMainPosts()
 	{
 		glPushMatrix();
 		glTranslatef(stepLength, 0.0, step2);
+		
 		for (int i = 0; i < 17; i++)
 		{
 			glBindTexture(GL_TEXTURE_2D, tp.GetTexture(MAIN_POST));
@@ -701,6 +700,7 @@ void DisplayMainPosts()
 			glTranslatef(0.0, 0.0, step + 128.0);
 			glCallList(18);
 			glPopMatrix();
+			
 			if ((i == 7) && (j == 0))	// between chanc and phys sci
 			{
 				glPushMatrix();
@@ -712,6 +712,7 @@ void DisplayMainPosts()
 				glCallList(18);
 				glPopMatrix();
 			}
+			
 
 			glBindTexture(GL_TEXTURE_2D, tp.GetTexture(MAIN_POST_2));
 			glPushMatrix();
@@ -731,11 +732,13 @@ void DisplayMainPosts()
 			}
 			step += 1930.0;
 		}
+		
 		stepLength -= 27192.0;
 		step2 -= 32810.0;
 		glPopMatrix();
 	}
-
+	
+	
 	// library front
 	step = -1940.0;
 	for (int i = 0; i < 13; i++)
@@ -761,6 +764,7 @@ void DisplayMainPosts()
 		glPopMatrix();
 		step -= 1940.0;
 	}
+	
 
 	// first on chanc steps
 	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(MAIN_POST));
@@ -893,7 +897,6 @@ void DrawPhysSciPosts()
 	tp.CreateDisplayList(XY, 37, 64.0, 512.0, 33848.0, 11347.0, 26625.0, 1.0, 1.0);
 	tp.CreateDisplayList(XY, 38, 64.0, 512.0, 33848.0, 11347.0, 26625.0, 1.0, 1.0);
 
-
 	// WINDOWLEDGE_PS_FRONT & TOP (shorter phys sci ds)
 	// first shop
 	glNewList(40, GL_COMPILE);
@@ -940,7 +943,6 @@ void DrawPhysSciPosts()
 	glEndList();
 }
 
-
 //  Display Paving Around Shop Doorway
 void DisplayDoorPaving()
 {
@@ -954,7 +956,6 @@ void DrawDoorPaving()
 	tp.CreateDisplayList(XZ, 47, 128.0, 256.0, 33808.0, 10000.0, 31508.0, 0.75, 7.5);	// phy sci 1st doorway
 	tp.CreateDisplayList(XZ, 48, 128.0, 256.0, 33808.0, 10000.0, 35324.0, 0.75, 3.5);	// phy sci 2nd doorway
 }
-
 
 // Display window and door posts of library
 void DisplayLibraryPosts()
@@ -1168,7 +1169,7 @@ void DisplayPavement()
 void DrawPavement()
 {
 	// PAVEMENT
-	tp.CreateDisplayList(XZ, 87, 128.0, 64.0, 2608.0, 10000.0, 10000.0, 17.0, 482.5);
+	tp.CreateDisplayList(XZ, 87, 128.0, 64.0, 2608.0, 10000.0, 10000, 17.0, 482.5);
 	tp.CreateDisplayList(XZ, 73, 128.0, 64.0, 31632.0, 10000.0, 10000.0, 17.0, 482.5);
 	tp.CreateDisplayList(XZ, 88, 128.0, 64.0, 33744.0, 10000.0, 41104.0, 4.75, 30.5);	// by steps between phys sci and library
 	tp.CreateDisplayList(XZ, 428, 128.0, 64.0, 34256.0, 10000.0, 26704.0, 1.0, 9.5); // phys sci doorway (behind carpet)
@@ -1265,7 +1266,7 @@ void DrawPavement()
 	tp.CreateDisplayList(XZ, 75, 64.0, 64.0, 31568.0, 10000.0, 10096.0, 1.0, 480.0);
 	tp.CreateDisplayList(XZ, 436, 64.0, 64.0, 31568.0, 9086.0, 3408.0, 1.0, 45.0);	// Side paving at entrance
 	// PAVEMENTSIDE_RIGHT
-	tp.CreateDisplayList(XZ, 76, 64.0, 64.0, 4784.0, 10000.0, 10000.0, 1.0, 481.5);
+	tp.CreateDisplayList(XZ, 76, 64.0, 64.0, 4784.0, 10000.0, 10000, 1.0, 481.5); //////////////////////////////
 	// PAVEMENTSIDE_TOP
 	tp.CreateDisplayList(XZ, 77, 64.0, 64.0, 4848.0, 10000.0, 40816.0, 417.5, 1.0);
 	// PAVEMENT_STEPS_CORNER
@@ -1788,13 +1789,13 @@ void DrawRoof()
 	glNewList(215, GL_COMPILE);
 	glBegin(GL_QUADS);
 	glTexCoord2f(0.0, 0.0);
-	glVertex3f(2608.0, 12140.72, 8100.0);
+	glVertex3f(2608.0, 12140.72, 6500.0);
 	glTexCoord2f(0.0, 273.4);
 	glVertex3f(2608.0, 12140.72, 8100.0 + (128.0 * 273.4));
 	glTexCoord2f(2.0, 257.9);
 	glVertex3f(4716.0, 11364.0, 8100.0 + (128.0 * 257.9));
 	glTexCoord2f(2.0, 0.0);
-	glVertex3f(4716.0, 11364.0, 8100.0);
+	glVertex3f(4716.0, 11364.0, 6500.0);
 	glEnd();
 	glEndList();
 	// Library Top of Roof
@@ -1823,6 +1824,7 @@ void DrawRoof()
 	glVertex3f(33848.0, 12094.72, 8100.0);
 	glEnd();
 	glEndList();
+	
 	// Chanc Side Beams Bottom
 	glNewList(253, GL_COMPILE);
 	glBegin(GL_QUADS);

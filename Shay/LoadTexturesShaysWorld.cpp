@@ -1,21 +1,18 @@
 #include "LoadTexturesShaysWorld.h"
 
 TexturedPolygons tp;
-unsigned char* image = NULL;
+unsigned char* image = nullptr;
 
-
-//  Delete raw image and clear memory
 void DeleteImageFromMemory()
 {
-	image = NULL;
-	if (image == NULL)
+	image = nullptr;
+	if (image == nullptr)
 	{
 		delete[] image;
 	}
 	
 }
 
-// Load and Create Textures
 void CreateTextures()
 {
 	glEnable(GL_DEPTH_TEST);
@@ -689,9 +686,22 @@ void CreateTextures()
 	image = tp.LoadTexture("data/thanks.raw", 512, 512);
 	tp.CreateTexture(219, image, 512, 512);
 
+
+	image = tp.LoadTexture("data/object/tetris.raw", 562, 499);
+	tp.CreateTexture(TEXT_ENVIRONMENT, image, 562, 499);
+
+	image = tp.LoadTexture("data/ConcreteWalkway.raw", 1024, 1024);
+	tp.CreateTexture(CONCRETE_WALKWAY_TEXTURE, image, 1024, 1024);
+
+	image = tp.LoadTexture("data/WoodWalkway.raw", 1024, 1024);
+	tp.CreateTexture(WOOD_WALKWAY_TEXTURE, image, 1024, 1024);
+
+	image = tp.LoadTexture("data/Drain.raw", 256, 256);
+	tp.CreateTexture(DRAIN, image, 256, 256);
+
+
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
 	DeleteImageFromMemory();
-
 }

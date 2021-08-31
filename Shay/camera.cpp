@@ -8,8 +8,6 @@
 
 #include "Camera.h"
 
-const unsigned char  *keysPressed;
-
 //SDL event which is used for movement keys
 
 //--------------------------------------------------------------------------------------
@@ -17,13 +15,16 @@ const unsigned char  *keysPressed;
 //--------------------------------------------------------------------------------------
 Camera::Camera()
 {
-	m_rotateSpeed = 0.0f;
-	m_moveSpeed = 0.0f;
+	crouch = false;
+	crouchDepth = 0.0;
+
+	m_rotateSpeed = 0.0;
+	m_moveSpeed = 0.0;
 
 	ResetXYZ();
 
-	m_prevX = 0;
-	m_prevY = 0;
+	m_prev.x = 0;
+	m_prev.y = 0;
 
 	m_deltaMoveFB = 0;
 	m_deltaMoveLR = 0;
@@ -34,7 +35,7 @@ Camera::Camera()
 	m_deltaAngleLR = 0.0;
 	m_deltaAngleUD = 0.0;
 
-	m_CollisionDetectionOn = true;
+	m_collisionDetectionOn = true;
 
 	// sound objects
 	m_audio.AddSound("sounds/step.wav", "stairstep");
@@ -45,17 +46,17 @@ Camera::Camera()
 //--------------------------------------------------------------------------------------
 void Camera::ResetXYZ()
 {
-	m_x = 0.0f;
-	m_y = 1.75f;
-	m_z = 0.0f;
+	m_pos.x = 0.0f;
+	m_pos.y = 1.75f;
+	m_pos.z = 0.0f;
 	
-	m_lookX = 0.0f;
-	m_lookY = 0.0f;
-	m_lookZ = -1.0f;
+	m_look.x = 0.0f;
+	m_look.y = 0.0f;
+	m_look.z = -1.0f;
 	
-	m_lookXX = 1.0f;
-	m_lookYY = 1.0f;
-	m_lookZZ = 0.0f;
+	m_lookK.x = 1.0f;
+	m_lookK.y = 1.0f;
+	m_lookK.z = 0.0f;
 }
 
 void Camera::KeyboardMovement()
@@ -89,69 +90,83 @@ void Camera::KeyboardMovement()
 	}
 	*/
 
-	WSKeyboardMovement(true, false);
-	ADKeyboardMovement(true, false);
+	WSKeyboardMovement();
+	ADKeyboardMovement();
 	
 	callGLLookAt();
 }
 
-void Camera::WSKeyboardMovement(bool direction, bool sprint)
+void Camera::AddAABB(const glm::vec3& max, const glm::vec3& min)
+{
+	m_colDetect.Push(max, min);
+}
+
+void Camera::SetRotateSpeed(const GLdouble& tempSpeed)
+{
+	m_rotateSpeed = tempSpeed;
+}
+
+void Camera::SetMoveSpeed(const GLdouble& tempSpeed)
+{
+	m_moveSpeed = tempSpeed;
+}
+
+void Camera::SetCollisionDetectionOn(bool tempCol)
+{
+	m_collisionDetectionOn = tempCol;
+}
+
+void Camera::WSKeyboardMovement()
 {
 	if (m_deltaMoveFB == 0) { return; }
 
 	float movementSpeed = m_moveSpeed;
-	if (sprint) { movementSpeed = movementSpeed * 2; }
-	//if (!direction) { movementSpeed = movementSpeed * -1; }
 	if (m_deltaMoveLR != 0) { movementSpeed *= 0.5; } //So you can't run at twice the speed when running diagonally
+	if (crouch) { movementSpeed *= 0.5; }
 
-	float xMove = m_lookX * movementSpeed;
-	float zMove = m_lookZ * movementSpeed;
+	float xMove = m_look.x * movementSpeed;
+	float zMove = m_look.z* movementSpeed;
 
 	float norm = movementSpeed / sqrt(pow(xMove, 2) + pow(zMove, 2)); //So it runs normally when looking up or down
 	xMove *= norm * m_deltaMoveFB; //m_deltaMoveFB is used for the direction
 	zMove *= norm * m_deltaMoveFB;
 	
 	//Checks if player can move in direction based on AABB
-	if (!(m_colDetect.Collide(m_x + xMove, m_y + m_lookYY, m_z + zMove)))
+	if (!(m_colDetect.Collide(glm::dvec3(m_pos.x + xMove, m_pos.y + m_lookK.y, m_pos.z + zMove))))
 	{
-		m_x = m_x + xMove;
-		m_z = m_z + zMove;
-
+		m_pos.x += xMove;
+		m_pos.z += zMove;
 
 		//Makes sure that the camera object is on the right y height
 		SetPlains(xMove, zMove);
 	}
 }
 
-void Camera::ADKeyboardMovement(bool direction, bool sprint)
+void Camera::ADKeyboardMovement()
 {
 	if (m_deltaMoveLR == 0) { return; }
 
 	float movementSpeed = m_moveSpeed;
-	if (sprint) { movementSpeed = movementSpeed * 2; }
-	//if (!direction) { movementSpeed = movementSpeed * -1; }
 	if (m_deltaMoveFB != 0) { movementSpeed *= 0.5; } //So you can't run at twice the speed when running diagonally
+	if (crouch) { movementSpeed *= 0.5; }
 
-	float xMove = m_lookZ * movementSpeed;
-	float zMove = -m_lookX * movementSpeed;
+	float xMove = m_look.z * movementSpeed;
+	float zMove = -m_look.x * movementSpeed;
 
 	float norm = movementSpeed / sqrt(pow(xMove, 2) + pow(zMove, 2)); //So it runs normally when looking up or down
 	xMove *= norm * -m_deltaMoveLR; //m_deltaMoveRL is used for the direction
 	zMove *= norm * -m_deltaMoveLR;
 
 	//Checks if player can move in direction based on AABB
-	if (!(m_colDetect.Collide(m_x + xMove, m_y + m_lookYY, m_z + zMove)))
+	if (!(m_colDetect.Collide(glm::dvec3(m_pos.x + xMove, m_pos.y + m_lookK.y, m_pos.z + zMove))))
 	{
-		m_x = m_x + xMove;
-		m_z = m_z + zMove;
+		m_pos.x += xMove;
+		m_pos.z += zMove;
 
 		//Makes sure that the camera object is on the right y height
 		SetPlains(xMove, zMove);
 	}
-
 }
-
-
 
 //--------------------------------------------------------------------------------------
 //  Determine direction
@@ -197,9 +212,8 @@ void Camera::DirectionLR(int const & tempMove)
 	{
 		m_deltaMoveLR = tempMove;
 	}
-
-
 }
+
 //--------------------------------------------------------------------------------------
 // Not used but allows up and don movement
 void Camera::DirectionUD(int const & tempMove)
@@ -214,12 +228,12 @@ void Camera::DirectionUD(int const & tempMove)
 void Camera::MouseMove(int x, int y)
 {
 	// calculate delta by offsetting it with the previous x and y values with new values
-	m_deltaAngleLR = x - m_prevX;
-	m_deltaAngleUD = m_prevY - y;
+	m_deltaAngleLR = x - m_prev.x;
+	m_deltaAngleUD = m_prev.y - y;
 
 	// updates the previous x and y values
-	m_prevX = x;
-	m_prevY = y;
+	m_prev.x = x;
+	m_prev.y = y;
 
 	// updates the rotation angle
 	m_rotateAngleLR += m_deltaAngleLR;
@@ -231,15 +245,15 @@ void Camera::MouseMove(int x, int y)
 	else if (m_rotateAngleUD < -89.0f)
 		m_rotateAngleUD = -89.0f;
 
-	m_lookX = sin(degreesToRadians(m_rotateAngleLR)) * cos(degreesToRadians(m_rotateAngleUD));
-	m_lookY = sin(degreesToRadians(m_rotateAngleUD));
-	m_lookZ = -cos(degreesToRadians(m_rotateAngleLR)) * cos(degreesToRadians(m_rotateAngleUD));
+	m_look.x = sin(degreesToRadians(m_rotateAngleLR)) * cos(degreesToRadians(m_rotateAngleUD));
+	m_look.y = sin(degreesToRadians(m_rotateAngleUD));
+	m_look.z = -cos(degreesToRadians(m_rotateAngleLR)) * cos(degreesToRadians(m_rotateAngleUD));
 
 	int winW = glutGet(GLUT_WINDOW_WIDTH);
 	int winH = glutGet(GLUT_WINDOW_HEIGHT);
 
-	m_prevX = winW / 2;   
-	m_prevY = winH / 2;
+	m_prev.x = winW / 2;   
+	m_prev.y = winH / 2;
 	glutWarpPointer(winW / 2, winH / 2);  //centers the cursor
 
 	callGLLookAt();
@@ -253,173 +267,122 @@ GLdouble Camera::degreesToRadians(GLdouble degrees)
 	return degrees * PI / 180;
 }
 
-//--------------------------------------------------------------------------------------
-// Is ok to move camera backwards and forwards
-//--------------------------------------------------------------------------------------
-bool Camera::MoveFBOK()
-{
-	bool tempReturn;
-	if (m_deltaMoveFB < 0 || m_deltaMoveFB > 0)
-	{
-		tempReturn = true;
-	}
-	else
-	{
-		tempReturn = false;
-	}
-	return tempReturn;
-}
-
-//--------------------------------------------------------------------------------------
-// Is ok to move camera sideways
-//--------------------------------------------------------------------------------------
-bool Camera::MoveLROK()
-{
-	bool tempReturn;
-	if (m_deltaMoveLR < 0 || m_deltaMoveLR > 0)
-	{
-		tempReturn = true;
-	}
-	else
-	{
-		tempReturn = false;
-	}
-	return tempReturn;
-}
-
-
-
-
 //----------------------------------------------------------------------------------------
 //  Places camera at the correct level on the current plain
 //----------------------------------------------------------------------------------------
 void Camera::SetPlains(const int & moveX, const int & moveZ)
 {
-
 	// store number of plains (stops from looping through linked list each time)
-	if (m_No_Plains == 0) m_No_Plains = m_Plain.GetListSize();
+	if (m_No_Plains == 0) m_No_Plains = m_plain.Size();
 
 	for (int i = 0;  i < m_No_Plains; i++)
 	{
+		glm::vec3 plainStart = m_plain.GetStart(i);
+		glm::vec3 plainEnd = m_plain.GetEnd(i);
+
 		// if camera is positioned on a plain
-		if ((m_z <= m_Plain.GetZend(i)) && (m_z >= m_Plain.GetZstart(i))
-			&& (m_x <= m_Plain.GetXend(i)) && (m_x >= m_Plain.GetXstart(i)))
+		if ((m_pos.z <= plainEnd.z) && (m_pos.z >= plainStart.z)
+			&& (m_pos.x <= plainEnd.x) && (m_pos.x >= plainStart.x))
 		{
 			// if flat plain
-			if (m_Plain.GetType(i) == 0)
+			if (m_plain.GetType(i) == 0)
 			{
-				m_y = m_Plain.GetYstart(i);
+				m_pos.y = plainEnd.y;
 				
-				if ((m_plainNo != i) && m_plainHeight != m_Plain.GetYstart(i))
+				if ((m_plainNo != i) && m_plainHeight != plainStart.y)
 				{
 					m_audio.PlaySound("stairstep");
 				}
 
 				m_plainNo = i;
-				m_plainHeight = m_Plain.GetYstart(i);
+				m_plainHeight = plainStart.y;
 			}
 			// if plain slopes in z direction
-			if (m_Plain.GetType(i) == 2)
+			if (m_plain.GetType(i) == 2)
 			{
-				float z1 = m_Plain.GetZstart(i);
-				float z2 = m_Plain.GetZend(i);
+				float z1 = plainStart.z;
+				float z2 = plainEnd.z;
 				float dif = z1 - z2;
 
-				float dist = m_z - z1;
-				float ratio = (m_Plain.GetYstart(i) - m_Plain.GetYend(i)) / dif;
+				float dist = m_pos.z - z1;
+				float ratio = (plainStart.y - plainEnd.y) / dif;
 
-				m_y = m_Plain.GetYstart(i) + ratio * dist;
-
+				m_pos.y = plainStart.y + ratio * dist;
 			}
 			// if plain slopes in x direction	
-			if (m_Plain.GetType(i) == 1)
+			if (m_plain.GetType(i) == 1)
 			{
-				// if plain slopes up or down
-				if (m_xLast > m_x)
-				{
-					m_incrementX = ((m_y - m_Plain.GetYstart(i)) / (m_x - m_Plain.GetXstart(i)));
-				}
-				else
-				{
-					m_incrementX = ((m_Plain.GetYend(i) - m_y) / (m_Plain.GetXend(i) - m_x));
-				}
-				m_y += (m_incrementX * moveX);
+				float x1 = plainStart.x;
+				float x2 = plainEnd.x;
+				float dif = x1 - x2;
+
+				float dist = m_pos.x - x1;
+				float ratio = (plainStart.y - plainEnd.y) / dif;
+
+				m_pos.y = plainStart.y + ratio * dist;
 			}		
 		}
 	}
 }
 
-//----------------------------------------------------------------------------------------
-// Moves camera up and down (NOT USED)
-//----------------------------------------------------------------------------------------
-void Camera::MoveUD()
+GLdouble Camera::GetLR() const
 {
-	if (m_CollisionDetectionOn)
-	{
-		GLdouble startY = m_y + m_deltaMoveUD * (m_lookYY) * m_moveSpeed * 5.0;
-
-		if (!(m_colDetect.Collide(m_x + m_lookXX, startY + m_lookYY, m_z + m_lookZZ)))
-		{
-			m_y += m_deltaMoveUD * (m_lookYY) * m_moveSpeed;
-			callGLLookAt();
-		}
-	}
-	else
-	{
-		m_y += m_deltaMoveUD * (m_lookYY) * m_moveSpeed;
-		callGLLookAt();
-	}
+	return m_pos.x;
 }
 
-//----------------------------------------------------------------------------------------
-// Rotates camera left and right
-//----------------------------------------------------------------------------------------
-void Camera::RotateLR()
+GLdouble Camera::GetUD() const
 {
-	m_rotateAngleLR += m_deltaAngleLR;
-	m_lookX = sin(m_rotateAngleLR);
-	m_lookZ = -cos(m_rotateAngleLR);
-	m_lookXX = sin(m_rotateAngleLR + (float) PI/2.0);
-	m_lookZZ = -cos(m_rotateAngleLR + (float) PI/2.0);
-	callGLLookAt();
+	return m_pos.y;
 }
 
-//----------------------------------------------------------------------------------------
-//  Rotates camera up and down
-//----------------------------------------------------------------------------------------
-void Camera::LookUD()
+GLdouble Camera::GetFB() const
 {
-	m_rotateAngleUD += m_deltaAngleUD;
-	m_lookY = sin(m_rotateAngleUD);
-	callGLLookAt();
+	return m_pos.z;
 }
 
 //----------------------------------------------------------------------------------------
 // Positions camera at co-ordinates of parameters
 //----------------------------------------------------------------------------------------
-void Camera::Position (GLdouble const & tempX, GLdouble const & tempY,
-			           GLdouble const & tempZ, GLdouble const & tempAngle)
+void Camera::Position (const glm::vec3& tempPos, const GLdouble& tempAngle)
 {
 	ResetXYZ();
 	
-	m_x = tempX;
-	m_y = tempY;
-	m_z = tempZ;
+	m_pos = tempPos;
 
 	// rotate to correct angle
 	m_rotateAngleLR = tempAngle * (PI / 180);
-	m_lookX = sin(m_rotateAngleLR);
-	m_lookZ = -cos(m_rotateAngleLR);
-	m_lookXX = sin(m_rotateAngleLR + (float) PI/2.0);
-	m_lookZZ = -cos(m_rotateAngleLR + (float) PI/2.0);
+	m_look.x = sin(m_rotateAngleLR);
+	m_look.z = -cos(m_rotateAngleLR);
+	m_lookK.x = sin(m_rotateAngleLR + (float) PI/2.0);
+	m_lookK.z = -cos(m_rotateAngleLR + (float) PI/2.0);
 	m_rotateAngleUD = 0.0;
 	m_deltaAngleUD = 0.0;
 
-	// redislay
+	// redisplay
 	callGLLookAt();
 }
 
 
+void Camera::SetCrouch(bool setCrouch)
+{
+	crouch = setCrouch;
+	crouchTime = glutGet(GLUT_ELAPSED_TIME);
+}
+
+void Camera::CrouchDistance()
+{
+	if (crouch && crouchDepth == -210) return;
+	if (!crouch && crouchDepth == 0) return;
+
+	float change = CROUCH_DEPTH * ((float)(glutGet(GLUT_ELAPSED_TIME) - crouchTime) / CROUCH_SPEED);
+	if (!crouch) change *= -1;
+
+	crouchDepth = crouchDepth + change;
+	crouchTime = glutGet(GLUT_ELAPSED_TIME);
+
+	if (crouchDepth < -210) crouchDepth = -210;
+	if (crouchDepth > 0) crouchDepth = 0;
+}
 
 
 //----------------------------------------------------------------------------------------
@@ -428,9 +391,10 @@ void Camera::Position (GLdouble const & tempX, GLdouble const & tempY,
 void Camera::callGLLookAt()
 {
 	glLoadIdentity();
-	gluLookAt(m_x, m_y, m_z, 
-		      m_x + m_lookX, m_y + m_lookY, m_z + m_lookZ,
-			  0.0f, 1.0f, 0.0f);
+	CrouchDistance();
+	gluLookAt(m_pos.x, m_pos.y + crouchDepth, m_pos.z, m_pos.x + m_look.x,	// Eye
+			  m_pos.y + m_look.y + crouchDepth, m_pos.z + m_look.z,			// Look at
+			  0, 1, 0);														// Up
 }
 
 //--------------------------------------------------------------------------------------
@@ -473,10 +437,15 @@ void Camera::SetWorldCoordinates (const GLdouble &tempX, const GLdouble &tempZ)
 
 //----------------------------------------------------------------------------------------
 
-void Camera::SetPlains (const int tempType,
-				        const GLdouble tempXs, const GLdouble tempXe,
-				        const GLdouble tempYs, const GLdouble tempYe,
-				        const GLdouble tempZs, const GLdouble tempZe)
+void Camera::AddPlain(const GLint tempType, const glm::vec3& tempStart, const glm::vec3& tempEnd)
 {
-	m_Plain.AddToStart(tempType, tempXs, tempXe, tempYs, tempYe, tempZs, tempZe);
+	m_plain.Push(tempType, tempStart, tempEnd);
+}
+
+
+void Camera::SetCameraLocation(float x, float y, float z)
+{
+	m_pos.x = x;
+	m_pos.y = y;
+	m_pos.z = z;
 }

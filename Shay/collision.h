@@ -1,4 +1,4 @@
-//  collsion.h
+//  collision.h
 //  Header file for the collision class
 // 
 //
@@ -9,81 +9,78 @@
 
 //--------------------------------------------------------------------------------------
 
-#include "AABB.h"
-#include "AABBLinkedList.h"
+#include "AABBVector.h"
 
 //--------------------------------------------------------------------------------------
 
+/**
+ * @class Collision
+ * @brief Collision class using AABB Bounding boxes.
+ * 
+ * @todo Collision() and CheckCollision()
+ */
 class Collision
 {
 public:
+	/**
+	 * @brief Default constructor.
+	 */
+	Collision();
 
-	Collision() {}
-	virtual ~Collision() {}
+	void Push(const glm::vec3& max, const glm::vec3& min);
 
 	//----------------------------------------------------------------------------------
 	//  Set Methods
 	//----------------------------------------------------------------------------------
-	// sets initial co-ordinates of bounding boxes (these set the co-ords is AABB, the array,
-	// the values for the list are copied from the array using CreateLinkedList).
-	void SetAABBMaxX(const int & tempIndex, const double &tempX) {m_AABB.SetMaxX(tempIndex, tempX);}
-	void SetAABBMinX(const int & tempIndex, const double &tempX) {m_AABB.SetMinX(tempIndex, tempX);}
-	void SetAABBMaxY(const int & tempIndex, const double &tempY) {m_AABB.SetMaxY(tempIndex, tempY);}
-	void SetAABBMinY(const int & tempIndex, const double &tempY) {m_AABB.SetMinY(tempIndex, tempY);}
-	void SetAABBMaxZ(const int & tempIndex, const double &tempZ) {m_AABB.SetMaxZ(tempIndex, tempZ);}
-	void SetAABBMinZ(const int & tempIndex, const double &tempZ) {m_AABB.SetMinZ(tempIndex, tempZ);}
 
-	// sets the actual world co-ordinates
-	void SetWorldX(const double &tempX) {m_worldSizeX = tempX;}
-	void SetWorldZ(const double &tempZ) {m_worldSizeZ = tempZ;}
+	/**
+	 * @brief Sets the actual world co-ordinates X.
+	 * @param tempX const double&
+	 * @return void
+	 */
+	void SetWorldX(const double &tempX);
 
-	// set number of bounding boxes
-	void SetNoBoundingBoxes(const int & tempSize) {m_AABB.SetNoBoundingBoxes(tempSize);}
+	/**
+	 * @brief Sets the actual world co-ordinates Z
+	 * @param tempZ const double&
+	 * @return void
+	 */
+	void SetWorldZ(const double &tempZ);
 
 	//----------------------------------------------------------------------------------
 	//  Returns Methods
 	//----------------------------------------------------------------------------------
-	// returns co-ordinates of bounding boxes
-	double GetAABBMaxX (const int & tempIndex) {return m_AABB.GetMaxX (tempIndex);}
-	double GetAABBMinX (const int & tempIndex) {return m_AABB.GetMinX (tempIndex);}
-	double GetAABBMaxY (const int & tempIndex) {return m_AABB.GetMaxY (tempIndex);}
-	double GetAABBMinY (const int & tempIndex) {return m_AABB.GetMinY (tempIndex);}
-	double GetAABBMaxZ (const int & tempIndex) {return m_AABB.GetMaxZ (tempIndex);}
-	double GetAABBMinZ (const int & tempIndex) {return m_AABB.GetMinZ (tempIndex);}
 
-	// returns number of bounding boxes
-	int GetNoBoundingBoxes() {return m_AABB.GetNoBoundingBoxes();}
+	/**
+	 * @brief Returns TRUE if a collision occurred.
+	 * @param endX double
+	 * @param endY double
+	 * @param endZ double
+	 * @return bool
+	 */
+	bool Collide(const glm::dvec3& end);
 
-	// returns TRUE if a collsion occurred
-	bool Collide (double endX, double endY, double endZ);
-
-	// reads the BB info from AABB (dynamic array) and creates a Linked List
-	// containing BB data
-	void CreateLinkedList();
+	/**
+	 * @brief Reads the BB info from AABB (dynamic array) and creates a Linked List containing BB data.
+	 * @return void
+	 */
+	int GetQuadrant(const glm::vec3& max, const glm::vec3& min);
 
 private:
-	// initially stores BB info in AABB (dynamic array) before copying to Linked List
-	AABB m_AABB;
+	/// vectors to store bounding box info in each quadrant
+	AABBVector m_list[4];
 
-	// lists to store bounding box info in each quadrant
-	AABBLinkedList m_list[4];
+	/// stores world co-ordinates
+	double m_worldSizeX, m_worldSizeZ;
 
-	// Stores the list size of each linked list
-	// Set to 4 has the world is split into 4 quadrants
-	int m_listSize[4];
-
-	// stores world co-ordinates
-	double m_worldSizeX;
-	double m_worldSizeZ;
-
-	// checks if collsion occurred (called from Collide)
-	bool CheckCollision(int index, double endX, double endY, double endZ);
-
-	//----------------------------------------------------------------------------------
-
-    // Privatised copy constructor and assignment operator
-    Collision (const Collision &coll) {};
-    Collision &operator = (const Collision &coll) {};
+	/**
+	 * @brief Checks if collision occurred (called from Collide).
+	 * @param index int
+	 * @param endX double
+	 * @param endY double
+	 * @param endZ double
+	 */
+	bool CheckCollision(int index, const glm::dvec3& end);
 };
 
 #endif

@@ -71,21 +71,7 @@ build rebuild_cache: phony CMakeFiles\rebuild_cache.util
 
 build cmake_object_order_depends_target_Shay_RelWithDebInfo: phony || Shay\CMakeFiles\Shay.dir
 
-build Shay\CMakeFiles\Shay.dir\AABB.CPP.obj: CXX_COMPILER__Shay_RelWithDebInfo ..\..\..\Shay\AABB.CPP || cmake_object_order_depends_target_Shay_RelWithDebInfo
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG
-  OBJECT_DIR = Shay\CMakeFiles\Shay.dir
-  OBJECT_FILE_DIR = Shay\CMakeFiles\Shay.dir
-  TARGET_COMPILE_PDB = Shay\CMakeFiles\Shay.dir\
-  TARGET_PDB = Shay\Shay.pdb
-
-build Shay\CMakeFiles\Shay.dir\AABBLinkedList.cpp.obj: CXX_COMPILER__Shay_RelWithDebInfo ..\..\..\Shay\AABBLinkedList.cpp || cmake_object_order_depends_target_Shay_RelWithDebInfo
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG
-  OBJECT_DIR = Shay\CMakeFiles\Shay.dir
-  OBJECT_FILE_DIR = Shay\CMakeFiles\Shay.dir
-  TARGET_COMPILE_PDB = Shay\CMakeFiles\Shay.dir\
-  TARGET_PDB = Shay\Shay.pdb
-
-build Shay\CMakeFiles\Shay.dir\AABBNode.cpp.obj: CXX_COMPILER__Shay_RelWithDebInfo ..\..\..\Shay\AABBNode.cpp || cmake_object_order_depends_target_Shay_RelWithDebInfo
+build Shay\CMakeFiles\Shay.dir\AABBVector.cpp.obj: CXX_COMPILER__Shay_RelWithDebInfo ..\..\..\Shay\AABBVector.cpp || cmake_object_order_depends_target_Shay_RelWithDebInfo
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG
   OBJECT_DIR = Shay\CMakeFiles\Shay.dir
   OBJECT_FILE_DIR = Shay\CMakeFiles\Shay.dir
@@ -93,6 +79,13 @@ build Shay\CMakeFiles\Shay.dir\AABBNode.cpp.obj: CXX_COMPILER__Shay_RelWithDebIn
   TARGET_PDB = Shay\Shay.pdb
 
 build Shay\CMakeFiles\Shay.dir\Audio.cpp.obj: CXX_COMPILER__Shay_RelWithDebInfo ..\..\..\Shay\Audio.cpp || cmake_object_order_depends_target_Shay_RelWithDebInfo
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG
+  OBJECT_DIR = Shay\CMakeFiles\Shay.dir
+  OBJECT_FILE_DIR = Shay\CMakeFiles\Shay.dir
+  TARGET_COMPILE_PDB = Shay\CMakeFiles\Shay.dir\
+  TARGET_PDB = Shay\Shay.pdb
+
+build Shay\CMakeFiles\Shay.dir\DisplayEXTRAShaysWorld.cpp.obj: CXX_COMPILER__Shay_RelWithDebInfo ..\..\..\Shay\DisplayEXTRAShaysWorld.cpp || cmake_object_order_depends_target_Shay_RelWithDebInfo
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG
   OBJECT_DIR = Shay\CMakeFiles\Shay.dir
   OBJECT_FILE_DIR = Shay\CMakeFiles\Shay.dir
@@ -113,14 +106,14 @@ build Shay\CMakeFiles\Shay.dir\LoadTexturesShaysWorld.cpp.obj: CXX_COMPILER__Sha
   TARGET_COMPILE_PDB = Shay\CMakeFiles\Shay.dir\
   TARGET_PDB = Shay\Shay.pdb
 
-build Shay\CMakeFiles\Shay.dir\PlainLinkedList.cpp.obj: CXX_COMPILER__Shay_RelWithDebInfo ..\..\..\Shay\PlainLinkedList.cpp || cmake_object_order_depends_target_Shay_RelWithDebInfo
+build Shay\CMakeFiles\Shay.dir\Object.cpp.obj: CXX_COMPILER__Shay_RelWithDebInfo ..\..\..\Shay\Object.cpp || cmake_object_order_depends_target_Shay_RelWithDebInfo
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG
   OBJECT_DIR = Shay\CMakeFiles\Shay.dir
   OBJECT_FILE_DIR = Shay\CMakeFiles\Shay.dir
   TARGET_COMPILE_PDB = Shay\CMakeFiles\Shay.dir\
   TARGET_PDB = Shay\Shay.pdb
 
-build Shay\CMakeFiles\Shay.dir\PlainNode.cpp.obj: CXX_COMPILER__Shay_RelWithDebInfo ..\..\..\Shay\PlainNode.cpp || cmake_object_order_depends_target_Shay_RelWithDebInfo
+build Shay\CMakeFiles\Shay.dir\PlainVector.cpp.obj: CXX_COMPILER__Shay_RelWithDebInfo ..\..\..\Shay\PlainVector.cpp || cmake_object_order_depends_target_Shay_RelWithDebInfo
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG
   OBJECT_DIR = Shay\CMakeFiles\Shay.dir
   OBJECT_FILE_DIR = Shay\CMakeFiles\Shay.dir
@@ -142,6 +135,13 @@ build Shay\CMakeFiles\Shay.dir\cameraMap.cpp.obj: CXX_COMPILER__Shay_RelWithDebI
   TARGET_PDB = Shay\Shay.pdb
 
 build Shay\CMakeFiles\Shay.dir\collision.cpp.obj: CXX_COMPILER__Shay_RelWithDebInfo ..\..\..\Shay\collision.cpp || cmake_object_order_depends_target_Shay_RelWithDebInfo
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG
+  OBJECT_DIR = Shay\CMakeFiles\Shay.dir
+  OBJECT_FILE_DIR = Shay\CMakeFiles\Shay.dir
+  TARGET_COMPILE_PDB = Shay\CMakeFiles\Shay.dir\
+  TARGET_PDB = Shay\Shay.pdb
+
+build Shay\CMakeFiles\Shay.dir\fileIO.cpp.obj: CXX_COMPILER__Shay_RelWithDebInfo ..\..\..\Shay\fileIO.cpp || cmake_object_order_depends_target_Shay_RelWithDebInfo
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG
   OBJECT_DIR = Shay\CMakeFiles\Shay.dir
   OBJECT_FILE_DIR = Shay\CMakeFiles\Shay.dir
@@ -170,7 +170,7 @@ build Shay\CMakeFiles\Shay.dir\texturedPolygons.cpp.obj: CXX_COMPILER__Shay_RelW
 #############################################
 # Link the executable Shay\Shay.exe
 
-build Shay\Shay.exe: CXX_EXECUTABLE_LINKER__Shay_RelWithDebInfo Shay\CMakeFiles\Shay.dir\AABB.CPP.obj Shay\CMakeFiles\Shay.dir\AABBLinkedList.cpp.obj Shay\CMakeFiles\Shay.dir\AABBNode.cpp.obj Shay\CMakeFiles\Shay.dir\Audio.cpp.obj Shay\CMakeFiles\Shay.dir\DisplayShaysWorld.cpp.obj Shay\CMakeFiles\Shay.dir\LoadTexturesShaysWorld.cpp.obj Shay\CMakeFiles\Shay.dir\PlainLinkedList.cpp.obj Shay\CMakeFiles\Shay.dir\PlainNode.cpp.obj Shay\CMakeFiles\Shay.dir\camera.cpp.obj Shay\CMakeFiles\Shay.dir\cameraMap.cpp.obj Shay\CMakeFiles\Shay.dir\collision.cpp.obj Shay\CMakeFiles\Shay.dir\main.cpp.obj Shay\CMakeFiles\Shay.dir\texturedPolygons.cpp.obj
+build Shay\Shay.exe: CXX_EXECUTABLE_LINKER__Shay_RelWithDebInfo Shay\CMakeFiles\Shay.dir\AABBVector.cpp.obj Shay\CMakeFiles\Shay.dir\Audio.cpp.obj Shay\CMakeFiles\Shay.dir\DisplayEXTRAShaysWorld.cpp.obj Shay\CMakeFiles\Shay.dir\DisplayShaysWorld.cpp.obj Shay\CMakeFiles\Shay.dir\LoadTexturesShaysWorld.cpp.obj Shay\CMakeFiles\Shay.dir\Object.cpp.obj Shay\CMakeFiles\Shay.dir\PlainVector.cpp.obj Shay\CMakeFiles\Shay.dir\camera.cpp.obj Shay\CMakeFiles\Shay.dir\cameraMap.cpp.obj Shay\CMakeFiles\Shay.dir\collision.cpp.obj Shay\CMakeFiles\Shay.dir\fileIO.cpp.obj Shay\CMakeFiles\Shay.dir\main.cpp.obj Shay\CMakeFiles\Shay.dir\texturedPolygons.cpp.obj
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG
   LINK_FLAGS = /machine:X86 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib

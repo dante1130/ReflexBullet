@@ -8,16 +8,17 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#define PI 3.1415962654
-
 #include "collision.h"
 #include "cameraMap.h"
-#include "PlainLinkedList.h"
+#include "PlainVector.h"
 #include "Audio.h"
+#include "defines.h"
 
-#include <math.h>
+#include <iostream>
+#include <cmath>
 #include <gl/glut.h>
-
+#include <glm/vec2.hpp>
+#include <glm/vec3.hpp>
 
 //--------------------------------------------------------------------------------------
 
@@ -25,79 +26,51 @@ class Camera
 {
 public:
 
-	Camera();
-	virtual ~Camera() {}
+	glm::dvec3 m_pos;
 
+	Camera();
 
 	/**
 	* @brief	Handles all key movement for movement speed
-	* @param	No param
-	* @return	Void
+	* @return	void
 	*/
 	void KeyboardMovement();
-
-	//----------------------------------------------------------------------------------
 	
 	//----------------------------------------------------------------------------------
 	//  Set Methods
 	//----------------------------------------------------------------------------------
 	// sets initial value for bounding boxes (in the array AABB)
-	void SetAABBMaxX(const int & tempIndex, const GLdouble &tempX) {m_colDetect.SetAABBMaxX(tempIndex, tempX);}
-	void SetAABBMinX(const int & tempIndex, const GLdouble &tempX) {m_colDetect.SetAABBMinX(tempIndex, tempX);}
-	void SetAABBMaxY(const int & tempIndex, const GLdouble &tempY) {m_colDetect.SetAABBMaxY(tempIndex, tempY);}
-	void SetAABBMinY(const int & tempIndex, const GLdouble &tempY) {m_colDetect.SetAABBMinY(tempIndex, tempY);}
-	void SetAABBMaxZ(const int & tempIndex, const GLdouble &tempZ) {m_colDetect.SetAABBMaxZ(tempIndex, tempZ);}
-	void SetAABBMinZ(const int & tempIndex, const GLdouble &tempZ) {m_colDetect.SetAABBMinZ(tempIndex, tempZ);}
+
+	void AddAABB(const glm::vec3& max, const glm::vec3& min);
 
 	// set step and rotation size
-	void SetRotateSpeed (const GLdouble &tempSpeed) {m_rotateSpeed = tempSpeed;}
-	void SetMoveSpeed (const GLdouble &tempSpeed) {m_moveSpeed = tempSpeed;}
+	void SetRotateSpeed (const GLdouble &tempSpeed);
+	void SetMoveSpeed (const GLdouble &tempSpeed);
 
 	// COLLSION DETECTION FUNCTIONS
 	// set collision detection (TRUE = on)
-	void SetCollisionDetectionOn (const bool &tempCol) {m_CollisionDetectionOn = tempCol;}
-	// set number of bounding boxes
-	void SetNoBoundingBoxes(const int & tempSize) {m_colDetect.SetNoBoundingBoxes(tempSize);}
+	void SetCollisionDetectionOn(bool tempCol);
+
 	// set the co-ordinates of the world
 	void SetWorldCoordinates (const GLdouble &tempX, const GLdouble &tempZ);
-	// creates a linked list for each quadrant of the world and places the bounding box
-	// data in each.  Then clears and deletes AABB array.
-	void InitiateBoundingBoxes() {m_colDetect.CreateLinkedList();}
 
 	// sets the co-ordinate of each plain
-	void SetPlains (const int tempType,
-				    const GLdouble tempXs, const GLdouble tempXe,
-				    const GLdouble tempYs, const GLdouble tempYe,
-				    const GLdouble tempZs, const GLdouble tempZe);
+	void AddPlain(const GLint tempType, const glm::vec3& tempStart, const glm::vec3& tempEnd);
 
 	//----------------------------------------------------------------------------------
 	//  Get Methods
 	//----------------------------------------------------------------------------------
-	GLdouble GetLR () {return m_x;}
-	GLdouble GetUD () {return m_y;}
-	GLdouble GetFB () {return m_z;}	
-	GLdouble GetAABBMaxX (const int & tempIndex) {return m_colDetect.GetAABBMaxX (tempIndex);}
-	GLdouble GetAABBMinX (const int & tempIndex) {return m_colDetect.GetAABBMinX (tempIndex);}
-	GLdouble GetAABBMaxY (const int & tempIndex) {return m_colDetect.GetAABBMaxY (tempIndex);}
-	GLdouble GetAABBMinY (const int & tempIndex) {return m_colDetect.GetAABBMinY (tempIndex);}
-	GLdouble GetAABBMaxZ (const int & tempIndex) {return m_colDetect.GetAABBMaxZ (tempIndex);}
-	GLdouble GetAABBMinZ (const int & tempIndex) {return m_colDetect.GetAABBMinZ (tempIndex);}
+	GLdouble GetLR () const;
+	GLdouble GetUD () const;
+	GLdouble GetFB () const;	
 	
 	// position the camera
-	void Position (GLdouble const & tempX,
-				   GLdouble const & tempY,
-				   GLdouble const & tempZ,
-				   GLdouble const & tempAngle);
-
-	// check whether ok to move
-	void CheckCamera();
+	void Position(const glm::vec3& tempPos, const GLdouble& tempAngle);
 
 	// Used to pass direction to move or rotate  (i.e. 1, -1 or 0)
 	void DirectionFB(int const & tempMove);
 	void DirectionLR(int const & tempMove);
 	void DirectionUD(int const & tempMove);
-	void DirectionRotateLR(GLdouble const & tempMove);
-	void DirectionLookUD(int const & tempMove);
 
 	// Use mouse to look around
 	void MouseMove(int x, int y);
@@ -112,37 +85,67 @@ public:
 	void DisplayNoExit (const int & screenWidth, const int & screenHeight, 
 						const GLuint & tempImage);
 	
-private:
+	/**
+	* @brief	Sets if the player is crouching
+	* @param	setCrouch	- True if crouching, false if not crouching
+	* @return	Void
+	*/
+	void SetCrouch(bool setCrouch);
 
-	//steep incline increments
-	GLdouble m_incrementX;
-	GLdouble m_incrementZ;
+	/**
+	* @brief	Sets the players camera location
+	* @param	x	- X coordinate
+	* @param	y	- Y coordinate
+	* @param	z	- Z coordiante
+	* @return	Void
+	*/
+	void SetCameraLocation(float x, float y, float z);
+
+private:
+	/// If the player is crouching or not
+	bool crouch;
+	/// The current crouch depth
+	GLdouble crouchDepth;
+	/// When the function was last called
+	long crouchTime; 
+
+	/// Step incline increments.
+	GLdouble m_incrementX, m_incrementZ;
+	/// Number of plains.
 	int m_No_Plains;
+	/// The plain's number.
 	int m_plainNo;
+	/// Height of the plain.
 	GLdouble m_plainHeight;
 
 	// rotation variables
-	GLdouble m_prevX, m_prevY; // used for mouseMove function to calculate delta
-	// yaw
-	GLdouble m_rotateAngleLR;
-	GLdouble m_deltaAngleLR;
-	// pitch
-	GLdouble m_rotateAngleUD;
-	GLdouble m_deltaAngleUD;
+	/// Previous mouse position.
+	glm::ivec2 m_prev; 
+	/// yaw.
+	GLdouble m_rotateAngleLR, m_deltaAngleLR;
+	/// pitch.
+	GLdouble m_rotateAngleUD, m_deltaAngleUD;
 
 	// movement variables
-	GLdouble m_x, m_y, m_z, m_zLast, m_xLast;
-	GLdouble m_lookX, m_lookY,m_lookZ;
-	GLdouble m_lookXX, m_lookYY, m_lookZZ;
-	GLdouble m_deltaMoveLR;
-	GLdouble m_deltaMoveFB;
-	GLdouble m_deltaMoveUD;
+	/// The position.
+	
+		
+	/// The previous position.
+	GLdouble m_zLast, m_xLast;
+
+	/// The center or where to look at.
+	glm::dvec3 m_look;
+	glm::dvec3 m_lookK; // I don't know what this is yet.
+	/// Delta for movement.
+	GLdouble m_deltaMoveLR, m_deltaMoveFB, m_deltaMoveUD;
+	/// Direction of where the player is going.
 	GLdouble m_direction;
 
 	// Movement speed (step size)
+	/// Speed of which the camera rotates.
 	GLdouble m_rotateSpeed;
+	/// Movement speed.
 	GLdouble m_moveSpeed;
-
 
 	// Helper function for rotation
 	GLdouble degreesToRadians(GLdouble degrees);
@@ -150,42 +153,25 @@ private:
 
 	/**
 	* @brief	Handles W and S key movement of player
-	* 
-	* @param	direction		- true if forwards (W), false if backwards (S)
-	* @pararm	sprint			- true if player sprinting, false if not
-	* 
+	* @param	No param
 	* @return	Void
 	*/
-	void Camera::WSKeyboardMovement(bool direction, bool sprint);
+	void WSKeyboardMovement();
 
 	/**
 	* @brief	Handles A and D key movement of player
-	* 
-	* @param	direction		- true if left (A), false if right (D)
-	* @pararm	sprint			- true if player sprinting, false if not	
-	* 
+	* @param	No param
 	* @return	Void
 	*/
-	void Camera::ADKeyboardMovement(bool direction, bool sprint);
+	void ADKeyboardMovement();
 
+	/**
+	* @brief	Calculates how far down the player has crouched
+	* @param	No param
+	* @return	Void
+	*/
+	void CrouchDistance();
 
-
-	// is it ok to move
-	bool MoveFBOK();
-	bool MoveLROK();
-	bool MoveUDOK();
-	bool RotateLROK();
-	bool LookUDOK();
-
-	// Move around the world
-	void MoveFB(bool direction, bool sprint);
-	void MoveLR(bool direction, bool sprint);
-	void MoveUD();
-
-	// Look around the world
-	void RotateLR();
-	void LookUD();
-	
 	// overloaded function for setting plain
 	void SetPlains(const int & moveX, const int & moveZ);
 
@@ -194,23 +180,25 @@ private:
 	// display new view
 	void callGLLookAt();
 
-	bool m_CollisionDetectionOn;
+	bool m_collisionDetectionOn;
 
-	// objects
+	/// Collision object
 	Collision m_colDetect;
+	/// The map of the camera
 	CameraMap m_map;
-	PlainLinkedList m_Plain;
+	/// PlainVector object
+	PlainVector m_plain;
 
 	// These functions were set up to climb stairs, but are not used.
 	// The Plain object is used instead
-	void ClimbSteps(GLdouble stepStart, GLdouble stepFinish, GLdouble stepHeight, GLdouble stepWidth, int noSteps);
-	void CheckSteps();
+// 	void ClimbSteps(GLdouble stepStart, GLdouble stepFinish, GLdouble stepHeight, GLdouble stepWidth, int noSteps);
+// 	void CheckSteps();
 
 	Audio m_audio;
 
 	//----------------------------------------------------------------------------------
 
-    // Privatised copy constructor and assignment operator
+    // Privatized copy constructor and assignment operator
     Camera (const Camera &cam) {};
     Camera &operator = (const Camera &cam) {};
 };

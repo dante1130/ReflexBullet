@@ -19,7 +19,6 @@
 * and play them.
 * 
 * Future implementations include playing music.
-*
 */
 class Audio
 {
