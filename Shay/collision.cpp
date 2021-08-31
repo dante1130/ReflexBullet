@@ -13,7 +13,8 @@ Collision::Collision()
 
 void Collision::Push(const glm::vec3& max, const glm::vec3& min)
 {
-	m_list[GetQuadrant(max, min)].Push(max, min);
+	GetQuadrant(max, min);
+	//m_list[GetQuadrant(max, min)].Push(max, min);
 }
 
 void Collision::SetWorldX(const double& tempX)
@@ -33,7 +34,7 @@ void Collision::SetWorldZ(const double& tempZ)
 //  I kept the array has it allows for the data to be copied into the list in any reuired 
 //  order.
 //--------------------------------------------------------------------------------------
-int Collision::GetQuadrant(const glm::vec3& max, const glm::vec3& min)
+void Collision::GetQuadrant(const glm::vec3& max, const glm::vec3& min)
 {
 	// 1st quadrant
 	if (((min.x <= m_worldSizeX / 2.0) || (max.x <= m_worldSizeX / 2.0)) &&
@@ -59,16 +60,6 @@ int Collision::GetQuadrant(const glm::vec3& max, const glm::vec3& min)
 	{
 		m_list[3].Push(max, min);
 	}
-}
-
-void Collision::SetWorldX(double tempX)
-{
-	m_worldSizeX = tempX;
-}
-
-void Collision::SetWorldZ(double tempZ)
-{
-	m_worldSizeZ = tempZ;
 }
 
 //--------------------------------------------------------------------------------------

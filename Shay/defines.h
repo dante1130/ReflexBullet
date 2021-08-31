@@ -34,9 +34,10 @@ constexpr auto YZ_FLIP = 3;
 constexpr auto XY_FLIP = 4;
 
 // PLAIN TYPES
-constexpr auto FLAT_PLAIN	= 0;
-constexpr auto XY_PLAIN		= 1;
-constexpr auto ZY_PLAIN		= 2;
+constexpr auto FLAT_PLAIN					= 0;
+constexpr auto XY_PLAIN						= 1;
+constexpr auto ZY_PLAIN						= 2;
+constexpr auto DIAGONAL_FLAT_PLAIN			= 3;
 
 // TEXTURES
 // Grass Textures

@@ -447,9 +447,9 @@ void DisplayExtraArea::DisplayWaltersResturant()
 	glVertex3f(-3386.44, 10000.0, 2875);
 	glTexCoord2f(1, 0);
 	glVertex3f(-4346.44, 10000.0, 2875);
-	glTexCoord2f(1, 30);
+	glTexCoord2f(1, 10);
 	glVertex3f(-4346.44, 10000.0, 8500);
-	glTexCoord2f(0.0, 30);
+	glTexCoord2f(0.0, 10);
 	glVertex3f(-3386.44, 10000.0, 8500);
 	glEnd();
 

@@ -36,14 +36,14 @@ public:
 	 * @param tempX double
 	 * @return void
 	 */
-	void SetWorldX(double tempX);
+	void SetWorldX(const double& tempX);
 
 	/**
 	 * @brief Sets the actual world co-ordinates Z
 	 * @param tempZ double
 	 * @return void
 	 */
-	void SetWorldZ(double tempZ);
+	void SetWorldZ(const double& tempZ);
 
 	//----------------------------------------------------------------------------------
 	//  Returns Methods
@@ -55,6 +55,7 @@ public:
 	 * @return bool
 	 */
 	bool Collide(const glm::dvec3& end);
+
 
 private:
 	/// vectors to store bounding box data in each quadrant
@@ -70,6 +71,8 @@ private:
 	 * @return bool
 	 */
 	bool CheckCollision(int index, const glm::dvec3& end);
+
+	void GetQuadrant(const glm::vec3& max, const glm::vec3& min);
 };
 
 #endif
