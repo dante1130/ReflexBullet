@@ -44,7 +44,6 @@ bool displayECL = true;
 // objects
 Camera cam;
 
-
 // initializes setting
 void myinit();
 
@@ -121,6 +120,8 @@ void myinit()
 	gluQuadricTexture(glu_cylinder, GL_TRUE);
 
 	readObjFile("data/object/Environment.obj", EnvironmentOBJ);
+	readObjFile("data/object/smallTable.obj", SmallTableOBJ);
+	readObjFile("data/object/bigTable.obj", BigTableOBJ);
 
 	// set the world co-ordinates (used to set quadrants for bounding boxes)
 	cam.SetWorldCoordinates(36000.0, 43200.0);
@@ -236,47 +237,47 @@ void keys(unsigned char key, int x, int y)
 		break;
 
 	case 'x':
-		std::cout << cam.m_pos.x << " " << cam.m_pos.z << std::endl;
+		cam.PrintPos();
 		break;
 
-	// move forwards
+		// move forwards
 	case 'W':
 	case 'w':
 		cam.DirectionFB(1);
 		break;
 
-	// move backwards
+		// move backwards
 	case 'S':
 	case 's':
 		cam.DirectionFB(-1);
 		break;
-		
-	// step left
+
+		// step left
 	case 'A':
 	case 'a':
 	case 1:
 		cam.DirectionLR(-1);
 		break;
 
-	// step right
+		// step right
 	case 'D':
 	case 'd':
 	case 4:
 		cam.DirectionLR(1);
 		break;
-	
-	// display campus map
+
+		// display campus map
 	case 'm':
 	case 'M':
 		DisplayMap = !DisplayMap;
 		break;
 
-	// exit tour (escape key)
+		// exit tour (escape key)
 	case 27:
 		glutSetCursor(GLUT_CURSOR_RIGHT_ARROW);
 		DisplayExit = true;
 		break;
-	
+
 	case 'c':
 	case 'C':
 	case ' ':
@@ -286,6 +287,7 @@ void keys(unsigned char key, int x, int y)
 	case 'p':
 	case 'P':
 		paused = !paused;
+		glutWarpPointer(width / 2, height / 2);
 		if (paused)
 		{
 			DisplayWelcome = true;
@@ -297,12 +299,12 @@ void keys(unsigned char key, int x, int y)
 		{
 			DisplayWelcome = false;
 			glutSetCursor(GLUT_CURSOR_NONE);
-			glutWarpPointer(width / 2, height / 2);
 			glutPassiveMotionFunc(mouseMove);
 			glutMotionFunc(mouseMove);
 		}
 		break;
 	}
+	
 }
 
 //--------------------------------------------------------------------------------------
@@ -379,16 +381,16 @@ void CreateBoundingBoxes()
 	cam.AddAABB(glm::vec3(35879, 0, 27559), glm::vec3(34256, 0, 26752)); // phy sci block 1st doorway
 	cam.AddAABB(glm::vec3(35879, 0, 36319), glm::vec3(33808, 0, 27559)); // phy sci block 2nd panel
 	cam.AddAABB(glm::vec3(35879, 0, 37855), glm::vec3(34260, 0, 36319)); // phy sci block 2nd doorway
-	cam.AddAABB(glm::vec3(35879, 0, 41127.0), glm::vec3(33808.0, 0, 37855)); // phy sci block 3rd panel
-	cam.AddAABB(glm::vec3(35879, 0, 25344.0), glm::vec3(34704, 0, 24996)); // drinks machine
+	cam.AddAABB(glm::vec3(35879, 0, 41127), glm::vec3(33808.0, 0, 37855)); // phy sci block 3rd panel
+	cam.AddAABB(glm::vec3(35879, 0, 25344), glm::vec3(34704, 0, 24996)); // drinks machine
 	cam.AddAABB(glm::vec3(33808, 0, 4688), glm::vec3(0, 0, 0)); // bottom of steps
 	cam.AddAABB(glm::vec3(35879, 0, 43056), glm::vec3(41127, 0, 34320)); // end of phy sci block exit (top of steps)
 	cam.AddAABB(glm::vec3(34320, 0, 50000), glm::vec3(6514, 0, 43036)); // library end panel
 	cam.AddAABB(glm::vec3(28104, 0, 43046), glm::vec3(25608, 0, 42754)); // KBLT
 	cam.AddAABB(glm::vec3(2608, 0, 49046), glm::vec3(-10, 0, 9990)); // Canteen block
-	cam.AddAABB(glm::vec3(33892, 0, 25344.0), glm::vec3(33872, 0, 25173)); // Telephones
-	cam.AddAABB(glm::vec3(34277, 0, 25344.0), glm::vec3(34157, 0, 25173)); // Telephones
-	cam.AddAABB(glm::vec3(35462, 0, 25344.0), glm::vec3(34541, 0, 25173)); // Telephones
+	cam.AddAABB(glm::vec3(33892, 0, 25344), glm::vec3(33872, 0, 25173)); // Telephones
+	cam.AddAABB(glm::vec3(34277, 0, 25344), glm::vec3(34157, 0, 25173)); // Telephones
+	cam.AddAABB(glm::vec3(35462, 0, 25344), glm::vec3(34541, 0, 25173)); // Telephones
 	cam.AddAABB(glm::vec3(31548, 0, 10395), glm::vec3(31444, 0, 4590)); // Wall by Steps
 	cam.AddAABB(glm::vec3(2608, 0, 8540), glm::vec3(-4644, 0, 0)); //Walters restaurant
 	cam.AddAABB(glm::vec3(34520, 0, 43193), glm::vec3(34130, 0, 41136)); //No modelling area sign
@@ -426,6 +428,8 @@ void CreateBoundingBoxesExtendedArea()
 
 	//Left side of main stair plant area
 	cam.AddAABB(glm::vec3(-4350, 0, 10600), glm::vec3(-7780, 0, 9840));
+
+	cam.AddAABB(glm::vec3(-15993.94, 0, 6610.63), glm::vec3(-18386.44, 0, 4036.9)); //far back diagonal 1.1
 
 	//Side area of main stairs
 	cam.AddAABB(glm::vec3(-2346, 0, 8500), glm::vec3(-5174, 0, 8275)); //First barrier off to right of stairs

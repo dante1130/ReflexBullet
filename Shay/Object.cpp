@@ -1,9 +1,7 @@
 #include "Object.h"
 
 Object3D::Object3D()
-{
-	textureFile = "No name assigned!";
-}
+	: vertices(), texCoord(), faces(), textureFile("No name assigned!") {}
 
 Object3D::~Object3D()
 {
@@ -83,7 +81,7 @@ void Object3D::DisplayObject(int textureID)
 		{
 			unsigned temp_v = GetFace(i)[j].v - 1;
 			unsigned temp_vt = GetFace(i)[j].vt - 1;
-			glTexCoord2f(GetCoord(temp_vt).x, GetCoord(temp_vt).y);
+			glTexCoord2f(GetCoord(temp_vt).x, 1 - GetCoord(temp_vt).y);
 			glVertex3f((GetVertex(temp_v).x * 300), (GetVertex(temp_v).y * 300), (GetVertex(temp_v).z * 300));
 		}
 		glEnd();

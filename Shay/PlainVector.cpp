@@ -24,32 +24,32 @@ void PlainVector::Push (const GLint tempType, const glm::vec3& tempStart, const 
 
 //--------------------------------------------------------------------------------------
 
-GLint PlainVector::GetType(int ptrCount) const
+GLint PlainVector::GetType(int index) const
 {
-	return m_plains[ptrCount].m_type;
+	return m_plains[index].m_type;
 }
 
 //--------------------------------------------------------------------------------------
 
-const glm::vec3& PlainVector::GetStart(int ptrCount) const
+const glm::vec3& PlainVector::GetStart(int index) const
 {
-	return m_plains[ptrCount].m_plainStart;
+	return m_plains[index].m_plainStart;
 }
 
 //--------------------------------------------------------------------------------------
 
-const glm::vec3& PlainVector::GetEnd(int ptrCount) const
+const glm::vec3& PlainVector::GetEnd(int index) const
 {
-	return m_plains[ptrCount].m_plainEnd;
+	return m_plains[index].m_plainEnd;
 }
 
 //--------------------------------------------------------------------------------------
 
-void PlainVector::SetData(const int ptrCount, const GLint tempType, const glm::vec3& tempStart, const glm::vec3& tempEnd)
+void PlainVector::SetData(int index, const GLint type, const glm::vec3& start, const glm::vec3& end)
 {
-	m_plains[ptrCount].m_type = tempType;
-	m_plains[ptrCount].m_plainStart = tempStart;
-	m_plains[ptrCount].m_plainEnd = tempEnd;
+	m_plains[index].m_type = type;
+	m_plains[index].m_plainStart = start;
+	m_plains[index].m_plainEnd = end;
 }
 
 //--------------------------------------------------------------------------------------

@@ -38,23 +38,23 @@ public:
 	/**
 	 * @brief Pushes new plain into the vector
 	 * 
-	 * @param tempType const GLint
-	 * @param tempStart const glm::vec3&
-	 * @param tempEnd const glm::vec3&
+	 * @param type GLint
+	 * @param start const glm::vec3&
+	 * @param end const glm::vec3&
 	 * @return void
 	 */
-	void Push(const GLint tempType, const glm::vec3& tempStart, const glm::vec3& tempEnd);
+	void Push(GLint type, const glm::vec3& start, const glm::vec3& end);
 
 	/**
 	 * @brief Set the values of the data at an index
 	 * 
-	 * @param ptrCount const int
-	 * @param tempType const GLint
-	 * @param tempStart const glm::vec3&
-	 * @param tempEnd const glm::vec3&
+	 * @param index int
+	 * @param type GLint
+	 * @param start const glm::vec3&
+	 * @param end const glm::vec3&
 	 * @return void
 	 */
-	void SetData(const int ptrCount, const GLint tempType, const glm::vec3& tempStart, const glm::vec3& tempEnd);
+	void SetData(int index, GLint type, const glm::vec3& start, const glm::vec3& end);
 
 	//----------------------------------------------------------------------------------
 	//  Get Methods
@@ -62,29 +62,29 @@ public:
 	/**
 	 * @brief Get the Type
 	 * 
-	 * @param ptrCount int
+	 * @param index int
 	 * @return GLint 
 	 */
-	GLint GetType(int ptrCount) const;
+	GLint GetType(int index) const;
 
 	/**
 	 * @brief Get the starting X coordinates.
 	 * 
-	 * @param ptrCount int
+	 * @param index int
 	 * @return GLdouble 
 	 */
-	const glm::vec3& GetStart(int ptrCount) const;
+	const glm::vec3& GetStart(int index) const;
 
 	/**
 	 * @brief Get the ending X coordinates.
 	 * 
-	 * @param ptrCount int
+	 * @param index int
 	 * @return GLdouble 
 	 */
-	const glm::vec3& GetEnd(int ptrCount) const;
+	const glm::vec3& GetEnd(int index) const;
 
 	/**
-	 * @brief Return size of list
+	 * @brief Return size of vector
 	 * 
 	 * @return int 
 	 */

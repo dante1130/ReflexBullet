@@ -8,8 +8,8 @@
 #include "Object.h"
 
 extern Object3D EnvironmentOBJ;
-
-
+extern Object3D SmallTableOBJ;
+extern Object3D BigTableOBJ;
 
 namespace DisplayExtraArea
 {
@@ -110,9 +110,6 @@ namespace DisplayExtraArea
 	* @return	Void
 	*/
 	void LeftOfStairs7ROW();
-
-
-
 }
 
 
