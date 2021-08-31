@@ -42,19 +42,20 @@ int Collision::GetQuadrant(const glm::vec3& max, const glm::vec3& min)
 		return 0;
 	}
 	// 2nd quadrant
-	else if (((min.x <= m_worldSizeX / 2.0) || (max.x <= m_worldSizeX / 2.0)) &&
+	
+	if (((min.x <= m_worldSizeX / 2.0) || (max.x <= m_worldSizeX / 2.0)) &&
 			 ((min.z >= m_worldSizeZ / 2.0) || (max.z >= m_worldSizeZ / 2.0)))
 	{
 		return 1;
 	}
 	// 3rd quadrant
-	else if (((min.x >= m_worldSizeX / 2.0) || (max.x >= m_worldSizeX / 2.0)) &&
+	if (((min.x >= m_worldSizeX / 2.0) || (max.x >= m_worldSizeX / 2.0)) &&
 			 ((min.z <= m_worldSizeZ / 2.0) || (max.z <= m_worldSizeZ / 2.0)))
 	{
 		return 2;
 	}
 	// 4th quadrant
-	else if (((min.x >= m_worldSizeX / 2.0) || (max.x >= m_worldSizeX / 2.0)) &&
+	if (((min.x >= m_worldSizeX / 2.0) || (max.x >= m_worldSizeX / 2.0)) &&
 			 ((min.z >= m_worldSizeZ / 2.0) || (max.z >= m_worldSizeZ / 2.0)))
 	{
 		return 3;

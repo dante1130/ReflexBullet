@@ -36,9 +36,10 @@ constexpr auto FRAMETIME = 1000/60;
 #define XY_FLIP 4
 
 // PLAIN TYPES
-#define FLAT_PLAIN	0
-#define XY_PLAIN	1
-#define ZY_PLAIN	2
+#define FLAT_PLAIN				0
+#define XY_PLAIN				1
+#define ZY_PLAIN				2
+#define DIAGONAL_FLAT_PLAIN		3
 
 // TEXTURES
 // Grass Textures

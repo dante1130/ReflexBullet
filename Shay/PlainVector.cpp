@@ -22,6 +22,19 @@ void PlainVector::Push (const GLint tempType, const glm::vec3& tempStart, const 
 	m_plains.push_back(newPlain);
 }
 
+void PlainVector::Push(const GLint tempType, const glm::vec3& t1, const glm::vec3& t2, const glm::vec3& t3, const glm::vec3& t4)
+{
+	Plain newPlain;
+
+	newPlain.m_type = tempType;
+	newPlain.m_plainStart = t1;
+	newPlain.m_plainEnd = t3;
+	newPlain.q2 = t2;
+	newPlain.q4 = t4;
+
+	m_plains.push_back(newPlain);
+}
+
 //--------------------------------------------------------------------------------------
 
 GLint PlainVector::GetType(int ptrCount) const
@@ -41,6 +54,16 @@ const glm::vec3& PlainVector::GetStart(int ptrCount) const
 const glm::vec3& PlainVector::GetEnd(int ptrCount) const
 {
 	return m_plains[ptrCount].m_plainEnd;
+}
+
+const glm::vec3& PlainVector::GetQ2(int ptrCount) const
+{
+	return m_plains[ptrCount].q2;
+}
+
+const glm::vec3& PlainVector::GetQ4(int ptrCount) const
+{
+	return m_plains[ptrCount].q4;
 }
 
 //--------------------------------------------------------------------------------------

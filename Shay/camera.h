@@ -57,6 +57,17 @@ public:
 	// sets the co-ordinate of each plain
 	void AddPlain(const GLint tempType, const glm::vec3& tempStart, const glm::vec3& tempEnd);
 
+	/**
+	* @brief	Used diagonal plains (only flat implemented)
+	* @brief	tempType	- The type of plain implemented
+	* @param	t1			- First quardinate
+	* @param	t2			- Second quardinate
+	* @param	t3			- Third quardinate
+	* @param	t4			- Fourth quardinate
+	* @return	Void
+	*/
+	void Camera::AddPlain(const GLint tempType, const glm::vec3& t1, const glm::vec3& t2, const glm::vec3& t3, const glm::vec3& t4);
+
 	//----------------------------------------------------------------------------------
 	//  Get Methods
 	//----------------------------------------------------------------------------------
@@ -150,6 +161,13 @@ private:
 	// Helper function for rotation
 	GLdouble degreesToRadians(GLdouble degrees);
 	
+	/**
+	* @brief	Finds the area of a triangle between the players coordinates and points on plain
+	* @param	edgeNo	- Which edge you are one. E.g., first point - q2 is 1, q2 - end point is 2 etc.
+	* @param	i		- The plains that you are testing
+	* @return	GLdouble - area of triangle
+	*/
+	GLdouble Camera::AreaPlainTriangle(int edgeNo, int i);
 
 	/**
 	* @brief	Handles W and S key movement of player
