@@ -39,27 +39,36 @@ int Collision::GetQuadrant(const glm::vec3& max, const glm::vec3& min)
 	if (((min.x <= m_worldSizeX / 2.0) || (max.x <= m_worldSizeX / 2.0)) &&
 		((min.z <= m_worldSizeZ / 2.0) || (max.z <= m_worldSizeZ / 2.0)))
 	{
-		return 0;
+		m_list[0].Push(max, min);
 	}
 	// 2nd quadrant
-	
 	if (((min.x <= m_worldSizeX / 2.0) || (max.x <= m_worldSizeX / 2.0)) &&
-			 ((min.z >= m_worldSizeZ / 2.0) || (max.z >= m_worldSizeZ / 2.0)))
+		((min.z >= m_worldSizeZ / 2.0) || (max.z >= m_worldSizeZ / 2.0)))
 	{
-		return 1;
+		m_list[1].Push(max, min);
 	}
 	// 3rd quadrant
 	if (((min.x >= m_worldSizeX / 2.0) || (max.x >= m_worldSizeX / 2.0)) &&
-			 ((min.z <= m_worldSizeZ / 2.0) || (max.z <= m_worldSizeZ / 2.0)))
+		((min.z <= m_worldSizeZ / 2.0) || (max.z <= m_worldSizeZ / 2.0)))
 	{
-		return 2;
+		m_list[2].Push(max, min);
 	}
 	// 4th quadrant
 	if (((min.x >= m_worldSizeX / 2.0) || (max.x >= m_worldSizeX / 2.0)) &&
-			 ((min.z >= m_worldSizeZ / 2.0) || (max.z >= m_worldSizeZ / 2.0)))
+		((min.z >= m_worldSizeZ / 2.0) || (max.z >= m_worldSizeZ / 2.0)))
 	{
-		return 3;
+		m_list[3].Push(max, min);
 	}
+}
+
+void Collision::SetWorldX(double tempX)
+{
+	m_worldSizeX = tempX;
+}
+
+void Collision::SetWorldZ(double tempZ)
+{
+	m_worldSizeZ = tempZ;
 }
 
 //--------------------------------------------------------------------------------------

@@ -69,7 +69,7 @@ public:
 	const glm::vec3& GetMin(int index) const;
 	
 	/**
-	 * @brief Return size of list
+	 * @brief Return size of vector
 	 * @return int 
 	 */
 	int Size() const;

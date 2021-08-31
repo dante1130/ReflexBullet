@@ -25,9 +25,6 @@
 class Camera
 {
 public:
-
-	glm::dvec3 m_pos;
-
 	Camera();
 
 	/**
@@ -35,14 +32,17 @@ public:
 	* @return	void
 	*/
 	void KeyboardMovement();
+
+	void AddAABB(const glm::vec3& max, const glm::vec3& min);
+
+	void PrintPos()
+	{
+		std::cout << m_pos.x << " " << m_pos.y << " " << m_pos.z << std::endl;
+	}
 	
 	//----------------------------------------------------------------------------------
 	//  Set Methods
 	//----------------------------------------------------------------------------------
-	// sets initial value for bounding boxes (in the array AABB)
-
-	void AddAABB(const glm::vec3& max, const glm::vec3& min);
-
 	// set step and rotation size
 	void SetRotateSpeed (const GLdouble &tempSpeed);
 	void SetMoveSpeed (const GLdouble &tempSpeed);
@@ -113,6 +113,8 @@ public:
 	void SetCameraLocation(float x, float y, float z);
 
 private:
+	bool m_firstMouse;
+
 	/// If the player is crouching or not
 	bool crouch;
 	/// The current crouch depth
@@ -139,7 +141,7 @@ private:
 
 	// movement variables
 	/// The position.
-	
+	glm::dvec3 m_pos;
 		
 	/// The previous position.
 	GLdouble m_zLast, m_xLast;

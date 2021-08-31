@@ -686,7 +686,6 @@ void CreateTextures()
 	image = tp.LoadTexture("data/thanks.raw", 512, 512);
 	tp.CreateTexture(219, image, 512, 512);
 
-
 	image = tp.LoadTexture("data/object/tetris.raw", 562, 499);
 	tp.CreateTexture(TEXT_ENVIRONMENT, image, 562, 499);
 
@@ -699,6 +698,11 @@ void CreateTextures()
 	image = tp.LoadTexture("data/Drain.raw", 256, 256);
 	tp.CreateTexture(DRAIN, image, 256, 256);
 
+	image = tp.LoadTexture("data/smallTable.raw", 225, 225);
+	tp.CreateTexture(SMALL_TABLE, image, 225, 225);
+
+	image = tp.LoadTexture("data/bigTable.raw", 4032, 3024);
+	tp.CreateTexture(BIG_TABLE, image, 4032, 3024);
 
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);

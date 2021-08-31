@@ -1,24 +1,142 @@
 #include "DisplayEXTRAShaysWorld.h"
 
-//The main environment object
+// The main environment object
 Object3D EnvironmentOBJ;
-
+// Small table object
+Object3D SmallTableOBJ;
+// Big table object
+Object3D BigTableOBJ;
 
 void DisplayExtraArea::DisplayExtension()
 {
-	//Object test
+	// Environment
 	glPushMatrix();
+		glTranslatef(2613.56, 10000, 9250);
+		glRotatef(180, 0, 1, 0);
+		EnvironmentOBJ.DisplayObject(TEXT_ENVIRONMENT);
+	glPopMatrix();
 
-	glTranslatef(2613.56, 10000, 9250);
-	glRotatef(180, 0, 1, 0);
+	// Small tables
+	glPushMatrix();
+		glTranslatef(-12088, 9000, 3445.9);
+		glRotatef(45, 0, 1, 0);
+		SmallTableOBJ.DisplayObject(SMALL_TABLE);
+	glPopMatrix();
 
-	EnvironmentOBJ.DisplayObject(TEXT_ENVIRONMENT);
+	glPushMatrix();
+		glTranslatef(-13467.5, 9000, 3110.74);
+		glRotatef(45, 0, 1, 0);
+		SmallTableOBJ.DisplayObject(SMALL_TABLE);
+	glPopMatrix();
 
+	glPushMatrix();
+		glTranslatef(-10847.4, 9000, 7313.37);
+		SmallTableOBJ.DisplayObject(SMALL_TABLE);
+
+		glPushMatrix();
+		glTranslatef(255, 0, 0);
+		SmallTableOBJ.DisplayObject(SMALL_TABLE);
+		glPopMatrix();
+
+		glTranslatef(-255, 0, 0);
+		SmallTableOBJ.DisplayObject(SMALL_TABLE);
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(-11750, 9000, 7313.37);
+		SmallTableOBJ.DisplayObject(SMALL_TABLE);
+
+		glPushMatrix();
+		glTranslatef(-255, 0, 0);
+		SmallTableOBJ.DisplayObject(SMALL_TABLE);
+		glPopMatrix();
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(-9186.56, 9000, 5800);
+		SmallTableOBJ.DisplayObject(SMALL_TABLE);
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(-9186.56, 9000, 6300);
+		SmallTableOBJ.DisplayObject(SMALL_TABLE);
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(-9186.56, 9000, 6800);
+		SmallTableOBJ.DisplayObject(SMALL_TABLE);
+
+		glTranslatef(255, 0, 0);
+		SmallTableOBJ.DisplayObject(SMALL_TABLE);
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(-9186.56, 9000, 7300);
+		SmallTableOBJ.DisplayObject(SMALL_TABLE);
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(-9186.56, 9000, 7800);
+		SmallTableOBJ.DisplayObject(SMALL_TABLE);
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(-10000, 9000, 7900);
+		SmallTableOBJ.DisplayObject(SMALL_TABLE);
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(-10000, 9000, 6300);
+		SmallTableOBJ.DisplayObject(SMALL_TABLE);
+
+		glTranslatef(-255, 0, 0);
+		SmallTableOBJ.DisplayObject(SMALL_TABLE);
+
+		glTranslatef(0, 0, 255);
+		SmallTableOBJ.DisplayObject(SMALL_TABLE);
+
+		glTranslatef(255, 0, 0);
+		SmallTableOBJ.DisplayObject(SMALL_TABLE);
+		
+		glTranslatef(0, 0, 255);
+		SmallTableOBJ.DisplayObject(SMALL_TABLE);
+
+		glTranslatef(-255, 0, 0);
+		SmallTableOBJ.DisplayObject(SMALL_TABLE);
+	glPopMatrix();
+
+	// Big tables
+	glPushMatrix();
+		glTranslatef(-13742, 9000, 8645.51);
+		BigTableOBJ.DisplayObject(BIG_TABLE);
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(-12806.5, 9000, 8645.51);
+		BigTableOBJ.DisplayObject(BIG_TABLE);
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(-11871, 9000, 8645.51);
+		BigTableOBJ.DisplayObject(BIG_TABLE);
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(-10935.5, 9000, 8645.51);
+		BigTableOBJ.DisplayObject(BIG_TABLE);
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(-10000, 9000, 8645.51);
+		BigTableOBJ.DisplayObject(BIG_TABLE);
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(-8324.03, 9000, 5121.88);
+		BigTableOBJ.DisplayObject(BIG_TABLE);
 	glPopMatrix();
 
 	DisplayNonBlendObjects();
-
-	return;
 }
 
 void DisplayExtraArea::DisplayNonBlendObjects()

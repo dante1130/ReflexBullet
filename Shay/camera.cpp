@@ -15,6 +15,8 @@
 //--------------------------------------------------------------------------------------
 Camera::Camera()
 {
+	m_firstMouse = true;
+
 	crouch = false;
 	crouchDepth = 0.0;
 
@@ -227,6 +229,13 @@ void Camera::DirectionUD(int const & tempMove)
 //----------------------------------------------------------------------------------------
 void Camera::MouseMove(int x, int y)
 {
+	if (m_firstMouse)
+	{
+		m_prev.x = 103.55;
+		m_prev.y = y;
+		m_firstMouse = false;
+	}
+		
 	// calculate delta by offsetting it with the previous x and y values with new values
 	m_deltaAngleLR = x - m_prev.x;
 	m_deltaAngleUD = m_prev.y - y;
@@ -252,9 +261,9 @@ void Camera::MouseMove(int x, int y)
 	int winW = glutGet(GLUT_WINDOW_WIDTH);
 	int winH = glutGet(GLUT_WINDOW_HEIGHT);
 
-	m_prev.x = winW / 2;   
+	m_prev.x = winW / 2;
 	m_prev.y = winH / 2;
-	glutWarpPointer(winW / 2, winH / 2);  //centers the cursor
+	glutWarpPointer(m_prev.x, m_prev.y);  //centers the cursor
 
 	callGLLookAt();
 }
