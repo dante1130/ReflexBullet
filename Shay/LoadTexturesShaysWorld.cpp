@@ -704,7 +704,7 @@ void CreateTextures()
 	image = tp.LoadTexture("data/bigTable.raw", 4032, 3024);
 	tp.CreateTexture(BIG_TABLE, image, 4032, 3024);
 
-	image = tp.LoadTexture("data/bigTable.raw", 1026, 1026);
+	image = tp.LoadTexture("data/concreteWall.raw", 1026, 1026);
 	tp.CreateTexture(CONCRETE_WALL, image, 1026, 1026);
 
 	image = tp.LoadTexture("data/umbrella.raw", 1024, 1024);

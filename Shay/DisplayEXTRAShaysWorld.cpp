@@ -92,7 +92,7 @@ void DisplayExtraArea::DisplayExtension()
 		SmallTableOBJ.DisplayObject(SMALL_TABLE);
 
 		glTranslatef(-255, 0, 0);
-		SmallTableOBJ.DisplayObject(SMALL_TABLE);
+		SmallTableOBJ.DisplayObject(SMALL_TABLE); 
 
 		glTranslatef(0, 0, 255);
 		SmallTableOBJ.DisplayObject(SMALL_TABLE);
@@ -104,6 +104,11 @@ void DisplayExtraArea::DisplayExtension()
 		SmallTableOBJ.DisplayObject(SMALL_TABLE);
 
 		glTranslatef(-255, 0, 0);
+		SmallTableOBJ.DisplayObject(SMALL_TABLE);
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(-15306, 9150, 4200);
 		SmallTableOBJ.DisplayObject(SMALL_TABLE);
 	glPopMatrix();
 
@@ -141,6 +146,11 @@ void DisplayExtraArea::DisplayExtension()
 	// Umbrella
 	glPushMatrix();
 		glTranslatef(-9800, 9000, 8645.51);
+		UmbrellaOBJ.DisplayObject(UMBRELLA);
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(-11671, 9000, 8645.51);
 		UmbrellaOBJ.DisplayObject(UMBRELLA);
 	glPopMatrix();
 
