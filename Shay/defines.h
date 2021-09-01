@@ -295,8 +295,9 @@ constexpr auto DRAIN						= 226;
 constexpr auto SMALL_TABLE					= 227;
 constexpr auto BIG_TABLE					= 228;
 constexpr auto CONCRETE_WALL				= 229;
+constexpr auto UMBRELLA						= 230;
 
-constexpr auto TEXTURE_END					= 230;
-// 230 Next
+constexpr auto TEXTURE_END					= 240;
+// 231 Next
 
 #endif

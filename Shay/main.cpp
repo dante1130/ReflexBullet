@@ -59,6 +59,9 @@ void mouseMove(int x, int y);
 
 void IncrementFrameCount();
 
+// Loads obj files from data/objects
+void loadObjFiles();
+
 // creates bounding boxes for collision detection
 void CreateBoundingBoxes();
 
@@ -68,6 +71,11 @@ void CreateBoundingBoxesPillar();
 // creates different plains
 void CreatePlains();
 
+/**
+* @brief	Handles all the render steps for the program - still needs work, barebones right now
+* @param	val - Currently unused, needed it for glutTimerFunc
+* @return	Void
+*/
 void RenderLoop(int val); // The main render loop
 
 void CreateBoundingBoxesExtendedArea(); // Does all the bounding boxes for the extended area
@@ -119,9 +127,7 @@ void myinit()
 	glu_cylinder = gluNewQuadric();
 	gluQuadricTexture(glu_cylinder, GL_TRUE);
 
-	readObjFile("data/object/Environment.obj", EnvironmentOBJ);
-	readObjFile("data/object/smallTable.obj", SmallTableOBJ);
-	readObjFile("data/object/bigTable.obj", BigTableOBJ);
+	loadObjFiles();
 
 	// set the world co-ordinates (used to set quadrants for bounding boxes)
 	cam.SetWorldCoordinates(36000.0, 43200.0);
@@ -143,11 +149,14 @@ void myinit()
 	cam.SetRotateSpeed(angleIncrement * rotationSpeed);
 }
 
-/**
-* @brief	Handles all the render steps for the program - still needs work, barebones right now
-* @param	val - Currently unused, needed it for glutTimerFunc
-* @return	Void
-*/
+void loadObjFiles()
+{
+	readObjFile("data/object/Environment.obj", EnvironmentOBJ);
+	readObjFile("data/object/smallTable.obj", SmallTableOBJ);
+	readObjFile("data/object/bigTable.obj", BigTableOBJ);
+	readObjFile("data/object/umbrella.obj", UmbrellaOBJ);
+}
+
 void RenderLoop(int val)
 {
 	glutTimerFunc(FRAMETIME, RenderLoop, 0);
@@ -287,7 +296,6 @@ void keys(unsigned char key, int x, int y)
 	case 'p':
 	case 'P':
 		paused = !paused;
-		glutWarpPointer(width / 2, height / 2);
 		if (paused)
 		{
 			DisplayWelcome = true;
@@ -301,6 +309,7 @@ void keys(unsigned char key, int x, int y)
 			glutSetCursor(GLUT_CURSOR_NONE);
 			glutPassiveMotionFunc(mouseMove);
 			glutMotionFunc(mouseMove);
+			glutWarpPointer(width / 2, height / 2);
 		}
 		break;
 	}
@@ -475,6 +484,9 @@ void CreateBoundingBoxesExtendedArea()
 
 	cam.AddAABB(glm::vec3(-7286, 0, 2050), glm::vec3(-7688, 0, 1000));
 	cam.AddAABB(glm::vec3(-6386, 0, 1750), glm::vec3(-7286, 0, 1000));
+
+	// Small table
+	cam.AddAABB(glm::vec3(-9851.94, 0, 8061.17), glm::vec3(-10171.3, 0, 7750.4));
 
 }
 

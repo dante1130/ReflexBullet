@@ -6,6 +6,8 @@ Object3D EnvironmentOBJ;
 Object3D SmallTableOBJ;
 // Big table object
 Object3D BigTableOBJ;
+// Umbrella object
+Object3D UmbrellaOBJ;
 
 void DisplayExtraArea::DisplayExtension()
 {
@@ -117,7 +119,7 @@ void DisplayExtraArea::DisplayExtension()
 	glPopMatrix();
 
 	glPushMatrix();
-		glTranslatef(-11871, 9000, 8645.51);
+		glTranslatef(-11871, 9000, 8645.51);s
 		BigTableOBJ.DisplayObject(BIG_TABLE);
 	glPopMatrix();
 
@@ -134,6 +136,12 @@ void DisplayExtraArea::DisplayExtension()
 	glPushMatrix();
 		glTranslatef(-8324.03, 9000, 5121.88);
 		BigTableOBJ.DisplayObject(BIG_TABLE);
+	glPopMatrix();
+
+	// Umbrella
+	glPushMatrix();
+		glTranslatef(-9800, 9000, 8645.51);
+		UmbrellaOBJ.DisplayObject(UMBRELLA);
 	glPopMatrix();
 
 	DisplayNonBlendObjects();
