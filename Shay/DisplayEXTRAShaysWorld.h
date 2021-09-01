@@ -29,6 +29,13 @@ namespace DisplayExtraArea
 	void DisplayNonBlendObjects();
 
 	/**
+	* @brief	Displays all the main images for the boundary walls
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayEdgeWallEnvironmentPicutres();
+
+	/**
 	* @brief	Adds features to fix the entrance to the extended area
 	* @param	No param
 	* @return	Void

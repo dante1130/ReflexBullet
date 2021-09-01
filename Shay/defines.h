@@ -297,7 +297,15 @@ constexpr auto BIG_TABLE					= 228;
 constexpr auto CONCRETE_WALL				= 229;
 constexpr auto UMBRELLA						= 230;
 
+constexpr auto EDGE_WALL_TOILETS			= 231;
+constexpr auto EDGE_WALL_FAR_BACK			= 232;
+constexpr auto EDGE_WALL_LEFT_DIAGONAL		= 233;
+constexpr auto EDGE_WALL_RIGHT_DIAGONAL		= 234;
+constexpr auto EDGE_WALL_RIGHT				= 4;
+constexpr auto EDGE_WALL_CLOSE_RIGHT			= 4;
+
+
 constexpr auto TEXTURE_END					= 240;
-// 231 Next
+// 235 Next
 
 #endif

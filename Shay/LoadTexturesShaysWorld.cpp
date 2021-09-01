@@ -704,11 +704,24 @@ void CreateTextures()
 	image = tp.LoadTexture("data/bigTable.raw", 4032, 3024);
 	tp.CreateTexture(BIG_TABLE, image, 4032, 3024);
 
-	image = tp.LoadTexture("data/bigTable.raw", 1026, 1026);
-	tp.CreateTexture(CONCRETE_WALL, image, 1026, 1026);
+	image = tp.LoadTexture("data/concreteWall.raw", 1024, 1024);
+	tp.CreateTexture(CONCRETE_WALL, image, 1024, 1024);
 
 	image = tp.LoadTexture("data/umbrella.raw", 1024, 1024);
 	tp.CreateTexture(UMBRELLA, image, 1024, 1024);
+
+	image = tp.LoadTexture("data/edgeWallBackLeft.raw", 2024, 1024);
+	tp.CreateTexture(EDGE_WALL_TOILETS, image, 2024, 1024);
+
+	image = tp.LoadTexture("data/edgeWallLeftDiagonal.raw", 2024, 1024);
+	tp.CreateTexture(EDGE_WALL_LEFT_DIAGONAL, image, 2024, 1024);
+
+	image = tp.LoadTexture("data/edgeWallRightDiagonal.raw", 2024, 1024);
+	tp.CreateTexture(EDGE_WALL_RIGHT_DIAGONAL, image, 2024, 1024);
+
+	image = tp.LoadTexture("data/edgeWallBack.raw", 2024, 1024);
+	tp.CreateTexture(EDGE_WALL_FAR_BACK, image, 2024, 1024);
+
 
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
