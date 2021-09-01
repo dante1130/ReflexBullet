@@ -294,8 +294,9 @@ constexpr auto CONCRETE_WALKWAY_TEXTURE		= 225;
 constexpr auto DRAIN						= 226;
 constexpr auto SMALL_TABLE					= 227;
 constexpr auto BIG_TABLE					= 228;
+constexpr auto CONCRETE_WALL				= 229;
 
 constexpr auto TEXTURE_END					= 230;
-// 229 Next
+// 230 Next
 
 #endif

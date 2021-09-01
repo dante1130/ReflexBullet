@@ -704,6 +704,9 @@ void CreateTextures()
 	image = tp.LoadTexture("data/bigTable.raw", 4032, 3024);
 	tp.CreateTexture(BIG_TABLE, image, 4032, 3024);
 
+	image = tp.LoadTexture("data/bigTable.raw", 1026, 1026);
+	tp.CreateTexture(CONCRETE_WALL, image, 1026, 1026);
+
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
