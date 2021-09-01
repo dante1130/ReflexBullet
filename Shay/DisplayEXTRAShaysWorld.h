@@ -48,6 +48,12 @@ namespace DisplayExtraArea
 	*/
 	void DisplayCanteenRailing();
 
+	/**
+	* @brief	Displays the canteens pillars
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayCanteenPillars();
 
 	/**
 	* @brief	Displays the entrance pathway using traditional openGL techniques
