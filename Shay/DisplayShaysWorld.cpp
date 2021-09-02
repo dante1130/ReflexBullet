@@ -20,7 +20,7 @@ void CreateTextureList()
 	DrawMainPosts();			// 18-19, 51-52
 	DrawPavement();			// 28, 73-94, 240-249, 428, 436
 	DrawBricks();				// 101-110, 112-169, 180-197, 200-201, 390-399, 430-434
-	DrawRoof();					// 1-10, 97-100, 170-179, 202-205, 214-222, 250-257, 296-299, 426-427
+	DrawRoof();					// 1-10, 97-100, 170-179, 202-205, 214-222, 250-257, 296-299, 426-427, 508-513, 514-519?
 	DrawEntranceSteps();		// 258-295, 206-207
 	DrawExtras();				// 300-349, 388, 395, 419-421, 429, 435
 	DrawLargerTextures();		// 350-375, 379-387, 389, 414-418, 422-423, 450-453
@@ -59,7 +59,7 @@ void DrawBackdrop(bool lightsOn)
 }
 
 
-// Display the chancellery windoe and door posts
+// Display the chancellery window and door posts
 void DisplayChancPosts()
 {
 	// Windowposts Chanc (downstairs)
@@ -1756,11 +1756,24 @@ void DisplayRoof()
 	glCallList(205);
 	glPopMatrix();
 
+	// Corner beams (Library/Student Hub)
+	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(ROOF_BEAM_3));
+	for (int i = 508; i < 513; i++)
+	{
+		glCallList(i + 5);
+		glPushMatrix();
+		glTranslatef(32.0, 0.0, 0.0);
+		glCallList(i + 5);
+		glPopMatrix();
+	}
+
 	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(ROOF_BEAM_2));
 	// spacers
 	for (int i = 97; i < 101; i++) glCallList(i);
 	// corner beams
 	for (int i = 170; i < 175; i++) glCallList(i);
+	// Corner beams (Library/Student hub, library side)
+	for (int i = 508; i < 513; i++) glCallList(i);
 
 
 	// Top of Roof
@@ -1785,7 +1798,7 @@ void DrawRoof()
 	glVertex3f(33848.0, 12140.72, 8100.0);
 	glEnd();
 	glEndList();
-	// Canteen Top of Roof
+	// Canteen/Student Hub Top of Roof (the tiles of the roof)
 	glNewList(215, GL_COMPILE);
 	glBegin(GL_QUADS);
 	glTexCoord2f(0.0, 0.0);
@@ -1798,6 +1811,7 @@ void DrawRoof()
 	glVertex3f(4716.0, 11364.0, 6500.0);
 	glEnd();
 	glEndList();
+
 	// Library Top of Roof
 	glNewList(216, GL_COMPILE);
 	glBegin(GL_QUADS);
@@ -1851,6 +1865,7 @@ void DrawRoof()
 	glVertex3f(33848.0, 12012.72, 10105.0);
 	glEnd();
 	glEndList();
+	
 	// Chanc Side Planks (between chanc and phys sci)
 	glNewList(251, GL_COMPILE);
 	glBegin(GL_QUADS);
@@ -1903,7 +1918,7 @@ void DrawRoof()
 	glVertex3f(33848.0, 12061.55, 41127.0);
 	glEnd();
 	glEndList();
-	// Chanc Side Beams Bottom (between phys sci and library)
+	// Chanc Side Wood Beams Bottom (between phys sci and library)
 	glNewList(298, GL_COMPILE);
 	glBegin(GL_QUADS);
 	glTexCoord2f(0.0, 0.0);
@@ -1916,7 +1931,7 @@ void DrawRoof()
 	glVertex3f(33848.0, 11979.55, 41226.0);
 	glEnd();
 	glEndList();
-	// Chanc Side Beams Side (between phys sci and library)
+	// Chanc Side Wood Beams Side (between phys sci and library)
 	glNewList(299, GL_COMPILE);
 	glBegin(GL_QUADS);
 	glTexCoord2f(0.0, 0.0);
@@ -1942,7 +1957,7 @@ void DrawRoof()
 	glVertex3f(2608.0, 12080.0, 43056.0);
 	glEnd();
 	glEndList();
-	// Library Side Beams Bottom
+	// Library Side Wood Beams Bottom
 	glNewList(296, GL_COMPILE);
 	glBegin(GL_QUADS);
 	glTexCoord2f(0.0, 0.0);
@@ -1955,7 +1970,7 @@ void DrawRoof()
 	glVertex3f(4541.0, 11997.0, 43056.0);
 	glEnd();
 	glEndList();
-	// Library Side Beams
+	// Library Side Wood Beams
 	glNewList(297, GL_COMPILE);
 	glBegin(GL_QUADS);
 	glTexCoord2f(0.0, 0.0);
@@ -1969,6 +1984,7 @@ void DrawRoof()
 	glEnd();
 	glEndList();
 
+	
 	// spacer between phys sci
 	tp.CreateDisplayList(YZ, 97, 32.0, 128.0, 33808.0, 12048.0, 25344.0, 1.0, 123.3);
 	// spacer between phys sci amd chanc blocks
@@ -1998,12 +2014,29 @@ void DrawRoof()
 	DrawAngledRoofBeam2(172, 32752.0, 11998.0 - 388.28, 43056.0 - 1055.0, 8.78);
 	DrawAngledRoofBeam2(173, 33138.0, 11998.0 - 246.22, 43056.0 - 669.0, 5.57);
 	DrawAngledRoofBeam2(174, 33524.0, 11998.0 - 104.16, 43056.0 - 283.0, 2.36);
+
+	// Roof joins for Student Hub/library roof corner (library side)
+	DrawAngledRoofBeam2(508, 2963.0, 11990.0 - 118.88, 42770.0, 2.36);
+	DrawAngledRoofBeam2(509, 2963.0 + 386.0, 11990.0 - 260.94, 42384.0, 5.57);
+	DrawAngledRoofBeam2(510, 2963.0 + (386.0 * 2), 11990.0 - 403.01, 41998.0, 8.78);
+	DrawAngledRoofBeam2(511, 2963.0 + (386.0 * 3), 11990.0 - 545.07, 41612.0, 12.0);
+	DrawAngledRoofBeam2(512, 2963.0 + (386.0 * 4), 11990.0 - 687.13, 41226.0, 15.21);
+
+	// Roof joins for Student Hub/library roof corner (student hub side)
+	/*
+	DrawAngledRoofBeam2(513, 2963.0 - (386.0 * 5), 11990.0 - 687.13, 41226.0, 15.21);
+	DrawAngledRoofBeam2(514, 2963.0 - (386.0 * 4), 11990.0 - 545.07, 41612.0, 12.0);
+	DrawAngledRoofBeam2(515, 2963.0 - (386.0 * 3), 11990.0 - 403.01, 41998.0, 8.78);
+	DrawAngledRoofBeam2(516, 2963.0 - (386.0 * 2), 11990.0 - 260.94, 42384.0, 5.57);
+	DrawAngledRoofBeam2(517, 2963.0 - 386.0, 11990.0 - 118.88, 42770.0, 2.36);
+	*/
 }
 
 
 //  Creates Angled Roof Beams
 void DrawAngledRoofBeam(int listNo, GLdouble x, GLdouble y, GLdouble z, GLdouble beamSize)
 {
+	
 	glNewList(listNo, GL_COMPILE);
 	glBegin(GL_QUADS);
 	glTexCoord2f(0.0, 0.0);
@@ -2028,10 +2061,12 @@ void DrawAngledRoofBeam(int listNo, GLdouble x, GLdouble y, GLdouble z, GLdouble
 	glVertex3f(33848.0, 12012.72, z);
 	glEnd();
 	glEndList();
+	
 }
 
 void DrawAngledRoofBeam2(int listNo, GLdouble x, GLdouble y, GLdouble z, GLdouble beamSize)
 {
+	
 	glNewList(listNo, GL_COMPILE);
 	glBegin(GL_QUADS);
 	glTexCoord2f(0.0, 0.0);
@@ -2056,6 +2091,7 @@ void DrawAngledRoofBeam2(int listNo, GLdouble x, GLdouble y, GLdouble z, GLdoubl
 	glVertex3f(x, 11998.0, 43056);
 	glEnd();
 	glEndList();
+	
 }
 
 

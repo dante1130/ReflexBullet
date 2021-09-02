@@ -10,7 +10,7 @@
 /// glut Cylinder
 extern GLUquadricObj* glu_cylinder;
 
-/// variables used for tarnslating graphics etc
+/// variables used for translating graphics etc
 extern GLdouble step, step2, stepLength;
 
 /**
@@ -200,7 +200,7 @@ void DrawBricks();
 void DrawRoof();
 
 /**
-* @brief	Sets the location for where to display the agneld roof beam (right side of physical sciences)
+* @brief	Sets the location for where to display the angled roof beam (right side of physical sciences)
 * 
 * @param	int listNo			- Where to store the coordiantes
 * @param	GLdouble x			- Location along x coordiante
