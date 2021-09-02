@@ -301,11 +301,20 @@ constexpr auto EDGE_WALL_TOILETS			= 231;
 constexpr auto EDGE_WALL_FAR_BACK			= 232;
 constexpr auto EDGE_WALL_LEFT_DIAGONAL		= 233;
 constexpr auto EDGE_WALL_RIGHT_DIAGONAL		= 234;
-constexpr auto EDGE_WALL_RIGHT				= 4;
-constexpr auto EDGE_WALL_CLOSE_RIGHT			= 4;
+constexpr auto EDGE_WALL_RIGHT1				= 240;
+constexpr auto EDGE_WALL_RIGHT2				= 241;
+constexpr auto EDGE_WALL_RIGHT3				= 242;
+constexpr auto EDGE_WALL_CLOSE_RIGHT		= 4;
+
+constexpr auto RESTURANT_STAIRS				= 235;
+constexpr auto RESTURANT_COLOUR_SIDE		= 237;
+constexpr auto RESTURANT_DINNING			= 236;
+
+constexpr auto CANTEEN_COLOUR_1				= 238;
+constexpr auto CANTEEN_COLOUR_2				= 239;
 
 
-constexpr auto TEXTURE_END					= 240;
-// 235 Next
+constexpr auto TEXTURE_END					= 250;
+// 243 Next
 
 #endif

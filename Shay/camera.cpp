@@ -134,14 +134,19 @@ void Camera::WSKeyboardMovement()
 	zMove *= norm * m_deltaMoveFB;
 	
 	//Checks if player can move in direction based on AABB
-	if (!(m_colDetect.Collide(glm::dvec3(m_pos.x + xMove, m_pos.y + m_lookK.y, m_pos.z + zMove))))
+	if (!(m_colDetect.Collide(glm::dvec3(m_pos.x + xMove, m_pos.y + m_lookK.y, m_pos.z))))
 	{
 		m_pos.x += xMove;
-		m_pos.z += zMove;
-
-		//Makes sure that the camera object is on the right y height
-		SetPlains(xMove, zMove);
 	}
+
+	if (!(m_colDetect.Collide(glm::dvec3(m_pos.x, m_pos.y + m_lookK.y, m_pos.z + zMove))))
+	{
+		m_pos.z += zMove;
+	}
+
+	//Makes sure that the camera object is on the right y height
+	SetPlains(xMove, zMove);
+
 }
 
 void Camera::ADKeyboardMovement()
@@ -159,6 +164,21 @@ void Camera::ADKeyboardMovement()
 	xMove *= norm * -m_deltaMoveLR; //m_deltaMoveRL is used for the direction
 	zMove *= norm * -m_deltaMoveLR;
 
+
+	//Checks if player can move in direction based on AABB
+	if (!(m_colDetect.Collide(glm::dvec3(m_pos.x + xMove, m_pos.y + m_lookK.y, m_pos.z))))
+	{
+		m_pos.x += xMove;
+	}
+
+	if (!(m_colDetect.Collide(glm::dvec3(m_pos.x, m_pos.y + m_lookK.y, m_pos.z + zMove))))
+	{
+		m_pos.z += zMove;
+	}
+
+	//Makes sure that the camera object is on the right y height
+	SetPlains(xMove, zMove);
+	/*
 	//Checks if player can move in direction based on AABB
 	if (!(m_colDetect.Collide(glm::dvec3(m_pos.x + xMove, m_pos.y + m_lookK.y, m_pos.z + zMove))))
 	{
@@ -168,6 +188,7 @@ void Camera::ADKeyboardMovement()
 		//Makes sure that the camera object is on the right y height
 		SetPlains(xMove, zMove);
 	}
+	*/
 }
 
 //--------------------------------------------------------------------------------------

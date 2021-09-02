@@ -722,6 +722,30 @@ void CreateTextures()
 	image = tp.LoadTexture("data/edgeWallBack.raw", 2024, 1024);
 	tp.CreateTexture(EDGE_WALL_FAR_BACK, image, 2024, 1024);
 
+	image = tp.LoadTexture("data/WR_Right1.raw", 1024, 512);
+	tp.CreateTexture(RESTURANT_STAIRS, image, 1024, 512);
+	
+	image = tp.LoadTexture("data/WR_Right3.raw", 1024, 512);
+	tp.CreateTexture(RESTURANT_COLOUR_SIDE, image, 1024, 512);
+	
+	image = tp.LoadTexture("data/WR_Right2.raw", 1024, 512);
+	tp.CreateTexture(RESTURANT_DINNING, image, 1024, 512);
+
+	image = tp.LoadTexture("data/CanteenColour1.raw", 1024, 512);
+	tp.CreateTexture(CANTEEN_COLOUR_1, image, 1024, 512);
+
+	image = tp.LoadTexture("data/CanteenColour2.raw", 1024, 512);
+	tp.CreateTexture(CANTEEN_COLOUR_2, image, 1024, 512);
+	
+
+	image = tp.LoadTexture("data/edgeWallRight1.raw", 2024, 1024);
+	tp.CreateTexture(EDGE_WALL_RIGHT1, image, 2024, 1024);
+
+	image = tp.LoadTexture("data/edgeWallRight2.raw", 2024, 1024);
+	tp.CreateTexture(EDGE_WALL_RIGHT2, image, 2024, 1024);
+
+	image = tp.LoadTexture("data/edgeWallRight3.raw", 2024, 1024);
+	tp.CreateTexture(EDGE_WALL_RIGHT3, image, 2024, 1024);
 
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
