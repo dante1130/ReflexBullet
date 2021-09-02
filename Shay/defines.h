@@ -287,7 +287,10 @@ constexpr auto WELCOME						= 218;
 constexpr auto EXIT							= 219;
 constexpr auto NO_EXIT						= 222;
 
-constexpr auto TEXT_ENVIRONMENT				= 223;
+constexpr auto TEXT_ENVIRONMENT_GENERAL		= 223;
+constexpr auto TEXT_ENVIRONMENT_STAIRS		= 243;
+constexpr auto TEXT_ENVIRONMENT_RAILING		= 244;
+
 
 constexpr auto WOOD_WALKWAY_TEXTURE			= 224;
 constexpr auto CONCRETE_WALKWAY_TEXTURE		= 225;
@@ -315,6 +318,6 @@ constexpr auto CANTEEN_COLOUR_2				= 239;
 
 
 constexpr auto TEXTURE_END					= 250;
-// 243 Next
+// 245 Next
 
 #endif
