@@ -225,6 +225,19 @@ void DrawRoof();
 void DrawAngledRoofBeam2(int listNo, GLdouble x, GLdouble y, GLdouble z, GLdouble beamSize);
 
 /**
+* @brief	Sets the location for where to display the angled roof beam3 (right side of library)
+*
+* @param	int listNo			- Where to store the coordiantes
+* @param	GLdouble x			- Location along x coordiante
+* @param	GLdouble y			- Location along y coordinate
+* @param	GLdouble z			- Location along z coordinate
+* @param	Gldouble beamSize	- Size of beam for texture mapping (meters)
+*
+* @return	Void
+*/
+void DrawAngledRoofBeam3(int listNo, GLdouble x, GLdouble y, GLdouble z, GLdouble beamSize);
+
+/**
 * @brief	Displays the enterence steps
 * @param	No param
 * @return	Void
