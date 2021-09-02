@@ -15,9 +15,11 @@ void DisplayExtraArea::DisplayExtension()
 	glPushMatrix();
 		glTranslatef(2613.56, 10000, 9250);
 		glRotatef(180, 0, 1, 0);
-		EnvironmentOBJ[0].DisplayObject(TEXT_ENVIRONMENT);
-		EnvironmentOBJ[1].DisplayObject(TEXT_ENVIRONMENT);
-		EnvironmentOBJ[2].DisplayObject(TEXT_ENVIRONMENT);
+		EnvironmentOBJ[0].DisplayObject(TEXT_ENVIRONMENT_GENERAL);
+		//EnvironmentOBJ[1].DisplayObject(TEXT_ENVIRONMENT_STAIRS);
+		EnvironmentOBJ[1].DisplayObject(CONCRETE_WALKWAY_TEXTURE);
+
+		EnvironmentOBJ[2].DisplayObject(TEXT_ENVIRONMENT_RAILING);
 
 	glPopMatrix();
 

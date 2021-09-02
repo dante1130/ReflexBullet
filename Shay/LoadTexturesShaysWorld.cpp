@@ -686,8 +686,8 @@ void CreateTextures()
 	image = tp.LoadTexture("data/thanks.raw", 512, 512);
 	tp.CreateTexture(219, image, 512, 512);
 
-	image = tp.LoadTexture("data/object/tetris.raw", 562, 499);
-	tp.CreateTexture(TEXT_ENVIRONMENT, image, 562, 499);
+	image = tp.LoadTexture("data/object/tetris.raw", 2024, 2024);
+	tp.CreateTexture(TEXT_ENVIRONMENT_GENERAL, image, 2024, 2024);
 
 	image = tp.LoadTexture("data/ConcreteWalkway.raw", 1024, 1024);
 	tp.CreateTexture(CONCRETE_WALKWAY_TEXTURE, image, 1024, 1024);
@@ -746,6 +746,14 @@ void CreateTextures()
 
 	image = tp.LoadTexture("data/edgeWallRight3.raw", 2024, 1024);
 	tp.CreateTexture(EDGE_WALL_RIGHT3, image, 2024, 1024);
+
+	image = tp.LoadTexture("data/object/railingText.raw", 256, 256);
+	tp.CreateTexture(TEXT_ENVIRONMENT_RAILING, image, 256, 256);
+
+	image = tp.LoadTexture("data/object/tetris.raw", 2024, 2024);
+	tp.CreateTexture(TEXT_ENVIRONMENT_STAIRS, image, 2024, 2024);
+
+
 
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
