@@ -151,7 +151,11 @@ void myinit()
 
 void loadObjFiles()
 {
-	readObjFile("data/object/Environment.obj", EnvironmentOBJ);
+	readObjFile("data/object/EnvironmentGeneral.obj", EnvironmentOBJ[0]);
+	readObjFile("data/object/EnvironmentStairs.obj", EnvironmentOBJ[1]);
+	readObjFile("data/object/EnvironmentRailing.obj", EnvironmentOBJ[2]);
+
+	
 	readObjFile("data/object/smallTable.obj", SmallTableOBJ);
 	readObjFile("data/object/bigTable.obj", BigTableOBJ);
 	readObjFile("data/object/umbrella.obj", UmbrellaOBJ);

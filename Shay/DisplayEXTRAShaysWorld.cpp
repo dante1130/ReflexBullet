@@ -1,7 +1,7 @@
 #include "DisplayEXTRAShaysWorld.h"
 
 // The main environment object
-Object3D EnvironmentOBJ;
+Object3D EnvironmentOBJ[3];
 // Small table object
 Object3D SmallTableOBJ;
 // Big table object
@@ -15,7 +15,10 @@ void DisplayExtraArea::DisplayExtension()
 	glPushMatrix();
 		glTranslatef(2613.56, 10000, 9250);
 		glRotatef(180, 0, 1, 0);
-		EnvironmentOBJ.DisplayObject(TEXT_ENVIRONMENT);
+		EnvironmentOBJ[0].DisplayObject(TEXT_ENVIRONMENT);
+		EnvironmentOBJ[1].DisplayObject(TEXT_ENVIRONMENT);
+		EnvironmentOBJ[2].DisplayObject(TEXT_ENVIRONMENT);
+
 	glPopMatrix();
 
 	// Small tables

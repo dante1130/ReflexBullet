@@ -7,7 +7,7 @@
 #include <GL/glut.h>
 #include "Object.h"
 
-extern Object3D EnvironmentOBJ;
+extern Object3D EnvironmentOBJ[3];
 extern Object3D SmallTableOBJ;
 extern Object3D BigTableOBJ;
 extern Object3D UmbrellaOBJ;
