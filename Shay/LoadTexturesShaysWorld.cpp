@@ -750,9 +750,29 @@ void CreateTextures()
 	image = tp.LoadTexture("data/object/railingText.raw", 256, 256);
 	tp.CreateTexture(TEXT_ENVIRONMENT_RAILING, image, 256, 256);
 
-	image = tp.LoadTexture("data/object/tetris.raw", 2024, 2024);
+	image = tp.LoadTexture("data/object/environmentStairsText.raw", 2024, 2024);
 	tp.CreateTexture(TEXT_ENVIRONMENT_STAIRS, image, 2024, 2024);
 
+	image = tp.LoadTexture("data/studentHubWall.raw", 512, 512);
+	tp.CreateTexture(STUDENTHUB_WALL, image, 512, 512);
+
+	image = tp.LoadTexture("data/studentHubDoor.raw", 512, 512);
+	tp.CreateTexture(STUDENTHUB_DOOR, image, 512, 512);
+
+	image = tp.LoadTexture("data/canteenWall1.raw", 512, 412);
+	tp.CreateTexture(CANTEEN_WALL1, image, 512, 412);
+
+	image = tp.LoadTexture("data/canteenWall2.raw", 512, 412);
+	tp.CreateTexture(CANTEEN_WALL2, image, 512, 412);
+
+	image = tp.LoadTexture("data/canteenWall3.raw", 512, 412);
+	tp.CreateTexture(CANTEEN_WALL3, image, 512, 412);
+
+	image = tp.LoadTexture("data/canteenWall4.raw", 512, 412);
+	tp.CreateTexture(CANTEEN_WALL4, image, 512, 412);
+
+	image = tp.LoadTexture("data/edgeCornerWall.raw", 512, 512);
+	tp.CreateTexture(EDGE_WALL_CLOSE_RIGHT, image, 512, 512);
 
 
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);

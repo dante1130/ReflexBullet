@@ -16,9 +16,7 @@ void DisplayExtraArea::DisplayExtension()
 		glTranslatef(2613.56, 10000, 9250);
 		glRotatef(180, 0, 1, 0);
 		EnvironmentOBJ[0].DisplayObject(TEXT_ENVIRONMENT_GENERAL);
-		//EnvironmentOBJ[1].DisplayObject(TEXT_ENVIRONMENT_STAIRS);
-		EnvironmentOBJ[1].DisplayObject(CONCRETE_WALKWAY_TEXTURE);
-
+		EnvironmentOBJ[1].DisplayObject(TEXT_ENVIRONMENT_STAIRS);
 		EnvironmentOBJ[2].DisplayObject(TEXT_ENVIRONMENT_RAILING);
 
 	glPopMatrix();
@@ -275,12 +273,12 @@ void DisplayExtraArea::DisplayEdgeWallEnvironmentPicutres()
 	glBegin(GL_POLYGON);
 	glTexCoord2f(0.0, 0.0);
 	glVertex3f(-4622.44, 8980, 2875);
-	glTexCoord2f(1, 0);
+	glTexCoord2f(-1, 0);
 	glVertex3f(-4622.44, 8980, 1511.5);
-	glTexCoord2f(1, 1);
-	glVertex3f(-4622.44, 11210, 1511.5);
-	glTexCoord2f(0, 1);
-	glVertex3f(-4622.44, 11210, 2875);
+	glTexCoord2f(-1, -1);
+	glVertex3f(-4622.44, 10000, 1511.5);
+	glTexCoord2f(0, -1);
+	glVertex3f(-4622.44, 10000, 2875);
 	glEnd();
 
 
@@ -384,18 +382,70 @@ void DisplayExtraArea::DisplayCanteen()
 	glEnd();
 
 	
-	//Left side open area wall
-	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(WALL_BRICK_XY));
+	//Left side open area wall 1
+	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(CANTEEN_WALL1));
 	glBegin(GL_POLYGON);
 	glTexCoord2f(0.0, 0.0);
 	glVertex3f(28, 11070, 10600);
-	glTexCoord2f(30, 0);
-	glVertex3f(-4346, 11070, 10600);
-	glTexCoord2f(30, 7.5);
-	glVertex3f(-4346, 10000, 10600);
-	glTexCoord2f(0.0, 7.5);
+	glTexCoord2f(1, 0);
+	glVertex3f(-1065.5, 11070, 10600);
+	glTexCoord2f(1, 1);
+	glVertex3f(-1065.5, 10000, 10600);
+	glTexCoord2f(0.0, 1);
 	glVertex3f(28, 10000, 10600);
 	glEnd();
+
+	//Left side open area wall 2
+	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(CANTEEN_WALL2));
+	glBegin(GL_POLYGON);
+	glTexCoord2f(0.0, 0.0);
+	glVertex3f(-1065.5, 11070, 10600);
+	glTexCoord2f(1, 0);
+	glVertex3f(-2159, 11070, 10600);
+	glTexCoord2f(1, 1);
+	glVertex3f(-2159, 10000, 10600);
+	glTexCoord2f(0.0, 1);
+	glVertex3f(-1065.5, 10000, 10600);
+	glEnd();
+
+	//Left side open area wall 3
+	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(CANTEEN_WALL3));
+	glBegin(GL_POLYGON);
+	glTexCoord2f(0.0, 0.0);
+	glVertex3f(-2159, 11070, 10600);
+	glTexCoord2f(1, 0);
+	glVertex3f(-3252.5, 11070, 10600);
+	glTexCoord2f(1, 1);
+	glVertex3f(-3252.5, 10000, 10600);
+	glTexCoord2f(0.0, 1);
+	glVertex3f(-2159, 10000, 10600);
+	glEnd();
+
+	//Left side open area wall 4
+	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(CANTEEN_WALL4));
+	glBegin(GL_POLYGON);
+	glTexCoord2f(0.0, 0.0);
+	glVertex3f(-3252.5, 11070, 10600);
+	glTexCoord2f(1, 0);
+	glVertex3f(-4346, 11070, 10600);
+	glTexCoord2f(1, 1);
+	glVertex3f(-4346, 10000, 10600);
+	glTexCoord2f(0.0, 1);
+	glVertex3f(-3252.5, 10000, 10600);
+	glEnd();
+
+	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(WALL_BRICK_XY));
+	glBegin(GL_POLYGON);
+	glTexCoord2f(0.0, 0.0);
+	glVertex3f(28, 11070, 10595);
+	glTexCoord2f(10, 0);
+	glVertex3f(-4346, 11070, 10595);
+	glTexCoord2f(10, 1);
+	glVertex3f(-4346, 10900, 10595);
+	glTexCoord2f(0.0, 1);
+	glVertex3f(28, 10900, 10595);
+	glEnd();
+
 
 	//Direct canteen wall further
 	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(WINDOW_LIB_US_A));
@@ -437,17 +487,30 @@ void DisplayExtraArea::DisplayCanteen()
 	glVertex3f(-4346, 8980, 10600);
 	glEnd();
 
-	//Hub area wall (glass)
-	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(WINDOW_LIB_US_B));
+	//Hub area wall (door)
+	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(STUDENTHUB_DOOR));
 	glBegin(GL_POLYGON);
 	glTexCoord2f(0.0, 0.0);
 	glVertex3f(-8126.44, 10000, 10600);
-	glTexCoord2f(5, 0);
-	glVertex3f(-14535.94, 10000, 10600);
-	glTexCoord2f(5, -1);
-	glVertex3f(-14535.94, 8980, 10600);
-	glTexCoord2f(0.0, -1);
+	glTexCoord2f(1, 0);
+	glVertex3f(-9728.815, 10000, 10600);
+	glTexCoord2f(1, 1);
+	glVertex3f(-9728.815, 8980, 10600);
+	glTexCoord2f(0.0, 1);
 	glVertex3f(-8126.44, 8980, 10600);
+	glEnd();
+
+	//Hub area wall (wall)
+	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(STUDENTHUB_WALL));
+	glBegin(GL_POLYGON);
+	glTexCoord2f(0.0, 0.0);
+	glVertex3f(-9728.815, 10000, 10600);
+	glTexCoord2f(3, 0);
+	glVertex3f(-14535.94, 10000, 10600);
+	glTexCoord2f(3, 1);
+	glVertex3f(-14535.94, 8980, 10600);
+	glTexCoord2f(0.0, 1);
+	glVertex3f(-9728.815, 8980, 10600);
 	glEnd();
 	
 }
@@ -1012,17 +1075,31 @@ void DisplayExtraArea::DisplayWaltersResturant()
 	glVertex3f(-3386.44, 11070.36, 8500);
 	glEnd();
 
-	//Back side botto,
-	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(WALL_BRICK_YZ));
+
+	//Back side bottom
+	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(WALL_BRICK_XY));
 	glBegin(GL_POLYGON);
 	glTexCoord2f(0.0, 0.0);
 	glVertex3f(-3386.44, 11070.36, 8500);
-	glTexCoord2f(-40, 0);
-	glVertex3f(-3386.44, 11070.36, 2875);
-	glTexCoord2f(-40, -7.5);
-	glVertex3f(-3386.44, 10000.0, 2875);
-	glTexCoord2f(0.0, -7.5);
+	glTexCoord2f(7.5, 0);
+	glVertex3f(-3386.44, 11070.36, 6500);
+	glTexCoord2f(7.5, 7.5);
+	glVertex3f(-3386.44, 10000.0, 6500);
+	glTexCoord2f(0.0, 7.5);
 	glVertex3f(-3386.44, 10000.0, 8500);
+	glEnd();
+
+	//Back side bottom
+	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(RESTURANT_DINNING));
+	glBegin(GL_POLYGON);
+	glTexCoord2f(0.0, 0.0);
+	glVertex3f(-3386.44, 11070.36, 6500);
+	glTexCoord2f(3, 0);
+	glVertex3f(-3386.44, 11070.36, 2875);
+	glTexCoord2f(3, 1);
+	glVertex3f(-3386.44, 10000.0, 2875);
+	glTexCoord2f(0.0, 1);
+	glVertex3f(-3386.44, 10000.0, 6500);
 	glEnd();
 	
 	//Wood walkway

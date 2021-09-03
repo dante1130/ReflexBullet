@@ -307,7 +307,7 @@ constexpr auto EDGE_WALL_RIGHT_DIAGONAL		= 234;
 constexpr auto EDGE_WALL_RIGHT1				= 240;
 constexpr auto EDGE_WALL_RIGHT2				= 241;
 constexpr auto EDGE_WALL_RIGHT3				= 242;
-constexpr auto EDGE_WALL_CLOSE_RIGHT		= 4;
+constexpr auto EDGE_WALL_CLOSE_RIGHT		= 251;
 
 constexpr auto RESTURANT_STAIRS				= 235;
 constexpr auto RESTURANT_COLOUR_SIDE		= 237;
@@ -316,8 +316,17 @@ constexpr auto RESTURANT_DINNING			= 236;
 constexpr auto CANTEEN_COLOUR_1				= 238;
 constexpr auto CANTEEN_COLOUR_2				= 239;
 
+constexpr auto STUDENTHUB_DOOR				= 245;
+constexpr auto STUDENTHUB_WALL				= 246;
 
-constexpr auto TEXTURE_END					= 250;
-// 245 Next
+constexpr auto CANTEEN_WALL1				= 247;
+constexpr auto CANTEEN_WALL2				= 248;
+constexpr auto CANTEEN_WALL3				= 249;
+constexpr auto CANTEEN_WALL4				= 250;
+
+
+
+constexpr auto TEXTURE_END					= 260;
+// 252 Next
 
 #endif
