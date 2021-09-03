@@ -3561,7 +3561,7 @@ void DrawStepBricks()
 //Map and welcome screens
 void DrawMapExit()
 {
-	tp.CreateDisplayList(0, 448, 256.0, 256.0, 10.0, 10.0, 0.0, 0.855, 1.0); // map
+	tp.CreateDisplayList(0, 448, 323.0, 268.0, 10.0, 10.0, 0.0, 1.0, 1.0); // map
 	tp.CreateDisplayList(0, 449, 512.0, 512.0, 0.0, 0.0, 0.0, 1.0, 1.0);	  // welcome screen
 	tp.CreateDisplayList(0, 454, 256.0, 64.0, 0.0, 0.0, 0.0, 1.0, 1.0);	  // welcome screen
 }

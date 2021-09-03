@@ -679,8 +679,8 @@ void CreateTextures()
 	image = tp.LoadTexture("data/windows/windowLibLong.raw", 256, 128);
 	tp.CreateTexture(WINDOW_LIB_LONG, image, 256, 128);
 
-	image = tp.LoadTexture("data/map.raw", 256, 256);
-	tp.CreateTexture(217, image, 256, 256);
+	image = tp.LoadTexture("data/map.raw", 323, 268);
+	tp.CreateTexture(217, image, 323, 268);
 	image = tp.LoadTexture("data/welcome.raw", 512, 512);
 	tp.CreateTexture(218, image, 512, 512);
 	image = tp.LoadTexture("data/thanks.raw", 512, 512);
@@ -737,7 +737,6 @@ void CreateTextures()
 	image = tp.LoadTexture("data/CanteenColour2.raw", 1024, 512);
 	tp.CreateTexture(CANTEEN_COLOUR_2, image, 1024, 512);
 	
-
 	image = tp.LoadTexture("data/edgeWallRight1.raw", 2024, 1024);
 	tp.CreateTexture(EDGE_WALL_RIGHT1, image, 2024, 1024);
 
@@ -773,7 +772,6 @@ void CreateTextures()
 
 	image = tp.LoadTexture("data/edgeCornerWall.raw", 512, 512);
 	tp.CreateTexture(EDGE_WALL_CLOSE_RIGHT, image, 512, 512);
-
 
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
