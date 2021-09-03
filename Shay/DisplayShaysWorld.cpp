@@ -779,6 +779,7 @@ void DisplayMainPosts()
 	glTranslatef(128.0, 0.0, 0.0);
 	glCallList(52);
 	glPopMatrix();
+	
 }
 
 void DrawMainPosts()
@@ -1560,9 +1561,10 @@ void DisplayRoof()
 	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(ROOF_PLANKS));
 	for (int i = 250; i < 253; i++) glCallList(i);
 
-	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(ROOF_BEAM_1));
+	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(ROOF_BEAM_2));
 	// corner beams
 	for (int i = 1; i < 6; i++) glCallList(i);
+	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(ROOF_BEAM_1));
 	step = -1689.0;
 	for (int i = 0; i < 85; i++)
 	{
@@ -1651,6 +1653,7 @@ void DisplayRoof()
 		step += 386.0;
 	}
 
+	
 	glPushMatrix();
 	glTranslatef(0.0, 0.0, -2005.0);
 	glCallList(255);
@@ -1659,6 +1662,7 @@ void DisplayRoof()
 	glTranslatef(0.0, 0.0, -1973.0);
 	glCallList(255);
 	glPopMatrix();
+	
 
 	step = 214.0;
 	
@@ -1686,6 +1690,7 @@ void DisplayRoof()
 	glPopMatrix();
 
 	// Beams between library and phys sci
+	
 	step = 0.0;
 	for (int i = 0; i < 5; i++)
 	{
@@ -1699,6 +1704,7 @@ void DisplayRoof()
 		glPopMatrix();
 		step += 386.0;
 	}
+	
 
 	glPushMatrix();
 	glTranslatef(0.0, 0.0, -67.0);
@@ -1770,15 +1776,24 @@ void DisplayRoof()
 	}
 
 	// Corner beams (Library/Student Hub)
-	
 	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(ROOF_BEAM_3));
 	for (int i = 519; i < 524; i++)
 	{
 		glCallList(i + 5);
 		glPushMatrix();
-		glTranslatef(0.0, 0.0, 0.0);
-		//glRotatef(90.0, 0.0, 1.0, 0.0);
+		glTranslatef(0.0, 0.0, 32.0);
 		glCallList(i + 5);
+		glPopMatrix();
+	}
+
+	// Student hub roof beams
+	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(ROOF_BEAM_3));
+	for (int i = 529; i < 617; i++)
+	{
+		glCallList(i + 88);
+		glPushMatrix();
+		glTranslatef(0.0, 0.0, 32.0);
+		glCallList(i + 88);
 		glPopMatrix();
 	}
 	
@@ -1792,6 +1807,8 @@ void DisplayRoof()
 	for (int i = 508; i < 513; i++) glCallList(i);
 	// Corner beams (Library/Student hub, student hub side)
 	for (int i = 519; i < 524; i++) glCallList(i);
+
+	for (int i = 529; i < 617; i++) glCallList(i);
 
 
 	// Top of Roof
@@ -1871,6 +1888,7 @@ void DrawRoof()
 	glEnd();
 	glEndList();
 	// Chanc Side Beams Side
+	
 	glNewList(255, GL_COMPILE);
 	glBegin(GL_QUADS);
 	glTexCoord2f(0.0, 0.0);
@@ -1883,6 +1901,7 @@ void DrawRoof()
 	glVertex3f(33848.0, 12012.72, 10105.0);
 	glEnd();
 	glEndList();
+	
 	
 	// Chanc Side Planks (between chanc and phys sci)
 	glNewList(251, GL_COMPILE);
@@ -2023,72 +2042,71 @@ void DrawRoof()
 
 	// Joins where roof slants
 	
-	DrawAngledRoofBeam(1, 33848.0 - 1867.0, 12012.72 - 687.13, 41226.0, 15.21);
-	DrawAngledRoofBeam(2, 33848.0 - 1481.0, 12012.72 - 545.07, 41612.0, 12.0);
-	DrawAngledRoofBeam(3, 33848.0 - 1095.0, 12012.72 - 403.01, 41998.0, 8.78);
-	DrawAngledRoofBeam(4, 33848.0 - 709.0, 12012.72 - 260.94, 42384.0, 5.57);
-	DrawAngledRoofBeam(5, 33848.0 - 323.0, 12012.72 - 118.88, 42770.0, 2.36);
+	DrawAngledRoofBeamX(1, 33848.0, 11980.0, 33848.0 - 1867.0, 11990.0 - 687.13, 41226.0, 15.21, 5);
+	DrawAngledRoofBeamX(2, 33848.0, 11980.0, 33848.0 - 1481.0, 11990.0 - 545.07, 41612.0, 12.0, 5);
+	DrawAngledRoofBeamX(3, 33848.0, 11980.0, 33848.0 - 1095.0, 11990.0 - 403.01, 41998.0, 8.78, 5);
+	DrawAngledRoofBeamX(4, 33848.0, 11980.0, 33848.0 - 709.0, 11990.0 - 260.94, 42384.0, 5.57, 5);
+	DrawAngledRoofBeamX(5, 33848.0, 11980.0, 33848.0 - 323.0, 11990.0 - 118.88, 42770.0, 2.36, 5);
 	
 	
-	DrawAngledRoofBeam2(170, 31980.0, 11998.0 - 672.41, 43056.0 - 1827.0, 15.21);
-	DrawAngledRoofBeam2(171, 32366.0, 11998.0 - 530.35, 43056.0 - 1441.0, 12.0);
-	DrawAngledRoofBeam2(172, 32752.0, 11998.0 - 388.28, 43056.0 - 1055.0, 8.78);
-	DrawAngledRoofBeam2(173, 33138.0, 11998.0 - 246.22, 43056.0 - 669.0, 5.57);
-	DrawAngledRoofBeam2(174, 33524.0, 11998.0 - 104.16, 43056.0 - 283.0, 2.36);
+	DrawAngledRoofBeamZ(170, 43056.0, 11980.0, 31980.0, 11990.0 - 687.13, 43056.0 - 1827.0, 15.21, 5);
+	DrawAngledRoofBeamZ(171, 43056.0, 11980.0, 32366.0, 11990.0 - 545.07, 43056.0 - 1441.0, 12.0, 5);
+	DrawAngledRoofBeamZ(172, 43056.0, 11980.0, 32752.0, 11990.0 - 403.01, 43056.0 - 1055.0, 8.78, 5);
+	DrawAngledRoofBeamZ(173, 43056.0, 11980.0, 33138.0, 11990.0 - 260.94, 43056.0 - 669.0, 5.57, 5);
+	DrawAngledRoofBeamZ(174, 43056.0, 11980.0, 33524.0, 11990.0 - 118.88, 43056.0 - 283.0, 2.36, 5);
 	
 
 	// Roof joins for Student Hub/library roof corner (library side)
-	DrawAngledRoofBeam2(508, 2963.0, 11990.0 - 118.88, 42770.0, 2.36);
-	DrawAngledRoofBeam2(509, 2963.0 + 386.0, 11990.0 - 260.94, 42384.0, 5.57);
-	DrawAngledRoofBeam2(510, 2963.0 + (386.0 * 2), 11990.0 - 403.01, 41998.0, 8.78);
-	DrawAngledRoofBeam2(511, 2963.0 + (386.0 * 3), 11990.0 - 545.07, 41612.0, 12.0);
-	DrawAngledRoofBeam2(512, 2963.0 + (386.0 * 4), 11990.0 - 687.13, 41226.0, 15.21);
+	DrawAngledRoofBeamZ(508, 43056.0, 11980.0, 2963.0, 11990.0 - 118.88, 42770.0, 2.36, 5);
+	DrawAngledRoofBeamZ(509, 43056.0, 11980.0, 2963.0 + 386.0, 11990.0 - 260.94, 42384.0, 5.57, 5);
+	DrawAngledRoofBeamZ(510, 43056.0, 11980.0, 2963.0 + (386.0 * 2), 11990.0 - 403.01, 41998.0, 8.78, 5);
+	DrawAngledRoofBeamZ(511, 43056.0, 11980.0, 2963.0 + (386.0 * 3), 11990.0 - 545.07, 41612.0, 12.0, 5);
+	DrawAngledRoofBeamZ(512, 43056.0, 11980.0, 2963.0 + (386.0 * 4), 11990.0 - 687.13, 41226.0, 15.21, 5);
 
 	// Roof joins for Student Hub/library roof corner (student hub side)
-	
-	DrawAngledRoofBeam3(519, 2963.0, 11990.0 - 118.88, 42770.0, 2.36);
-	DrawAngledRoofBeam3(520, 2963.0 + 386.0, 11990.0 - 260.94, 42384.0, 5.57);
-	DrawAngledRoofBeam3(521, 2963.0 + (386.0 * 2), 11990.0 - 403.01, 41998.0, 8.78);
-	DrawAngledRoofBeam3(522, 2963.0 + (386.0 * 3), 11990.0 - 545.07, 41612.0, 12.0);
-	DrawAngledRoofBeam3(523, 2963.0 + (386.0 * 4), 11990.0 - 687.13, 41226.0, 15.21);
-	
+
+	DrawAngledRoofBeamX(519, 2563.0, 11980.0, 2963.0, 11990.0 - 118.88, 42770.0, 2.36, 5);
+	DrawAngledRoofBeamX(520, 2563.0, 11980.0, 2963.0 + 386.0, 11990.0 - 260.94, 42384.0, 5.57, 5);
+	DrawAngledRoofBeamX(521, 2563.0, 11980.0, 2963.0 + (386.0 * 2), 11990.0 - 403.01, 41998.0, 8.78, 5);
+	DrawAngledRoofBeamX(522, 2563.0, 11980.0, 2963.0 + (386.0 * 3), 11990.0 - 545.07, 41612.0, 12.0, 5);
+	DrawAngledRoofBeamX(523, 2563.0, 11980.0, 2963.0 + (386.0 * 4), 11990.0 - 687.13, 41226.0, 15.21, 5);
+
+	for (int j = 529; j < 617; j++)
+	{
+		DrawAngledRoofBeamX(j, 2600.0, 12012.0, 2963.0 + 1600.0, 11990.0 - 687.13, 41226.0 - (386.0 * ((double)j - 528.0)), 15.21, 88);
+	}
 }
 
-
-//  Creates Angled Roof Beams
-void DrawAngledRoofBeam(int listNo, GLdouble x, GLdouble y, GLdouble z, GLdouble beamSize)
+void DrawAngledRoofBeamX(int listNo, GLdouble xStart, GLdouble yStart, GLdouble x, GLdouble y, GLdouble z, GLdouble beamSize, int listAdd)
 {
-	
 	glNewList(listNo, GL_COMPILE);
 	glBegin(GL_QUADS);
 	glTexCoord2f(0.0, 0.0);
 	glVertex3f(x, y, z + 32.0);
-	glTexCoord2f(0.0, 1.0);
+	glTexCoord2f(1.0, 0.0);
 	glVertex3f(x, y, z);
-	glTexCoord2f(beamSize, 1.0);
-	glVertex3f(33848.0, 12012.72, z);
-	glTexCoord2f(beamSize, 0.0);
-	glVertex3f(33848.0, 12012.72, z + 32.0);
+	glTexCoord2f(1.0, beamSize);
+	glVertex3f(xStart, yStart, z);
+	glTexCoord2f(0.0, beamSize);
+	glVertex3f(xStart, yStart, z + 32.0);
 	glEnd();
 	glEndList();
-	glNewList(listNo + 5, GL_COMPILE);
+	glNewList(listNo + listAdd, GL_COMPILE);
 	glBegin(GL_QUADS);
 	glTexCoord2f(0.0, 0.0);
 	glVertex3f(x, y, z);
-	glTexCoord2f(0.0, 1.0);
+	glTexCoord2f(1.0, 0.0);
 	glVertex3f(x, y + 82.0, z);
-	glTexCoord2f(beamSize, 1.0);
-	glVertex3f(33848.0, 12012.72 + 82.0, z);
-	glTexCoord2f(beamSize, 0.0);
-	glVertex3f(33848.0, 12012.72, z);
+	glTexCoord2f(1.0, beamSize);
+	glVertex3f(xStart, yStart + 82.0, z);
+	glTexCoord2f(0.0, beamSize);
+	glVertex3f(xStart, yStart, z);
 	glEnd();
 	glEndList();
-	
 }
 
-void DrawAngledRoofBeam2(int listNo, GLdouble x, GLdouble y, GLdouble z, GLdouble beamSize)
+void DrawAngledRoofBeamZ(int listNo, GLdouble zStart, GLdouble yStart, GLdouble x, GLdouble y, GLdouble z, GLdouble beamSize, int listAdd)
 {
-	
 	glNewList(listNo, GL_COMPILE);
 	glBegin(GL_QUADS);
 	glTexCoord2f(0.0, 0.0);
@@ -2096,54 +2114,23 @@ void DrawAngledRoofBeam2(int listNo, GLdouble x, GLdouble y, GLdouble z, GLdoubl
 	glTexCoord2f(1.0, 0.0);
 	glVertex3f(x + 32.0, y, z);
 	glTexCoord2f(1.0, beamSize);
-	glVertex3f(x + 32.0, 11998.0, 43056);
+	glVertex3f(x + 32.0, yStart, zStart);
 	glTexCoord2f(0.0, beamSize);
-	glVertex3f(x, 11998.0, 43056);
+	glVertex3f(x, yStart, zStart);
 	glEnd();
 	glEndList();
-	glNewList(listNo + 5, GL_COMPILE);
+	glNewList(listNo + listAdd, GL_COMPILE);
 	glBegin(GL_QUADS);
 	glTexCoord2f(0.0, 0.0);
 	glVertex3f(x, y, z);
 	glTexCoord2f(1.0, 0.0);
 	glVertex3f(x, y + 82.0, z);
 	glTexCoord2f(1.0, beamSize);
-	glVertex3f(x, 11998.0 + 82.0, 43056);
+	glVertex3f(x, yStart + 82.0, zStart);
 	glTexCoord2f(0.0, beamSize);
-	glVertex3f(x, 11998.0, 43056);
+	glVertex3f(x, yStart, zStart);
 	glEnd();
 	glEndList();
-	
-}
-
-void DrawAngledRoofBeam3(int listNo, GLdouble x, GLdouble y, GLdouble z, GLdouble beamSize)
-{
-
-	glNewList(listNo, GL_COMPILE);
-	glBegin(GL_QUADS);
-	glTexCoord2f(0.0, 0.0);
-	glVertex3f(x, y, z + 32.0);
-	glTexCoord2f(1.0, 0.0);
-	glVertex3f(x + 32.0, y, z);
-	glTexCoord2f(1.0, beamSize);
-	glVertex3f(2563.0, 11998.0, z);
-	glTexCoord2f(0.0, beamSize);
-	glVertex3f(2563.0, 11998.0, z + 32.0);
-	glEnd();
-	glEndList();
-	glNewList(listNo + 5, GL_COMPILE);
-	glBegin(GL_QUADS);
-	glTexCoord2f(0.0, 0.0);
-	glVertex3f(x, y, z);
-	glTexCoord2f(1.0, 0.0);
-	glVertex3f(x, y + 82.0, z);
-	glTexCoord2f(1.0, beamSize);
-	glVertex3f(2563.0, 11998.0 + 82.0, z);
-	glTexCoord2f(0.0, beamSize);
-	glVertex3f(2563.0, 11998.0, z);
-	glEnd();
-	glEndList();
-
 }
 
 
