@@ -11,7 +11,7 @@ void CreateTextureList()
 	DrawGrass();				// 79, 111, 198, 460-477
 	DrawChancPosts();			// 11-15, 235-237
 	DrawDoorPosts();			// 25-27, 199
-	DrawAboveWindowBlock();	// 20-24, 39, 43-46, 49-50, 53-56, 64-72, 95-96 208-213, 223-234, 238-239, 415, 424-425
+	DrawAboveWindowBlock();	// 20-24, 39, 43-46, 49-50, 53-56, 64-72, 95-96 208-213, 223-234, 238-239, 415, 424-425, 706-715
 	DrawPurplePosts();			// 29-32
 	DrawRedPosts();			// 33-35
 	DrawPhysSciPosts();		// 16-17, 36-38, 40-42
@@ -20,7 +20,7 @@ void CreateTextureList()
 	DrawMainPosts();			// 18-19, 51-52
 	DrawPavement();			// 28, 73-94, 240-249, 428, 436
 	DrawBricks();				// 101-110, 112-169, 180-197, 200-201, 390-399, 430-434
-	DrawRoof();					// 1-10, 97-100, 170-179, 202-205, 214-222, 250-257, 296-299, 426-427, 508-513, 519-524
+	DrawRoof();					// 1-10, 97-100, 170-179, 202-205, 214-222, 250-257, 296-299, 426-427, 508-513, 519-524, 530-705 (because of additional beams)
 	DrawEntranceSteps();		// 258-295, 206-207
 	DrawExtras();				// 300-349, 388, 395, 419-421, 429, 435
 	DrawLargerTextures();		// 350-375, 379-387, 389, 414-418, 422-423, 450-453
@@ -36,7 +36,7 @@ void CreateTextureList()
 //  Called from the main display function to draw the backdrop (all images)
 void DrawBackdrop(bool lightsOn)
 {
-	DisplayAboveWindowBlock();
+	DisplayAboveWindowBlock(); //This also includes the beams above the main posts
 	DisplayBench();
 	DisplayBricks();
 	DisplayChancPosts();
@@ -302,6 +302,7 @@ void DisplayAboveWindowBlock()
 	glCallList(20);
 	glCallList(223);
 	glCallList(229);
+
 	// Blocks containing text 
 	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(ABOVE_CHANC_TEXT));
 	glCallList(224);
@@ -401,11 +402,17 @@ void DisplayAboveWindowBlock()
 	glCallList(208);
 	glCallList(233);
 	glCallList(234);
+	glCallList(711);
+	glCallList(712);
+	
 
 	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(ABOVE_UNDER_POSTS));
 	glCallList(54);
 	glCallList(67);
 	glCallList(72);
+	glCallList(706);
+	glCallList(707);
+	glCallList(708);
 
 	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(BELOW_ROOF_FILL));
 	glCallList(39);
@@ -414,6 +421,8 @@ void DisplayAboveWindowBlock()
 	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(ABOVE_UNDER_POSTS_2));
 	glCallList(69);
 	glCallList(232);
+	glCallList(710);
+	glCallList(709);
 
 	// -------------------------------- Above Library ------------------------------------
 	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(ABOVE_LIB));
@@ -475,7 +484,7 @@ void DrawAboveWindowBlock()
 	tp.CreateDisplayList(YZ, 224, 128.0, 1024.0, 33808.0, 10832.0, 10576.0, 1.0, 1.0);		// chanc above bottom window
 	tp.CreateDisplayList(YZ, 225, 128.0, 1024.0, 33808.0, 10832.0, 21072.0, 1.0, 1.0);		// chanc above bottom window
 	tp.CreateDisplayList(XY, 424, 128.0, 128.0, 33808.0, 10832.0, 22096.0, 0.68, 1.0);		// chanc end edge downstairs
-	tp.CreateDisplayList(XY, 425, 128.0, 256.0, 33808.0, 11856.0, 22096.0, 0.68, 0.5625);	// 3 bricks high to edge
+	tp.CreateDisplayList(XY, 425, 128.0, 256.0, 33808.0, 11856.0, 22096.0, 0.68, 0.5625);	// 3 bricks high to edge (concrete texture near chanc)
 
 
 	tp.CreateDisplayList(YZ, 21, 256.0, 256.0, 33808.0, 11856.0, 9552.0, 0.56, 49.0);		// chanc above top window chanc
@@ -494,11 +503,17 @@ void DrawAboveWindowBlock()
 
 	tp.CreateDisplayList(YZ, 43, 256.0, 256.0, 34256.0, 10832.0, 26752.0, 0.75, 3.25);		// phys sci above 1st door
 	tp.CreateDisplayList(XZ, 44, 128.0, 256.0, 34256.0, 10832.0, 26752.0, 0.70, 2.25);		// phys sci above under 1st door
-	tp.CreateDisplayList(YZ, 45, 256.0, 256.0, 34256.0, 10832.0, 36319.0, 0.75, 6.125);	// phys sci above 2nd door
+	tp.CreateDisplayList(YZ, 45, 256.0, 256.0, 34256.0, 10832.0, 36319.0, 0.75, 6.125);	// phys sci above 2nd door (on the side)
 	tp.CreateDisplayList(XZ, 46, 128.0, 256.0, 34256.0, 10832.0, 36319.0, 0.70, 6.125);	// phys sci above under 2nd door
 
 	tp.CreateDisplayList(YZ, 53, 256.0, 256.0, 31740.0, 11142.0, 8100.0, 0.75, 128.955);	// above posts chanc and canteen sides
 	tp.CreateDisplayList(XZ, 54, 128.0, 256.0, 31740.0, 11142.0, 8100.0, 1.0, 128.955);	// above under main posts
+
+	tp.CreateDisplayList(XZ, 706, 128.0, 256.0, 4550.0, 11142.0, 8100, 1.0, 128.955);	// above under student hub posts
+	tp.CreateDisplayList(YZ, 707, 256.0, 256.0, 4550.0, 11142.0, 8100, 1.0, 128.955);	// above side student hub posts
+	tp.CreateDisplayList(YZ, 708, 256.0, 256.0, 4675.0, 11142.0, 8100, 1.0, 128.995);	// above side student hub posts (bush court side)
+	tp.CreateDisplayList(XY, 709, 128.0, 256.0, 4550.0, 11142.0, 8100.5, 1.0, 1.0);	// above student hub posts end of concrete support
+
 	tp.CreateDisplayList(XZ, 67, 128.0, 256.0, 35920.0, 10832.0, 41127.0, 1.0, 7.6);		// above under steps at end of phys sci
 	tp.CreateDisplayList(YZ, 68, 256.0, 256.0, 35920.0, 10832.0, 41127.0, 0.75, 7.6);		// above steps at end of phys sci
 	tp.CreateDisplayList(YZ, 39, 128.0, 256.0, 35990.0, 11002.0, 41127.0, 0.75, 7.6);		// above steps at end of phys sci (darker back bit)
@@ -506,6 +521,7 @@ void DrawAboveWindowBlock()
 	tp.CreateDisplayList(YZ, 71, 256.0, 256.0, 35748.0, 11142.0, 22096.0, 0.75, 12.69);	// above post between chanc and phys sci
 	tp.CreateDisplayList(XZ, 72, 128.0, 256.0, 35748.0, 11142.0, 22096.0, 1.0, 12.69);		// above under post between chanc and phys sci
 
+	// lists 232-234 all do the corner concrete beam connecting phys sci and library
 	glNewList(232, GL_COMPILE);
 	glBegin(GL_QUADS);
 	glTexCoord2f(0.0, 0.0);
@@ -518,7 +534,7 @@ void DrawAboveWindowBlock()
 	glVertex3f(31768.0 - 45, 11162, 41011.2 + 45);
 	glEnd();
 	glEndList();
-
+	
 	glNewList(233, GL_COMPILE);
 	glBegin(GL_QUADS);
 	glTexCoord2f(0.0, 0.0);
@@ -531,8 +547,8 @@ void DrawAboveWindowBlock()
 	glVertex3f(31768.0 - 45, 11162 + 192, 41011.2 + 45);
 	glEnd();
 	glEndList();
-
-
+	
+	
 	glNewList(234, GL_COMPILE);
 	glBegin(GL_QUADS);
 	glTexCoord2f(0.0, 0.0);
@@ -545,6 +561,48 @@ void DrawAboveWindowBlock()
 	glVertex3f(31768.0 + 45, 11162 + 192, 41011.2 - 45);
 	glEnd();
 	glEndList();
+
+	// Lists 709-711 all do the corner concrete beam connecting library and student hub
+	glNewList(710, GL_COMPILE);
+	glBegin(GL_QUADS);
+	glTexCoord2f(0.0, 0.0);
+	glVertex3f(2608.0 + 90, 11920, 43090.2 - 10);
+	glTexCoord2f(10.54, 0.0);
+	glVertex3f(4666.0 + 90, 11162, 41011.2 - 10);
+	glTexCoord2f(10.54, 1.0);
+	glVertex3f(4666.0 - 90, 11162, 41011.2 + 10);
+	glTexCoord2f(0.0, 1.0);
+	glVertex3f(2608.0 - 90, 11920, 43090.2 + 10);
+	glEnd();
+	glEndList();
+
+	glNewList(711, GL_COMPILE);
+	glBegin(GL_QUADS);
+	glTexCoord2f(0.0, 0.0);
+	glVertex3f(2608.0 - 90, 11920, 43090.2 + 10);
+	glTexCoord2f(10.54, 0.0);
+	glVertex3f(4666.0 - 90, 11162, 41011.2 + 10);
+	glTexCoord2f(10.54, 0.75);
+	glVertex3f(4666.0 - 90, 11162 + 192, 41011.2 + 10);
+	glTexCoord2f(0.0, 0.75);
+	glVertex3f(2608.0 - 90, 11920 + 192, 43090.2 + 10);
+	glEnd();
+	glEndList();
+
+
+	glNewList(712, GL_COMPILE);
+	glBegin(GL_QUADS);
+	glTexCoord2f(0.0, 0.0);
+	glVertex3f(2608.0 + 90, 11920, 43090.2 - 10);
+	glTexCoord2f(10.54, 0.0);
+	glVertex3f(4666.0 + 90, 11162, 41011.2 - 10);
+	glTexCoord2f(10.54, 0.75);
+	glVertex3f(4666.0 + 90, 11162 + 192, 41011.2 - 10);
+	glTexCoord2f(0.0, 0.75);
+	glVertex3f(2608.0 + 90, 11920 + 192, 43090.2 - 10);
+	glEnd();
+	glEndList();
+	
 
 	// ABOVE_WINDOW_EDGE_3B
 	tp.CreateDisplayList(XY, 49, 128.0, 256.0, 33808.0, 10832.0, 25344.0, 1.0, 0.75);		// 3 bricks high
