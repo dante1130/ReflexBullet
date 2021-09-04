@@ -1,8 +1,8 @@
-# Install script for directory: D:/GitHub Repos/ReflexBullet/Shay
+# Install script for directory: C:/Users/Daniel/Documents/GitHub/ReflexBullet/Shay
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "D:/GitHub Repos/ReflexBullet/out/install/x86-Release")
+  set(CMAKE_INSTALL_PREFIX "C:/Users/Daniel/Documents/GitHub/ReflexBullet/out/install/x86-Release")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 

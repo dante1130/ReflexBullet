@@ -467,7 +467,7 @@ void CreateBoundingBoxesExtendedArea()
 
 	//boundary walls
 	cam.AddAABB(glm::vec3(-15993, 0, 10600), glm::vec3(-16993, 0, 6613)); //far back
-	cam.AddAABB(glm::vec3(-16300.840, 0, 6826.400), glm::vec3(-17300.840, 0, 3493.300)); //far back behind Area B
+	cam.AddAABB(glm::vec3(-16300.840, 0, 6826.400), glm::vec3(-17300.840, 0, 2493.300)); //far back behind Area B
 	//cam.AddAABB(glm::vec3(-7238, 0, 6025), glm::vec3(-7688, 0, 5575)); //far back diagonal 2.1
 	cam.AddAABB(glm::vec3(-4500, 0, 1551.5), glm::vec3(-17000, 0, 0)); //right
 
@@ -476,7 +476,25 @@ void CreateBoundingBoxesExtendedArea()
 	cam.AddAABB(glm::vec3(-14912.330, 0, 6030.1), glm::vec3(-17000, 0, 5809.100));//next to cylinder (also left railing of left stairs)
 	cam.AddAABB(glm::vec3(-14912.330, 0, 4945), glm::vec3(-15550, 0, 4895));//Right railing of left stairs
 
-	cam.AddAABB(glm::vec3(-13478.14, 0, 2814.1), glm::vec3(-14550.64, 0, 1511.5)); //cylinder
+	cam.AddAABB(glm::vec3(-13478.14, 0, 3100), glm::vec3(-16550.64, 0, 1511.5)); //cylinder
+	cam.AddAABB(glm::vec3(-16101, 0, 3674), glm::vec3(-16550.64, 0, 3400)); //cylinder
+	cam.AddAABB(glm::vec3(-15961, 0, 3400), glm::vec3(-16550.64, 0, 3200)); //cylinder
+	cam.AddAABB(glm::vec3(-15831, 0, 3200), glm::vec3(-16550.64, 0, 3000)); //cylinder
+	cam.AddAABB(glm::vec3(-15701, 0, 3000), glm::vec3(-16550.64, 0, 2700)); //cylinder
+	//16101
+	// 	   15901
+	// 	   15701
+	// 	   15501
+	// 
+	//-15501 3674
+	// -16550 2826
+
+	//15501 3000
+	//-16550 3674
+
+	//15701 3674
+	//-16550 2826
+	
 	//cam.AddAABB(glm::vec3(-13478.14, 0, 2814.1), glm::vec3(-14550.64, 0, 1511.5));//next to cylinder
 
 	//Area C

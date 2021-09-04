@@ -21,6 +21,44 @@ void DisplayExtraArea::DisplayExtension()
 
 	glPopMatrix();
 
+	//Resturant area
+	glPushMatrix();
+	glTranslatef(-3600, 10000, 8350);
+	SmallTableOBJ.DisplayObject(SMALL_TABLE);
+
+	glPushMatrix();
+	glTranslatef(-300, 50, 0);
+	glRotatef(90, 0, 1, 0);
+	glRotatef(-8, 1, 0, 0);
+	BigTableOBJ.DisplayObject(BIG_TABLE);
+
+	glPopMatrix();
+
+	glTranslatef(-350, 0, -2000);
+	SmallTableOBJ.DisplayObject(SMALL_TABLE);
+
+	glTranslatef(200, 0, -1000);
+	glPushMatrix();
+	glRotatef(45, 0, 1, 0);
+	SmallTableOBJ.DisplayObject(SMALL_TABLE);
+	glPopMatrix();
+
+	glTranslatef(-200, 0, -500);
+	glPushMatrix();
+	glRotatef(78, 0, 1, 0);
+	SmallTableOBJ.DisplayObject(SMALL_TABLE);
+	glPopMatrix();
+
+	glTranslatef(200, 0, -1000);
+	SmallTableOBJ.DisplayObject(SMALL_TABLE);
+
+	glTranslatef(-400, 0, -500);
+	glRotatef(166, 0, 1, 0);
+	SmallTableOBJ.DisplayObject(SMALL_TABLE);
+
+	glPopMatrix();
+
+
 	// Small tables
 	glPushMatrix();
 		glTranslatef(-12088, 9000, 3445.9);
@@ -954,10 +992,10 @@ void DisplayExtraArea::DisplayPathways()
 	glBegin(GL_POLYGON);
 	glTexCoord2f(0.0, 0.0);
 	glVertex3f(-4389, 8980, 10600);
-	glTexCoord2f(45, 0);
-	glVertex3f(-16029, 8980, 10600);
-	glTexCoord2f(45, 90);
-	glVertex3f(-16029, 8980, 925);
+	glTexCoord2f(60, 0);
+	glVertex3f(-18029, 8980, 10600);
+	glTexCoord2f(60, 90);
+	glVertex3f(-18029, 8980, 925);
 	glTexCoord2f(0.0, 90);
 	glVertex3f(-4389, 8980, 925);
 	glEnd();
