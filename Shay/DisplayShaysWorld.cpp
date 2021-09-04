@@ -511,8 +511,8 @@ void DrawAboveWindowBlock()
 
 	tp.CreateDisplayList(XZ, 706, 128.0, 256.0, 4550.0, 11142.0, 8100, 1.0, 128.955);	// above under student hub posts
 	tp.CreateDisplayList(YZ, 707, 256.0, 256.0, 4550.0, 11142.0, 8100, 1.0, 128.955);	// above side student hub posts
-	tp.CreateDisplayList(YZ, 708, 256.0, 256.0, 4675.0, 11142.0, 8100, 1.0, 128.995);	// above side student hub posts (bush court side)
-	tp.CreateDisplayList(XY, 709, 128.0, 256.0, 4550.0, 11142.0, 8100.5, 1.0, 1.0);	// above student hub posts end of concrete support
+	tp.CreateDisplayList(YZ, 708, 256.0, 256.0, 4675.0, 11142.0, 8100, 0.8, 128.995);	// above side student hub posts (bush court side)
+	tp.CreateDisplayList(XY, 709, 128.0, 256.0, 4550.0, 11142.0, 8100.5, 1.0, 0.8);	// above student hub posts end of concrete support
 
 	tp.CreateDisplayList(XZ, 67, 128.0, 256.0, 35920.0, 10832.0, 41127.0, 1.0, 7.6);		// above under steps at end of phys sci
 	tp.CreateDisplayList(YZ, 68, 256.0, 256.0, 35920.0, 10832.0, 41127.0, 0.75, 7.6);		// above steps at end of phys sci
