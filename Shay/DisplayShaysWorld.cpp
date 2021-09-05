@@ -18,7 +18,7 @@ void CreateTextureList()
 	DrawDoorPaving();			// 47-48
 	DrawLibraryPosts();		// 57-63, 442-447
 	DrawMainPosts();			// 18-19, 51-52
-	DrawPavement();			// 28, 73-94, 240-249, 428, 436
+	DrawPavement();			// 28, 73-94, 240-249, 428, 436, 716-717
 	DrawBricks();				// 101-110, 112-169, 180-197, 200-201, 390-399, 430-434
 	DrawRoof();					// 1-10, 97-100, 170-179, 202-205, 214-222, 250-257, 296-299, 426-427, 508-513, 519-524, 530-705 (because of additional beams)
 	DrawEntranceSteps();		// 258-295, 206-207
@@ -771,7 +771,6 @@ void DisplayMainPosts()
 				glPopMatrix();
 			}
 			
-
 			glBindTexture(GL_TEXTURE_2D, tp.GetTexture(MAIN_POST_2));
 			glPushMatrix();
 			glTranslatef(0.0, 0.0, step);
@@ -1174,6 +1173,7 @@ void DisplayPavement()
 	glTranslatef(0.0, 0.0, 1920.0);
 	glCallList(86);
 	glPopMatrix();
+	glCallList(716);
 
 	for (int i = 247; i < 250; i++) glCallList(i);
 	glPushMatrix();
@@ -1199,6 +1199,7 @@ void DisplayPavement()
 
 	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(PAVEMENTSIDE_RIGHT));
 	glCallList(76);
+	glCallList(717);
 
 	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(PAVEMENTSIDE_TOP));
 	glCallList(77);
@@ -1229,13 +1230,14 @@ void DrawPavement()
 {
 	// PAVEMENT
 	tp.CreateDisplayList(XZ, 87, 128.0, 64.0, 2608.0, 10000.0, 10000, 17.0, 482.5);
-	tp.CreateDisplayList(XZ, 73, 128.0, 64.0, 31632.0, 10000.0, 10000.0, 17.0, 482.5);
+	tp.CreateDisplayList(XZ, 716, 128.0, 64.0, 2608.0, 10000.0, 2850.0, 17.0, 150); //Extra brick path near extended area walkway
+	tp.CreateDisplayList(XZ, 73, 128.0, 64.0, 31632.0, 10000.0, 10000.0, 17.0, 482.5); // starting area path
 	tp.CreateDisplayList(XZ, 88, 128.0, 64.0, 33744.0, 10000.0, 41104.0, 4.75, 30.5);	// by steps between phys sci and library
 	tp.CreateDisplayList(XZ, 428, 128.0, 64.0, 34256.0, 10000.0, 26704.0, 1.0, 9.5); // phys sci doorway (behind carpet)
 	//
 
 	// PAVEMENT_TOP
-	tp.CreateDisplayList(XZ, 74, 64.0, 128.0, 4912.0, 10000.0, 40880.0, 416.5, 17.0);
+	tp.CreateDisplayList(XZ, 74, 64.0, 128.0, 4912.0, 10000.0, 40880.0, 416.5, 17.0); // In front of library
 	tp.CreateDisplayList(XZ, 246, 64.0, 128.0, 32656.0, 10000.0, 42928.0, 15.0, 2.0); // gcl1 door way
 	tp.CreateDisplayList(XZ, 245, 64.0, 128.0, 24080.0, 10000.0, 42928.0, 3.0, 1.5); // gcl1 door way
 	tp.CreateDisplayList(XZ, 244, 64.0, 128.0, 8189.0, 10000.0, 42928.0, 44.8, 1.80); // library door way
@@ -1326,6 +1328,7 @@ void DrawPavement()
 	tp.CreateDisplayList(XZ, 436, 64.0, 64.0, 31568.0, 9086.0, 3408.0, 1.0, 45.0);	// Side paving at entrance
 	// PAVEMENTSIDE_RIGHT
 	tp.CreateDisplayList(XZ, 76, 64.0, 64.0, 4784.0, 10000.0, 10000, 1.0, 481.5); //////////////////////////////
+	tp.CreateDisplayList(XZ, 717, 64.0, 64.0, 4784.0, 10000.0, 2850.0, 1.0, 150); // Extra edge paving near extended area walkway
 	// PAVEMENTSIDE_TOP
 	tp.CreateDisplayList(XZ, 77, 64.0, 64.0, 4848.0, 10000.0, 40816.0, 417.5, 1.0);
 	// PAVEMENT_STEPS_CORNER
