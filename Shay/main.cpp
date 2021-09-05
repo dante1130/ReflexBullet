@@ -431,8 +431,15 @@ void CreateBoundingBoxesPillar()
 		cam.AddAABB(glm::vec3(pillarMax), glm::vec3(pillarMin));
 
 	// Right
-	for (int i = 0; i < 17; ++i, pillarMax.z -= 1930, pillarMin.z -= 1930)
+	for (int i = 0; i < 19; ++i, pillarMax.z -= 1930, pillarMin.z -= 1930) // 19 pillars on this side
+	{
+		if (i == 18) // for the last pillar, fix the collision according to location (1930 * 0.87)
+		{
+			pillarMax.z += 250.9;
+			pillarMin.z += 250.9;
+		}
 		cam.AddAABB(glm::vec3(pillarMax), glm::vec3(pillarMin));
+	}
 }
 
 void CreateBoundingBoxesExtendedArea()
