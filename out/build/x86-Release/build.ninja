@@ -39,7 +39,7 @@ include CMakeFiles\rules.ninja
 # Utility command for edit_cache
 
 build CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D "D:\GitHub Repos\ReflexBullet\out\build\x86-Release" && "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = cmd.exe /C "cd /D C:\Users\Daniel\Documents\GitHub\ReflexBullet\out\build\x86-Release && "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -50,7 +50,7 @@ build edit_cache: phony CMakeFiles\edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D "D:\GitHub Repos\ReflexBullet\out\build\x86-Release" && "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -S"D:\GitHub Repos\ReflexBullet" -B"D:\GitHub Repos\ReflexBullet\out\build\x86-Release""
+  COMMAND = cmd.exe /C "cd /D C:\Users\Daniel\Documents\GitHub\ReflexBullet\out\build\x86-Release && "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SC:\Users\Daniel\Documents\GitHub\ReflexBullet -BC:\Users\Daniel\Documents\GitHub\ReflexBullet\out\build\x86-Release"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -59,7 +59,7 @@ build rebuild_cache: phony CMakeFiles\rebuild_cache.util
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
-# D:/GitHub Repos/ReflexBullet/CMakeLists.txt
+# C:/Users/Daniel/Documents/GitHub/ReflexBullet/CMakeLists.txt
 # =============================================================================
 
 # =============================================================================
@@ -187,7 +187,7 @@ build Shay\Shay.exe: CXX_EXECUTABLE_LINKER__Shay_RelWithDebInfo Shay\CMakeFiles\
 # Utility command for edit_cache
 
 build Shay\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D "D:\GitHub Repos\ReflexBullet\out\build\x86-Release\Shay" && "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = cmd.exe /C "cd /D C:\Users\Daniel\Documents\GitHub\ReflexBullet\out\build\x86-Release\Shay && "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -198,7 +198,7 @@ build Shay\edit_cache: phony Shay\CMakeFiles\edit_cache.util
 # Utility command for rebuild_cache
 
 build Shay\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D "D:\GitHub Repos\ReflexBullet\out\build\x86-Release\Shay" && "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -S"D:\GitHub Repos\ReflexBullet" -B"D:\GitHub Repos\ReflexBullet\out\build\x86-Release""
+  COMMAND = cmd.exe /C "cd /D C:\Users\Daniel\Documents\GitHub\ReflexBullet\out\build\x86-Release\Shay && "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SC:\Users\Daniel\Documents\GitHub\ReflexBullet -BC:\Users\Daniel\Documents\GitHub\ReflexBullet\out\build\x86-Release"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -218,14 +218,14 @@ build Shay.exe: phony Shay\Shay.exe
 # =============================================================================
 
 #############################################
-# Folder: D:/GitHub Repos/ReflexBullet/out/build/x86-Release
+# Folder: C:/Users/Daniel/Documents/GitHub/ReflexBullet/out/build/x86-Release
 
 build all: phony Shay\all
 
 # =============================================================================
 
 #############################################
-# Folder: D:/GitHub Repos/ReflexBullet/out/build/x86-Release/Shay
+# Folder: C:/Users/Daniel/Documents/GitHub/ReflexBullet/out/build/x86-Release/Shay
 
 build Shay\all: phony Shay\Shay.exe
 
