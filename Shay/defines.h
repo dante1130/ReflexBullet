@@ -325,10 +325,12 @@ constexpr auto CANTEEN_WALL3				= 249;
 constexpr auto CANTEEN_WALL4				= 250;
 
 constexpr auto BUSH_TEXTURE					= 252;
+constexpr auto STUDENTHUB_DOOR_LEFT			= 253;
+constexpr auto STUDENTHUB_DOOR_RIGHT		= 254;
 
 
 
 constexpr auto TEXTURE_END					= 260;
-// 253 Next
+// 255 Next
 
 #endif

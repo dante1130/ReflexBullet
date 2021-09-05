@@ -776,6 +776,12 @@ void CreateTextures()
 	image = tp.LoadTexture("data/object/bushText.raw", 512, 512);
 	tp.CreateTexture(BUSH_TEXTURE, image, 512, 512);
 
+	image = tp.LoadTexture("data/hubDoorLeft.raw", 256, 512);
+	tp.CreateTexture(STUDENTHUB_DOOR_LEFT, image, 256, 512);
+
+	image = tp.LoadTexture("data/hubDoorRight.raw", 256, 400);
+	tp.CreateTexture(STUDENTHUB_DOOR_RIGHT, image, 256, 400);
+
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 

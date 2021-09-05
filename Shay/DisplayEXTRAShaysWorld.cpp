@@ -11,6 +11,13 @@ Object3D UmbrellaOBJ;
 // Bush object
 Object3D BushOBJ;
 
+
+//Sliding door values
+bool doorOpen = false; //if it is open or closed
+float doorXPos = -8927.6275; //the xPosition of the door
+int doorSpeed = 1000; //how fast it opens/closes // time it takes in milliseconds
+float doorTime;
+
 void DisplayExtraArea::DisplayExtension()
 {
 	// Environment
@@ -211,6 +218,7 @@ void DisplayExtraArea::DisplayNonBlendObjects()
 	DisplayPathways();
 	DisplayWaltersResturant();
 	DisplayLeftAreaOfStairs();
+	DisplaySlidingDoor();
 }
 
 void DisplayExtraArea::DisplayEdgeWallEnvironmentPicutres()
@@ -540,6 +548,19 @@ void DisplayExtraArea::DisplayCanteen()
 	glVertex3f(-8126.44, 8980, 10600);
 	glEnd();
 
+	//Hub area wall (door right)
+	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(STUDENTHUB_DOOR_LEFT));
+	glBegin(GL_POLYGON);
+	glTexCoord2f(0.0, 0.0);
+	glVertex3f(-8100.44, 10000, 10590);
+	glTexCoord2f(1, 0);
+	glVertex3f(-8927.6275, 10000, 10590);
+	glTexCoord2f(1, 1);
+	glVertex3f(-8927.6275, 8980, 10590);
+	glTexCoord2f(0.0, 1);
+	glVertex3f(-8100.44, 8980, 10590);
+	glEnd();
+
 	//Hub area wall (wall)
 	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(STUDENTHUB_WALL));
 	glBegin(GL_POLYGON);
@@ -553,6 +574,36 @@ void DisplayExtraArea::DisplayCanteen()
 	glVertex3f(-9728.815, 8980, 10600);
 	glEnd();
 	
+}
+
+void DisplayExtraArea::DisplaySlidingDoor()
+{
+
+	if (doorOpen)
+	{
+		doorXPos = doorXPos + 801.1875 * (glutGet(GLUT_ELAPSED_TIME) - doorTime)  / doorSpeed;
+		if (doorXPos > -8240.44) { doorXPos = -8240.44; }
+	}
+	else
+	{
+		doorXPos = doorXPos - 801.1875 * (glutGet(GLUT_ELAPSED_TIME) - doorTime) / doorSpeed;
+		if (doorXPos < -8927.6275) { doorXPos = -8927.6275; }
+	}
+	doorTime = glutGet(GLUT_ELAPSED_TIME);
+	
+	//Hub area wall (door right)
+	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(STUDENTHUB_DOOR_RIGHT));
+	glBegin(GL_POLYGON);
+	glTexCoord2f(0.0, 0.0);
+	glVertex3f(doorXPos, 9750, 10595);
+	glTexCoord2f(1, 0);
+	glVertex3f((doorXPos - 801.1875), 9750, 10595);
+	glTexCoord2f(1, 1);
+	glVertex3f((doorXPos - 801.1875), 8980, 10595);
+	glTexCoord2f(0.0, 1);
+	glVertex3f(doorXPos, 8980, 10595);
+	glEnd();
+
 }
 
 void DisplayExtraArea::DisplayCanteenRailing()

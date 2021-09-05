@@ -71,6 +71,9 @@ void CreateBoundingBoxesPillar();
 // creates different plains
 void CreatePlains();
 
+//Determines if the door should open or not
+void doorFunction();
+
 /**
 * @brief	Handles all the render steps for the program - still needs work, barebones right now
 * @param	val - Currently unused, needed it for glutTimerFunc
@@ -168,6 +171,7 @@ void RenderLoop(int val)
 
 	if (!paused)
 	{
+		doorFunction();
 		cam.KeyboardMovement();
 	}
 
@@ -384,6 +388,18 @@ void mouseMove(int x, int y)
 	glutPostRedisplay();
 }
 
+
+void doorFunction()
+{
+	GLdouble x = cam.GetLR(), z = cam.GetFB();
+
+	//std::cout << x << " - " << z << std::endl;
+
+	if ((x < -8339.44 && x > -10386.44) && (z < 12000 && z > 9500)){ doorOpen = true; }
+	else { doorOpen = false; }
+
+}
+
 //--------------------------------------------------------------------------------------
 // Set up bounding boxes for collision detection
 //--------------------------------------------------------------------------------------
@@ -482,21 +498,13 @@ void CreateBoundingBoxesExtendedArea()
 	cam.AddAABB(glm::vec3(-15961, 0, 3400), glm::vec3(-16550.64, 0, 3200)); //cylinder
 	cam.AddAABB(glm::vec3(-15831, 0, 3200), glm::vec3(-16550.64, 0, 3000)); //cylinder
 	cam.AddAABB(glm::vec3(-15701, 0, 3000), glm::vec3(-16550.64, 0, 2700)); //cylinder
-	//16101
-	// 	   15901
-	// 	   15701
-	// 	   15501
-	// 
-	//-15501 3674
-	// -16550 2826
-
-	//15501 3000
-	//-16550 3674
-
-	//15701 3674
-	//-16550 2826
 	
-	//cam.AddAABB(glm::vec3(-13478.14, 0, 2814.1), glm::vec3(-14550.64, 0, 1511.5));//next to cylinder
+	
+	//Diagonal Railing
+	cam.AddAABB(glm::vec3(-14620, 0, 3960), glm::vec3(-14740, 0, 3885)); //cylinder
+	cam.AddAABB(glm::vec3(-14740, 0, 3885), glm::vec3(-14860, 0, 3815)); //cylinder
+	cam.AddAABB(glm::vec3(-14860, 0, 3815), glm::vec3(-15000, 0, 3700)); //cylinder
+	cam.AddAABB(glm::vec3(-15000, 0, 3700), glm::vec3(-15158, 0, 3596)); //cylinder
 
 	//Area C
 	cam.AddAABB(glm::vec3(-8844.34, 0, 4586), glm::vec3(-11207.44, 0, 2050));
