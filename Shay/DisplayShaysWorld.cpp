@@ -11,16 +11,16 @@ void CreateTextureList()
 	DrawGrass();				// 79, 111, 198, 460-477
 	DrawChancPosts();			// 11-15, 235-237
 	DrawDoorPosts();			// 25-27, 199
-	DrawAboveWindowBlock();	// 20-24, 39, 43-46, 49-50, 53-56, 64-72, 95-96 208-213, 223-234, 238-239, 415, 424-425, 706-715
+	DrawAboveWindowBlock();	// 20-24, 39, 43-46, 49-50, 53-56, 64-72, 95-96 208-213, 223-234, 238-239, 415, 424-425, 709-718
 	DrawPurplePosts();			// 29-32
 	DrawRedPosts();			// 33-35
 	DrawPhysSciPosts();		// 16-17, 36-38, 40-42
 	DrawDoorPaving();			// 47-48
 	DrawLibraryPosts();		// 57-63, 442-447
 	DrawMainPosts();			// 18-19, 51-52
-	DrawPavement();			// 28, 73-94, 240-249, 428, 436, 716-717
+	DrawPavement();			// 28, 73-94, 240-249, 428, 436, 719-720
 	DrawBricks();				// 101-110, 112-169, 180-197, 200-201, 390-399, 430-434
-	DrawRoof();					// 1-10, 97-100, 170-179, 202-205, 214-222, 250-257, 296-299, 426-427, 508-513, 519-524, 530-705 (because of additional beams)
+	DrawRoof();					// 1-10, 97-100, 170-179, 202-205, 214-222, 250-257, 296-299, 426-427, 508-513, 519-524, 530-708 (because of additional beams)
 	DrawEntranceSteps();		// 258-295, 206-207
 	DrawExtras();				// 300-349, 388, 395, 419-421, 429, 435
 	DrawLargerTextures();		// 350-375, 379-387, 389, 414-418, 422-423, 450-453
@@ -357,6 +357,8 @@ void DisplayAboveWindowBlock()
 	glPopMatrix();
 	glCallList(68);
 	glCallList(71);	// above post between chanc and phys sci
+	glCallList(710);
+	glCallList(711);
 
 	glCallList(213);
 	glPushMatrix();
@@ -402,17 +404,16 @@ void DisplayAboveWindowBlock()
 	glCallList(208);
 	glCallList(233);
 	glCallList(234);
-	glCallList(711);
-	glCallList(712);
+	glCallList(714);
+	glCallList(715);
 	
 
 	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(ABOVE_UNDER_POSTS));
 	glCallList(54);
 	glCallList(67);
 	glCallList(72);
-	glCallList(706);
-	glCallList(707);
-	glCallList(708);
+	glCallList(709);
+	
 
 	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(BELOW_ROOF_FILL));
 	glCallList(39);
@@ -421,8 +422,8 @@ void DisplayAboveWindowBlock()
 	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(ABOVE_UNDER_POSTS_2));
 	glCallList(69);
 	glCallList(232);
-	glCallList(710);
-	glCallList(709);
+	glCallList(713);
+	glCallList(712);
 
 	// -------------------------------- Above Library ------------------------------------
 	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(ABOVE_LIB));
@@ -509,10 +510,10 @@ void DrawAboveWindowBlock()
 	tp.CreateDisplayList(YZ, 53, 256.0, 256.0, 31740.0, 11142.0, 8100.0, 0.75, 128.955);	// above posts chanc and canteen sides
 	tp.CreateDisplayList(XZ, 54, 128.0, 256.0, 31740.0, 11142.0, 8100.0, 1.0, 128.955);	// above under main posts
 
-	tp.CreateDisplayList(XZ, 706, 128.0, 256.0, 4550.0, 11142.0, 8100, 1.0, 128.955);	// above under student hub posts
-	tp.CreateDisplayList(YZ, 707, 256.0, 256.0, 4550.0, 11142.0, 8100, 1.0, 128.955);	// above side student hub posts
-	tp.CreateDisplayList(YZ, 708, 256.0, 256.0, 4675.0, 11142.0, 8100, 0.8, 128.995);	// above side student hub posts (bush court side)
-	tp.CreateDisplayList(XY, 709, 128.0, 256.0, 4550.0, 11142.0, 8100.5, 1.0, 0.8);	// above student hub posts end of concrete support
+	tp.CreateDisplayList(XZ, 709, 128.0, 256.0, 4550.0, 11142.0, 6484, 1.0, 135.26);	// above under student hub posts
+	tp.CreateDisplayList(YZ, 710, 256.0, 256.0, 4550.0, 11142.0, 6484, 1.0, 135.26);	// above side student hub posts (student hub side)
+	tp.CreateDisplayList(YZ, 711, 256.0, 256.0, 4675.0, 11142.0, 6484, 0.8, 135.26);	// above side student hub posts (bush court side)
+	tp.CreateDisplayList(XY, 712, 128.0, 256.0, 4550.0, 11142.0, 6484.5, 1.0, 0.8);	// above student hub posts end of concrete support
 
 	tp.CreateDisplayList(XZ, 67, 128.0, 256.0, 35920.0, 10832.0, 41127.0, 1.0, 7.6);		// above under steps at end of phys sci
 	tp.CreateDisplayList(YZ, 68, 256.0, 256.0, 35920.0, 10832.0, 41127.0, 0.75, 7.6);		// above steps at end of phys sci
@@ -562,8 +563,8 @@ void DrawAboveWindowBlock()
 	glEnd();
 	glEndList();
 
-	// Lists 709-711 all do the corner concrete beam connecting library and student hub
-	glNewList(710, GL_COMPILE);
+	// Lists 713-715 all do the corner concrete beam connecting library and student hub
+	glNewList(713, GL_COMPILE);
 	glBegin(GL_QUADS);
 	glTexCoord2f(0.0, 0.0);
 	glVertex3f(2608.0 + 90, 11920, 43090.2 - 10);
@@ -576,7 +577,7 @@ void DrawAboveWindowBlock()
 	glEnd();
 	glEndList();
 
-	glNewList(711, GL_COMPILE);
+	glNewList(714, GL_COMPILE);
 	glBegin(GL_QUADS);
 	glTexCoord2f(0.0, 0.0);
 	glVertex3f(2608.0 - 90, 11920, 43090.2 + 10);
@@ -590,7 +591,7 @@ void DrawAboveWindowBlock()
 	glEndList();
 
 
-	glNewList(712, GL_COMPILE);
+	glNewList(715, GL_COMPILE);
 	glBegin(GL_QUADS);
 	glTexCoord2f(0.0, 0.0);
 	glVertex3f(2608.0 + 90, 11920, 43090.2 - 10);
@@ -742,12 +743,17 @@ void DisplayMainPosts()
 	step = 0.0;
 	stepLength = 0.0;
 	step2 = 0.0;
-	for (int j = 0; j < 2; j++)
+	for (int j = 0; j < 2; j++) // left and right of library pillars
 	{
 		glPushMatrix();
+		int maxPillars = 17;
+		if (j == 1) // setup for student hub pillars (to add two additional pillars)
+		{
+			step2 -= 1930.0 * 1.87;
+			maxPillars = 19;
+		}
 		glTranslatef(stepLength, 0.0, step2);
-		
-		for (int i = 0; i < 17; i++)
+		for (int i = 0; i < maxPillars; i++)
 		{
 			glBindTexture(GL_TEXTURE_2D, tp.GetTexture(MAIN_POST));
 			glPushMatrix();
@@ -787,7 +793,14 @@ void DisplayMainPosts()
 				glCallList(19);
 				glPopMatrix();
 			}
-			step += 1930.0;
+			if (i == 0 && maxPillars == 19) // The 1st pillar on the right side (which is slightly closer)
+			{
+				step += 1930.0 * 0.87;
+			}
+			else
+			{ 
+				step += 1930.0;
+			}
 		}
 		
 		stepLength -= 27192.0;
@@ -1173,7 +1186,7 @@ void DisplayPavement()
 	glTranslatef(0.0, 0.0, 1920.0);
 	glCallList(86);
 	glPopMatrix();
-	glCallList(716);
+	glCallList(719);
 
 	for (int i = 247; i < 250; i++) glCallList(i);
 	glPushMatrix();
@@ -1199,7 +1212,7 @@ void DisplayPavement()
 
 	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(PAVEMENTSIDE_RIGHT));
 	glCallList(76);
-	glCallList(717);
+	glCallList(720);
 
 	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(PAVEMENTSIDE_TOP));
 	glCallList(77);
@@ -1230,7 +1243,7 @@ void DrawPavement()
 {
 	// PAVEMENT
 	tp.CreateDisplayList(XZ, 87, 128.0, 64.0, 2608.0, 10000.0, 10000, 17.0, 482.5);
-	tp.CreateDisplayList(XZ, 716, 128.0, 64.0, 2608.0, 10000.0, 2850.0, 17.0, 150); //Extra brick path near extended area walkway
+	tp.CreateDisplayList(XZ, 719, 128.0, 64.0, 2608.0, 10000.0, 2850.0, 17.0, 111.718); //Extra brick path near extended area walkway
 	tp.CreateDisplayList(XZ, 73, 128.0, 64.0, 31632.0, 10000.0, 10000.0, 17.0, 482.5); // starting area path
 	tp.CreateDisplayList(XZ, 88, 128.0, 64.0, 33744.0, 10000.0, 41104.0, 4.75, 30.5);	// by steps between phys sci and library
 	tp.CreateDisplayList(XZ, 428, 128.0, 64.0, 34256.0, 10000.0, 26704.0, 1.0, 9.5); // phys sci doorway (behind carpet)
@@ -1328,7 +1341,7 @@ void DrawPavement()
 	tp.CreateDisplayList(XZ, 436, 64.0, 64.0, 31568.0, 9086.0, 3408.0, 1.0, 45.0);	// Side paving at entrance
 	// PAVEMENTSIDE_RIGHT
 	tp.CreateDisplayList(XZ, 76, 64.0, 64.0, 4784.0, 10000.0, 10000, 1.0, 481.5); //////////////////////////////
-	tp.CreateDisplayList(XZ, 717, 64.0, 64.0, 4784.0, 10000.0, 2850.0, 1.0, 150); // Extra edge paving near extended area walkway
+	tp.CreateDisplayList(XZ, 720, 64.0, 64.0, 4784.0, 10000.0, 2850.0, 1.0, 150); // Extra edge paving near extended area walkway
 	// PAVEMENTSIDE_TOP
 	tp.CreateDisplayList(XZ, 77, 64.0, 64.0, 4848.0, 10000.0, 40816.0, 417.5, 1.0);
 	// PAVEMENT_STEPS_CORNER
@@ -1849,12 +1862,12 @@ void DisplayRoof()
 
 	// Student hub roof beams
 	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(ROOF_BEAM_3));
-	for (int i = 529; i < 617; i++)
+	for (int i = 529; i < 619; i++)
 	{
-		glCallList(i + 88);
+		glCallList(i + 90);
 		glPushMatrix();
 		glTranslatef(0.0, 0.0, 32.0);
-		glCallList(i + 88);
+		glCallList(i + 90);
 		glPopMatrix();
 	}
 	
@@ -1868,8 +1881,8 @@ void DisplayRoof()
 	for (int i = 508; i < 513; i++) glCallList(i);
 	// Corner beams (Library/Student hub, student hub side)
 	for (int i = 519; i < 524; i++) glCallList(i);
-
-	for (int i = 529; i < 617; i++) glCallList(i);
+	// Beams running along student hub roof
+	for (int i = 529; i < 619; i++) glCallList(i);
 
 
 	// Top of Roof
@@ -2132,9 +2145,9 @@ void DrawRoof()
 	DrawAngledRoofBeamX(522, 2563.0, 11980.0, 2963.0 + (386.0 * 3), 11990.0 - 545.07, 41612.0, 12.0, 5);
 	DrawAngledRoofBeamX(523, 2563.0, 11980.0, 2963.0 + (386.0 * 4), 11990.0 - 687.13, 41226.0, 15.21, 5);
 
-	for (int j = 529; j < 617; j++)
+	for (int j = 529; j < 619; j++)
 	{
-		DrawAngledRoofBeamX(j, 2600.0, 12012.0, 2963.0 + 1600.0, 11990.0 - 687.13, 41226.0 - (386.0 * ((double)j - 528.0)), 15.21, 88);
+		DrawAngledRoofBeamX(j, 2600.0, 12012.0, 2963.0 + 1600.0, 11990.0 - 687.13, 41226.0 - (386.0 * ((double)j - 528.0)), 15.21, 90);
 	}
 }
 
