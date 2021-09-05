@@ -159,6 +159,7 @@ void loadObjFiles()
 	readObjFile("data/object/smallTable.obj", SmallTableOBJ);
 	readObjFile("data/object/bigTable.obj", BigTableOBJ);
 	readObjFile("data/object/umbrella.obj", UmbrellaOBJ);
+	readObjFile("data/object/bush.obj", BushOBJ);
 }
 
 void RenderLoop(int val)

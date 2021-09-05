@@ -8,6 +8,8 @@ Object3D SmallTableOBJ;
 Object3D BigTableOBJ;
 // Umbrella object
 Object3D UmbrellaOBJ;
+// Bush object
+Object3D BushOBJ;
 
 void DisplayExtraArea::DisplayExtension()
 {

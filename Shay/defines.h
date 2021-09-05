@@ -324,9 +324,11 @@ constexpr auto CANTEEN_WALL2				= 248;
 constexpr auto CANTEEN_WALL3				= 249;
 constexpr auto CANTEEN_WALL4				= 250;
 
+constexpr auto BUSH_TEXTURE					= 252;
+
 
 
 constexpr auto TEXTURE_END					= 260;
-// 252 Next
+// 253 Next
 
 #endif

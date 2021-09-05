@@ -773,6 +773,9 @@ void CreateTextures()
 	image = tp.LoadTexture("data/edgeCornerWall.raw", 512, 512);
 	tp.CreateTexture(EDGE_WALL_CLOSE_RIGHT, image, 512, 512);
 
+	image = tp.LoadTexture("data/object/bushText.raw", 512, 512);
+	tp.CreateTexture(BUSH_TEXTURE, image, 512, 512);
+
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
