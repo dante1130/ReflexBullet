@@ -204,7 +204,209 @@ void DisplayExtraArea::DisplayExtension()
 		UmbrellaOBJ.DisplayObject(UMBRELLA);
 	glPopMatrix();
 
+	DisplayBushes();
 	DisplayNonBlendObjects();
+}
+
+
+void DisplayExtraArea::DisplayBushes()
+{
+	//Left side next to main stairs
+	glPushMatrix(); //1st section
+	glTranslatef(-4546, 10050, 10250);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-50, 0, 250);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-250, 0, 0);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-50, 0, -250);
+	glRotatef(90, 0, 1, 0);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glPopMatrix();
+
+	glPushMatrix(); //2nd section
+	glTranslatef(-5374, 9800, 10250);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-50, 0, 250);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-250, 0, 0);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-50, 0, -250);
+	glRotatef(90, 0, 1, 0);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glPopMatrix();
+
+	glPushMatrix(); //3rd section
+	glTranslatef(-6229, 9585, 10250);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-50, 0, 250);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-250, 0, 0);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-50, 0, -250);
+	glRotatef(90, 0, 1, 0);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glPopMatrix();
+
+	glPushMatrix(); //4th section
+	glTranslatef(-7000, 9330, 10250);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-50, 0, 250);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-250, 0, 0);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-50, 0, -250);
+	glRotatef(90, 0, 1, 0);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glPopMatrix();
+	
+
+	//In cylinder around big tree
+	glPushMatrix();
+	glTranslatef(-14971, 9250, 6673);
+	glScalef(1.5, 1.5, 1.5);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-250, 0, 250);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-50, 0, -100);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(50, 0, -300);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glPopMatrix();
+
+	//In smaller cylinder
+	glPushMatrix();	
+	glTranslatef(-14055, 9130, 2480);
+	glScalef(1.5, 1.5, 1.5);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-100, 0, -300);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glPopMatrix();
+
+	//In metal pot thing by dirt area
+	glPushMatrix();
+	glTranslatef(-10267.8, 9090, 3512.5);
+	glScalef(1.3, 1.3, 1.3);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glPopMatrix();
+
+	//Behind small wall - big bushes
+	glPushMatrix();
+	glTranslatef(-11345, 9160, 1684);
+	glScalef(2, 2, 2);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(450, 0, 50);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(700, 0, 100);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(250, 0, 0);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glPopMatrix();
+
+	//Behind small wall - small bushes
+	glPushMatrix();
+	glTranslatef(-11345, 9160, 2084);
+	glScalef(1.25, 1.25, 1.25);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(250, 0, 50);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(2500, 0, -100);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(250, 0, -300);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(250, 0, 50);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glPopMatrix();
+
+	//In left area of stairs
+	glPushMatrix();
+	glTranslatef(-5322.4, 9646, 5375);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(450, 0, 0);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(50, -120, -450);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(0, 0, -450);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-450, 0, 0);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(0, -120, -550);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(450, 0, 0);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(150, 0, 0);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-100, -140, -400);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glPopMatrix();
+
+	glPushMatrix(); //row 3 from top
+	glTranslatef(-5672.44, 9616, 7220);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glPopMatrix();
+
+	glPushMatrix(); //row 4 from top -1
+	glTranslatef(-6150, 9490, 5800);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-25, 0, -450);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glPopMatrix();
+
+	glPushMatrix(); //row 5 from top -1
+	glTranslatef(-6585, 9358, 8015);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glPopMatrix();
+
+	glPushMatrix(); //row 5 from top -2
+	glTranslatef(-6585, 9358, 5315);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-25, 0, -450);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glPopMatrix();
+
+	glPushMatrix(); //row 5 from top -3
+	glTranslatef(-6641, 9249, 4025);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(50, 0, -450);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-400, 0, 450);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glPopMatrix();
+
+	glPushMatrix(); //row 7 from top -1
+	glTranslatef(-7438, 9106, 7565);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glPopMatrix();
+
+	glPushMatrix(); //row 7 from top -2
+	glTranslatef(-7438, 9106, 5765);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glPopMatrix();
+
+
+	//in left area of stairs bottom
+	glPushMatrix();
+	glTranslatef(-4850, 9050, 2400);
+	glScalef(2, 2, 2);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glScalef(0.8, 0.8, 0.8);
+	glTranslatef(0, 0, 450);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-600, 0, -100);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-50, 0, 100);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-250, 0, -50);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-150, 0, -50);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-350, 0, 300);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-250, 0, 300);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glPopMatrix();
+
+
 }
 
 void DisplayExtraArea::DisplayNonBlendObjects()

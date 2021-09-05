@@ -33,6 +33,13 @@ namespace DisplayExtraArea
 	void DisplayNonBlendObjects();
 
 	/**
+	* @brief	Displays all the bush objects
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayBushes();
+
+	/**
 	* @brief	Displays all the main images for the boundary walls
 	* @param	No param
 	* @return	Void
