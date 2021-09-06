@@ -66,16 +66,26 @@ Run Build Command(s):D:/Program Files (x86)/Microsoft Visual Studio/2019/Communi
 Determining if the CXX compiler works passed with the following output:
 Change Dir: C:/Users/User/OneDrive/MU/ICT290/ShaysWorld/ReflexBullet/out/build/x86-Release/CMakeFiles/CMakeTmp
 
+<<<<<<< HEAD
 Run Build Command(s):D:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_dc05d && [1/2] Building CXX object CMakeFiles\cmTC_dc05d.dir\testCXXCompiler.cxx.obj
 [2/2] Linking CXX executable cmTC_dc05d.exe
+=======
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_6db0c && [1/2] Building C object CMakeFiles\cmTC_6db0c.dir\CMakeCCompilerABI.c.obj
+[2/2] Linking C executable cmTC_6db0c.exe
+>>>>>>> 60e783fe550c51ef257423956738a34623020b26
 
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: C:/Users/User/OneDrive/MU/ICT290/ShaysWorld/ReflexBullet/out/build/x86-Release/CMakeFiles/CMakeTmp
 
+<<<<<<< HEAD
 Run Build Command(s):D:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_b12e6 && [1/2] Building CXX object CMakeFiles\cmTC_b12e6.dir\CMakeCXXCompilerABI.cpp.obj
 [2/2] Linking CXX executable cmTC_b12e6.exe
+=======
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_9cfd5 && [1/2] Building CXX object CMakeFiles\cmTC_9cfd5.dir\CMakeCXXCompilerABI.cpp.obj
+[2/2] Linking CXX executable cmTC_9cfd5.exe
+>>>>>>> 60e783fe550c51ef257423956738a34623020b26
 
 
 

@@ -7,12 +7,16 @@
 #include <GL/glut.h>
 #include "Object.h"
 
+
 extern Object3D EnvironmentOBJ[3];
 extern Object3D SmallTableOBJ;
 extern Object3D BigTableOBJ;
 extern Object3D UmbrellaOBJ;
 extern Object3D ChairOBJ;
 extern Object3D BenchOBJ;
+extern Object3D BushOBJ;
+extern bool doorOpen;
+extern int doorStart;
 
 namespace DisplayExtraArea
 {
@@ -29,6 +33,13 @@ namespace DisplayExtraArea
 	* @return	Void
 	*/
 	void DisplayNonBlendObjects();
+
+	/**
+	* @brief	Displays all the bush objects
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayBushes();
 
 	/**
 	* @brief	Displays all the main images for the boundary walls
@@ -50,6 +61,13 @@ namespace DisplayExtraArea
 	* @return	Void
 	*/
 	void DisplayCanteen();
+
+	/**
+	* @brief	Displays the sliding door for the student hub
+	* @param	No param
+	* @reutrn	Void
+	*/
+	void DisplaySlidingDoor();
 
 	/**
 	* @brief	Displays the canteen contreen railing 
