@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/User/OneDrive/MU/ICT290/ShaysWorld/ReflexBullet
+# Install script for directory: C:/Users/Daniel/Documents/GitHub/ReflexBullet
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Users/User/OneDrive/MU/ICT290/ShaysWorld/ReflexBullet/out/install/x86-Release")
+  set(CMAKE_INSTALL_PREFIX "C:/Users/Daniel/Documents/GitHub/ReflexBullet/out/install/x86-Release")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -34,7 +34,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("C:/Users/User/OneDrive/MU/ICT290/ShaysWorld/ReflexBullet/out/build/x86-Release/Shay/cmake_install.cmake")
+  include("C:/Users/Daniel/Documents/GitHub/ReflexBullet/out/build/x86-Release/Shay/cmake_install.cmake")
 
 endif()
 
@@ -46,5 +46,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/User/OneDrive/MU/ICT290/ShaysWorld/ReflexBullet/out/build/x86-Release/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/Daniel/Documents/GitHub/ReflexBullet/out/build/x86-Release/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

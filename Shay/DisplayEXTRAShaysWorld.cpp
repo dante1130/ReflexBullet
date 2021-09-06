@@ -14,6 +14,10 @@ Object3D ChairOBJ;
 Object3D BenchOBJ;
 // Bush object
 Object3D BushOBJ;
+// Bin object
+Object3D BinOBJ;
+// Tree object
+Object3D TreeOBJ;
 
 
 //Sliding door values
@@ -35,44 +39,6 @@ void DisplayExtraArea::DisplayExtension()
 		glPopMatrix();
 	}
 	
-	//Resturant area
-	{
-		glPushMatrix();
-		glTranslatef(-3600, 10000, 8350);
-		SmallTableOBJ.DisplayObject(BIG_TABLE);
-
-		glPushMatrix();
-		glTranslatef(-300, 50, 0);
-		glRotatef(90, 0, 1, 0);
-		glRotatef(-8, 1, 0, 0);
-		BigTableOBJ.DisplayObject(BIG_TABLE);
-
-		glPopMatrix();
-
-		glTranslatef(-350, 0, -2000);
-		SmallTableOBJ.DisplayObject(BIG_TABLE);
-
-		glTranslatef(200, 0, -1000);
-		glPushMatrix();
-		glRotatef(45, 0, 1, 0);
-		SmallTableOBJ.DisplayObject(BIG_TABLE);
-		glPopMatrix();
-
-		glTranslatef(-200, 0, -500);
-		glPushMatrix();
-		glRotatef(78, 0, 1, 0);
-		SmallTableOBJ.DisplayObject(BIG_TABLE);
-		glPopMatrix();
-
-		glTranslatef(200, 0, -1000);
-		SmallTableOBJ.DisplayObject(BIG_TABLE);
-
-		glTranslatef(-400, 0, -500);
-		glRotatef(166, 0, 1, 0);
-		SmallTableOBJ.DisplayObject(BIG_TABLE);
-
-		glPopMatrix();
-	}
 	
 	// Chair
 	{
@@ -603,10 +569,138 @@ void DisplayExtraArea::DisplayExtension()
 		glPopMatrix();
 	}
 	
+	DisplayResturantObjects();
 	DisplayBushes();
 	DisplayNonBlendObjects();
+	FixingOverextendedCollisionBoxes();
+	DisplayBins();
 }
 
+void DisplayExtraArea::DisplayResturantObjects()
+{
+	//Resturant area
+	glPushMatrix();
+	glTranslatef(-3600, 10000, 8350);
+	SmallTableOBJ.DisplayObject(BIG_TABLE);
+
+	glPushMatrix();
+	glTranslatef(-250, 50, 0);
+	glRotatef(90, 0, 1, 0);
+	glRotatef(-12, 1, 0, 0);
+	BigTableOBJ.DisplayObject(BIG_TABLE);
+	glPopMatrix();
+
+	glTranslatef(-350, 0, -2000);
+	SmallTableOBJ.DisplayObject(BIG_TABLE);
+	glPushMatrix();
+	glTranslatef(0, 0, 150);
+	ChairOBJ.DisplayObject(CHAIR);
+	glTranslatef(0, 0, -300);
+	glRotatef(180, 0, 1, 0);
+	ChairOBJ.DisplayObject(CHAIR);
+	glPopMatrix();
+
+	glTranslatef(200, 0, -1000);
+	glPushMatrix();
+	glRotatef(45, 0, 1, 0);
+	SmallTableOBJ.DisplayObject(BIG_TABLE);
+	glTranslatef(0, 0, 150);
+	ChairOBJ.DisplayObject(CHAIR);
+	glTranslatef(0, 0, -300);
+	glRotatef(180, 0, 1, 0);
+	ChairOBJ.DisplayObject(CHAIR);
+	glPopMatrix();
+
+	glTranslatef(-200, 0, -500);
+	glPushMatrix();
+	glRotatef(78, 0, 1, 0);
+	SmallTableOBJ.DisplayObject(BIG_TABLE);
+	glTranslatef(0, 0, 150);
+	ChairOBJ.DisplayObject(CHAIR);
+	glTranslatef(0, 0, -300);
+	glRotatef(180, 0, 1, 0);
+	ChairOBJ.DisplayObject(CHAIR);
+	glPopMatrix();
+
+	glTranslatef(200, 0, -1000);
+	SmallTableOBJ.DisplayObject(BIG_TABLE);
+	glPushMatrix();
+	glTranslatef(0, 0, 150);
+	ChairOBJ.DisplayObject(CHAIR);
+	glTranslatef(0, 0, -300);
+	glRotatef(180, 0, 1, 0);
+	ChairOBJ.DisplayObject(CHAIR);
+	glPopMatrix();
+
+	glTranslatef(-400, 0, -500);
+	glRotatef(166, 0, 1, 0);
+	SmallTableOBJ.DisplayObject(BIG_TABLE);
+	glTranslatef(0, 0, 150);
+	ChairOBJ.DisplayObject(CHAIR);
+	glTranslatef(0, 0, -300);
+	glRotatef(180, 0, 1, 0);
+	ChairOBJ.DisplayObject(CHAIR);
+
+	glPopMatrix();
+
+}
+
+void DisplayExtraArea::FixingOverextendedCollisionBoxes()
+{
+	//Right area C
+	glPushMatrix();
+	glTranslatef(-9329, 8980, 4444);
+	glRotatef(90, 0, 1, 0);
+	BigTableOBJ.DisplayObject(BIG_TABLE);
+	glPopMatrix();
+
+	//Left area C
+	glPushMatrix();
+	glTranslatef(-10836, 8980, 4444);
+	glRotatef(90, 0, 1, 0);
+	BenchOBJ.DisplayObject(BIG_TABLE);
+	glPopMatrix();
+
+	//Right area B
+	glPushMatrix();
+	glTranslatef(-14816, 9130, 2900);
+	SmallTableOBJ.DisplayObject(BIG_TABLE);
+	glTranslatef(-250, 0, 0);
+	SmallTableOBJ.DisplayObject(BIG_TABLE);
+	glTranslatef(-250, 0, 0);
+	SmallTableOBJ.DisplayObject(BIG_TABLE);
+	glPopMatrix();
+
+	//Back center area B
+	glPushMatrix();
+	glTranslatef(-16400, 9130, 4066);
+	BenchOBJ.DisplayObject(BIG_TABLE);
+	glTranslatef(0, 0, 900);
+	BenchOBJ.DisplayObject(BIG_TABLE);
+	glPopMatrix();
+
+	//Left area B
+	glPushMatrix();
+	glTranslatef(-15942, 9130, 5880);
+	ChairOBJ.DisplayObject(CHAIR);
+	glPopMatrix();
+
+
+}
+
+void DisplayExtraArea::DisplayBins()
+{
+	glPushMatrix();
+	glTranslatef(-15806, 8980, 7596);
+	BinOBJ.DisplayObject(BIN_TEXTURE);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(-11950, 8980, 1932);
+	//glRotatef(0, 0, 1, 0);
+	BinOBJ.DisplayObject(BIN_TEXTURE);
+	glPopMatrix();
+}
 
 void DisplayExtraArea::DisplayBushes()
 {
@@ -671,6 +765,10 @@ void DisplayExtraArea::DisplayBushes()
 	BushOBJ.DisplayObject(BUSH_TEXTURE);
 	glTranslatef(50, 0, -300);
 	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-50, -100, 50);
+	glScalef(1.1, 1.1, 1.1);
+	glRotatef(35, 0, 1, 0);
+	TreeOBJ.DisplayObject(TREE_TEXTURE);
 	glPopMatrix();
 
 	//In smaller cylinder
@@ -680,6 +778,10 @@ void DisplayExtraArea::DisplayBushes()
 	BushOBJ.DisplayObject(BUSH_TEXTURE);
 	glTranslatef(-100, 0, -300);
 	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-50, -100, 50);
+	glScalef(0.8, 0.8, 0.8);
+	glRotatef(46, 0, 1, 0);
+	TreeOBJ.DisplayObject(TREE_TEXTURE);
 	glPopMatrix();
 
 	//In metal pot thing by dirt area
@@ -742,6 +844,9 @@ void DisplayExtraArea::DisplayBushes()
 	glPushMatrix(); //row 3 from top
 	glTranslatef(-5672.44, 9616, 7220);
 	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-50, -100, -50);
+	glScalef(0.5, 0.5, 0.5);
+	TreeOBJ.DisplayObject(TREE_TEXTURE);
 	glPopMatrix();
 
 	glPushMatrix(); //row 4 from top -1
@@ -749,11 +854,19 @@ void DisplayExtraArea::DisplayBushes()
 	BushOBJ.DisplayObject(BUSH_TEXTURE);
 	glTranslatef(-25, 0, -450);
 	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-50, -100, -50);
+	glScalef(0.5, 0.5, 0.5);
+	glRotatef(90, 0, 1, 0);
+	TreeOBJ.DisplayObject(TREE_TEXTURE);
 	glPopMatrix();
 
 	glPushMatrix(); //row 5 from top -1
 	glTranslatef(-6585, 9358, 8015);
 	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-50, -100, -50);
+	glScalef(0.4, 0.4, 0.4);
+	glRotatef(35, 0, 1, 0);
+	TreeOBJ.DisplayObject(TREE_TEXTURE);
 	glPopMatrix();
 
 	glPushMatrix(); //row 5 from top -2
@@ -770,16 +883,23 @@ void DisplayExtraArea::DisplayBushes()
 	BushOBJ.DisplayObject(BUSH_TEXTURE);
 	glTranslatef(-400, 0, 450);
 	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-50, -100, -50);
+	glScalef(0.5, 0.6, 0.5);
+	TreeOBJ.DisplayObject(TREE_TEXTURE);
 	glPopMatrix();
 
 	glPushMatrix(); //row 7 from top -1
 	glTranslatef(-7438, 9106, 7565);
 	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	glTranslatef(-50, -100, -50);
+	glScalef(0.5, 0.3, 0.5);
+	glRotatef(90, 0, 1, 0);
+	TreeOBJ.DisplayObject(TREE_TEXTURE);
 	glPopMatrix();
 
 	glPushMatrix(); //row 7 from top -2
 	glTranslatef(-7438, 9106, 5765);
-	BushOBJ.DisplayObject(BUSH_TEXTURE);
+	BushOBJ.DisplayObject(BUSH_TEXTURE); 
 	glPopMatrix();
 
 

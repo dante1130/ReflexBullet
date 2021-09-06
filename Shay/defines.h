@@ -330,7 +330,10 @@ constexpr auto BUSH_TEXTURE					= 252;
 constexpr auto STUDENTHUB_DOOR_LEFT			= 253;
 constexpr auto STUDENTHUB_DOOR_RIGHT		= 254;
 
+constexpr auto BIN_TEXTURE					= 258;
+constexpr auto TREE_TEXTURE					= 259;
+
 constexpr auto TEXTURE_END					= 260;
-// 257 Next
+// 260 Next
 
 #endif

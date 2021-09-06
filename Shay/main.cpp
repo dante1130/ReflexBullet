@@ -164,6 +164,8 @@ void loadObjFiles()
 	readObjFile("data/object/chair.obj", ChairOBJ);
 	readObjFile("data/object/bench.obj", BenchOBJ);
 	readObjFile("data/object/bush.obj", BushOBJ);
+	readObjFile("data/object/bin.obj", BinOBJ);
+	readObjFile("data/object/bark.obj", TreeOBJ);
 }
 
 void RenderLoop(int val)
@@ -556,6 +558,10 @@ void CreateBoundingBoxesExtendedArea()
 	// Umbrella
 	cam.AddAABB(glm::vec3(-9755, 0, 8680), glm::vec3(-9830, 0, 8610));
 	cam.AddAABB(glm::vec3(-11635, 0, 8680), glm::vec3(-11708, 0, 8610));
+
+	//bins
+	cam.AddAABB(glm::vec3(-11523, 0, 2124), glm::vec3(-12100, 0, 1740));
+	cam.AddAABB(glm::vec3(-15700, 0, 7779), glm::vec3(-17000, 0, 7000));
 }
 
 //--------------------------------------------------------------------------------------

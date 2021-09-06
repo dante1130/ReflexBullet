@@ -1,16 +1,16 @@
-The system is: Windows - 10.0.19042 - AMD64
+The system is: Windows - 10.0.19043 - AMD64
 Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
-Compiler: D:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.27.29110/bin/Hostx86/x86/cl.exe 
+Compiler: C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.29.30037/bin/Hostx86/x86/cl.exe 
 Build flags: 
 Id flags:  
 
 The output was:
 0
-Microsoft (R) C/C++ Optimizing Compiler Version 19.27.29112 for x86
+Microsoft (R) C/C++ Optimizing Compiler Version 19.29.30040 for x86
 Copyright (C) Microsoft Corporation.  All rights reserved.
 
 CMakeCCompilerId.c
-Microsoft (R) Incremental Linker Version 14.27.29112.0
+Microsoft (R) Incremental Linker Version 14.29.30040.0
 Copyright (C) Microsoft Corporation.  All rights reserved.
 
 /out:CMakeCCompilerId.exe 
@@ -21,20 +21,20 @@ Compilation of the C compiler identification source "CMakeCCompilerId.c" produce
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.obj"
 
-The C compiler identification is MSVC, found in "C:/Users/User/OneDrive/MU/ICT290/ShaysWorld/ReflexBullet/out/build/x86-Release/CMakeFiles/3.17.20032601-MSVC_2/CompilerIdC/CMakeCCompilerId.exe"
+The C compiler identification is MSVC, found in "C:/Users/Daniel/Documents/GitHub/ReflexBullet/out/build/x86-Release/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdC/CMakeCCompilerId.exe"
 
 Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
-Compiler: D:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.27.29110/bin/Hostx86/x86/cl.exe 
+Compiler: C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.29.30037/bin/Hostx86/x86/cl.exe 
 Build flags: 
 Id flags:  
 
 The output was:
 0
-Microsoft (R) C/C++ Optimizing Compiler Version 19.27.29112 for x86
+Microsoft (R) C/C++ Optimizing Compiler Version 19.29.30040 for x86
 Copyright (C) Microsoft Corporation.  All rights reserved.
 
 CMakeCXXCompilerId.cpp
-Microsoft (R) Incremental Linker Version 14.27.29112.0
+Microsoft (R) Incremental Linker Version 14.29.30040.0
 Copyright (C) Microsoft Corporation.  All rights reserved.
 
 /out:CMakeCXXCompilerId.exe 
@@ -45,47 +45,21 @@ Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" p
 
 Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.obj"
 
-The CXX compiler identification is MSVC, found in "C:/Users/User/OneDrive/MU/ICT290/ShaysWorld/ReflexBullet/out/build/x86-Release/CMakeFiles/3.17.20032601-MSVC_2/CompilerIdCXX/CMakeCXXCompilerId.exe"
-
-Determining if the C compiler works passed with the following output:
-Change Dir: C:/Users/User/OneDrive/MU/ICT290/ShaysWorld/ReflexBullet/out/build/x86-Release/CMakeFiles/CMakeTmp
-
-Run Build Command(s):D:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_d9135 && [1/2] Building C object CMakeFiles\cmTC_d9135.dir\testCCompiler.c.obj
-[2/2] Linking C executable cmTC_d9135.exe
-
-
+The CXX compiler identification is MSVC, found in "C:/Users/Daniel/Documents/GitHub/ReflexBullet/out/build/x86-Release/CMakeFiles/3.20.21032501-MSVC_2/CompilerIdCXX/CMakeCXXCompilerId.exe"
 
 Detecting C compiler ABI info compiled with the following output:
-Change Dir: C:/Users/User/OneDrive/MU/ICT290/ShaysWorld/ReflexBullet/out/build/x86-Release/CMakeFiles/CMakeTmp
+Change Dir: C:/Users/Daniel/Documents/GitHub/ReflexBullet/out/build/x86-Release/CMakeFiles/CMakeTmp
 
-Run Build Command(s):D:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_9aef2 && [1/2] Building C object CMakeFiles\cmTC_9aef2.dir\CMakeCCompilerABI.c.obj
-[2/2] Linking C executable cmTC_9aef2.exe
-
-
-
-Determining if the CXX compiler works passed with the following output:
-Change Dir: C:/Users/User/OneDrive/MU/ICT290/ShaysWorld/ReflexBullet/out/build/x86-Release/CMakeFiles/CMakeTmp
-
-<<<<<<< HEAD
-Run Build Command(s):D:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_dc05d && [1/2] Building CXX object CMakeFiles\cmTC_dc05d.dir\testCXXCompiler.cxx.obj
-[2/2] Linking CXX executable cmTC_dc05d.exe
-=======
-Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_6db0c && [1/2] Building C object CMakeFiles\cmTC_6db0c.dir\CMakeCCompilerABI.c.obj
-[2/2] Linking C executable cmTC_6db0c.exe
->>>>>>> 60e783fe550c51ef257423956738a34623020b26
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_d07d0 && [1/2] Building C object CMakeFiles\cmTC_d07d0.dir\CMakeCCompilerABI.c.obj
+[2/2] Linking C executable cmTC_d07d0.exe
 
 
 
 Detecting CXX compiler ABI info compiled with the following output:
-Change Dir: C:/Users/User/OneDrive/MU/ICT290/ShaysWorld/ReflexBullet/out/build/x86-Release/CMakeFiles/CMakeTmp
+Change Dir: C:/Users/Daniel/Documents/GitHub/ReflexBullet/out/build/x86-Release/CMakeFiles/CMakeTmp
 
-<<<<<<< HEAD
-Run Build Command(s):D:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_b12e6 && [1/2] Building CXX object CMakeFiles\cmTC_b12e6.dir\CMakeCXXCompilerABI.cpp.obj
-[2/2] Linking CXX executable cmTC_b12e6.exe
-=======
-Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_9cfd5 && [1/2] Building CXX object CMakeFiles\cmTC_9cfd5.dir\CMakeCXXCompilerABI.cpp.obj
-[2/2] Linking CXX executable cmTC_9cfd5.exe
->>>>>>> 60e783fe550c51ef257423956738a34623020b26
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe cmTC_ff284 && [1/2] Building CXX object CMakeFiles\cmTC_ff284.dir\CMakeCXXCompilerABI.cpp.obj
+[2/2] Linking CXX executable cmTC_ff284.exe
 
 
 

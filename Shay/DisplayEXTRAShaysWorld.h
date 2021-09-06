@@ -15,6 +15,8 @@ extern Object3D UmbrellaOBJ;
 extern Object3D ChairOBJ;
 extern Object3D BenchOBJ;
 extern Object3D BushOBJ;
+extern Object3D BinOBJ;
+extern Object3D TreeOBJ;
 extern bool doorOpen;
 extern int doorStart;
 
@@ -33,6 +35,27 @@ namespace DisplayExtraArea
 	* @return	Void
 	*/
 	void DisplayNonBlendObjects();
+
+	/**
+	* @brief	Displays the small objects around the resutant area
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayResturantObjects();
+
+	/**
+	* @brief	This 'fixes' overextended collision boxes which just means it adds objects to the world to make the collision boxes belevable
+	* @param	No param
+	* @return	Void
+	*/
+	void FixingOverextendedCollisionBoxes();
+
+	/**
+	* @brief	Places the bins in the extended area
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayBins();
 
 	/**
 	* @brief	Displays all the bush objects

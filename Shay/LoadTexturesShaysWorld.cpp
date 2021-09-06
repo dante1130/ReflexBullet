@@ -782,6 +782,12 @@ void CreateTextures()
 	image = tp.LoadTexture("data/hubDoorRight.raw", 256, 400);
 	tp.CreateTexture(STUDENTHUB_DOOR_RIGHT, image, 256, 400);
 
+	image = tp.LoadTexture("data/object/binText.raw", 1024, 512);
+	tp.CreateTexture(BIN_TEXTURE, image, 1024, 512);
+
+	image = tp.LoadTexture("data/object/bark.raw", 512, 512);
+	tp.CreateTexture(TREE_TEXTURE, image, 512, 512);
+
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
