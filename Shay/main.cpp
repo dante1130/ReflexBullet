@@ -530,6 +530,32 @@ void CreateBoundingBoxesExtendedArea()
 	cam.AddAABB(glm::vec3(-11855, 0, 3636), glm::vec3(-12274, 0, 3243));
 	cam.AddAABB(glm::vec3(-13278, 0, 3263), glm::vec3(-13648, 0, 2920));
 
+	// Chairs
+	cam.AddAABB(glm::vec3(-8832, 0, 7011), glm::vec3(-9283, 0, 6575));
+	cam.AddAABB(glm::vec3(-8693, 0, 6883), glm::vec3(-9438, 0, 6730));
+
+	cam.AddAABB(glm::vec3(-8935, 0, 7885), glm::vec3(-9437, 0, 7715));
+	cam.AddAABB(glm::vec3(-9079, 0, 8061), glm::vec3(-9272, 0, 7568));
+
+	cam.AddAABB(glm::vec3(-8945, 0, 7413), glm::vec3(-9449, 0, 7214));
+	
+	cam.AddAABB(glm::vec3(-9726, 0, 6906), glm::vec3(-10491, 0, 6229));
+	cam.AddAABB(glm::vec3(-9892, 0, 7047), glm::vec3(-10342, 0, 6057));
+
+	cam.AddAABB(glm::vec3(-9718, 0, 7990), glm::vec3(-10270, 0, 7808));
+	cam.AddAABB(glm::vec3(-9896, 0, 8183), glm::vec3(-10084, 0, 7660));
+
+	cam.AddAABB(glm::vec3(-10497, 0, 7547), glm::vec3(-11181, 0, 7069));
+	cam.AddAABB(glm::vec3(-10325, 0, 7409), glm::vec3(-11332, 0, 7229));
+
+	cam.AddAABB(glm::vec3(-11485, 0, 7400), glm::vec3(-12241, 0, 7227));
+	cam.AddAABB(glm::vec3(-11666, 0, 7532), glm::vec3(-12089, 0, 7053));
+
+	cam.AddAABB(glm::vec3(-8935, 0, 6379), glm::vec3(-9438, 0, 6213));
+
+	cam.AddAABB(glm::vec3(-8926, 0, 5879), glm::vec3(-9424, 0, 5714));
+	cam.AddAABB(glm::vec3(-9103, 0, 5999), glm::vec3(-9255, 0, 5531));
+
 	// Small table
 	cam.AddAABB(glm::vec3(-9852, 0, 8061), glm::vec3(-10171, 0, 7750));
 	cam.AddAABB(glm::vec3(-9050, 0, 7950), glm::vec3(-9340, 0, 7670));

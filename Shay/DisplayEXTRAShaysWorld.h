@@ -7,7 +7,6 @@
 #include <GL/glut.h>
 #include "Object.h"
 
-
 extern Object3D EnvironmentOBJ[3];
 extern Object3D SmallTableOBJ;
 extern Object3D BigTableOBJ;
@@ -28,6 +27,48 @@ namespace DisplayExtraArea
 	* @return	Void
 	*/
 	void DisplayExtension();
+
+	/**
+	* @brief	Controls all the display functions for environment
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayEnvironment();
+
+	/**
+	* @brief	Contains all the display functions for chairs
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayChairs();
+
+	/**
+	* @brief	Contains all the display functions for benches
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayBenches();
+
+	/**
+	* @brief	Contains all the display functions for small tables
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplaySmallTable();
+
+	/**
+	* @brief	Contains all the display functions for big tables
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayBigTable();
+
+	/**
+	* @brief	Contains all the display functions for umbrellas
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayUmbrellas();
 
 	/**
 	* @brief	Controls all the functions which display non blend objects

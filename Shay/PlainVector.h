@@ -22,7 +22,7 @@
 
 /**
  * @class PlainVector
- * @brief A vector to store nodes of PlainNodes
+ * @brief A vector to store Plain
  * 
  */
 class PlainVector
@@ -112,7 +112,7 @@ public:
 
 
 	/**
-	 * @brief Return size of list
+	 * @brief Return size of vector
 	 * 
 	 * @return int 
 	 */
