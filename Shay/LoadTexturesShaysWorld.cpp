@@ -698,17 +698,17 @@ void CreateTextures()
 	image = tp.LoadTexture("data/Drain.raw", 256, 256);
 	tp.CreateTexture(DRAIN, image, 256, 256);
 
-	image = tp.LoadTexture("data/smallTable.raw", 225, 225);
-	tp.CreateTexture(SMALL_TABLE, image, 225, 225);
-
-	image = tp.LoadTexture("data/bigTable.raw", 4032, 3024);
-	tp.CreateTexture(BIG_TABLE, image, 4032, 3024);
+	image = tp.LoadTexture("data/bigTable.raw", 1536, 1024);
+	tp.CreateTexture(BIG_TABLE, image, 1536, 1024);
 
 	image = tp.LoadTexture("data/concreteWall.raw", 1024, 1024);
 	tp.CreateTexture(CONCRETE_WALL, image, 1024, 1024);
 
-	image = tp.LoadTexture("data/umbrella.raw", 1024, 1024);
-	tp.CreateTexture(UMBRELLA, image, 1024, 1024);
+	image = tp.LoadTexture("data/umbrella.raw", 512, 512);
+	tp.CreateTexture(UMBRELLA, image, 512, 512);
+
+	image = tp.LoadTexture("data/chair.raw", 2048, 2048);
+	tp.CreateTexture(CHAIR, image, 2048, 2048);
 
 	image = tp.LoadTexture("data/edgeWallBackLeft.raw", 2024, 1024);
 	tp.CreateTexture(EDGE_WALL_TOILETS, image, 2024, 1024);

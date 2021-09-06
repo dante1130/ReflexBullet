@@ -155,10 +155,11 @@ void loadObjFiles()
 	readObjFile("data/object/EnvironmentStairs.obj", EnvironmentOBJ[1]);
 	readObjFile("data/object/EnvironmentRailing.obj", EnvironmentOBJ[2]);
 
-	
 	readObjFile("data/object/smallTable.obj", SmallTableOBJ);
 	readObjFile("data/object/bigTable.obj", BigTableOBJ);
 	readObjFile("data/object/umbrella.obj", UmbrellaOBJ);
+	readObjFile("data/object/chair.obj", ChairOBJ);
+	readObjFile("data/object/bench.obj", BenchOBJ);
 }
 
 void RenderLoop(int val)
@@ -507,7 +508,9 @@ void CreateBoundingBoxesExtendedArea()
 	cam.AddAABB(glm::vec3(-7286, 0, 2050), glm::vec3(-7688, 0, 1000));
 	cam.AddAABB(glm::vec3(-6386, 0, 1750), glm::vec3(-7286, 0, 1000));
 
-	// Chairs
+	// Diagonal small table
+	cam.AddAABB(glm::vec3(-11855, 0, 3636), glm::vec3(-12274, 0, 3243));
+	cam.AddAABB(glm::vec3(-13278, 0, 3263), glm::vec3(-13648, 0, 2920));
 
 	// Small table
 	cam.AddAABB(glm::vec3(-9852, 0, 8061), glm::vec3(-10171, 0, 7750));
@@ -526,16 +529,15 @@ void CreateBoundingBoxesExtendedArea()
 	cam.AddAABB(glm::vec3(-15155, 0, 4350), glm::vec3(-15456, 0, 4050));
 
 	// Big table
-	cam.AddAABB(glm::vec3(-8160, 0, 5400), glm::vec3(-8470, 0, 4840));
+	cam.AddAABB(glm::vec3(-7990, 0, 5400), glm::vec3(-8640, 0, 4840));
 
-	cam.AddAABB(glm::vec3(-9830, 0, 8940), glm::vec3(-10130, 0, 8360));
-	cam.AddAABB(glm::vec3(-10770, 0, 8940), glm::vec3(-11070, 0, 8360));
-	cam.AddAABB(glm::vec3(-11710, 0, 8940), glm::vec3(-12010, 0, 8360));
-	cam.AddAABB(glm::vec3(-12650, 0, 8940), glm::vec3(-12950, 0, 8360));
-	cam.AddAABB(glm::vec3(-13590, 0, 8940), glm::vec3(-13890, 0, 8360));
+	cam.AddAABB(glm::vec3(-9830, 0, 8940), glm::vec3(-10300, 0, 8360));
+	cam.AddAABB(glm::vec3(-10600, 0, 8940), glm::vec3(-11240, 0, 8360));
+	cam.AddAABB(glm::vec3(-11710, 0, 8940), glm::vec3(-12180, 0, 8360));
+	cam.AddAABB(glm::vec3(-12480, 0, 8940), glm::vec3(-13120, 0, 8360));
+	cam.AddAABB(glm::vec3(-13420, 0, 8940), glm::vec3(-14060, 0, 8360));
 
 	// Umbrella
-
 	cam.AddAABB(glm::vec3(-9755, 0, 8680), glm::vec3(-9830, 0, 8610));
 	cam.AddAABB(glm::vec3(-11635, 0, 8680), glm::vec3(-11708, 0, 8610));
 }

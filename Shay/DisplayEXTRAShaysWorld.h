@@ -11,6 +11,8 @@ extern Object3D EnvironmentOBJ[3];
 extern Object3D SmallTableOBJ;
 extern Object3D BigTableOBJ;
 extern Object3D UmbrellaOBJ;
+extern Object3D ChairOBJ;
+extern Object3D BenchOBJ;
 
 namespace DisplayExtraArea
 {

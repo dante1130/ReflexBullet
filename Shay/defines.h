@@ -299,6 +299,8 @@ constexpr auto SMALL_TABLE					= 227;
 constexpr auto BIG_TABLE					= 228;
 constexpr auto CONCRETE_WALL				= 229;
 constexpr auto UMBRELLA						= 230;
+constexpr auto CHAIR						= 252;
+constexpr auto BENCH						= 253;
 
 constexpr auto EDGE_WALL_TOILETS			= 231;
 constexpr auto EDGE_WALL_FAR_BACK			= 232;
@@ -324,9 +326,7 @@ constexpr auto CANTEEN_WALL2				= 248;
 constexpr auto CANTEEN_WALL3				= 249;
 constexpr auto CANTEEN_WALL4				= 250;
 
-
-
 constexpr auto TEXTURE_END					= 260;
-// 252 Next
+// 254 Next
 
 #endif

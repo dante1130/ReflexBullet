@@ -8,193 +8,592 @@ Object3D SmallTableOBJ;
 Object3D BigTableOBJ;
 // Umbrella object
 Object3D UmbrellaOBJ;
+// Chair object
+Object3D ChairOBJ;
+// Bench object
+Object3D BenchOBJ;
 
 void DisplayExtraArea::DisplayExtension()
 {
 	// Environment
-	glPushMatrix();
+	{
+		glPushMatrix();
 		glTranslatef(2613.56, 10000, 9250);
 		glRotatef(180, 0, 1, 0);
 		EnvironmentOBJ[0].DisplayObject(TEXT_ENVIRONMENT_GENERAL);
 		EnvironmentOBJ[1].DisplayObject(TEXT_ENVIRONMENT_STAIRS);
 		EnvironmentOBJ[2].DisplayObject(TEXT_ENVIRONMENT_RAILING);
-
-	glPopMatrix();
-
+		glPopMatrix();
+	}
+	
 	//Resturant area
-	glPushMatrix();
-	glTranslatef(-3600, 10000, 8350);
-	SmallTableOBJ.DisplayObject(SMALL_TABLE);
+	{
+		glPushMatrix();
+		glTranslatef(-3600, 10000, 8350);
+		SmallTableOBJ.DisplayObject(BIG_TABLE);
 
-	glPushMatrix();
-	glTranslatef(-300, 50, 0);
-	glRotatef(90, 0, 1, 0);
-	glRotatef(-8, 1, 0, 0);
-	BigTableOBJ.DisplayObject(BIG_TABLE);
+		glPushMatrix();
+		glTranslatef(-300, 50, 0);
+		glRotatef(90, 0, 1, 0);
+		glRotatef(-8, 1, 0, 0);
+		BigTableOBJ.DisplayObject(BIG_TABLE);
 
-	glPopMatrix();
+		glPopMatrix();
 
-	glTranslatef(-350, 0, -2000);
-	SmallTableOBJ.DisplayObject(SMALL_TABLE);
+		glTranslatef(-350, 0, -2000);
+		SmallTableOBJ.DisplayObject(BIG_TABLE);
 
-	glTranslatef(200, 0, -1000);
-	glPushMatrix();
-	glRotatef(45, 0, 1, 0);
-	SmallTableOBJ.DisplayObject(SMALL_TABLE);
-	glPopMatrix();
+		glTranslatef(200, 0, -1000);
+		glPushMatrix();
+		glRotatef(45, 0, 1, 0);
+		SmallTableOBJ.DisplayObject(BIG_TABLE);
+		glPopMatrix();
 
-	glTranslatef(-200, 0, -500);
-	glPushMatrix();
-	glRotatef(78, 0, 1, 0);
-	SmallTableOBJ.DisplayObject(SMALL_TABLE);
-	glPopMatrix();
+		glTranslatef(-200, 0, -500);
+		glPushMatrix();
+		glRotatef(78, 0, 1, 0);
+		SmallTableOBJ.DisplayObject(BIG_TABLE);
+		glPopMatrix();
 
-	glTranslatef(200, 0, -1000);
-	SmallTableOBJ.DisplayObject(SMALL_TABLE);
+		glTranslatef(200, 0, -1000);
+		SmallTableOBJ.DisplayObject(BIG_TABLE);
 
-	glTranslatef(-400, 0, -500);
-	glRotatef(166, 0, 1, 0);
-	SmallTableOBJ.DisplayObject(SMALL_TABLE);
+		glTranslatef(-400, 0, -500);
+		glRotatef(166, 0, 1, 0);
+		SmallTableOBJ.DisplayObject(BIG_TABLE);
 
-	glPopMatrix();
+		glPopMatrix();
+	}
+	
+	// Chair
+	{
+		// For diagonal chair 1
+		glPushMatrix();
+		glTranslatef(-11985, 9000, 3565);
+		glRotatef(45, 0, 1, 0); 
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
 
+		glPushMatrix();
+		glTranslatef(-11977, 9000, 3335);
+		glRotatef(135, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-12216, 9000, 3330);
+		glRotatef(-135, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-12200, 9000, 3565);
+		glRotatef(-45, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		// For diagonal chair 2
+		glPushMatrix();
+		glTranslatef(-13378, 9000, 3215);
+		glRotatef(45, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-13352, 9000, 3007);
+		glRotatef(135, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-13580, 9000, 3007);
+		glRotatef(-135, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-13580, 9000, 3199);
+		glRotatef(-45, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		// For normal tables
+		glPushMatrix();
+		glTranslatef(-9178.11, 9000, 7669.21);
+		glRotatef(180, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-9049.22, 9000, 7800);
+		glRotatef(90, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-9188.7, 9000, 7952.2);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-9340.37, 9000, 7800);
+		glRotatef(270, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		//
+		glPushMatrix();
+		glTranslatef(-9049.22, 9000, 7300);
+		glRotatef(90, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-9340.37, 9000, 7300);
+		glRotatef(270, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		//
+		glPushMatrix();
+		glTranslatef(-9198, 9000, 6930);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-8939, 9000, 6930);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-8790, 9000, 6812);
+		glRotatef(90, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-8934, 9000, 6649.80);
+		glRotatef(180, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-9179, 9000, 6649.80);
+		glRotatef(180, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-9341, 9000, 6785);
+		glRotatef(270, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		//
+		glPushMatrix();
+		glTranslatef(-9048, 9000, 6300);
+		glRotatef(90, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-9344, 9000, 6300);
+		glRotatef(270, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		//
+		glPushMatrix();
+		glTranslatef(-9177.8, 9000, 5914);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-9050, 9000, 5800);
+		glRotatef(90, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+		
+		glPushMatrix();
+		glTranslatef(-9187, 9000, 5628);
+		glRotatef(180, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-9340, 9000, 5800);
+		glRotatef(270, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		//
+		glPushMatrix();
+		glTranslatef(-10002, 9000, 8061);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-9852, 9000, 7900);
+		glRotatef(90, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-10005, 9000, 7750);
+		glRotatef(180, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-10172, 9000, 7900);
+		glRotatef(270, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		//
+		glPushMatrix();
+		glTranslatef(-11097, 9000, 7441);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-10843, 9000, 7441);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-10582, 9000, 7441);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-10448, 9000, 7308);
+		glRotatef(90, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-10602, 9000, 7159);
+		glRotatef(180, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-10856, 9000, 7159);
+		glRotatef(180, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-11112, 9000, 7159);
+		glRotatef(180, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-11250, 9000, 7317);
+		glRotatef(270, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		//
+		glPushMatrix();
+		glTranslatef(-12011, 9000, 7440);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-11752, 9000, 7440);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-11598, 9000, 7315);
+		glRotatef(90, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-11755, 9000, 7157);
+		glRotatef(180, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-12011, 9000, 7157);
+		glRotatef(180, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-12152, 9000, 7307);
+		glRotatef(270, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+		
+		//
+		glPushMatrix();
+		glTranslatef(-10245, 9000, 6950);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-10007, 9000, 6950);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-9848, 9000, 6806);
+		glRotatef(90, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-9848, 9000, 6559);
+		glRotatef(90, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-9848, 9000, 6307);
+		glRotatef(90, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-9997, 9000, 6144);
+		glRotatef(180, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-10257, 9000, 6144);
+		glRotatef(180, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-10405, 9000, 6287);
+		glRotatef(270, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-10405, 9000, 6553);
+		glRotatef(270, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+		glPushMatrix();
+
+		glTranslatef(-10405, 9000, 6802);
+		glRotatef(270, 0, 1, 0);
+		ChairOBJ.DisplayObject(CHAIR);
+		glPopMatrix();
+	}
 
 	// Small tables
-	glPushMatrix();
+	{
+		// Diagonal chair 1
+		glPushMatrix();
 		glTranslatef(-12088, 9000, 3445.9);
 		glRotatef(45, 0, 1, 0);
-		SmallTableOBJ.DisplayObject(SMALL_TABLE);
-	glPopMatrix();
+		SmallTableOBJ.DisplayObject(BIG_TABLE);
+		glPopMatrix();
 
-	glPushMatrix();
+		// Diagonal chair 2
+		glPushMatrix();
 		glTranslatef(-13467.5, 9000, 3110.74);
 		glRotatef(45, 0, 1, 0);
-		SmallTableOBJ.DisplayObject(SMALL_TABLE);
-	glPopMatrix();
+		SmallTableOBJ.DisplayObject(BIG_TABLE);
+		glPopMatrix();
 
-	glPushMatrix();
+		glPushMatrix();
 		glTranslatef(-10847.4, 9000, 7313.37);
-		SmallTableOBJ.DisplayObject(SMALL_TABLE);
+		SmallTableOBJ.DisplayObject(BIG_TABLE);
 
 		glPushMatrix();
 		glTranslatef(255, 0, 0);
-		SmallTableOBJ.DisplayObject(SMALL_TABLE);
+		SmallTableOBJ.DisplayObject(BIG_TABLE);
 		glPopMatrix();
 
 		glTranslatef(-255, 0, 0);
-		SmallTableOBJ.DisplayObject(SMALL_TABLE);
-	glPopMatrix();
+		SmallTableOBJ.DisplayObject(BIG_TABLE);
+		glPopMatrix();
 
-	glPushMatrix();
+		glPushMatrix();
 		glTranslatef(-11750, 9000, 7313.37);
-		SmallTableOBJ.DisplayObject(SMALL_TABLE);
+		SmallTableOBJ.DisplayObject(BIG_TABLE);
 
 		glPushMatrix();
 		glTranslatef(-255, 0, 0);
-		SmallTableOBJ.DisplayObject(SMALL_TABLE);
+		SmallTableOBJ.DisplayObject(BIG_TABLE);
 		glPopMatrix();
-	glPopMatrix();
+		glPopMatrix();
 
-	glPushMatrix();
+		glPushMatrix();
 		glTranslatef(-9186.56, 9000, 5800);
-		SmallTableOBJ.DisplayObject(SMALL_TABLE);
-	glPopMatrix();
+		SmallTableOBJ.DisplayObject(BIG_TABLE);
+		glPopMatrix();
 
-	glPushMatrix();
+		glPushMatrix();
 		glTranslatef(-9186.56, 9000, 6300);
-		SmallTableOBJ.DisplayObject(SMALL_TABLE);
-	glPopMatrix();
+		SmallTableOBJ.DisplayObject(BIG_TABLE);
+		glPopMatrix();
 
-	glPushMatrix();
+		glPushMatrix();
 		glTranslatef(-9186.56, 9000, 6800);
-		SmallTableOBJ.DisplayObject(SMALL_TABLE);
+		SmallTableOBJ.DisplayObject(BIG_TABLE);
 
 		glTranslatef(255, 0, 0);
-		SmallTableOBJ.DisplayObject(SMALL_TABLE);
-	glPopMatrix();
+		SmallTableOBJ.DisplayObject(BIG_TABLE);
+		glPopMatrix();
 
-	glPushMatrix();
+		glPushMatrix();
 		glTranslatef(-9186.56, 9000, 7300);
-		SmallTableOBJ.DisplayObject(SMALL_TABLE);
-	glPopMatrix();
+		SmallTableOBJ.DisplayObject(BIG_TABLE);
+		glPopMatrix();
 
-	glPushMatrix();
+		glPushMatrix();
 		glTranslatef(-9186.56, 9000, 7800);
-		SmallTableOBJ.DisplayObject(SMALL_TABLE);
-	glPopMatrix();
+		SmallTableOBJ.DisplayObject(BIG_TABLE);
+		glPopMatrix();
 
-	glPushMatrix();
+		glPushMatrix();
 		glTranslatef(-10000, 9000, 7900);
-		SmallTableOBJ.DisplayObject(SMALL_TABLE);
-	glPopMatrix();
+		SmallTableOBJ.DisplayObject(BIG_TABLE);
+		glPopMatrix();
 
-	glPushMatrix();
+		glPushMatrix();
 		glTranslatef(-10000, 9000, 6300);
-		SmallTableOBJ.DisplayObject(SMALL_TABLE);
+		SmallTableOBJ.DisplayObject(BIG_TABLE);
 
 		glTranslatef(-255, 0, 0);
-		SmallTableOBJ.DisplayObject(SMALL_TABLE); 
+		SmallTableOBJ.DisplayObject(BIG_TABLE);
 
 		glTranslatef(0, 0, 255);
-		SmallTableOBJ.DisplayObject(SMALL_TABLE);
+		SmallTableOBJ.DisplayObject(BIG_TABLE);
 
 		glTranslatef(255, 0, 0);
-		SmallTableOBJ.DisplayObject(SMALL_TABLE);
-		
+		SmallTableOBJ.DisplayObject(BIG_TABLE);
+
 		glTranslatef(0, 0, 255);
-		SmallTableOBJ.DisplayObject(SMALL_TABLE);
+		SmallTableOBJ.DisplayObject(BIG_TABLE);
 
 		glTranslatef(-255, 0, 0);
-		SmallTableOBJ.DisplayObject(SMALL_TABLE);
-	glPopMatrix();
+		SmallTableOBJ.DisplayObject(BIG_TABLE);
+		glPopMatrix();
 
-	glPushMatrix();
+		glPushMatrix();
 		glTranslatef(-15306, 9150, 4200);
-		SmallTableOBJ.DisplayObject(SMALL_TABLE);
-	glPopMatrix();
+		SmallTableOBJ.DisplayObject(BIG_TABLE);
+		glPopMatrix();
+	}
+	
+	// Bench
+	{
+		// Bench 1 (Furthest)
+		glPushMatrix();
+		glTranslatef(-13950, 9000, 8645.51);
+		BenchOBJ.DisplayObject(BIG_TABLE);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-13534, 9000, 8645.51);
+		BenchOBJ.DisplayObject(BIG_TABLE);
+		glPopMatrix();
+
+		// Bench 2
+		glPushMatrix();
+		glTranslatef(-13014.5, 9000, 8645.51);
+		BenchOBJ.DisplayObject(BIG_TABLE);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-12598.5, 9000, 8645.51);
+		BenchOBJ.DisplayObject(BIG_TABLE);
+		glPopMatrix();
+
+		// Bench 3
+		glPushMatrix();
+		glTranslatef(-12079, 9000, 8645.51);
+		BenchOBJ.DisplayObject(BIG_TABLE);
+		glPopMatrix();
+
+		// Bench 4
+		glPushMatrix();
+		glTranslatef(-11143.5, 9000, 8645.51);
+		BenchOBJ.DisplayObject(BIG_TABLE);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-10727.5, 9000, 8645.51);
+		BenchOBJ.DisplayObject(BIG_TABLE);
+		glPopMatrix();
+
+		// Bench 5 (Nearest bench)
+		glPushMatrix();
+		glTranslatef(-10208, 9000, 8645.51);
+		BenchOBJ.DisplayObject(BIG_TABLE);
+		glPopMatrix();
+
+		// Bench 6 (Non-adjacent bench)
+		glPushMatrix();
+		glTranslatef(-8532.03, 9000, 5121.88);
+		BenchOBJ.DisplayObject(BIG_TABLE);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(-8116.03, 9000, 5121.88);
+		BenchOBJ.DisplayObject(BIG_TABLE);
+		glPopMatrix();
+	}
 
 	// Big tables
-	glPushMatrix();
+	{
+		glPushMatrix();
 		glTranslatef(-13742, 9000, 8645.51);
 		BigTableOBJ.DisplayObject(BIG_TABLE);
-	glPopMatrix();
+		glPopMatrix();
 
-	glPushMatrix();
+		glPushMatrix();
 		glTranslatef(-12806.5, 9000, 8645.51);
 		BigTableOBJ.DisplayObject(BIG_TABLE);
-	glPopMatrix();
+		glPopMatrix();
 
-	glPushMatrix();
+		glPushMatrix();
 		glTranslatef(-11871, 9000, 8645.51);
 		BigTableOBJ.DisplayObject(BIG_TABLE);
-	glPopMatrix();
+		glPopMatrix();
 
-	glPushMatrix();
+		glPushMatrix();
 		glTranslatef(-10935.5, 9000, 8645.51);
 		BigTableOBJ.DisplayObject(BIG_TABLE);
-	glPopMatrix();
+		glPopMatrix();
 
-	glPushMatrix();
+		glPushMatrix();
 		glTranslatef(-10000, 9000, 8645.51);
 		BigTableOBJ.DisplayObject(BIG_TABLE);
-	glPopMatrix();
+		glPopMatrix();
 
-	glPushMatrix();
+		glPushMatrix();
 		glTranslatef(-8324.03, 9000, 5121.88);
 		BigTableOBJ.DisplayObject(BIG_TABLE);
-	glPopMatrix();
-
+		glPopMatrix();
+	}
+	
 	// Umbrella
-	glPushMatrix();
+	{
+		glPushMatrix();
 		glTranslatef(-9800, 9000, 8645.51);
 		UmbrellaOBJ.DisplayObject(UMBRELLA);
-	glPopMatrix();
+		glPopMatrix();
 
-	glPushMatrix();
+		glPushMatrix();
 		glTranslatef(-11671, 9000, 8645.51);
 		UmbrellaOBJ.DisplayObject(UMBRELLA);
-	glPopMatrix();
-
+		glPopMatrix();
+	}
+	
 	DisplayNonBlendObjects();
 }
 
