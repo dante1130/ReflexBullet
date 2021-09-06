@@ -769,6 +769,9 @@ void DisplayExtraArea::DisplayBushes()
 	glScalef(1.1, 1.1, 1.1);
 	glRotatef(35, 0, 1, 0);
 	TreeOBJ.DisplayObject(TREE_TEXTURE);
+	glTranslatef(0, 2500, 0);
+	glScalef(12, 6, 12);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
 	glPopMatrix();
 
 	//In smaller cylinder
@@ -782,6 +785,9 @@ void DisplayExtraArea::DisplayBushes()
 	glScalef(0.8, 0.8, 0.8);
 	glRotatef(46, 0, 1, 0);
 	TreeOBJ.DisplayObject(TREE_TEXTURE);
+	glTranslatef(0, 2500, 0);
+	glScalef(12, 6, 12);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
 	glPopMatrix();
 
 	//In metal pot thing by dirt area
@@ -847,6 +853,9 @@ void DisplayExtraArea::DisplayBushes()
 	glTranslatef(-50, -100, -50);
 	glScalef(0.5, 0.5, 0.5);
 	TreeOBJ.DisplayObject(TREE_TEXTURE);
+	glTranslatef(0, 2500, 0);
+	glScalef(12, 6, 12);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
 	glPopMatrix();
 
 	glPushMatrix(); //row 4 from top -1
@@ -858,6 +867,9 @@ void DisplayExtraArea::DisplayBushes()
 	glScalef(0.5, 0.5, 0.5);
 	glRotatef(90, 0, 1, 0);
 	TreeOBJ.DisplayObject(TREE_TEXTURE);
+	glTranslatef(0, 2500, 0);
+	glScalef(12, 6, 12);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
 	glPopMatrix();
 
 	glPushMatrix(); //row 5 from top -1
@@ -867,6 +879,9 @@ void DisplayExtraArea::DisplayBushes()
 	glScalef(0.4, 0.4, 0.4);
 	glRotatef(35, 0, 1, 0);
 	TreeOBJ.DisplayObject(TREE_TEXTURE);
+	glTranslatef(0, 2500, 0);
+	glScalef(8, 6, 8);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
 	glPopMatrix();
 
 	glPushMatrix(); //row 5 from top -2
@@ -886,6 +901,9 @@ void DisplayExtraArea::DisplayBushes()
 	glTranslatef(-50, -100, -50);
 	glScalef(0.5, 0.6, 0.5);
 	TreeOBJ.DisplayObject(TREE_TEXTURE);
+	glTranslatef(0, 2500, 0);
+	glScalef(12, 6, 12);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
 	glPopMatrix();
 
 	glPushMatrix(); //row 7 from top -1
@@ -895,6 +913,9 @@ void DisplayExtraArea::DisplayBushes()
 	glScalef(0.5, 0.3, 0.5);
 	glRotatef(90, 0, 1, 0);
 	TreeOBJ.DisplayObject(TREE_TEXTURE);
+	glTranslatef(0, 2500, 0);
+	glScalef(6, 6, 6);
+	BushOBJ.DisplayObject(BUSH_TEXTURE);
 	glPopMatrix();
 
 	glPushMatrix(); //row 7 from top -2
