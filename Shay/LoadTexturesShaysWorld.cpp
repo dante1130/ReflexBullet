@@ -679,16 +679,15 @@ void CreateTextures()
 	image = tp.LoadTexture("data/windows/windowLibLong.raw", 256, 128);
 	tp.CreateTexture(WINDOW_LIB_LONG, image, 256, 128);
 
-	image = tp.LoadTexture("data/map.raw", 256, 256);
-	tp.CreateTexture(217, image, 256, 256);
+	image = tp.LoadTexture("data/map.raw", 323, 268);
+	tp.CreateTexture(217, image, 323, 268);
 	image = tp.LoadTexture("data/welcome.raw", 512, 512);
 	tp.CreateTexture(218, image, 512, 512);
 	image = tp.LoadTexture("data/thanks.raw", 512, 512);
 	tp.CreateTexture(219, image, 512, 512);
 
-
-	image = tp.LoadTexture("data/object/tetris.raw", 562, 499);
-	tp.CreateTexture(TEXT_ENVIRONMENT, image, 562, 499);
+	image = tp.LoadTexture("data/object/tetris.raw", 2024, 2024);
+	tp.CreateTexture(TEXT_ENVIRONMENT_GENERAL, image, 2024, 2024);
 
 	image = tp.LoadTexture("data/ConcreteWalkway.raw", 1024, 1024);
 	tp.CreateTexture(CONCRETE_WALKWAY_TEXTURE, image, 1024, 1024);
@@ -699,6 +698,95 @@ void CreateTextures()
 	image = tp.LoadTexture("data/Drain.raw", 256, 256);
 	tp.CreateTexture(DRAIN, image, 256, 256);
 
+	image = tp.LoadTexture("data/bigTable.raw", 1536, 1024);
+	tp.CreateTexture(BIG_TABLE, image, 1536, 1024);
+
+	image = tp.LoadTexture("data/concreteWall.raw", 1024, 1024);
+	tp.CreateTexture(CONCRETE_WALL, image, 1024, 1024);
+
+	image = tp.LoadTexture("data/umbrella.raw", 512, 512);
+	tp.CreateTexture(UMBRELLA, image, 512, 512);
+
+	image = tp.LoadTexture("data/chair.raw", 2048, 2048);
+	tp.CreateTexture(CHAIR, image, 2048, 2048);
+
+	image = tp.LoadTexture("data/edgeWallBackLeft.raw", 2024, 1024);
+	tp.CreateTexture(EDGE_WALL_TOILETS, image, 2024, 1024);
+
+	image = tp.LoadTexture("data/edgeWallLeftDiagonal.raw", 2024, 1024);
+	tp.CreateTexture(EDGE_WALL_LEFT_DIAGONAL, image, 2024, 1024);
+
+	image = tp.LoadTexture("data/edgeWallRightDiagonal.raw", 2024, 1024);
+	tp.CreateTexture(EDGE_WALL_RIGHT_DIAGONAL, image, 2024, 1024);
+
+	image = tp.LoadTexture("data/edgeWallBack.raw", 2024, 1024);
+	tp.CreateTexture(EDGE_WALL_FAR_BACK, image, 2024, 1024);
+
+	image = tp.LoadTexture("data/WR_Right1.raw", 1024, 512);
+	tp.CreateTexture(RESTURANT_STAIRS, image, 1024, 512);
+	
+	image = tp.LoadTexture("data/WR_Right3.raw", 1024, 512);
+	tp.CreateTexture(RESTURANT_COLOUR_SIDE, image, 1024, 512);
+	
+	image = tp.LoadTexture("data/WR_Right2.raw", 1024, 512);
+	tp.CreateTexture(RESTURANT_DINNING, image, 1024, 512);
+
+	image = tp.LoadTexture("data/CanteenColour1.raw", 1024, 512);
+	tp.CreateTexture(CANTEEN_COLOUR_1, image, 1024, 512);
+
+	image = tp.LoadTexture("data/CanteenColour2.raw", 1024, 512);
+	tp.CreateTexture(CANTEEN_COLOUR_2, image, 1024, 512);
+	
+	image = tp.LoadTexture("data/edgeWallRight1.raw", 2024, 1024);
+	tp.CreateTexture(EDGE_WALL_RIGHT1, image, 2024, 1024);
+
+	image = tp.LoadTexture("data/edgeWallRight2.raw", 2024, 1024);
+	tp.CreateTexture(EDGE_WALL_RIGHT2, image, 2024, 1024);
+
+	image = tp.LoadTexture("data/edgeWallRight3.raw", 2024, 1024);
+	tp.CreateTexture(EDGE_WALL_RIGHT3, image, 2024, 1024);
+
+	image = tp.LoadTexture("data/object/railingText.raw", 256, 256);
+	tp.CreateTexture(TEXT_ENVIRONMENT_RAILING, image, 256, 256);
+
+	image = tp.LoadTexture("data/object/environmentStairsText.raw", 2024, 2024);
+	tp.CreateTexture(TEXT_ENVIRONMENT_STAIRS, image, 2024, 2024);
+
+	image = tp.LoadTexture("data/studentHubWall.raw", 512, 512);
+	tp.CreateTexture(STUDENTHUB_WALL, image, 512, 512);
+
+	image = tp.LoadTexture("data/studentHubDoor.raw", 512, 512);
+	tp.CreateTexture(STUDENTHUB_DOOR, image, 512, 512);
+
+	image = tp.LoadTexture("data/canteenWall1.raw", 512, 412);
+	tp.CreateTexture(CANTEEN_WALL1, image, 512, 412);
+
+	image = tp.LoadTexture("data/canteenWall2.raw", 512, 412);
+	tp.CreateTexture(CANTEEN_WALL2, image, 512, 412);
+
+	image = tp.LoadTexture("data/canteenWall3.raw", 512, 412);
+	tp.CreateTexture(CANTEEN_WALL3, image, 512, 412);
+
+	image = tp.LoadTexture("data/canteenWall4.raw", 512, 412);
+	tp.CreateTexture(CANTEEN_WALL4, image, 512, 412);
+
+	image = tp.LoadTexture("data/edgeCornerWall.raw", 512, 512);
+	tp.CreateTexture(EDGE_WALL_CLOSE_RIGHT, image, 512, 512);
+
+	image = tp.LoadTexture("data/object/bushText.raw", 512, 512);
+	tp.CreateTexture(BUSH_TEXTURE, image, 512, 512);
+
+	image = tp.LoadTexture("data/hubDoorLeft.raw", 256, 512);
+	tp.CreateTexture(STUDENTHUB_DOOR_LEFT, image, 256, 512);
+
+	image = tp.LoadTexture("data/hubDoorRight.raw", 256, 400);
+	tp.CreateTexture(STUDENTHUB_DOOR_RIGHT, image, 256, 400);
+
+	image = tp.LoadTexture("data/object/binText.raw", 1024, 512);
+	tp.CreateTexture(BIN_TEXTURE, image, 1024, 512);
+
+	image = tp.LoadTexture("data/object/bark.raw", 512, 512);
+	tp.CreateTexture(TREE_TEXTURE, image, 512, 512);
 
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);

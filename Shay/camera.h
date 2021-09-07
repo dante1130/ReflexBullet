@@ -25,65 +25,172 @@
 class Camera
 {
 public:
-
-	glm::dvec3 m_pos;
-
+	/**
+	 * @brief Default constructor.
+	 */
 	Camera();
 
 	/**
-	* @brief	Handles all key movement for movement speed
-	* @return	void
+	* @brief Handles all key movement for movement speed.
+	* @return void
 	*/
 	void KeyboardMovement();
+
+	/**
+	 * @brief Adds a bounding box to check for collision.
+	 * @param max const glm::vec3&
+	 * @param min const glm::vec3&
+	 * @return void
+	 */
+	void AddAABB(const glm::vec3& max, const glm::vec3& min);
+
+	/**
+	 * @brief Prints the x, y and z values to console, used for debugging.
+	 * @return void
+	 */
+	void PrintPos()
+	{
+		std::cout << m_pos.x << " " << m_pos.y << " " << m_pos.z << std::endl;
+	}
 	
 	//----------------------------------------------------------------------------------
 	//  Set Methods
 	//----------------------------------------------------------------------------------
-	// sets initial value for bounding boxes (in the array AABB)
 
-	void AddAABB(const glm::vec3& max, const glm::vec3& min);
+	/**
+	 * @brief Set step and rotation size.
+	 * @param tempSpeed const GLdouble&
+	 * @return void
+	 */
+	void SetRotateSpeed(const GLdouble& tempSpeed);
 
-	// set step and rotation size
-	void SetRotateSpeed (const GLdouble &tempSpeed);
-	void SetMoveSpeed (const GLdouble &tempSpeed);
+	/**
+	 * @brief Set movement speed.
+	 * @param tempSpeed const GLdouble&
+	 * @return void
+	 */
+	void SetMoveSpeed(const GLdouble& tempSpeed);
 
-	// COLLSION DETECTION FUNCTIONS
-	// set collision detection (TRUE = on)
+	// COLLISION DETECTION FUNCTIONS
+	/**
+	 * @brief Set collision detection (TRUE = on).
+	 * @param tempCol bool
+	 * @return void
+	 */
 	void SetCollisionDetectionOn(bool tempCol);
 
-	// set the co-ordinates of the world
-	void SetWorldCoordinates (const GLdouble &tempX, const GLdouble &tempZ);
+	/**
+	 * @brief Set the co-ordinates of the world.
+	 * @param tempX const GLdouble&
+	 * @param tempZ const GLdouble&
+	 * @return void
+	 */
+	void SetWorldCoordinates(const GLdouble& tempX, const GLdouble& tempZ);
 
-	// sets the co-ordinate of each plain
+	/**
+	 * @brief Sets the co-ordinate of each plain.
+	 * @param tempType const GLint
+	 * @param tempStart const glm::vec3&
+	 * @param tempEnd const glm::vec3&
+	 * @return void
+	 */
 	void AddPlain(const GLint tempType, const glm::vec3& tempStart, const glm::vec3& tempEnd);
+
+	/**
+	* @brief	Used diagonal plains (only flat implemented)
+	* @brief	tempType	- The type of plain implemented
+	* @param	t1			- First coordinate
+	* @param	t2			- Second coordinate
+	* @param	t3			- Third coordinate
+	* @param	t4			- Fourth coordinate
+	* @return	Void
+	*/
+	void Camera::AddPlain(const GLint tempType, const glm::vec3& t1, const glm::vec3& t2, const glm::vec3& t3, const glm::vec3& t4);
 
 	//----------------------------------------------------------------------------------
 	//  Get Methods
 	//----------------------------------------------------------------------------------
+
+	/**
+	 * @brief Returns the x position of the camera.
+	 * @return GLdouble
+	 */
 	GLdouble GetLR () const;
+
+	/**
+	 * @brief Returns the y position of the camera.
+	 * @return GLdouble
+	 */
 	GLdouble GetUD () const;
+
+	/**
+	 * @brief Returns the z position of the camera.
+	 * @return GLdouble
+	 */
 	GLdouble GetFB () const;	
 	
-	// position the camera
+	/**
+	 * @brief position the camera.
+	 * @param tempPos const glm::vec3&
+	 * @param tempAngle const GLdouble&
+	 * @return void
+	 */
 	void Position(const glm::vec3& tempPos, const GLdouble& tempAngle);
 
-	// Used to pass direction to move or rotate  (i.e. 1, -1 or 0)
-	void DirectionFB(int const & tempMove);
-	void DirectionLR(int const & tempMove);
-	void DirectionUD(int const & tempMove);
+	/**
+	 * @brief Used to pass direction to move or rotate forwards or backwards  (i.e. 1, -1 or 0).
+	 * @param tempMove const int&
+	 * @return void
+	 */
+	void DirectionFB(const int& tempMove);
 
-	// Use mouse to look around
+	/**
+	 * @brief Used to pass direction to move or rotate left and right  (i.e. 1, -1 or 0).
+	 * @param tempMove const int&
+	 * @return void
+	 */
+	void DirectionLR(const int& tempMove);
+
+	/**
+	 * @brief Used to pass direction to move or rotate up and down  (i.e. 1, -1 or 0).
+	 * @param tempMove const int&
+	 * @return void
+	 */
+	void DirectionUD(const int& tempMove);
+
+	/**
+	 * @brief Use mouse to look around.
+	 * @param x int
+	 * @param y int
+	 * @return void
+	 */
 	void MouseMove(int x, int y);
 
-	// display map
-	void DisplayMap(const int & screenWidth, const int & screenHeight, 
-		            const GLuint & tempImage);
-	// display welcome screen
-	void DisplayWelcomeScreen (const int & screenWidth, const int & screenHeight,
-							   const int & tempExit, const GLuint & tempImage);
-	// display no exit
-	void DisplayNoExit (const int & screenWidth, const int & screenHeight, 
-						const GLuint & tempImage);
+	/**
+	 * @brief Display map.
+	 * @param screenWidth const int&
+	 * @param screenHeight const int&
+	 * @param tempImage const GLuint&
+	 * @return void
+	 */
+	void DisplayMap(const int& screenWidth, const int& screenHeight, const GLuint& tempImage);
+	/**
+	 * @brief Display welcome screen.
+	 * @param screenWidth const int&
+	 * @param screenHeight const int&
+	 * @param tempExit const int&
+	 * @param tempImage const GLuint&
+	 * @return void
+	 */
+	void DisplayWelcomeScreen(const int& screenWidth, const int& screenHeight, const int& tempExit, const GLuint& tempImage);
+	/**
+	 * @brief Display no exit.
+	 * @param screenWidth const int&
+	 * @param screenHeight const int&
+	 * @param tempImage const GLuint&
+	 * @return void
+	 */
+	void DisplayNoExit(const int& screenWidth, const int& screenHeight, const GLuint& tempImage);
 	
 	/**
 	* @brief	Sets if the player is crouching
@@ -102,6 +209,9 @@ public:
 	void SetCameraLocation(float x, float y, float z);
 
 private:
+	/// Initialize values for first run for m_prev if true
+	bool m_firstMouse;
+
 	/// If the player is crouching or not
 	bool crouch;
 	/// The current crouch depth
@@ -128,7 +238,7 @@ private:
 
 	// movement variables
 	/// The position.
-	
+	glm::dvec3 m_pos;
 		
 	/// The previous position.
 	GLdouble m_zLast, m_xLast;
@@ -147,9 +257,32 @@ private:
 	/// Movement speed.
 	GLdouble m_moveSpeed;
 
-	// Helper function for rotation
+	/// Check whether collision detection is on
+	bool m_collisionDetectionOn;
+
+	/// Collision object, contains the AABB to detect collision for 
+	Collision m_colDetect;
+	/// The map of the camera, contains the textures for the map
+	CameraMap m_map;
+	/// PlainVector object, contains all the plains
+	PlainVector m_plain;
+	/// Audio object,
+	Audio m_audio;
+
+	/**
+	 * @brief Helper function for rotation, calculates radians from degrees.
+	 * @param degrees GLdouble
+	 * @return GLdouble
+	 */
 	GLdouble degreesToRadians(GLdouble degrees);
 	
+	/**
+	* @brief	Finds the area of a triangle between the players coordinates and points on plain
+	* @param	edgeNo	- Which edge you are one. E.g., first point - q2 is 1, q2 - end point is 2 etc.
+	* @param	i		- The plains that you are testing
+	* @return	GLdouble - area of triangle
+	*/
+	GLdouble Camera::AreaPlainTriangle(int edgeNo, int i);
 
 	/**
 	* @brief	Handles W and S key movement of player
@@ -172,35 +305,32 @@ private:
 	*/
 	void CrouchDistance();
 
-	// overloaded function for setting plain
-	void SetPlains(const int & moveX, const int & moveZ);
+	/**
+	 * @brief	Overloaded function for setting plain.
+	 * @param	moveX const int&
+	 * @param	moveZ const int&
+	 * @return	Void
+	 */
+	void SetPlains(const int& moveX, const int& moveZ);
 
-	// resets camera
+	/**
+	 * @brief Resets the camera.
+	 * return void
+	 */
 	void ResetXYZ();
-	// display new view
+
+	/**
+	 * @brief Calls the glLookAt function.
+	 * @return void
+	 */
 	void callGLLookAt();
-
-	bool m_collisionDetectionOn;
-
-	/// Collision object
-	Collision m_colDetect;
-	/// The map of the camera
-	CameraMap m_map;
-	/// PlainVector object
-	PlainVector m_plain;
 
 	// These functions were set up to climb stairs, but are not used.
 	// The Plain object is used instead
-// 	void ClimbSteps(GLdouble stepStart, GLdouble stepFinish, GLdouble stepHeight, GLdouble stepWidth, int noSteps);
-// 	void CheckSteps();
-
-	Audio m_audio;
+	// void ClimbSteps(GLdouble stepStart, GLdouble stepFinish, GLdouble stepHeight, GLdouble stepWidth, int noSteps);
+	// void CheckSteps();
 
 	//----------------------------------------------------------------------------------
-
-    // Privatized copy constructor and assignment operator
-    Camera (const Camera &cam) {};
-    Camera &operator = (const Camera &cam) {};
 };
 
 #endif

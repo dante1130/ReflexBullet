@@ -10,7 +10,7 @@
 /// glut Cylinder
 extern GLUquadricObj* glu_cylinder;
 
-/// variables used for tarnslating graphics etc
+/// variables used for translating graphics etc
 extern GLdouble step, step2, stepLength;
 
 /**
@@ -200,29 +200,36 @@ void DrawBricks();
 void DrawRoof();
 
 /**
-* @brief	Sets the location for where to display the agneld roof beam (right side of physical sciences)
-* 
+* @brief	Sets the location for where to display the angled roof beam in the X axis
+*
 * @param	int listNo			- Where to store the coordiantes
+* @param	GLdouble xStart		- Location to start the beam along the x coordinate
+* @param	GLdouble yStart		- Location to start the beam along the y coordinate
 * @param	GLdouble x			- Location along x coordiante
 * @param	GLdouble y			- Location along y coordinate
 * @param	GLdouble z			- Location along z coordinate
 * @param	Gldouble beamSize	- Size of beam for texture mapping (meters)
-* 
-* @return	Void
-*/void DrawAngledRoofBeam(int listNo, GLdouble x, GLdouble y, GLdouble z, GLdouble beamSize);
-
-/**
-* @brief	Sets the location for where to display the angled roof beam2 (left side of library)
-* 
-* @param	int listNo			- Where to store the coordiantes
-* @param	GLdouble x			- Location along x coordiante
-* @param	GLdouble y			- Location along y coordinate
-* @param	GLdouble z			- Location along z coordinate
-* @param	Gldouble beamSize	- Size of beam for texture mapping (meters)
-* 
+* @param	int listAdd			- Size of list of roof beams (number of roof beams)
+*
 * @return	Void
 */
-void DrawAngledRoofBeam2(int listNo, GLdouble x, GLdouble y, GLdouble z, GLdouble beamSize);
+void DrawAngledRoofBeamX(int listNo, GLdouble xStart, GLdouble yStart, GLdouble x, GLdouble y, GLdouble z, GLdouble beamSize, int listAdd);
+
+/**
+* @brief	Sets the location for where to display the angled roof beam in the Z axis
+*
+* @param	int listNo			- Where to store the coordiantes
+* @param	GLdouble zStart		- Location to start the beam along the z coordinate
+* @param	GLdouble yStart		- Location to start the beam along the y coordinate
+* @param	GLdouble x			- Location along x coordiante
+* @param	GLdouble y			- Location along y coordinate
+* @param	GLdouble z			- Location along z coordinate
+* @param	Gldouble beamSize	- Size of beam for texture mapping (meters)
+* @param	int listAdd			- Size of list of roof beams (number of roof beams)
+*
+* @return	Void
+*/
+void DrawAngledRoofBeamZ(int listNo, GLdouble zStart, GLdouble yStart, GLdouble x, GLdouble y, GLdouble z, GLdouble beamSize, int listAdd);
 
 /**
 * @brief	Displays the enterence steps

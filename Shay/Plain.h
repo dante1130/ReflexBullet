@@ -25,6 +25,9 @@ struct Plain
 	glm::vec3 m_plainStart;
 	/// stores end co-ordinates of plane on x, y and z axis
 	glm::vec3 m_plainEnd;
+
+	glm::vec3 q2;
+	glm::vec3 q4;
 };
 
 #endif

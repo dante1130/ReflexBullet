@@ -22,34 +22,57 @@ void PlainVector::Push (const GLint tempType, const glm::vec3& tempStart, const 
 	m_plains.push_back(newPlain);
 }
 
-//--------------------------------------------------------------------------------------
-
-GLint PlainVector::GetType(int ptrCount) const
+void PlainVector::Push(const GLint tempType, const glm::vec3& t1, const glm::vec3& t2, const glm::vec3& t3, const glm::vec3& t4)
 {
-	return m_plains[ptrCount].m_type;
+	Plain newPlain;
+
+	newPlain.m_type = tempType;
+	newPlain.m_plainStart = t1;
+	newPlain.m_plainEnd = t3;
+	newPlain.q2 = t2;
+	newPlain.q4 = t4;
+
+	m_plains.push_back(newPlain);
 }
 
 //--------------------------------------------------------------------------------------
 
-const glm::vec3& PlainVector::GetStart(int ptrCount) const
+GLint PlainVector::GetType(int index) const
 {
-	return m_plains[ptrCount].m_plainStart;
+	return m_plains[index].m_type;
 }
 
 //--------------------------------------------------------------------------------------
 
-const glm::vec3& PlainVector::GetEnd(int ptrCount) const
+const glm::vec3& PlainVector::GetStart(int index) const
 {
-	return m_plains[ptrCount].m_plainEnd;
+	return m_plains[index].m_plainStart;
 }
 
 //--------------------------------------------------------------------------------------
 
-void PlainVector::SetData(const int ptrCount, const GLint tempType, const glm::vec3& tempStart, const glm::vec3& tempEnd)
+const glm::vec3& PlainVector::GetEnd(int index) const
 {
-	m_plains[ptrCount].m_type = tempType;
-	m_plains[ptrCount].m_plainStart = tempStart;
-	m_plains[ptrCount].m_plainEnd = tempEnd;
+	return m_plains[index].m_plainEnd;
+}
+
+const glm::vec3& PlainVector::GetQ2(int ptrCount) const
+{
+	return m_plains[ptrCount].q2;
+}
+
+const glm::vec3& PlainVector::GetQ4(int ptrCount) const
+{
+	return m_plains[ptrCount].q4;
+}
+
+//--------------------------------------------------------------------------------------
+
+void PlainVector::SetData(int index, const GLint type, const glm::vec3& start, const glm::vec3& end)
+{
+	m_plains[index].m_type = type;
+	m_plains[index].m_plainStart = start;
+	m_plains[index].m_plainEnd = end;
 }
 
 //--------------------------------------------------------------------------------------

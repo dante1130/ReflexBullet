@@ -16,8 +16,6 @@
 /**
  * @class Collision
  * @brief Collision class using AABB Bounding boxes.
- * 
- * @todo Collision() and CheckCollision()
  */
 class Collision
 {
@@ -35,17 +33,17 @@ public:
 
 	/**
 	 * @brief Sets the actual world co-ordinates X.
-	 * @param tempX const double&
+	 * @param tempX double
 	 * @return void
 	 */
-	void SetWorldX(const double &tempX);
+	void SetWorldX(const double& tempX);
 
 	/**
 	 * @brief Sets the actual world co-ordinates Z
-	 * @param tempZ const double&
+	 * @param tempZ double
 	 * @return void
 	 */
-	void SetWorldZ(const double &tempZ);
+	void SetWorldZ(const double& tempZ);
 
 	//----------------------------------------------------------------------------------
 	//  Returns Methods
@@ -53,21 +51,14 @@ public:
 
 	/**
 	 * @brief Returns TRUE if a collision occurred.
-	 * @param endX double
-	 * @param endY double
-	 * @param endZ double
+	 * @param end const glm::dvec3&
 	 * @return bool
 	 */
 	bool Collide(const glm::dvec3& end);
 
-	/**
-	 * @brief Reads the BB info from AABB (dynamic array) and creates a Linked List containing BB data.
-	 * @return void
-	 */
-	int GetQuadrant(const glm::vec3& max, const glm::vec3& min);
 
 private:
-	/// vectors to store bounding box info in each quadrant
+	/// vectors to store bounding box data in each quadrant
 	AABBVector m_list[4];
 
 	/// stores world co-ordinates
@@ -76,11 +67,12 @@ private:
 	/**
 	 * @brief Checks if collision occurred (called from Collide).
 	 * @param index int
-	 * @param endX double
-	 * @param endY double
-	 * @param endZ double
+	 * @param end const glm::dvec3&
+	 * @return bool
 	 */
 	bool CheckCollision(int index, const glm::dvec3& end);
+
+	void GetQuadrant(const glm::vec3& max, const glm::vec3& min);
 };
 
 #endif

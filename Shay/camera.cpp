@@ -15,6 +15,8 @@
 //--------------------------------------------------------------------------------------
 Camera::Camera()
 {
+	m_firstMouse = true;
+
 	crouch = false;
 	crouchDepth = 0.0;
 
@@ -132,14 +134,19 @@ void Camera::WSKeyboardMovement()
 	zMove *= norm * m_deltaMoveFB;
 	
 	//Checks if player can move in direction based on AABB
-	if (!(m_colDetect.Collide(glm::dvec3(m_pos.x + xMove, m_pos.y + m_lookK.y, m_pos.z + zMove))))
+	if (!(m_colDetect.Collide(glm::dvec3(m_pos.x + xMove, m_pos.y + m_lookK.y, m_pos.z))))
 	{
 		m_pos.x += xMove;
-		m_pos.z += zMove;
-
-		//Makes sure that the camera object is on the right y height
-		SetPlains(xMove, zMove);
 	}
+
+	if (!(m_colDetect.Collide(glm::dvec3(m_pos.x, m_pos.y + m_lookK.y, m_pos.z + zMove))))
+	{
+		m_pos.z += zMove;
+	}
+
+	//Makes sure that the camera object is on the right y height
+	SetPlains(xMove, zMove);
+
 }
 
 void Camera::ADKeyboardMovement()
@@ -157,6 +164,21 @@ void Camera::ADKeyboardMovement()
 	xMove *= norm * -m_deltaMoveLR; //m_deltaMoveRL is used for the direction
 	zMove *= norm * -m_deltaMoveLR;
 
+
+	//Checks if player can move in direction based on AABB
+	if (!(m_colDetect.Collide(glm::dvec3(m_pos.x + xMove, m_pos.y + m_lookK.y, m_pos.z))))
+	{
+		m_pos.x += xMove;
+	}
+
+	if (!(m_colDetect.Collide(glm::dvec3(m_pos.x, m_pos.y + m_lookK.y, m_pos.z + zMove))))
+	{
+		m_pos.z += zMove;
+	}
+
+	//Makes sure that the camera object is on the right y height
+	SetPlains(xMove, zMove);
+	/*
 	//Checks if player can move in direction based on AABB
 	if (!(m_colDetect.Collide(glm::dvec3(m_pos.x + xMove, m_pos.y + m_lookK.y, m_pos.z + zMove))))
 	{
@@ -166,6 +188,7 @@ void Camera::ADKeyboardMovement()
 		//Makes sure that the camera object is on the right y height
 		SetPlains(xMove, zMove);
 	}
+	*/
 }
 
 //--------------------------------------------------------------------------------------
@@ -227,6 +250,13 @@ void Camera::DirectionUD(int const & tempMove)
 //----------------------------------------------------------------------------------------
 void Camera::MouseMove(int x, int y)
 {
+	if (m_firstMouse)
+	{
+		m_prev.x = 103.55;
+		m_prev.y = y;
+		m_firstMouse = false;
+	}
+		
 	// calculate delta by offsetting it with the previous x and y values with new values
 	m_deltaAngleLR = x - m_prev.x;
 	m_deltaAngleUD = m_prev.y - y;
@@ -252,9 +282,9 @@ void Camera::MouseMove(int x, int y)
 	int winW = glutGet(GLUT_WINDOW_WIDTH);
 	int winH = glutGet(GLUT_WINDOW_HEIGHT);
 
-	m_prev.x = winW / 2;   
+	m_prev.x = winW / 2;
 	m_prev.y = winH / 2;
-	glutWarpPointer(winW / 2, winH / 2);  //centers the cursor
+	glutWarpPointer(m_prev.x, m_prev.y);  //centers the cursor
 
 	callGLLookAt();
 }
@@ -275,10 +305,14 @@ void Camera::SetPlains(const int & moveX, const int & moveZ)
 	// store number of plains (stops from looping through linked list each time)
 	if (m_No_Plains == 0) m_No_Plains = m_plain.Size();
 
+
+	glm::vec3 plainStart, plainEnd;
+	float x1, x2, z1, z2, dif, dist, ratio, area, areaSum;
+
 	for (int i = 0;  i < m_No_Plains; i++)
 	{
-		glm::vec3 plainStart = m_plain.GetStart(i);
-		glm::vec3 plainEnd = m_plain.GetEnd(i);
+		plainStart = m_plain.GetStart(i);
+		plainEnd = m_plain.GetEnd(i);
 
 		// if camera is positioned on a plain
 		if ((m_pos.z <= plainEnd.z) && (m_pos.z >= plainStart.z)
@@ -300,29 +334,100 @@ void Camera::SetPlains(const int & moveX, const int & moveZ)
 			// if plain slopes in z direction
 			if (m_plain.GetType(i) == 2)
 			{
-				float z1 = plainStart.z;
-				float z2 = plainEnd.z;
-				float dif = z1 - z2;
+				z1 = plainStart.z;
+				z2 = plainEnd.z;
+				dif = z1 - z2;
 
-				float dist = m_pos.z - z1;
-				float ratio = (plainStart.y - plainEnd.y) / dif;
+				dist = m_pos.z - z1;
+				ratio = (plainStart.y - plainEnd.y) / dif;
 
 				m_pos.y = plainStart.y + ratio * dist;
 			}
 			// if plain slopes in x direction	
 			if (m_plain.GetType(i) == 1)
 			{
-				float x1 = plainStart.x;
-				float x2 = plainEnd.x;
-				float dif = x1 - x2;
+				x1 = plainStart.x;
+				x2 = plainEnd.x;
+				dif = x1 - x2;
 
-				float dist = m_pos.x - x1;
-				float ratio = (plainStart.y - plainEnd.y) / dif;
+				dist = m_pos.x - x1;
+				ratio = (plainStart.y - plainEnd.y) / dif;
 
 				m_pos.y = plainStart.y + ratio * dist;
-			}		
+			}	
+
+			//if plain is diagonal flat plain
+			
+		}
+		else if (m_plain.GetType(i) == DIAGONAL_FLAT_PLAIN)
+		{
+			plainStart = m_plain.GetQ2(i) - m_plain.GetStart(i);
+			plainEnd = m_plain.GetEnd(i) - m_plain.GetQ2(i);
+			area = abs(plainStart.z * plainEnd.x - plainStart.x * plainEnd.z);
+
+			plainStart = m_plain.GetQ4(i) - m_plain.GetEnd(i);
+			plainEnd = m_plain.GetQ4(i) - m_plain.GetStart(i);
+			area += abs(plainStart.z * plainEnd.x - plainStart.x * plainEnd.z);
+
+			areaSum = AreaPlainTriangle(1, i);
+			areaSum += AreaPlainTriangle(2, i);
+			areaSum += AreaPlainTriangle(3, i);
+			areaSum += AreaPlainTriangle(4, i);
+
+			if (areaSum - area >= -0.01 && areaSum - area <= 0.01)
+			{
+				m_pos.y = m_plain.GetStart(i).y;
+				if ((m_plainNo != i) && m_plainHeight != m_plain.GetStart(i).y)
+				{
+					m_audio.PlaySound("stairstep");
+				}
+				m_plainNo = i;
+				m_plainHeight = m_plain.GetStart(i).y;
+			}
 		}
 	}
+}
+
+GLdouble Camera::AreaPlainTriangle(int edgeNo, int i)
+{
+	glm::vec3 plainEnd;
+	glm::vec3 plainStart;
+
+	if (edgeNo == 1)
+	{
+		plainStart = m_plain.GetStart(i) - m_plain.GetQ2(i);
+		
+		plainEnd.x = m_plain.GetStart(i).x - m_pos.x;
+		plainEnd.z = m_plain.GetStart(i).z - m_pos.z;
+	}
+	else if (edgeNo == 2)
+	{
+		plainStart = m_plain.GetQ2(i) - m_plain.GetEnd(i);
+
+		plainEnd.x = m_plain.GetQ2(i).x - m_pos.x;
+		plainEnd.z = m_plain.GetQ2(i).z - m_pos.z;
+	}
+	else if (edgeNo == 3)
+	{
+		plainStart = m_plain.GetEnd(i) - m_plain.GetQ4(i);
+
+		plainEnd.x = m_plain.GetEnd(i).x - m_pos.x;
+		plainEnd.z = m_plain.GetEnd(i).z - m_pos.z;
+
+	}
+	else
+	{
+		plainStart = m_plain.GetQ4(i) - m_plain.GetStart(i);
+
+		plainEnd.x = m_plain.GetQ4(i).x - m_pos.x;
+		plainEnd.z = m_plain.GetQ4(i).z - m_pos.z;
+	}
+
+	
+	plainStart.y = 0;
+	plainEnd.y = 0;
+
+	return abs(plainStart.z * plainEnd.x - plainStart.x * plainEnd.z);
 }
 
 GLdouble Camera::GetLR() const
@@ -440,6 +545,11 @@ void Camera::SetWorldCoordinates (const GLdouble &tempX, const GLdouble &tempZ)
 void Camera::AddPlain(const GLint tempType, const glm::vec3& tempStart, const glm::vec3& tempEnd)
 {
 	m_plain.Push(tempType, tempStart, tempEnd);
+}
+
+void Camera::AddPlain(const GLint tempType, const glm::vec3& t1, const glm::vec3& t2, const glm::vec3& t3, const glm::vec3& t4)
+{
+	m_plain.Push(tempType, t1, t2, t3, t4);
 }
 
 

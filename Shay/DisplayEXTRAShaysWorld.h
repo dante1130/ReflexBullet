@@ -7,9 +7,17 @@
 #include <GL/glut.h>
 #include "Object.h"
 
-extern Object3D EnvironmentOBJ;
-
-
+extern Object3D EnvironmentOBJ[3];
+extern Object3D SmallTableOBJ;
+extern Object3D BigTableOBJ;
+extern Object3D UmbrellaOBJ;
+extern Object3D ChairOBJ;
+extern Object3D BenchOBJ;
+extern Object3D BushOBJ;
+extern Object3D BinOBJ;
+extern Object3D TreeOBJ;
+extern bool doorOpen;
+extern int doorStart;
 
 namespace DisplayExtraArea
 {
@@ -21,11 +29,88 @@ namespace DisplayExtraArea
 	void DisplayExtension();
 
 	/**
+	* @brief	Controls all the display functions for environment
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayEnvironment();
+
+	/**
+	* @brief	Contains all the display functions for chairs
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayChairs();
+
+	/**
+	* @brief	Contains all the display functions for benches
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayBenches();
+
+	/**
+	* @brief	Contains all the display functions for small tables
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplaySmallTable();
+
+	/**
+	* @brief	Contains all the display functions for big tables
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayBigTable();
+
+	/**
+	* @brief	Contains all the display functions for umbrellas
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayUmbrellas();
+
+	/**
 	* @brief	Controls all the functions which display non blend objects
 	* @param	No param
 	* @return	Void
 	*/
 	void DisplayNonBlendObjects();
+
+	/**
+	* @brief	Displays the small objects around the resutant area
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayResturantObjects();
+
+	/**
+	* @brief	This 'fixes' overextended collision boxes which just means it adds objects to the world to make the collision boxes belevable
+	* @param	No param
+	* @return	Void
+	*/
+	void FixingOverextendedCollisionBoxes();
+
+	/**
+	* @brief	Places the bins in the extended area
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayBins();
+
+	/**
+	* @brief	Displays all the bush objects
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayBushes();
+
+	/**
+	* @brief	Displays all the main images for the boundary walls
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayEdgeWallEnvironmentPicutres();
 
 	/**
 	* @brief	Adds features to fix the entrance to the extended area
@@ -40,6 +125,34 @@ namespace DisplayExtraArea
 	* @return	Void
 	*/
 	void DisplayCanteen();
+
+	/**
+	* @brief	Displays the sliding door for the student hub
+	* @param	No param
+	* @reutrn	Void
+	*/
+	void DisplaySlidingDoor();
+
+	/**
+	* @brief	Displays the canteen contreen railing 
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayCanteenRailing();
+
+	/**
+	* @brief	Displays the overhang under section
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayOverhangUnder();
+
+	/**
+	* @brief	Displays the canteens pillars
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayCanteenPillars();
 
 	/**
 	* @brief	Displays the entrance pathway using traditional openGL techniques
@@ -110,9 +223,6 @@ namespace DisplayExtraArea
 	* @return	Void
 	*/
 	void LeftOfStairs7ROW();
-
-
-
 }
 
 

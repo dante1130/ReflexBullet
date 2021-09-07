@@ -13,7 +13,8 @@ Collision::Collision()
 
 void Collision::Push(const glm::vec3& max, const glm::vec3& min)
 {
-	m_list[GetQuadrant(max, min)].Push(max, min);
+	GetQuadrant(max, min);
+	//m_list[GetQuadrant(max, min)].Push(max, min);
 }
 
 void Collision::SetWorldX(const double& tempX)
@@ -33,31 +34,31 @@ void Collision::SetWorldZ(const double& tempZ)
 //  I kept the array has it allows for the data to be copied into the list in any reuired 
 //  order.
 //--------------------------------------------------------------------------------------
-int Collision::GetQuadrant(const glm::vec3& max, const glm::vec3& min)
+void Collision::GetQuadrant(const glm::vec3& max, const glm::vec3& min)
 {
 	// 1st quadrant
 	if (((min.x <= m_worldSizeX / 2.0) || (max.x <= m_worldSizeX / 2.0)) &&
 		((min.z <= m_worldSizeZ / 2.0) || (max.z <= m_worldSizeZ / 2.0)))
 	{
-		return 0;
+		m_list[0].Push(max, min);
 	}
 	// 2nd quadrant
-	else if (((min.x <= m_worldSizeX / 2.0) || (max.x <= m_worldSizeX / 2.0)) &&
-			 ((min.z >= m_worldSizeZ / 2.0) || (max.z >= m_worldSizeZ / 2.0)))
+	if (((min.x <= m_worldSizeX / 2.0) || (max.x <= m_worldSizeX / 2.0)) &&
+		((min.z >= m_worldSizeZ / 2.0) || (max.z >= m_worldSizeZ / 2.0)))
 	{
-		return 1;
+		m_list[1].Push(max, min);
 	}
 	// 3rd quadrant
-	else if (((min.x >= m_worldSizeX / 2.0) || (max.x >= m_worldSizeX / 2.0)) &&
-			 ((min.z <= m_worldSizeZ / 2.0) || (max.z <= m_worldSizeZ / 2.0)))
+	if (((min.x >= m_worldSizeX / 2.0) || (max.x >= m_worldSizeX / 2.0)) &&
+		((min.z <= m_worldSizeZ / 2.0) || (max.z <= m_worldSizeZ / 2.0)))
 	{
-		return 2;
+		m_list[2].Push(max, min);
 	}
 	// 4th quadrant
-	else if (((min.x >= m_worldSizeX / 2.0) || (max.x >= m_worldSizeX / 2.0)) &&
-			 ((min.z >= m_worldSizeZ / 2.0) || (max.z >= m_worldSizeZ / 2.0)))
+	if (((min.x >= m_worldSizeX / 2.0) || (max.x >= m_worldSizeX / 2.0)) &&
+		((min.z >= m_worldSizeZ / 2.0) || (max.z >= m_worldSizeZ / 2.0)))
 	{
-		return 3;
+		m_list[3].Push(max, min);
 	}
 }
 
