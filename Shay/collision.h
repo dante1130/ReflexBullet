@@ -25,6 +25,12 @@ public:
 	 */
 	Collision();
 
+	/**
+	* @brief	Sets the bounding box to the vector
+	* @param	max	- The maximum coordinate of the bounding box
+	* @param	min	- The minimum coordinate of the bounding box
+	* @return	Void
+	*/
 	void Push(const glm::vec3& max, const glm::vec3& min);
 
 	//----------------------------------------------------------------------------------
@@ -72,6 +78,12 @@ private:
 	 */
 	bool CheckCollision(int index, const glm::dvec3& end);
 
+	/**
+	 * @brief	Gets the quadrant - used for efficiency of bounding boxes
+	 * @param	max	- The max coordiante of the bounding box
+	 * @param	min - The min coordinate of the bounding box
+	 * @return	Void
+	 */
 	void GetQuadrant(const glm::vec3& max, const glm::vec3& min);
 };
 

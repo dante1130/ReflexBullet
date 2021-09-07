@@ -1,0 +1,6 @@
+<map id="Camera::DisplayMap" name="Camera::DisplayMap">
+<area shape="rect" id="node1" title="Display map." alt="" coords="5,56,148,83"/>
+<area shape="rect" id="node2" href="$class_camera_map.html#ae9310b2f4c46953742fc6a7e7f9358d4" title="Display the map." alt="" coords="196,5,364,32"/>
+<area shape="rect" id="node3" href="$class_camera.html#af8114c2a31f12a7adef5a10b76d89fff" title="Returns the z position of the camera." alt="" coords="223,56,337,83"/>
+<area shape="rect" id="node4" href="$class_camera.html#a6ae278c51ab44558d69d38b5ed3aedab" title="Returns the x position of the camera." alt="" coords="224,107,336,133"/>
+</map>

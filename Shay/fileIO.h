@@ -10,17 +10,17 @@
 #include <fstream>
 
 /** 
- * \brief Reads file and stores values inside Object3D obj
- * \param fileName std::string 
- * \param obj Object3D&
- * \return void
+ * @brief Reads file and stores values inside Object3D obj
+ * @param fileName std::string 
+ * @param obj Object3D&
+ * @return void
  *
  */
 void readObjFile(const std::string& fileName, Object3D& obj);
 /** 
- * \brief Converts combined v and vt string into values
- * \param str std::string
- * \return FaceBase
+ * @brief Converts combined v and vt string into values
+ * @param str std::string
+ * @return FaceBase
  *
  */
 FaceBase StringToFace(const std::string& str);

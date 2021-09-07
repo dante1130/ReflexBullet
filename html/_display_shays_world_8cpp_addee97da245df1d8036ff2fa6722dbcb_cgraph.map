@@ -1,0 +1,4 @@
+<map id="DisplayPhysSciPosts" name="DisplayPhysSciPosts">
+<area shape="rect" id="node1" title="Displays the windows and door posts on the physical science building." alt="" coords="5,5,153,32"/>
+<area shape="rect" id="node2" href="$class_textured_polygons.html#ae6b2615e41f9263aaafc9a7f1ed2b94c" title="Returns texture." alt="" coords="201,5,400,32"/>
+</map>

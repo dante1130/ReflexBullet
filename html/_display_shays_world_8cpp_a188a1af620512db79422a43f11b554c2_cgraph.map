@@ -1,0 +1,4 @@
+<map id="DisplayMainPosts" name="DisplayMainPosts">
+<area shape="rect" id="node1" title="Displays the main posts (ones closest to the grass)" alt="" coords="5,5,132,32"/>
+<area shape="rect" id="node2" href="$class_textured_polygons.html#ae6b2615e41f9263aaafc9a7f1ed2b94c" title="Returns texture." alt="" coords="180,5,379,32"/>
+</map>

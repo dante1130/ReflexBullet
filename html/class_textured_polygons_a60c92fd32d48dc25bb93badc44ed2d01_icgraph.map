@@ -1,0 +1,10 @@
+<map id="TexturedPolygons::CreateAngledPolygon" name="TexturedPolygons::CreateAngledPolygon">
+<area shape="rect" id="node1" title="Used to create display lists where image is on an angle." alt="" coords="553,74,725,115"/>
+<area shape="rect" id="node2" href="$_display_shays_world_8h.html#ae3621ca1936302aff614561ca3e98ba4" title="Sets the location for where to display all extra textures (signs etc)" alt="" coords="399,5,488,32"/>
+<area shape="rect" id="node6" href="$_display_shays_world_8h.html#a5cfc0e1a6befcb997b31aeb74cff5b24" title="Sets the location for where to display the grass area." alt="" coords="400,56,487,83"/>
+<area shape="rect" id="node7" href="$_display_shays_world_8h.html#aae6f0b30873fd5a5ab7e234ac50ef76a" title="Sets the location for where to display the librarys posts." alt="" coords="381,107,505,133"/>
+<area shape="rect" id="node8" href="$_display_shays_world_8h.html#aefaff786dac735e065d19b12f3c7704a" title="Sets location for where to display the map and welcome screen." alt="" coords="386,157,501,184"/>
+<area shape="rect" id="node3" href="$_display_shays_world_8h.html#a0c8e3bf7c765b84b2a66cd9a8fefbe5e" title="Creates display lists (numbers indicate list numbers) (calls all the display functions)" alt="" coords="209,81,333,108"/>
+<area shape="rect" id="node4" href="$main_8cpp.html#a8264fa9a7444ab4805520c3d018b6623" title="Initializes settings @prarm No param." alt="" coords="104,81,161,108"/>
+<area shape="rect" id="node5" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,81,56,108"/>
+</map>

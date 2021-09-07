@@ -1,0 +1,52 @@
+<map id="main" name="main">
+<area shape="rect" id="node1" title="Main function." alt="" coords="5,960,56,987"/>
+<area shape="rect" id="node2" href="$main_8cpp.html#a5d3fb9b91b5c167b70a1a0557e67f271" title="Handles all the display functions." alt="" coords="119,335,184,361"/>
+<area shape="rect" id="node27" href="$main_8cpp.html#a5828243a546dac120bbeb4679ac4d828" title="Handles all the key inputs." alt="" coords="126,960,177,987"/>
+<area shape="rect" id="node35" href="$main_8cpp.html#a9f40c74c3dfe5c0f35d51e5160eeeab6" title="Handles the mouse movement." alt="" coords="121,1315,182,1341"/>
+<area shape="rect" id="node36" href="$main_8cpp.html#a8264fa9a7444ab4805520c3d018b6623" title="Initializes settings @prarm No param." alt="" coords="123,1264,180,1291"/>
+<area shape="rect" id="node46" href="$main_8cpp.html#afe803587002217240c9f183634c9aba9" title="Handles all the key events when the key is released." alt="" coords="104,884,199,911"/>
+<area shape="rect" id="node47" href="$main_8cpp.html#ac75e85cbe6943a3e71980ee212c2191f" title="Handles all the render steps for the program &#45; still needs work, barebones right now." alt="" coords="106,56,197,83"/>
+<area shape="rect" id="node50" href="$main_8cpp.html#acc1ffe65e6869931318610cae7210078" title="Reshapes the window when the use tries to." alt="" coords="117,1365,185,1392"/>
+<area shape="rect" id="node3" href="$namespace_display_extra_area.html#af8e74f483951f89b4d5d6159e110602f" title="Controls all the display functions in this file." alt="" coords="267,742,442,783"/>
+<area shape="rect" id="node15" href="$class_camera.html#adc12edf020e48254432214200f8e63c3" title="Display map." alt="" coords="283,259,426,285"/>
+<area shape="rect" id="node17" href="$class_camera.html#af8114c2a31f12a7adef5a10b76d89fff" title="Returns the z position of the camera." alt="" coords="554,107,667,133"/>
+<area shape="rect" id="node18" href="$class_camera.html#a6ae278c51ab44558d69d38b5ed3aedab" title="Returns the x position of the camera." alt="" coords="555,276,667,303"/>
+<area shape="rect" id="node19" href="$class_camera.html#a182d23d247e640ba1ed267332a8a6dd0" title="Display no exit." alt="" coords="276,360,433,387"/>
+<area shape="rect" id="node21" href="$class_camera.html#ab8084e679b9cf9bf9a6e333ca8a0caee" title="Display welcome screen." alt="" coords="247,411,462,437"/>
+<area shape="rect" id="node23" href="$_display_shays_world_8cpp.html#a40dfd73349122d66f6debdac925aa1ed" title="Draws the backdrop (all images) (Calls all the draw functions)" alt="" coords="301,157,408,184"/>
+<area shape="rect" id="node25" href="$class_textured_polygons.html#ae6b2615e41f9263aaafc9a7f1ed2b94c" title="Returns texture." alt="" coords="759,315,957,341"/>
+<area shape="rect" id="node26" href="$main_8cpp.html#aabc0dc23c6edac5eb54affde4b2e129a" title="Increments the frame count." alt="" coords="279,208,430,235"/>
+<area shape="rect" id="node4" href="$namespace_display_extra_area.html#a9502d2e96d71db5e293caf34b403720f" title="Contains all the display functions for benches." alt="" coords="523,774,698,815"/>
+<area shape="rect" id="node5" href="$namespace_display_extra_area.html#a170a6e9bcfe4026fa5b75e9efefc3835" title="Contains all the display functions for big tables." alt="" coords="523,839,698,881"/>
+<area shape="rect" id="node6" href="$namespace_display_extra_area.html#a9f2b1e68ed18f758fcfee8689dc03f99" title="Places the bins in the extended area." alt="" coords="511,905,711,932"/>
+<area shape="rect" id="node7" href="$namespace_display_extra_area.html#a2a2177add7f447de434452d6d1c0e25d" title="Displays all the bush objects." alt="" coords="523,957,698,998"/>
+<area shape="rect" id="node8" href="$namespace_display_extra_area.html#af54d7299cc917996c1af10b923cd13af" title="Contains all the display functions for chairs." alt="" coords="523,1022,698,1063"/>
+<area shape="rect" id="node9" href="$namespace_display_extra_area.html#a14c735fe77a5f8d2d6103338281fbc5c" title="Controls all the display functions for environment." alt="" coords="523,1087,698,1129"/>
+<area shape="rect" id="node10" href="$namespace_display_extra_area.html#aebcc9fb6790b2b13a587e865a7efbe3e" title="Controls all the functions which display non blend objects." alt="" coords="523,1153,698,1194"/>
+<area shape="rect" id="node11" href="$namespace_display_extra_area.html#a4a54f9d44219929730f3a1930ad22fdf" title="Displays the small objects around the resutant area." alt="" coords="523,513,698,554"/>
+<area shape="rect" id="node12" href="$namespace_display_extra_area.html#a9c4317fa8f4925f8eaaf95954e2a5939" title="Contains all the display functions for small tables." alt="" coords="523,578,698,619"/>
+<area shape="rect" id="node13" href="$namespace_display_extra_area.html#a183c35ce3c871e87289bcfbe25a970d6" title="Contains all the display functions for umbrellas." alt="" coords="523,643,698,685"/>
+<area shape="rect" id="node14" href="$namespace_display_extra_area.html#a72ed3df04d0ff22e2119af3ad740ce0e" title="This &#39;fixes&#39; overextended collision boxes which just means it adds objects to the world to make the c..." alt="" coords="517,709,704,750"/>
+<area shape="rect" id="node16" href="$class_camera_map.html#ae9310b2f4c46953742fc6a7e7f9358d4" title="Display the map." alt="" coords="527,225,695,252"/>
+<area shape="rect" id="node20" href="$class_camera_map.html#ae282ccb9fd38101c1bf5ae560596561a" title="Display the no exit screen." alt="" coords="519,344,702,371"/>
+<area shape="rect" id="node22" href="$class_camera_map.html#aa1f6b8bc540898135184b7081fdf2bff" title="Display the welcome screen." alt="" coords="511,395,710,437"/>
+<area shape="rect" id="node24" href="$_display_shays_world_8cpp.html#aa8cd6d1bc96097115cd520cf5aace8aa" title="Displays sections above windows and posts (the bits above the first floor and above the second floor)" alt="" coords="521,167,700,193"/>
+<area shape="rect" id="node28" href="$class_camera.html#a9e107010377ad331277042d489c0b89c" title="Used to pass direction to move or rotate forwards or backwards (i.e. 1, &#45;1 or 0)." alt="" coords="283,808,426,835"/>
+<area shape="rect" id="node29" href="$class_camera.html#a61307840dd9543e39f29ae3bdd04a677" title="Used to pass direction to move or rotate left and right (i.e. 1, &#45;1 or 0)." alt="" coords="283,859,426,885"/>
+<area shape="rect" id="node30" href="$main_8cpp.html#ad98e38d016ad1258ee8592beffa21c93" title="Handles mouse movement." alt="" coords="309,960,400,987"/>
+<area shape="rect" id="node31" href="$class_camera.html#a4889b2fe6568eaecf4318556c9508b0b" title="Prints the x, y and z values to console, used for debugging." alt="" coords="292,1011,417,1037"/>
+<area shape="rect" id="node32" href="$class_camera.html#a691fbf70afa377e8219deb0515c264c2" title="Sets the players camera location." alt="" coords="260,1061,449,1088"/>
+<area shape="rect" id="node33" href="$class_camera.html#a0af35a7c44ad231e950f859531ebdccf" title="Sets if the player is crouching." alt="" coords="287,909,423,936"/>
+<area shape="rect" id="node34" href="$class_camera.html#a86a5a6f374125bb58c6a97ba2d921a64" title="Set movement speed." alt="" coords="273,1112,436,1139"/>
+<area shape="rect" id="node37" href="$main_8cpp.html#a1f83a4237959eaf436a6ceac26003892" title="Creates bounding boxes for collision detection." alt="" coords="279,1163,430,1189"/>
+<area shape="rect" id="node38" href="$main_8cpp.html#a6cf23cd46360f21b30b53b359d9d297f" title="Creates different plains (used for setting the players y coordinate)" alt="" coords="307,1213,403,1240"/>
+<area shape="rect" id="node39" href="$_display_shays_world_8cpp.html#a0c8e3bf7c765b84b2a66cd9a8fefbe5e" title="Creates display lists (numbers indicate list numbers) (calls all the display functions)" alt="" coords="293,1264,417,1291"/>
+<area shape="rect" id="node40" href="$_load_textures_shays_world_8cpp.html#ac54794c345d8da57abbb08ea7118f121" title="Loads and Creates all the textures for shays world." alt="" coords="299,1315,410,1341"/>
+<area shape="rect" id="node41" href="$main_8cpp.html#a22f28b4be812e3d8247f375d4004ff62" title="Loads obj files from data/objects." alt="" coords="307,1365,402,1392"/>
+<area shape="rect" id="node42" href="$class_camera.html#a23d604f6eb495e4686665144d463a670" title="position the camera." alt="" coords="293,1416,416,1443"/>
+<area shape="rect" id="node43" href="$class_camera.html#ac307afcac552d5c1af84e17120668979" title="Set collision detection (TRUE = on)." alt="" coords="247,1467,463,1493"/>
+<area shape="rect" id="node44" href="$class_camera.html#af1b56a7aee4d2b0c38054e05c0553e51" title="Set step and rotation size." alt="" coords="269,1517,440,1544"/>
+<area shape="rect" id="node45" href="$class_camera.html#a32f72b80b7aaf7a1623dc68239bd446b" title="Set the co&#45;ordinates of the world." alt="" coords="255,1568,454,1595"/>
+<area shape="rect" id="node48" href="$main_8cpp.html#a89fd892bef6cda6b47c7c8697402befc" title="Determines if the sliding door should open or not." alt="" coords="306,56,403,83"/>
+<area shape="rect" id="node49" href="$class_camera.html#a6d8682d38e8c8ac728d9ca39a78ac109" title="Handles all key movement for movement speed." alt="" coords="260,5,449,32"/>
+</map>

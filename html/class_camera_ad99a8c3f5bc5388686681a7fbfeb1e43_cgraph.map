@@ -1,0 +1,4 @@
+<map id="Camera::AddPlain" name="Camera::AddPlain">
+<area shape="rect" id="node1" title="Sets the co&#45;ordinate of each plain." alt="" coords="5,5,132,32"/>
+<area shape="rect" id="node2" href="$class_plain_vector.html#a145f83d2db56db9dff494d0f765b67c4" title="Pushes new plain into the vector." alt="" coords="180,5,307,32"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="TexturedPolygons::LoadTexture" name="TexturedPolygons::LoadTexture">
+<area shape="rect" id="node1" title="Loads a raw image file into memory." alt="" coords="5,13,211,39"/>
+<area shape="rect" id="node2" href="$class_textured_polygons.html#ae959f3a7a1522654a97ccec5c61a14d2" title="Returns image file." alt="" coords="259,5,445,47"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="CreateBoundingBoxesExtendedArea" name="CreateBoundingBoxesExtendedArea">
+<area shape="rect" id="node1" title="Does all the bounding boxes for the extended area." alt="" coords="5,5,239,32"/>
+<area shape="rect" id="node2" href="$class_camera.html#a4f195c7ba6e002a5c98880c19c434a49" title="Adds a bounding box to check for collision." alt="" coords="287,5,421,32"/>
+<area shape="rect" id="node3" href="$class_collision.html#a582ec07565cb83e8a8f85652d08b4ee5" title="Sets the bounding box to the vector." alt="" coords="469,5,579,32"/>
+<area shape="rect" id="node4" href="$class_collision.html#a675848ff0b0d76a8ec131b155d561400" title="Gets the quadrant &#45; used for efficiency of bounding boxes." alt="" coords="627,5,780,32"/>
+<area shape="rect" id="node5" href="$class_a_a_b_b_vector.html#a89b24c4d7cb9a6a34ed117ab823a3b33" title="Add a bounding box." alt="" coords="828,5,963,32"/>
+</map>

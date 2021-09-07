@@ -1,0 +1,4 @@
+<map id="DisplayPurplePosts" name="DisplayPurplePosts">
+<area shape="rect" id="node1" title="Displays the purple posts by the guild shop." alt="" coords="5,5,141,32"/>
+<area shape="rect" id="node2" href="$class_textured_polygons.html#ae6b2615e41f9263aaafc9a7f1ed2b94c" title="Returns texture." alt="" coords="189,5,388,32"/>
+</map>

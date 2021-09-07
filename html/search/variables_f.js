@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['ratio_1032',['ratio',['../main_8cpp.html#a207ad05f99cc72068a92358861ff5e71',1,'main.cpp']]],
+  ['red_5fpost_1033',['RED_POST',['../defines_8h.html#aa60e4b4eea12e01c4929c602abdbf4b4',1,'defines.h']]],
+  ['red_5fpostside_1034',['RED_POSTSIDE',['../defines_8h.html#a711bbacff46576c85cfab22b0ca90e90',1,'defines.h']]],
+  ['resturant_5fcolour_5fside_1035',['RESTURANT_COLOUR_SIDE',['../defines_8h.html#a7f0601d5e616779fb2d12c16819f6425',1,'defines.h']]],
+  ['resturant_5fdinning_1036',['RESTURANT_DINNING',['../defines_8h.html#ad417521fd927abc70c8fa8379de3cf56',1,'defines.h']]],
+  ['resturant_5fstairs_1037',['RESTURANT_STAIRS',['../defines_8h.html#a47051b3a6645005ce9289e659d41759a',1,'defines.h']]],
+  ['roof_5fbeam_5f1_1038',['ROOF_BEAM_1',['../defines_8h.html#a8b08e702ed04dce841384a9dd4631788',1,'defines.h']]],
+  ['roof_5fbeam_5f2_1039',['ROOF_BEAM_2',['../defines_8h.html#a83272455ca7795c8333a9f2496728c69',1,'defines.h']]],
+  ['roof_5fbeam_5f3_1040',['ROOF_BEAM_3',['../defines_8h.html#a5fcbc5643534e30e307355da9cd988f5',1,'defines.h']]],
+  ['roof_5fbeam_5f3_5ftop_1041',['ROOF_BEAM_3_TOP',['../defines_8h.html#ae3ef3a803b27ea0ca16bd0bf47e2cf81',1,'defines.h']]],
+  ['roof_5fbeam_5f4_1042',['ROOF_BEAM_4',['../defines_8h.html#a8c04ff0cc0e85065463520d913803b00',1,'defines.h']]],
+  ['roof_5fplanks_1043',['ROOF_PLANKS',['../defines_8h.html#a31e951a8a9a2246a81a769fc2b3615fa',1,'defines.h']]],
+  ['roof_5fplanks_5f2_1044',['ROOF_PLANKS_2',['../defines_8h.html#a851e915af0ba0b4c041dc6121baa33c7',1,'defines.h']]],
+  ['roof_5ftop_1045',['ROOF_TOP',['../defines_8h.html#aa1ad6f13eccd227bd44a0db4fc8a92a7',1,'defines.h']]],
+  ['roof_5ftop_5flib_1046',['ROOF_TOP_LIB',['../defines_8h.html#a990af8fb7af9097042205fbdf73b8f4a',1,'defines.h']]],
+  ['rotationspeed_1047',['rotationSpeed',['../main_8cpp.html#a5a11326a82cb26007aee79f8674759b8',1,'main.cpp']]],
+  ['row_5f1_5fstart_1048',['ROW_1_START',['../defines_8h.html#a8764412b49583d8ef5ff6914078f9f4d',1,'defines.h']]],
+  ['row_5f2_5fstart_1049',['ROW_2_START',['../defines_8h.html#a27b890a0706ec46f6eb29f7485fd75ee',1,'defines.h']]],
+  ['row_5f3_5fstart_1050',['ROW_3_START',['../defines_8h.html#ad81514320b7996f3aaf67a7015fcd8f5',1,'defines.h']]],
+  ['row_5f4_5fstart_1051',['ROW_4_START',['../defines_8h.html#a0f0ebea6434db8f32858fe6d34c7d224',1,'defines.h']]],
+  ['row_5f5_5fstart_1052',['ROW_5_START',['../defines_8h.html#aaad72e8ef4f25662bf9b99e0a99dca86',1,'defines.h']]],
+  ['row_5f6_5fstart_1053',['ROW_6_START',['../defines_8h.html#a5d58d8157ba3451362fc3da1ecf77ca4',1,'defines.h']]],
+  ['row_5f7_5fend_1054',['ROW_7_END',['../defines_8h.html#a7139a5a7bebebff0c86a61a6f62b5687',1,'defines.h']]],
+  ['row_5f7_5fstart_1055',['ROW_7_START',['../defines_8h.html#a9aeb654013ee2d1ec945155d46b13015',1,'defines.h']]],
+  ['rusty_5fman_1056',['RUSTY_MAN',['../defines_8h.html#af3ab276f4bae3bed55dd90a9c1d12e78',1,'defines.h']]]
+];

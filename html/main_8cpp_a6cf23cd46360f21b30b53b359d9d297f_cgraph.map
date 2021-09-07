@@ -1,0 +1,6 @@
+<map id="CreatePlains" name="CreatePlains">
+<area shape="rect" id="node1" title="Creates different plains (used for setting the players y coordinate)" alt="" coords="5,5,101,32"/>
+<area shape="rect" id="node2" href="$class_camera.html#ad99a8c3f5bc5388686681a7fbfeb1e43" title="Sets the co&#45;ordinate of each plain." alt="" coords="376,5,503,32"/>
+<area shape="rect" id="node4" href="$main_8cpp.html#ad60cd567da650b4a7bc3eeaff237c3e2" title="Does all the plains for the extended area." alt="" coords="149,31,328,57"/>
+<area shape="rect" id="node3" href="$class_plain_vector.html#a145f83d2db56db9dff494d0f765b67c4" title="Pushes new plain into the vector." alt="" coords="551,5,677,32"/>
+</map>

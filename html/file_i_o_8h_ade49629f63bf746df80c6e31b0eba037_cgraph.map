@@ -1,0 +1,8 @@
+<map id="readObjFile" name="readObjFile">
+<area shape="rect" id="node1" title="Reads file and stores values inside Object3D obj." alt="" coords="5,107,93,133"/>
+<area shape="rect" id="node2" href="$class_object3_d.html#a6f2641eb26562f7d1e2935afb2c35fa3" title="Creates a texture coordinate based of float parameters." alt="" coords="161,5,303,32"/>
+<area shape="rect" id="node3" href="$class_object3_d.html#a0dfda997e481edfa9acdddba880ccfa1" title="Creates faces using FaceBase array." alt="" coords="161,56,303,83"/>
+<area shape="rect" id="node4" href="$class_object3_d.html#a5f9c46e360a1a8b85cab02ab90582150" title="Creates a vertex based of float parameters." alt="" coords="159,107,305,133"/>
+<area shape="rect" id="node5" href="$class_object3_d.html#a9b5cc19b3ef68259b4eb6eb965a48d6d" title="Saves the texture name to program." alt="" coords="141,157,323,184"/>
+<area shape="rect" id="node6" href="$file_i_o_8cpp.html#a2a79af5082bb9f0c48e6f263ff2f1d8f" title="Converts combined v and vt string into values." alt="" coords="183,208,281,235"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="DisplayExtraArea::DisplayLeftAreaOfStairs" name="DisplayExtraArea::DisplayLeftAreaOfStairs">
+<area shape="rect" id="node1" title="Displays the area left of the stairs." alt="" coords="5,207,180,249"/>
+<area shape="rect" id="node2" href="$class_textured_polygons.html#ae6b2615e41f9263aaafc9a7f1ed2b94c" title="Returns texture." alt="" coords="441,215,640,241"/>
+<area shape="rect" id="node3" href="$namespace_display_extra_area.html#aa5fe453995124b4d16b80e85089eb197" title="Draws the section left of the stairs for row 1." alt="" coords="228,43,393,85"/>
+<area shape="rect" id="node4" href="$namespace_display_extra_area.html#a0d5fada43a485cb67ea917b95c1b9359" title="Draws the section left of the stairs for row 2." alt="" coords="228,109,393,150"/>
+<area shape="rect" id="node5" href="$namespace_display_extra_area.html#a940fa7df94abfb60ca5ff954bad570b1" title="Draws the section left of the stairs for row 3." alt="" coords="228,174,393,215"/>
+<area shape="rect" id="node6" href="$namespace_display_extra_area.html#a3834114291acb362c0506bdf2ba5009c" title="Draws the section left of the stairs for row 4." alt="" coords="228,239,393,281"/>
+<area shape="rect" id="node7" href="$namespace_display_extra_area.html#ac3e6a6115fff625abb9090913af20e95" title="Draws the section left of the stairs for row 5." alt="" coords="228,305,393,346"/>
+<area shape="rect" id="node8" href="$namespace_display_extra_area.html#ab7f51c5fc825595a5a7226b9dc9b1599" title="Draws the section left of the stairs for row 6." alt="" coords="228,370,393,411"/>
+<area shape="rect" id="node9" href="$namespace_display_extra_area.html#a5bcb4faa06d835b301daf11a03caff31" title="Draws the section left of the stairs for row 7." alt="" coords="228,435,393,477"/>
+</map>

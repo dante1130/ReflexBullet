@@ -40,14 +40,15 @@ public:
 
 	/**
 	* @brief	Loads a .wav file based on a given path, and gives a label for the sound.
-	* @param	No param
+	* @param	soundPath - sound path
+	* @param	soundName - sound name
 	* @return	void
 	*/
 	void AddSound(const char* soundPath, const char* soundName);
 
 	/**
 	* @brief	Plays the sound based on the label of the sound effect.
-	* @param	No param
+	* @param	soundName - sound name
 	* @return	void
 	*/
 	void PlaySound(const char* soundName);

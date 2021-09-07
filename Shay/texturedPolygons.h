@@ -39,7 +39,7 @@ public:
 
 	/**
 	 * @brief Loads a raw image file into memory.
-	 * @param fileName char*
+	 * @param filename char*
 	 * @param imgWidth int
 	 * @param imgHeight int
 	 * @return GLubyte*
@@ -87,6 +87,8 @@ public:
 	 * @param xStart const GLdouble&
 	 * @param yStart const GLdouble&
 	 * @param ySize const GLdouble&
+	 * @param zStart const GLdouble&
+	 * @param zSize const GLdouble&
 	 * @param yImgSize const GLdouble&
 	 * @param zImgSize const GLdouble&
 	 * @return void
@@ -115,7 +117,9 @@ public:
 	
 	/**
 	 * @brief Used to create display lists where image is on an angle.
+	 * @param listNo const int&
 	 * @param imageWidth const GLdouble&
+	 * @param imageHeight const GLdouble&
 	 * @param x1 const GLdouble&
 	 * @param x2 const GLdouble&
 	 * @param x3 const GLDouble&
@@ -173,12 +177,13 @@ private:
 	/**
 	 * @brief Creates display list to contain image on X Y axis.
 	 * @param xImgSize const GLdouble&
-	 * @param zImgSize const GLdouble&
+	 * @param yImgSize const GLdouble&
 	 * @param xStart const GLdouble&
 	 * @param yStart const GLdouble&
 	 * @param zStart const GLdouble&
 	 * @param xTimes const GLdouble&
-	 * @param zTimes const GLdouble&
+	 * @param yTimes const GLdouble&
+	 * @param flip const bool&
 	 * @return void
 	 */
 	void CreateXtoYTextureList(const GLdouble& xImgSize, const GLdouble& yImgSize,
@@ -187,13 +192,14 @@ private:
 
 	/**
 	 * @brief Creates display list to contain image on Y Z axis.
-	 * @param xImgSize const GLdouble&
+	 * @param yImgSize const GLdouble&
 	 * @param zImgSize const GLdouble&
 	 * @param xStart const GLdouble&
 	 * @param yStart const GLdouble&
 	 * @param zStart const GLdouble&
-	 * @param xTimes const GLdouble&
+	 * @param yTimes const GLdouble&
 	 * @param zTimes const GLdouble&
+	 * @param flip const bool&
 	 * @return void
 	 */
 	void CreateYtoZTextureList(const GLdouble& yImgSize, const GLdouble& zImgSize,

@@ -44,7 +44,7 @@ public:
 	
 	/**
 	 * @brief Set the values of the data at an index
-	 * @param ptrCount const int&
+	 * @param index int
 	 * @param max const glm::dvec3&
 	 * @param min const glm::dvec3&
 	 * @return void

@@ -26,7 +26,14 @@ struct Plain
 	/// stores end co-ordinates of plane on x, y and z axis
 	glm::vec3 m_plainEnd;
 
+	/// <summary>
+	/// 2nd coordiante - used for diagonal plains
+	/// </summary>
 	glm::vec3 q2;
+
+	/// <summary>
+	/// 4th coordinate - used for diagonal plains
+	/// </summary>
 	glm::vec3 q4;
 };
 
