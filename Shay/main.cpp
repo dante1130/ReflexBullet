@@ -1,7 +1,7 @@
 #include <cstdlib>
 #include <cmath>
 #include <ctime>
-#include <GL/glut.h>
+#include "../include/GL/glut.h"
 
 #include "camera.h"
 #include "texturedPolygons.h"

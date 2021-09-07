@@ -1,14 +1,10 @@
 #ifndef AUDIO_H
 #define AUDIO_H
 
-#include <SDL.h>
-#include <SDL_mixer.h>
+#include "../include/SDL.h"
+#include "../include/SDL_mixer.h"
 #include <string>
 #include <map>
-
-#pragma comment(lib, "SDL2.lib")
-#pragma comment(lib, "SDL2main.lib")
-#pragma comment(lib, "SDL2_mixer.lib")
 
 /**
 * @class	Audio

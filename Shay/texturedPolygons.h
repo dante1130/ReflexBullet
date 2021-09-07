@@ -12,7 +12,7 @@
 
 #include <iostream>
 #include <vector>
-#include <gl/glut.h>
+#include "../include/GL/glut.h"
 
 //--------------------------------------------------------------------------------------
 

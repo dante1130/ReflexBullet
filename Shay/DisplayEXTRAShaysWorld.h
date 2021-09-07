@@ -4,7 +4,7 @@
 #include "texturedPolygons.h"
 #include "defines.h"
 #include "LoadTexturesShaysWorld.h"
-#include <GL/glut.h>
+#include "../include/GL/glut.h"
 #include "Object.h"
 
 /// <summary>
