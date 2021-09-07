@@ -170,10 +170,10 @@ build Shay\CMakeFiles\Shay.dir\texturedPolygons.cpp.obj: CXX_COMPILER__Shay_RelW
 #############################################
 # Link the executable Shay\Shay.exe
 
-build Shay\Shay.exe: CXX_EXECUTABLE_LINKER__Shay_RelWithDebInfo Shay\CMakeFiles\Shay.dir\AABBVector.cpp.obj Shay\CMakeFiles\Shay.dir\Audio.cpp.obj Shay\CMakeFiles\Shay.dir\DisplayEXTRAShaysWorld.cpp.obj Shay\CMakeFiles\Shay.dir\DisplayShaysWorld.cpp.obj Shay\CMakeFiles\Shay.dir\LoadTexturesShaysWorld.cpp.obj Shay\CMakeFiles\Shay.dir\Object.cpp.obj Shay\CMakeFiles\Shay.dir\PlainVector.cpp.obj Shay\CMakeFiles\Shay.dir\camera.cpp.obj Shay\CMakeFiles\Shay.dir\cameraMap.cpp.obj Shay\CMakeFiles\Shay.dir\collision.cpp.obj Shay\CMakeFiles\Shay.dir\fileIO.cpp.obj Shay\CMakeFiles\Shay.dir\main.cpp.obj Shay\CMakeFiles\Shay.dir\texturedPolygons.cpp.obj | ..\..\..\Shay\..\lib\x86\SDL2.lib ..\..\..\Shay\..\lib\x86\SDL2main.lib ..\..\..\Shay\..\lib\x86\SDL2_mixer.lib
+build Shay\Shay.exe: CXX_EXECUTABLE_LINKER__Shay_RelWithDebInfo Shay\CMakeFiles\Shay.dir\AABBVector.cpp.obj Shay\CMakeFiles\Shay.dir\Audio.cpp.obj Shay\CMakeFiles\Shay.dir\DisplayEXTRAShaysWorld.cpp.obj Shay\CMakeFiles\Shay.dir\DisplayShaysWorld.cpp.obj Shay\CMakeFiles\Shay.dir\LoadTexturesShaysWorld.cpp.obj Shay\CMakeFiles\Shay.dir\Object.cpp.obj Shay\CMakeFiles\Shay.dir\PlainVector.cpp.obj Shay\CMakeFiles\Shay.dir\camera.cpp.obj Shay\CMakeFiles\Shay.dir\cameraMap.cpp.obj Shay\CMakeFiles\Shay.dir\collision.cpp.obj Shay\CMakeFiles\Shay.dir\fileIO.cpp.obj Shay\CMakeFiles\Shay.dir\main.cpp.obj Shay\CMakeFiles\Shay.dir\texturedPolygons.cpp.obj | ..\..\..\Shay\..\lib\x86\SDL2.lib ..\..\..\Shay\..\lib\x86\SDL2main.lib ..\..\..\Shay\..\lib\x86\SDL2_mixer.lib ..\..\..\Shay\..\lib\x86\glut32.lib
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG
   LINK_FLAGS = /machine:X86 /debug /INCREMENTAL /subsystem:console
-  LINK_LIBRARIES = ..\..\..\Shay\..\lib\x86\SDL2.lib  ..\..\..\Shay\..\lib\x86\SDL2main.lib  ..\..\..\Shay\..\lib\x86\SDL2_mixer.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  LINK_LIBRARIES = ..\..\..\Shay\..\lib\x86\SDL2.lib  ..\..\..\Shay\..\lib\x86\SDL2main.lib  ..\..\..\Shay\..\lib\x86\SDL2_mixer.lib  ..\..\..\Shay\..\lib\x86\glut32.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
   OBJECT_DIR = Shay\CMakeFiles\Shay.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
