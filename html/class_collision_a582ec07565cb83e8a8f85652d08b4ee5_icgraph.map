@@ -1,0 +1,9 @@
+<map id="Collision::Push" name="Collision::Push">
+<area shape="rect" id="node1" title="Sets the bounding box to the vector." alt="" coords="872,26,981,52"/>
+<area shape="rect" id="node2" href="$class_camera.html#a4f195c7ba6e002a5c98880c19c434a49" title="Adds a bounding box to check for collision." alt="" coords="689,26,824,52"/>
+<area shape="rect" id="node3" href="$main_8cpp.html#a1f83a4237959eaf436a6ceac26003892" title="Creates bounding boxes for collision detection." alt="" coords="209,26,360,52"/>
+<area shape="rect" id="node6" href="$main_8cpp.html#a545b44557e01e49115dccaf6a07dd035" title="Does all the bounding boxes for the extended area." alt="" coords="408,26,641,52"/>
+<area shape="rect" id="node7" href="$main_8cpp.html#aec88241b48ffc39bba3c0c777844a206" title="Creates bounding boxes for pillars." alt="" coords="435,76,615,103"/>
+<area shape="rect" id="node4" href="$main_8cpp.html#a8264fa9a7444ab4805520c3d018b6623" title="Initializes settings @prarm No param." alt="" coords="104,26,161,52"/>
+<area shape="rect" id="node5" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,26,56,52"/>
+</map>

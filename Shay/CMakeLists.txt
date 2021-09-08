@@ -11,4 +11,9 @@ file(GLOB HEADER_FILES *.h)
 
 add_executable(Shay ${HEADER_FILES} ${SOURCE_FILES})
 
+target_link_libraries(Shay ${CMAKE_CURRENT_SOURCE_DIR}/../lib/x86/SDL2.lib)
+target_link_libraries(Shay ${CMAKE_CURRENT_SOURCE_DIR}/../lib/x86/SDL2main.lib)
+target_link_libraries(Shay ${CMAKE_CURRENT_SOURCE_DIR}/../lib/x86/SDL2_mixer.lib)
+target_link_libraries(Shay ${CMAKE_CURRENT_SOURCE_DIR}/../lib/x86/glut32.lib)
+
 # TODO: Add tests and install targets if needed.

@@ -4,6 +4,9 @@
 #include "defines.h"
 #include "texturedPolygons.h"
 
+/// <summary>
+/// A textured polygons object used to get textures from
+/// </summary>
 extern TexturedPolygons tp;
 
 /**

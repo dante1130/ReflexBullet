@@ -16,9 +16,9 @@
 
 #include <iostream>
 #include <cmath>
-#include <gl/glut.h>
-#include <glm/vec2.hpp>
-#include <glm/vec3.hpp>
+#include "../include/gl/glut.h"
+#include "../include/glm/vec2.hpp"
+#include "../include/glm/vec3.hpp"
 
 //--------------------------------------------------------------------------------------
 

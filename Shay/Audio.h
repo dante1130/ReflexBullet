@@ -1,14 +1,10 @@
 #ifndef AUDIO_H
 #define AUDIO_H
 
-#include <SDL.h>
-#include <SDL_mixer.h>
+#include "../include/SDL.h"
+#include "../include/SDL_mixer.h"
 #include <string>
 #include <map>
-
-#pragma comment(lib, "SDL2.lib")
-#pragma comment(lib, "SDL2main.lib")
-#pragma comment(lib, "SDL2_mixer.lib")
 
 /**
 * @class	Audio
@@ -40,14 +36,15 @@ public:
 
 	/**
 	* @brief	Loads a .wav file based on a given path, and gives a label for the sound.
-	* @param	No param
+	* @param	soundPath - sound path
+	* @param	soundName - sound name
 	* @return	void
 	*/
 	void AddSound(const char* soundPath, const char* soundName);
 
 	/**
 	* @brief	Plays the sound based on the label of the sound effect.
-	* @param	No param
+	* @param	soundName - sound name
 	* @return	void
 	*/
 	void PlaySound(const char* soundName);

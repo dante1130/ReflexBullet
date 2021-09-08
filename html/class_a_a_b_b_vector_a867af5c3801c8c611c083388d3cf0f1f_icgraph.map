@@ -1,0 +1,10 @@
+<map id="AABBVector::GetMax" name="AABBVector::GetMax">
+<area shape="rect" id="node1" title="Gets the maximum extent." alt="" coords="1119,31,1269,57"/>
+<area shape="rect" id="node2" href="$class_collision.html#a2bea1336791a4fae3b672b883c47e1ce" title="Checks if collision occurred (called from Collide)." alt="" coords="905,31,1071,57"/>
+<area shape="rect" id="node3" href="$class_collision.html#afe472448ff4670e042c42ef67fd005a4" title="Returns TRUE if a collision occurred." alt="" coords="739,31,857,57"/>
+<area shape="rect" id="node4" href="$class_camera.html#ad9adf754f286b4b94efb08ad827fa878" title="Handles A and D key movement of player." alt="" coords="482,5,689,32"/>
+<area shape="rect" id="node8" href="$class_camera.html#af995c7d99ec7edec40d9c055d58f2440" title="Handles W and S key movement of player." alt="" coords="480,56,691,83"/>
+<area shape="rect" id="node5" href="$class_camera.html#a6d8682d38e8c8ac728d9ca39a78ac109" title="Handles all key movement for movement speed." alt="" coords="243,31,432,57"/>
+<area shape="rect" id="node6" href="$main_8cpp.html#ac75e85cbe6943a3e71980ee212c2191f" title="Handles all the render steps for the program &#45; still needs work, barebones right now." alt="" coords="104,31,195,57"/>
+<area shape="rect" id="node7" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,31,56,57"/>
+</map>

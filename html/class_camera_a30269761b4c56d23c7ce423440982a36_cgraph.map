@@ -1,0 +1,7 @@
+<map id="Camera::AreaPlainTriangle" name="Camera::AreaPlainTriangle">
+<area shape="rect" id="node1" title="Finds the area of a triangle between the players coordinates and points on plain." alt="" coords="5,81,181,108"/>
+<area shape="rect" id="node2" href="$class_plain_vector.html#a92239f01ea2788df42891c8bb2afc2f1" title="Get the ending X coordinates." alt="" coords="232,5,373,32"/>
+<area shape="rect" id="node3" href="$class_plain_vector.html#a74a26cc9230e7469bbd6d739ae873bd6" title="Returns the coordinate for coordiante 2 for the plain." alt="" coords="235,56,370,83"/>
+<area shape="rect" id="node4" href="$class_plain_vector.html#ab6a87390b9841ec5c3bce9e9df2acf7a" title="Returns the coordinate for coordiante 4 for the plain." alt="" coords="235,107,370,133"/>
+<area shape="rect" id="node5" href="$class_plain_vector.html#a953267bdf9dc9841c215d33df4f6bc57" title="Get the starting X coordinates." alt="" coords="229,157,376,184"/>
+</map>

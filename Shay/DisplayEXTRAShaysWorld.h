@@ -4,20 +4,61 @@
 #include "texturedPolygons.h"
 #include "defines.h"
 #include "LoadTexturesShaysWorld.h"
-#include <GL/glut.h>
+#include "../include/GL/glut.h"
 #include "Object.h"
 
+/// <summary>
+/// The environment objects
+/// [0] = general
+/// [1] = stairs
+/// [2] = railing
+/// </summary>
 extern Object3D EnvironmentOBJ[3];
+
+/// <summary>
+/// The small table obj
+/// </summary>
 extern Object3D SmallTableOBJ;
+
+/// <summary>
+/// The big table obj
+/// </summary>
 extern Object3D BigTableOBJ;
+
+/// <summary>
+/// The umbrella obj
+/// </summary>
 extern Object3D UmbrellaOBJ;
+
+/// <summary>
+/// The chair obj
+/// </summary>
 extern Object3D ChairOBJ;
+
+/// <summary>
+/// The bench obj
+/// </summary>
 extern Object3D BenchOBJ;
+
+/// <summary>
+/// The bush obj
+/// </summary>
 extern Object3D BushOBJ;
+
+/// <summary>
+/// The bin obj
+/// </summary>
 extern Object3D BinOBJ;
+
+/// <summary>
+/// The tree obj
+/// </summary>
 extern Object3D TreeOBJ;
+
+/// <summary>
+/// boolean if the sliding door should be opened or not
+/// </summary>
 extern bool doorOpen;
-extern int doorStart;
 
 namespace DisplayExtraArea
 {
@@ -129,7 +170,7 @@ namespace DisplayExtraArea
 	/**
 	* @brief	Displays the sliding door for the student hub
 	* @param	No param
-	* @reutrn	Void
+	* @return	Void
 	*/
 	void DisplaySlidingDoor();
 

@@ -4,9 +4,9 @@
 #include <string>
 #include <vector>
 #include <array>
-#include <glm/vec2.hpp>
-#include <glm/vec3.hpp>
-#include <gl/glut.h>
+#include "../include/glm/vec2.hpp"
+#include "../include/glm/vec3.hpp"
+#include "../include/gl/glut.h"
 #include "LoadTexturesShaysWorld.h"
 
 /**
@@ -45,15 +45,14 @@ public:
 
 	/**
 	 * @brief Creates a texture coordinate based of float parameters.
-	 * @param x float
-	 * @param y float
+	 * @param coord - the coordinate (x, y)
 	 * @return void
 	 */
 	void AddCoord(const glm::vec2& coord); 
 
 	/**
 	 * @brief Creates faces using FaceBase array.
-	 * @param face_arr[4] const FaceBase
+	 * @param face_arr [4] const FaceBase
 	 * @return void
 	 */
 	void AddFaces(const FaceBase face_arr[4]); 
@@ -111,7 +110,7 @@ public:
 	const std::vector<std::array<FaceBase, 4>>& GetFaceVector() const;
 
 	/**
-	* @breif	Displays the stored object based on the texture
+	* @brief	Displays the stored object based on the texture
 	* @param	textureID	- The define value of the texture
 	* @return	Void
 	*/

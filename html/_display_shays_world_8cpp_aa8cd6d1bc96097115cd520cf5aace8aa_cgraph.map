@@ -1,0 +1,4 @@
+<map id="DisplayAboveWindowBlock" name="DisplayAboveWindowBlock">
+<area shape="rect" id="node1" title="Displays sections above windows and posts (the bits above the first floor and above the second floor)" alt="" coords="5,5,184,32"/>
+<area shape="rect" id="node2" href="$class_textured_polygons.html#ae6b2615e41f9263aaafc9a7f1ed2b94c" title="Returns texture." alt="" coords="232,5,431,32"/>
+</map>

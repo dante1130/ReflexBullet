@@ -1,7 +1,7 @@
 #include <cstdlib>
 #include <cmath>
 #include <ctime>
-#include <GL/glut.h>
+#include "../include/GL/glut.h"
 
 #include "camera.h"
 #include "texturedPolygons.h"
@@ -13,65 +13,173 @@
 
 //--------------------------------------------------------------------------------------
 
-// USE THESE SETTINGS TO CHANGE SPEED (on different spec computers)
-// Set speed (steps)
+/// <summary>
+/// Sets the movement speed of the player
+/// </summary>
 GLdouble movementSpeed = 50;
+/// <summary>
+/// Sets the rotation speed of the player
+/// </summary>
 GLdouble rotationSpeed = 1;
 
 GLdouble stepIncrement;
 GLdouble angleIncrement;
+
+/// <summary>
+/// The frame count of the program
+/// </summary>
 int frameCount = 0;
+
+/// <summary>
+/// The last clock to determine the change in frames
+/// </summary>
 clock_t lastClock = 0;
 
-// ratio of screen
+/// <summary>
+/// The ratio of the screen
+/// </summary>
 float ratio;
-// screen width and height
+
+/// <summary>
+/// The screens width and height
+/// </summary>
 int width = 1280, height = 720;
 
+/// <summary>
+/// If the player has 'pauses' the program
+/// </summary>
 bool paused = true;
 
-// display campus map
+/// <summary>
+/// Displays the campus map if true
+/// </summary>
 bool DisplayMap = false;
-// display welcome screen
+
+/// <summary>
+/// Displays the welcome screen if true
+/// </summary>
 bool DisplayWelcome = true;
-// display exit screen
+
+/// <summary>
+/// Display the exit screen if true
+/// </summary>
 bool DisplayExit = false;
-// display light fittings
+
+/// <summary>
+/// Displays the light fittings if true
+/// </summary>
 bool lightsOn = true;
-// display ECL block
+
+/// <summary>
+/// Displays the ECL block if true
+/// </summary>
 bool displayECL = true;
 
-// objects
+/// <summary>
+/// Camera object for main character
+/// </summary>
 Camera cam;
 
-// initializes setting
+/**
+* @brief	Initializes settings
+* @prarm	No param
+* @return	Void
+*/
 void myinit();
 
-// display functions
+/**
+* @brief	Handles all the display functions
+* @param	No param
+* @return	Void
+*/
 void Display();
+
+/**
+* @brief	Reshapes the window when the use tries to
+* @param	w		- the width of the new window
+* @param	h		- the heigh of the new window
+* @return	Void
+*/
 void reshape(int w, int h);
+
+/**
+* @brief	Handles all the key inputs
+* @param	key		- The key pressed as a char
+* @param	x		- The location of the mouse when the key was pressed in the x direction
+* @param	y		- The location of the mouse when the key was pressed in the y direction
+* @return
+*/
 void keys(unsigned char key, int x, int y);
 
 // keyboard and mouse functions
+
+/**
+* @brief	Handles all the key events when the key is released
+* @param	key		- The key pressed as a char
+* @param	x		- The location of the mouse when the key was pressed in the x direction
+* @param	y		- The location of the mouse when the key was pressed in the y direction
+* @return	Void
+*/
 void releaseKeys(unsigned char key, int x, int y);
+
+/**
+* @brief	Handles the mouse movement
+* @param	button	- Which button was clicked
+* @param	state	- If the button is up or down
+* @param	x		- The location of the mouse when the mouse was moved/pressed in the x direction
+* @param	y		- The location of the mouse when the mouse was moved/pressed in the y direction
+* @return
+*/
 void Mouse(int button, int state, int x, int y);
+
+/**
+* @brief	Handles mouse movement
+* @param	x		- The x location of the mouse on the screen
+* @param	y		- The y location of the mouse on the screen
+* @return	Void
+*/
 void mouseMove(int x, int y);
 
+/**
+* @brief	Increments the frame count
+* @param	No param
+* @return	Void
+*/
 void IncrementFrameCount();
 
-// Loads obj files from data/objects
+/**
+* @brief	Loads obj files from data/objects
+* @param	No param
+* @return	Void
+*/
 void loadObjFiles();
 
-// creates bounding boxes for collision detection
+/**
+* @brief	Creates bounding boxes for collision detection
+* @param	No param
+* @return	Void
+*/
 void CreateBoundingBoxes();
 
-// creates bounding boxes for pillars
+/**
+* @brief	Creates bounding boxes for pillars
+* @param	No param
+* @return	Void
+*/
 void CreateBoundingBoxesPillar();
 
-// creates different plains
+/**
+* @brief	Creates different plains (used for setting the players y coordinate)
+* @param	No param
+* @return	Void
+*/
 void CreatePlains();
 
-//Determines if the door should open or not
+/**
+* @brief	Determines if the sliding door should open or not
+* @param	No param
+* @return	Void
+*/
 void doorFunction();
 
 /**
@@ -79,15 +187,32 @@ void doorFunction();
 * @param	val - Currently unused, needed it for glutTimerFunc
 * @return	Void
 */
-void RenderLoop(int val); // The main render loop
+void RenderLoop(int val);
 
-void CreateBoundingBoxesExtendedArea(); // Does all the bounding boxes for the extended area
-void CreatePlainsExtendedArea(); // Does all the plains for the extended area
+/**
+* @brief	Does all the bounding boxes for the extended area
+* @param	No param
+* @return	Void
+*/
+void CreateBoundingBoxesExtendedArea();
+
+/**
+* @brief	Does all the plains for the extended area
+* @param	No param
+* @return	Void
+*/
+void CreatePlainsExtendedArea();
 
 
 //--------------------------------------------------------------------------------------
 //  Main function 
 //--------------------------------------------------------------------------------------
+/**
+* @brief	Main function
+* @param	argc	- Int of how many arguments in char array
+* @param	argv	- Char array
+* @return	int
+*/
 int main(int argc, char** argv)
 {
 	std::cout << "Hello World!" << std::endl;

@@ -1,0 +1,37 @@
+<map id="DisplayExtraArea::DisplayExtension" name="DisplayExtraArea::DisplayExtension">
+<area shape="rect" id="node1" title="Controls all the display functions in this file." alt="" coords="5,319,180,360"/>
+<area shape="rect" id="node2" href="$namespace_display_extra_area.html#a9502d2e96d71db5e293caf34b403720f" title="Contains all the display functions for benches." alt="" coords="241,5,415,47"/>
+<area shape="rect" id="node9" href="$namespace_display_extra_area.html#a170a6e9bcfe4026fa5b75e9efefc3835" title="Contains all the display functions for big tables." alt="" coords="241,71,415,112"/>
+<area shape="rect" id="node10" href="$namespace_display_extra_area.html#a9f2b1e68ed18f758fcfee8689dc03f99" title="Places the bins in the extended area." alt="" coords="228,137,428,163"/>
+<area shape="rect" id="node11" href="$namespace_display_extra_area.html#a2a2177add7f447de434452d6d1c0e25d" title="Displays all the bush objects." alt="" coords="241,188,415,229"/>
+<area shape="rect" id="node12" href="$namespace_display_extra_area.html#af54d7299cc917996c1af10b923cd13af" title="Contains all the display functions for chairs." alt="" coords="241,253,415,295"/>
+<area shape="rect" id="node13" href="$namespace_display_extra_area.html#a14c735fe77a5f8d2d6103338281fbc5c" title="Controls all the display functions for environment." alt="" coords="241,319,415,360"/>
+<area shape="rect" id="node14" href="$namespace_display_extra_area.html#aebcc9fb6790b2b13a587e865a7efbe3e" title="Controls all the functions which display non blend objects." alt="" coords="241,656,415,697"/>
+<area shape="rect" id="node32" href="$namespace_display_extra_area.html#a4a54f9d44219929730f3a1930ad22fdf" title="Displays the small objects around the resutant area." alt="" coords="241,384,415,425"/>
+<area shape="rect" id="node33" href="$namespace_display_extra_area.html#a9c4317fa8f4925f8eaaf95954e2a5939" title="Contains all the display functions for small tables." alt="" coords="241,449,415,491"/>
+<area shape="rect" id="node34" href="$namespace_display_extra_area.html#a183c35ce3c871e87289bcfbe25a970d6" title="Contains all the display functions for umbrellas." alt="" coords="241,515,415,556"/>
+<area shape="rect" id="node35" href="$namespace_display_extra_area.html#a72ed3df04d0ff22e2119af3ad740ce0e" title="This &#39;fixes&#39; overextended collision boxes which just means it adds objects to the world to make the c..." alt="" coords="235,580,421,621"/>
+<area shape="rect" id="node3" href="$class_object3_d.html#aafc02adcfa4285b213af37376bb4ee3d" title="Displays the stored object based on the texture." alt="" coords="492,261,657,287"/>
+<area shape="rect" id="node4" href="$class_object3_d.html#a27c48229baacb72a569744b2f3343c7a" title="Returns a texture coordinate of index i." alt="" coords="738,149,877,175"/>
+<area shape="rect" id="node5" href="$class_object3_d.html#a725817c0c258500e6ffbb4b673548a59" title="Returns a set of vertex and coordinate pairs of index i." alt="" coords="740,199,875,226"/>
+<area shape="rect" id="node6" href="$class_object3_d.html#acd0fc96befbaf65afb59c74b4586188c" title="Allows access to the contents of faces vector." alt="" coords="721,250,893,277"/>
+<area shape="rect" id="node7" href="$class_textured_polygons.html#ae6b2615e41f9263aaafc9a7f1ed2b94c" title="Returns texture." alt="" coords="941,813,1140,839"/>
+<area shape="rect" id="node8" href="$class_object3_d.html#a31de24cd9af87bc7303014f0ec9df2d9" title="Returns a vertex of index i." alt="" coords="736,351,879,378"/>
+<area shape="rect" id="node15" href="$namespace_display_extra_area.html#a108ea4dac03d94e1b9ff2d21fea371d2" title="Displays the canteen walls using traditional openGL techniques." alt="" coords="487,395,662,436"/>
+<area shape="rect" id="node16" href="$namespace_display_extra_area.html#a58705281d84b353d3631c592d4a174f5" title="Displays the canteens pillars." alt="" coords="487,460,662,501"/>
+<area shape="rect" id="node17" href="$namespace_display_extra_area.html#aa84eb080f5d2205aac007e3c2e0c0ebe" title="Displays the canteen contreen railing." alt="" coords="487,525,662,567"/>
+<area shape="rect" id="node18" href="$namespace_display_extra_area.html#a534dbac69024b34fc40565144462a466" title="Displays all the main images for the boundary walls." alt="" coords="476,591,673,632"/>
+<area shape="rect" id="node19" href="$namespace_display_extra_area.html#a01b299d31d57b31b4890ff96584eaf02" title="Adds features to fix the entrance to the extended area." alt="" coords="487,656,662,697"/>
+<area shape="rect" id="node20" href="$namespace_display_extra_area.html#a04a398baa1a94f8df472a28199f1b340" title="Displays the area left of the stairs." alt="" coords="487,837,662,879"/>
+<area shape="rect" id="node28" href="$namespace_display_extra_area.html#a497e1d2937ea47cc133895e41ceaffb4" title="Displays the overhang under section." alt="" coords="487,916,662,957"/>
+<area shape="rect" id="node29" href="$namespace_display_extra_area.html#aa5bf8928aeec2d8d92957c7670cb30c2" title="Displays the entrance pathway using traditional openGL techniques." alt="" coords="487,1008,662,1049"/>
+<area shape="rect" id="node30" href="$namespace_display_extra_area.html#a47cbcc3def047a138f39585cfdfffef2" title="Displays the sliding door for the student hub." alt="" coords="487,1125,662,1167"/>
+<area shape="rect" id="node31" href="$namespace_display_extra_area.html#a623eaea7a7dd418ad11712f56dbe19f1" title="Displays walters resturant." alt="" coords="487,1296,662,1337"/>
+<area shape="rect" id="node21" href="$namespace_display_extra_area.html#aa5fe453995124b4d16b80e85089eb197" title="Draws the section left of the stairs for row 1." alt="" coords="725,707,890,748"/>
+<area shape="rect" id="node22" href="$namespace_display_extra_area.html#a0d5fada43a485cb67ea917b95c1b9359" title="Draws the section left of the stairs for row 2." alt="" coords="725,772,890,813"/>
+<area shape="rect" id="node23" href="$namespace_display_extra_area.html#a940fa7df94abfb60ca5ff954bad570b1" title="Draws the section left of the stairs for row 3." alt="" coords="725,837,890,879"/>
+<area shape="rect" id="node24" href="$namespace_display_extra_area.html#a3834114291acb362c0506bdf2ba5009c" title="Draws the section left of the stairs for row 4." alt="" coords="725,903,890,944"/>
+<area shape="rect" id="node25" href="$namespace_display_extra_area.html#ac3e6a6115fff625abb9090913af20e95" title="Draws the section left of the stairs for row 5." alt="" coords="725,968,890,1009"/>
+<area shape="rect" id="node26" href="$namespace_display_extra_area.html#ab7f51c5fc825595a5a7226b9dc9b1599" title="Draws the section left of the stairs for row 6." alt="" coords="725,1033,890,1075"/>
+<area shape="rect" id="node27" href="$namespace_display_extra_area.html#a5bcb4faa06d835b301daf11a03caff31" title="Draws the section left of the stairs for row 7." alt="" coords="725,1099,890,1140"/>
+</map>

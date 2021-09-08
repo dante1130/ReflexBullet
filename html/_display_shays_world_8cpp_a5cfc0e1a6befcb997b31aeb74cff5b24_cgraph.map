@@ -1,0 +1,9 @@
+<map id="DrawGrass" name="DrawGrass">
+<area shape="rect" id="node1" title="Sets the location for where to display the grass area." alt="" coords="5,79,92,106"/>
+<area shape="rect" id="node2" href="$class_textured_polygons.html#a60c92fd32d48dc25bb93badc44ed2d01" title="Used to create display lists where image is on an angle." alt="" coords="140,23,312,64"/>
+<area shape="rect" id="node4" href="$class_textured_polygons.html#a4b21cfdd9a38b6026bc1f0e8bd2455a1" title="Calls function to creates display list to contain image." alt="" coords="140,120,312,161"/>
+<area shape="rect" id="node3" href="$class_textured_polygons.html#adc5387d4097428836d56ea8b3f66e61d" title="Called from CreateAngledPolygon determine how images are displayed." alt="" coords="360,5,532,47"/>
+<area shape="rect" id="node5" href="$class_textured_polygons.html#a037ef33a71ce33954a49b378b3aad197" title="Creates display list to contain image on X Y axis." alt="" coords="360,71,532,112"/>
+<area shape="rect" id="node6" href="$class_textured_polygons.html#afcc97491bf1cbbe22e91bc7e4c476ac3" title="Creates display list to contain image on X Z axis." alt="" coords="360,136,532,177"/>
+<area shape="rect" id="node7" href="$class_textured_polygons.html#ad5beba21ad65ebbd1c8228924b56e49b" title="Creates display list to contain image on Y Z axis." alt="" coords="360,201,532,243"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="DrawAboveWindowBlock" name="DrawAboveWindowBlock">
+<area shape="rect" id="node1" title="Sets the location for where to display blocks above windows and posts (the bits above 1st and 2nd flo..." alt="" coords="5,78,171,105"/>
+<area shape="rect" id="node2" href="$class_textured_polygons.html#a4b21cfdd9a38b6026bc1f0e8bd2455a1" title="Calls function to creates display list to contain image." alt="" coords="219,71,391,112"/>
+<area shape="rect" id="node3" href="$class_textured_polygons.html#a037ef33a71ce33954a49b378b3aad197" title="Creates display list to contain image on X Y axis." alt="" coords="439,5,611,47"/>
+<area shape="rect" id="node4" href="$class_textured_polygons.html#afcc97491bf1cbbe22e91bc7e4c476ac3" title="Creates display list to contain image on X Z axis." alt="" coords="439,71,611,112"/>
+<area shape="rect" id="node5" href="$class_textured_polygons.html#ad5beba21ad65ebbd1c8228924b56e49b" title="Creates display list to contain image on Y Z axis." alt="" coords="439,136,611,177"/>
+</map>

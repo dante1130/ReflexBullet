@@ -1,0 +1,5 @@
+<map id="Camera::Camera" name="Camera::Camera">
+<area shape="rect" id="node1" title="Default constructor." alt="" coords="5,31,125,57"/>
+<area shape="rect" id="node2" href="$class_audio.html#a1b8fb974611c389e285d6fe7ec615462" title="Loads a .wav file based on a given path, and gives a label for the sound." alt="" coords="178,5,301,32"/>
+<area shape="rect" id="node3" href="$class_camera.html#a11d15ac81e6fbe74c1dd09e342be3e9c" title="Resets the camera. return void." alt="" coords="173,56,305,83"/>
+</map>

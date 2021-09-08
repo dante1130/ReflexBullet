@@ -1,0 +1,11 @@
+<map id="Camera::SetPlains" name="Camera::SetPlains">
+<area shape="rect" id="node1" title="Overloaded function for setting plain." alt="" coords="5,176,136,203"/>
+<area shape="rect" id="node2" href="$class_camera.html#a30269761b4c56d23c7ce423440982a36" title="Finds the area of a triangle between the players coordinates and points on plain." alt="" coords="184,100,360,127"/>
+<area shape="rect" id="node3" href="$class_plain_vector.html#a92239f01ea2788df42891c8bb2afc2f1" title="Get the ending X coordinates." alt="" coords="411,5,552,32"/>
+<area shape="rect" id="node4" href="$class_plain_vector.html#a74a26cc9230e7469bbd6d739ae873bd6" title="Returns the coordinate for coordiante 2 for the plain." alt="" coords="414,68,549,95"/>
+<area shape="rect" id="node5" href="$class_plain_vector.html#ab6a87390b9841ec5c3bce9e9df2acf7a" title="Returns the coordinate for coordiante 4 for the plain." alt="" coords="414,144,549,171"/>
+<area shape="rect" id="node6" href="$class_plain_vector.html#a953267bdf9dc9841c215d33df4f6bc57" title="Get the starting X coordinates." alt="" coords="408,195,555,221"/>
+<area shape="rect" id="node7" href="$class_plain_vector.html#ad51a40d46f2e0d49fd1b06fc8f3de459" title="Get the Type." alt="" coords="199,252,345,279"/>
+<area shape="rect" id="node8" href="$class_audio.html#a51f596cbcc73699173d5e4ac3aef171f" title="Plays the sound based on the label of the sound effect." alt="" coords="209,303,335,329"/>
+<area shape="rect" id="node9" href="$class_plain_vector.html#a063346c2f5a33de0ef90678dae6f578b" title="Return size of vector." alt="" coords="211,353,333,380"/>
+</map>
