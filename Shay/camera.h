@@ -200,6 +200,13 @@ public:
 	void SetCrouch(bool setCrouch);
 
 	/**
+	* @brief	Sets the maximum crouch depth of the player
+	* @param	max	- The Maximum distance you can crouch
+	* @return	Void
+	*/
+	void SetMaximumCrouchDepth(float max);
+
+	/**
 	* @brief	Sets the players camera location
 	* @param	x	- X coordinate
 	* @param	y	- Y coordinate
@@ -216,6 +223,8 @@ private:
 	bool crouch;
 	/// The current crouch depth
 	GLdouble crouchDepth;
+	/// The maximum crouch depth
+	GLdouble maxCrouchDepth;
 	/// When the function was last called
 	long crouchTime; 
 

@@ -5,7 +5,6 @@ constexpr auto PI = 3.1415962654;
 
 constexpr auto FRAMETIME = 1000 / 60;
 
-constexpr auto CROUCH_DEPTH = -210;
 constexpr auto CROUCH_SPEED = 100; //time it takes to fully crouch in milliseconds
 
 //2 - 9874, 3 - 9745, 4 - , 5 - , 6 - , 7 - , 8 -

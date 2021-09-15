@@ -63,35 +63,6 @@ void Camera::ResetXYZ()
 
 void Camera::KeyboardMovement()
 {
-	bool shift = false;
-	bool crouch = false;
-	
-
-	/*
-	if (GetKeyState(VK_LSHIFT) & 0x80) { shift = true; }
-	
-	//uses #include <Windows.h>
-	if (GetKeyState('W') & 0x80 && !(GetKeyState('S') & 0x80))
-	{
-		WSKeyboardMovement(true, shift);
-	}
-
-	if (GetKeyState('S') & 0x80 && !(GetKeyState('W') & 0x80))
-	{
-		WSKeyboardMovement(false, shift);
-	}
-
-	if (GetKeyState('A') & 0x80 && !(GetKeyState('D') & 0x80))
-	{
-		ADKeyboardMovement(true, shift);
-	}
-
-	if (GetKeyState('D') & 0x80 && !(GetKeyState('A') & 0x80))
-	{
-		ADKeyboardMovement(false, shift);
-	}
-	*/
-
 	WSKeyboardMovement();
 	ADKeyboardMovement();
 	
@@ -178,17 +149,6 @@ void Camera::ADKeyboardMovement()
 
 	//Makes sure that the camera object is on the right y height
 	SetPlains(xMove, zMove);
-	/*
-	//Checks if player can move in direction based on AABB
-	if (!(m_colDetect.Collide(glm::dvec3(m_pos.x + xMove, m_pos.y + m_lookK.y, m_pos.z + zMove))))
-	{
-		m_pos.x += xMove;
-		m_pos.z += zMove;
-
-		//Makes sure that the camera object is on the right y height
-		SetPlains(xMove, zMove);
-	}
-	*/
 }
 
 //--------------------------------------------------------------------------------------
@@ -479,16 +439,20 @@ void Camera::CrouchDistance()
 	if (crouch && crouchDepth == -210) return;
 	if (!crouch && crouchDepth == 0) return;
 
-	float change = CROUCH_DEPTH * ((float)(glutGet(GLUT_ELAPSED_TIME) - crouchTime) / CROUCH_SPEED);
+	float change = maxCrouchDepth * ((float)(glutGet(GLUT_ELAPSED_TIME) - crouchTime) / CROUCH_SPEED);
 	if (!crouch) change *= -1;
 
 	crouchDepth = crouchDepth + change;
 	crouchTime = glutGet(GLUT_ELAPSED_TIME);
 
-	if (crouchDepth < -210) crouchDepth = -210;
+	if (crouchDepth < maxCrouchDepth) crouchDepth = maxCrouchDepth;
 	if (crouchDepth > 0) crouchDepth = 0;
 }
 
+void Camera::SetMaximumCrouchDepth(float max)
+{
+	maxCrouchDepth = max;
+}
 
 //----------------------------------------------------------------------------------------
 //  Redisplay new camera view

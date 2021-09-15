@@ -10,6 +10,7 @@
 #include "fileIO.h"
 #include "Object.h"
 #include "DisplayEXTRAShaysWorld.h"
+#include "GameManager.h"
 
 //--------------------------------------------------------------------------------------
 
@@ -221,14 +222,14 @@ int main(int argc, char** argv)
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
 	glutInitWindowPosition(100, 100);
 	glutInitWindowSize(width, height);
-	glutCreateWindow("Murdoch University Campus Tour");
+	glutCreateWindow("Duck and Cover 2: Duck Harder");
 
 	myinit();
 
 	glutIgnoreKeyRepeat(1);
 	glutKeyboardFunc(keys);
 	glutKeyboardUpFunc(releaseKeys);
-
+	
 	glutDisplayFunc(Display);
 	glutTimerFunc(FRAMETIME, RenderLoop, 0);
 
@@ -274,7 +275,8 @@ void myinit()
 	CreateTextures();
 
 	cam.SetMoveSpeed(movementSpeed);
-	cam.SetRotateSpeed(angleIncrement * rotationSpeed);
+	cam.SetRotateSpeed(rotationSpeed);
+	cam.SetMaximumCrouchDepth(-210);
 }
 
 void loadObjFiles()
@@ -295,6 +297,12 @@ void loadObjFiles()
 
 void RenderLoop(int val)
 {
+	if (ActiveGameWorld)
+	{
+		GameInit(width, height);
+		return;
+	}
+
 	glutTimerFunc(FRAMETIME, RenderLoop, 0);
 
 	if (!paused)
@@ -369,6 +377,8 @@ void keys(unsigned char key, int x, int y)
 {
 	switch (key)
 	{
+	case 'T':
+		ActiveGameWorld = !ActiveGameWorld;
 	case 'U':
 		cam.SetMoveSpeed(movementSpeed / 10);
 		break;
