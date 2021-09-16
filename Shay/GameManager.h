@@ -1,12 +1,14 @@
 #ifndef GAMEMANAGER_H
 #define GAMEMANAGER_H
 
+#include <iostream>
 #include "defines.h"
 #include "camera.h"
 #include "DisplayGameWorld.h"
 #include "fileIO.h"
+#include "Player.h"
 #include "../include/GL/glut.h"
-#include <iostream>
+
 
 /// <summary>
 /// true - if the player is in the game world
@@ -69,6 +71,8 @@ namespace GM
 	* @return	Void
 	*/
 	void GameMouseMove(int x, int y);
+
+	void GameMouseClick(int button, int state, int x, int y);
 
 	/**
 	* @brief	Handles reshaping the game window

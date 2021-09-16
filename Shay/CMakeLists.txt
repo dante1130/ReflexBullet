@@ -9,7 +9,7 @@ file(GLOB SOURCE_FILES *.cpp)
 # Add header files to this project
 file(GLOB HEADER_FILES *.h)
 
-add_executable(Shay ${HEADER_FILES} ${SOURCE_FILES} "GameManager.h" "GameManager.cpp" "DisplayGameWorld.h" "DisplayGameWorld.cpp" "Lighting.h" "Lighting.cpp" "ProcessShaysWorld.h" "ProcessShaysWorld.cpp")
+add_executable(Shay ${HEADER_FILES} ${SOURCE_FILES})
 
 target_link_libraries(Shay ${CMAKE_CURRENT_SOURCE_DIR}/../lib/x86/SDL2.lib)
 target_link_libraries(Shay ${CMAKE_CURRENT_SOURCE_DIR}/../lib/x86/SDL2main.lib)

@@ -16,7 +16,7 @@
 
 #include <iostream>
 #include <cmath>
-#include "../include/gl/glut.h"
+#include "../include/GL/glut.h"
 #include "../include/glm/vec2.hpp"
 #include "../include/glm/vec3.hpp"
 
@@ -110,6 +110,10 @@ public:
 	//----------------------------------------------------------------------------------
 	//  Get Methods
 	//----------------------------------------------------------------------------------
+
+	glm::vec3 GetPosition() const;
+
+	glm::vec3 GetLook() const;
 
 	/**
 	 * @brief Returns the x position of the camera.

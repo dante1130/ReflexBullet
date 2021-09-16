@@ -390,6 +390,16 @@ GLdouble Camera::AreaPlainTriangle(int edgeNo, int i)
 	return abs(plainStart.z * plainEnd.x - plainStart.x * plainEnd.z);
 }
 
+glm::vec3 Camera::GetPosition() const
+{
+	return m_pos;
+}
+
+glm::vec3 Camera::GetLook() const
+{
+	return m_look;
+}
+
 GLdouble Camera::GetLR() const
 {
 	return m_pos.x;

@@ -3,7 +3,7 @@
 #
 cmake_minimum_required (VERSION 3.8)
 
-project ("Shay")
+project (Shay)
 
 # Include sub-projects.
-add_subdirectory ("Shay")
+add_subdirectory (Shay)

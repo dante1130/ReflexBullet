@@ -1,6 +1,7 @@
 #ifndef PROCESSSHAYSWORLD_H
 #define PROCESSSHAYSWORLD_H
 
+#include <ctime>
 #include "camera.h"
 #include "../include/GL/glut.h"
 #include "texturedPolygons.h"

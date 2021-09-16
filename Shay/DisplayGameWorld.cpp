@@ -1,6 +1,6 @@
 #include "DisplayGameWorld.h"
 
-
+Player player;
 Object3D ToyStore;
 
 float startFrameTime = -1;
@@ -15,11 +15,11 @@ void DGW::DisplayGameWorldMasterFunction()
 	glPushMatrix();
 	glScalef(0.00333333, 0.00333333, 0.00333333);
 	ToyStore.DisplayObject(TEXT_ENVIRONMENT_STAIRS);
-
 	glPopMatrix();
 
 	DisplayPerformanceMetrics();
-	
+
+	DGO::DisplayGunBullets(player.GetGun());
 
 	/*
 	glMatrixMode(GL_PROJECTION);
@@ -77,6 +77,7 @@ void DGW::DisplayPerformanceMetrics()
 	*/
 }
 
+
 void DGW::RenderBitMapString(void* font, char* string)
 {
 	char* c;
@@ -88,3 +89,4 @@ void DGW::RenderBitMapString(void* font, char* string)
 
 	return;
 }
+
