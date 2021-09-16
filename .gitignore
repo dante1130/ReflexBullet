@@ -1,7 +1,6 @@
 #
 .vs/
-.out/
-x86-Debug/
+out/
 
 *.json
 *.cpp.obj
