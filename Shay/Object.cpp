@@ -20,6 +20,11 @@ void Object3D::AddCoord(const glm::vec2& coord)
 	texCoord.push_back(coord);
 }
 
+void Object3D::AddVertexNormal(const glm::vec3& vn)
+{
+	vertexNormals.push_back(vn);
+}
+
 void Object3D::AddFaces(const FaceBase face_arr[4])
 {
 	std::array<FaceBase, 4> too;
@@ -35,6 +40,26 @@ void Object3D::SetTextureName(const std::string& fileName)
 	textureFile = fileName;
 }
 
+void Object3D::SetMTLName(const std::string& mtlName)
+{
+	mtlFile = mtlName;
+}
+
+void Object3D::SetMTLArrayLocation(int location)
+{
+	mtlLoc = location;
+}
+
+int Object3D:: GetMTLArrayLocation()
+{
+	return mtlLoc;
+}
+
+const std::string& Object3D::GetMTLName()
+{
+	return mtlFile;
+}
+
 const glm::vec3& Object3D::GetVertex(unsigned i) const
 {
 	return vertices[i];
@@ -43,6 +68,11 @@ const glm::vec3& Object3D::GetVertex(unsigned i) const
 const glm::vec2& Object3D::GetCoord(unsigned i) const
 {
 	return texCoord[i];
+}
+
+const glm::vec3& Object3D::GetVertexNormal(unsigned i) const
+{
+	return vertexNormals[i];
 }
 
 const std::array<FaceBase, 4>& Object3D::GetFace(unsigned i) const

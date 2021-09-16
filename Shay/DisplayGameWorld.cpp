@@ -8,13 +8,10 @@ int frameCountPos = 0;
 float frames = 0;
 int lastFrameTime;
 
-
-void DisplayGameWorldMasterFunction()
+void DGW::DisplayGameWorldMasterFunction()
 {
-	
-
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	
+
 	glPushMatrix();
 	glScalef(0.00333333, 0.00333333, 0.00333333);
 	ToyStore.DisplayObject(TEXT_ENVIRONMENT_STAIRS);
@@ -32,10 +29,12 @@ void DisplayGameWorldMasterFunction()
 
 	glMatrixMode(GL_MODELVIEW);
 	*/
+
 	glutSwapBuffers();
 }
 
-void DisplayPerformanceMetrics()
+
+void DGW::DisplayPerformanceMetrics()
 {
 	/*
 	glMatrixMode(GL_PROJECTION);
@@ -78,7 +77,7 @@ void DisplayPerformanceMetrics()
 	*/
 }
 
-void RenderBitMapString(void* font, char* string)
+void DGW::RenderBitMapString(void* font, char* string)
 {
 	char* c;
 

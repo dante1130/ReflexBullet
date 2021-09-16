@@ -9,14 +9,14 @@ float camRotateSpeed = 1;
 
 
 
-void GameInit(int w, int h)
+void GM::GameInit(int w, int h)
 {
 	m_gameCam.SetMoveSpeed(gameWorldMovementSpeed);
 	m_gameCam.SetRotateSpeed(camRotateSpeed);
 	m_gameCam.Position(glm::vec3(0, playerHeight, 0), 180.0);
 	m_gameCam.SetMaximumCrouchDepth(crouchDepth);
 
-	glutDisplayFunc(DisplayGameWorldMasterFunction);
+	glutDisplayFunc(DGW::DisplayGameWorldMasterFunction);
 	glutKeyboardFunc(GameKeys);
 	glutKeyboardUpFunc(GameReleaseKeys);
 	glutPassiveMotionFunc(GameMouseMove);
@@ -34,27 +34,27 @@ void GameInit(int w, int h)
 }
 
 
-void LoadGameObjectFiles()
+void GM::LoadGameObjectFiles()
 {
 	readObjFile("data/object/ToyStore.obj", ToyStore);
 
 }
 
-void GameFixedUpdateLoop(int val)
+void GM::GameFixedUpdateLoop(int val)
 {
 	glutTimerFunc(FRAMETIME, GameFixedUpdateLoop, 0);
 
 	m_gameCam.KeyboardMovement();
 }
 
-void GameUpdateLoop()
+void GM::GameUpdateLoop()
 {
 
 
 	glutPostRedisplay();
 }
 
-void GameKeys(unsigned char key, int x, int y)
+void GM::GameKeys(unsigned char key, int x, int y)
 {
 	switch (key)
 	{
@@ -110,7 +110,7 @@ void GameKeys(unsigned char key, int x, int y)
 	}
 }
 
-void GameReleaseKeys(unsigned char key, int x, int y)
+void GM::GameReleaseKeys(unsigned char key, int x, int y)
 {
 	switch (key)
 	{
@@ -145,14 +145,14 @@ void GameReleaseKeys(unsigned char key, int x, int y)
 
 }
 
-void GameMouseMove(int x, int y)
+void GM::GameMouseMove(int x, int y)
 {
 	m_gameCam.MouseMove(x, y);
 
 	glutPostRedisplay();
 }
 
-void GameReshape(int w, int h)
+void GM::GameReshape(int w, int h)
 {
 	// Prevent a divide by zero, when window is too short
 	// (you cant make a window of zero width).

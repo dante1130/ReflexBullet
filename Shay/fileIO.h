@@ -3,6 +3,7 @@
 #define FILEIO_H
 
 #include "Object.h"
+#include "Lighting.h"
 
 
 #include <sstream>
@@ -24,5 +25,10 @@ void readObjFile(const std::string& fileName, Object3D& obj);
  *
  */
 FaceBase StringToFace(const std::string& str);
+
+
+void ReadOBJMTL(const std::string& fileName, Object3D& obj);
+
+void ReadMTLFile(Object3D& obj);
 
 #endif

@@ -3,7 +3,7 @@
 
 #include "Object.h"
 #include "defines.h"
-#include <glut.h>
+#include "../include/GL/glut.h"
 #include <stdio.h>
 
 
@@ -12,20 +12,31 @@
 /// </summary>
 extern Object3D ToyStore;
 
-/**
-* @brief	Is the master function which handles all the displaying for the game world
-* @param	No param
-* @return	Void
-*/
-void DisplayGameWorldMasterFunction();
+namespace DGW
+{
 
-/**
-* @brief	Displays the games current performance metrics
-* @param	No param
-* @return	Void
-*/
-void DisplayPerformanceMetrics();
+	/**
+	* @brief	Is the master function which handles all the displaying for the game world
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayGameWorldMasterFunction();
 
-void RenderBitMapString(void* font, char* string);
+	/**
+	* @brief	When the player spawns into the world or respawns this is used to make a "becoming conscious" effect
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayStartUp();
+
+	/**
+	* @brief	Displays the games current performance metrics
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayPerformanceMetrics();
+
+	void RenderBitMapString(void* font, char* string);
+}
 
 #endif
