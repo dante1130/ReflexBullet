@@ -18,12 +18,12 @@ void Player::Update(GLfloat delta)
 }
 
 void Player::Shoot()
-{
+{	
 	Bullet newBullet(m_gun.GetFaction(), 
 					 glm::vec3(m_camera.GetPosition()),
 				     glm::vec3(m_camera.GetLook() * m_gun.GetBulletVelocity()),
 					 100.0f);
-
+	//std::cout << "Look Position: " << m_camera.GetLook().x / PI * 180 << ", " << m_camera.GetLook().y << ", " << m_camera.GetLook().z << std::endl;
 	m_gun.AddBullet(newBullet);
 }
 

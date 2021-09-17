@@ -28,6 +28,7 @@ private:
 	
 	GLfloat m_healthDecay;
 	GLfloat m_firingSpeed;
+	glm::vec3 bulletOffset = glm::vec3(-0.15, -0.2, 0.0);
 	int m_skillPoints;
 
 	// Audio audio
