@@ -16,7 +16,7 @@
 struct FaceBase
 {
 	/// stores vertices/texture coordinate position from .obj file
-	int v, vt; 
+	int v, vt, vn; 
 };
 
 /**
@@ -49,6 +49,13 @@ public:
 	 * @return void
 	 */
 	void AddCoord(const glm::vec2& coord); 
+	
+	/**
+	* @brief	Stores the vertex normals
+	* @param	vn	- Vertex normal
+	* @return	Void
+	*/
+	void AddVertexNormal(const glm::vec3& vn);
 
 	/**
 	 * @brief Creates faces using FaceBase array.
@@ -63,6 +70,35 @@ public:
 	 * @return void
 	 */
 	void SetTextureName(const std::string& fileName); 
+
+	/**
+	* @brief	Assigns an object an mtl file name
+	* @param	mtlName	- The name of the mtl file
+	* @return	Void
+	*/
+	void SetMTLName(const std::string& mtlName);
+
+	/**
+	* @brief	Returns the mrl file name associated with the object
+	* @param	No param
+	* @return	string&	- THe MTL file name
+	*/
+	const std::string& GetMTLName();
+
+	/**
+	* @brief	Assigns which material the object uses
+	* @param	location	- The location in the material array that the object uses
+	* @return	Void
+	*/
+	void SetMTLArrayLocation(int location);
+
+	/**
+	* @brief	Used to find the material properties for an object
+	* @param	No param
+	* @return	int		- returns an index for a material array which references the materials properties
+	*/
+	int GetMTLArrayLocation();
+
 
 	/**
 	 * @brief Returns a vertex of index i.
@@ -110,10 +146,16 @@ private:
 	std::vector<glm::vec3> vertices; 
 	/// stores the texture coordinates
 	std::vector<glm::vec2> texCoord; 
+	/// stores the vertex normals
+	std::vector<glm::vec3> vertexNormals;
 	/// saves the links to v and vt for faces
 	std::vector<std::vector<FaceBase>> faces; 
 	/// stores image name (and extension)
 	std::string textureFile; 
+	/// The name of the mtl file (for material properties for lighting)
+	std::string mtlFile;
+	/// Points to the index of the material properties of the object
+	int mtlLoc;
 };
 
 #endif

@@ -14,6 +14,31 @@ Object3D::~Object3D()
 	faces.clear();
 }
 
+void Object3D::AddVertexNormal(const glm::vec3& vn)
+{
+	vertexNormals.push_back(vn);
+}
+
+void Object3D::SetMTLName(const std::string& mtlName)
+{
+	mtlFile = mtlName;
+}
+
+void Object3D::SetMTLArrayLocation(int location)
+{
+	mtlLoc = location;
+}
+
+int Object3D::GetMTLArrayLocation()
+{
+	return mtlLoc;
+}
+
+const std::string& Object3D::GetMTLName()
+{
+	return mtlFile;
+}
+
 void Object3D::AddVertex(const glm::vec3& vertex)
 {
 	vertices.push_back(vertex);

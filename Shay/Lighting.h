@@ -2,6 +2,7 @@
 #define LIGHTING_H
 
 #include <vector>
+#include "../include/GL/glut.h"
 
 struct Material
 {
@@ -23,7 +24,7 @@ extern std::vector<Material> Materials;
 
 namespace Lighting
 {
-	
+	void LightingInit();
 
 
 }
