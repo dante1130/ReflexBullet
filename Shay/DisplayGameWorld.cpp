@@ -12,13 +12,15 @@ void DGW::DisplayGameWorldMasterFunction()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	glClearColor(1, 1, 1, 1);
+
 	glPushMatrix();
 	glScalef(0.00333333, 0.00333333, 0.00333333);
 	ToyStore.DisplayObject(TEXT_ENVIRONMENT_STAIRS);
 
 	glPopMatrix();
 
-	DisplayPerformanceMetrics();
+	//DisplayPerformanceMetrics();
 	
 
 	/*

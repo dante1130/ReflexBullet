@@ -6,8 +6,15 @@ float gameWorldMovementSpeed = 0.08;
 float playerHeight = 0.9;
 float crouchDepth = -playerHeight*3/5;
 float camRotateSpeed = 1;
+float zFar = 0.001;
+bool Starting = true;
+float width;
+float height;
 
-
+void temp(int button, int state, int x, int y)
+{
+	glutPostRedisplay();
+}
 
 void GM::GameInit(int w, int h)
 {
@@ -20,6 +27,7 @@ void GM::GameInit(int w, int h)
 	glutKeyboardFunc(GameKeys);
 	glutKeyboardUpFunc(GameReleaseKeys);
 	glutPassiveMotionFunc(GameMouseMove);
+	glutMouseFunc(NULL);
 	GameReshape(w, h);
 	glutReshapeFunc(GameReshape);
 
@@ -27,6 +35,7 @@ void GM::GameInit(int w, int h)
 	glutIdleFunc(GameUpdateLoop);
 
 	glEnable(GL_CULL_FACE);
+	
 	glCullFace(GL_BACK);
 	
 
@@ -37,12 +46,24 @@ void GM::GameInit(int w, int h)
 void GM::LoadGameObjectFiles()
 {
 	readObjFile("data/object/ToyStore.obj", ToyStore);
-
 }
 
 void GM::GameFixedUpdateLoop(int val)
 {
 	glutTimerFunc(FRAMETIME, GameFixedUpdateLoop, 0);
+
+	if (Starting)
+	{
+		zFar = zFar * 1.1;
+		if (zFar > 1000)
+		{
+			zFar = 1000;
+			Starting = false;
+		}
+		GameReshape(width, height);
+
+	}
+
 
 	m_gameCam.KeyboardMovement();
 }
@@ -154,6 +175,9 @@ void GM::GameMouseMove(int x, int y)
 
 void GM::GameReshape(int w, int h)
 {
+	width = w;
+	height = h;
+
 	// Prevent a divide by zero, when window is too short
 	// (you cant make a window of zero width).
 	if (h == 0) h = 1;
@@ -163,6 +187,6 @@ void GM::GameReshape(int w, int h)
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glViewport(0, 0, w, h);
-	gluPerspective(90, ratio, 0.001, 1000);
+	gluPerspective(110, ratio, 0.001, zFar);
 	glMatrixMode(GL_MODELVIEW);
 }

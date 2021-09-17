@@ -23,13 +23,6 @@ namespace DGW
 	void DisplayGameWorldMasterFunction();
 
 	/**
-	* @brief	When the player spawns into the world or respawns this is used to make a "becoming conscious" effect
-	* @param	No param
-	* @return	Void
-	*/
-	void DisplayStartUp();
-
-	/**
 	* @brief	Displays the games current performance metrics
 	* @param	No param
 	* @return	Void
