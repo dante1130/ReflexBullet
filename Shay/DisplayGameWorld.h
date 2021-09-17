@@ -1,15 +1,19 @@
 #ifndef DISPLAYGAMEWORLD_H
 #define DISPLAYGAMEWORLD_H
 
+#include <cstdio>
 #include "Object.h"
 #include "defines.h"
 #include "../include/GL/glut.h"
-#include <stdio.h>
+#include "DisplayGameObjects.h"
+#include "Player.h"
 
 
 /// <summary>
 /// Is the toy store obj file used for testing purposes
 /// </summary>
+
+extern Player player;
 extern Object3D ToyStore;
 
 namespace DGW
@@ -28,6 +32,8 @@ namespace DGW
 	* @return	Void
 	*/
 	void DisplayPerformanceMetrics();
+
+	void DisplayBullets();
 
 	void RenderBitMapString(void* font, char* string);
 }
