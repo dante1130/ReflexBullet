@@ -2,7 +2,7 @@
 
 void readObjFile(const std::string& fileName, Object3D& obj)
 {
-	FaceBase temp_face[4];
+	std::vector<FaceBase> temp_face;
 	std::string temp_line, prefix, name;
 	glm::vec3 tempVertex, tempNormalVertex;
 	glm::vec2 tempCoord;
@@ -37,12 +37,12 @@ void readObjFile(const std::string& fileName, Object3D& obj)
 
 		}
 		else if (prefix.compare("f") == 0) {
-			for (unsigned i = 0; i < 4; ++i)
+			for (unsigned i = 0; getline(ss, name, ' '); ++i)
 			{
-				getline(ss, name, ' ');
-				temp_face[i] = StringToFace(name);
+				temp_face.push_back(StringToFace(name));
 			}
 			obj.AddFaces(temp_face);
+			temp_face.clear();
 		}
 		else if (prefix.compare("mtllib") == 0)
 		{
