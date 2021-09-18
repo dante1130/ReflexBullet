@@ -74,6 +74,16 @@ void Camera::AddAABB(const glm::vec3& max, const glm::vec3& min)
 	m_colDetect.Push(max, min);
 }
 
+void Camera::ClearAABB()
+{
+	m_colDetect.Clear();
+}
+
+void Camera::SetCollision(const Collision& collision)
+{
+	m_colDetect = collision;
+}
+
 void Camera::SetRotateSpeed(const GLdouble& tempSpeed)
 {
 	m_rotateSpeed = tempSpeed;

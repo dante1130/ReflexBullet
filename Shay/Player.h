@@ -15,7 +15,7 @@ public:
 
 	// Getter
 	Camera& GetCamera();
-	const Gun& GetGun() const;
+	Gun& GetGun();
 
 private:
 	const GLfloat start_health = 100;

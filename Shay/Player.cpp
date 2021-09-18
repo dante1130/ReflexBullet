@@ -1,4 +1,5 @@
 #include "Player.h"
+#include <iostream>
 
 Player::Player()
 	: m_healthDecay(start_health_decay), m_firingSpeed(start_firing_speed), m_skillPoints(0)
@@ -23,7 +24,8 @@ void Player::Shoot()
 					 glm::vec3(m_camera.GetPosition()),
 				     glm::vec3(m_camera.GetLook() * m_gun.GetBulletVelocity()),
 					 100.0f);
-	//std::cout << "Look Position: " << m_camera.GetLook().x / PI * 180 << ", " << m_camera.GetLook().y << ", " << m_camera.GetLook().z << std::endl;
+
+
 	m_gun.AddBullet(newBullet);
 }
 
@@ -32,7 +34,7 @@ Camera& Player::GetCamera()
 	return m_camera;
 }
 
-const Gun& Player::GetGun() const
+Gun& Player::GetGun()
 {
 	return m_gun;
 }

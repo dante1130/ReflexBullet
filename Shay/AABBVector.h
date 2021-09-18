@@ -34,6 +34,8 @@ public:
 
 	//----------------------------------------------------------------------------------
 
+	void Clear();
+
 	/**
 	 * @brief Add a bounding box
 	 * @param max const glm::dvec3&

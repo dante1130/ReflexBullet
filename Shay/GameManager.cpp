@@ -1,7 +1,5 @@
 #include "GameManager.h"
 
-
-
 bool ActiveGameWorld = false;
 float gameWorldMovementSpeed = 0.03;
 float playerHeight = 0.9;
@@ -14,19 +12,20 @@ float height;
 float delta = 0;
 float elapsedTime = glutGet(GLUT_ELAPSED_TIME);
 
-void temp(int button, int state, int x, int y)
-{
-	glutPostRedisplay();
-}
+Collision collision;
 
 void GM::GameInit(int w, int h)
 {
+	player.GetCamera().SetWorldCoordinates(-10, 13);
+	player.GetCamera().ClearAABB();
 	player.GetCamera().SetRotateSpeed(camRotateSpeed);
 	player.GetCamera().SetMoveSpeed(gameWorldMovementSpeed);
 	player.GetCamera().Position(glm::vec3(0, playerHeight, 0), 180.0);
 	player.GetCamera().SetMaximumCrouchDepth(crouchDepth);
 
-	GameReshape(w, h); // Called once to init the reshape
+	CreateGameBoundingBoxes();
+	
+	GameReshape(w, h); // Called once to reinit the reshape
 
 	glutDisplayFunc(DGW::DisplayGameWorldMasterFunction);
 	glutKeyboardFunc(GameKeys);
@@ -47,10 +46,31 @@ void GM::GameInit(int w, int h)
 	LoadGameObjectFiles();
 }
 
-
 void GM::LoadGameObjectFiles()
 {
 	readObjFile("data/object/ToyStore.obj", ToyStore);
+}
+
+void GM::CreateGameBoundingBoxes()
+{
+	// Walls
+	collision.Push(glm::vec3(10, 5, 13), glm::vec3(-10, 0, 12.9));
+	collision.Push(glm::vec3(10, 5, 13), glm::vec3(9.9, 0, -13));
+	collision.Push(glm::vec3(-9.9, 5, 13), glm::vec3(-10, 0, -13));
+	collision.Push(glm::vec3(10, 5, -12.9), glm::vec3(-10, 0, -13));
+
+	player.GetCamera().SetCollision(collision);
+}
+
+void GM::GameCollisionResolution()
+{
+	for (int i = 0; i < player.GetGun().BulletCount(); ++i)
+	{
+		if (collision.Collide(player.GetGun().BulletAt(i).GetBoundingSphere()))
+		{
+			player.GetGun().RemoveBullet(i);
+		}
+	}
 }
 
 void GM::GameFixedUpdateLoop(int val)
@@ -69,19 +89,21 @@ void GM::GameFixedUpdateLoop(int val)
 
 	}
 
-
 	player.GetCamera().KeyboardMovement();
+
 	float newElapsedTime = glutGet(GLUT_ELAPSED_TIME);
 	delta = (newElapsedTime - elapsedTime) / 1000;
 	elapsedTime = newElapsedTime;
 
 	player.GetCamera().KeyboardMovement();
 	player.Update(delta);
+
+	GameCollisionResolution();
 }
 
 void GM::GameUpdateLoop()
 {
-
+	
 
 	glutPostRedisplay();
 }

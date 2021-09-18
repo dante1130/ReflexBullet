@@ -1,5 +1,14 @@
 #include "EnemyAI.h"
 
+std::array<std::array<Grid, 5>, 5> EnemyAI::m_mainGrid;	
+
+EnemyAI::EnemyAI()
+	: m_gridPos(0.0f), m_isMoving(false)
+{
+	for (auto& gridRow : m_mainGrid)
+		gridRow.fill(Grid::FREE);
+}
+
 void EnemyAI::AIUpdate()
 {
 

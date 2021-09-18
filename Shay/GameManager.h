@@ -9,7 +9,6 @@
 #include "Player.h"
 #include "../include/GL/glut.h"
 
-
 /// <summary>
 /// true - if the player is in the game world
 /// </summary>
@@ -31,6 +30,20 @@ namespace GM
 	* @return	Void
 	*/
 	void LoadGameObjectFiles();
+
+	/**
+	* @brief	Creates AABB collisions for the world
+	* @param	No param
+	* @return	Void
+	*/
+	void CreateGameBoundingBoxes();
+
+	/**
+	 * @brief	Collision resolution between the available collision types.
+	 * @param	No param
+	 * @return	void
+	 */
+	void GameCollisionResolution();
 
 	/**
 	* @brief	If a fixed update loop for the game. This will handle all AI and other fixed update processes
