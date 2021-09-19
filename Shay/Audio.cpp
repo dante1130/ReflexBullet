@@ -1,7 +1,8 @@
 #include "Audio.h"
 
+std::map<std::string, Mix_Chunk*> Audio::m_sounds;
+
 Audio::Audio()
-	: m_sounds()
 {
 	SDL_Init(SDL_INIT_AUDIO);
 	Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 1024);

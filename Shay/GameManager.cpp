@@ -17,7 +17,7 @@ Collision collision;
 void GM::GameInit(int w, int h)
 {
 	glClearColor(1, 1, 1, 1);
-	player.GetCamera().SetWorldCoordinates(-10, 13);
+	player.GetCamera().SetWorldCoordinates(0, 26);
 	player.GetCamera().ClearAABB();
 
 

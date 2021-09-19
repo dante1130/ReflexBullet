@@ -1,22 +1,37 @@
 #include "Gun.h"
 
 Gun::Gun()
-	: m_faction(), m_bullets(), m_bulletVelocity(0), m_firingDelay(0)
+	: m_faction(), m_bullets(), m_bulletVelocity(0.0f), m_firingDelay(0.0f), m_firingBuffer(0.0f), m_isFiring(false)
 {}
 
 Gun::Gun(Faction faction, GLfloat bulletVelocity, GLfloat firingDelay)
-	: m_faction(faction), m_bullets(), m_bulletVelocity(bulletVelocity), m_firingDelay(firingDelay)
+	: m_faction(faction), m_bullets(), m_bulletVelocity(bulletVelocity), m_firingDelay(firingDelay), m_firingBuffer(0.0f), m_isFiring(false)
 {}
 
 void Gun::Update(GLfloat delta)
 {
 	for (Bullet& bullet : m_bullets)
 		bullet.Update(delta);
+
+	if (m_isFiring)
+	{
+		m_firingBuffer += 0.025f;
+
+		if (m_firingBuffer >= m_firingDelay) 
+		{
+			m_isFiring = false;
+			m_firingBuffer = 0.0f;
+		}
+	}
 }
 
-void Gun::AddBullet(const Bullet& bullet)
+void Gun::Shoot(const Bullet& bullet)
 {
-	m_bullets.push_back(bullet);
+	if (!m_isFiring)
+	{
+		m_isFiring = true;
+		m_bullets.push_back(bullet);
+	}
 }
 
 void Gun::RemoveBullet(int index)

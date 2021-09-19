@@ -38,7 +38,7 @@ public:
 	 * @param bullet const Bullet&
 	 * @return void
 	 */
-	void AddBullet(const Bullet& bullet);
+	void Shoot(const Bullet& bullet);
 
 	/**
 	 * @brief Removes a bullet from the bullets vector, used for when the bullet has collided.
@@ -104,6 +104,8 @@ private:
 	std::vector<Bullet> m_bullets;
 	GLfloat m_bulletVelocity;
 	GLfloat m_firingDelay;
+	GLfloat m_firingBuffer;
+	bool m_isFiring;
 	
 	//Audio audio;
 };

@@ -42,10 +42,14 @@ void Lighting::LightInit()
 
 	for (int count = 0; count < m_NumberOfLights; count++)
 	{
-		for (int i = 0; i < 4; i++) { lights[count].light_position[i] = light_position[count][i]; }
-		for (int i = 0; i < 4; i++) { lights[count].light_ambient[i] = light_ambient[i]; }
-		for (int i = 0; i < 4; i++) { lights[count].light_diffuse[i] = light_diffuse[i]; }
-		for (int i = 0; i < 4; i++) { lights[count].light_specular[i] = light_specular[i]; }
+		for (int i = 0; i < 4; ++i)
+		{
+			lights[count].light_position[i] = light_position[count][i];
+			lights[count].light_ambient[i] = light_ambient[i];
+			lights[count].light_diffuse[i] = light_diffuse[i];
+			lights[count].light_specular[i] = light_specular[i];
+		}
+
 		lights[count].dropOff = dropOff;
 		lights[count].light = light[count];
 

@@ -51,7 +51,7 @@ public:
 
 private:
 	/// Sounds stored as values into a map, key is a string that contains the label.
-	std::map<std::string, Mix_Chunk*> m_sounds;
+	static std::map<std::string, Mix_Chunk*> m_sounds;
 
 	// Not used for now.
 	/// Music stored as values into a map, key is a string that contains the label.

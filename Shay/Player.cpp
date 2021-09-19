@@ -26,7 +26,7 @@ void Player::Shoot()
 					 100.0f);
 
 
-	m_gun.AddBullet(newBullet);
+	m_gun.Shoot(newBullet);
 }
 
 Camera& Player::GetCamera()
