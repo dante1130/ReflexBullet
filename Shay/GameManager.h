@@ -7,6 +7,7 @@
 #include "DisplayGameWorld.h"
 #include "fileIO.h"
 #include "Player.h"
+#include "Lighting.h"
 #include "../include/GL/glut.h"
 
 

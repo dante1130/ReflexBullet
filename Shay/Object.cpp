@@ -69,6 +69,12 @@ const glm::vec2& Object3D::GetCoord(unsigned i) const
 	return texCoord[i];
 }
 
+const glm::vec3& Object3D:: GetVertexNormal(unsigned i) const
+{
+	return vertexNormals[i];
+}
+
+
 const std::vector<FaceBase>& Object3D::GetFace(unsigned i) const
 {
 	return faces[i];
@@ -101,5 +107,29 @@ void Object3D::DisplayObject(int textureID)
 		glEnd();
 	}
 	
+	return;
+}
+
+void Object3D::DisplayObjectWithLighting(int textureID)
+{
+	unsigned temp_v, temp_vt, temp_nv, faceVectorSize, j;
+	
+	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(textureID));
+	faceVectorSize = GetFaceVectorSize();
+	for (unsigned i = 0; i < faceVectorSize; ++i)
+	{
+		glBegin(GL_POLYGON);
+		for (j = 0; j < GetFace(i).size(); ++j)
+		{
+			temp_v = GetFace(i)[j].v - 1;
+			temp_vt = GetFace(i)[j].vt - 1;
+			temp_nv = GetFace(i)[j].vn - 1;
+			glTexCoord2f(GetCoord(temp_vt).x, 1 - GetCoord(temp_vt).y);
+			glNormal3f(vertexNormals[temp_nv].x, vertexNormals[temp_nv].y, vertexNormals[temp_nv].z);
+			glVertex3f(vertices[temp_v].x, vertices[temp_v].y, vertices[temp_v].z);
+		}
+		glEnd();
+	}
+
 	return;
 }

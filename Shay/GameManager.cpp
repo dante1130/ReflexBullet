@@ -2,7 +2,7 @@
 
 
 
-bool ActiveGameWorld = false;
+bool ActiveGameWorld = true;
 float gameWorldMovementSpeed = 0.03;
 float playerHeight = 0.9;
 float crouchDepth = -playerHeight * 3/5;
@@ -21,12 +21,16 @@ void temp(int button, int state, int x, int y)
 
 void GM::GameInit(int w, int h)
 {
+	glClearColor(1, 1, 1, 1);
+
 	player.GetCamera().SetRotateSpeed(camRotateSpeed);
 	player.GetCamera().SetMoveSpeed(gameWorldMovementSpeed);
-	player.GetCamera().Position(glm::vec3(0, playerHeight, 0), 180.0);
+	player.GetCamera().Position(glm::vec3(0.5, playerHeight, 0.5), 180.0);
 	player.GetCamera().SetMaximumCrouchDepth(crouchDepth);
 
 	GameReshape(w, h); // Called once to init the reshape
+
+	Lighting::LightingInit();
 
 	glutDisplayFunc(DGW::DisplayGameWorldMasterFunction);
 	glutKeyboardFunc(GameKeys);
@@ -42,7 +46,7 @@ void GM::GameInit(int w, int h)
 
 	glEnable(GL_CULL_FACE);
 	
-	glCullFace(GL_BACK);
+	glCullFace(GL_FRONT);
 
 	LoadGameObjectFiles();
 }
@@ -64,6 +68,7 @@ void GM::GameFixedUpdateLoop(int val)
 		{
 			zFar = 1000;
 			Starting = false;
+			glClearColor(0.5, 0.5, 0.5, 1);
 		}
 		GameReshape(width, height);
 
@@ -74,14 +79,14 @@ void GM::GameFixedUpdateLoop(int val)
 	float newElapsedTime = glutGet(GLUT_ELAPSED_TIME);
 	delta = (newElapsedTime - elapsedTime) / 1000;
 	elapsedTime = newElapsedTime;
-
 	player.GetCamera().KeyboardMovement();
 	player.Update(delta);
+
+
 }
 
 void GM::GameUpdateLoop()
 {
-
 
 	glutPostRedisplay();
 }
@@ -181,7 +186,7 @@ void GM::GameMouseMove(int x, int y)
 {
 	player.GetCamera().MouseMove(x, y);
 
-	glutPostRedisplay();
+	//glutPostRedisplay();
 }
 
 void GM::GameMouseClick(int button, int state, int x, int y)

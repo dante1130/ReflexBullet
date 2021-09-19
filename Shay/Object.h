@@ -115,6 +115,14 @@ public:
 	const glm::vec2& GetCoord(unsigned i) const; 
 
 	/**
+	 * @brief	Returns a vertex normal coordinate of index i
+	 * @param	i				- The index you want to get the normal from
+	 * @return const glm::vec3&	- The normal vector
+	 */
+	const glm::vec3& GetVertexNormal(unsigned i) const;
+
+
+	/**
 	 * @brief Returns a set of vertex and coordinate pairs of index i.
 	 * @param i unsigned
 	 * @return const std::array<Facebase, 4>&
@@ -133,6 +141,8 @@ public:
 	* @return	Void
 	*/
 	void DisplayObject(int textureID);
+
+	void DisplayObjectWithLighting(int textureID);
 
 private:
 	/**

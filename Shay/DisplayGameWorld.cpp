@@ -8,20 +8,44 @@ int frameCountPos = 0;
 float frames = 0;
 int lastFrameTime;
 
+
 void DGW::DisplayGameWorldMasterFunction()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	glClearColor(1, 1, 1, 1);
+	
 
 	glPushMatrix();
-	glScalef(0.00333333, 0.00333333, 0.00333333);
-	ToyStore.DisplayObject(TEXT_ENVIRONMENT_STAIRS);
+	glScalef(-1, 1, 1);
+	GLfloat mat_a[] = { 0.1, 0.1, 0.1, 1 };
+	GLfloat mat_d[] = { 0.9, 0.9, 0.9, 1 };
+	GLfloat mat_s[] = { 1, 1, 1, 1 };
+	GLfloat low_sh[] = { 5.0 };
+	GLfloat mat_e[] = { 0, 0, 0, 1.0 };
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, mat_a);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, mat_d);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, mat_s);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, mat_e);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, low_sh);
+	ToyStore.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
 	glPopMatrix();
 
 	DisplayPerformanceMetrics();
 
+	GLfloat mat_a2[] = { 0.1, 0.1, 0.1, 1.0 };
+	GLfloat mat_d2[] = { 0, 0, 1, 1.0 };
+	GLfloat mat_s2[] = { 1, 1, 1, 1.0 };
+	GLfloat low_sh2[] = { 5.0 };
+	GLfloat mat_e2[] = { 0, 0, 1, 1.0 };
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, mat_a2);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, mat_d2);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, mat_s2);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, mat_e2);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, low_sh2);
+
 	DGO::DisplayGunBullets(player.GetGun());
+
+	
+	Lighting::UpdateLighting();
 
 	/*
 	glMatrixMode(GL_PROJECTION);

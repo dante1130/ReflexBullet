@@ -12,6 +12,6 @@ void DGO::DisplayBullets(const Bullet& bullet)
 	glTranslatef(bullet.GetPosition().x, 
 				 bullet.GetPosition().y,
 				 bullet.GetPosition().z);
-	glutSolidSphere(0.125, 10, 10);
+	glutSolidSphere(0.25, 10, 10);
 	glPopMatrix();
 }

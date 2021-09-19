@@ -4,6 +4,7 @@
 #include <cstdio>
 #include "Object.h"
 #include "defines.h"
+#include "Lighting.h"
 #include "../include/GL/glut.h"
 #include "DisplayGameObjects.h"
 #include "Player.h"
@@ -18,6 +19,8 @@ extern Object3D ToyStore;
 
 namespace DGW
 {
+	void DisplayInit();
+
 
 	/**
 	* @brief	Is the master function which handles all the displaying for the game world
