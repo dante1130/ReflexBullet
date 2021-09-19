@@ -2,6 +2,7 @@
 #define BULLET_H
 
 #include "Faction.h"
+#include "BoundingSphere.h"
 #include "../include/glm/vec3.hpp"
 #include "../include/GL/glut.h"
 
@@ -56,6 +57,8 @@ public:
 	 */
 	GLfloat GetDamage() const;
 
+	const BoundingSphere& GetBoundingSphere() const;
+
 	// Setters
 
 	/**
@@ -95,9 +98,9 @@ private:
 	glm::vec3 m_velocity;
 	/// The damage the bullet can deal to health
 	GLfloat m_damage;
-
-	//BoundingSphere m_bSphere;
+	/// Bounding sphere for collision detection
+	BoundingSphere m_bSphere;
 	//Audio* m_audio;
 };
 
-#endif BULLET_H
+#endif

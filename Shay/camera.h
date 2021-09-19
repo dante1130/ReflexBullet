@@ -44,6 +44,8 @@ public:
 	 */
 	void AddAABB(const glm::vec3& max, const glm::vec3& min);
 
+	void ClearAABB();
+
 	/**
 	 * @brief Prints the x, y and z values to console, used for debugging.
 	 * @return void
@@ -56,6 +58,8 @@ public:
 	//----------------------------------------------------------------------------------
 	//  Set Methods
 	//----------------------------------------------------------------------------------
+
+	void SetCollision(const Collision& collision);
 
 	/**
 	 * @brief Set step and rotation size.

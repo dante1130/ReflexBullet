@@ -9,4 +9,4 @@ enum class Grid
 	ENEMYTHERE
 };
 
-#endif GRID_H
+#endif

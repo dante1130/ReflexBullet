@@ -7,14 +7,21 @@
 //--------------------------------------------------------------------------------------
 
 #include "collision.h"
+#include "../include/glm/geometric.hpp"
+
 
 Collision::Collision()
 	: m_list(), m_worldSizeX(0), m_worldSizeZ(0) {}
 
+void Collision::Clear()
+{
+	for (int i = 0; i < 4; ++i)
+		m_list[i].Clear();
+}
+
 void Collision::Push(const glm::vec3& max, const glm::vec3& min)
 {
 	GetQuadrant(max, min);
-	//m_list[GetQuadrant(max, min)].Push(max, min);
 }
 
 void Collision::SetWorldX(const double& tempX)
@@ -62,6 +69,32 @@ void Collision::GetQuadrant(const glm::vec3& max, const glm::vec3& min)
 	}
 }
 
+bool Collision::Collide(const BoundingSphere& bSphere)
+{
+	bool isColliding = false;
+	// check 1st quadrant (1st linked list)
+	if (bSphere.center.x <= m_worldSizeX / 2.0 && bSphere.center.z <= m_worldSizeZ / 2.0)
+	{
+		isColliding = CheckCollision(0, bSphere);
+	}
+	// check 2nd quadrant (2nd linked list)
+	if (bSphere.center.x <= m_worldSizeX / 2.0 && bSphere.center.z >= m_worldSizeZ / 2.0)
+	{
+		isColliding = CheckCollision(1, bSphere);
+	}
+	// check 3rd quadrant (3rd linked list)
+	if (bSphere.center.x >= m_worldSizeX / 2.0 && bSphere.center.z <= m_worldSizeZ / 2.0)
+	{
+		isColliding = CheckCollision(2, bSphere);
+	}
+	// check 4th quadrant (4th linked list)
+	if (bSphere.center.x >= m_worldSizeX / 2.0 && bSphere.center.z >= m_worldSizeZ / 2.0)
+	{
+		isColliding = CheckCollision(3, bSphere);
+	}
+	return isColliding;
+}
+
 //--------------------------------------------------------------------------------------
 //  Returns TRUE if a collsion occurs.
 //  The parameters passed to this function are the co-ordinates of the camera.
@@ -72,28 +105,53 @@ void Collision::GetQuadrant(const glm::vec3& max, const glm::vec3& min)
 
 bool Collision::Collide(const glm::dvec3& end)
 {
-	bool Collision = false;
+	bool isColliding = false;
 	// check 1st quadrant (1st linked list)
 	if (end.x <= m_worldSizeX / 2.0 && end.z <= m_worldSizeZ / 2.0)
 	{
-		Collision = CheckCollision(0, end);
+		isColliding = CheckCollision(0, end);
 	}
 	// check 2nd quadrant (2nd linked list)
 	if (end.x <= m_worldSizeX / 2.0 && end.z >= m_worldSizeZ / 2.0)
 	{
-		Collision = CheckCollision(1, end);
+		isColliding = CheckCollision(1, end);
 	}
 	// check 3rd quadrant (3rd linked list)
 	if (end.x >= m_worldSizeX / 2.0 && end.z <= m_worldSizeZ / 2.0)
 	{
-		Collision = CheckCollision(2, end);
+		isColliding = CheckCollision(2, end);
 	}
 	// check 4th quadrant (4th linked list)
 	if (end.x >= m_worldSizeX / 2.0 && end.z >= m_worldSizeZ / 2.0)
 	{
-		Collision = CheckCollision(3, end);
+		isColliding = CheckCollision(3, end);
 	}
-	return Collision;
+	return isColliding;
+}
+
+bool Collision::CheckCollision(int index, const BoundingSphere& bSphere)
+{
+	bool isColliding = false;
+
+	float distance;
+	glm::vec3 point;
+
+	for (int count = 0; count < m_list[index].Size(); count++)
+	{
+		glm::vec3 max = m_list[index].GetMax(count);
+		glm::vec3 min = m_list[index].GetMin(count);
+
+		point = glm::max(glm::min(bSphere.center, max), min);
+
+		distance = glm::length(point - bSphere.center);
+
+		if (distance <= bSphere.radius)
+		{
+			isColliding = true;
+			break;
+		}
+	}
+	return isColliding;
 }
 
 //--------------------------------------------------------------------------------------
@@ -101,7 +159,7 @@ bool Collision::Collide(const glm::dvec3& end)
 //--------------------------------------------------------------------------------------
 bool Collision::CheckCollision(int index, const glm::dvec3& end)
 {
-	bool CollisionFound = false;
+	bool isColliding = false;
 
 	for (int count = 0; count < m_list[index].Size(); count++)
 	{
@@ -110,10 +168,11 @@ bool Collision::CheckCollision(int index, const glm::dvec3& end)
 
 		if ((end.x < max.x && end.x > min.x) && (end.z < max.z && end.z > min.z))
 		{
-			CollisionFound = true;
+			isColliding = true;
+			break;
 		}
 	}
-	return CollisionFound;
+	return isColliding;
 }
 
 

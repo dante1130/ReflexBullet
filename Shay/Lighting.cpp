@@ -59,13 +59,9 @@ void Lighting::LightInit()
 
 void Lighting::MaterialInit()
 {
-	int count = GL_LIGHT2;
-	std::cout << count << std::endl;
+	
 
 }
-
-
-
 
 // Sets a light's properties
 float z = 1;

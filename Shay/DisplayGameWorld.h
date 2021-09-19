@@ -5,9 +5,9 @@
 #include "Object.h"
 #include "defines.h"
 #include "Lighting.h"
-#include "../include/GL/glut.h"
 #include "DisplayGameObjects.h"
 #include "Player.h"
+#include "../include/GL/glut.h"
 
 
 /// <summary>

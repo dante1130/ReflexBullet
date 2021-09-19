@@ -15,6 +15,11 @@ AABBVector::AABBVector()
 
 //--------------------------------------------------------------------------------------
 
+void AABBVector::Clear()
+{
+	m_AABB.clear();
+}
+
 void AABBVector::Push(const glm::vec3& max, const glm::vec3& min)
 {
 	BoundingBox newBBox;

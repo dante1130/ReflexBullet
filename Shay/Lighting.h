@@ -2,8 +2,6 @@
 #define LIGHTING_H
 
 #include <vector>
-#include <iostream>
-#include "../include/glm/vec3.hpp"
 #include "../include/GL/glut.h"
 
 

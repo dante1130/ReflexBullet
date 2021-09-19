@@ -10,6 +10,8 @@
 //--------------------------------------------------------------------------------------
 
 #include "AABBVector.h"
+#include "BoundingSphere.h"
+#include "../include/glm/common.hpp"
 
 //--------------------------------------------------------------------------------------
 
@@ -24,6 +26,8 @@ public:
 	 * @brief Default constructor.
 	 */
 	Collision();
+
+	void Clear();
 
 	/**
 	* @brief	Sets the bounding box to the vector
@@ -55,6 +59,8 @@ public:
 	//  Returns Methods
 	//----------------------------------------------------------------------------------
 
+	bool Collide(const BoundingSphere& bSphere);
+
 	/**
 	 * @brief Returns TRUE if a collision occurred.
 	 * @param end const glm::dvec3&
@@ -69,6 +75,8 @@ private:
 
 	/// stores world co-ordinates
 	double m_worldSizeX, m_worldSizeZ;
+
+	bool CheckCollision(int index, const BoundingSphere& bSphere);
 
 	/**
 	 * @brief Checks if collision occurred (called from Collide).
