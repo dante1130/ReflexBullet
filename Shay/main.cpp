@@ -1,7 +1,7 @@
 #include <cstdlib>
 #include <cmath>
 #include <ctime>
-#include "../include/GL/glut.h"
+#include <GL/glut.h>
 
 #include "fileIO.h"
 #include "ProcessShaysWorld.h"

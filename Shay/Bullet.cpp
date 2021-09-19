@@ -4,14 +4,14 @@ Bullet::Bullet()
 	: m_faction(), m_position(glm::vec3(0)), m_velocity(glm::vec3(0)), m_damage(0)
 {
 	m_bSphere.center = m_position;
-	m_bSphere.radius = 0.125;
+	m_bSphere.radius = 0.25;
 }
 
-Bullet::Bullet(Faction faction, const glm::vec3& position, const glm::vec3& velocity, GLfloat damage)
-	: m_faction(faction), m_position(position), m_velocity(velocity), m_damage(0)
+Bullet::Bullet(Faction faction, const glm::vec3& position, const glm::vec3& velocity, GLint damage)
+	: m_faction(faction), m_position(position), m_velocity(velocity), m_damage(damage)
 {
 	m_bSphere.center = m_position;
-	m_bSphere.radius = 0.125;
+	m_bSphere.radius = 0.25;
 }
 
 void Bullet::Update(GLfloat delta)

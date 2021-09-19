@@ -73,6 +73,7 @@ void GM::GameCollisionResolution()
 	{
 		if (collision.Collide(player.GetGun().BulletAt(i).GetBoundingSphere()))
 		{
+			std::cout << "Collision!" << std::endl;
 			player.GetGun().RemoveBullet(i);
 		}
 	}
@@ -156,13 +157,13 @@ void GM::GameKeys(unsigned char key, int x, int y)
 	case '_':
 	case '-':
 		camRotateSpeed -= 0.1;
-		if (camRotateSpeed > 5) { camRotateSpeed = 5; }
+		if (camRotateSpeed < 0.05) { camRotateSpeed = 0.05; }
 		player.GetCamera().SetRotateSpeed(camRotateSpeed);
 		break;
 	case '+':
 	case '=':
 		camRotateSpeed += 0.1;
-		if (camRotateSpeed < 0.05) { camRotateSpeed = 0.05; }
+		if (camRotateSpeed > 5) { camRotateSpeed = 5; }
 		player.GetCamera().SetRotateSpeed(camRotateSpeed);
 		break;
 	}

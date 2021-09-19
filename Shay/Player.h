@@ -1,9 +1,9 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include <glm/vec3.hpp>
 #include "BaseCharacter.h"
 #include "Camera.h"
-#include "../include/glm/vec3.hpp"
 
 class Player : public BaseCharacter
 {
@@ -11,7 +11,7 @@ public:
 	Player();
 
 	void Update(GLfloat delta) override;
-	void Shoot();
+	void Shoot() override;
 
 	// Getter
 	Camera& GetCamera();

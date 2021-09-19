@@ -23,7 +23,7 @@ void Player::Shoot()
 	Bullet newBullet(m_gun.GetFaction(), 
 					 glm::vec3(m_camera.GetPosition()),
 				     glm::vec3(m_camera.GetLook() * m_gun.GetBulletVelocity()),
-					 100.0f);
+					 10);
 
 
 	m_gun.Shoot(newBullet);

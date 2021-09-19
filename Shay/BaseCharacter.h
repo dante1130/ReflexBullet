@@ -8,10 +8,11 @@ class BaseCharacter
 {
 public:
 	virtual void Update(GLfloat delta) = 0;
+	virtual void Shoot() = 0;
 
 protected:
 	Gun m_gun;
-	GLfloat m_health;
+	GLint m_health;
 };
 
 #endif

@@ -8,17 +8,17 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
+#include <iostream>
+#include <cmath>
+#include <glm/vec2.hpp>
+#include <glm/vec3.hpp>
+#include <GL/glut.h>
+
 #include "collision.h"
 #include "cameraMap.h"
 #include "PlainVector.h"
 #include "Audio.h"
 #include "defines.h"
-
-#include <iostream>
-#include <cmath>
-#include "../include/glm/vec2.hpp"
-#include "../include/glm/vec3.hpp"
-#include "../include/GL/glut.h"
 
 //--------------------------------------------------------------------------------------
 

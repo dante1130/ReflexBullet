@@ -1,10 +1,10 @@
 #ifndef BULLET_H
 #define BULLET_H
 
+#include <glm/vec3.hpp>
+#include <GL/glut.h>
 #include "Faction.h"
 #include "BoundingSphere.h"
-#include "../include/glm/vec3.hpp"
-#include "../include/GL/glut.h"
 
 /**
  * @class Bullet
@@ -22,7 +22,7 @@ public:
 	/**
 	 * @brief Parameterized constructor.
 	 */
-	Bullet(Faction faction, const glm::vec3& position, const glm::vec3& velocity, GLfloat damage);
+	Bullet(Faction faction, const glm::vec3& position, const glm::vec3& velocity, GLint damage);
 
 	/**
 	 * @brief Updates the bullet with delta time.

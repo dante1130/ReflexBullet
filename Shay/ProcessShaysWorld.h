@@ -2,8 +2,8 @@
 #define PROCESSSHAYSWORLD_H
 
 #include <ctime>
+#include <GL/glut.h>
 #include "camera.h"
-#include "../include/GL/glut.h"
 #include "texturedPolygons.h"
 #include "DisplayShaysWorld.h"
 #include "defines.h"

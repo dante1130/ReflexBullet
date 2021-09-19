@@ -236,8 +236,8 @@ void Camera::MouseMove(int x, int y)
 	m_prev.y = y;
 
 	// updates the rotation angle
-	m_rotateAngleLR += m_deltaAngleLR;
-	m_rotateAngleUD += m_deltaAngleUD;
+	m_rotateAngleLR += m_deltaAngleLR * m_rotateSpeed;
+	m_rotateAngleUD += m_deltaAngleUD * m_rotateSpeed;
 
 	// clamps between rotation angles of 89 and -89
 	if (m_rotateAngleUD > 89.0f)

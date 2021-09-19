@@ -2,9 +2,7 @@
 #define LIGHTING_H
 
 #include <vector>
-#include "../include/GL/glut.h"
-
-
+#include <GL/glut.h>
 
 struct Material
 {

@@ -2,9 +2,10 @@
 #define ENEMYAI_H
 
 #include <array>
-#include "../include/glm/vec2.hpp"
+#include <GL/glut.h>
+#include <glm/vec2.hpp>
 #include "Grid.h"
-#include "../include/GL/glut.h"
+
 
 class EnemyAI
 {

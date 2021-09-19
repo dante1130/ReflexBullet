@@ -1,8 +1,8 @@
 #ifndef DISPLAYGAMEOBJECTS_H
 #define DISPLAYGAMEOBJECTS_H
 
+#include <GL/glut.h>
 #include "Gun.h"
-#include "../include/GL/glut.h"
 
 namespace DGO
 {

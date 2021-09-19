@@ -1,7 +1,7 @@
 #ifndef BOUNDINGBOX_H
 #define BOUNDINGBOX_H
 
-#include "../include/glm/vec3.hpp"
+#include <glm/vec3.hpp>
 
 /**
  * @struct BoundingBox
