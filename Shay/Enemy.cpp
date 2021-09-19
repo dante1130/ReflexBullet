@@ -7,16 +7,16 @@ Enemy::Enemy()
 	m_health = 10;
 }
 
-void Enemy::Update(GLfloat delta) override
+void Enemy::Update(GLfloat delta)
 {
 	m_gun.Update(delta);
 }
 
-void Enemy::Shoot() override
+void Enemy::Shoot()
 {
 	Bullet newBullet(m_gun.GetFaction(),
-					 glm::vec3(m_position,
-					 glm::vec3(m_look * m_gun.GetBulletVelocity()),
+					 m_position,
+					 m_look * m_gun.GetBulletVelocity(),
 					 10);
 
 	m_gun.Shoot(newBullet);
@@ -35,5 +35,5 @@ const glm::vec3& Enemy::GetPosition() const
 
 const glm::vec3& Enemy::GetLook() const
 {
-	return m_look
+	return m_look;
 }

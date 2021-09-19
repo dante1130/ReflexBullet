@@ -2,8 +2,9 @@
 #define PLAYER_H
 
 #include <glm/vec3.hpp>
+#include <glm\geometric.hpp>
 #include "BaseCharacter.h"
-#include "Camera.h"
+#include "camera.h"
 
 class Player : public BaseCharacter
 {
@@ -28,8 +29,9 @@ private:
 	
 	GLfloat m_healthDecay;
 	GLfloat m_firingSpeed;
-	glm::vec3 bulletOffset = glm::vec3(-0.15, -0.2, 0.0);
 	int m_skillPoints;
+
+	glm::vec3 m_bulletOffsetScale;
 
 	// Audio audio
 };

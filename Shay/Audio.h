@@ -1,8 +1,9 @@
 #ifndef AUDIO_H
 #define AUDIO_H
 
-#include "../include/SDL.h"
-#include "../include/SDL_mixer.h"
+#include <SDL.h>
+#include <SDL_mixer.h>
+#include <glm/vec3.hpp>
 #include <string>
 #include <map>
 
@@ -36,26 +37,43 @@ public:
 
 	/**
 	* @brief	Loads a .wav file based on a given path, and gives a label for the sound.
-	* @param	soundPath - sound path
-	* @param	soundName - sound name
+	* @param	soundPath const char*
+	* @param	soundName const char*
 	* @return	void
 	*/
 	void AddSound(const char* soundPath, const char* soundName);
 
 	/**
+	* @brief	Loads a music file based on a given path, and gives a label for the music.
+	* @param	musicPath const char*
+	* @param	soundName const char*
+	* @return	void
+	*/
+	void AddMusic(const char* musicPath, const char* musicName);
+
+	/**
 	* @brief	Plays the sound based on the label of the sound effect.
-	* @param	soundName - sound name
+	* @param	soundName const char*
 	* @return	void
 	*/
 	void PlaySound(const char* soundName);
+
+	/**
+	* @brief	Plays the music based on the label of the music effect.
+	* @param	musicName const char*
+	* @return	void
+	*/
+	void PlayMusic(const char* musicName);
 
 private:
 	/// Sounds stored as values into a map, key is a string that contains the label.
 	static std::map<std::string, Mix_Chunk*> m_sounds;
 
-	// Not used for now.
 	/// Music stored as values into a map, key is a string that contains the label.
-	// std::map<std::string, Mix_Music*> m_music;
+	static std::map<std::string, Mix_Music*> m_music;
+
+	/// Position of which the sound should be played
+	glm::vec3 m_soundPos;
 };
 
 #endif

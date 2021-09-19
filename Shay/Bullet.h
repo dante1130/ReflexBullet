@@ -97,7 +97,7 @@ private:
 	/// The velocity of which the bullet is moving to
 	glm::vec3 m_velocity;
 	/// The damage the bullet can deal to health
-	GLfloat m_damage;
+	GLint m_damage;
 	/// Bounding sphere for collision detection
 	BoundingSphere m_bSphere;
 	//Audio* m_audio;

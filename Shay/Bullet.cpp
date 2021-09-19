@@ -1,7 +1,7 @@
 #include "Bullet.h"
 
 Bullet::Bullet()
-	: m_faction(), m_position(glm::vec3(0)), m_velocity(glm::vec3(0)), m_damage(0)
+	: m_faction(), m_position(glm::vec3(0.0f)), m_velocity(glm::vec3(0.0f)), m_damage(0)
 {
 	m_bSphere.center = m_position;
 	m_bSphere.radius = 0.25;

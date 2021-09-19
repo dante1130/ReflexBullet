@@ -1,8 +1,7 @@
 #include "Player.h"
-#include <iostream>
 
 Player::Player()
-	: m_healthDecay(start_health_decay), m_firingSpeed(start_firing_speed), m_skillPoints(0)
+	: m_healthDecay(start_health_decay), m_firingSpeed(start_firing_speed), m_skillPoints(0), m_bulletOffsetScale(0.5f)
 {
 	m_gun = Gun(Faction::PLAYER, start_bullet_speed, m_firingSpeed);
 	m_health = start_health;
@@ -21,10 +20,9 @@ void Player::Update(GLfloat delta)
 void Player::Shoot()
 {	
 	Bullet newBullet(m_gun.GetFaction(), 
-					 glm::vec3(m_camera.GetPosition()),
-				     glm::vec3(m_camera.GetLook() * m_gun.GetBulletVelocity()),
+					 m_camera.GetPosition() + glm::normalize(m_camera.GetLook()) * m_bulletOffsetScale,
+				     m_camera.GetLook() * m_gun.GetBulletVelocity(),
 					 10);
-
 
 	m_gun.Shoot(newBullet);
 }
