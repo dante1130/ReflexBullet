@@ -44,16 +44,17 @@ void GM::GameInit(int w, int h)
 	glutTimerFunc(FRAMETIME, GameFixedUpdateLoop, 0);
 	glutIdleFunc(GameUpdateLoop);
 
-	glEnable(GL_CULL_FACE);
+	//glEnable(GL_CULL_FACE);
 	
-	glCullFace(GL_FRONT);
+	//glCullFace(GL_FRONT);
 
 	LoadGameObjectFiles();
 }
 
 void GM::LoadGameObjectFiles()
 {
-	ReadOBJMTL("data/object/ToyStore.obj", ToyStore);
+	ReadOBJMTL("data/object/gameObjects/ToyStore.obj", ToyStore);
+	ReadOBJMTL("data/object/gameObjects/Shelf_1.obj", Shelf_1);
 }
 
 void GM::CreateGameBoundingBoxes()
