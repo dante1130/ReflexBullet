@@ -425,6 +425,11 @@ GLdouble Camera::GetFB() const
 	return m_pos.z;
 }
 
+GLdouble Camera::GetCrouchDepth() const
+{
+	return crouchDepth;
+}
+
 //----------------------------------------------------------------------------------------
 // Positions camera at co-ordinates of parameters
 //----------------------------------------------------------------------------------------
@@ -481,9 +486,9 @@ void Camera::callGLLookAt()
 {
 	glLoadIdentity();
 	CrouchDistance();
-	gluLookAt(m_pos.x, m_pos.y + crouchDepth, m_pos.z, m_pos.x + m_look.x,	// Eye
-			  m_pos.y + m_look.y + crouchDepth, m_pos.z + m_look.z,			// Look at
-			  0, 1, 0);														// Up
+	gluLookAt(m_pos.x, m_pos.y + crouchDepth, m_pos.z, // Eye
+			  m_pos.x + m_look.x, m_pos.y + m_look.y + crouchDepth, m_pos.z + m_look.z, // Look at
+			  0, 1, 0);	 // Up
 }
 
 //--------------------------------------------------------------------------------------
@@ -535,7 +540,6 @@ void Camera::AddPlain(const GLint tempType, const glm::vec3& t1, const glm::vec3
 {
 	m_plain.Push(tempType, t1, t2, t3, t4);
 }
-
 
 void Camera::SetCameraLocation(float x, float y, float z)
 {
