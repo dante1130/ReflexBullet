@@ -113,6 +113,8 @@ void Object3D::DisplayObject(int textureID)
 void Object3D::DisplayObjectWithLighting(int textureID)
 {
 	unsigned temp_v, temp_vt, temp_nv, faceVectorSize, j;
+
+	SetMaterialProperties(mtlLoc);
 	
 	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(textureID));
 	faceVectorSize = GetFaceVectorSize();
@@ -132,4 +134,14 @@ void Object3D::DisplayObjectWithLighting(int textureID)
 	}
 
 	return;
+}
+
+
+void Object3D::SetMaterialProperties(int index)
+{
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, Materials[index].Ka);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, Materials[index].Kd);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, Materials[index].Ks);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, Materials[index].Ke);
+	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, Materials[index].Ns);
 }

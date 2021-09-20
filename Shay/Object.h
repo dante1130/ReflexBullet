@@ -7,6 +7,7 @@
 #include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
 #include "LoadTexturesShaysWorld.h"
+#include "Lighting.h"
 #include <gl/glut.h>
 
 /**
@@ -142,6 +143,11 @@ public:
 	*/
 	void DisplayObject(int textureID);
 
+	/**
+	* @brief	Displays the stored object based on the texture. Adds vertex normals to allows for lighting
+	* @param	textureID	- The define value of the texture
+	* @return	Void
+	*/
 	void DisplayObjectWithLighting(int textureID);
 
 private:
@@ -150,6 +156,13 @@ private:
 	 * @return const std::vector<std::array<Facebase,4>>&
 	 */
 	const unsigned GetFaceVectorSize() const;
+
+	/**
+	* @brief	Sets material property for a specific material
+	* @param	index	- Used to reference a material vector
+	* @return	Void
+	*/
+	static void SetMaterialProperties(int index);
 
 
 	/// stores the vertices

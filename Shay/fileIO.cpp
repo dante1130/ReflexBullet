@@ -113,6 +113,9 @@ void ReadMTLFile(Object3D& obj)
 		else if (prefix.compare("Ka") == 0) {
 			ss >> mat.Ka[0] >> mat.Ka[1] >> mat.Ka[2];
 		}
+		else if (prefix.compare("Ke") == 0) {
+			ss >> mat.Ke[0] >> mat.Ke[1] >> mat.Ke[2];
+		}
 		else if (prefix.compare("Ni") == 0) {
 			ss >> mat.Ni;
 		}

@@ -1,7 +1,7 @@
 #include "GameManager.h"
 
 bool ActiveGameWorld = false;
-float gameWorldMovementSpeed = 0.03;
+float gameWorldMovementSpeed = 0.06;
 float playerHeight = 0.9;
 float crouchDepth = -playerHeight * 3/5;
 float camRotateSpeed = 1;
@@ -53,7 +53,7 @@ void GM::GameInit(int w, int h)
 
 void GM::LoadGameObjectFiles()
 {
-	readObjFile("data/object/ToyStore.obj", ToyStore);
+	ReadOBJMTL("data/object/ToyStore.obj", ToyStore);
 }
 
 void GM::CreateGameBoundingBoxes()
@@ -101,7 +101,6 @@ void GM::GameFixedUpdateLoop(int val)
 	float newElapsedTime = glutGet(GLUT_ELAPSED_TIME);
 	delta = (newElapsedTime - elapsedTime) / 1000;
 	elapsedTime = newElapsedTime;
-	player.GetCamera().KeyboardMovement();
 	player.Update(delta);
 
 	GameCollisionResolution();

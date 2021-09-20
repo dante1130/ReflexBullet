@@ -16,16 +16,6 @@ void DGW::DisplayGameWorldMasterFunction()
 
 	glPushMatrix();
 	glScalef(-1, 1, 1);
-	GLfloat mat_a[] = { 0.1, 0.1, 0.1, 1 };
-	GLfloat mat_d[] = { 0.9, 0.9, 0.9, 1 };
-	GLfloat mat_s[] = { 1, 1, 1, 1 };
-	GLfloat low_sh[] = { 5.0 };
-	GLfloat mat_e[] = { 0, 0, 0, 1.0 };
-	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, mat_a);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, mat_d);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, mat_s);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, mat_e);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, low_sh);
 	ToyStore.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
 	glPopMatrix();
 
