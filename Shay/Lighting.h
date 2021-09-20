@@ -26,21 +26,15 @@ struct Material
 		Ns = 500;
 		d = 1;
 		Ni = 1;
-		Ke[0] = 0;
-		Ke[1] = 0;
-		Ke[2] = 0;
-		Ka[0] = 0.05;
-		Ka[1] = 0.05;
-		Ka[2] = 0.05;
-		Kd[0] = 0.95;
-		Kd[1] = 0.95;
-		Kd[2] = 0.95;
-		Ks[0] = 1;
-		Ks[1] = 1;
-		Ks[2] = 1;
 
+		for (int i = 0; i < 3; ++i)
+		{
+			Ke[i] = 0.0f;
+			Ka[i] = 0.05f;
+			Kd[i] = 0.95f;
+			Ks[i] = 1.0f;
+		}
 	}
-
 };
 
 struct Light

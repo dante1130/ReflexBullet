@@ -86,12 +86,9 @@ void ReadMTLFile(const std::string& fileName, Object3D& obj)
 
 	int index = fileName.find_last_of('/');
 
-
 	std::string name = fileName.substr(0, index+1);
 	std::cout << name << std::endl;
 	name = name + obj.GetMTLName();
-		
-		//= obj.GetMTLName();
 
 	std::ifstream temp_file(name);
 	if (!temp_file)
@@ -99,7 +96,6 @@ void ReadMTLFile(const std::string& fileName, Object3D& obj)
 		std::cout << name << "File not found" << std::endl;
 		return;
 	}
-
 
 	while (getline(temp_file, temp_line) && mat1 != 2)
 	{

@@ -1,6 +1,6 @@
 #include "EnemyAI.h"
 
-std::array<std::array<Grid, 5>, 5> EnemyAI::m_mainGrid;	
+std::array<std::array<Grid, 26>, 20> EnemyAI::m_mainGrid;	
 
 EnemyAI::EnemyAI()
 	: m_gridPos(0.0f), m_isMoving(false)

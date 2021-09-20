@@ -8,6 +8,7 @@
 #include "Lighting.h"
 #include "DisplayGameObjects.h"
 #include "Player.h"
+#include "EnemyAI.h"
 #include <GL/glut.h>
 
 /// <summary>
@@ -40,8 +41,6 @@ namespace DGW
 	* @return	Void
 	*/
 	void DisplayPerformanceMetrics();
-
-	void DisplayBullets();
 
 	void RenderBitMapString(void* font, char* string);
 }

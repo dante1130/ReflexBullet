@@ -23,6 +23,8 @@ void DGW::DisplayGameWorldMasterFunction()
 
 	DisplayPerformanceMetrics();
 
+	EnemyAI::DisplayWireframe();
+
 	GLfloat mat_a2[] = { 0.1, 0.1, 0.1, 1.0 };
 	GLfloat mat_d2[] = { 0, 0, 1, 1.0 };
 	GLfloat mat_s2[] = { 1, 1, 1, 1.0 };
@@ -36,17 +38,7 @@ void DGW::DisplayGameWorldMasterFunction()
 
 	DGO::DisplayGunBullets(player.GetGun());
 
-	
 	Lighting::UpdateLighting();
-
-	/*
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-
-	gluPerspective(90, 1280/720, 0.001, 1000);
-
-	glMatrixMode(GL_MODELVIEW);
-	*/
 
 	glutSwapBuffers();
 }
