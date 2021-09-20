@@ -38,7 +38,6 @@ void GM::GameInit(int w, int h)
 	glutPassiveMotionFunc(GameMouseMove);
 	glutMotionFunc(GameMouseMove);
 	glutMouseFunc(GameMouseClick);
-	GameReshape(w, h);
 	glutReshapeFunc(GameReshape);
 
 	glutTimerFunc(FRAMETIME, GameFixedUpdateLoop, 0);
@@ -74,7 +73,6 @@ void GM::GameCollisionResolution()
 	{
 		if (collision.Collide(player.GetGun().BulletAt(i).GetBoundingSphere()))
 		{
-			std::cout << "Collision!" << std::endl;
 			player.GetGun().RemoveBullet(i);
 		}
 	}

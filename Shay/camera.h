@@ -136,6 +136,8 @@ public:
 	 * @return GLdouble
 	 */
 	GLdouble GetFB () const;	
+
+	GLdouble GetCrouchDepth() const;
 	
 	/**
 	 * @brief position the camera.
