@@ -29,6 +29,6 @@ FaceBase StringToFace(const std::string& str);
 
 void ReadOBJMTL(const std::string& fileName, Object3D& obj);
 
-void ReadMTLFile(Object3D& obj);
+void ReadMTLFile(const std::string& fileName, Object3D& obj);
 
 #endif

@@ -27,7 +27,7 @@ void Gun::Update(GLfloat delta)
 
 void Gun::Shoot(const Bullet& bullet)
 {
-	if (!m_isFiring)
+	//if (!m_isFiring)
 	{
 		m_isFiring = true;
 		m_bullets.push_back(bullet);

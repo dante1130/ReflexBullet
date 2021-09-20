@@ -20,6 +20,27 @@ struct Material
 	float Ni;
 	///	Transparency where 1 = fully opaque
 	float d;
+
+	Material()
+	{
+		Ns = 500;
+		d = 1;
+		Ni = 1;
+		Ke[0] = 0;
+		Ke[1] = 0;
+		Ke[2] = 0;
+		Ka[0] = 0.05;
+		Ka[1] = 0.05;
+		Ka[2] = 0.05;
+		Kd[0] = 0.95;
+		Kd[1] = 0.95;
+		Kd[2] = 0.95;
+		Ks[0] = 1;
+		Ks[1] = 1;
+		Ks[2] = 1;
+
+	}
+
 };
 
 struct Light

@@ -74,16 +74,24 @@ FaceBase StringToFace(const std::string& str)
 void ReadOBJMTL(const std::string& fileName, Object3D& obj)
 {
 	readObjFile(fileName, obj);
-	ReadMTLFile(obj);
+	ReadMTLFile(fileName, obj);
 }
 
-void ReadMTLFile(Object3D& obj)
+void ReadMTLFile(const std::string& fileName, Object3D& obj)
 {
 	int mat1 = 0;
+	
 	std::string temp_line, prefix;
 	Material mat;
 
-	std::string name = "data/object/" + obj.GetMTLName();
+	int index = fileName.find_last_of('/');
+
+
+	std::string name = fileName.substr(0, index+1);
+	std::cout << name << std::endl;
+	name = name + obj.GetMTLName();
+		
+		//= obj.GetMTLName();
 
 	std::ifstream temp_file(name);
 	if (!temp_file)
@@ -92,8 +100,10 @@ void ReadMTLFile(Object3D& obj)
 		return;
 	}
 
+
 	while (getline(temp_file, temp_line) && mat1 != 2)
 	{
+
 		std::stringstream ss(temp_line);
 
 		getline(ss, prefix, ' ');
