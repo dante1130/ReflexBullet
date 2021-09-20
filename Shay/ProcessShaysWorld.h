@@ -2,7 +2,6 @@
 #define PROCESSSHAYSWORLD_H
 
 #include <ctime>
-#include <GL/glut.h>
 #include "camera.h"
 #include "texturedPolygons.h"
 #include "DisplayShaysWorld.h"
@@ -11,7 +10,7 @@
 #include "Object.h"
 #include "DisplayEXTRAShaysWorld.h"
 #include "GameManager.h"
-
+#include <GL/glut.h>
 
 namespace PSW
 {

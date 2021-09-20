@@ -1,10 +1,11 @@
 #ifndef DISPLAYSHAYSWORLD_H
 #define DISPLAYSHAYSWORLD_H
 
-#include <GL/glut.h>
+
 #include "texturedPolygons.h"
 #include "defines.h"
 #include "LoadTexturesShaysWorld.h"
+#include <GL/glut.h>
 
 /// glut Cylinder
 extern GLUquadricObj* glu_cylinder;

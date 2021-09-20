@@ -1,10 +1,11 @@
 #ifndef GUN_H
 #define GUN_H
 
-#include <gl/glut.h>
+
 #include <vector>
 #include "Faction.h"
 #include "Bullet.h"
+#include <gl/glut.h>
 
 /**
  * @class Gun

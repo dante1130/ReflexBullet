@@ -2,9 +2,9 @@
 #define BULLET_H
 
 #include <glm/vec3.hpp>
-#include <GL/glut.h>
 #include "Faction.h"
 #include "BoundingSphere.h"
+#include <GL/glut.h>
 
 /**
  * @class Bullet

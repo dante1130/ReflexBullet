@@ -1,11 +1,11 @@
 #ifndef DISPLAYEXTRASHAYSWORLD_H
 #define DISPLAYEXTRASHAYSWORLD_H
 
-#include <GL/glut.h>
 #include "texturedPolygons.h"
 #include "defines.h"
 #include "LoadTexturesShaysWorld.h"
 #include "Object.h"
+#include <GL/glut.h>
 
 /// <summary>
 /// The environment objects

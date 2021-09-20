@@ -6,8 +6,8 @@
 #include <array>
 #include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
-#include <gl/glut.h>
 #include "LoadTexturesShaysWorld.h"
+#include <gl/glut.h>
 
 /**
  * @struct FaceBase

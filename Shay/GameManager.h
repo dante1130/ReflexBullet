@@ -2,13 +2,13 @@
 #define GAMEMANAGER_H
 
 #include <iostream>
-#include <GL/glut.h>
 #include "defines.h"
 #include "camera.h"
 #include "DisplayGameWorld.h"
 #include "fileIO.h"
 #include "Player.h"
 #include "Lighting.h"
+#include <GL/glut.h>
 
 /// <summary>
 /// true - if the player is in the game world

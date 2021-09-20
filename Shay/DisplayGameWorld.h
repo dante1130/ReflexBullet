@@ -1,13 +1,14 @@
 #ifndef DISPLAYGAMEWORLD_H
 #define DISPLAYGAMEWORLD_H
 
-#include <GL/glut.h>
+
 #include <cstdio>
 #include "Object.h"
 #include "defines.h"
 #include "Lighting.h"
 #include "DisplayGameObjects.h"
 #include "Player.h"
+#include <GL/glut.h>
 
 /// <summary>
 /// Is the toy store obj file used for testing purposes
