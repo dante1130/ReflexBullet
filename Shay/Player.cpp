@@ -19,14 +19,10 @@ void Player::Update(GLfloat delta)
 
 void Player::Shoot()
 {	
-	Bullet newBullet(m_gun.GetFaction(), 
-
-					 glm::vec3(m_camera.GetPosition().x, 
-							   m_camera.GetPosition().y + m_camera.GetCrouchDepth(), 
-							   m_camera.GetPosition().z) 
-					 + glm::normalize(m_camera.GetLook()) * m_bulletOffsetScale,
-
-				     m_camera.GetLook() * m_gun.GetBulletVelocity(), 10);
+	Bullet newBullet(m_gun.GetFaction(),
+					 m_camera.GetPosition() + glm::normalize(m_camera.GetLook()) * m_bulletOffsetScale,
+				     m_camera.GetLook() * m_gun.GetBulletVelocity(), 
+					 10);
 
 	m_gun.Shoot(newBullet);
 }
