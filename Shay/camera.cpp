@@ -402,7 +402,7 @@ GLdouble Camera::AreaPlainTriangle(int edgeNo, int i)
 
 glm::vec3 Camera::GetPosition() const
 {
-	return m_pos;
+	return glm::vec3(m_pos.x, m_pos.y + crouchDepth, m_pos.z);
 }
 
 glm::vec3 Camera::GetLook() const
@@ -423,11 +423,6 @@ GLdouble Camera::GetUD() const
 GLdouble Camera::GetFB() const
 {
 	return m_pos.z;
-}
-
-GLdouble Camera::GetCrouchDepth() const
-{
-	return crouchDepth;
 }
 
 //----------------------------------------------------------------------------------------
