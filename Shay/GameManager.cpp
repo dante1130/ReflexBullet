@@ -54,6 +54,26 @@ void GM::LoadGameObjectFiles()
 {
 	ReadOBJMTL("data/object/gameObjects/ToyStore.obj", ToyStore);
 	ReadOBJMTL("data/object/gameObjects/Shelf_1.obj", Shelf_1);
+	ReadOBJMTL("data/object/gameObjects/s_Box.obj", s_Box);
+	ReadOBJMTL("data/object/gameObjects/s_Movies.obj", s_Movies);
+
+	//
+	//Objects used to populate the shelves
+	//
+	LoadGameShelfObject("data/object/gameObjects/s_WoodenBlocks.obj", TEXT_ENVIRONMENT_STAIRS);
+	LoadGameShelfObject("data/object/gameObjects/s_ToyBuildings.obj", TEXT_ENVIRONMENT_STAIRS);
+	LoadGameShelfObject("data/object/gameObjects/s_StorageContainerBox.obj", TEXT_ENVIRONMENT_STAIRS);
+	//
+	//End of objects used to populate the shelves
+	//
+}
+
+void GM::LoadGameShelfObject(const std::string& fileName, int textureID)
+{
+	ShelfObjectsOBJ temp;
+	ReadOBJMTL(fileName, temp.obj);
+	temp.texture = textureID;
+	Shelf_Objects.push_back(temp);
 }
 
 void GM::CreateGameBoundingBoxes()
@@ -164,7 +184,16 @@ void GM::GameKeys(unsigned char key, int x, int y)
 		if (camRotateSpeed > 5) { camRotateSpeed = 5; }
 		player.GetCamera().SetRotateSpeed(camRotateSpeed);
 		break;
+	case 'o':
+	case 'O':
+		wireFrame = !wireFrame;
+		break;
+	case 'i':
+	case 'I':
+		performanceMetric = !performanceMetric;
+		break;
 	}
+
 }
 
 void GM::GameReleaseKeys(unsigned char key, int x, int y)

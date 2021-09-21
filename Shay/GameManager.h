@@ -33,6 +33,14 @@ namespace GM
 	void LoadGameObjectFiles();
 
 	/**
+	* @brief	Loads in a game shelf object
+	* @param	fileName	- The name of the obj file
+	* @param	textureID	- The textures ID for the object
+	* @return	Void
+	*/
+	void LoadGameShelfObject(const std::string& fileName, int textureID);
+
+	/**
 	* @brief	Creates AABB collisions for the world
 	* @param	No param
 	* @return	Void

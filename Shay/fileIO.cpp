@@ -87,7 +87,6 @@ void ReadMTLFile(const std::string& fileName, Object3D& obj)
 	int index = fileName.find_last_of('/');
 
 	std::string name = fileName.substr(0, index+1);
-	std::cout << name << std::endl;
 	name = name + obj.GetMTLName();
 
 	std::ifstream temp_file(name);

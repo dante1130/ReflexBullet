@@ -3,12 +3,16 @@
 Player player;
 Object3D ToyStore;
 Object3D Shelf_1;
+std::vector<ShelfObjectsOBJ> Shelf_Objects;
+Object3D s_Box;
+Object3D s_Movies;
 
 float startFrameTime = -1;
 int frameCountPos = 0;
 float frames = 0;
 int lastFrameTime;
-
+bool wireFrame = false;
+bool performanceMetric = true;
 
 void DGW::DisplayGameWorldMasterFunction()
 {
@@ -21,9 +25,16 @@ void DGW::DisplayGameWorldMasterFunction()
 
 	DisplayShelves();
 
-	DisplayPerformanceMetrics();
 
-	EnemyAI::DisplayWireframe();
+	if (performanceMetric)
+	{
+		DisplayPerformanceMetrics();
+	}
+
+	if (wireFrame)
+	{
+		EnemyAI::DisplayWireframe();
+	}
 
 	GLfloat mat_a2[] = { 0.1, 0.1, 0.1, 1.0 };
 	GLfloat mat_d2[] = { 0, 0, 1, 1.0 };
@@ -48,131 +59,131 @@ void DGW::DisplayShelves()
 	glPushMatrix();
 	//Shelves facing +y in blender at the back of the shop
 	glTranslatef(10, 0, 0.5);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(1, 0);
 	glTranslatef(2, 0, 0);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(1, 1);
 	glTranslatef(2, 0, 0);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(1, 124);
 	glTranslatef(2, 0, 0);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(1, 14);
 	glTranslatef(2, 0, 0);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(1, 23);
 	glTranslatef(-4, 0, 4);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(1, 0, 0, 5, 1, 8);
 	glTranslatef(-2, 0, 0);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(1, 0, 0, 5, 1, 9);
 	glTranslatef(0, 0, 4);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 0, 0, 9, 1, 0);
 	glTranslatef(2, 0, 0);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 0, 0, 9, 1, 4);
 	glTranslatef(2, 0, 0);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 0, 0, 9, 1, 2);
 	//switch sides
 	glTranslatef(0, 0, 10);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 0, 0, 19, 1, 10);
 	glTranslatef(-2, 0, 0);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 0, 0, 19, 1, 100);
 	glTranslatef(0, 0, 4);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 0, 0, 23, 1, 14);
 	glTranslatef(-2, 0, 0);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 0, 0, 23, 1, 6);
 
 	//Shelves facing -y in blender at the back of the shop
 	glRotatef(180, 0, 1, 0);
 	glTranslatef(0, 0, -3);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 2);
 	glTranslatef(-2, 0, 0);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 7);
 	glTranslatef(-2, 0, 0);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 26);
 	glTranslatef(-2, 0, 0);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 21);
 	glTranslatef(4, 0, 4);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 0, 0, 21, -1, 20);
 	glTranslatef(2, 0, 0);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 0, 0, 21, -1, 211);
 	glTranslatef(0, 0, 4);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 0, 0, 17, -1, 35);
 	glTranslatef(-2, 0, 0);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 0, 0, 17, -1, 57);
 	glTranslatef(-2, 0, 0);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 0, 0, 17, -1, 59);
 	//Switch sides
 	glTranslatef(0, 0, 10);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(1, 0, 0, 7, -1, 27);
 	glTranslatef(2, 0, 0);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(1, 0, 0, 7, -1, 0);
 	glTranslatef(0, 0, 4);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(1, 0, 0, 3, -1, 2);
 	glTranslatef(2, 0, 0);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(1, 0, 0, 3, -1, 1);
 
-	//Back shop wall
+	//Back shop wall - left to right 
 	glRotatef(90, 0, 1, 0);
 	glTranslatef(-2.5, 0, -7.5);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(1, 90);
 	glTranslatef(2, 0, 0);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(1, 91);
 	glTranslatef(2, 0, 0);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(1, 97);
 	glTranslatef(2, 0, 0);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(1, 54);
 	glTranslatef(2, 0, 0);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(1, 12, 1, 0, 0, 24);
 	glTranslatef(8, 0, 0);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 12, 1, 0, 0, 756);
 	glTranslatef(2, 0, 0);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 225);
 	glTranslatef(2, 0, 0);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 25);
 	glTranslatef(2, 0, 0);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 156);
 	glTranslatef(2, 0, 0);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 17);
 
 	//Middle back
 	glTranslatef(-15, 0, 3);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 16, -1, 0, 0, 19);
 	glTranslatef(6, 0, 0);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 16, -1, 0, 0, 12);
 	glPopMatrix();
 
 	//Front of shop shelves
 	glPushMatrix();
 	//Shelves facing -y in blender at the front of the shop
 	glTranslatef(4, 0, 6.5);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 0, 0, 7, 1, 11);
 	glTranslatef(0, 0, 14);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 0, 0, 21, 1, 10);
 
 	//Shelves facing +y in blender at the front of the shop
 	glRotatef(180, 0, 1, 0);
 	glTranslatef(0, 0, -3);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 0, 0, 23, -1, 68);
 	glTranslatef(-4, 0, 0);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 0, 0, 23, -1, 0);
 	glTranslatef(4, 0, 4);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 0, 0, 19, -1, 56);
 	glTranslatef(0, 0, 14);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 0, 0, 5, -1, 80);
 
 	//Shelves facing front of store
 	glRotatef(90, 0, 1, 0);
 	glTranslatef(0.5, 0, 1.5);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 2, -1, 0, 0, 25);
 	glTranslatef(14, 0, 0);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 2, -1, 0, 0, 66);
 	glTranslatef(5, 0, -1);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 3, -1, 0, 0, 77);
 	glTranslatef(0, 0, -4);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 7, -1, 0, 0, 88);
 	
 	//Shelves facing back of store
 	glRotatef(180, 0, 1, 0);
 	glTranslatef(0, 0, 1);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 9, 1, 0, 0, 99);
 	glTranslatef(0, 0, -4);
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	DisplayShelfContents(0, 5, 1, 0, 0, 44);
 
 	glPopMatrix();
 
@@ -181,6 +192,127 @@ void DGW::DisplayShelves()
 
 
 }
+
+void DGW::DisplayShelfContents(unsigned int objectList, int seed)
+{
+	DisplayShelfContents(objectList, 0, 0, 0, 0, seed);
+}
+
+void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirection, float zPos, int zDirection, int seed)
+{
+	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+
+	glm::vec3 pos = player.GetCamera().GetPosition();
+
+	//Don't drow contents if shelf not facing player
+	if (xDirection != 0)
+	{
+		if ((xDirection == 1 && xPos > pos[0]) || (xDirection == -1 && xPos < pos[0])) { return; }
+	}
+	if (zDirection != 0)
+	{
+		if ((zDirection == 1 && zPos > pos[2]) || (zDirection == -1 && zPos < pos[2])) { return; }
+	}
+
+	//If selecting at random from the object list or choosing perticular object
+	if (objectList == 0)
+	{
+		/*
+		//Debug for popin of shelf contents
+		glPushMatrix();
+		glScalef(0.5, 6, 0.5);
+		glutSolidCube(1);
+		glPopMatrix();
+		*/
+
+		int arraySize = Shelf_Objects.size();
+		int i = PsudeoNumGen(seed, arraySize, 0), rot;
+		glPushMatrix();
+		glTranslatef(-0.725, 0.1, 0.15);
+		s_Box.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+		for (int count = 0; count < 4; count++)
+		{
+			rot = (seed * 7 + count) % 2;
+			if (rot == 0) { rot = -1; }
+			else { rot = 1; }
+			glPushMatrix();
+			glRotatef(((seed * count) % 30) * rot, 0, 1, 0);
+			s_Box.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+			glPopMatrix();
+			glTranslatef(0.45, 0, 0);
+		}
+		
+		/*
+		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		glTranslatef(0.45, 0, 0);
+		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		glTranslatef(0.45, 0, 0);
+		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		glTranslatef(0.45, 0, 0);
+		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		glTranslatef(-1.35, 0, -0.5);
+		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		glTranslatef(0.45, 0, 0);
+		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		glTranslatef(0.45, 0, 0);
+		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		glTranslatef(0.45, 0, 0);
+		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		*/
+
+		i = PsudeoNumGen(i+1, arraySize, seed);
+		//glTranslatef(0, 0.5, 0);
+		glTranslatef(-1.75, 0.5, 0);
+		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		glTranslatef(0.45, 0, 0);
+		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		glTranslatef(0.45, 0, 0);
+		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		glTranslatef(0.45, 0, 0);
+		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		glTranslatef(-1.35, 0, -0.5);
+		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		glTranslatef(0.45, 0, 0);
+		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		glTranslatef(0.45, 0, 0);
+		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		glTranslatef(0.45, 0, 0);
+		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		
+		i = PsudeoNumGen(i+5, arraySize, 0);
+		glTranslatef(-1.35, 0.5, 0.5);
+		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		glTranslatef(0.45, 0, 0);
+		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		glTranslatef(0.45, 0, 0);
+		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		glTranslatef(0.45, 0, 0);
+		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		glPopMatrix();
+
+
+	}
+	else if (objectList == 1)
+	{
+		s_Movies.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	}
+	else if (objectList == 2)
+	{
+
+	}
+	else if (objectList == 3)
+	{
+
+	}
+}
+
+int DGW::PsudeoNumGen(int seed, int max, int rand)
+{
+	seed = (seed + (seed * 3) + rand) % max;
+	return seed;
+}
+
+
 
 
 void DGW::DisplayPerformanceMetrics()
