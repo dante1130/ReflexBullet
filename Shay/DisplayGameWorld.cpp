@@ -6,6 +6,7 @@ Object3D Shelf_1;
 std::vector<ShelfObjectsOBJ> Shelf_Objects;
 Object3D s_Box;
 Object3D s_Movies;
+Object3D s_Books;
 
 float startFrameTime = -1;
 int frameCountPos = 0;
@@ -20,7 +21,7 @@ void DGW::DisplayGameWorldMasterFunction()
 
 	glPushMatrix();
 	glScalef(-1, 1, 1);
-	ToyStore.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	ToyStore.DisplayObjectWithLighting(TOY_STORE);
 	glPopMatrix();
 
 	DisplayShelves();
@@ -78,26 +79,31 @@ void DGW::DisplayShelves()
 	DisplayShelfContents(0, 0, 0, 9, 1, 4);
 	glTranslatef(2, 0, 0);
 	DisplayShelfContents(0, 0, 0, 9, 1, 2);
+	glPushMatrix();
+	glTranslatef(0.5, 0, 0);
+	glScalef(0.5, 1, 1);
+	Shelf_1.DisplayObjectWithLighting(SHELF_1); //Cover up corner shelf
+	glPopMatrix();
 	//switch sides
 	glTranslatef(0, 0, 10);
 	DisplayShelfContents(0, 0, 0, 19, 1, 10);
 	glTranslatef(-2, 0, 0);
 	DisplayShelfContents(0, 0, 0, 19, 1, 100);
 	glTranslatef(0, 0, 4);
-	DisplayShelfContents(0, 0, 0, 23, 1, 14);
+	DisplayShelfContents(2, 0, 0, 23, 1, 14);
 	glTranslatef(-2, 0, 0);
-	DisplayShelfContents(0, 0, 0, 23, 1, 6);
+	DisplayShelfContents(2, 0, 0, 23, 1, 6);
 
 	//Shelves facing -y in blender at the back of the shop
 	glRotatef(180, 0, 1, 0);
 	glTranslatef(0, 0, -3);
-	DisplayShelfContents(0, 2);
+	DisplayShelfContents(2, 2);
 	glTranslatef(-2, 0, 0);
-	DisplayShelfContents(0, 7);
+	DisplayShelfContents(2, 7);
 	glTranslatef(-2, 0, 0);
-	DisplayShelfContents(0, 26);
+	DisplayShelfContents(2, 26);
 	glTranslatef(-2, 0, 0);
-	DisplayShelfContents(0, 21);
+	DisplayShelfContents(2, 21);
 	glTranslatef(4, 0, 4);
 	DisplayShelfContents(0, 0, 0, 21, -1, 20);
 	glTranslatef(2, 0, 0);
@@ -108,6 +114,11 @@ void DGW::DisplayShelves()
 	DisplayShelfContents(0, 0, 0, 17, -1, 57);
 	glTranslatef(-2, 0, 0);
 	DisplayShelfContents(0, 0, 0, 17, -1, 59);
+	glPushMatrix();
+	glTranslatef(-0.5, 0, 0);
+	glScalef(0.5, 1, 1);
+	Shelf_1.DisplayObjectWithLighting(SHELF_1); //Cover up corner shelf
+	glPopMatrix();
 	//Switch sides
 	glTranslatef(0, 0, 10);
 	DisplayShelfContents(1, 0, 0, 7, -1, 27);
@@ -122,6 +133,10 @@ void DGW::DisplayShelves()
 	glRotatef(90, 0, 1, 0);
 	glTranslatef(-2.5, 0, -7.5);
 	DisplayShelfContents(1, 90);
+	glPushMatrix();
+	glTranslatef(-1, 0, 0);
+	Shelf_1.DisplayObjectWithLighting(SHELF_1); //Cover up corner shelf
+	glPopMatrix();
 	glTranslatef(2, 0, 0);
 	DisplayShelfContents(1, 91);
 	glTranslatef(2, 0, 0);
@@ -131,15 +146,19 @@ void DGW::DisplayShelves()
 	glTranslatef(2, 0, 0);
 	DisplayShelfContents(1, 12, 1, 0, 0, 24);
 	glTranslatef(8, 0, 0);
-	DisplayShelfContents(0, 12, 1, 0, 0, 756);
+	DisplayShelfContents(2, 12, 1, 0, 0, 756);
 	glTranslatef(2, 0, 0);
-	DisplayShelfContents(0, 225);
+	DisplayShelfContents(2, 225);
 	glTranslatef(2, 0, 0);
-	DisplayShelfContents(0, 25);
+	DisplayShelfContents(2, 25);
 	glTranslatef(2, 0, 0);
-	DisplayShelfContents(0, 156);
+	DisplayShelfContents(2, 156);
 	glTranslatef(2, 0, 0);
-	DisplayShelfContents(0, 17);
+	DisplayShelfContents(2, 17);
+	glPushMatrix();
+	glTranslatef(1, 0, 0);
+	Shelf_1.DisplayObjectWithLighting(SHELF_1); //Cover up corner shelf
+	glPopMatrix();
 
 	//Middle back
 	glTranslatef(-15, 0, 3);
@@ -200,7 +219,7 @@ void DGW::DisplayShelfContents(unsigned int objectList, int seed)
 
 void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirection, float zPos, int zDirection, int seed)
 {
-	Shelf_1.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+	Shelf_1.DisplayObjectWithLighting(SHELF_1);
 
 	glm::vec3 pos = player.GetCamera().GetPosition();
 
@@ -217,19 +236,12 @@ void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirecti
 	//If selecting at random from the object list or choosing perticular object
 	if (objectList == 0)
 	{
-		/*
-		//Debug for popin of shelf contents
-		glPushMatrix();
-		glScalef(0.5, 6, 0.5);
-		glutSolidCube(1);
-		glPopMatrix();
-		*/
-
 		int arraySize = Shelf_Objects.size();
 		int i = PsudeoNumGen(seed, arraySize, 0), rot;
+
 		glPushMatrix();
 		glTranslatef(-0.725, 0.1, 0.15);
-		s_Box.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+		s_Box.DisplayObjectWithLighting(S_BOX_1 + (seed + 25) % 3);
 		for (int count = 0; count < 4; count++)
 		{
 			rot = (seed * 7 + count) % 2;
@@ -237,32 +249,30 @@ void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirecti
 			else { rot = 1; }
 			glPushMatrix();
 			glRotatef(((seed * count) % 30) * rot, 0, 1, 0);
-			s_Box.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+			s_Box.DisplayObjectWithLighting(S_BOX_1 + (seed * count) % 3);
 			glPopMatrix();
 			glTranslatef(0.45, 0, 0);
 		}
-		
-		/*
-		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
-		glTranslatef(0.45, 0, 0);
-		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
-		glTranslatef(0.45, 0, 0);
-		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
-		glTranslatef(0.45, 0, 0);
-		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
-		glTranslatef(-1.35, 0, -0.5);
-		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
-		glTranslatef(0.45, 0, 0);
-		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
-		glTranslatef(0.45, 0, 0);
-		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
-		glTranslatef(0.45, 0, 0);
-		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
-		*/
 
 		i = PsudeoNumGen(i+1, arraySize, seed);
-		//glTranslatef(0, 0.5, 0);
 		glTranslatef(-1.75, 0.5, 0);
+		glPushMatrix();
+		glRotatef(((seed * 2) % 20) * rot, 0, 1, 0);
+		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		glPopMatrix();
+		for (int count = 0; count < 3; count++)
+		{
+			rot = (seed * 7 + count) % 2;
+			if (rot == 0) { rot = -1; }
+			else { rot = 1; }
+
+			glTranslatef(0.45, 0, 0);
+			glPushMatrix();
+			glRotatef(((seed * count) % 20) * rot, 0, 1, 0);
+			Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+			glPopMatrix();
+		}
+		glTranslatef(-1.35, 0, -0.4);
 		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
 		glTranslatef(0.45, 0, 0);
 		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
@@ -270,14 +280,7 @@ void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirecti
 		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
 		glTranslatef(0.45, 0, 0);
 		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
-		glTranslatef(-1.35, 0, -0.5);
-		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
-		glTranslatef(0.45, 0, 0);
-		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
-		glTranslatef(0.45, 0, 0);
-		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
-		glTranslatef(0.45, 0, 0);
-		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		
 		
 		i = PsudeoNumGen(i+5, arraySize, 0);
 		glTranslatef(-1.35, 0.5, 0.5);
@@ -288,21 +291,18 @@ void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirecti
 		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
 		glTranslatef(0.45, 0, 0);
 		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		
 		glPopMatrix();
-
+		
 
 	}
 	else if (objectList == 1)
 	{
-		s_Movies.DisplayObjectWithLighting(TEXT_ENVIRONMENT_STAIRS);
+		s_Movies.DisplayObjectWithLighting(S_MOVIES);
 	}
 	else if (objectList == 2)
 	{
-
-	}
-	else if (objectList == 3)
-	{
-
+		s_Books.DisplayObjectWithLighting(S_BOOKS);
 	}
 }
 

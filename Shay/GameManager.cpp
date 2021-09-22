@@ -16,6 +16,8 @@ Collision collision;
 
 void GM::GameInit(int w, int h)
 {
+	LTGW::CreateTextures();
+
 	glClearColor(1, 1, 1, 1);
 	player.GetCamera().SetWorldCoordinates(0, 26);
 	player.GetCamera().ClearAABB();
@@ -56,13 +58,14 @@ void GM::LoadGameObjectFiles()
 	ReadOBJMTL("data/object/gameObjects/Shelf_1.obj", Shelf_1);
 	ReadOBJMTL("data/object/gameObjects/s_Box.obj", s_Box);
 	ReadOBJMTL("data/object/gameObjects/s_Movies.obj", s_Movies);
+	ReadOBJMTL("data/object/gameObjects/s_Books.obj", s_Books);
 
 	//
 	//Objects used to populate the shelves
 	//
-	LoadGameShelfObject("data/object/gameObjects/s_WoodenBlocks.obj", TEXT_ENVIRONMENT_STAIRS);
-	LoadGameShelfObject("data/object/gameObjects/s_ToyBuildings.obj", TEXT_ENVIRONMENT_STAIRS);
-	LoadGameShelfObject("data/object/gameObjects/s_StorageContainerBox.obj", TEXT_ENVIRONMENT_STAIRS);
+	LoadGameShelfObject("data/object/gameObjects/s_WoodenBlocks.obj", S_WOODEN_BLOCKS);
+	LoadGameShelfObject("data/object/gameObjects/s_ToyBuildings.obj", S_TOY_BUILDING);
+	LoadGameShelfObject("data/object/gameObjects/s_StorageContainerBox.obj", S_STORAGE_CONTAINER_BOX);
 	//
 	//End of objects used to populate the shelves
 	//

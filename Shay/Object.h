@@ -8,6 +8,7 @@
 #include <glm/vec3.hpp>
 #include "LoadTexturesShaysWorld.h"
 #include "Lighting.h"
+#include "LoadTexturesGameWorld.h"
 #include <gl/glut.h>
 
 /**

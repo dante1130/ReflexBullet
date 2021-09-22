@@ -9,6 +9,7 @@
 #include "DisplayGameObjects.h"
 #include "Player.h"
 #include "EnemyAI.h"
+#include "LoadTexturesGameWorld.h"
 #include <vector>
 #include <stdlib.h>
 #include <GL/glut.h>
@@ -33,6 +34,7 @@ extern Object3D ToyStore;
 extern std::vector<ShelfObjectsOBJ> Shelf_Objects;
 extern Object3D s_Box;
 extern Object3D s_Movies;
+extern Object3D s_Books;
 
 extern bool wireFrame;
 extern bool performanceMetric;
@@ -71,6 +73,13 @@ namespace DGW
 	*/
 	void DisplayShelfContents(unsigned int objectList, float xPos, int xDirection, float zPos, int zDirection, int seed);
 
+	/**
+	* @brief	'Randomly' generates a number based on two inputs
+	* @param	seed	- A variable used to for the output
+	* @param	max		- The maximum number it could be
+	* @param	rand	- An extra variable to change the output
+	* @return	int		- The number generated
+	*/
 	int PsudeoNumGen(int seed, int max, int rand);
 
 	/**

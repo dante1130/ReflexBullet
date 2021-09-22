@@ -115,8 +115,7 @@ void Object3D::DisplayObjectWithLighting(int textureID)
 	unsigned temp_v, temp_vt, temp_nv, faceVectorSize, j;
 
 	SetMaterialProperties(mtlLoc);
-	
-	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(textureID));
+	glBindTexture(GL_TEXTURE_2D, tpGW.GetTexture(textureID));
 	faceVectorSize = GetFaceVectorSize();
 	for (unsigned i = 0; i < faceVectorSize; ++i)
 	{
