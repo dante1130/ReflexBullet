@@ -38,7 +38,7 @@ void Lighting::LightInit()
 	GLfloat light_ambient[4] = { 0.01, 0.01, 0.01, 1 };
 	GLfloat light_diffuse[4] = { 0.90, 0.90, 0.90, 1 };
 	GLfloat light_specular[4] = { 1, 1, 1, 1 };
-	GLfloat dropOff = 1;
+	GLfloat dropOff = 0.5;
 
 	for (int count = 0; count < m_NumberOfLights; count++)
 	{
@@ -53,12 +53,16 @@ void Lighting::LightInit()
 		lights[count].dropOff = dropOff;
 		lights[count].light = light[count];
 
+		
 		glLightfv(lights[count].light, GL_AMBIENT, lights[count].light_ambient);
 		glLightfv(lights[count].light, GL_DIFFUSE, lights[count].light_diffuse);
 		glLightfv(lights[count].light, GL_SPECULAR, lights[count].light_specular);
 		glLightf(lights[count].light, GL_LINEAR_ATTENUATION, lights[count].dropOff);
 		glEnable(lights[count].light);
 	}
+	float v[] = { 0.6, 0.6, 0.9 };
+	glLightfv(lights[0].light, GL_DIFFUSE, v);
+	glLightf(lights[0].light, GL_LINEAR_ATTENUATION, 0.1);
 }
 
 void Lighting::MaterialInit()

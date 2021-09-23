@@ -7,6 +7,7 @@ std::vector<ShelfObjectsOBJ> Shelf_Objects;
 Object3D s_Box;
 Object3D s_Movies;
 Object3D s_Books;
+Object3D Sky;
 
 float startFrameTime = -1;
 int frameCountPos = 0;
@@ -20,10 +21,18 @@ void DGW::DisplayGameWorldMasterFunction()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glPushMatrix();
+	glDisable(GL_LIGHTING);
+	glScalef(-1, 1, 1);
+	Sky.DisplayObjectWithLighting(SKY);
+	glEnable(GL_LIGHTING);
+	glPopMatrix();
+
+
+	glPushMatrix();
 	glScalef(-1, 1, 1);
 	ToyStore.DisplayObjectWithLighting(TOY_STORE);
 	glPopMatrix();
-
+	
 	DisplayShelves();
 
 

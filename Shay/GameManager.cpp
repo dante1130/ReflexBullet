@@ -59,6 +59,8 @@ void GM::LoadGameObjectFiles()
 	ReadOBJMTL("data/object/gameObjects/s_Box.obj", s_Box);
 	ReadOBJMTL("data/object/gameObjects/s_Movies.obj", s_Movies);
 	ReadOBJMTL("data/object/gameObjects/s_Books.obj", s_Books);
+	ReadOBJMTL("data/object/gameObjects/Sky.obj", Sky);
+
 
 	//
 	//Objects used to populate the shelves

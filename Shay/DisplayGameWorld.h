@@ -35,6 +35,7 @@ extern std::vector<ShelfObjectsOBJ> Shelf_Objects;
 extern Object3D s_Box;
 extern Object3D s_Movies;
 extern Object3D s_Books;
+extern Object3D Sky;
 
 extern bool wireFrame;
 extern bool performanceMetric;

@@ -25,7 +25,6 @@ void LTGW::CreateTextures()
 	/// ////////////////////////////////////DELETE AFTER
 	/// 
 	/// 
-	/// 
 	/// PLACE HOLDER TEXTURE
 	/// 
 	/// </summary>
@@ -51,6 +50,15 @@ void LTGW::CreateTextures()
 
 	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/Shelf_1.raw", 512, 512);
 	tpGW.CreateTexture(SHELF_1, GWimage, 512, 512);
+
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/s_StorageContainerBox_1.raw", 256, 256);
+	tpGW.CreateTexture(S_STORAGE_CONTAINER_BOX, GWimage, 256, 256);
+
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/s_Movies_1.raw", 256, 256);
+	tpGW.CreateTexture(S_MOVIES, GWimage, 256, 256);
+
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/Sky.raw", 512, 256);
+	tpGW.CreateTexture(SKY, GWimage, 512, 256);
 	
 
 
