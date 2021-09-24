@@ -36,7 +36,7 @@ void Lighting::LightInit()
 									{19, 3, 25, 1},
 									{10, 3, 25, 1} };
 	GLfloat light_ambient[4] = { 0.01, 0.01, 0.01, 1 };
-	GLfloat light_diffuse[4] = { 0.90, 0.90, 0.90, 1 };
+	GLfloat light_diffuse[4] = { 1, 0.95, 0.88, 1 };
 	GLfloat light_specular[4] = { 1, 1, 1, 1 };
 	GLfloat dropOff = 0.5;
 
@@ -60,9 +60,9 @@ void Lighting::LightInit()
 		glLightf(lights[count].light, GL_LINEAR_ATTENUATION, lights[count].dropOff);
 		glEnable(lights[count].light);
 	}
-	float v[] = { 0.6, 0.6, 0.9 };
+	float v[] = { 1, 0.95, 0.88, 1 };
 	glLightfv(lights[0].light, GL_DIFFUSE, v);
-	glLightf(lights[0].light, GL_LINEAR_ATTENUATION, 0.1);
+	glLightf(lights[0].light, GL_LINEAR_ATTENUATION, 0.2);
 }
 
 void Lighting::MaterialInit()

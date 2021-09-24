@@ -5,12 +5,11 @@ unsigned char* image = nullptr;
 
 void DeleteImageFromMemory()
 {
-	image = nullptr;
-	if (image == nullptr)
+	if (image != nullptr)
 	{
 		delete[] image;
 	}
-	
+	image = nullptr;
 }
 
 void CreateTextures()

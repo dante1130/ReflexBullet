@@ -5,11 +5,11 @@ unsigned char* GWimage = nullptr;
 
 void LTGW::DeleteImageFromMemory()
 {
-	GWimage = nullptr;
-	if (GWimage == nullptr)
+	if (GWimage != nullptr)
 	{
 		delete[] GWimage;
 	}
+	GWimage = nullptr;
 
 }
 
