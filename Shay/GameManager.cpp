@@ -197,22 +197,22 @@ void GM::GameKeys(unsigned char key, int x, int y)
 	case 'I':
 		performanceMetric = !performanceMetric;
 		break;
-	case 49:
+	case 49: // 1
 		player.AddBulletSpeed(1);
 		break;
-	case 50:
+	case 50: // 2
 		player.AddMoveSpeed(0.01);
 		break;
-	case 51:
+	case 51: // 3
 		player.DecreaseFiringDelay(0.1);
 		break;
-	case 55:
+	case 55: // 7
 		player.ResetFiringDelay();
 		break;
-	case 56:
+	case 56: // 8
 		player.ResetBulletSpeed();
 		break;
-	case 57:
+	case 57: // 9
 		player.ResetMoveSpeed();
 		break;
 	}
