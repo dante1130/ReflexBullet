@@ -6,7 +6,8 @@ enum class Grid
 	FREE, 
 	FULL, 
 	HALF, 
-	ENEMYTHERE
+	ENEMYTHERE,
+	PLAYERTHERE
 };
 
 #endif

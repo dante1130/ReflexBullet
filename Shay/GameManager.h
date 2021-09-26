@@ -8,6 +8,7 @@
 #include "fileIO.h"
 #include "Player.h"
 #include "Lighting.h"
+#include "Enemy.h"
 #include <GL/glut.h>
 
 /// <summary>

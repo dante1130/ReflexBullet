@@ -1,4 +1,6 @@
 #include "EnemyAI.h"
+#include <iostream>
+#include <glm\geometric.hpp>
 
 std::array<std::array<Grid, 26>, 20> EnemyAI::m_mainGrid;	
 
@@ -105,3 +107,24 @@ const glm::ivec2& EnemyAI::GetGridDest() const
 {
 	return m_gridDest;
 }
+
+bool EnemyAI::isPlayerInView(const glm::vec3& lookAt)
+{
+	glm::vec2 look2D = glm::normalize(glm::vec2(lookAt.x, lookAt.z));
+
+	for (glm::vec2 tempPos = m_gridPos; tempPos.x < 20 && tempPos.y < 26; tempPos += look2D)
+	{
+		switch (m_mainGrid[tempPos.x][tempPos.y])
+		{
+		case Grid::FULL:
+		case Grid::ENEMYTHERE:
+			return false;
+
+		case Grid::PLAYERTHERE:
+			return true;
+		}
+	}
+	return false;
+}
+
+

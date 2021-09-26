@@ -13,6 +13,7 @@ float delta = 0;
 float elapsedTime = glutGet(GLUT_ELAPSED_TIME);
 
 Collision collision;
+Enemy enemy;
 
 void GM::GameInit(int w, int h)
 {
@@ -27,6 +28,8 @@ void GM::GameInit(int w, int h)
 	player.GetCamera().SetMoveSpeed(gameWorldMovementSpeed);
 	player.GetCamera().Position(glm::vec3(0.5, playerHeight, 0.5), 180.0);
 	player.GetCamera().SetMaximumCrouchDepth(crouchDepth);
+
+	enemy.SetLook(player.GetCamera().GetPosition());
 
 	CreateGameBoundingBoxes();
 	
@@ -126,6 +129,9 @@ void GM::GameFixedUpdateLoop(int val)
 	delta = (newElapsedTime - elapsedTime) / 1000;
 	elapsedTime = newElapsedTime;
 	player.Update(delta);
+
+	Enemy::SetLook(player.GetCamera().GetPosition());
+	enemy.Shoot();
 
 	GameCollisionResolution();
 }

@@ -21,6 +21,8 @@ public:
 
 	const glm::ivec2& GetGridDest() const;
 
+	bool isPlayerInView(const glm::vec3& lookAt);
+
 private:
 	// As it is a 2d array, it does store what is happening in that grid position (based on it's x/z location in the grid)
 	// If the position is empty, then both should be FREE

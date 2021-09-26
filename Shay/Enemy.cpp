@@ -1,7 +1,9 @@
 #include "Enemy.h"
 
+glm::vec3 Enemy::m_look;
+
 Enemy::Enemy()
-	: m_position(0.0f), m_look(0.0f)
+	: m_position(0.0f)
 {
 	m_gun = Gun(Faction::ENEMY, 5, 1);
 	m_health = 10;
@@ -14,12 +16,15 @@ void Enemy::Update(GLfloat delta)
 
 void Enemy::Shoot()
 {
-	Bullet newBullet(m_gun.GetFaction(),
-					 m_position,
-					 m_look * m_gun.GetBulletVelocity(),
-					 10);
+	if (m_ai.isPlayerInView(m_look))
+	{
+		Bullet newBullet(m_gun.GetFaction(),
+						 m_position,
+						 m_look * m_gun.GetBulletVelocity(),
+						 10);
 
-	m_gun.Shoot(newBullet);
+		m_gun.Shoot(newBullet);
+	}
 }
 
 // Getter
@@ -36,4 +41,9 @@ const glm::vec3& Enemy::GetPosition() const
 const glm::vec3& Enemy::GetLook() const
 {
 	return m_look;
+}
+
+void Enemy::SetLook(const glm::vec3& lookAt)
+{
+	m_look = lookAt;
 }
