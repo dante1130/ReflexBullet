@@ -13,6 +13,12 @@ constexpr auto S_BOOKS					= 7;
 constexpr auto S_BOX_1					= 8;
 constexpr auto S_BOX_2					= 9;
 constexpr auto S_BOX_3					= 10;
+constexpr auto HEALTH					= 12;
+constexpr auto WOOD						= 13;
+constexpr auto M_POLY					= 14;
+constexpr auto B_GAMMON					= 15;
+constexpr auto P_NARY					= 16;
+
 
 
 //NEXT 11

@@ -59,6 +59,22 @@ void LTGW::CreateTextures()
 
 	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/Sky.raw", 512, 256);
 	tpGW.CreateTexture(SKY, GWimage, 512, 256);
+
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/healthBar.raw", 8, 8);
+	tpGW.CreateTexture(HEALTH, GWimage, 8, 8);
+
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/wood.raw", 800, 600);
+	tpGW.CreateTexture(WOOD, GWimage, 800, 600);
+
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/mpoly.raw", 128, 96);
+	tpGW.CreateTexture(M_POLY, GWimage, 128, 96);
+
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/bgammon.raw", 128, 96);
+	tpGW.CreateTexture(B_GAMMON, GWimage, 128, 96);
+
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/pnary.raw", 128, 96);
+	tpGW.CreateTexture(P_NARY, GWimage, 128, 96);
+
 	
 
 

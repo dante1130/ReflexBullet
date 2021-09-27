@@ -13,13 +13,13 @@ float startFrameTime = -1;
 int frameCountPos = 0;
 float frames = 0;
 int lastFrameTime;
+
 bool wireFrame = false;
 bool performanceMetric = true;
 
 void DGW::DisplayGameWorldMasterFunction()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 	glPushMatrix();
 	glDisable(GL_LIGHTING);
 	glScalef(-1, 1, 1);
@@ -32,14 +32,15 @@ void DGW::DisplayGameWorldMasterFunction()
 	glScalef(-1, 1, 1);
 	ToyStore.DisplayObjectWithLighting(TOY_STORE);
 	glPopMatrix();
-	
-	DisplayShelves();
-
 
 	if (performanceMetric)
 	{
 		DisplayPerformanceMetrics();
 	}
+	
+	
+	DisplayShelves();
+	DrawHUD();
 
 	if (wireFrame)
 	{
@@ -60,8 +61,12 @@ void DGW::DisplayGameWorldMasterFunction()
 	DGO::DisplayGunBullets(player.GetGun());
 
 	Lighting::UpdateLighting();
-
 	glutSwapBuffers();
+}
+
+void DGW::GetSize(int& width, int& height)
+{
+	GetScreenSize(width, height);
 }
 
 void DGW::DisplayShelves()
@@ -146,6 +151,7 @@ void DGW::DisplayShelves()
 	glTranslatef(-1, 0, 0);
 	Shelf_1.DisplayObjectWithLighting(SHELF_1); //Cover up corner shelf
 	glPopMatrix();
+
 	glTranslatef(2, 0, 0);
 	DisplayShelfContents(1, 91);
 	glTranslatef(2, 0, 0);
@@ -352,6 +358,7 @@ void DGW::DisplayPerformanceMetrics()
 	if ((elapsedTime - startFrameTime) < 1000) { return; }
 
 	std::cout << "Frames per second: " << frameCountPos << std::endl;
+	
 
 	frameCountPos = 0;
 	startFrameTime = glutGet(GLUT_ELAPSED_TIME);
