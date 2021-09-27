@@ -12,6 +12,8 @@ float height;
 float delta = 0;
 float elapsedTime = glutGet(GLUT_ELAPSED_TIME);
 
+glm::vec3 m_playerPos, m_floatPos, m_playerLook, m_floatLook;
+
 Collision collision;
 Enemy enemy;
 
@@ -53,6 +55,8 @@ void GM::GameInit(int w, int h)
 	//glCullFace(GL_FRONT);
 
 	LoadGameObjectFiles();
+	ReadLeaderboardFile("data/leaderboards.txt", LB);
+	
 }
 
 void GM::LoadGameObjectFiles()
@@ -133,12 +137,18 @@ void GM::GameFixedUpdateLoop(int val)
 
 	}
 
-	player.GetCamera().KeyboardMovement();
-
 	float newElapsedTime = glutGet(GLUT_ELAPSED_TIME);
 	delta = (newElapsedTime - elapsedTime) / 1000;
 	elapsedTime = newElapsedTime;
-	player.Update(delta);
+	if (m_PausedGame)
+	{
+		PausedFloatingPosition();
+	}
+	else
+	{
+		player.Update(delta);
+		player.GetCamera().KeyboardMovement();
+	}
 
 	Enemy::SetLook(player.GetCamera().GetPosition());
 	enemy.Shoot();
@@ -148,6 +158,7 @@ void GM::GameFixedUpdateLoop(int val)
 
 void GM::GameUpdateLoop()
 {
+
 
 	glutPostRedisplay();
 }
@@ -192,6 +203,30 @@ void GM::GameKeys(unsigned char key, int x, int y)
 	case 'c':
 	case ' ':
 		player.GetCamera().SetCrouch(true);
+		break;
+	case 'p':
+	case 'P':
+		m_PausedGame = !m_PausedGame;
+		if (m_PausedGame)
+		{
+			glutPassiveMotionFunc(NULL);
+			glutMotionFunc(NULL);
+			m_playerPos = player.GetCamera().GetPosition();
+			m_floatPos = m_playerPos;
+			m_playerLook = player.GetCamera().GetLook();
+			m_floatLook = m_playerLook;
+			m_floatMoving = true;
+		}
+		else
+		{
+			glutSetCursor(GLUT_CURSOR_NONE);
+			glutWarpPointer(width / 2, height / 2);
+			glutPassiveMotionFunc(GameMouseMove);
+			glutMotionFunc(GameMouseMove);
+			m_floatMoving = false;
+			player.GetCamera().SetCameraLocation(m_playerPos.x, m_playerPos.y, m_playerPos.z);
+			player.GetCamera().SetCameraLookAt(m_playerLook);
+		}
 		break;
 	case '_':
 	case '-':
@@ -278,13 +313,12 @@ void GM::GameReleaseKeys(unsigned char key, int x, int y)
 void GM::GameMouseMove(int x, int y)
 {
 	player.GetCamera().MouseMove(x, y);
-
-	//glutPostRedisplay();
+	
 }
 
 void GM::GameMouseClick(int button, int state, int x, int y)
 {
-	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
+	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && !m_PausedGame)
 	{
 		player.Shoot();
 	}
@@ -306,4 +340,52 @@ void GM::GameReshape(int w, int h)
 	glViewport(0, 0, w, h);
 	gluPerspective(90, ratio, 0.001, zFar);
 	glMatrixMode(GL_MODELVIEW);
+}
+
+void GM::PausedFloatingPosition()
+{
+	if (m_floatMoving)
+	{
+		float timeToComplete = 120;
+
+		//Smooth movement motion
+		glm::vec3 change = { 2.5, 4.5, 13 };
+		change = (change - m_playerPos);
+		change.x = change.x / timeToComplete;
+		change.y = change.y / timeToComplete;
+		change.z = change.z / timeToComplete;
+
+		m_floatPos = m_floatPos + change;
+
+		//Smooth look motion
+		glm::vec3 look = { -1, 0, 0 };
+		float angle = acos((-1 * m_playerLook.x)/sqrt(m_playerLook.x * m_playerLook.x + m_playerLook.z * m_playerLook.z));
+		
+		if (m_playerLook.z >= 0)
+		{
+			m_floatLook.x = m_floatLook.x * cos(angle / timeToComplete) - m_floatLook.z * sin(angle / timeToComplete);
+			m_floatLook.z = m_floatLook.x * sin(angle / timeToComplete) + m_floatLook.z * cos(angle / timeToComplete);
+		}
+		else
+		{
+			angle *= -1;
+			m_floatLook.x = m_floatLook.x * cos(angle / timeToComplete) - m_floatLook.z * sin(angle / timeToComplete);
+			m_floatLook.z = m_floatLook.x * sin(angle / timeToComplete) + m_floatLook.z * cos(angle / timeToComplete);
+		}
+
+		m_floatLook.y = m_floatLook.y - m_playerLook.y / timeToComplete;
+
+		//if you reach the destination
+		if (m_floatPos.y >= 4.5)
+		{
+			m_floatPos.x = 2.5;
+			m_floatPos.y = 4.5;
+			m_floatPos.z = 13;
+			m_floatMoving = false;
+			glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
+		}
+
+		player.GetCamera().SetCameraLocation(m_floatPos.x, m_floatPos.y, m_floatPos.z);
+		player.GetCamera().SetCameraLookAt(m_floatLook);
+	}
 }

@@ -21,6 +21,7 @@ constexpr auto P_NARY					= 16;
 
 
 
+
 //NEXT 11
 constexpr auto GWTEXTURE_END = 20;
 

@@ -135,3 +135,73 @@ void ReadMTLFile(const std::string& fileName, Object3D& obj)
 	temp_file.close();
 	
 }
+
+
+
+void ReadLeaderboardFile(const std::string& fileName, Leaderboard& lb)
+{
+	std::string temp_line, prefix;
+	Record r;
+	int num = 0;
+	float temp;
+	
+	std::ifstream temp_file(fileName);
+	if (!temp_file)
+	{
+		std::cout << fileName << " file not found" << std::endl;
+		return;
+	}
+	
+	while (getline(temp_file, temp_line))
+	{
+		if (num == 0)
+		{
+			r.name = temp_line;
+		}
+		else if (num == 1)
+		{
+			temp = std::stof(temp_line);
+			r.accuracy = temp;
+		}
+		else
+		{
+			temp = std::stof(temp_line);
+			r.time = temp;
+		}
+
+		num++;
+		if (num == 3)
+		{
+			lb.SetRecord(r);
+			num = num % 3;
+
+		}
+	}
+	
+
+	temp_file.close();
+}
+
+void WriteLeaderboardFile(const std::string& fileName, Leaderboard& lb)
+{
+	
+	std::ofstream temp_file(fileName);
+	if (!temp_file)
+	{
+		std::cout << fileName << " file could not be opened" << std::endl;
+		return;
+	}
+
+	int max = lb.GetTotalNumberOfRecords();
+	Record r;
+
+	for (int count = 0; count < max; count++)
+	{
+		r = lb.GetRecord(count);
+
+		temp_file << r.name << '\n' << r.accuracy << '\n' << r.time << '\n';
+	}
+
+	temp_file.close();
+	return;
+}

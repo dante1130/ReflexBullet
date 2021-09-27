@@ -229,6 +229,14 @@ public:
 	*/
 	void SetCameraLocation(float x, float y, float z);
 
+	/**
+	* @brief	Sets the cameras look at direction
+	* @param	look - The new look at direction
+	* @return	Void
+	*/
+	void SetCameraLookAt(glm::vec3& look);
+
+
 private:
 	/// Initialize values for first run for m_prev if true
 	bool m_firstMouse;
@@ -274,7 +282,6 @@ private:
 	/// Direction of where the player is going.
 	GLdouble m_direction;
 
-	// Movement speed (step size)
 	/// Speed of which the camera rotates.
 	GLdouble m_rotateSpeed;
 	/// Movement speed.
