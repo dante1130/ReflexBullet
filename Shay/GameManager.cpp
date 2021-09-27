@@ -15,6 +15,7 @@ float elapsedTime = glutGet(GLUT_ELAPSED_TIME);
 glm::vec3 m_playerPos, m_floatPos, m_playerLook, m_floatLook;
 
 Collision collision;
+Enemy enemy;
 
 void GM::GameInit(int w, int h)
 {
@@ -29,6 +30,8 @@ void GM::GameInit(int w, int h)
 	player.GetCamera().SetMoveSpeed(gameWorldMovementSpeed);
 	player.GetCamera().Position(glm::vec3(0.5, playerHeight, 0.5), 180.0);
 	player.GetCamera().SetMaximumCrouchDepth(crouchDepth);
+
+	enemy.SetLook(player.GetCamera().GetPosition());
 
 	CreateGameBoundingBoxes();
 	
@@ -137,6 +140,9 @@ void GM::GameFixedUpdateLoop(int val)
 		player.GetCamera().KeyboardMovement();
 	}
 
+	Enemy::SetLook(player.GetCamera().GetPosition());
+	enemy.Shoot();
+
 	GameCollisionResolution();
 }
 
@@ -231,6 +237,24 @@ void GM::GameKeys(unsigned char key, int x, int y)
 	case 'i':
 	case 'I':
 		performanceMetric = !performanceMetric;
+		break;
+	case 49: // 1
+		player.AddBulletSpeed(1);
+		break;
+	case 50: // 2
+		player.AddMoveSpeed(0.01);
+		break;
+	case 51: // 3
+		player.DecreaseFiringDelay(0.1);
+		break;
+	case 55: // 7
+		player.ResetFiringDelay();
+		break;
+	case 56: // 8
+		player.ResetBulletSpeed();
+		break;
+	case 57: // 9
+		player.ResetMoveSpeed();
 		break;
 	}
 

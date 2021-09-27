@@ -9,6 +9,7 @@
 #include "Player.h"
 #include "Lighting.h"
 #include "Leaderboards.h"
+#include "Enemy.h"
 #include <GL/glut.h>
 
 /// <summary>

@@ -117,6 +117,12 @@ public:
 
 	glm::vec3 GetPosition() const;
 
+	/**
+	 * @brief Returns the movement speed.
+	 * @return GLdouble
+	 */
+	GLdouble GetMoveSpeed() const;
+
 	glm::vec3 GetLook() const;
 
 	/**

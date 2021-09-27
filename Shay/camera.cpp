@@ -208,7 +208,7 @@ void Camera::DirectionLR(int const & tempMove)
 }
 
 //--------------------------------------------------------------------------------------
-// Not used but allows up and don movement
+// Not used but allows up and down movement
 void Camera::DirectionUD(int const & tempMove)
 {
 	m_deltaMoveUD = tempMove;
@@ -403,6 +403,11 @@ GLdouble Camera::AreaPlainTriangle(int edgeNo, int i)
 glm::vec3 Camera::GetPosition() const
 {
 	return glm::vec3(m_pos.x, m_pos.y + crouchDepth, m_pos.z);
+}
+
+GLdouble Camera::GetMoveSpeed() const
+{
+	return m_moveSpeed;
 }
 
 glm::vec3 Camera::GetLook() const

@@ -18,9 +18,13 @@ public:
 	const glm::vec3& GetPosition() const;
 	const glm::vec3& GetLook() const;
 
+	static void SetLook(const glm::vec3& lookAt);
+
 private:
+	/// Where the enemy is facing, static as all enemies will look at the player
+	static glm::vec3 m_look;
+
 	glm::vec3 m_position;
-	glm::vec3 m_look;
 	EnemyAI m_ai;
 };
 
