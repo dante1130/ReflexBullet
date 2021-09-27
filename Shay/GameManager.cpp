@@ -32,7 +32,7 @@ void GM::GameInit(int w, int h)
 	CreateGameBoundingBoxes();
 	
 	GameReshape(w, h); // Called once to reinit the reshape
-
+	DGW::GetSize(w, h);
 	Lighting::LightingInit();
 
 	glutDisplayFunc(DGW::DisplayGameWorldMasterFunction);
@@ -71,6 +71,16 @@ void GM::LoadGameObjectFiles()
 	LoadGameShelfObject("data/object/gameObjects/s_WoodenBlocks.obj", S_WOODEN_BLOCKS);
 	LoadGameShelfObject("data/object/gameObjects/s_ToyBuildings.obj", S_TOY_BUILDING);
 	LoadGameShelfObject("data/object/gameObjects/s_StorageContainerBox.obj", S_STORAGE_CONTAINER_BOX);
+	LoadGameShelfObject("data/object/gameObjects/s_plane.obj", WOOD);
+	LoadGameShelfObject("data/object/gameObjects/s_car.obj", WOOD);
+	LoadGameShelfObject("data/object/gameObjects/s_truck.obj", WOOD);
+
+	//same object, dramaticall slows down frame rate using same object to load
+	//must program so that one object can use from set of textures
+	LoadGameShelfObject("data/object/gameObjects/s_boardgame.obj", M_POLY);
+	LoadGameShelfObject("data/object/gameObjects/s_boardgame2.obj", B_GAMMON);
+	LoadGameShelfObject("data/object/gameObjects/s_boardgame3.obj", P_NARY);
+
 	//
 	//End of objects used to populate the shelves
 	//
@@ -286,6 +296,11 @@ void GM::GameReleaseKeys(unsigned char key, int x, int y)
 	case 'C':
 	case ' ':
 		player.GetCamera().SetCrouch(false);
+		break;
+
+	case 'l':
+	case 'L': 
+		totalTime -= 5000;
 		break;
 	}
 

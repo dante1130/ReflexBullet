@@ -10,7 +10,9 @@
 #include "Player.h"
 #include "EnemyAI.h"
 #include "LoadTexturesGameWorld.h"
+#include "UI.h"
 #include "Leaderboards.h"
+
 #include <vector>
 #include <stdlib.h>
 #include <GL/glut.h>
@@ -61,6 +63,7 @@ namespace DGW
 	*/
 	void DisplayShelves();
 
+	void GetSize(int& width, int& height);
 	/**
 	* @brief	Displays a shalf and its contents based on an object list
 	* @param	objectList	- An integer which specifies which object list to use

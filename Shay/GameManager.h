@@ -33,7 +33,6 @@ namespace GM
 	* @return	Void
 	*/
 	void LoadGameObjectFiles();
-
 	/**
 	* @brief	Loads in a game shelf object
 	* @param	fileName	- The name of the obj file
