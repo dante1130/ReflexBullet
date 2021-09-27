@@ -92,34 +92,34 @@ void DGW::DisplayShelves()
 	glPushMatrix();
 	//Shelves facing +y in blender at the back of the shop
 	glTranslatef(10, 0, 0.5);
-	DisplayShelfContentsCulling(1, 0, 1, look, pos, cullPoints);
+	DisplayShelfContentsCulling(1, 187090, 1, look, pos, cullPoints);
 	glTranslatef(2, 0, 0);
 	cullPoints[0] = 11; cullPoints[2] = 13;
-	DisplayShelfContentsCulling(1, 1, 1, look, pos, cullPoints);
+	DisplayShelfContentsCulling(1, 14658, 1, look, pos, cullPoints);
 	glTranslatef(2, 0, 0);
 	cullPoints[0] = 13; cullPoints[1] = 1; cullPoints[2] = 15; cullPoints[3] = 1;
-	DisplayShelfContentsCulling(1, 124, 1, look, pos, cullPoints);
+	DisplayShelfContentsCulling(1, 1547824, 1, look, pos, cullPoints);
 	glTranslatef(2, 0, 0);
 	cullPoints[0] = 15; cullPoints[2] = 17;
-	DisplayShelfContentsCulling(1, 14, 1, look, pos, cullPoints);
+	DisplayShelfContentsCulling(1, 13234, 1, look, pos, cullPoints);
 	glTranslatef(2, 0, 0);
 	cullPoints[0] = 17; cullPoints[2] = 19;
-	DisplayShelfContentsCulling(1, 23, 1, look, pos, cullPoints);
+	DisplayShelfContentsCulling(1, 283453, 1, look, pos, cullPoints);
 	glTranslatef(-4, 0, 4);
 	cullPoints[0] = 13; cullPoints[1] = 5; cullPoints[2] = 15; cullPoints[3] = 5;
-	DisplayShelfContentsCulling(1, 0, 0, 5, 1, 8, 0, look, pos, cullPoints);
+	DisplayShelfContentsCulling(1, 0, 0, 5, 1, 7338, 0, look, pos, cullPoints);
 	glTranslatef(-2, 0, 0);
 	cullPoints[0] = 11; cullPoints[2] = 13;
-	DisplayShelfContentsCulling(1, 0, 0, 5, 1, 9, 0, look, pos, cullPoints);
+	DisplayShelfContentsCulling(1, 0, 0, 5, 1, 3639, 0, look, pos, cullPoints);
 	glTranslatef(0, 0, 4);
 	cullPoints[0] = 11; cullPoints[1] = 9; cullPoints[2] = 13; cullPoints[3] = 9;
-	DisplayShelfContentsCulling(0, 0, 0, 9, 1, 0, 0, look, pos, cullPoints);
+	DisplayShelfContentsCulling(0, 0, 0, 9, 1, 1240, 0, look, pos, cullPoints);
 	glTranslatef(2, 0, 0);
 	cullPoints[0] = 13; cullPoints[2] = 15;
-	DisplayShelfContentsCulling(0, 0, 0, 9, 1, 4, 1, look, pos, cullPoints);
+	DisplayShelfContentsCulling(0, 0, 0, 9, 1, 32144, 1, look, pos, cullPoints);
 	glTranslatef(2, 0, 0);
 	cullPoints[0] = 15; cullPoints[2] = 17;
-	DisplayShelfContentsCulling(0, 0, 0, 9, 1, 2, 1, look, pos, cullPoints);
+	DisplayShelfContentsCulling(0, 0, 0, 9, 1, 2122, 1, look, pos, cullPoints);
 	glPushMatrix();
 	glTranslatef(0.5, 0, 0);
 	glScalef(0.5, 1, 1);
@@ -128,46 +128,46 @@ void DGW::DisplayShelves()
 	//switch sides
 	glTranslatef(0, 0, 10);
 	cullPoints[1] = 19; cullPoints[3] = 19;
-	DisplayShelfContentsCulling(0, 0, 0, 19, 1, 10, 0, look, pos, cullPoints);
+	DisplayShelfContentsCulling(0, 0, 0, 19, 1, 16340, 0, look, pos, cullPoints);
 	glTranslatef(-2, 0, 0);
 	cullPoints[0] = 13;cullPoints[2] = 15;
-	DisplayShelfContentsCulling(0, 0, 0, 19, 1, 100, 1, look, pos, cullPoints);
+	DisplayShelfContentsCulling(0, 0, 0, 19, 1, 1234600, 1, look, pos, cullPoints);
 	glTranslatef(0, 0, 4);
 	cullPoints[1] = 23; cullPoints[3] = 23;
-	DisplayShelfContentsCulling(2, 0, 0, 23, 1, 14, 0, look, pos, cullPoints);
+	DisplayShelfContentsCulling(2, 0, 0, 23, 1, 12364, 0, look, pos, cullPoints);
 	glTranslatef(-2, 0, 0);
 	cullPoints[0] = 11; cullPoints[2] = 13;
-	DisplayShelfContentsCulling(2, 0, 0, 23, 1, 6, 0, look, pos, cullPoints);
+	DisplayShelfContentsCulling(2, 0, 0, 23, 1, 25626, 0, look, pos, cullPoints);
 
 	//Shelves facing -y in blender at the back of the shop
 	glRotatef(180, 0, 1, 0);
 	glTranslatef(0, 0, -3);
 	cullPoints[1] = 25; cullPoints[3] = 25;
-	DisplayShelfContentsCulling(2, 2, 0, look, pos, cullPoints);
+	DisplayShelfContentsCulling(2, 1463212, 0, look, pos, cullPoints);
 	glTranslatef(-2, 0, 0);
 	cullPoints[0] = 13; cullPoints[2] = 15;
-	DisplayShelfContentsCulling(2, 7, 1, look, pos, cullPoints);
+	DisplayShelfContentsCulling(2, 2477, 1, look, pos, cullPoints);
 	glTranslatef(-2, 0, 0);
 	cullPoints[0] = 15; cullPoints[2] = 17;
-	DisplayShelfContentsCulling(2, 26, 1, look, pos, cullPoints);
+	DisplayShelfContentsCulling(2, 227346, 1, look, pos, cullPoints);
 	glTranslatef(-2, 0, 0);
 	cullPoints[0] = 17; cullPoints[2] = 19;
-	DisplayShelfContentsCulling(2, 21, 1, look, pos, cullPoints);
+	DisplayShelfContentsCulling(2, 21783, 1, look, pos, cullPoints);
 	glTranslatef(4, 0, 4);
 	cullPoints[0] = 13; cullPoints[1] = 21; cullPoints[2] = 15; cullPoints[3] = 21;
-	DisplayShelfContentsCulling(0, 0, 0, 21, -1, 20, 0, look, pos, cullPoints);
+	DisplayShelfContentsCulling(0, 0, 0, 21, -1, 234630, 0, look, pos, cullPoints);
 	glTranslatef(2, 0, 0);
 	cullPoints[0] = 11; cullPoints[2] = 13;
-	DisplayShelfContentsCulling(0, 0, 0, 21, -1, 211, 0, look, pos, cullPoints);
+	DisplayShelfContentsCulling(0, 0, 0, 21, -1, 253211, 0, look, pos, cullPoints);
 	glTranslatef(0, 0, 4);
 	cullPoints[1] = 17; cullPoints[3] = 17;
-	DisplayShelfContentsCulling(0, 0, 0, 17, -1, 35, 0, look, pos, cullPoints);
+	DisplayShelfContentsCulling(0, 0, 0, 17, -1, 365475, 0, look, pos, cullPoints);
 	glTranslatef(-2, 0, 0);
 	cullPoints[0] = 13; cullPoints[2] = 15;
-	DisplayShelfContentsCulling(0, 0, 0, 17, -1, 57, 1, look, pos, cullPoints);
+	DisplayShelfContentsCulling(0, 0, 0, 17, -1, 2352357, 1, look, pos, cullPoints);
 	glTranslatef(-2, 0, 0);
 	cullPoints[0] = 15; cullPoints[2] = 17;
-	DisplayShelfContentsCulling(0, 0, 0, 17, -1, 59, 1, look, pos, cullPoints);
+	DisplayShelfContentsCulling(0, 0, 0, 17, -1, 53259, 1, look, pos, cullPoints);
 	glPushMatrix();
 	glTranslatef(-0.5, 0, 0);
 	glScalef(0.5, 1, 1);
@@ -176,22 +176,22 @@ void DGW::DisplayShelves()
 	//Switch sides
 	glTranslatef(0, 0, 10);
 	cullPoints[0] = 15; cullPoints[1] = 7; cullPoints[2] = 17; cullPoints[3] = 7;
-	DisplayShelfContentsCulling(1, 0, 0, 7, -1, 27, 0, look, pos, cullPoints);
+	DisplayShelfContentsCulling(1, 0, 0, 7, -1, 22457, 0, look, pos, cullPoints);
 	glTranslatef(2, 0, 0);
 	cullPoints[0] = 13; cullPoints[2] = 15;
-	DisplayShelfContentsCulling(1, 0, 0, 7, -1, 0, 1, look, pos, cullPoints);
+	DisplayShelfContentsCulling(1, 0, 0, 7, -1, 34570, 1, look, pos, cullPoints);
 	glTranslatef(0, 0, 4);
 	cullPoints[1] = 3; cullPoints[3] = 3;
-	DisplayShelfContentsCulling(1, 0, 0, 3, -1, 2, 0, look, pos, cullPoints);
+	DisplayShelfContentsCulling(1, 0, 0, 3, -1, 2352, 0, look, pos, cullPoints);
 	glTranslatef(2, 0, 0);
 	cullPoints[0] = 11; cullPoints[2] = 13;
-	DisplayShelfContentsCulling(1, 0, 0, 3, -1, 1, 0, look, pos, cullPoints);
+	DisplayShelfContentsCulling(1, 0, 0, 3, -1, 231, 0, look, pos, cullPoints);
 
 	//Back shop wall - left to right 
 	glRotatef(90, 0, 1, 0);
 	glTranslatef(-2.5, 0, -7.5);
 	cullPoints[0] = 19; cullPoints[1] = 1; cullPoints[2] = 19; cullPoints[3] = 2;
-	DisplayShelfContentsCulling(1, 90, 1, look, pos, cullPoints);
+	DisplayShelfContentsCulling(1, 905678, 1, look, pos, cullPoints);
 	glPushMatrix();
 	glTranslatef(-1, 0, 0);
 	Shelf_1.DisplayObjectWithLighting(SHELF_1); //Cover up corner shelf
@@ -199,32 +199,32 @@ void DGW::DisplayShelves()
 
 	glTranslatef(2, 0, 0);
 	cullPoints[1] = 2; cullPoints[3] = 4;
-	DisplayShelfContentsCulling(1, 91, 1, look, pos, cullPoints);
+	DisplayShelfContentsCulling(1, 963461, 1, look, pos, cullPoints);
 	glTranslatef(2, 0, 0);
 	cullPoints[1] = 4; cullPoints[3] = 6;
-	DisplayShelfContentsCulling(1, 97, 1, look, pos, cullPoints);
+	DisplayShelfContentsCulling(1, 92367, 1, look, pos, cullPoints);
 	glTranslatef(2, 0, 0);
 	cullPoints[1] = 6; cullPoints[3] = 8;
-	DisplayShelfContentsCulling(1, 54, 1, look, pos, cullPoints);
+	DisplayShelfContentsCulling(1, 52344, 1, look, pos, cullPoints);
 	glTranslatef(2, 0, 0);
 	cullPoints[1] = 8; cullPoints[3] = 10;
-	DisplayShelfContentsCulling(1, 12, 1, 0, 0, 24, 0, look, pos, cullPoints);
+	DisplayShelfContentsCulling(1, 12, 1, 0, 0, 23424, 0, look, pos, cullPoints);
 	glTranslatef(8, 0, 0);
 	cullPoints[1] = 16; cullPoints[3] = 18;
 	DisplayShelfContentsCulling(2, 12, 1, 0, 0, 756, 0, look, pos, cullPoints);
 	glTranslatef(2, 0, 0);
 	cullPoints[1] = 18; cullPoints[3] = 20;
-	DisplayShelfContentsCulling(2, 225, 1, look, pos, cullPoints);
+	DisplayShelfContentsCulling(2, 22789755, 1, look, pos, cullPoints);
 	glTranslatef(2, 0, 0);
 	cullPoints[1] = 20; cullPoints[3] = 22;
 	DisplayShelfContentsCulling(2, 25, 1, look, pos, cullPoints);
 	glTranslatef(2, 0, 0);
 	cullPoints[1] = 22; cullPoints[3] = 24;
-	DisplayShelfContentsCulling(2, 156, 1, look, pos, cullPoints);
+	DisplayShelfContentsCulling(2, 15789786, 1, look, pos, cullPoints);
 	glTranslatef(2, 0, 0);
 	//DisplayShelfContents(2, 17);
 	cullPoints[1] = 24; cullPoints[3] = 25;
-	DisplayShelfContentsCulling(2, 17, 1, look, pos, cullPoints);
+	DisplayShelfContentsCulling(2, 17897, 1, look, pos, cullPoints);
 	glPushMatrix();
 	glTranslatef(1, 0, 0);
 	Shelf_1.DisplayObjectWithLighting(SHELF_1); //Cover up corner shelf
@@ -233,10 +233,10 @@ void DGW::DisplayShelves()
 	//Middle back
 	glTranslatef(-15, 0, 3);
 	cullPoints[0] = 16; cullPoints[1] = 9; cullPoints[2] = 16; cullPoints[3] = 11;
-	DisplayShelfContentsCulling(0, 16, -1, 0, 0, 19, 0, look, pos, cullPoints);
+	DisplayShelfContentsCulling(0, 16, -1, 0, 0, 7819, 0, look, pos, cullPoints);
 	glTranslatef(6, 0, 0);
 	cullPoints[1] = 15; cullPoints[3] = 17;
-	DisplayShelfContentsCulling(0, 16, -1, 0, 0, 12, 0, look, pos, cullPoints);
+	DisplayShelfContentsCulling(0, 16, -1, 0, 0, 11992, 0, look, pos, cullPoints);
 	glPopMatrix();
 
 	//Front of shop shelves
@@ -244,7 +244,7 @@ void DGW::DisplayShelves()
 	//Shelves facing -y in blender at the front of the shop
 	glTranslatef(4, 0, 6.5);
 	cullPoints[0] = 3; cullPoints[1] = 7; cullPoints[2] = 5; cullPoints[3] = 7;
-	DisplayShelfContentsCulling(0, 0, 0, 7, 1, 11, 0, look, pos, cullPoints);
+	DisplayShelfContentsCulling(0, 0, 0, 7, 1, 3118, 0, look, pos, cullPoints);
 	glTranslatef(0, 0, 14);
 	cullPoints[1] = 21; cullPoints[3] = 21;
 	DisplayShelfContentsCulling(0, 0, 0, 21, 1, 10, 0, look, pos, cullPoints);
@@ -370,7 +370,7 @@ void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirecti
 			glTranslatef(0.45, 0, 0);
 		}
 
-		i = PsudeoNumGen(i+1, arraySize, seed);
+		i = PsudeoNumGen(i+1, arraySize, sqrt(seed));
 		glTranslatef(-1.75, 0.5, 0);
 		glPushMatrix();
 		glRotatef(((seed * 2) % 20) * rot, 0, 1, 0);
@@ -398,7 +398,7 @@ void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirecti
 		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
 		
 		
-		i = PsudeoNumGen(i+5, arraySize, 0);
+		i = PsudeoNumGen(seed, arraySize, seed);
 		glTranslatef(-1.35, 0.5, 0.5);
 		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
 		glTranslatef(0.45, 0, 0);
@@ -424,7 +424,7 @@ void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirecti
 
 int DGW::PsudeoNumGen(int seed, int max, int rand)
 {
-	seed = (seed + (seed * 3) + rand) % max;
+	seed = (seed + rand) % max;
 	return seed;
 }
 

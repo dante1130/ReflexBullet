@@ -132,6 +132,7 @@ void Object3D::DisplayObjectWithLighting(int textureID)
 		glEnd();
 	}
 
+
 	return;
 }
 
