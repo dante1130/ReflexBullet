@@ -2,13 +2,9 @@
 
 bool ActiveGameWorld = false;
 float gameWorldMovementSpeed = 0.06;
-float playerHeight = 0.9;
-float crouchDepth = -playerHeight * 3/5;
 float camRotateSpeed = 1;
 float zFar = 0.001;
 bool Starting = true;
-float width;
-float height;
 float delta = 0;
 float elapsedTime = glutGet(GLUT_ELAPSED_TIME);
 
@@ -123,7 +119,7 @@ void GM::GameFixedUpdateLoop(int val)
 			Starting = false;
 			glClearColor(0.5, 0.5, 0.5, 1);
 		}
-		GameReshape(width, height);
+		GameReshape(glutGet(GLUT_WINDOW_WIDTH), glutGet(GLUT_WINDOW_HEIGHT));
 
 	}
 
@@ -192,7 +188,7 @@ void GM::GameKeys(unsigned char key, int x, int y)
 	case 'C':
 	case 'c':
 	case ' ':
-		player.GetCamera().SetCrouch(true);
+		if (!m_floatMoving) { player.GetCamera().SetCrouch(true); }
 		break;
 	case 'p':
 	case 'P':
@@ -210,7 +206,7 @@ void GM::GameKeys(unsigned char key, int x, int y)
 		else
 		{
 			glutSetCursor(GLUT_CURSOR_NONE);
-			glutWarpPointer(width / 2, height / 2);
+			glutWarpPointer(glutGet(GLUT_WINDOW_WIDTH) / 2, glutGet(GLUT_WINDOW_HEIGHT) / 2);
 			glutPassiveMotionFunc(GameMouseMove);
 			glutMotionFunc(GameMouseMove);
 			m_floatMoving = false;
@@ -311,9 +307,6 @@ void GM::GameMouseClick(int button, int state, int x, int y)
 
 void GM::GameReshape(int w, int h)
 {
-	width = w;
-	height = h;
-
 	// Prevent a divide by zero, when window is too short
 	// (you cant make a window of zero width).
 	if (h == 0) h = 1;

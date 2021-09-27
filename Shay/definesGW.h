@@ -2,6 +2,11 @@
 #define DEFINESGW_H
 
 
+//Other
+constexpr auto playerHeight				= 0.9;
+constexpr auto crouchDepth				= -playerHeight * 3 / 5;
+
+//Textures
 constexpr auto TOY_STORE				= 0;
 constexpr auto SHELF_1					= 1;
 constexpr auto SKY						= 2;

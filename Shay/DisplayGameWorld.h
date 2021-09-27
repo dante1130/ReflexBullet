@@ -79,6 +79,13 @@ namespace DGW
 	*/
 	void DisplayShelfContents(unsigned int objectList, float xPos, int xDirection, float zPos, int zDirection, int seed);
 
+	void DisplayShelfContentsCulling(unsigned int objectList, int seed,
+									 bool ShelfCulling, glm::vec3& look, glm::vec3& pos, float *cullPoints);
+
+	void DisplayShelfContentsCulling(unsigned int objectList, float xPos, int xDirection, float zPos, int zDirection, int seed,
+									 bool ShelfCulling, glm::vec3 & look, glm::vec3& pos, float *cullPoints);
+
+
 	/**
 	* @brief	'Randomly' generates a number based on two inputs
 	* @param	seed	- A variable used to for the output
