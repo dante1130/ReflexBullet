@@ -434,6 +434,7 @@ void Camera::Position (const glm::vec3& tempPos, const GLdouble& tempAngle)
 	
 	m_pos = tempPos;
 
+	
 	// rotate to correct angle
 	m_rotateAngleLR = tempAngle * (PI / 180);
 	m_look.x = sin(m_rotateAngleLR);
@@ -442,7 +443,7 @@ void Camera::Position (const glm::vec3& tempPos, const GLdouble& tempAngle)
 	m_lookK.z = -cos(m_rotateAngleLR + (float) PI/2.0);
 	m_rotateAngleUD = 0.0;
 	m_deltaAngleUD = 0.0;
-
+	
 	// redisplay
 	callGLLookAt();
 }
@@ -541,4 +542,10 @@ void Camera::SetCameraLocation(float x, float y, float z)
 	m_pos.x = x;
 	m_pos.y = y;
 	m_pos.z = z;
+}
+
+void Camera::SetCameraLookAt(glm::vec3& look)
+{
+	m_look = look;
+	callGLLookAt();
 }

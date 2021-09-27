@@ -10,6 +10,7 @@
 #include "Player.h"
 #include "EnemyAI.h"
 #include "LoadTexturesGameWorld.h"
+#include "Leaderboards.h"
 #include <vector>
 #include <stdlib.h>
 #include <GL/glut.h>
@@ -36,9 +37,13 @@ extern Object3D s_Box;
 extern Object3D s_Movies;
 extern Object3D s_Books;
 extern Object3D Sky;
+extern Leaderboard LB;
+
 
 extern bool wireFrame;
 extern bool performanceMetric;
+extern bool m_PausedGame;
+extern bool m_floatMoving;
 
 namespace DGW
 {
@@ -84,13 +89,26 @@ namespace DGW
 	int PsudeoNumGen(int seed, int max, int rand);
 
 	/**
+	* @brief	Displays the pause menu options
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayPauseMenuOptions();
+
+	void DisplayIndividualOption(int texture, glm::vec3 startPos);
+
+	void DisplayPauseMenuLeaderboard();
+
+	void DisplayIndividualLeaderboardRecord(float yCoord, int recordIndex, int num);
+
+	/**
 	* @brief	Displays the games current performance metrics
 	* @param	No param
 	* @return	Void
 	*/
 	void DisplayPerformanceMetrics();
 
-	void RenderBitMapString(void* font, char* string);
+	void RenderBitMapString(void* font, std::string string);
 }
 
 #endif

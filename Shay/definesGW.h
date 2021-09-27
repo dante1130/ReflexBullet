@@ -15,6 +15,7 @@ constexpr auto S_BOX_2					= 9;
 constexpr auto S_BOX_3					= 10;
 
 
+
 //NEXT 11
 constexpr auto GWTEXTURE_END = 20;
 

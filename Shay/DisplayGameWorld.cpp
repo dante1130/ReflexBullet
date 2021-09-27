@@ -8,6 +8,7 @@ Object3D s_Box;
 Object3D s_Movies;
 Object3D s_Books;
 Object3D Sky;
+Leaderboard LB;
 
 float startFrameTime = -1;
 int frameCountPos = 0;
@@ -15,6 +16,11 @@ float frames = 0;
 int lastFrameTime;
 bool wireFrame = false;
 bool performanceMetric = true;
+bool m_PausedGame = false;
+bool m_floatMoving = false;
+bool m_LeaderboardShowsAccuracyOverTime = true;
+GLfloat m_LeaderboardSwitchTime = 0;
+
 
 void DGW::DisplayGameWorldMasterFunction()
 {
@@ -57,7 +63,15 @@ void DGW::DisplayGameWorldMasterFunction()
 	glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, mat_e2);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, low_sh2);
 
-	DGO::DisplayGunBullets(player.GetGun());
+	if (m_PausedGame && !m_floatMoving)
+	{
+		DisplayPauseMenuOptions();
+	}
+	else
+	{
+		
+		DGO::DisplayGunBullets(player.GetGun());
+	}
 
 	Lighting::UpdateLighting();
 
@@ -321,7 +335,131 @@ int DGW::PsudeoNumGen(int seed, int max, int rand)
 	return seed;
 }
 
+void DGW::DisplayPauseMenuOptions()
+{
+	glDisable(GL_LIGHTING);
 
+	glm::vec3 pos = { 0.13, 6.5, 16 };
+
+	glBegin(GL_POLYGON);
+	glVertex3f(pos.x, pos.y - 1, pos.z - 4);
+	glVertex3f(pos.x, pos.y - 1, pos.z);
+	glVertex3f(pos.x, pos.y, pos.z);
+	glVertex3f(pos.x, pos.y, pos.z - 4);
+	glEnd();
+
+	pos.y = pos.y - 1.1;
+	DisplayIndividualOption(1, pos);
+
+	pos.y = pos.y - 0.6;
+	DisplayIndividualOption(1, pos);
+
+	pos.y = pos.y - 0.6;
+	DisplayIndividualOption(1, pos);
+
+	pos.y = pos.y - 0.6;
+	DisplayIndividualOption(1, pos);
+
+	pos.y = pos.y - 0.6;
+	DisplayIndividualOption(1, pos);
+
+
+	glColor3f(0, 0, 0);
+	glBegin(GL_POLYGON);
+	glVertex3f(0.125, 2.5, 10);
+	glVertex3f(0.125, 2.5, 16);
+	glVertex3f(0.125, 6.5, 16);
+	glVertex3f(0.125, 6.5, 10);
+	glEnd();
+	glColor3f(1, 1, 1);
+	
+	
+	DisplayPauseMenuLeaderboard();
+
+	glEnable(GL_LIGHTING);
+
+}
+
+void DGW::DisplayIndividualOption(int texture, glm::vec3 startPos)
+{
+	glBegin(GL_POLYGON);
+	glVertex3f(startPos.x, startPos.y - 0.5, startPos.z - 4);
+	glVertex3f(startPos.x, startPos.y - 0.5, startPos.z);
+	glVertex3f(startPos.x, startPos.y, startPos.z);
+	glVertex3f(startPos.x, startPos.y, startPos.z - 4);
+	glEnd();
+
+
+}
+
+void DGW::DisplayPauseMenuLeaderboard()
+{
+	float y = 6.3;
+	Record r;
+	int max;
+
+	glRasterPos3f(0.2, y, 11.9);
+	y -= 0.15;
+
+	if (glutGet(GLUT_ELAPSED_TIME) - m_LeaderboardSwitchTime > 4000)
+	{
+		m_LeaderboardSwitchTime = glutGet(GLUT_ELAPSED_TIME);
+		m_LeaderboardShowsAccuracyOverTime = !m_LeaderboardShowsAccuracyOverTime;
+	}
+
+
+	if (m_LeaderboardShowsAccuracyOverTime)
+	{
+		RenderBitMapString(GLUT_BITMAP_HELVETICA_18, "Leaderboards: Accuracy");
+
+		max = LB.GetTopRecordAccuracy(0);
+		for (int count = 1; count <= max; count++)
+		{
+			DisplayIndividualLeaderboardRecord(y, LB.GetTopRecordAccuracy(count), count);
+			y -= 0.75;
+		}
+	}
+	else
+	{
+		RenderBitMapString(GLUT_BITMAP_HELVETICA_18, "Leaderboards: Time");
+
+		max = LB.GetTopRecordTimes(0);
+		for (int count = 1; count <= max; count++)
+		{
+			DisplayIndividualLeaderboardRecord(y, LB.GetTopRecordTimes(count), count);
+			y -= 0.75;
+		}
+	}
+	
+}
+
+void DGW::DisplayIndividualLeaderboardRecord(float yCoord, int recordIndex, int num)
+{
+	Record r = LB.GetRecord(recordIndex);
+	std::string temp = "[" + std::to_string(num) + "]";
+
+	glRasterPos3f(0.2, yCoord, 11.95);
+	yCoord -= 0.15;
+	RenderBitMapString(GLUT_BITMAP_HELVETICA_18, temp);
+
+	glRasterPos3f(0.2, yCoord, 11.8);
+	yCoord -= 0.15;
+	RenderBitMapString(GLUT_BITMAP_HELVETICA_18, r.name);
+
+	glRasterPos3f(0.2, yCoord, 11.8);
+	yCoord -= 0.15;
+	temp = "Accuracy = " + std::to_string(r.accuracy) + "%";
+	RenderBitMapString(GLUT_BITMAP_HELVETICA_18, temp);
+
+	glRasterPos3f(0.2, yCoord, 11.8);
+	yCoord -= 0.15;
+	temp = "Time = " + std::to_string(r.time) + " seconds";
+	RenderBitMapString(GLUT_BITMAP_HELVETICA_18, temp);
+
+	glRasterPos3f(0.2, yCoord, 11.8);
+	yCoord -= 0.15;
+	RenderBitMapString(GLUT_BITMAP_HELVETICA_18, "-------------------");
+}
 
 
 void DGW::DisplayPerformanceMetrics()
@@ -368,13 +506,13 @@ void DGW::DisplayPerformanceMetrics()
 }
 
 
-void DGW::RenderBitMapString(void* font, char* string)
+void DGW::RenderBitMapString(void* font, std::string string)
 {
-	char* c;
+	int size = string.size();
 
-	for (c = string; *c != '\0'; c++)
+	for (int count = 0; count < size; count++)
 	{
-		glutBitmapCharacter(font, *c);
+		glutBitmapCharacter(font, string[count]);
 	}
 
 	return;

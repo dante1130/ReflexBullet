@@ -2,12 +2,13 @@
 #define GAMEMANAGER_H
 
 #include <iostream>
-#include "defines.h"
+#include "definesGW.h"
 #include "camera.h"
 #include "DisplayGameWorld.h"
 #include "fileIO.h"
 #include "Player.h"
 #include "Lighting.h"
+#include "Leaderboards.h"
 #include <GL/glut.h>
 
 /// <summary>
@@ -103,6 +104,13 @@ namespace GM
 	* @return	Void
 	*/
 	void GameReshape(int w, int h);
+
+	/**
+	* @brief	Handles moving the camera when the game is paused
+	* @param	No param
+	* @return	Void
+	*/
+	void PausedFloatingPosition();
 
 }
 
