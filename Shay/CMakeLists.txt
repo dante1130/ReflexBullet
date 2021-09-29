@@ -26,6 +26,12 @@ add_custom_command(TARGET Shay PRE_BUILD
                     ${PROJECT_SOURCE_DIR}/Shay/sounds 
                     ${CMAKE_CURRENT_BINARY_DIR}/sounds)
 
+                    
+add_custom_command(TARGET Shay PRE_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy_directory
+                    ${PROJECT_SOURCE_DIR}/Shay/music 
+                    ${CMAKE_CURRENT_BINARY_DIR}/music)
+
 target_link_libraries(Shay ${PROJECT_SOURCE_DIR}/lib/x86/SDL2.lib)
 target_link_libraries(Shay ${PROJECT_SOURCE_DIR}/lib/x86/SDL2main.lib)
 target_link_libraries(Shay ${PROJECT_SOURCE_DIR}/lib/x86/SDL2_mixer.lib)

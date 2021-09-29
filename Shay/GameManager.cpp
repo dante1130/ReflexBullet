@@ -10,11 +10,15 @@ float elapsedTime = glutGet(GLUT_ELAPSED_TIME);
 
 glm::vec3 m_playerPos, m_floatPos, m_playerLook, m_floatLook;
 
+Audio audio;
 Collision collision;
 Enemy enemy;
 
 void GM::GameInit(int w, int h)
 {
+	audio.AddMusic("music/gamefast.wav", "gameplay");
+	audio.PlayMusic("gameplay");
+
 	LTGW::CreateTextures();
 
 	glClearColor(1, 1, 1, 1);
@@ -52,6 +56,7 @@ void GM::GameInit(int w, int h)
 
 	LoadGameObjectFiles();
 	ReadLeaderboardFile("data/leaderboards.txt", LB);
+
 	
 }
 
