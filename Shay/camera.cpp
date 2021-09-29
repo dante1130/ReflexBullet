@@ -554,3 +554,8 @@ void Camera::SetCameraLookAt(glm::vec3& look)
 	m_look = look;
 	callGLLookAt();
 }
+
+float Camera::GetCameraRotateSpeed()
+{
+	return m_rotateSpeed;
+}

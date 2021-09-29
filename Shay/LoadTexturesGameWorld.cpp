@@ -76,6 +76,79 @@ void LTGW::CreateTextures()
 	tpGW.CreateTexture(P_NARY, GWimage, 128, 96);
 
 	
+	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/Paused.raw", 400, 100);
+	tpGW.CreateTexture(T_PAUSED, GWimage, 400, 100);
+
+	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/StartScreen.raw", 400, 100);
+	tpGW.CreateTexture(T_STARTSCREEN, GWimage, 400, 100);
+
+	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/UpgradeMenu.raw", 400, 100);
+	tpGW.CreateTexture(T_UPGRADE_MENU, GWimage, 400, 100);
+
+	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/Options.raw", 400, 100);
+	tpGW.CreateTexture(T_OPTIONS, GWimage, 400, 50);
+
+	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/Resume.raw", 400, 100);
+	tpGW.CreateTexture(T_RESUME, GWimage, 400, 50);
+
+	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/RestartGame.raw", 400, 100);
+	tpGW.CreateTexture(T_RESTART_GAME, GWimage, 400, 50);
+
+	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/Exit.raw", 400, 100);
+	tpGW.CreateTexture(T_EXIT, GWimage, 400, 50);
+
+	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/AccuracyAndTime.raw", 400, 100);
+	tpGW.CreateTexture(T_ACCURACY_TIME, GWimage, 400, 50);
+
+	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/StartGame.raw", 400, 100);
+	tpGW.CreateTexture(T_START_GAME, GWimage, 400, 50);
+
+	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/Credits.raw", 400, 100);
+	tpGW.CreateTexture(T_CREDITS, GWimage, 400, 50);
+
+	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/AttackSpeed.raw", 400, 100);
+	tpGW.CreateTexture(T_ATTACK_SPEED, GWimage, 400, 50);
+
+	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/BulletSpeed.raw", 400, 100);
+	tpGW.CreateTexture(T_BULLET_SPEED, GWimage, 400, 50);
+
+	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/Health.raw", 400, 100);
+	tpGW.CreateTexture(T_HEALTH, GWimage, 400, 50);
+
+	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/MovementSpeed.raw", 400, 100);
+	tpGW.CreateTexture(T_MOVEMENT_SPEED, GWimage, 400, 50);
+
+	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/BossFight.raw", 400, 100);
+	tpGW.CreateTexture(T_BOSS_FIGHT, GWimage, 400, 50);
+
+	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/CameraSensitivity.raw", 200, 100);
+	tpGW.CreateTexture(T_CAMERA_SENSITIVITY, GWimage, 200, 50);
+
+	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/MusicVolume.raw", 200, 100);
+	tpGW.CreateTexture(T_MUSIC_VOLUME, GWimage, 200, 50);
+
+	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/SFXVolume.raw", 200, 100);
+	tpGW.CreateTexture(T_SFX_VOLUME, GWimage, 200, 50);
+
+	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/Difficulty.raw", 200, 100);
+	tpGW.CreateTexture(T_DIFFICULTY, GWimage, 200, 50);
+
+	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/Return.raw", 400, 100);
+	tpGW.CreateTexture(T_RETURN, GWimage, 400, 50);
+
+	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/MenuOutlineColour.raw", 1, 1);
+	tpGW.CreateTexture(T_MENU_OUTLINE_COLOUR, GWimage, 1, 1);
+
+	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/Plus.raw", 100, 50);
+	tpGW.CreateTexture(T_PLUS, GWimage, 100, 50);
+
+	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/Minus.raw", 100, 50);
+	tpGW.CreateTexture(T_MINUS, GWimage, 100, 50);
+	
+	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/OptionsMenu.raw", 400, 100);
+	tpGW.CreateTexture(T_OPTIONS_MENU, GWimage, 400, 100);
+
+
 
 
 	

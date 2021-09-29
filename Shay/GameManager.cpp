@@ -8,8 +8,6 @@ bool Starting = true;
 float delta = 0;
 float elapsedTime = glutGet(GLUT_ELAPSED_TIME);
 
-glm::vec3 m_playerPos, m_floatPos, m_playerLook, m_floatLook;
-
 Collision collision;
 Enemy enemy;
 
@@ -53,6 +51,7 @@ void GM::GameInit(int w, int h)
 	LoadGameObjectFiles();
 	ReadLeaderboardFile("data/leaderboards.txt", LB);
 	
+	PauseGame();
 }
 
 void GM::LoadGameObjectFiles()
@@ -120,23 +119,13 @@ void GM::GameFixedUpdateLoop(int val)
 {
 	glutTimerFunc(FRAMETIME, GameFixedUpdateLoop, 0);
 
-	if (Starting)
-	{
-		zFar = zFar * 1.1;
-		if (zFar > 1000)
-		{
-			zFar = 1000;
-			Starting = false;
-			glClearColor(0.5, 0.5, 0.5, 1);
-		}
-		GameReshape(glutGet(GLUT_WINDOW_WIDTH), glutGet(GLUT_WINDOW_HEIGHT));
-
-	}
+	if (Starting) { GameStartUp(); }
 
 	float newElapsedTime = glutGet(GLUT_ELAPSED_TIME);
 	delta = (newElapsedTime - elapsedTime) / 1000;
 	elapsedTime = newElapsedTime;
-	if (m_PausedGame)
+
+	if (PMV.m_PausedMenuChoosen != 0)
 	{
 		PausedFloatingPosition();
 	}
@@ -152,10 +141,20 @@ void GM::GameFixedUpdateLoop(int val)
 	GameCollisionResolution();
 }
 
+void GM::GameStartUp()
+{
+	zFar = zFar * 1.1;
+	if (zFar > 1000)
+	{
+		zFar = 1000;
+		Starting = false;
+		glClearColor(0.5, 0.5, 0.5, 1);
+	}
+	GameReshape(glutGet(GLUT_WINDOW_WIDTH), glutGet(GLUT_WINDOW_HEIGHT));
+}
+
 void GM::GameUpdateLoop()
 {
-
-
 	glutPostRedisplay();
 }
 
@@ -198,31 +197,25 @@ void GM::GameKeys(unsigned char key, int x, int y)
 	case 'C':
 	case 'c':
 	case ' ':
-		if (!m_floatMoving) { player.GetCamera().SetCrouch(true); }
+		if (!PMV.m_floatMoving) { player.GetCamera().SetCrouch(true); }
 		break;
 	case 'p':
 	case 'P':
-		m_PausedGame = !m_PausedGame;
-		if (m_PausedGame)
+		if (!(PMV.m_PausedMenuChoosen == 0 || PMV.m_PausedMenuChoosen == 1)) { return; }
+
+		if (PMV.m_PausedMenuChoosen == 0) { PMV.m_PausedMenuChoosen = 1; }
+		else { PMV.m_PausedMenuChoosen = 0; }
+
+
+		if (PMV.m_PausedMenuChoosen == 1)
 		{
-			glutPassiveMotionFunc(NULL);
-			glutMotionFunc(NULL);
-			m_playerPos = player.GetCamera().GetPosition();
-			m_floatPos = m_playerPos;
-			m_playerLook = player.GetCamera().GetLook();
-			m_floatLook = m_playerLook;
-			m_floatMoving = true;
+			PauseGame();
 		}
-		else
+		else if(PMV.m_PausedMenuChoosen == 0)
 		{
-			glutSetCursor(GLUT_CURSOR_NONE);
-			glutWarpPointer(glutGet(GLUT_WINDOW_WIDTH) / 2, glutGet(GLUT_WINDOW_HEIGHT) / 2);
-			glutPassiveMotionFunc(GameMouseMove);
-			glutMotionFunc(GameMouseMove);
-			m_floatMoving = false;
-			player.GetCamera().SetCameraLocation(m_playerPos.x, m_playerPos.y, m_playerPos.z);
-			player.GetCamera().SetCameraLookAt(m_playerLook);
+			UnpauseGame();
 		}
+
 		break;
 	case '_':
 	case '-':
@@ -262,8 +255,33 @@ void GM::GameKeys(unsigned char key, int x, int y)
 	case 57: // 9
 		player.ResetMoveSpeed();
 		break;
+	case 'g':
+		PMV.m_PausedMenuChoosen = (PMV.m_PausedMenuChoosen + 1) % 5;
+		if (PMV.m_PausedMenuChoosen == 0) { PMV.m_PausedMenuChoosen = 1; }
 	}
+}
 
+void GM::PauseGame()
+{
+	//glutPassiveMotionFunc(NULL);
+	glutMotionFunc(NULL);
+	PMV.m_playerPos = player.GetCamera().GetPosition();
+	PMV.m_floatPos = PMV.m_playerPos;
+	PMV.m_playerLook = player.GetCamera().GetLook();
+	PMV.m_floatLook = PMV.m_playerLook;
+	PMV.m_floatMoving = true;
+}
+
+void GM::UnpauseGame()
+{
+	PMV.m_PausedMenuChoosen = 0;
+	glutSetCursor(GLUT_CURSOR_NONE);
+	glutWarpPointer(glutGet(GLUT_WINDOW_WIDTH) / 2, glutGet(GLUT_WINDOW_HEIGHT) / 2);
+	//glutPassiveMotionFunc(GameMouseMove);
+	glutMotionFunc(GameMouseMove);
+	PMV.m_floatMoving = false;
+	player.GetCamera().SetCameraLocation(PMV.m_playerPos.x, PMV.m_playerPos.y, PMV.m_playerPos.z);
+	player.GetCamera().SetCameraLookAt(PMV.m_playerLook);
 }
 
 void GM::GameReleaseKeys(unsigned char key, int x, int y)
@@ -308,16 +326,306 @@ void GM::GameReleaseKeys(unsigned char key, int x, int y)
 
 void GM::GameMouseMove(int x, int y)
 {
-	player.GetCamera().MouseMove(x, y);
+	if (PMV.m_PausedMenuChoosen == 0)
+	{
+		player.GetCamera().MouseMove(x, y);
+	}
+	else
+	{
+		MouseOverOption(x, y);
+	}
 	
+}
+
+void GM::MouseOverOption(int x, int y)
+{
+	float width = glutGet(GLUT_WINDOW_WIDTH);
+	float height = glutGet(GLUT_WINDOW_HEIGHT);
+
+	float xRatio = width / 1280.0;
+	float yRatio = height / 720.0;
+
+	float xMax = width / 2 + 157 * (xRatio * (yRatio - xRatio + 1));
+	float xMin = width / 2 - 466 * (xRatio * (yRatio - xRatio + 1));
+	float yMax = height / 2 + 302 * yRatio;
+	float yMin = height / 2 - 139 * yRatio;
+	
+	if (x > xMax || x < xMin || y > yMax || y < yMin)
+	{
+		PMV.m_OptionHighlighted = 0;
+		return;
+	}
+
+	float yChange = 76 * yRatio;
+
+	float yTop = yMin;
+	float yBottom = yMin + yChange;
+
+	yChange = yChange + 15.2 * yRatio;
+
+	if (PMV.m_PausedMenuChoosen == 2)
+	{
+		float xChange = 152 * (xRatio * (yRatio - xRatio + 1));
+		GameMouseOverOptionOptions(x, y, xMax, xMin, yMax, yMin, yChange, xChange);
+		return;
+	}
+
+	int max = 5;
+	if (PMV.m_PausedMenuChoosen == 4 || PMV.m_PausedMenuChoosen == 1) { max = 4; }
+	PMV.m_OptionHighlighted = 0;
+	for (int count = 0; count < max; count++)
+	{
+		if (y > yTop && y < yBottom)
+		{
+			if (PMV.m_PausedMenuChoosen == 5)
+			{
+				if (count + 1 > 3)
+				{
+					PMV.m_OptionHighlighted = count + 1;
+					count = max;
+				}
+			}
+			else
+			{
+				PMV.m_OptionHighlighted = count + 1;
+				count = max;
+			}
+
+		}
+
+		yTop = yTop + yChange;
+		yBottom = yBottom + yChange;
+
+	}
+}
+
+void GM::GameMouseOverOptionOptions(int x, int y, float xMax, float xMin, float yMax, float yMin, float yChange, float xChange)
+{
+	float yTop = yMin;
+	float yBottom = yMin + yChange;
+	float xLeft = xMax;
+	float xRight = xMax + xChange;
+
+	PMV.m_OptionHighlighted = 0;
+	for (int count = 0; count < 5; count++)
+	{
+		if (y > yTop && y < yBottom)
+		{
+			if (count == 4)
+			{
+				PMV.m_OptionHighlighted = count * 2 + 1;
+				count = 5;
+			}
+			else
+			{
+				xLeft = xMax - xChange;
+				xRight = xMax;
+
+				for (int i = 0; i < 2; i++)
+				{
+					if (x > xLeft && x < xRight)
+					{
+						PMV.m_OptionHighlighted = count * 2 + i + 1;
+						count = 5;
+						i = 2;
+					}
+
+					xLeft = xMin;
+					xRight = xMin + xChange;
+				}
+			}
+		}
+
+		yTop = yTop + yChange;
+		yBottom = yBottom + yChange;
+	}
 }
 
 void GM::GameMouseClick(int button, int state, int x, int y)
 {
-	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && !m_PausedGame)
+	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && PMV.m_PausedMenuChoosen == 0)
 	{
 		player.Shoot();
 	}
+	else if (PMV.m_PausedMenuChoosen != 0)
+	{
+		GameMouseClickOption(button, state, x, y);
+	}
+}
+
+void GM::GameMouseClickOption(int button, int state, int x, int y)
+{
+	//std::cout << "Mouse clicked: Button - " << button << " state - " << state << " POS x/y - " << x << " : " << y << std::endl;
+
+	if (button != 0 || state != 0) { return; }
+
+	float width = glutGet(GLUT_WINDOW_WIDTH);
+	float height = glutGet(GLUT_WINDOW_HEIGHT);
+
+	float xRatio = width / 1280.0;
+	float yRatio = height / 720.0;
+
+	float xMax = width / 2 + 157 * (xRatio * (yRatio - xRatio + 1));
+	float xMin = width / 2 - 466 * (xRatio * (yRatio - xRatio + 1));
+	float yMax = height / 2 + 302 * yRatio;
+	float yMin = height / 2 - 139 * yRatio;
+
+	if (x > xMax || x < xMin || y > yMax || y < yMin) { return; }
+
+	float yChange = 76 * yRatio;
+
+	float yTop = yMin;
+	float yBottom = yMin + yChange;
+
+	yChange = yChange + 15.2 * yRatio;
+
+	if (PMV.m_PausedMenuChoosen == 2)
+	{
+		float xChange = 152 * (xRatio * (yRatio - xRatio + 1));
+		GameMouseOptionMenuClickOption(x, y, xMax, xMin, yMax, yMin, yChange, xChange);
+		return;
+	}
+
+	int max = 5;
+	if (PMV.m_PausedMenuChoosen == 4) { max = 4; }
+	PMV.m_OptionHighlighted = 0;
+	for (int count = 0; count < max; count++)
+	{
+		if (y > yTop && y < yBottom)
+		{
+			MenuOptionChoosen(count + 1);
+			count = max;
+		}
+
+		yTop = yTop + yChange;
+		yBottom = yBottom + yChange;
+
+	}
+
+}
+
+void GM::GameMouseOptionMenuClickOption(int x, int y, float xMax, float xMin, float yMax, float yMin, float yChange, float xChange)
+{
+	float yTop = yMin;
+	float yBottom = yMin + yChange;
+	float xLeft = xMax;
+	float xRight = xMax + xChange;
+
+	for (int count = 0; count < 5; count++)
+	{
+		if (y > yTop && y < yBottom)
+		{
+			if (count == 4)
+			{
+				MenuOptionChoosen(count * 2 + 1);
+				count = 5;
+			}
+			else
+			{
+				xLeft = xMax - xChange;
+				xRight = xMax;
+
+				for (int i = 0; i < 2; i++)
+				{
+					if (x > xLeft && x < xRight)
+					{
+						MenuOptionChoosen(count * 2 + i + 1);
+						count = 5;
+						i = 2;
+					}
+
+					xLeft = xMin;
+					xRight = xMin + xChange;
+				}
+			}
+		}
+
+		yTop = yTop + yChange;
+		yBottom = yBottom + yChange;
+	}
+}
+
+void GM::MenuOptionChoosen(int option)
+{
+	if (PMV.m_PausedMenuChoosen == 1) //General pause menu
+	{
+		if (option == 1) { UnpauseGame(); }
+		else if (option == 2) { RestartGame(); }
+		else if (option == 3) { PMV.m_PausedMenuChoosen = 2; PMV.m_PausedOverStart = true; }
+		else if (option == 4) { PMV.m_PausedMenuChoosen = 4; }
+	}
+	else if (PMV.m_PausedMenuChoosen == 2) //Options menu
+	{
+		if (option == 1)
+		{
+			std::cout << "speed +" << std::endl;
+			
+			camRotateSpeed -= 0.05;
+			if (camRotateSpeed < 0.05) { camRotateSpeed = 0.05; }
+			player.GetCamera().SetRotateSpeed(camRotateSpeed);
+		}
+		else if (option == 2)
+		{
+			std::cout << "speed -" << std::endl;
+			camRotateSpeed += 0.05;
+			if (camRotateSpeed > 5) { camRotateSpeed = 5; }
+			player.GetCamera().SetRotateSpeed(camRotateSpeed);
+		}
+		else if (option == 3)
+		{
+			std::cout << "mV +" << std::endl;
+		}
+		else if (option == 4)
+		{
+			std::cout << "mV -" << std::endl;
+		}
+		else if (option == 5)
+		{
+			std::cout << "SFXV +" << std::endl;
+		}
+		else if (option == 6)
+		{
+			std::cout << "SFXV -" << std::endl;
+		}
+		else if (option == 7)
+		{
+			std::cout << "D +" << std::endl;
+			//RestartGame();
+		}
+		else if (option == 8)
+		{
+			std::cout << "D -" << std::endl;
+			//RestartGame();
+		}
+		else if (option == 9)
+		{
+			if (PMV.m_PausedOverStart) { PMV.m_PausedMenuChoosen = 1; }
+			else { PMV.m_PausedMenuChoosen = 4; }
+		}
+
+	}
+	else if (PMV.m_PausedMenuChoosen == 3) //Upgrade menu
+	{
+		if (option == 1) {  }
+		else if (option == 2) {  }
+		else if (option == 3) {  }
+		else if (option == 4) {  }
+		else if (option == 5) {  }
+	}
+	else if (PMV.m_PausedMenuChoosen == 4) //Start screen
+	{
+		if (option == 1) { RestartGame(); }
+		else if (option == 2) { PMV.m_PausedMenuChoosen = 2; PMV.m_PausedOverStart = false; }
+		else if (option == 3) { PMV.m_PausedMenuChoosen = 5; }
+		else if (option == 4) { exit(0); }
+	}
+	else if (PMV.m_PausedMenuChoosen == 5) //Credits
+	{
+		if (option == 4){ PMV.m_PausedMenuChoosen = 4; } //Return to start screen
+		else if (option == 5) { exit(0); }
+	}
+
+
 }
 
 void GM::GameReshape(int w, int h)
@@ -337,48 +645,66 @@ void GM::GameReshape(int w, int h)
 
 void GM::PausedFloatingPosition()
 {
-	if (m_floatMoving)
+	if (PMV.m_floatMoving)
 	{
 		float timeToComplete = 120;
 
 		//Smooth movement motion
 		glm::vec3 change = { 2.5, 4.5, 13 };
-		change = (change - m_playerPos);
+		change = (change - PMV.m_playerPos);
 		change.x = change.x / timeToComplete;
 		change.y = change.y / timeToComplete;
 		change.z = change.z / timeToComplete;
 
-		m_floatPos = m_floatPos + change;
+		PMV.m_floatPos = PMV.m_floatPos + change;
 
 		//Smooth look motion
 		glm::vec3 look = { -1, 0, 0 };
-		float angle = acos((-1 * m_playerLook.x)/sqrt(m_playerLook.x * m_playerLook.x + m_playerLook.z * m_playerLook.z));
+		float angle = acos((-1 * PMV.m_playerLook.x)/sqrt(PMV.m_playerLook.x * PMV.m_playerLook.x + PMV.m_playerLook.z * PMV.m_playerLook.z));
 		
-		if (m_playerLook.z >= 0)
+		if (PMV.m_playerLook.z >= 0)
 		{
-			m_floatLook.x = m_floatLook.x * cos(angle / timeToComplete) - m_floatLook.z * sin(angle / timeToComplete);
-			m_floatLook.z = m_floatLook.x * sin(angle / timeToComplete) + m_floatLook.z * cos(angle / timeToComplete);
+			PMV.m_floatLook.x = PMV.m_floatLook.x * cos(angle / timeToComplete) - PMV.m_floatLook.z * sin(angle / timeToComplete);
+			PMV.m_floatLook.z = PMV.m_floatLook.x * sin(angle / timeToComplete) + PMV.m_floatLook.z * cos(angle / timeToComplete);
 		}
 		else
 		{
 			angle *= -1;
-			m_floatLook.x = m_floatLook.x * cos(angle / timeToComplete) - m_floatLook.z * sin(angle / timeToComplete);
-			m_floatLook.z = m_floatLook.x * sin(angle / timeToComplete) + m_floatLook.z * cos(angle / timeToComplete);
+			PMV.m_floatLook.x = PMV.m_floatLook.x * cos(angle / timeToComplete) - PMV.m_floatLook.z * sin(angle / timeToComplete);
+			PMV.m_floatLook.z = PMV.m_floatLook.x * sin(angle / timeToComplete) + PMV.m_floatLook.z * cos(angle / timeToComplete);
 		}
 
-		m_floatLook.y = m_floatLook.y - m_playerLook.y / timeToComplete;
+		PMV.m_floatLook.y = PMV.m_floatLook.y - PMV.m_playerLook.y / timeToComplete;
 
 		//if you reach the destination
-		if (m_floatPos.y >= 4.5)
+		if (PMV.m_floatPos.y >= 4.5)
 		{
-			m_floatPos.x = 2.5;
-			m_floatPos.y = 4.5;
-			m_floatPos.z = 13;
-			m_floatMoving = false;
+			PMV.m_floatPos.x = 2.5;
+			PMV.m_floatPos.y = 4.5;
+			PMV.m_floatPos.z = 13;
+			PMV.m_floatMoving = false;
 			glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
 		}
 
-		player.GetCamera().SetCameraLocation(m_floatPos.x, m_floatPos.y, m_floatPos.z);
-		player.GetCamera().SetCameraLookAt(m_floatLook);
+		player.GetCamera().SetCameraLocation(PMV.m_floatPos.x, PMV.m_floatPos.y, PMV.m_floatPos.z);
+		player.GetCamera().SetCameraLookAt(PMV.m_floatLook);
 	}
+}
+
+void GM::RestartGame()
+{
+	player.ResetFiringDelay();
+	player.ResetBulletSpeed();
+	player.ResetMoveSpeed();
+
+	UnpauseGame();
+
+	zFar = 0.001;
+	Starting = true;
+
+	glClearColor(1, 1, 1, 1);
+
+	player.GetCamera().SetCameraLocation(0.5, playerHeight, 0.5);
+	player.GetCamera().SetCameraLookAt(glm::vec3(-1, 0, 0));
+
 }

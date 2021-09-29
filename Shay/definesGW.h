@@ -24,11 +24,33 @@ constexpr auto M_POLY					= 14;
 constexpr auto B_GAMMON					= 15;
 constexpr auto P_NARY					= 16;
 
+constexpr auto T_PAUSED					= 17;
+constexpr auto T_STARTSCREEN			= 18;
+constexpr auto T_UPGRADE_MENU			= 19;
+constexpr auto T_OPTIONS				= 20;
+constexpr auto T_RESUME					= 21;
+constexpr auto T_RESTART_GAME			= 22;
+constexpr auto T_EXIT					= 23;
+constexpr auto T_ACCURACY_TIME			= 24;
+constexpr auto T_START_GAME				= 25;
+constexpr auto T_CREDITS				= 26;
+constexpr auto T_ATTACK_SPEED			= 27;
+constexpr auto T_BULLET_SPEED			= 28;
+constexpr auto T_HEALTH					= 29;
+constexpr auto T_MOVEMENT_SPEED			= 30;
+constexpr auto T_BOSS_FIGHT				= 31;
+constexpr auto T_CAMERA_SENSITIVITY		= 32;
+constexpr auto T_MUSIC_VOLUME			= 33;
+constexpr auto T_SFX_VOLUME				= 34;
+constexpr auto T_DIFFICULTY				= 35;
+constexpr auto T_RETURN					= 36;
+constexpr auto T_MENU_OUTLINE_COLOUR	= 37;
+constexpr auto T_PLUS					= 38;
+constexpr auto T_MINUS					= 39;
+constexpr auto T_OPTIONS_MENU			= 40;
 
-
-
-//NEXT 11
-constexpr auto GWTEXTURE_END = 20;
+//NEXT 41
+constexpr auto GWTEXTURE_END = 50;
 
 
 #endif

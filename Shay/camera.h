@@ -236,6 +236,12 @@ public:
 	*/
 	void SetCameraLookAt(glm::vec3& look);
 
+	/**
+	* @brief	Returns the cameras rotate speed
+	* @param	No param
+	* @return	float	- The cameras rotate speed
+	*/
+	float GetCameraRotateSpeed();
 
 private:
 	/// Initialize values for first run for m_prev if true

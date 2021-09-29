@@ -16,10 +16,8 @@ int lastFrameTime;
 
 bool wireFrame = false;
 bool performanceMetric = true;
-bool m_PausedGame = false;
-bool m_floatMoving = false;
-bool m_LeaderboardShowsAccuracyOverTime = true;
-GLfloat m_LeaderboardSwitchTime = 0;
+
+PauseMenuValues PMV;
 
 
 void DGW::DisplayGameWorldMasterFunction()
@@ -63,7 +61,7 @@ void DGW::DisplayGameWorldMasterFunction()
 	glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, mat_e2);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, low_sh2);
 
-	if (m_PausedGame && !m_floatMoving)
+	if (PMV.m_PausedMenuChoosen != 0 && !PMV.m_floatMoving)
 	{
 		DisplayPauseMenuOptions();
 	}
@@ -314,20 +312,24 @@ void DGW::DisplayShelfContentsCulling(unsigned int objectList, float xPos, int x
 	direction.z += cullPoints[3];
 	float angleTwo = acos((direction.x * look.x + direction.z * look.z) / (sqrt(direction.x * direction.x + direction.z * direction.z) * sqrt(look.x * look.x + look.z * look.z)));
 	
-	if (angleOne > 1.1 && angleTwo > 1.1)
+	//if (angleOne > 1.578 && angleTwo > 1.578) { return; }
+	
+	float xRatio = glutGet(GLUT_WINDOW_WIDTH) / 1280.0;
+	if (xRatio < 0.25) { xRatio = 0.25; }
+	if (angleOne > 1.1* xRatio && angleTwo > 1.1* xRatio)
 	{
 		float distanceOne = sqrt(pow((cullPoints[0] - pos.x),2) + pow((cullPoints[1] - pos.z), 2));
 		float distanceTwo = sqrt(pow((cullPoints[2] - pos.x), 2) + pow((cullPoints[3] - pos.z), 2));
 
-		if(!(distanceOne <= 1 || distanceTwo <= 1)) { return; }
+		if(!(distanceOne <= 1.2 || distanceTwo <= 1.2)) { return; }
 	}
+	
 	
 	DisplayShelfContents(objectList, xPos, xDirection, zPos, zDirection, seed);
 
 	if (ShelfCulling) { Shelf_1.DisplayObjectWithLighting(SHELF_1); }
 
 }
-
 
 void DGW::DisplayShelfContents(unsigned int objectList, int seed)
 {
@@ -354,6 +356,7 @@ void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirecti
 	{
 		int arraySize = Shelf_Objects.size();
 		int i = PsudeoNumGen(seed, arraySize, 0), rot;
+
 
 		glPushMatrix();
 		glTranslatef(-0.725, 0.1, 0.15);
@@ -432,31 +435,74 @@ void DGW::DisplayPauseMenuOptions()
 {
 	glDisable(GL_LIGHTING);
 
-	glm::vec3 pos = { 0.13, 6.5, 16 };
+	glm::vec3 pos = { 0.14, 6.5, 15.95 };
+	
 
-	glBegin(GL_POLYGON);
-	glVertex3f(pos.x, pos.y - 1, pos.z - 4);
-	glVertex3f(pos.x, pos.y - 1, pos.z);
-	glVertex3f(pos.x, pos.y, pos.z);
-	glVertex3f(pos.x, pos.y, pos.z - 4);
-	glEnd();
+	if (PMV.m_OptionHighlighted != 0 && PMV.m_PausedMenuChoosen != 2)
+	{
+		glm::vec3 posTwo = { 0.13, 6.5, 16 };
+		posTwo.y = posTwo.y - 1.05 - 0.6 * (PMV.m_OptionHighlighted - 1);
+		DisplayIndividualOption(T_MENU_OUTLINE_COLOUR, posTwo, 0.6, 4.1);
+	}
+	else if (PMV.m_OptionHighlighted != 0 && PMV.m_PausedMenuChoosen == 2)
+	{
+		glm::vec3 posTwo = { 0.132, 6.5, 16 };
+		posTwo.y = posTwo.y - 1.05 - 0.6 * ((PMV.m_OptionHighlighted - 1)/2);
+		if (PMV.m_OptionHighlighted == 9)
+		{
+			posTwo.x = 0.125;
+			DisplayIndividualOption(T_MENU_OUTLINE_COLOUR, posTwo, 0.6, 4.1);
+		}
+		else if (PMV.m_OptionHighlighted % 2 == 1)
+		{
+			posTwo.z = posTwo.z - 3;
+			DisplayIndividualOption(T_MENU_OUTLINE_COLOUR, posTwo, 0.6, 1.1);
+		}
+		else
+		{
+			DisplayIndividualOption(T_MENU_OUTLINE_COLOUR, posTwo, 0.6, 1.1);
+		}
+		
+	}
 
-	pos.y = pos.y - 1.1;
-	DisplayIndividualOption(1, pos);
+	if (PMV.m_PausedMenuChoosen == 2)
+	{
+		DisplayOptionsMenu();
+	}
+	else if (PMV.m_PausedMenuChoosen == 3)
+	{
+		DisplayUpgradeMenu();
+	}
+	else if (PMV.m_PausedMenuChoosen == 4)
+	{
+		DisplayStartScreen();
+	}
+	else if (PMV.m_PausedMenuChoosen == 5)
+	{
+		DisplayCredits();
+	}
+	else if (PMV.m_PausedMenuChoosen == 1)
+	{
+		//Title
+		DisplayIndividualOption(T_PAUSED, pos, 1, 4);
 
-	pos.y = pos.y - 0.6;
-	DisplayIndividualOption(1, pos);
+		pos.y = pos.y - 1.1;
+		DisplayIndividualOption(T_RESUME, pos, 0.5, 4);
 
-	pos.y = pos.y - 0.6;
-	DisplayIndividualOption(1, pos);
+		pos.y = pos.y - 0.6;
+		DisplayIndividualOption(T_RESTART_GAME, pos, 0.5, 4);
 
-	pos.y = pos.y - 0.6;
-	DisplayIndividualOption(1, pos);
+		pos.y = pos.y - 0.6;
+		DisplayIndividualOption(T_OPTIONS, pos, 0.5, 4);
 
-	pos.y = pos.y - 0.6;
-	DisplayIndividualOption(1, pos);
+		pos.y = pos.y - 0.6;
+		DisplayIndividualOption(T_EXIT, pos, 0.5, 4);
 
-
+		pos.y = pos.y - 0.6;
+		DisplayIndividualOption(T_ACCURACY_TIME, pos, 0.5, 4);
+	}
+	
+	//Background
 	glColor3f(0, 0, 0);
 	glBegin(GL_POLYGON);
 	glVertex3f(0.125, 2.5, 10);
@@ -466,24 +512,194 @@ void DGW::DisplayPauseMenuOptions()
 	glEnd();
 	glColor3f(1, 1, 1);
 	
-	
 	DisplayPauseMenuLeaderboard();
 
 	glEnable(GL_LIGHTING);
 
 }
 
-void DGW::DisplayIndividualOption(int texture, glm::vec3 startPos)
+void DGW::DisplayIndividualOption(int texture, glm::vec3 startPos, float yDrop, float width)
 {
+
+	glBindTexture(GL_TEXTURE_2D, tpGW.GetTexture(texture));
+
 	glBegin(GL_POLYGON);
-	glVertex3f(startPos.x, startPos.y - 0.5, startPos.z - 4);
-	glVertex3f(startPos.x, startPos.y - 0.5, startPos.z);
+	glTexCoord2f(0, 0);
 	glVertex3f(startPos.x, startPos.y, startPos.z);
-	glVertex3f(startPos.x, startPos.y, startPos.z - 4);
+	glTexCoord2f(1, 0);
+	glVertex3f(startPos.x, startPos.y, startPos.z - width);
+	glTexCoord2f(1, 1);
+	glVertex3f(startPos.x, startPos.y - yDrop, startPos.z - width);
+	glTexCoord2f(0, 1);
+	glVertex3f(startPos.x, startPos.y - yDrop, startPos.z);
 	glEnd();
 
 
 }
+
+void DGW::DisplayUpgradeMenu()
+{
+	glm::vec3 pos = { 0.14, 6.5, 15.95 };
+	
+	//Title
+	DisplayIndividualOption(T_UPGRADE_MENU, pos, 1, 4);
+
+	pos.y = pos.y - 1.1;
+	DisplayIndividualOption(T_ATTACK_SPEED, pos, 0.5, 4);
+
+	pos.y = pos.y - 0.6;
+	DisplayIndividualOption(T_BULLET_SPEED, pos, 0.5, 4);
+
+	pos.y = pos.y - 0.6;
+	DisplayIndividualOption(T_HEALTH, pos, 0.5, 4);
+
+	pos.y = pos.y - 0.6;
+	DisplayIndividualOption(T_MOVEMENT_SPEED, pos, 0.5, 4);
+
+	pos.y = pos.y - 0.6;
+	DisplayIndividualOption(T_BOSS_FIGHT, pos, 0.5, 4);
+
+	float yCoord = 5.7;
+	std::string temp;
+	temp = "[" + std::to_string(99) + "]";
+	glBindTexture(GL_TEXTURE_2D, tpGW.GetTexture(T_MENU_OUTLINE_COLOUR));
+	glRasterPos3f(0.2, yCoord, 13.4);
+	RenderBitMapString(GLUT_BITMAP_TIMES_ROMAN_24, temp);
+
+	yCoord -= 0.75;
+	for (int count = 0; count < 4; count++)
+	{
+		if		(count == 0) { temp = "[" + std::to_string(1) + "]"; }
+		else if (count == 1) { temp = '[' + std::to_string(1) + ']'; }
+		else if (count == 2) { temp = '[' + std::to_string(1) + ']'; }
+		else if (count == 3) { temp = '[' + std::to_string(1) + ']'; }
+
+		glRasterPos3f(0.2, yCoord, 14.9);
+		RenderBitMapString(GLUT_BITMAP_TIMES_ROMAN_24, temp);
+		yCoord -= 0.59;
+	}
+	
+}
+
+void DGW::DisplayOptionsMenu()
+{
+	glm::vec3 pos = { 0.13, 6.5, 15.95 };
+
+	//Title
+	DisplayIndividualOption(T_OPTIONS_MENU, pos, 1, 4);
+
+	pos.y = pos.y - 1.1;
+	pos.z = 14.95;
+	DisplayIndividualOption(T_CAMERA_SENSITIVITY, pos, 0.5, 2);
+
+	pos.y = pos.y - 0.6;
+	DisplayIndividualOption(T_MUSIC_VOLUME, pos, 0.5, 2);
+
+	pos.y = pos.y - 0.6;
+	DisplayIndividualOption(T_SFX_VOLUME, pos, 0.5, 2);
+
+	pos.y = pos.y - 0.6;
+	DisplayIndividualOption(T_DIFFICULTY, pos, 0.5, 2);
+
+	pos.y = pos.y - 0.6;
+	pos.z = 15.95;
+	DisplayIndividualOption(T_RETURN, pos, 0.5, 4);
+
+
+	pos.y = 5.4;
+	pos.x = 0.134;
+	pos.z = 15.94;
+	for (int count = 0; count < 4; count++)
+	{
+		for (int i = 0; i < 2; i++)
+		{
+			if (i == 0)
+			{
+				DisplayIndividualOption(T_PLUS, pos, 0.5, 1);
+			}
+			else
+			{
+				DisplayIndividualOption(T_MINUS, pos, 0.5, 1);
+			}
+
+			pos.z = pos.z - 2.97;
+		}
+
+		pos.y = pos.y - 0.6;
+		pos.z = 15.94;
+	}
+
+	float yCoord = 4.98;
+	std::string temp;
+	glBindTexture(GL_TEXTURE_2D, tpGW.GetTexture(T_MENU_OUTLINE_COLOUR));
+
+	for (int count = 0; count < 4; count++)
+	{
+		if (count == 0)
+		{
+			temp = std::to_string(player.GetCamera().GetCameraRotateSpeed());
+			temp = '[' + temp.substr(0, 4) + ']';
+		}
+		else if (count == 1) { temp = '[' + std::to_string(100) + ']'; }
+		else if (count == 2) { temp = '[' + std::to_string(100) + ']'; }
+		else if (count == 3) { temp = '[' + std::to_string(2) + ']'; }
+
+		glRasterPos3f(0.2, yCoord, 13.35);
+		RenderBitMapString(GLUT_BITMAP_TIMES_ROMAN_24, temp);
+		yCoord -= 0.58;
+	}
+
+
+}
+
+void DGW::DisplayStartScreen()
+{
+	glm::vec3 pos = { 0.14, 6.5, 15.95 };
+
+	//Title
+	DisplayIndividualOption(T_STARTSCREEN, pos, 1, 4);
+
+	pos.y = pos.y - 1.1;
+	DisplayIndividualOption(T_START_GAME, pos, 0.5, 4);
+
+	pos.y = pos.y - 0.6;
+	DisplayIndividualOption(T_OPTIONS, pos, 0.5, 4);
+
+	pos.y = pos.y - 0.6;
+	DisplayIndividualOption(T_CREDITS, pos, 0.5, 4);
+
+	pos.y = pos.y - 0.6;
+	DisplayIndividualOption(T_EXIT, pos, 0.5, 4);
+}
+
+void DGW::DisplayCredits()
+{
+	glm::vec3 pos = { 0.14, 6.5, 15.95 };
+	//Title
+	DisplayIndividualOption(T_STARTSCREEN, pos, 1, 4);
+	pos.y = pos.y - 1.1;
+
+	glBindTexture(GL_TEXTURE_2D, tp.GetTexture(219));
+	glBegin(GL_POLYGON);
+	glTexCoord2f(0, 0.5);
+	glVertex3f(pos.x, pos.y, pos.z);
+	glTexCoord2f(1, 0.5);
+	glVertex3f(pos.x, pos.y, pos.z - 4);
+	glTexCoord2f(1, 0.9);
+	glVertex3f(pos.x, pos.y - 1.7, pos.z - 4);
+	glTexCoord2f(0, 0.9);
+	glVertex3f(pos.x, pos.y - 1.7, pos.z);
+	glEnd();
+
+
+	pos.y = pos.y - 1.8;
+	DisplayIndividualOption(T_RETURN, pos, 0.5, 4);
+
+	pos.y = pos.y - 0.6;
+	DisplayIndividualOption(T_EXIT, pos, 0.5, 4);
+
+}
+
 
 void DGW::DisplayPauseMenuLeaderboard()
 {
@@ -491,17 +707,17 @@ void DGW::DisplayPauseMenuLeaderboard()
 	Record r;
 	int max;
 
-	glRasterPos3f(0.2, y, 11.9);
+	glRasterPos3f(0.2, y, 11.8);
 	y -= 0.15;
 
-	if (glutGet(GLUT_ELAPSED_TIME) - m_LeaderboardSwitchTime > 4000)
+	if (glutGet(GLUT_ELAPSED_TIME) - PMV.m_LeaderboardSwitchTime > 4000)
 	{
-		m_LeaderboardSwitchTime = glutGet(GLUT_ELAPSED_TIME);
-		m_LeaderboardShowsAccuracyOverTime = !m_LeaderboardShowsAccuracyOverTime;
+		PMV.m_LeaderboardSwitchTime = glutGet(GLUT_ELAPSED_TIME);
+		PMV.m_LeaderboardShowsAccuracyOverTime = !PMV.m_LeaderboardShowsAccuracyOverTime;
 	}
 
-
-	if (m_LeaderboardShowsAccuracyOverTime)
+	glBindTexture(GL_TEXTURE_2D, tpGW.GetTexture(T_MENU_OUTLINE_COLOUR));
+	if (PMV.m_LeaderboardShowsAccuracyOverTime)
 	{
 		RenderBitMapString(GLUT_BITMAP_HELVETICA_18, "Leaderboards: Accuracy");
 
@@ -531,7 +747,7 @@ void DGW::DisplayIndividualLeaderboardRecord(float yCoord, int recordIndex, int 
 	Record r = LB.GetRecord(recordIndex);
 	std::string temp = "[" + std::to_string(num) + "]";
 
-	glRasterPos3f(0.2, yCoord, 11.95);
+	glRasterPos3f(0.2, yCoord, 11.9);
 	yCoord -= 0.15;
 	RenderBitMapString(GLUT_BITMAP_HELVETICA_18, temp);
 
