@@ -28,6 +28,21 @@ void Player::Shoot()
 	m_gun.Shoot(newBullet);
 }
 
+const GLint Player::GetHealth()
+{
+	return m_health;
+}
+
+const GLfloat Player::GetStartHealth()
+{
+	return start_health;
+}
+
+void Player::SetHealth(GLfloat& given_health)
+{
+	m_health = given_health;
+}
+
 Camera& Player::GetCamera()
 {
 	return m_camera;

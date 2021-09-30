@@ -20,9 +20,9 @@ constexpr auto S_BOX_2					= 9;
 constexpr auto S_BOX_3					= 10;
 constexpr auto HEALTH					= 12;
 constexpr auto WOOD						= 13;
-constexpr auto M_POLY					= 14;
-constexpr auto B_GAMMON					= 15;
-constexpr auto P_NARY					= 16;
+constexpr auto S_BOARD_1				= 14;
+constexpr auto S_BOARD_2				= 15;
+constexpr auto S_BOARD_3				= 16;
 
 constexpr auto T_PAUSED					= 17;
 constexpr auto T_STARTSCREEN			= 18;

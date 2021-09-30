@@ -38,7 +38,6 @@ void GM::GameInit(int w, int h)
 	GameReshape(w, h); // Called once to reinit the reshape
 	DGW::GetSize(w, h);
 	Lighting::LightingInit();
-
 	glutDisplayFunc(DGW::DisplayGameWorldMasterFunction);
 	glutKeyboardFunc(GameKeys);
 	glutKeyboardUpFunc(GameReleaseKeys);
@@ -70,6 +69,8 @@ void GM::LoadGameObjectFiles()
 	ReadOBJMTL("data/object/gameObjects/s_Movies.obj", s_Movies);
 	ReadOBJMTL("data/object/gameObjects/s_Books.obj", s_Books);
 	ReadOBJMTL("data/object/gameObjects/Sky.obj", Sky);
+	ReadOBJMTL("data/object/gameObjects/s_boardgame.obj", s_Board);
+
 
 
 	//
@@ -81,12 +82,6 @@ void GM::LoadGameObjectFiles()
 	LoadGameShelfObject("data/object/gameObjects/s_plane.obj", WOOD);
 	LoadGameShelfObject("data/object/gameObjects/s_car.obj", WOOD);
 	LoadGameShelfObject("data/object/gameObjects/s_truck.obj", WOOD);
-
-	//same object, dramaticall slows down frame rate using same object to load
-	//must program so that one object can use from set of textures
-	LoadGameShelfObject("data/object/gameObjects/s_boardgame.obj", M_POLY);
-	LoadGameShelfObject("data/object/gameObjects/s_boardgame2.obj", B_GAMMON);
-	LoadGameShelfObject("data/object/gameObjects/s_boardgame3.obj", P_NARY);
 
 	//
 	//End of objects used to populate the shelves
@@ -210,6 +205,7 @@ void GM::GameStartUp()
 		zFar = 1000;
 		Starting = false;
 		glClearColor(0.5, 0.5, 0.5, 1);
+		hudOn = true;
 	}
 	GameReshape(glutGet(GLUT_WINDOW_WIDTH), glutGet(GLUT_WINDOW_HEIGHT));
 }
@@ -331,6 +327,7 @@ void GM::PauseGame()
 	PMV.m_playerLook = player.GetCamera().GetLook();
 	PMV.m_floatLook = PMV.m_playerLook;
 	PMV.m_floatMoving = true;
+	hudOn = false;
 }
 
 void GM::UnpauseGame()
@@ -344,6 +341,7 @@ void GM::UnpauseGame()
 	player.GetCamera().SetCameraLocation(PMV.m_playerPos.x, PMV.m_playerPos.y, PMV.m_playerPos.z);
 	player.GetCamera().SetCameraLookAt(PMV.m_playerLook);
 	lastUnpausedFrame = glutGet(GLUT_ELAPSED_TIME);
+	hudOn = true;
 }
 
 void GM::GameReleaseKeys(unsigned char key, int x, int y)
@@ -376,11 +374,6 @@ void GM::GameReleaseKeys(unsigned char key, int x, int y)
 	case 'C':
 	case ' ':
 		player.GetCamera().SetCrouch(false);
-		break;
-
-	case 'l':
-	case 'L': 
-		totalTime -= 5000;
 		break;
 	}
 
@@ -755,10 +748,11 @@ void GM::PausedFloatingPosition()
 
 void GM::RestartGame()
 {
+	GLfloat health = 100;;
 	player.ResetFiringDelay();
 	player.ResetBulletSpeed();
 	player.ResetMoveSpeed();
-
+	player.SetHealth(health);
 	UnpauseGame();
 
 	zFar = 0.001;

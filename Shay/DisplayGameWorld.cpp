@@ -7,6 +7,7 @@ std::vector<ShelfObjectsOBJ> Shelf_Objects;
 Object3D s_Box;
 Object3D s_Movies;
 Object3D s_Books;
+Object3D s_Board;
 Object3D Sky;
 Leaderboard LB;
 
@@ -36,7 +37,6 @@ void DGW::DisplayGameWorldMasterFunction()
 	glEnable(GL_LIGHTING);
 	glPopMatrix();
 
-
 	glPushMatrix();
 	glScalef(-1, 1, 1);
 	ToyStore.DisplayObjectWithLighting(TOY_STORE);
@@ -47,9 +47,8 @@ void DGW::DisplayGameWorldMasterFunction()
 		DisplayPerformanceMetrics();
 	}
 	
-	
 	DisplayShelves();
-	DrawHUD();
+	DrawHUD(player);
 
 	if (wireFrame)
 	{
@@ -73,7 +72,6 @@ void DGW::DisplayGameWorldMasterFunction()
 	}
 	else
 	{
-		
 		DGO::DisplayGunBullets(player.GetGun());
 	}
 
@@ -333,9 +331,8 @@ void DGW::DisplayShelfContentsCulling(unsigned int objectList, float xPos, int x
 		if(!(distanceOne <= 1.2 || distanceTwo <= 1.2)) { return; }
 	}
 	
-
 	
-	DisplayShelfContents(objectList, xPos, xDirection, zPos, zDirection, seed, pos);
+	DisplayShelfContents(objectList, xPos, xDirection, zPos, zDirection, seed, PsudeoNumGen(seed, 2, xPos + zPos), pos);
 
 	if (ShelfCulling) { Shelf_1.DisplayObjectWithLighting(SHELF_1); }
 
@@ -343,10 +340,10 @@ void DGW::DisplayShelfContentsCulling(unsigned int objectList, float xPos, int x
 
 void DGW::DisplayShelfContents(unsigned int objectList, int seed, glm::vec3 pos)
 {
-	DisplayShelfContents(objectList, 0, 0, 0, 0, seed, pos);
+	DisplayShelfContents(objectList, 0, 0, 0, 0, seed, 0, pos);
 }
 
-void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirection, float zPos, int zDirection, int seed, glm::vec3 pos)
+void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirection, float zPos, int zDirection, int seed, int obj, glm::vec3 pos)
 {
 	//Don't draw contents if shelf not facing player
 	if (xDirection != 0)
@@ -367,18 +364,12 @@ void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirecti
 
 		glPushMatrix();
 		glTranslatef(-0.725, 0.1, 0.15);
-		s_Box.DisplayObjectWithLighting(S_BOX_1 + (seed + 25) % 3);
-		for (int count = 0; count < 4; count++)
-		{
-			rot = (seed * 7 + count) % 2;
-			if (rot == 0) { rot = -1; }
-			else { rot = 1; }
-			glPushMatrix();
-			glRotatef(((seed * count) % 30) * rot, 0, 1, 0);
-			s_Box.DisplayObjectWithLighting(S_BOX_1 + (seed * count) % 3);
-			glPopMatrix();
-			glTranslatef(0.45, 0, 0);
-		}
+		//s_Box.DisplayObjectWithLighting(S_BOX_1 + (seed + 25) % 3);
+
+		if (obj == 0)
+			DisplayBoxes(seed, rot);
+		else
+			DisplayBoards(seed, rot);
 
 		i = PsudeoNumGen(i+1, arraySize, sqrt(seed) + zPos + zPos);
 		glTranslatef(-1.75, 0.5, 0);
@@ -431,6 +422,37 @@ void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirecti
 		s_Books.DisplayObjectWithLighting(S_BOOKS);
 	}
 }
+
+void DGW::DisplayBoxes(int seed, int rot)
+{
+	for (int count = 0; count < 4; count++)
+	{
+		rot = (seed * 7 + count) % 2;
+		if (rot == 0) { rot = -1; }
+		else { rot = 1; }
+		glPushMatrix();
+		glRotatef(((seed * count) % 30) * rot, 0, 1, 0);
+		s_Box.DisplayObjectWithLighting(S_BOX_1 + (seed * count) % 3);
+		glPopMatrix();
+		glTranslatef(0.45, 0, 0);
+	}
+}
+
+void DGW::DisplayBoards(int seed, int rot)
+{
+	for (int count = 0; count < 4; count++)
+	{
+		rot = (seed * 7 + count) % 2;
+		if (rot == 0) { rot = -1; }
+		else { rot = 1; }
+		glPushMatrix();
+		glRotatef(((seed * count) % 10) * rot, 0, 1, 0);
+		s_Board.DisplayObjectWithLighting(S_BOARD_1 + (seed * count) % 3);
+		glPopMatrix();
+		glTranslatef(0.45, 0, 0);
+	}
+}
+
 
 int DGW::PsudeoNumGen(int seed, int max, int rand)
 {

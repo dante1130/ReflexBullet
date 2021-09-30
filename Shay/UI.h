@@ -3,18 +3,21 @@
 
 #include <stdlib.h>
 #include <GL/glut.h>
+
 #include "LoadTexturesGameWorld.h"
 #include "definesGW.h"
+#include "Player.h"
 
-extern int totalTime;
 
-void FindTime();
 
-void DrawHUD();
+extern bool hudOn;
+
+
+void DrawHUD(Player& player);
 
 void DisplayBar();
 
-void CalculateBar();
+void CalculateBar(Player& player);
 
 void GetScreenSize(int& width, int& height);
 
