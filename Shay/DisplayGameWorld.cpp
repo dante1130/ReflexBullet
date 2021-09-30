@@ -10,6 +10,10 @@ Object3D s_Books;
 Object3D Sky;
 Leaderboard LB;
 
+
+AnimationOBJ Train;
+AnimationOBJ DuckPerson;
+
 float startFrameTime = -1;
 int frameCountPos = 0;
 int lastFrameTime;
@@ -18,6 +22,8 @@ bool wireFrame = false;
 bool performanceMetric = true;
 
 PauseMenuValues PMV;
+GLfloat gameRunTime = 0;
+GLfloat lastUnpausedFrame = 0;
 
 
 void DGW::DisplayGameWorldMasterFunction()
@@ -72,6 +78,9 @@ void DGW::DisplayGameWorldMasterFunction()
 	}
 
 	Lighting::UpdateLighting();
+
+	DisplayAnimation();
+
 	glutSwapBuffers();
 }
 
@@ -324,24 +333,22 @@ void DGW::DisplayShelfContentsCulling(unsigned int objectList, float xPos, int x
 		if(!(distanceOne <= 1.2 || distanceTwo <= 1.2)) { return; }
 	}
 	
+
 	
-	DisplayShelfContents(objectList, xPos, xDirection, zPos, zDirection, seed);
+	DisplayShelfContents(objectList, xPos, xDirection, zPos, zDirection, seed, pos);
 
 	if (ShelfCulling) { Shelf_1.DisplayObjectWithLighting(SHELF_1); }
 
 }
 
-void DGW::DisplayShelfContents(unsigned int objectList, int seed)
+void DGW::DisplayShelfContents(unsigned int objectList, int seed, glm::vec3 pos)
 {
-	DisplayShelfContents(objectList, 0, 0, 0, 0, seed);
+	DisplayShelfContents(objectList, 0, 0, 0, 0, seed, pos);
 }
 
-void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirection, float zPos, int zDirection, int seed)
+void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirection, float zPos, int zDirection, int seed, glm::vec3 pos)
 {
-
-	glm::vec3 pos = player.GetCamera().GetPosition();
-
-	//Don't drow contents if shelf not facing player
+	//Don't draw contents if shelf not facing player
 	if (xDirection != 0)
 	{
 		if ((xDirection == 1 && xPos > pos[0]) || (xDirection == -1 && xPos < pos[0])) { return; }
@@ -373,7 +380,7 @@ void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirecti
 			glTranslatef(0.45, 0, 0);
 		}
 
-		i = PsudeoNumGen(i+1, arraySize, sqrt(seed));
+		i = PsudeoNumGen(i+1, arraySize, sqrt(seed) + zPos + zPos);
 		glTranslatef(-1.75, 0.5, 0);
 		glPushMatrix();
 		glRotatef(((seed * 2) % 20) * rot, 0, 1, 0);
@@ -700,7 +707,6 @@ void DGW::DisplayCredits()
 
 }
 
-
 void DGW::DisplayPauseMenuLeaderboard()
 {
 	float y = 6.3;
@@ -757,19 +763,65 @@ void DGW::DisplayIndividualLeaderboardRecord(float yCoord, int recordIndex, int 
 
 	glRasterPos3f(0.2, yCoord, 11.8);
 	yCoord -= 0.15;
-	temp = "Accuracy = " + std::to_string(r.accuracy) + "%";
+	temp = std::to_string(r.accuracy);
+	temp = "Accuracy = " + temp.substr(0, 7) + '%';
 	RenderBitMapString(GLUT_BITMAP_HELVETICA_18, temp);
 
 	glRasterPos3f(0.2, yCoord, 11.8);
 	yCoord -= 0.15;
-	temp = "Time = " + std::to_string(r.time) + " seconds";
+	temp = std::to_string(r.time);
+	temp = "Time = " + temp.substr(0, 7) + " seconds";
 	RenderBitMapString(GLUT_BITMAP_HELVETICA_18, temp);
 
 	glRasterPos3f(0.2, yCoord, 11.8);
-	yCoord -= 0.15;
+	RenderBitMapString(GLUT_BITMAP_HELVETICA_18, "-------------------");
+	glRasterPos3f(0.2, yCoord, 11.7);
 	RenderBitMapString(GLUT_BITMAP_HELVETICA_18, "-------------------");
 }
 
+void DGW::DisplayAnimation()
+{
+	glPushMatrix();
+	glScalef(-1, 1, 1);
+
+	Train.frame = (int)gameRunTime % 6000 / (1000 / 24);
+	if (Train.frame > Train.obj.size()-1) { Train.frame = Train.obj.size()-1; }
+	Train.obj[Train.frame].DisplayObjectWithLighting(Train.texture);
+
+
+	
+	float result = (int)gameRunTime % 12000 / 1000.0;
+
+	float zPos = -14 + result * 4;
+
+	glPushMatrix();
+	glTranslatef(1, 0, zPos);
+	DuckPerson.frame = (int)gameRunTime % 1000 / (1000 / 24);
+	if (DuckPerson.frame > DuckPerson.obj.size() - 1) { DuckPerson.frame = DuckPerson.obj.size() - 1; }
+	DuckPerson.obj[DuckPerson.frame].DisplayObjectWithLighting(DuckPerson.texture);
+	glPopMatrix();
+
+	glPushMatrix();
+	result = (int)(gameRunTime + 4500) % 12000 / 1000.0;
+	zPos = -14 + result * 4;
+	glTranslatef(1, 0, zPos);
+	DuckPerson.frame = (int)gameRunTime % 1000 / (1000 / 24);
+	if (DuckPerson.frame > DuckPerson.obj.size() - 1) { DuckPerson.frame = DuckPerson.obj.size() - 1; }
+	DuckPerson.obj[DuckPerson.frame].DisplayObjectWithLighting(DuckPerson.texture);
+	glPopMatrix();
+
+	glPushMatrix();
+	result = (int)gameRunTime % 14000 / 1000.0;
+	zPos = 44 - result * 4;
+	glTranslatef(2.2, 0, zPos);
+	glRotatef(180, 0, 1, 0);
+	DuckPerson.frame = (int)(gameRunTime+5555) % 1000 / (1000 / 24);
+	if (DuckPerson.frame > DuckPerson.obj.size() - 1) { DuckPerson.frame = DuckPerson.obj.size() - 1; }
+	DuckPerson.obj[DuckPerson.frame].DisplayObjectWithLighting(DuckPerson.texture);
+	glPopMatrix();
+
+	glPopMatrix();
+}
 
 void DGW::DisplayPerformanceMetrics()
 {

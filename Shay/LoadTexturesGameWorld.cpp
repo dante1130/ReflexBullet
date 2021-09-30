@@ -148,7 +148,8 @@ void LTGW::CreateTextures()
 	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/OptionsMenu.raw", 400, 100);
 	tpGW.CreateTexture(T_OPTIONS_MENU, GWimage, 400, 100);
 
-
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/TrainAnimation/Train.raw", 256, 128);
+	tpGW.CreateTexture(T_TRAIN, GWimage, 256, 128);
 
 
 	

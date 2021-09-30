@@ -57,6 +57,8 @@ void GM::GameInit(int w, int h)
 	LoadGameObjectFiles();
 	ReadLeaderboardFile("data/leaderboards.txt", LB);
 	
+	LoadAnimation();
+
 	PauseGame();
 }
 
@@ -89,6 +91,57 @@ void GM::LoadGameObjectFiles()
 	//
 	//End of objects used to populate the shelves
 	//
+}
+
+void GM::LoadAnimation()
+{
+	Object3D temp, temp2;
+	std::string tempName, nameStart = "data/object/gameObjects/TrainAnimation/TrainAnimation_000", nameEnd = ".obj";
+
+	Train.texture = T_TRAIN;
+
+	tempName = nameStart + "001" + nameEnd;
+	ReadOBJMTL(tempName, temp);
+	Train.obj.push_back(temp);
+	for (int count = 2; count <= 144; count++)
+	{
+		tempName = nameStart;
+		if (count < 10) { tempName = tempName + "00"; }
+		else if (count < 100) { tempName = tempName + '0'; }
+		tempName = tempName + std::to_string(count) + nameEnd;
+
+		LoadAnimationFrame(tempName, Train);
+		
+	}
+	std::cout << "Frames of animation loaded: " << Train.obj.size() << std::endl;
+
+
+	std::string nameStartTwo = "data/object/gameObjects/DuckPersonAnimation/DuckPerson_0000";
+	DuckPerson.texture = T_DUCK_PERSON;
+
+	tempName = nameStartTwo + "01" + nameEnd;
+	ReadOBJMTL(tempName, temp2);
+	DuckPerson.obj.push_back(temp2);
+	for (int count = 2; count <= 24; count++)
+	{
+		tempName = nameStartTwo;
+		if (count < 10) { tempName = tempName + "0"; }
+		tempName = tempName + std::to_string(count) + nameEnd;
+
+		LoadAnimationFrame(tempName, DuckPerson);
+
+	}
+	std::cout << "Frames of animation loaded: " << DuckPerson.obj.size() << std::endl;
+
+}
+
+void GM::LoadAnimationFrame(std::string tempName, AnimationOBJ &AOBJ)
+{
+	Object3D temp;
+
+	readObjFile(tempName, temp);
+	temp.SetMTLArrayLocation(AOBJ.obj[0].GetMTLArrayLocation());
+	AOBJ.obj.push_back(temp);
 }
 
 void GM::LoadGameShelfObject(const std::string& fileName, int textureID)
@@ -137,6 +190,8 @@ void GM::GameFixedUpdateLoop(int val)
 	}
 	else
 	{
+		gameRunTime = gameRunTime + newElapsedTime - lastUnpausedFrame;
+		lastUnpausedFrame = newElapsedTime;
 		player.Update(delta);
 		player.GetCamera().KeyboardMovement();
 	}
@@ -288,6 +343,7 @@ void GM::UnpauseGame()
 	PMV.m_floatMoving = false;
 	player.GetCamera().SetCameraLocation(PMV.m_playerPos.x, PMV.m_playerPos.y, PMV.m_playerPos.z);
 	player.GetCamera().SetCameraLookAt(PMV.m_playerLook);
+	lastUnpausedFrame = glutGet(GLUT_ELAPSED_TIME);
 }
 
 void GM::GameReleaseKeys(unsigned char key, int x, int y)

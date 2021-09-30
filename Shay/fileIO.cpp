@@ -13,6 +13,7 @@ void readObjFile(const std::string& fileName, Object3D& obj)
 		std::cout << fileName << " file not found" << std::endl;
 		return;
 	}
+	else { std::cout << "Loading OBJ file " << fileName << std::endl; }
 
 	while (getline(temp_file, temp_line))
 	{
@@ -79,6 +80,7 @@ void ReadOBJMTL(const std::string& fileName, Object3D& obj)
 
 void ReadMTLFile(const std::string& fileName, Object3D& obj)
 {
+
 	int mat1 = 0;
 	
 	std::string temp_line, prefix;
@@ -95,6 +97,7 @@ void ReadMTLFile(const std::string& fileName, Object3D& obj)
 		std::cout << name << "File not found" << std::endl;
 		return;
 	}
+	else { std::cout << "Loading MTL file " << fileName << std::endl; }
 
 	while (getline(temp_file, temp_line) && mat1 != 2)
 	{

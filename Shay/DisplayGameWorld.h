@@ -28,7 +28,11 @@ struct AnimationOBJ
 {
 	std::vector<Object3D> obj;
 	int texture;
+	int frame;
 };
+
+extern AnimationOBJ Train;
+extern AnimationOBJ DuckPerson;
 
 
 extern Player player;
@@ -77,6 +81,8 @@ struct PauseMenuValues
 };
 
 extern PauseMenuValues PMV;
+extern GLfloat gameRunTime;
+extern GLfloat lastUnpausedFrame;
 
 namespace DGW
 {
@@ -107,7 +113,7 @@ namespace DGW
 	* @param	objectList	- An integer which specifies which object list to use
 	* @return	Void
 	*/
-	void DisplayShelfContents(unsigned int objectList, int seed);
+	void DisplayShelfContents(unsigned int objectList, int seed, glm::vec3 pos);
 
 	/**
 	* @brief	Displays a shelf and its contents based on an object list and its constraints (constraints specify when the shelf contents should be displayed)
@@ -118,7 +124,7 @@ namespace DGW
 	* @param	zDirection	- specify 1 for positive z direction and -1 for negative (specify 0 if you don't want a cutoff or use overloaded method)
 	* @return	Void
 	*/
-	void DisplayShelfContents(unsigned int objectList, float xPos, int xDirection, float zPos, int zDirection, int seed);
+	void DisplayShelfContents(unsigned int objectList, float xPos, int xDirection, float zPos, int zDirection, int seed, glm::vec3 pos);
 
 	/**
 	* @brief	Displays a shelf and its contents based on an object list and its constraints (constraints specify when the shelf contents should be displayed)
@@ -215,7 +221,19 @@ namespace DGW
 	*/
 	void DisplayStartScreen();
 
+	/**
+	* @brief	Displays the credits menu
+	* @param	No param
+	* @return	Void
+	*/
 	void DisplayCredits();
+
+	/**
+	* @brief	Displays different animations
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayAnimation();
 
 	/**
 	* @brief	Displays the games current performance metrics
