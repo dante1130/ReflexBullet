@@ -13,15 +13,19 @@ public:
 
 	void Update(GLfloat delta) override;
 	void Shoot() override;
+	const GLint GetHealth() override;
+	void SetHealth(GLfloat& given_health) override;
 
 	// Getter
 	Camera& GetCamera();
 	Gun& GetGun();
+	const GLfloat GetStartHealth();
 
 	// Setters (for upgrade system)
 	void DecreaseFiringDelay(GLfloat added_firing_speed);
 	void AddBulletSpeed(GLfloat added_bullet_speed);
 	void AddMoveSpeed(GLfloat added_move_speed);
+	
 
 	void ResetFiringDelay();
 	void ResetBulletSpeed();
@@ -30,7 +34,7 @@ public:
 private:
 	const GLfloat start_health = 100;
 	const GLfloat start_move_speed = 0.08;
-	const GLfloat start_health_decay = 0.01;
+	const GLfloat start_health_decay = 0.1;
 	const GLfloat start_firing_speed = 1;
 	const GLfloat start_bullet_speed = 5;
 

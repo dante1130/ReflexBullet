@@ -67,13 +67,13 @@ void LTGW::CreateTextures()
 	tpGW.CreateTexture(WOOD, GWimage, 800, 600);
 
 	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/mpoly.raw", 128, 96);
-	tpGW.CreateTexture(M_POLY, GWimage, 128, 96);
+	tpGW.CreateTexture(S_BOARD_1, GWimage, 128, 96);
 
 	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/bgammon.raw", 128, 96);
-	tpGW.CreateTexture(B_GAMMON, GWimage, 128, 96);
+	tpGW.CreateTexture(S_BOARD_2, GWimage, 128, 96);
 
 	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/pnary.raw", 128, 96);
-	tpGW.CreateTexture(P_NARY, GWimage, 128, 96);
+	tpGW.CreateTexture(S_BOARD_3, GWimage, 128, 96);
 
 	
 

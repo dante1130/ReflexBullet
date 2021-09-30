@@ -47,3 +47,8 @@ void Enemy::SetLook(const glm::vec3& lookAt)
 {
 	m_look = lookAt;
 }
+
+void Enemy::SetHealth(GLfloat& given_health)
+{
+	m_health = given_health;
+}

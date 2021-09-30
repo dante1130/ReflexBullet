@@ -38,7 +38,6 @@ void GM::GameInit(int w, int h)
 	GameReshape(w, h); // Called once to reinit the reshape
 	DGW::GetSize(w, h);
 	Lighting::LightingInit();
-
 	glutDisplayFunc(DGW::DisplayGameWorldMasterFunction);
 	glutKeyboardFunc(GameKeys);
 	glutKeyboardUpFunc(GameReleaseKeys);
@@ -67,6 +66,8 @@ void GM::LoadGameObjectFiles()
 	ReadOBJMTL("data/object/gameObjects/s_Movies.obj", s_Movies);
 	ReadOBJMTL("data/object/gameObjects/s_Books.obj", s_Books);
 	ReadOBJMTL("data/object/gameObjects/Sky.obj", Sky);
+	ReadOBJMTL("data/object/gameObjects/s_boardgame.obj", s_Board);
+
 
 
 	//
@@ -78,12 +79,6 @@ void GM::LoadGameObjectFiles()
 	LoadGameShelfObject("data/object/gameObjects/s_plane.obj", WOOD);
 	LoadGameShelfObject("data/object/gameObjects/s_car.obj", WOOD);
 	LoadGameShelfObject("data/object/gameObjects/s_truck.obj", WOOD);
-
-	//same object, dramaticall slows down frame rate using same object to load
-	//must program so that one object can use from set of textures
-	LoadGameShelfObject("data/object/gameObjects/s_boardgame.obj", M_POLY);
-	LoadGameShelfObject("data/object/gameObjects/s_boardgame2.obj", B_GAMMON);
-	LoadGameShelfObject("data/object/gameObjects/s_boardgame3.obj", P_NARY);
 
 	//
 	//End of objects used to populate the shelves
@@ -132,6 +127,7 @@ void GM::GameFixedUpdateLoop(int val)
 			zFar = 1000;
 			Starting = false;
 			glClearColor(0.5, 0.5, 0.5, 1);
+			hudOn = true;
 		}
 		GameReshape(width, height);
 
@@ -216,6 +212,7 @@ void GM::GameKeys(unsigned char key, int x, int y)
 			m_playerLook = player.GetCamera().GetLook();
 			m_floatLook = m_playerLook;
 			m_floatMoving = true;
+			hudOn = false;
 		}
 		else
 		{
@@ -226,6 +223,7 @@ void GM::GameKeys(unsigned char key, int x, int y)
 			m_floatMoving = false;
 			player.GetCamera().SetCameraLocation(m_playerPos.x, m_playerPos.y, m_playerPos.z);
 			player.GetCamera().SetCameraLookAt(m_playerLook);
+			hudOn = true;
 		}
 		break;
 	case '_':
@@ -300,11 +298,6 @@ void GM::GameReleaseKeys(unsigned char key, int x, int y)
 	case 'C':
 	case ' ':
 		player.GetCamera().SetCrouch(false);
-		break;
-
-	case 'l':
-	case 'L': 
-		totalTime -= 5000;
 		break;
 	}
 

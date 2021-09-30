@@ -7,6 +7,7 @@ std::vector<ShelfObjectsOBJ> Shelf_Objects;
 Object3D s_Box;
 Object3D s_Movies;
 Object3D s_Books;
+Object3D s_Board;
 Object3D Sky;
 Leaderboard LB;
 
@@ -33,7 +34,6 @@ void DGW::DisplayGameWorldMasterFunction()
 	glEnable(GL_LIGHTING);
 	glPopMatrix();
 
-
 	glPushMatrix();
 	glScalef(-1, 1, 1);
 	ToyStore.DisplayObjectWithLighting(TOY_STORE);
@@ -44,9 +44,8 @@ void DGW::DisplayGameWorldMasterFunction()
 		DisplayPerformanceMetrics();
 	}
 	
-	
 	DisplayShelves();
-	DrawHUD();
+	DrawHUD(player);
 
 	if (wireFrame)
 	{
@@ -70,7 +69,6 @@ void DGW::DisplayGameWorldMasterFunction()
 	}
 	else
 	{
-		
 		DGO::DisplayGunBullets(player.GetGun());
 	}
 
@@ -98,15 +96,15 @@ void DGW::DisplayShelves()
 	glTranslatef(2, 0, 0);
 	DisplayShelfContents(1, 23);
 	glTranslatef(-4, 0, 4);
-	DisplayShelfContents(1, 0, 0, 5, 1, 8);
+	DisplayShelfContents(1, 0, 0, 5, 1, 8, 0);
 	glTranslatef(-2, 0, 0);
-	DisplayShelfContents(1, 0, 0, 5, 1, 9);
+	DisplayShelfContents(1, 0, 0, 5, 1, 9, 1);
 	glTranslatef(0, 0, 4);
-	DisplayShelfContents(0, 0, 0, 9, 1, 0);
+	DisplayShelfContents(0, 0, 0, 9, 1, 0, 0);
 	glTranslatef(2, 0, 0);
-	DisplayShelfContents(0, 0, 0, 9, 1, 4);
+	DisplayShelfContents(0, 0, 0, 9, 1, 4, 1);
 	glTranslatef(2, 0, 0);
-	DisplayShelfContents(0, 0, 0, 9, 1, 2);
+	DisplayShelfContents(0, 0, 0, 9, 1, 2, 0);
 	glPushMatrix();
 	glTranslatef(0.5, 0, 0);
 	glScalef(0.5, 1, 1);
@@ -114,13 +112,13 @@ void DGW::DisplayShelves()
 	glPopMatrix();
 	//switch sides
 	glTranslatef(0, 0, 10);
-	DisplayShelfContents(0, 0, 0, 19, 1, 10);
+	DisplayShelfContents(0, 0, 0, 19, 1, 10, 1);
 	glTranslatef(-2, 0, 0);
-	DisplayShelfContents(0, 0, 0, 19, 1, 100);
+	DisplayShelfContents(0, 0, 0, 19, 1, 100, 0);
 	glTranslatef(0, 0, 4);
-	DisplayShelfContents(2, 0, 0, 23, 1, 14);
+	DisplayShelfContents(2, 0, 0, 23, 1, 14, 1);
 	glTranslatef(-2, 0, 0);
-	DisplayShelfContents(2, 0, 0, 23, 1, 6);
+	DisplayShelfContents(2, 0, 0, 23, 1, 6, 0);
 
 	//Shelves facing -y in blender at the back of the shop
 	glRotatef(180, 0, 1, 0);
@@ -133,15 +131,15 @@ void DGW::DisplayShelves()
 	glTranslatef(-2, 0, 0);
 	DisplayShelfContents(2, 21);
 	glTranslatef(4, 0, 4);
-	DisplayShelfContents(0, 0, 0, 21, -1, 20);
+	DisplayShelfContents(0, 0, 0, 21, -1, 20, 1);
 	glTranslatef(2, 0, 0);
-	DisplayShelfContents(0, 0, 0, 21, -1, 211);
+	DisplayShelfContents(0, 0, 0, 21, -1, 211, 0);
 	glTranslatef(0, 0, 4);
-	DisplayShelfContents(0, 0, 0, 17, -1, 35);
+	DisplayShelfContents(0, 0, 0, 17, -1, 35, 1);
 	glTranslatef(-2, 0, 0);
-	DisplayShelfContents(0, 0, 0, 17, -1, 57);
+	DisplayShelfContents(0, 0, 0, 17, -1, 57, 0);
 	glTranslatef(-2, 0, 0);
-	DisplayShelfContents(0, 0, 0, 17, -1, 59);
+	DisplayShelfContents(0, 0, 0, 17, -1, 59, 1);
 	glPushMatrix();
 	glTranslatef(-0.5, 0, 0);
 	glScalef(0.5, 1, 1);
@@ -149,13 +147,13 @@ void DGW::DisplayShelves()
 	glPopMatrix();
 	//Switch sides
 	glTranslatef(0, 0, 10);
-	DisplayShelfContents(1, 0, 0, 7, -1, 27);
+	DisplayShelfContents(1, 0, 0, 7, -1, 27, 0);
 	glTranslatef(2, 0, 0);
-	DisplayShelfContents(1, 0, 0, 7, -1, 0);
+	DisplayShelfContents(1, 0, 0, 7, -1, 0, 1);
 	glTranslatef(0, 0, 4);
-	DisplayShelfContents(1, 0, 0, 3, -1, 2);
+	DisplayShelfContents(1, 0, 0, 3, -1, 2, 0);
 	glTranslatef(2, 0, 0);
-	DisplayShelfContents(1, 0, 0, 3, -1, 1);
+	DisplayShelfContents(1, 0, 0, 3, -1, 1, 1);
 
 	//Back shop wall - left to right 
 	glRotatef(90, 0, 1, 0);
@@ -173,9 +171,9 @@ void DGW::DisplayShelves()
 	glTranslatef(2, 0, 0);
 	DisplayShelfContents(1, 54);
 	glTranslatef(2, 0, 0);
-	DisplayShelfContents(1, 12, 1, 0, 0, 24);
+	DisplayShelfContents(1, 12, 1, 0, 0, 24, 0);
 	glTranslatef(8, 0, 0);
-	DisplayShelfContents(2, 12, 1, 0, 0, 756);
+	DisplayShelfContents(2, 12, 1, 0, 0, 756, 1);
 	glTranslatef(2, 0, 0);
 	DisplayShelfContents(2, 225);
 	glTranslatef(2, 0, 0);
@@ -191,62 +189,59 @@ void DGW::DisplayShelves()
 
 	//Middle back
 	glTranslatef(-15, 0, 3);
-	DisplayShelfContents(0, 16, -1, 0, 0, 19);
+	DisplayShelfContents(0, 16, -1, 0, 0, 19, 0);
 	glTranslatef(6, 0, 0);
-	DisplayShelfContents(0, 16, -1, 0, 0, 12);
+	DisplayShelfContents(0, 16, -1, 0, 0, 12, 1);
 	glPopMatrix();
 
 	//Front of shop shelves
 	glPushMatrix();
 	//Shelves facing -y in blender at the front of the shop
 	glTranslatef(4, 0, 6.5);
-	DisplayShelfContents(0, 0, 0, 7, 1, 11);
+	DisplayShelfContents(0, 0, 0, 7, 1, 11, 1);
 	glTranslatef(0, 0, 14);
-	DisplayShelfContents(0, 0, 0, 21, 1, 10);
+	DisplayShelfContents(0, 0, 0, 21, 1, 10, 1);
 
 	//Shelves facing +y in blender at the front of the shop
 	glRotatef(180, 0, 1, 0);
 	glTranslatef(0, 0, -3);
-	DisplayShelfContents(0, 0, 0, 23, -1, 68);
+	DisplayShelfContents(0, 0, 0, 23, -1, 68, 0);
 	glTranslatef(-4, 0, 0);
-	DisplayShelfContents(0, 0, 0, 23, -1, 0);
+	DisplayShelfContents(0, 0, 0, 23, -1, 0, 0);
 	glTranslatef(4, 0, 4);
-	DisplayShelfContents(0, 0, 0, 19, -1, 56);
+	DisplayShelfContents(0, 0, 0, 19, -1, 56, 0);
 	glTranslatef(0, 0, 14);
-	DisplayShelfContents(0, 0, 0, 5, -1, 80);
+	DisplayShelfContents(0, 0, 0, 5, -1, 80, 0);
 
 	//Shelves facing front of store
 	glRotatef(90, 0, 1, 0);
 	glTranslatef(0.5, 0, 1.5);
-	DisplayShelfContents(0, 2, -1, 0, 0, 25);
+	DisplayShelfContents(0, 2, -1, 0, 0, 25, 1);
 	glTranslatef(14, 0, 0);
-	DisplayShelfContents(0, 2, -1, 0, 0, 66);
+	DisplayShelfContents(0, 2, -1, 0, 0, 66, 1);
 	glTranslatef(5, 0, -1);
-	DisplayShelfContents(0, 3, -1, 0, 0, 77);
+	DisplayShelfContents(0, 3, -1, 0, 0, 77, 0);
 	glTranslatef(0, 0, -4);
-	DisplayShelfContents(0, 7, -1, 0, 0, 88);
+	DisplayShelfContents(0, 7, -1, 0, 0, 88, 1);
 	
 	//Shelves facing back of store
 	glRotatef(180, 0, 1, 0);
 	glTranslatef(0, 0, 1);
-	DisplayShelfContents(0, 9, 1, 0, 0, 99);
+	DisplayShelfContents(0, 9, 1, 0, 0, 99, 0);
 	glTranslatef(0, 0, -4);
-	DisplayShelfContents(0, 5, 1, 0, 0, 44);
+	DisplayShelfContents(0, 5, 1, 0, 0, 44, 1);
 
 	glPopMatrix();
-
-
-
 
 
 }
 
 void DGW::DisplayShelfContents(unsigned int objectList, int seed)
 {
-	DisplayShelfContents(objectList, 0, 0, 0, 0, seed);
+	DisplayShelfContents(objectList, 0, 0, 0, 0, seed, 0);
 }
 
-void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirection, float zPos, int zDirection, int seed)
+void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirection, float zPos, int zDirection, int seed, int obj)
 {
 	Shelf_1.DisplayObjectWithLighting(SHELF_1);
 
@@ -270,18 +265,12 @@ void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirecti
 
 		glPushMatrix();
 		glTranslatef(-0.725, 0.1, 0.15);
-		s_Box.DisplayObjectWithLighting(S_BOX_1 + (seed + 25) % 3);
-		for (int count = 0; count < 4; count++)
-		{
-			rot = (seed * 7 + count) % 2;
-			if (rot == 0) { rot = -1; }
-			else { rot = 1; }
-			glPushMatrix();
-			glRotatef(((seed * count) % 30) * rot, 0, 1, 0);
-			s_Box.DisplayObjectWithLighting(S_BOX_1 + (seed * count) % 3);
-			glPopMatrix();
-			glTranslatef(0.45, 0, 0);
-		}
+		//s_Box.DisplayObjectWithLighting(S_BOX_1 + (seed + 25) % 3);
+
+		if (obj == 0)
+			DisplayBoxes(seed, rot);
+		else
+			DisplayBoards(seed, rot);
 
 		i = PsudeoNumGen(i+1, arraySize, seed);
 		glTranslatef(-1.75, 0.5, 0);
@@ -334,6 +323,37 @@ void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirecti
 		s_Books.DisplayObjectWithLighting(S_BOOKS);
 	}
 }
+
+void DGW::DisplayBoxes(int seed, int rot)
+{
+	for (int count = 0; count < 4; count++)
+	{
+		rot = (seed * 7 + count) % 2;
+		if (rot == 0) { rot = -1; }
+		else { rot = 1; }
+		glPushMatrix();
+		glRotatef(((seed * count) % 30) * rot, 0, 1, 0);
+		s_Box.DisplayObjectWithLighting(S_BOX_1 + (seed * count) % 3);
+		glPopMatrix();
+		glTranslatef(0.45, 0, 0);
+	}
+}
+
+void DGW::DisplayBoards(int seed, int rot)
+{
+	for (int count = 0; count < 4; count++)
+	{
+		rot = (seed * 7 + count) % 2;
+		if (rot == 0) { rot = -1; }
+		else { rot = 1; }
+		glPushMatrix();
+		glRotatef(((seed * count) % 10) * rot, 0, 1, 0);
+		s_Board.DisplayObjectWithLighting(S_BOARD_1 + (seed * count) % 3);
+		glPopMatrix();
+		glTranslatef(0.45, 0, 0);
+	}
+}
+
 
 int DGW::PsudeoNumGen(int seed, int max, int rand)
 {
