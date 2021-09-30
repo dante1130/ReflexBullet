@@ -70,6 +70,13 @@ namespace GM
 	void GameUpdateLoop();
 
 	/**
+	* @brief	Handles the visual game startup
+	* @param	No param
+	* @return	Void
+	*/
+	void GameStartUp();
+
+	/**
 	* @brief	Handles all the key inputs for the game world
 	* @param	key	- The key pressed
 	* @param	x	- The location of the mouse in the x direction when the key was pressed
@@ -77,6 +84,10 @@ namespace GM
 	* @return	Void
 	*/
 	void GameKeys(unsigned char key, int x, int y);
+
+	void PauseGame();
+
+	void UnpauseGame();
 
 	/**
 	* @brief	Handles all the released key inputs for the game world
@@ -95,7 +106,44 @@ namespace GM
 	*/
 	void GameMouseMove(int x, int y);
 
+	/**
+	* @brief	Handles deciding which option should be highlighted when the mouse is moved over it
+	* @param	x	- The location of the mouse in the x direction
+	* @param	y	- The location of the mouse in the y direction
+	* @return	Void
+	*/
+	void MouseOverOption(int x, int y);
+	
+	void GameMouseOverOptionOptions(int x, int y, float xMax, float xMin, float yMax, float yMin, float yChange, float xChange);
+
+	/**
+	* @brief	Handles when the mouse is clicked
+	* @param	button	- Which button was clicked
+	* @param	state	- The state of the button
+	* @param	x		- The location of the mouse in the x direction
+	* @param	y		- The location of the mouse in the y direction
+	* @return	Void
+	*/
 	void GameMouseClick(int button, int state, int x, int y);
+
+	/**
+	* @brief	Handles when the mouse is clicked when the game is paused
+	* @param	button	- Which button was clicked
+	* @param	state	- The state of the button
+	* @param	x		- The location of the mouse in the x direction
+	* @param	y		- The location of the mouse in the y direction
+	* @return	Void
+	*/
+	void GameMouseClickOption(int button, int state, int x, int y);
+
+	void GameMouseOptionMenuClickOption(int x, int y, float xMax, float xMin, float yMax, float yMin, float yChange, float xChange);
+
+	/**
+	* @brief	Decides the action of a button for the menu
+	* @param	option	- Which option was selected
+	* @return	Void
+	*/
+	void MenuOptionChoosen(int option);
 
 	/**
 	* @brief	Handles reshaping the game window
@@ -111,6 +159,8 @@ namespace GM
 	* @return	Void
 	*/
 	void PausedFloatingPosition();
+
+	void RestartGame();
 
 }
 
