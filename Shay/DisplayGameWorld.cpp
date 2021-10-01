@@ -451,7 +451,12 @@ void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirecti
 	}
 	else if (objectList == 2)
 	{
-		s_Books.DisplayObjectWithLighting(S_BOOKS);
+		int text = S_BOOKS;
+		if (seed % 2 == 1) { text = S_BOOKS2; }
+
+		s_Books.DisplayObjectWithLighting(text);
+
+
 	}
 }
 

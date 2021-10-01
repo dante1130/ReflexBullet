@@ -50,9 +50,12 @@ constexpr auto T_MINUS					= 39;
 constexpr auto T_OPTIONS_MENU			= 40;
 
 constexpr auto T_TRAIN					= 41;
-constexpr auto T_DUCK_PERSON			= 42 ;
+constexpr auto T_DUCK_PERSON			= 42;
 
-//NEXT 43
+constexpr auto S_BOOKS2					= 43;
+
+
+//NEXT 44
 constexpr auto GWTEXTURE_END = 50;
 
 
