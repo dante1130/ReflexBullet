@@ -20,7 +20,7 @@
 
 struct ShelfObjectsOBJ
 {
-	Object3D obj;
+	std::vector<Object3D> obj;
 	int texture;
 };
 
@@ -109,8 +109,20 @@ namespace DGW
 	*/
 	void GetSize(int& width, int& height);
 
+	/**
+	* @brief	Displays boxes
+	* @param	seed	- Used for randomisation
+	* @param	rot		- Used for rotation
+	* @return	Void
+	*/
 	void DisplayBoxes(int seed, int rot);
 
+	/**
+	* @brief	Displays boards
+	* @param	seed	- Used for randomisation
+	* @param	rot		- Used for rotation
+	* @return	Void
+	*/
 	void DisplayBoards(int seed, int rot);
 	/**
 	* @brief	Displays a shalf and its contents based on an object list
@@ -128,7 +140,7 @@ namespace DGW
 	* @param	zDirection	- specify 1 for positive z direction and -1 for negative (specify 0 if you don't want a cutoff or use overloaded method)
 	* @return	Void
 	*/
-	void DisplayShelfContents(unsigned int objectList, float xPos, int xDirection, float zPos, int zDirection, int seed, int obj, glm::vec3 pos);
+	void DisplayShelfContents(unsigned int objectList, float xPos, int xDirection, float zPos, int zDirection, int seed, int obj, glm::vec3 pos, int LOD);
 
 	/**
 	* @brief	Displays a shelf and its contents based on an object list and its constraints (constraints specify when the shelf contents should be displayed)

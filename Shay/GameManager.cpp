@@ -76,12 +76,16 @@ void GM::LoadGameObjectFiles()
 	//
 	//Objects used to populate the shelves
 	//
-	LoadGameShelfObject("data/object/gameObjects/s_WoodenBlocks.obj", S_WOODEN_BLOCKS);
-	LoadGameShelfObject("data/object/gameObjects/s_ToyBuildings.obj", S_TOY_BUILDING);
-	LoadGameShelfObject("data/object/gameObjects/s_StorageContainerBox.obj", S_STORAGE_CONTAINER_BOX);
-	LoadGameShelfObject("data/object/gameObjects/s_plane.obj", WOOD);
-	LoadGameShelfObject("data/object/gameObjects/s_car.obj", WOOD);
-	LoadGameShelfObject("data/object/gameObjects/s_truck.obj", WOOD);
+	LoadGameShelfObject("data/object/gameObjects/s_WoodenBlocks", S_WOODEN_BLOCKS, 1);
+	LoadGameShelfObject("data/object/gameObjects/s_ToyBuildings", S_TOY_BUILDING, 1);
+	LoadGameShelfObject("data/object/gameObjects/s_StorageContainerBox", S_STORAGE_CONTAINER_BOX, 1);
+	LoadGameShelfObject("data/object/gameObjects/s_plane", WOOD, 4);
+	LoadGameShelfObject("data/object/gameObjects/s_car", WOOD, 3);
+	LoadGameShelfObject("data/object/gameObjects/s_truck", WOOD, 4);
+
+
+
+
 
 	//
 	//End of objects used to populate the shelves
@@ -139,12 +143,50 @@ void GM::LoadAnimationFrame(std::string tempName, AnimationOBJ &AOBJ)
 	AOBJ.obj.push_back(temp);
 }
 
-void GM::LoadGameShelfObject(const std::string& fileName, int textureID)
+void GM::LoadGameShelfObject(const std::string& fileName, int textureID, int LODNumber)
 {
 	ShelfObjectsOBJ temp;
-	ReadOBJMTL(fileName, temp.obj);
+	Object3D tempOBJ;
+	std::string fileNameStorage = fileName + ".obj";
+
+	ReadOBJMTL(fileNameStorage, tempOBJ);
+
+	temp.obj.push_back(tempOBJ);
 	temp.texture = textureID;
+
+	/*
+	if (LODNumber != 1)
+	{
+		Object3D tempOBJOne; //////////////////////////This may not work
+
+		fileNameStorage = fileName + "1.obj";
+		std::cout << fileNameStorage << std::endl;
+
+		ReadOBJMTL(fileNameStorage, tempOBJOne);
+
+		temp.obj.push_back(tempOBJOne);
+	}
+	*/
+	
+	for (int count = 1; count < LODNumber; count++)
+	{
+		fileNameStorage = fileName + std::to_string(count) + ".obj";
+		StoreLODObj(fileNameStorage, temp);
+	}
+	
+	
+	
 	Shelf_Objects.push_back(temp);
+}
+
+void GM::StoreLODObj(std::string &fileName, ShelfObjectsOBJ &soOBJ)
+{
+	Object3D tempOBJ;
+
+	ReadOBJMTL(fileName, tempOBJ);
+
+	soOBJ.obj.push_back(tempOBJ);
+
 }
 
 void GM::CreateGameBoundingBoxes()

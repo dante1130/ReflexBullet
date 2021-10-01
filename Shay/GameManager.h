@@ -53,9 +53,18 @@ namespace GM
 	* @brief	Loads in a game shelf object
 	* @param	fileName	- The name of the obj file
 	* @param	textureID	- The textures ID for the object
+	* @param	LODNumber	- The number of objects for the object (the same object at different level of details)
 	* @return	Void
 	*/
-	void LoadGameShelfObject(const std::string& fileName, int textureID);
+	void LoadGameShelfObject(const std::string& fileName, int textureID, int LODNumber);
+
+	/**
+	* @brief	Loads a LOD object into a shelf object
+	* @param	fileName	- The name of the obj file
+	* @param	soOBJ		- A shelf object you want to store the obj into
+	* @return	Void
+	*/
+	void StoreLODObj(std::string& fileName, ShelfObjectsOBJ& soOBJ);
 
 	/**
 	* @brief	Creates AABB collisions for the world

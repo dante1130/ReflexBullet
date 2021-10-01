@@ -97,7 +97,7 @@ void ReadMTLFile(const std::string& fileName, Object3D& obj)
 		std::cout << name << "File not found" << std::endl;
 		return;
 	}
-	else { std::cout << "Loading MTL file " << fileName << std::endl; }
+	else { std::cout << "Loading MTL file " << name << std::endl; }
 
 	while (getline(temp_file, temp_line) && mat1 != 2)
 	{
