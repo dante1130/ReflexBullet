@@ -12,6 +12,7 @@
 #include "LoadTexturesGameWorld.h"
 #include "UI.h"
 #include "Leaderboards.h"
+#include "BossArea.h"
 
 #include <vector>
 #include <stdlib.h>
@@ -45,6 +46,8 @@ extern Leaderboard LB;
 
 extern bool wireFrame;
 extern bool performanceMetric;
+extern bool visibleShelves;
+extern bool bossOn;
 
 struct PauseMenuValues
 {

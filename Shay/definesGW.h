@@ -49,6 +49,8 @@ constexpr auto T_PLUS					= 38;
 constexpr auto T_MINUS					= 39;
 constexpr auto T_OPTIONS_MENU			= 40;
 
+constexpr auto BOSS						= 45;
+
 //NEXT 41
 constexpr auto GWTEXTURE_END = 50;
 

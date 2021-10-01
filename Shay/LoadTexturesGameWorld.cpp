@@ -75,7 +75,11 @@ void LTGW::CreateTextures()
 	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/pnary.raw", 128, 96);
 	tpGW.CreateTexture(S_BOARD_3, GWimage, 128, 96);
 
-	
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/boss.raw", 256, 256);
+	tpGW.CreateTexture(BOSS, GWimage, 256, 256);
+
+
+
 	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/Paused.raw", 400, 100);
 	tpGW.CreateTexture(T_PAUSED, GWimage, 400, 100);
 
@@ -147,7 +151,6 @@ void LTGW::CreateTextures()
 	
 	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/OptionsMenu.raw", 400, 100);
 	tpGW.CreateTexture(T_OPTIONS_MENU, GWimage, 400, 100);
-
 
 
 

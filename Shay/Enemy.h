@@ -12,7 +12,7 @@ public:
 
 	void Update(GLfloat delta) override;
 	void Shoot() override;
-	void SetHealth(GLfloat& given_health) override;
+	void SetHealth(const GLfloat& given_health) override;
 
 	// Getter
 	Gun& GetGun();

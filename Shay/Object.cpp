@@ -12,6 +12,18 @@ Object3D::~Object3D()
 		faces[i].clear();
 	}
 	faces.clear();
+	//not sure if std:vectors need to be deleted somehow
+}
+
+void Object3D::Clear()
+{
+	vertices.clear();
+	texCoord.clear();
+	for (int i = 0; i < GetFaceVectorSize(); ++i)
+	{
+		faces[i].clear();
+	}
+	faces.clear();
 }
 
 void Object3D::AddVertexNormal(const glm::vec3& vn)

@@ -17,6 +17,8 @@ int lastFrameTime;
 
 bool wireFrame = false;
 bool performanceMetric = true;
+bool visibleShelves = true;
+bool bossOn = false;
 
 PauseMenuValues PMV;
 
@@ -40,8 +42,15 @@ void DGW::DisplayGameWorldMasterFunction()
 	{
 		DisplayPerformanceMetrics();
 	}
-	
-	DisplayShelves();
+	if (visibleShelves)
+	{
+		DisplayShelves();
+	}
+	if (bossOn)
+	{
+		boss.TrackPlayer(player);
+		BossInit();
+	}
 	DrawHUD(player);
 
 	if (wireFrame)
@@ -67,6 +76,7 @@ void DGW::DisplayGameWorldMasterFunction()
 	else
 	{
 		DGO::DisplayGunBullets(player.GetGun());
+		DGO::DisplayGunBullets(boss.GetGun());
 	}
 
 	Lighting::UpdateLighting();
