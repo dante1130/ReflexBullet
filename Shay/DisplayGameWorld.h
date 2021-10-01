@@ -8,7 +8,7 @@
 #include "Lighting.h"
 #include "DisplayGameObjects.h"
 #include "Player.h"
-#include "EnemyAI.h"
+#include "Enemy.h"
 #include "LoadTexturesGameWorld.h"
 #include "UI.h"
 #include "Leaderboards.h"
@@ -21,7 +21,7 @@
 
 struct ShelfObjectsOBJ
 {
-	Object3D obj;
+	std::vector<Object3D> obj;
 	int texture;
 };
 
@@ -29,9 +29,13 @@ struct AnimationOBJ
 {
 	std::vector<Object3D> obj;
 	int texture;
+	int frame;
 };
 
+extern AnimationOBJ Train;
+extern AnimationOBJ DuckPerson;
 
+extern Enemy enemy;
 extern Player player;
 extern Object3D Shelf_1;
 extern Object3D ToyStore;
@@ -42,7 +46,7 @@ extern Object3D s_Books;
 extern Object3D Sky;
 extern Object3D s_Board;
 extern Leaderboard LB;
-
+extern Object3D cashier[2];
 
 extern bool wireFrame;
 extern bool performanceMetric;
@@ -81,6 +85,8 @@ struct PauseMenuValues
 };
 
 extern PauseMenuValues PMV;
+extern GLfloat gameRunTime;
+extern GLfloat lastUnpausedFrame;
 
 namespace DGW
 {
@@ -106,15 +112,27 @@ namespace DGW
 	*/
 	void GetSize(int& width, int& height);
 
+	/**
+	* @brief	Displays boxes
+	* @param	seed	- Used for randomisation
+	* @param	rot		- Used for rotation
+	* @return	Void
+	*/
 	void DisplayBoxes(int seed, int rot);
 
+	/**
+	* @brief	Displays boards
+	* @param	seed	- Used for randomisation
+	* @param	rot		- Used for rotation
+	* @return	Void
+	*/
 	void DisplayBoards(int seed, int rot);
 	/**
 	* @brief	Displays a shalf and its contents based on an object list
 	* @param	objectList	- An integer which specifies which object list to use
 	* @return	Void
 	*/
-	void DisplayShelfContents(unsigned int objectList, int seed);
+	void DisplayShelfContents(unsigned int objectList, int seed, glm::vec3 pos);
 
 	/**
 	* @brief	Displays a shelf and its contents based on an object list and its constraints (constraints specify when the shelf contents should be displayed)
@@ -125,7 +143,7 @@ namespace DGW
 	* @param	zDirection	- specify 1 for positive z direction and -1 for negative (specify 0 if you don't want a cutoff or use overloaded method)
 	* @return	Void
 	*/
-	void DisplayShelfContents(unsigned int objectList, float xPos, int xDirection, float zPos, int zDirection, int seed, int obj);
+	void DisplayShelfContents(unsigned int objectList, float xPos, int xDirection, float zPos, int zDirection, int seed, int obj, glm::vec3 pos, int LOD);
 
 	/**
 	* @brief	Displays a shelf and its contents based on an object list and its constraints (constraints specify when the shelf contents should be displayed)
@@ -222,7 +240,28 @@ namespace DGW
 	*/
 	void DisplayStartScreen();
 
+	/**
+	* @brief	Displays the credits menu
+	* @param	No param
+	* @return	Void
+	*/
 	void DisplayCredits();
+
+	/**
+	* @brief	Displays different animations
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayAnimation();
+
+	/**
+	* @brief	Displays the cachier
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayCashier();
+
+
 
 	/**
 	* @brief	Displays the games current performance metrics

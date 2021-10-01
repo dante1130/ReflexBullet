@@ -13,7 +13,6 @@ glm::vec3 m_playerPos, m_floatPos, m_playerLook, m_floatLook, m_bossArea;
 
 Audio audio;
 Collision collision;
-Enemy enemy;
 
 void GM::GameInit(int w, int h)
 {
@@ -32,7 +31,8 @@ void GM::GameInit(int w, int h)
 	player.GetCamera().Position(glm::vec3(0.5, playerHeight, 0.5), 180.0);
 	player.GetCamera().SetMaximumCrouchDepth(crouchDepth);
 
-	enemy.SetLook(player.GetCamera().GetPosition());
+	enemy.SetPosition(glm::vec3(4.5, 1, 4.5));
+	enemy.SetPlayerPos(player.GetCamera().GetPosition());
 
 	CreateGameBoundingBoxes();
 	
@@ -57,6 +57,8 @@ void GM::GameInit(int w, int h)
 	LoadGameObjectFiles();
 	ReadLeaderboardFile("data/leaderboards.txt", LB);
 	
+	LoadAnimation();
+
 	PauseGame();
 }
 
@@ -69,6 +71,8 @@ void GM::LoadGameObjectFiles()
 	ReadOBJMTL("data/object/gameObjects/s_Books.obj", s_Books);
 	ReadOBJMTL("data/object/gameObjects/Sky.obj", Sky);
 	ReadOBJMTL("data/object/gameObjects/s_boardgame.obj", s_Board);
+	ReadOBJMTL("data/object/gameObjects/Cachier.obj", cashier[0]);
+	ReadOBJMTL("data/object/gameObjects/Cachier1.obj", cashier[1]);
 	ReadOBJMTL("data/object/gameObjects/boss.obj", bossBody);
 
 
@@ -76,24 +80,117 @@ void GM::LoadGameObjectFiles()
 	//
 	//Objects used to populate the shelves
 	//
-	LoadGameShelfObject("data/object/gameObjects/s_WoodenBlocks.obj", S_WOODEN_BLOCKS);
-	LoadGameShelfObject("data/object/gameObjects/s_ToyBuildings.obj", S_TOY_BUILDING);
-	LoadGameShelfObject("data/object/gameObjects/s_StorageContainerBox.obj", S_STORAGE_CONTAINER_BOX);
-	LoadGameShelfObject("data/object/gameObjects/s_plane.obj", WOOD);
-	LoadGameShelfObject("data/object/gameObjects/s_car.obj", WOOD);
-	LoadGameShelfObject("data/object/gameObjects/s_truck.obj", WOOD);
+	LoadGameShelfObject("data/object/gameObjects/s_WoodenBlocks", S_WOODEN_BLOCKS, 1);
+	LoadGameShelfObject("data/object/gameObjects/s_ToyBuildings", S_TOY_BUILDING, 1);
+	LoadGameShelfObject("data/object/gameObjects/s_StorageContainerBox", S_STORAGE_CONTAINER_BOX, 1);
+	LoadGameShelfObject("data/object/gameObjects/s_plane", WOOD, 4);
+	LoadGameShelfObject("data/object/gameObjects/s_car", WOOD, 3);
+	LoadGameShelfObject("data/object/gameObjects/s_truck", WOOD, 4);
+
+
+
+
 
 	//
 	//End of objects used to populate the shelves
 	//
 }
 
-void GM::LoadGameShelfObject(const std::string& fileName, int textureID)
+void GM::LoadAnimation()
+{
+	Object3D temp, temp2;
+	std::string tempName, nameStart = "data/object/gameObjects/TrainAnimation/TrainAnimation_000", nameEnd = ".obj";
+
+	Train.texture = T_TRAIN;
+
+	tempName = nameStart + "001" + nameEnd;
+	ReadOBJMTL(tempName, temp);
+	Train.obj.push_back(temp);
+	for (int count = 2; count <= 144; count++)
+	{
+		tempName = nameStart;
+		if (count < 10) { tempName = tempName + "00"; }
+		else if (count < 100) { tempName = tempName + '0'; }
+		tempName = tempName + std::to_string(count) + nameEnd;
+
+		LoadAnimationFrame(tempName, Train);
+		
+	}
+	std::cout << "Frames of animation loaded: " << Train.obj.size() << std::endl;
+
+
+	std::string nameStartTwo = "data/object/gameObjects/DuckPersonAnimation/DuckPerson_0000";
+	DuckPerson.texture = T_DUCK_PERSON;
+
+	tempName = nameStartTwo + "01" + nameEnd;
+	ReadOBJMTL(tempName, temp2);
+	DuckPerson.obj.push_back(temp2);
+	for (int count = 2; count <= 24; count++)
+	{
+		tempName = nameStartTwo;
+		if (count < 10) { tempName = tempName + "0"; }
+		tempName = tempName + std::to_string(count) + nameEnd;
+
+		LoadAnimationFrame(tempName, DuckPerson);
+
+	}
+	std::cout << "Frames of animation loaded: " << DuckPerson.obj.size() << std::endl;
+
+}
+
+void GM::LoadAnimationFrame(std::string tempName, AnimationOBJ &AOBJ)
+{
+	Object3D temp;
+
+	readObjFile(tempName, temp);
+	temp.SetMTLArrayLocation(AOBJ.obj[0].GetMTLArrayLocation());
+	AOBJ.obj.push_back(temp);
+}
+
+void GM::LoadGameShelfObject(const std::string& fileName, int textureID, int LODNumber)
 {
 	ShelfObjectsOBJ temp;
-	ReadOBJMTL(fileName, temp.obj);
+	Object3D tempOBJ;
+	std::string fileNameStorage = fileName + ".obj";
+
+	ReadOBJMTL(fileNameStorage, tempOBJ);
+
+	temp.obj.push_back(tempOBJ);
 	temp.texture = textureID;
+
+	/*
+	if (LODNumber != 1)
+	{
+		Object3D tempOBJOne; //////////////////////////This may not work
+
+		fileNameStorage = fileName + "1.obj";
+		std::cout << fileNameStorage << std::endl;
+
+		ReadOBJMTL(fileNameStorage, tempOBJOne);
+
+		temp.obj.push_back(tempOBJOne);
+	}
+	*/
+	
+	for (int count = 1; count < LODNumber; count++)
+	{
+		fileNameStorage = fileName + std::to_string(count) + ".obj";
+		StoreLODObj(fileNameStorage, temp);
+	}
+	
+	
+	
 	Shelf_Objects.push_back(temp);
+}
+
+void GM::StoreLODObj(std::string &fileName, ShelfObjectsOBJ &soOBJ)
+{
+	Object3D tempOBJ;
+
+	ReadOBJMTL(fileName, tempOBJ);
+
+	soOBJ.obj.push_back(tempOBJ);
+
 }
 
 void GM::CreateGameBoundingBoxes()
@@ -109,11 +206,21 @@ void GM::CreateGameBoundingBoxes()
 
 void GM::GameCollisionResolution()
 {
+	// Player's bullets
 	for (int i = 0; i < player.GetGun().BulletCount(); ++i)
 	{
 		if (collision.Collide(player.GetGun().BulletAt(i).GetBoundingSphere()))
 		{
 			player.GetGun().RemoveBullet(i);
+		}
+	}
+
+	// Enemy's bullets
+	for (int i = 0; i < enemy.GetGun().BulletCount(); ++i)
+	{
+		if (collision.Collide(enemy.GetGun().BulletAt(i).GetBoundingSphere()))
+		{
+			enemy.GetGun().RemoveBullet(i);
 		}
 	}
 }
@@ -122,26 +229,34 @@ void GM::GameFixedUpdateLoop(int val)
 {
 	glutTimerFunc(FRAMETIME, GameFixedUpdateLoop, 0);
 
-	if (Starting) { GameStartUp(); }
-
 	float newElapsedTime = glutGet(GLUT_ELAPSED_TIME);
 	delta = (newElapsedTime - elapsedTime) / 1000;
 	elapsedTime = newElapsedTime;
 
-	if (PMV.m_PausedMenuChoosen != 0)
+	if (Starting) 
+	{ 
+		GameStartUp(); 
+	}
+	else if (PMV.m_PausedMenuChoosen != 0)
 	{
 		PausedFloatingPosition();
 	}
 	else
 	{
+		gameRunTime = gameRunTime + newElapsedTime - lastUnpausedFrame;
+		lastUnpausedFrame = newElapsedTime;
 		player.Update(delta);
+
+		Enemy::SetPlayerPos(player.GetCamera().GetPosition());
+		enemy.Update(delta);
+		enemy.Shoot();
+		
 		player.GetCamera().KeyboardMovement();
 		if (bossOn)
 			boss.Update(delta);
 	}
 
-	Enemy::SetLook(player.GetCamera().GetPosition());
-	enemy.Shoot();
+	
 
 	GameCollisionResolution();
 }
@@ -298,6 +413,7 @@ void GM::UnpauseGame()
 	PMV.m_floatMoving = false;
 	player.GetCamera().SetCameraLocation(PMV.m_playerPos.x, PMV.m_playerPos.y, PMV.m_playerPos.z);
 	player.GetCamera().SetCameraLookAt(PMV.m_playerLook);
+	lastUnpausedFrame = glutGet(GLUT_ELAPSED_TIME);
 	hudOn = true;
 }
 
@@ -570,7 +686,7 @@ void GM::MenuOptionChoosen(int option)
 	{
 		if (option == 1)
 		{
-			std::cout << "speed +" << std::endl;
+			std::cout << "speed -" << std::endl;
 			
 			camRotateSpeed -= 0.05;
 			if (camRotateSpeed < 0.05) { camRotateSpeed = 0.05; }
@@ -578,7 +694,7 @@ void GM::MenuOptionChoosen(int option)
 		}
 		else if (option == 2)
 		{
-			std::cout << "speed -" << std::endl;
+			std::cout << "speed +" << std::endl;
 			camRotateSpeed += 0.05;
 			if (camRotateSpeed > 5) { camRotateSpeed = 5; }
 			player.GetCamera().SetRotateSpeed(camRotateSpeed);

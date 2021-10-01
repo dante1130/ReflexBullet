@@ -152,9 +152,16 @@ void LTGW::CreateTextures()
 	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/OptionsMenu.raw", 400, 100);
 	tpGW.CreateTexture(T_OPTIONS_MENU, GWimage, 400, 100);
 
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/TrainAnimation/Train.raw", 256, 128);
+	tpGW.CreateTexture(T_TRAIN, GWimage, 256, 128);
 
-
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/DuckPersonAnimation/DuckPerson.raw", 128, 128);
+	tpGW.CreateTexture(T_DUCK_PERSON, GWimage, 128, 128);
 	
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/s_Books1.raw", 256, 256);
+	tpGW.CreateTexture(S_BOOKS2, GWimage, 256, 256);
+
+
 
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);

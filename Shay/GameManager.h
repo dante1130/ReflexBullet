@@ -34,13 +34,38 @@ namespace GM
 	* @return	Void
 	*/
 	void LoadGameObjectFiles();
+
+	/**
+	* @brief	Loads in Animation
+	* @param	No param
+	* @return	Void
+	*/
+	void LoadAnimation();
+
+	/**
+	* @brief	Loads in an Animation frame
+	* @param	tempName	- The name of the file
+	* @param	AOBJ		- The animation object to store the frame to
+	* @return	Void
+	*/
+	void LoadAnimationFrame(std::string tempName, AnimationOBJ& AOBJ);
+
 	/**
 	* @brief	Loads in a game shelf object
 	* @param	fileName	- The name of the obj file
 	* @param	textureID	- The textures ID for the object
+	* @param	LODNumber	- The number of objects for the object (the same object at different level of details)
 	* @return	Void
 	*/
-	void LoadGameShelfObject(const std::string& fileName, int textureID);
+	void LoadGameShelfObject(const std::string& fileName, int textureID, int LODNumber);
+
+	/**
+	* @brief	Loads a LOD object into a shelf object
+	* @param	fileName	- The name of the obj file
+	* @param	soOBJ		- A shelf object you want to store the obj into
+	* @return	Void
+	*/
+	void StoreLODObj(std::string& fileName, ShelfObjectsOBJ& soOBJ);
 
 	/**
 	* @brief	Creates AABB collisions for the world
@@ -86,8 +111,18 @@ namespace GM
 	*/
 	void GameKeys(unsigned char key, int x, int y);
 
+	/**
+	* @brief	Pauses the game
+	* @param	No param
+	* @return	Void
+	*/
 	void PauseGame();
 
+	/**
+	* @brief	Unpauses the game
+	* @param	No param
+	* @return	Void
+	*/
 	void UnpauseGame();
 
 	/**
@@ -115,6 +150,18 @@ namespace GM
 	*/
 	void MouseOverOption(int x, int y);
 	
+	/**
+	* @brief	Handles when the mouse is moved over the option paused menu
+	* @param	x		- The location of the mouse in the x direction
+	* @param	y		- The location of the mouse in the y direction
+	* @param	xMax	- The maximum x value
+	* @param	xMin	- The minimum x value
+	* @param	yMax	- The maximum y value
+	* @param	yMin	- The minimum y value
+	* @param	yChange	- The change in y value for an option
+	* @param	xChange - The change in x value for an option
+	* @return	Void
+	*/
 	void GameMouseOverOptionOptions(int x, int y, float xMax, float xMin, float yMax, float yMin, float yChange, float xChange);
 
 	/**
@@ -137,6 +184,18 @@ namespace GM
 	*/
 	void GameMouseClickOption(int button, int state, int x, int y);
 
+	/**
+	* @brief	Handles when the mouse is clicked when the game is paused on the options menu
+	* @param	x		- The location of the mouse in the x direction
+	* @param	y		- The location of the mouse in the y direction
+	* @param	xMax	- The maximum x value
+	* @param	xMin	- The minimum x value
+	* @param	yMax	- The maximum y value
+	* @param	yMin	- The minimum y value
+	* @param	yChange	- The change in y value for an option
+	* @param	xChange - The change in x value for an option
+	* @return	Void
+	*/
 	void GameMouseOptionMenuClickOption(int x, int y, float xMax, float xMin, float yMax, float yMin, float yChange, float xChange);
 
 	/**
@@ -161,6 +220,11 @@ namespace GM
 	*/
 	void PausedFloatingPosition();
 
+	/**
+	* @brief	Restarts the game
+	* @param	No param
+	* @return	Void
+	*/
 	void RestartGame();
 
 }

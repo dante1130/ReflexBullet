@@ -1,6 +1,7 @@
 #include "DisplayGameWorld.h"
 
 Player player;
+Enemy enemy;
 Object3D ToyStore;
 Object3D Shelf_1;
 std::vector<ShelfObjectsOBJ> Shelf_Objects;
@@ -10,6 +11,12 @@ Object3D s_Books;
 Object3D s_Board;
 Object3D Sky;
 Leaderboard LB;
+
+Object3D cashier[2];
+
+
+AnimationOBJ Train;
+AnimationOBJ DuckPerson;
 
 float startFrameTime = -1;
 int frameCountPos = 0;
@@ -21,6 +28,8 @@ bool visibleShelves = true;
 bool bossOn = false;
 
 PauseMenuValues PMV;
+GLfloat gameRunTime = 0;
+GLfloat lastUnpausedFrame = 0;
 
 
 void DGW::DisplayGameWorldMasterFunction()
@@ -75,11 +84,17 @@ void DGW::DisplayGameWorldMasterFunction()
 	}
 	else
 	{
+		DGO::DisplayEnemy(enemy);
+		DGO::DisplayGunBullets(enemy.GetGun());
 		DGO::DisplayGunBullets(player.GetGun());
 		DGO::DisplayGunBullets(boss.GetGun());
 	}
 
 	Lighting::UpdateLighting();
+
+	DisplayAnimation();
+	DisplayCashier();
+
 	glutSwapBuffers();
 }
 
@@ -321,35 +336,43 @@ void DGW::DisplayShelfContentsCulling(unsigned int objectList, float xPos, int x
 	float angleTwo = acos((direction.x * look.x + direction.z * look.z) / (sqrt(direction.x * direction.x + direction.z * direction.z) * sqrt(look.x * look.x + look.z * look.z)));
 	
 	//if (angleOne > 1.578 && angleTwo > 1.578) { return; }
+
 	
 	float xRatio = glutGet(GLUT_WINDOW_WIDTH) / 1280.0;
-	if (xRatio < 0.25) { xRatio = 0.25; }
+	if (xRatio < 0.5) { xRatio = 0.5; }
+
+	
+
+	float distanceOne = sqrt(pow((cullPoints[0] - pos.x), 2) + pow((cullPoints[1] - pos.z), 2));
+	float distanceTwo = sqrt(pow((cullPoints[2] - pos.x), 2) + pow((cullPoints[3] - pos.z), 2));
+
 	if (angleOne > 1.1* xRatio && angleTwo > 1.1* xRatio)
 	{
-		float distanceOne = sqrt(pow((cullPoints[0] - pos.x),2) + pow((cullPoints[1] - pos.z), 2));
-		float distanceTwo = sqrt(pow((cullPoints[2] - pos.x), 2) + pow((cullPoints[3] - pos.z), 2));
-
 		if(!(distanceOne <= 1.2 || distanceTwo <= 1.2)) { return; }
 	}
 	
-	
-	DisplayShelfContents(objectList, xPos, xDirection, zPos, zDirection, seed, PsudeoNumGen(seed, 2, xPos + zPos));
+	if (distanceOne > distanceTwo) { distanceOne = distanceTwo; }
+
+	int LOD = 0;
+	if (distanceOne > 16) { LOD = 3; }
+	else if (distanceOne > 8) { LOD = 2; }
+	else if (distanceOne > 4) { LOD = 1; }
+
+
+	DisplayShelfContents(objectList, xPos, xDirection, zPos, zDirection, seed, PsudeoNumGen(seed, 2, xPos + zPos), pos, LOD);
 
 	if (ShelfCulling) { Shelf_1.DisplayObjectWithLighting(SHELF_1); }
 
 }
 
-void DGW::DisplayShelfContents(unsigned int objectList, int seed)
+void DGW::DisplayShelfContents(unsigned int objectList, int seed, glm::vec3 pos)
 {
-	DisplayShelfContents(objectList, 0, 0, 0, 0, seed, 0);
+	DisplayShelfContents(objectList, 0, 0, 0, 0, seed, 0, pos, 0);
 }
 
-void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirection, float zPos, int zDirection, int seed, int obj)
+void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirection, float zPos, int zDirection, int seed, int obj, glm::vec3 pos, int LOD)
 {
-
-	glm::vec3 pos = player.GetCamera().GetPosition();
-
-	//Don't drow contents if shelf not facing player
+	//Don't draw contents if shelf not facing player
 	if (xDirection != 0)
 	{
 		if ((xDirection == 1 && xPos > pos[0]) || (xDirection == -1 && xPos < pos[0])) { return; }
@@ -365,10 +388,15 @@ void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirecti
 		int arraySize = Shelf_Objects.size();
 		int i = PsudeoNumGen(seed, arraySize, 0), rot;
 
-
 		glPushMatrix();
 		glTranslatef(-0.725, 0.1, 0.15);
 		//s_Box.DisplayObjectWithLighting(S_BOX_1 + (seed + 25) % 3);
+
+
+		rot = (seed * 7) % 2;
+		if (rot == 0) { rot = -1; }
+		else { rot = 1; }
+
 
 		if (obj == 0)
 			DisplayBoxes(seed, rot);
@@ -376,10 +404,16 @@ void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirecti
 			DisplayBoards(seed, rot);
 
 		i = PsudeoNumGen(i+1, arraySize, sqrt(seed));
+
+		int useLOD = LOD;
+		int size = Shelf_Objects[i].obj.size();
+		if (LOD > size - 1) { useLOD = size-1; }
+
+
 		glTranslatef(-1.75, 0.5, 0);
 		glPushMatrix();
 		glRotatef(((seed * 2) % 20) * rot, 0, 1, 0);
-		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(Shelf_Objects[i].texture);
 		glPopMatrix();
 		for (int count = 0; count < 3; count++)
 		{
@@ -390,28 +424,32 @@ void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirecti
 			glTranslatef(0.45, 0, 0);
 			glPushMatrix();
 			glRotatef(((seed * count) % 20) * rot, 0, 1, 0);
-			Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+			Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(Shelf_Objects[i].texture);
 			glPopMatrix();
 		}
 		glTranslatef(-1.35, 0, -0.4);
-		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(Shelf_Objects[i].texture);
 		glTranslatef(0.45, 0, 0);
-		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(Shelf_Objects[i].texture);
 		glTranslatef(0.45, 0, 0);
-		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(Shelf_Objects[i].texture);
 		glTranslatef(0.45, 0, 0);
-		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(Shelf_Objects[i].texture);
 		
 		
 		i = PsudeoNumGen(seed, arraySize, seed);
+		useLOD = LOD;
+		size = Shelf_Objects[i].obj.size();
+		if (LOD > size - 1) { useLOD = size - 1; }
+
 		glTranslatef(-1.35, 0.5, 0.5);
-		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(Shelf_Objects[i].texture);
 		glTranslatef(0.45, 0, 0);
-		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(Shelf_Objects[i].texture);
 		glTranslatef(0.45, 0, 0);
-		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(Shelf_Objects[i].texture);
 		glTranslatef(0.45, 0, 0);
-		Shelf_Objects[i].obj.DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(Shelf_Objects[i].texture);
 		
 		glPopMatrix();
 		
@@ -423,7 +461,12 @@ void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirecti
 	}
 	else if (objectList == 2)
 	{
-		s_Books.DisplayObjectWithLighting(S_BOOKS);
+		int text = S_BOOKS;
+		if (seed % 2 == 1) { text = S_BOOKS2; }
+
+		s_Books.DisplayObjectWithLighting(text);
+
+
 	}
 }
 
@@ -572,7 +615,7 @@ void DGW::DisplayIndividualOption(int texture, glm::vec3 startPos, float yDrop, 
 
 void DGW::DisplayUpgradeMenu()
 {
-	glm::vec3 pos = { 0.14, 6.5, 15.95 };
+	glm::vec3 pos = { 0.135, 6.5, 15.95 };
 	
 	//Title
 	DisplayIndividualOption(T_UPGRADE_MENU, pos, 1, 4);
@@ -733,7 +776,6 @@ void DGW::DisplayCredits()
 
 }
 
-
 void DGW::DisplayPauseMenuLeaderboard()
 {
 	float y = 6.3;
@@ -790,18 +832,94 @@ void DGW::DisplayIndividualLeaderboardRecord(float yCoord, int recordIndex, int 
 
 	glRasterPos3f(0.2, yCoord, 11.8);
 	yCoord -= 0.15;
-	temp = "Accuracy = " + std::to_string(r.accuracy) + "%";
+	temp = std::to_string(r.accuracy);
+	temp = "Accuracy = " + temp.substr(0, 7) + '%';
 	RenderBitMapString(GLUT_BITMAP_HELVETICA_18, temp);
 
 	glRasterPos3f(0.2, yCoord, 11.8);
 	yCoord -= 0.15;
-	temp = "Time = " + std::to_string(r.time) + " seconds";
+	temp = std::to_string(r.time);
+	temp = "Time = " + temp.substr(0, 7) + " seconds";
 	RenderBitMapString(GLUT_BITMAP_HELVETICA_18, temp);
 
 	glRasterPos3f(0.2, yCoord, 11.8);
-	yCoord -= 0.15;
+	RenderBitMapString(GLUT_BITMAP_HELVETICA_18, "-------------------");
+	glRasterPos3f(0.2, yCoord, 11.7);
 	RenderBitMapString(GLUT_BITMAP_HELVETICA_18, "-------------------");
 }
+
+void DGW::DisplayAnimation()
+{
+	glPushMatrix();
+	glScalef(-1, 1, 1);
+
+	Train.frame = (int)gameRunTime % 6000 / (1000 / 24);
+	if (Train.frame > Train.obj.size()-1) { Train.frame = Train.obj.size()-1; }
+	Train.obj[Train.frame].DisplayObjectWithLighting(Train.texture);
+
+
+	
+	float result = (int)gameRunTime % 9000 / 1000.0;
+	float movement = 5;
+	float zPos = -14 + result * movement;
+
+	glPushMatrix();
+	glTranslatef(1, 0, zPos);
+	DuckPerson.frame = (int)gameRunTime % 1000 / (1000 / 24);
+	if (DuckPerson.frame > DuckPerson.obj.size() - 1) { DuckPerson.frame = DuckPerson.obj.size() - 1; }
+	DuckPerson.obj[DuckPerson.frame].DisplayObjectWithLighting(DuckPerson.texture);
+	glPopMatrix();
+
+	glPushMatrix();
+	result = (int)(gameRunTime + 4500) % 9000 / 1000.0;
+	zPos = -14 + result * movement;
+	glTranslatef(1, 0, zPos);
+	DuckPerson.frame = (int)gameRunTime % 1000 / (1000 / 24);
+	if (DuckPerson.frame > DuckPerson.obj.size() - 1) { DuckPerson.frame = DuckPerson.obj.size() - 1; }
+	DuckPerson.obj[DuckPerson.frame].DisplayObjectWithLighting(DuckPerson.texture);
+	glPopMatrix();
+
+	glPushMatrix();
+	result = (int)gameRunTime % 12000 / 1000.0;
+	zPos = 44 - result * movement;
+	glTranslatef(2.2, 0, zPos);
+	glRotatef(180, 0, 1, 0);
+	DuckPerson.frame = (int)(gameRunTime+5555) % 1000 / (1000 / 24);
+	if (DuckPerson.frame > DuckPerson.obj.size() - 1) { DuckPerson.frame = DuckPerson.obj.size() - 1; }
+	DuckPerson.obj[DuckPerson.frame].DisplayObjectWithLighting(DuckPerson.texture);
+	glPopMatrix();
+
+	glPopMatrix();
+}
+
+void DGW::DisplayCashier()
+{
+	glm::vec3 pos = player.GetCamera().GetPosition();
+	glm::vec3 duckLook = {0, 0, 1};
+	glm::vec3 duckHeadPos = {5.6, 1.83, 2.1};
+	glm::vec3 posVec = pos - duckHeadPos;
+
+	//Body
+	glPushMatrix();
+	glScalef(-1, 1, 1);
+	cashier[0].DisplayObjectWithLighting(T_DUCK_PERSON);
+	glPopMatrix();
+
+	//Head
+	glPushMatrix();
+	float angle = acos((duckLook.x * posVec.x + duckLook.z * posVec.z) / (sqrt(duckLook.x * duckLook.x + duckLook.z * duckLook.z) * sqrt(posVec.x * posVec.x + posVec.z * posVec.z)));
+	angle = angle / PI * 180;
+	if (angle > 90) { angle = 90; }
+	if (duckHeadPos.x > pos.x) { angle = angle * -1; }
+
+	glTranslatef(duckHeadPos.x, duckHeadPos.y, duckHeadPos.z);
+	glRotatef(angle, 0, 1, 0);
+	glRotatef(30, 1, 0, 0);
+	cashier[1].DisplayObjectWithLighting(T_DUCK_PERSON);
+
+	glPopMatrix();
+}
+
 
 
 void DGW::DisplayPerformanceMetrics()

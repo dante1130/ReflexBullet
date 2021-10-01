@@ -17,15 +17,17 @@ public:
 	// Getter
 	Gun& GetGun();
 	const glm::vec3& GetPosition() const;
-	const glm::vec3& GetLook() const;
 
-	static void SetLook(const glm::vec3& lookAt);
+	void SetPosition(const glm::vec3& position);
+
+	static void SetPlayerPos(const glm::vec3& position);
 
 private:
 	/// Where the enemy is facing, static as all enemies will look at the player
-	static glm::vec3 m_look;
+	static glm::vec3 m_playerPos;
 
 	glm::vec3 m_position;
+	GLfloat m_moveSpeed;
 	EnemyAI m_ai;
 };
 
