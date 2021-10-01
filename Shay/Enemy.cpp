@@ -1,9 +1,11 @@
 #include "Enemy.h"
+#include <iostream>
+#include <glm\geometric.hpp>
 
-glm::vec3 Enemy::m_look;
+glm::vec3 Enemy::m_playerPos;
 
 Enemy::Enemy()
-	: m_position(0.0f)
+	: m_position(0.0f), m_moveSpeed(0.10f)
 {
 	m_gun = Gun(Faction::ENEMY, 5, 1);
 	m_health = 10;
@@ -11,16 +13,25 @@ Enemy::Enemy()
 
 void Enemy::Update(GLfloat delta)
 {
+	m_ai.AIUpdate(m_position);
+
+	glm::vec2 direction = m_ai.GetGridDest() - m_ai.GetPrevGridPos();
+
+	m_position.x += (direction.x) * delta;
+	m_position.z += (direction.y) * delta;
+
 	m_gun.Update(delta);
 }
 
 void Enemy::Shoot()
 {
-	if (m_ai.isPlayerInView(m_look))
+	glm::vec3 lookAt = m_playerPos - m_position;
+
+	if (m_ai.isPlayerInView(lookAt))
 	{
 		Bullet newBullet(m_gun.GetFaction(),
 						 m_position,
-						 m_look * m_gun.GetBulletVelocity(),
+						 glm::normalize(lookAt) * m_gun.GetBulletVelocity(),
 						 10);
 
 		m_gun.Shoot(newBullet);
@@ -38,14 +49,15 @@ const glm::vec3& Enemy::GetPosition() const
 	return m_position;
 }
 
-const glm::vec3& Enemy::GetLook() const
+void Enemy::SetPosition(const glm::vec3& position)
 {
-	return m_look;
+	m_position = position;
 }
 
-void Enemy::SetLook(const glm::vec3& lookAt)
+void Enemy::SetPlayerPos(const glm::vec3& position)
 {
-	m_look = lookAt;
+	m_playerPos = position;
+	EnemyAI::SetPlayerPos(position);
 }
 
 void Enemy::SetHealth(GLfloat& given_health)

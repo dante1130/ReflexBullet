@@ -1,6 +1,7 @@
 #include "DisplayGameWorld.h"
 
 Player player;
+Enemy enemy;
 Object3D ToyStore;
 Object3D Shelf_1;
 std::vector<ShelfObjectsOBJ> Shelf_Objects;
@@ -72,6 +73,8 @@ void DGW::DisplayGameWorldMasterFunction()
 	}
 	else
 	{
+		DGO::DisplayEnemy(enemy);
+		DGO::DisplayGunBullets(enemy.GetGun());
 		DGO::DisplayGunBullets(player.GetGun());
 	}
 

@@ -1,4 +1,15 @@
 #include "DisplayGameObjects.h"
+#include <iostream>
+
+void DGO::DisplayEnemy(const Enemy& enemy)
+{
+	glPushMatrix();
+	glTranslatef(enemy.GetPosition().x,
+				 enemy.GetPosition().y,
+				 enemy.GetPosition().z);
+	glutSolidTeapot(0.5);
+	glPopMatrix();
+}
 
 void DGO::DisplayGunBullets(const Gun& gun)
 {

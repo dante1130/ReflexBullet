@@ -12,7 +12,6 @@ glm::vec3 m_playerPos, m_floatPos, m_playerLook, m_floatLook;
 
 Audio audio;
 Collision collision;
-Enemy enemy;
 
 void GM::GameInit(int w, int h)
 {
@@ -31,7 +30,8 @@ void GM::GameInit(int w, int h)
 	player.GetCamera().Position(glm::vec3(0.5, playerHeight, 0.5), 180.0);
 	player.GetCamera().SetMaximumCrouchDepth(crouchDepth);
 
-	enemy.SetLook(player.GetCamera().GetPosition());
+	enemy.SetPosition(glm::vec3(4.5, 1, 4.5));
+	enemy.SetPlayerPos(player.GetCamera().GetPosition());
 
 	CreateGameBoundingBoxes();
 	
@@ -202,11 +202,21 @@ void GM::CreateGameBoundingBoxes()
 
 void GM::GameCollisionResolution()
 {
+	// Player's bullets
 	for (int i = 0; i < player.GetGun().BulletCount(); ++i)
 	{
 		if (collision.Collide(player.GetGun().BulletAt(i).GetBoundingSphere()))
 		{
 			player.GetGun().RemoveBullet(i);
+		}
+	}
+
+	// Enemy's bullets
+	for (int i = 0; i < enemy.GetGun().BulletCount(); ++i)
+	{
+		if (collision.Collide(enemy.GetGun().BulletAt(i).GetBoundingSphere()))
+		{
+			enemy.GetGun().RemoveBullet(i);
 		}
 	}
 }
@@ -215,13 +225,15 @@ void GM::GameFixedUpdateLoop(int val)
 {
 	glutTimerFunc(FRAMETIME, GameFixedUpdateLoop, 0);
 
-	if (Starting) { GameStartUp(); }
-
 	float newElapsedTime = glutGet(GLUT_ELAPSED_TIME);
 	delta = (newElapsedTime - elapsedTime) / 1000;
 	elapsedTime = newElapsedTime;
 
-	if (PMV.m_PausedMenuChoosen != 0)
+	if (Starting) 
+	{ 
+		GameStartUp(); 
+	}
+	else if (PMV.m_PausedMenuChoosen != 0)
 	{
 		PausedFloatingPosition();
 	}
@@ -230,11 +242,15 @@ void GM::GameFixedUpdateLoop(int val)
 		gameRunTime = gameRunTime + newElapsedTime - lastUnpausedFrame;
 		lastUnpausedFrame = newElapsedTime;
 		player.Update(delta);
+
+		Enemy::SetPlayerPos(player.GetCamera().GetPosition());
+		enemy.Update(delta);
+		enemy.Shoot();
+		
 		player.GetCamera().KeyboardMovement();
 	}
 
-	Enemy::SetLook(player.GetCamera().GetPosition());
-	enemy.Shoot();
+	
 
 	GameCollisionResolution();
 }

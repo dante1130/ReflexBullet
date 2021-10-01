@@ -8,7 +8,7 @@
 #include "Lighting.h"
 #include "DisplayGameObjects.h"
 #include "Player.h"
-#include "EnemyAI.h"
+#include "Enemy.h"
 #include "LoadTexturesGameWorld.h"
 #include "UI.h"
 #include "Leaderboards.h"
@@ -34,7 +34,7 @@ struct AnimationOBJ
 extern AnimationOBJ Train;
 extern AnimationOBJ DuckPerson;
 
-
+extern Enemy enemy;
 extern Player player;
 extern Object3D Shelf_1;
 extern Object3D ToyStore;
