@@ -151,8 +151,10 @@ void LTGW::CreateTextures()
 	GWimage = tpGW.LoadTexture("data/object/GameObjects/TrainAnimation/Train.raw", 256, 128);
 	tpGW.CreateTexture(T_TRAIN, GWimage, 256, 128);
 
-
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/DuckPersonAnimation/DuckPerson.raw", 128, 128);
+	tpGW.CreateTexture(T_DUCK_PERSON, GWimage, 128, 128);
 	
+
 
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);

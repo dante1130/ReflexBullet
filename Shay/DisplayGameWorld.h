@@ -45,7 +45,7 @@ extern Object3D s_Books;
 extern Object3D Sky;
 extern Object3D s_Board;
 extern Leaderboard LB;
-
+extern Object3D cashier[2];
 
 extern bool wireFrame;
 extern bool performanceMetric;
@@ -250,6 +250,15 @@ namespace DGW
 	* @return	Void
 	*/
 	void DisplayAnimation();
+
+	/**
+	* @brief	Displays the cachier
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayCashier();
+
+
 
 	/**
 	* @brief	Displays the games current performance metrics

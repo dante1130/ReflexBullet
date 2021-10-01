@@ -70,6 +70,9 @@ void GM::LoadGameObjectFiles()
 	ReadOBJMTL("data/object/gameObjects/s_Books.obj", s_Books);
 	ReadOBJMTL("data/object/gameObjects/Sky.obj", Sky);
 	ReadOBJMTL("data/object/gameObjects/s_boardgame.obj", s_Board);
+	ReadOBJMTL("data/object/gameObjects/Cachier.obj", cashier[0]);
+	ReadOBJMTL("data/object/gameObjects/Cachier1.obj", cashier[1]);
+
 
 
 
@@ -655,7 +658,7 @@ void GM::MenuOptionChoosen(int option)
 	{
 		if (option == 1)
 		{
-			std::cout << "speed +" << std::endl;
+			std::cout << "speed -" << std::endl;
 			
 			camRotateSpeed -= 0.05;
 			if (camRotateSpeed < 0.05) { camRotateSpeed = 0.05; }
@@ -663,7 +666,7 @@ void GM::MenuOptionChoosen(int option)
 		}
 		else if (option == 2)
 		{
-			std::cout << "speed -" << std::endl;
+			std::cout << "speed +" << std::endl;
 			camRotateSpeed += 0.05;
 			if (camRotateSpeed > 5) { camRotateSpeed = 5; }
 			player.GetCamera().SetRotateSpeed(camRotateSpeed);

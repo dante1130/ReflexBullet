@@ -11,6 +11,8 @@ Object3D s_Board;
 Object3D Sky;
 Leaderboard LB;
 
+Object3D cashier[2];
+
 
 AnimationOBJ Train;
 AnimationOBJ DuckPerson;
@@ -78,6 +80,7 @@ void DGW::DisplayGameWorldMasterFunction()
 	Lighting::UpdateLighting();
 
 	DisplayAnimation();
+	DisplayCashier();
 
 	glutSwapBuffers();
 }
@@ -320,9 +323,10 @@ void DGW::DisplayShelfContentsCulling(unsigned int objectList, float xPos, int x
 	float angleTwo = acos((direction.x * look.x + direction.z * look.z) / (sqrt(direction.x * direction.x + direction.z * direction.z) * sqrt(look.x * look.x + look.z * look.z)));
 	
 	//if (angleOne > 1.578 && angleTwo > 1.578) { return; }
+
 	
 	float xRatio = glutGet(GLUT_WINDOW_WIDTH) / 1280.0;
-	if (xRatio < 0.25) { xRatio = 0.25; }
+	if (xRatio < 0.5) { xRatio = 0.5; }
 
 	
 
@@ -593,7 +597,7 @@ void DGW::DisplayIndividualOption(int texture, glm::vec3 startPos, float yDrop, 
 
 void DGW::DisplayUpgradeMenu()
 {
-	glm::vec3 pos = { 0.14, 6.5, 15.95 };
+	glm::vec3 pos = { 0.135, 6.5, 15.95 };
 	
 	//Title
 	DisplayIndividualOption(T_UPGRADE_MENU, pos, 1, 4);
@@ -837,9 +841,9 @@ void DGW::DisplayAnimation()
 
 
 	
-	float result = (int)gameRunTime % 12000 / 1000.0;
-
-	float zPos = -14 + result * 4;
+	float result = (int)gameRunTime % 9000 / 1000.0;
+	float movement = 5;
+	float zPos = -14 + result * movement;
 
 	glPushMatrix();
 	glTranslatef(1, 0, zPos);
@@ -849,8 +853,8 @@ void DGW::DisplayAnimation()
 	glPopMatrix();
 
 	glPushMatrix();
-	result = (int)(gameRunTime + 4500) % 12000 / 1000.0;
-	zPos = -14 + result * 4;
+	result = (int)(gameRunTime + 4500) % 9000 / 1000.0;
+	zPos = -14 + result * movement;
 	glTranslatef(1, 0, zPos);
 	DuckPerson.frame = (int)gameRunTime % 1000 / (1000 / 24);
 	if (DuckPerson.frame > DuckPerson.obj.size() - 1) { DuckPerson.frame = DuckPerson.obj.size() - 1; }
@@ -858,8 +862,8 @@ void DGW::DisplayAnimation()
 	glPopMatrix();
 
 	glPushMatrix();
-	result = (int)gameRunTime % 14000 / 1000.0;
-	zPos = 44 - result * 4;
+	result = (int)gameRunTime % 12000 / 1000.0;
+	zPos = 44 - result * movement;
 	glTranslatef(2.2, 0, zPos);
 	glRotatef(180, 0, 1, 0);
 	DuckPerson.frame = (int)(gameRunTime+5555) % 1000 / (1000 / 24);
@@ -869,6 +873,36 @@ void DGW::DisplayAnimation()
 
 	glPopMatrix();
 }
+
+void DGW::DisplayCashier()
+{
+	glm::vec3 pos = player.GetCamera().GetPosition();
+	glm::vec3 duckLook = {0, 0, 1};
+	glm::vec3 duckHeadPos = {5.6, 1.83, 2.1};
+	glm::vec3 posVec = pos - duckHeadPos;
+
+	//Body
+	glPushMatrix();
+	glScalef(-1, 1, 1);
+	cashier[0].DisplayObjectWithLighting(T_DUCK_PERSON);
+	glPopMatrix();
+
+	//Head
+	glPushMatrix();
+	float angle = acos((duckLook.x * posVec.x + duckLook.z * posVec.z) / (sqrt(duckLook.x * duckLook.x + duckLook.z * duckLook.z) * sqrt(posVec.x * posVec.x + posVec.z * posVec.z)));
+	angle = angle / PI * 180;
+	if (angle > 90) { angle = 90; }
+	if (duckHeadPos.x > pos.x) { angle = angle * -1; }
+
+	glTranslatef(duckHeadPos.x, duckHeadPos.y, duckHeadPos.z);
+	glRotatef(angle, 0, 1, 0);
+	glRotatef(30, 1, 0, 0);
+	cashier[1].DisplayObjectWithLighting(T_DUCK_PERSON);
+
+	glPopMatrix();
+}
+
+
 
 void DGW::DisplayPerformanceMetrics()
 {
