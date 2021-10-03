@@ -14,6 +14,8 @@ class EnemyAI
 public:
 	EnemyAI();
 
+	static void ResetGrid();
+
 	void AIUpdate(const glm::vec3& currentPos);
 
 	static void DisplayWireframe();

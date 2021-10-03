@@ -9,8 +9,38 @@ glm::ivec2 EnemyAI::m_prevPlayerPos;
 EnemyAI::EnemyAI()
 	: m_gridPos(0), m_prevGridPos(0), m_gridDest(0), m_isMoving(false), m_isFirstMove(false)
 {
-	for (auto& gridRow : m_mainGrid)
-		gridRow.fill(Grid::FREE);
+	ResetGrid();
+}
+
+void EnemyAI::ResetGrid()
+{
+	// I'm sorry.
+	const int initialGrid[20][26] = {
+		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+		{0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0},
+		{1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1},
+		{1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1},
+		{1, 1, 1, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0},
+		{1, 1, 1, 0, 0, 0, 2, 0, 0, 0, 0, 2, 1, 1, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0},
+		{1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1},
+		{1, 1, 1, 0, 0, 0, 2, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1, 1, 1},
+		{1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2, 2, 1, 1, 2, 2, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0},
+		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+		{1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1},
+		{1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 2, 2, 2, 2, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1},
+		{1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1},
+		{1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 2, 2, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1},
+		{1, 0, 0, 2, 2, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 2, 2, 0, 0, 1},
+		{1, 0, 0, 2, 2, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 2, 2, 0, 0, 1},
+		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 0, 0, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+	};
+
+	for (int i = 0; i < m_mainGrid.size(); ++i)
+		for (int j = 0; j < m_mainGrid[i].size(); ++j)
+			m_mainGrid[i][j] = (Grid)initialGrid[i][j];
 }
 
 void EnemyAI::AIUpdate(const glm::vec3& currentPos)
@@ -51,19 +81,19 @@ void EnemyAI::FindNextDest()
 {
 	std::vector<glm::ivec2> possibleDests;
 
-	if (m_mainGrid[m_gridPos.x][m_gridPos.y + 1] == Grid::FREE)
+	if (m_mainGrid[m_gridPos.x][m_gridPos.y + 1] == Grid::FREE && m_gridPos.y + 1 < 26)
 	{
 		possibleDests.push_back(glm::ivec2(m_gridPos.x, m_gridPos.y + 1));
 	}
-	if (m_mainGrid[m_gridPos.x + 1][m_gridPos.y] == Grid::FREE)
+	if (m_mainGrid[m_gridPos.x + 1][m_gridPos.y] == Grid::FREE && m_gridPos.x + 1 < 20)
 	{
 		possibleDests.push_back(glm::ivec2(m_gridPos.x + 1, m_gridPos.y));
 	}
-	if (m_mainGrid[m_gridPos.x][m_gridPos.y - 1] == Grid::FREE)
+	if (m_mainGrid[m_gridPos.x][m_gridPos.y - 1] == Grid::FREE && m_gridPos.y - 1 >= 0)
 	{
 		possibleDests.push_back(glm::ivec2(m_gridPos.x, m_gridPos.y - 1));
 	}
-	if (m_mainGrid[m_gridPos.x - 1][m_gridPos.y] == Grid::FREE)
+	if (m_mainGrid[m_gridPos.x - 1][m_gridPos.y] == Grid::FREE && m_gridPos.x - 1 >= 0)
 	{
 		possibleDests.push_back(glm::ivec2(m_gridPos.x - 1, m_gridPos.y));
 	}
@@ -147,6 +177,7 @@ bool EnemyAI::isPlayerInView(const glm::vec3& lookAt)
 		switch (m_mainGrid[tempPos.x][tempPos.y])
 		{
 		case Grid::FULL:
+		case Grid::HALF:
 			return false;
 
 		case Grid::PLAYERTHERE:
