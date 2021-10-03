@@ -14,7 +14,7 @@ public:
 	void Update(GLfloat delta) override;
 	void Shoot() override;
 	const GLint GetHealth() override;
-	void SetHealth(GLfloat& given_health) override;
+	void SetHealth(const GLfloat& given_health) override;
 
 	// Getter
 	Camera& GetCamera();

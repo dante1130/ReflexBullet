@@ -8,7 +8,8 @@ bool Starting = true;
 float delta = 0;
 float elapsedTime = glutGet(GLUT_ELAPSED_TIME);
 
-glm::vec3 m_playerPos, m_floatPos, m_playerLook, m_floatLook;
+glm::vec3 m_playerPos, m_floatPos, m_playerLook, m_floatLook, m_bossArea;
+
 
 Audio audio;
 Collision collision;
@@ -72,10 +73,10 @@ void GM::LoadGameObjectFiles()
 	ReadOBJMTL("data/object/gameObjects/s_boardgame.obj", s_Board);
 	ReadOBJMTL("data/object/gameObjects/Cachier.obj", cashier[0]);
 	ReadOBJMTL("data/object/gameObjects/Cachier1.obj", cashier[1]);
+	ReadOBJMTL("data/object/gameObjects/boss.obj", bossBody);
 	ReadOBJMTL("data/object/gameObjects/TrainArea.obj", TrainArea);
-
-
-
+	ReadOBJMTL("data/object/gameObjects/LightHead.obj", LightOBJ[0]);
+	ReadOBJMTL("data/object/gameObjects/LightTop.obj", LightOBJ[1]);
 
 	//
 	//Objects used to populate the shelves
@@ -252,6 +253,8 @@ void GM::GameFixedUpdateLoop(int val)
 		enemy.Shoot();
 		
 		player.GetCamera().KeyboardMovement();
+		if (bossOn)
+			boss.Update(delta);
 	}
 
 	
@@ -267,7 +270,6 @@ void GM::GameStartUp()
 		zFar = 1000;
 		Starting = false;
 		glClearColor(0.5, 0.5, 0.5, 1);
-		hudOn = true;
 	}
 	GameReshape(glutGet(GLUT_WINDOW_WIDTH), glutGet(GLUT_WINDOW_HEIGHT));
 }
@@ -377,6 +379,16 @@ void GM::GameKeys(unsigned char key, int x, int y)
 	case 'g':
 		PMV.m_PausedMenuChoosen = (PMV.m_PausedMenuChoosen + 1) % 5;
 		if (PMV.m_PausedMenuChoosen == 0) { PMV.m_PausedMenuChoosen = 1; }
+	case 'b':
+	case 'B':
+		visibleShelves = false;
+		ToyStore.Clear();
+		ReadOBJMTL("data/object/gameObjects/bossAreaV2.obj", ToyStore);
+		bossOn = true;
+		break;
+	case 'h':
+	case 'H':
+		player.SetHealth(player.GetHealth() + 10);
 	}
 }
 

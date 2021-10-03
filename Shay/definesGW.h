@@ -55,8 +55,11 @@ constexpr auto T_DUCK_PERSON			= 42;
 constexpr auto S_BOOKS2					= 43;
 constexpr auto TRAIN_AREA				= 0;
 
+constexpr auto BOSS						= 45;
+constexpr auto LIGHT_HEAD				= 46;
+constexpr auto LIGHT_TOP				= 47;
 
-//NEXT 44
+//NEXT 47
 constexpr auto GWTEXTURE_END = 50;
 
 

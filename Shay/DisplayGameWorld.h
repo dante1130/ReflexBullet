@@ -12,6 +12,7 @@
 #include "LoadTexturesGameWorld.h"
 #include "UI.h"
 #include "Leaderboards.h"
+#include "BossArea.h"
 
 #include <vector>
 #include <stdlib.h>
@@ -47,9 +48,12 @@ extern Object3D s_Board;
 extern Leaderboard LB;
 extern Object3D cashier[2];
 extern Object3D TrainArea;
+extern Object3D LightOBJ[2];
 
 extern bool wireFrame;
 extern bool performanceMetric;
+extern bool visibleShelves;
+extern bool bossOn;
 
 struct PauseMenuValues
 {
@@ -266,6 +270,12 @@ namespace DGW
 	*/
 	void DisplayAreaHoldingTrain();
 
+	/**
+	* @brief	Displays the lights
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayLights();
 
 
 	/**

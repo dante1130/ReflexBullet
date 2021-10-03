@@ -14,6 +14,7 @@ Object3D TrainArea;
 Leaderboard LB;
 
 Object3D cashier[2];
+Object3D LightOBJ[2];
 
 
 AnimationOBJ Train;
@@ -25,6 +26,8 @@ int lastFrameTime;
 
 bool wireFrame = false;
 bool performanceMetric = true;
+bool visibleShelves = true;
+bool bossOn = false;
 
 PauseMenuValues PMV;
 GLfloat gameRunTime = 0;
@@ -50,8 +53,15 @@ void DGW::DisplayGameWorldMasterFunction()
 	{
 		DisplayPerformanceMetrics();
 	}
-	
-	DisplayShelves();
+	if (visibleShelves)
+	{
+		DisplayShelves();
+	}
+	if (bossOn)
+	{
+		boss.TrackPlayer(player);
+		BossInit();
+	}
 	DrawHUD(player);
 
 	if (wireFrame)
@@ -79,14 +89,15 @@ void DGW::DisplayGameWorldMasterFunction()
 		DGO::DisplayEnemy(enemy);
 		DGO::DisplayGunBullets(enemy.GetGun());
 		DGO::DisplayGunBullets(player.GetGun());
+		DGO::DisplayGunBullets(boss.GetGun());
 	}
 
 	Lighting::UpdateLighting();
 
 	DisplayAnimation();
 	DisplayAreaHoldingTrain();
-
 	DisplayCashier();
+	DisplayLights();
 
 	glutSwapBuffers();
 }
@@ -930,6 +941,22 @@ void DGW::DisplayAreaHoldingTrain()
 	glPushMatrix();
 	glScalef(-1, 1, 1);
 	TrainArea.DisplayObjectWithLighting(TRAIN_AREA);
+	glPopMatrix();
+}
+
+void DGW::DisplayLights()
+{
+	glPushMatrix();
+	glTranslatef(2, 3, 2);
+	LightOBJ[0].DisplayObjectWithLighting(LIGHT_HEAD);
+	LightOBJ[1].DisplayObjectWithLighting(LIGHT_TOP);
+
+//	glTranslatef();
+
+
+
+
+
 	glPopMatrix();
 }
 

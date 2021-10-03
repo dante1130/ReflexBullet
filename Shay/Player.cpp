@@ -16,6 +16,8 @@ void Player::Update(GLfloat delta)
 
 	m_health -= m_healthDecay;
 	if (m_health <= 0) m_health = 0;
+	if (m_health > start_health)
+		m_health = start_health;
 }
 
 void Player::Shoot()
@@ -38,7 +40,7 @@ const GLfloat Player::GetStartHealth()
 	return start_health;
 }
 
-void Player::SetHealth(GLfloat& given_health)
+void Player::SetHealth(const GLfloat& given_health)
 {
 	m_health = given_health;
 }

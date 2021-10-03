@@ -10,6 +10,7 @@
 #include "Lighting.h"
 #include "Leaderboards.h"
 #include "Enemy.h"
+#include "BossArea.h"
 #include <GL/glut.h>
 
 /// <summary>

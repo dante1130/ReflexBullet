@@ -37,7 +37,8 @@ public:
 	Object3D(); 
 	/** @brief Deconstructor */
 	~Object3D();
-
+	/**@breif Clear function */
+	void Clear();
 	/**
 	 * @brief Creates a vertex based of float parameters.
 	 * @param vertex glm::vec3

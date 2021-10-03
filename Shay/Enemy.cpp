@@ -60,7 +60,7 @@ void Enemy::SetPlayerPos(const glm::vec3& position)
 	EnemyAI::SetPlayerPos(position);
 }
 
-void Enemy::SetHealth(GLfloat& given_health)
+void Enemy::SetHealth(const GLfloat& given_health)
 {
 	m_health = given_health;
 }
