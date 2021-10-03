@@ -163,9 +163,12 @@ void LTGW::CreateTextures()
 
 	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/LightHead.raw", 1, 1);
 	tpGW.CreateTexture(LIGHT_HEAD, GWimage, 1, 1);
+
 	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/LightTop.raw", 1, 1);
 	tpGW.CreateTexture(LIGHT_TOP, GWimage, 1, 1);
 
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/TrainArea.raw", 256, 256);
+	tpGW.CreateTexture(TRAIN_AREA, GWimage, 256, 256);
 
 
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);

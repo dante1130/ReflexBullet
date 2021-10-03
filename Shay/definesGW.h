@@ -53,7 +53,7 @@ constexpr auto T_TRAIN					= 41;
 constexpr auto T_DUCK_PERSON			= 42;
 
 constexpr auto S_BOOKS2					= 43;
-constexpr auto TRAIN_AREA				= 0;
+constexpr auto TRAIN_AREA				= 44;
 
 constexpr auto BOSS						= 45;
 constexpr auto LIGHT_HEAD				= 46;

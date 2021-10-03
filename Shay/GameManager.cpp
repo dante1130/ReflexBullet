@@ -52,7 +52,7 @@ void GM::GameInit(int w, int h)
 
 	//glEnable(GL_CULL_FACE);
 	
-	//glCullFace(GL_FRONT);
+	//glCullFace(GL_BACK);
 
 	LoadGameObjectFiles();
 	ReadLeaderboardFile("data/leaderboards.txt", LB);
@@ -234,14 +234,9 @@ void GM::GameFixedUpdateLoop(int val)
 	delta = (newElapsedTime - elapsedTime) / 1000;
 	elapsedTime = newElapsedTime;
 
-	if (Starting) 
-	{ 
-		GameStartUp(); 
-	}
-	else if (PMV.m_PausedMenuChoosen != 0)
-	{
-		PausedFloatingPosition();
-	}
+	if (Starting) { GameStartUp(); }
+	
+	if (PMV.m_PausedMenuChoosen != 0) {	PausedFloatingPosition(); }
 	else
 	{
 		gameRunTime = gameRunTime + newElapsedTime - lastUnpausedFrame;
@@ -256,8 +251,6 @@ void GM::GameFixedUpdateLoop(int val)
 		if (bossOn)
 			boss.Update(delta);
 	}
-
-	
 
 	GameCollisionResolution();
 }

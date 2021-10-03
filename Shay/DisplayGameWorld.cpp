@@ -307,7 +307,7 @@ void DGW::DisplayShelves()
 	cullPoints[0] = 7; cullPoints[1] = 17; cullPoints[2] = 7; cullPoints[3] = 19;
 	DisplayShelfContentsCulling(0, 7, -1, 0, 0, 978456, 0, look, pos, cullPoints);
 	glTranslatef(2, 0, 5);
-	cullPoints[1] = 19; cullPoints[3] = 21;
+	cullPoints[0] = 2; cullPoints[1] = 19; cullPoints[2] = 2; cullPoints[3] = 21;
 	DisplayShelfContentsCulling(0, 2, -1, 0, 0, 66, 0, look, pos, cullPoints);
 	glTranslatef(5, 0, -1);
 	cullPoints[0] = 3; cullPoints[1] = 24; cullPoints[2] = 3; cullPoints[3] = 26;
@@ -370,7 +370,7 @@ void DGW::DisplayShelfContentsCulling(unsigned int objectList, float xPos, int x
 	if (distanceOne > distanceTwo) { distanceOne = distanceTwo; }
 
 	int LOD = 0;
-	if (distanceOne > 16) { LOD = 3; }
+	if (distanceOne > 12) { LOD = 3; }
 	else if (distanceOne > 8) { LOD = 2; }
 	else if (distanceOne > 4) { LOD = 1; }
 
@@ -426,7 +426,7 @@ void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirecti
 		if (LOD > size - 1) { useLOD = size-1; }
 
 
-		glTranslatef(-1.75, 0.5, 0);
+		glTranslatef(-1.75, 0.5, 0.1);
 		glPushMatrix();
 		glRotatef(((seed * 2) % 20) * rot, 0, 1, 0);
 		Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(Shelf_Objects[i].texture);
@@ -458,7 +458,7 @@ void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirecti
 		size = Shelf_Objects[i].obj.size();
 		if (LOD > size - 1) { useLOD = size - 1; }
 
-		glTranslatef(-1.35, 0.5, 0.5);
+		glTranslatef(-1.35, 0.5, 0.4);
 		Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(Shelf_Objects[i].texture);
 		glTranslatef(0.45, 0, 0);
 		Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(Shelf_Objects[i].texture);
@@ -947,17 +947,41 @@ void DGW::DisplayAreaHoldingTrain()
 void DGW::DisplayLights()
 {
 	glPushMatrix();
-	glTranslatef(2, 3, 2);
+	glTranslatef(1.5, 3, 1.5);
 	LightOBJ[0].DisplayObjectWithLighting(LIGHT_HEAD);
 	LightOBJ[1].DisplayObjectWithLighting(LIGHT_TOP);
-
-//	glTranslatef();
-
-
-
-
-
 	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(1.5, 3, 24.5);
+	LightOBJ[0].DisplayObjectWithLighting(LIGHT_HEAD);
+	LightOBJ[1].DisplayObjectWithLighting(LIGHT_TOP);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(18.5, 3, 1.5);
+	LightOBJ[0].DisplayObjectWithLighting(LIGHT_HEAD);
+	LightOBJ[1].DisplayObjectWithLighting(LIGHT_TOP);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(18.5, 3, 24.5);
+	LightOBJ[0].DisplayObjectWithLighting(LIGHT_HEAD);
+	LightOBJ[1].DisplayObjectWithLighting(LIGHT_TOP);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(18.5, 3, 13);
+	LightOBJ[0].DisplayObjectWithLighting(LIGHT_HEAD);
+	LightOBJ[1].DisplayObjectWithLighting(LIGHT_TOP);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(-2, 2, 13);
+	LightOBJ[0].DisplayObjectWithLighting(LIGHT_HEAD);
+	LightOBJ[1].DisplayObjectWithLighting(LIGHT_TOP);
+	glPopMatrix();
+	
 }
 
 

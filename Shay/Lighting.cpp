@@ -1,7 +1,7 @@
 #include "Lighting.h"
 
 std::vector<Material> Materials;
-int m_NumberOfLights = 8;
+int m_NumberOfLights = 7;
 
 Light lights[8];
 
@@ -28,13 +28,13 @@ void Lighting::LightInit()
 {
 	int light[] = { 16384, 16385, 16386,  16387,  16388, 16389, 16390, 16391, };
 	GLfloat light_position[8][4] = { {10, 2, 1, 1,},
-									{1, 3, 1, 1},
-									{1, 3, 13, 1},
-									{1, 3, 25, 1},
-									{19, 3, 1, 1},
-									{19, 3, 13, 1},
-									{19, 3, 25, 1},
-									{10, 3, 25, 1} };
+									{1.5, 3, 1.5, 1},
+									{-2, 2, 13, 1},
+									{1.5, 3, 24.5, 1},
+									{18.5, 3, 1.5, 1},
+									{18.5, 3, 13, 1},
+									{18.5, 3, 24.5, 1},
+									{10, 3, 24, 1} };
 	GLfloat light_ambient[4] = { 0.01, 0.01, 0.01, 1 };
 	GLfloat light_diffuse[4] = { 1, 0.95, 0.88, 1 };
 	GLfloat light_specular[4] = { 1, 1, 1, 1 };
@@ -63,7 +63,8 @@ void Lighting::LightInit()
 	float v[] = { 1, 0.95, 0.88, 1 };
 	glLightfv(lights[0].light, GL_DIFFUSE, v);
 	glLightf(lights[0].light, GL_LINEAR_ATTENUATION, 0.2);
-	glDisable(GL_LIGHT0);
+	
+	glDisable(GL_LIGHT7);
 }
 
 void Lighting::MaterialInit()
@@ -99,7 +100,7 @@ void Lighting::SetLight(int index)
 void Lighting::UpdateLighting(void)
 {
 
-	for (int i = 1; i < m_NumberOfLights; i++)
+	for (int i = 0; i < m_NumberOfLights; i++)
 	{
 		SetLight(i);
 	}
