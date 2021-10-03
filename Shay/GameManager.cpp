@@ -72,6 +72,7 @@ void GM::LoadGameObjectFiles()
 	ReadOBJMTL("data/object/gameObjects/s_boardgame.obj", s_Board);
 	ReadOBJMTL("data/object/gameObjects/Cachier.obj", cashier[0]);
 	ReadOBJMTL("data/object/gameObjects/Cachier1.obj", cashier[1]);
+	ReadOBJMTL("data/object/gameObjects/TrainArea.obj", TrainArea);
 
 
 

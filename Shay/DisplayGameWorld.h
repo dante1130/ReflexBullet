@@ -46,6 +46,7 @@ extern Object3D Sky;
 extern Object3D s_Board;
 extern Leaderboard LB;
 extern Object3D cashier[2];
+extern Object3D TrainArea;
 
 extern bool wireFrame;
 extern bool performanceMetric;
@@ -257,6 +258,13 @@ namespace DGW
 	* @return	Void
 	*/
 	void DisplayCashier();
+
+	/**
+	* @brief	Displays the area around the train (tracks, etc.)
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayAreaHoldingTrain();
 
 
 

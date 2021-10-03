@@ -10,6 +10,7 @@ Object3D s_Movies;
 Object3D s_Books;
 Object3D s_Board;
 Object3D Sky;
+Object3D TrainArea;
 Leaderboard LB;
 
 Object3D cashier[2];
@@ -83,6 +84,8 @@ void DGW::DisplayGameWorldMasterFunction()
 	Lighting::UpdateLighting();
 
 	DisplayAnimation();
+	DisplayAreaHoldingTrain();
+
 	DisplayCashier();
 
 	glutSwapBuffers();
@@ -280,7 +283,19 @@ void DGW::DisplayShelves()
 	glTranslatef(0.5, 0, 1.5);
 	cullPoints[0] = 2; cullPoints[2] = 2; cullPoints[3] = 7;
 	DisplayShelfContentsCulling(0, 2, -1, 0, 0, 25, 0, look, pos, cullPoints);
-	glTranslatef(14, 0, 0);
+	glTranslatef(2, 0, -5);
+	cullPoints[0] = 7; cullPoints[1] = 7; cullPoints[2] = 7; cullPoints[3] = 9;
+	DisplayShelfContentsCulling(0, 7, -1, 0, 0, 25724, 0, look, pos, cullPoints);
+	glTranslatef(2, 0, 5);
+	cullPoints[0] = 2; cullPoints[1] = 9; cullPoints[2] = 2; cullPoints[3] = 11;
+	DisplayShelfContentsCulling(0, 2, -1, 0, 0, 23997, 0, look, pos, cullPoints);
+	glTranslatef(6, 0, 0);
+	cullPoints[1] = 15; cullPoints[3] = 17;
+	DisplayShelfContentsCulling(0, 2, -1, 0, 0, 1234567, 0, look, pos, cullPoints);
+	glTranslatef(2, 0, -5);
+	cullPoints[0] = 7; cullPoints[1] = 17; cullPoints[2] = 7; cullPoints[3] = 19;
+	DisplayShelfContentsCulling(0, 7, -1, 0, 0, 978456, 0, look, pos, cullPoints);
+	glTranslatef(2, 0, 5);
 	cullPoints[1] = 19; cullPoints[3] = 21;
 	DisplayShelfContentsCulling(0, 2, -1, 0, 0, 66, 0, look, pos, cullPoints);
 	glTranslatef(5, 0, -1);
@@ -910,6 +925,13 @@ void DGW::DisplayCashier()
 	glPopMatrix();
 }
 
+void DGW::DisplayAreaHoldingTrain()
+{
+	glPushMatrix();
+	glScalef(-1, 1, 1);
+	TrainArea.DisplayObjectWithLighting(TRAIN_AREA);
+	glPopMatrix();
+}
 
 
 void DGW::DisplayPerformanceMetrics()
