@@ -35,13 +35,18 @@ public:
 	*/
 	~Audio();
 
+	static int GetSfxVolume();
+
+	static int GetMusicVolume();
+	
+
 	/**
 	* @brief	Loads a .wav file based on a given path, and gives a label for the sound.
 	* @param	soundPath const char*
 	* @param	soundName const char*
 	* @return	void
 	*/
-	void AddSound(const char* soundPath, const char* soundName);
+	static void AddSound(const char* soundPath, const char* soundName);
 
 	/**
 	* @brief	Loads a music file based on a given path, and gives a label for the music.
@@ -49,7 +54,7 @@ public:
 	* @param	soundName const char*
 	* @return	void
 	*/
-	void AddMusic(const char* musicPath, const char* musicName);
+	static void AddMusic(const char* musicPath, const char* musicName);
 
 	/**
 	* @brief	Plays the sound based on the label of the sound effect.
@@ -63,7 +68,11 @@ public:
 	* @param	musicName const char*
 	* @return	void
 	*/
-	void PlayMusic(const char* musicName);
+	static void PlayMusic(const char* musicName);
+
+	static void SetSfxVolume(int volume);
+
+	static void SetMusicVolume(int volume);
 
 private:
 	/// Sounds stored as values into a map, key is a string that contains the label.
@@ -71,6 +80,10 @@ private:
 
 	/// Music stored as values into a map, key is a string that contains the label.
 	static std::map<std::string, Mix_Music*> m_music;
+
+	static int m_sfxVolume;
+
+	static int m_musicVolume;
 
 	/// Position of which the sound should be played
 	glm::vec3 m_soundPos;

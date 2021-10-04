@@ -11,6 +11,8 @@ Object3D s_Books;
 Object3D s_Board;
 Object3D Sky;
 Object3D TrainArea;
+Object3D Table[5];
+
 Leaderboard LB;
 
 Object3D cashier[2];
@@ -97,6 +99,7 @@ void DGW::DisplayGameWorldMasterFunction()
 	DisplayAreaHoldingTrain();
 	DisplayCashier();
 	DisplayLights();
+	DisplayTables();
 
 	glutSwapBuffers();
 }
@@ -731,8 +734,8 @@ void DGW::DisplayOptionsMenu()
 			temp = std::to_string(player.GetCamera().GetCameraRotateSpeed());
 			temp = '[' + temp.substr(0, 4) + ']';
 		}
-		else if (count == 1) { temp = '[' + std::to_string(100) + ']'; }
-		else if (count == 2) { temp = '[' + std::to_string(100) + ']'; }
+		else if (count == 1) { temp = '[' + std::to_string(Audio::GetMusicVolume()) + ']'; }
+		else if (count == 2) { temp = '[' + std::to_string(Audio::GetSfxVolume()) + ']'; }
 		else if (count == 3) { temp = '[' + std::to_string(2) + ']'; }
 
 		glRasterPos3f(0.2, yCoord, 13.35);
@@ -982,6 +985,99 @@ void DGW::DisplayLights()
 	glPopMatrix();
 	
 }
+
+void DGW::DisplayTables()
+{
+	glm::vec3 pPos = player.GetCamera().GetPosition();
+	glm::vec3 tPos = {12.5, 0, 12};
+
+
+	glPushMatrix();
+
+	glTranslatef(12.5, 0, 12);
+	DisplayIndividualTable(735, 23, pPos, tPos);
+	glTranslatef(0, 0, 2);
+	glScalef(1, 1, -1);
+	tPos.z = 14;
+	DisplayIndividualTable(33412, 456, pPos, tPos);
+	glScalef(1, 1, -1);
+
+	glTranslatef(2, 0, -1);
+	tPos.x = 14.5; tPos.z = 13;
+	DisplayIndividualTable(236, 215, pPos, tPos);
+
+	glTranslatef(5, 0, -2);
+	tPos.x = 19.5; tPos.z = 11;
+	DisplayIndividualTable(12, 67, pPos, tPos);
+	tPos.z = 15;
+	glTranslatef(0, 0, 4);
+	DisplayIndividualTable(1678, 93, pPos, tPos);
+
+	glRotatef(90, 0, 1, 0);
+	glTranslatef(8.5, 0, -10.5);
+	tPos.x = 9; tPos.z = 6.5;
+	DisplayIndividualTable(834, 628, pPos, tPos);
+	glTranslatef(0, 0, -3);
+	tPos.x = 6;
+	DisplayIndividualTable(333, 272, pPos, tPos);
+
+	glTranslatef(-13, 0, 0);
+	tPos.z = 19.5;
+	DisplayIndividualTable(744, 111, pPos, tPos);
+	glTranslatef(0, 0, 3);
+	tPos.x = 9;
+	DisplayIndividualTable(17, 83, pPos, tPos);
+
+	glPopMatrix();
+
+}
+
+void DGW::DisplayIndividualTable(int seed, int rand, glm::vec3 playerPos, glm::vec3 tablePos)
+{
+	float distance = sqrt(pow((tablePos.x - playerPos.x), 2) + pow((tablePos.z - playerPos.z), 2));
+
+	int LOD = 0;
+	if (distance > 12) { LOD = 3; }
+	if (distance > 8) { LOD = 2; }
+	else if (distance > 4) { LOD = 1; }
+
+	Table[0].DisplayObjectWithLighting(TABLE_TABLE);
+
+	glPushMatrix();
+	glTranslatef(0.3, 0, 0.8);
+	int i = PsudeoNumGen(seed, 3, 0);
+	int text;
+	float xTrans = -0.6, zTrans = -0.4;
+	for (int count = 0; count < 8; count++)
+	{
+		
+
+		if (i == 1)
+		{
+			Table[1].DisplayObjectWithLighting(TABLE_BOX);
+		}
+		else if (i == 2)
+		{
+			text = PsudeoNumGen(i, 4, rand + count);
+			if (LOD == 0) { Table[2].DisplayObjectWithLighting(TABLE_CHAIR + text); }
+			else if (LOD == 1) { Table[3].DisplayObjectWithLighting(TABLE_CHAIR + text); }
+			else { Table[4].DisplayObjectWithLighting(TABLE_CHAIR + text); }
+		}
+
+
+		if (count == 3) { glTranslatef(xTrans, 0, 0); zTrans = -zTrans; }
+		else { glTranslatef(0, 0, zTrans); }
+
+		if (count % 2 == 0) { glTranslatef(0, 0, zTrans / 2); }
+		
+
+		i = PsudeoNumGen(i, 3, rand + count);
+	}
+
+	glPopMatrix();
+
+}
+
 
 
 void DGW::DisplayPerformanceMetrics()

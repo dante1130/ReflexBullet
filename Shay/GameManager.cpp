@@ -10,14 +10,12 @@ float elapsedTime = glutGet(GLUT_ELAPSED_TIME);
 
 glm::vec3 m_playerPos, m_floatPos, m_playerLook, m_floatLook, m_bossArea;
 
-
-Audio audio;
 Collision collision;
 
 void GM::GameInit(int w, int h)
 {
-	audio.AddMusic("music/gamefast.wav", "gameplay");
-	audio.PlayMusic("gameplay");
+	Audio::AddMusic("music/gamefast.wav", "gameplay");
+	Audio::PlayMusic("gameplay");
 
 	LTGW::CreateTextures();
 
@@ -77,6 +75,13 @@ void GM::LoadGameObjectFiles()
 	ReadOBJMTL("data/object/gameObjects/TrainArea.obj", TrainArea);
 	ReadOBJMTL("data/object/gameObjects/LightHead.obj", LightOBJ[0]);
 	ReadOBJMTL("data/object/gameObjects/LightTop.obj", LightOBJ[1]);
+	ReadOBJMTL("data/object/gameObjects/Table.obj", Table[0]);
+	ReadOBJMTL("data/object/gameObjects/Box.obj", Table[1]);
+	ReadOBJMTL("data/object/gameObjects/Chair.obj", Table[2]);
+	ReadOBJMTL("data/object/gameObjects/Chair1.obj", Table[3]);
+	ReadOBJMTL("data/object/gameObjects/Chair2.obj", Table[4]);
+
+
 
 	//
 	//Objects used to populate the shelves
@@ -158,20 +163,7 @@ void GM::LoadGameShelfObject(const std::string& fileName, int textureID, int LOD
 
 	temp.obj.push_back(tempOBJ);
 	temp.texture = textureID;
-
-	/*
-	if (LODNumber != 1)
-	{
-		Object3D tempOBJOne; //////////////////////////This may not work
-
-		fileNameStorage = fileName + "1.obj";
-		std::cout << fileNameStorage << std::endl;
-
-		ReadOBJMTL(fileNameStorage, tempOBJOne);
-
-		temp.obj.push_back(tempOBJOne);
-	}
-	*/
+	
 	
 	for (int count = 1; count < LODNumber; count++)
 	{
@@ -695,28 +687,32 @@ void GM::MenuOptionChoosen(int option)
 		}
 		else if (option == 3)
 		{
-			std::cout << "mV +" << std::endl;
+			std::cout << "mV -" << std::endl;
+			Audio::SetMusicVolume(Audio::GetMusicVolume() - 5);
 		}
 		else if (option == 4)
 		{
-			std::cout << "mV -" << std::endl;
+			std::cout << "mV +" << std::endl;
+			Audio::SetMusicVolume(Audio::GetMusicVolume() + 5);
 		}
 		else if (option == 5)
 		{
-			std::cout << "SFXV +" << std::endl;
+			std::cout << "SFXV -" << std::endl;
+			Audio::SetSfxVolume(Audio::GetSfxVolume() - 5);
 		}
 		else if (option == 6)
 		{
-			std::cout << "SFXV -" << std::endl;
+			std::cout << "SFXV +" << std::endl;
+			Audio::SetSfxVolume(Audio::GetSfxVolume() + 5);
 		}
 		else if (option == 7)
 		{
-			std::cout << "D +" << std::endl;
+			std::cout << "D -" << std::endl;
 			//RestartGame();
 		}
 		else if (option == 8)
 		{
-			std::cout << "D -" << std::endl;
+			std::cout << "D +" << std::endl;
 			//RestartGame();
 		}
 		else if (option == 9)
