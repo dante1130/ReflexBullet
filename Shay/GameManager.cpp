@@ -75,6 +75,13 @@ void GM::LoadGameObjectFiles()
 	ReadOBJMTL("data/object/gameObjects/TrainArea.obj", TrainArea);
 	ReadOBJMTL("data/object/gameObjects/LightHead.obj", LightOBJ[0]);
 	ReadOBJMTL("data/object/gameObjects/LightTop.obj", LightOBJ[1]);
+	ReadOBJMTL("data/object/gameObjects/Table.obj", Table[0]);
+	ReadOBJMTL("data/object/gameObjects/Box.obj", Table[1]);
+	ReadOBJMTL("data/object/gameObjects/Chair.obj", Table[2]);
+	ReadOBJMTL("data/object/gameObjects/Chair1.obj", Table[3]);
+	ReadOBJMTL("data/object/gameObjects/Chair2.obj", Table[4]);
+
+
 
 	//
 	//Objects used to populate the shelves
@@ -156,20 +163,7 @@ void GM::LoadGameShelfObject(const std::string& fileName, int textureID, int LOD
 
 	temp.obj.push_back(tempOBJ);
 	temp.texture = textureID;
-
-	/*
-	if (LODNumber != 1)
-	{
-		Object3D tempOBJOne; //////////////////////////This may not work
-
-		fileNameStorage = fileName + "1.obj";
-		std::cout << fileNameStorage << std::endl;
-
-		ReadOBJMTL(fileNameStorage, tempOBJOne);
-
-		temp.obj.push_back(tempOBJOne);
-	}
-	*/
+	
 	
 	for (int count = 1; count < LODNumber; count++)
 	{
