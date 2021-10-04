@@ -59,8 +59,7 @@ void DGW::DisplayGameWorldMasterFunction()
 	}
 	if (bossOn)
 	{
-		boss.TrackPlayer(player);
-		BossInit();
+		BossInit(player);
 	}
 	DrawHUD(player);
 

@@ -23,6 +23,8 @@ public:
 
 	void SetPosition(glm::vec3 p);
 	void SetRotation(GLfloat x, GLfloat y, GLfloat z);
+	void SetRotation(const glm::vec3& r);
+	void SetRotationY(GLfloat y);
 	void SetPhase(GLint i);
 
 	void TrackPlayer(Player& player);

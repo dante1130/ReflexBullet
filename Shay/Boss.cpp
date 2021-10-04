@@ -1,6 +1,6 @@
 #include "Boss.h"
 
-glm::vec3 player_Pos;
+glm::vec3 player_Pos, desiredRot;
 GLfloat hyp, arccos, arctan;
 
 Boss::Boss()
@@ -52,6 +52,16 @@ void Boss::SetRotation(GLfloat x, GLfloat y, GLfloat z)
 	m_rotation.z = z;
 }
 
+void Boss::SetRotation(const glm::vec3& r)
+{
+	m_rotation = r;
+}
+
+void Boss::SetRotationY(GLfloat y)
+{
+	m_rotation.y = y;
+}
+
 void Boss::SetPosition(GLfloat x, GLfloat y, GLfloat z)
 {
 	m_position.x = x;
@@ -87,15 +97,19 @@ void Boss::TrackPlayer(Player& player)
 	hyp = sqrt(pow(player_Pos.x - m_position.x, 2) + pow(player_Pos.z - m_position.z, 2));
 	arccos = (player_Pos.x - m_position.x) / hyp;
 
-	m_rotation.y = (acos(arccos) * (180 / PI));
+	desiredRot.y = (acos(arccos) * (180 / PI));
 
 	arctan = hyp / (m_position.y - player_Pos.y);
 
-	m_rotation.z = (atan(arctan) * (180 / PI));
+	desiredRot.z = (atan(arctan) * (180 / PI));
 
 	if (player_Pos.z - m_position.z > 0)
-		m_rotation.y = -m_rotation.y;
-
+		desiredRot.y = -desiredRot.y;
+	if (std::abs(m_rotation.z - desiredRot.z) != 360)
+		m_rotation = mix(m_rotation, desiredRot, 0.02);
+	else
+		m_rotation = desiredRot;
+	
 }
 
 void Boss::AnimateRotate()
@@ -107,11 +121,11 @@ void Boss::AnimateRotate()
 
 void Boss::AnimateSpecial(GLint delta)
 {
-	if ((delta > 14000) && (m_lazerbeam[0].x - m_lazerbeam[1].x < 0))
+	if ((delta > 13000) && (m_lazerbeam[0].x - m_lazerbeam[1].x < 0))
 	{
 		m_lazerbeam[0].x += 0.1;
 		m_lazerbeam[1].x -= 0.1;
-	}else if ((delta > 100) && (m_lazerbeam[0].x - m_lazerbeam[1].x >= -20))
+	}else if ((delta > 1100) && (m_lazerbeam[0].x - m_lazerbeam[1].x >= -20))
 	{
 		m_lazerbeam[0].x -= 0.1;
 		m_lazerbeam[1].x += 0.1;

@@ -7,10 +7,13 @@ int timer, timePhaseStart = 0;
 float xRotate, yRotate;
 
 glm::vec3 pos(10, 3, 15);
+glm::vec3 zero(0, 0, 0);
 
-void BossInit()
+void BossInit(Player& player)
 {
 	timer = glutGet(GLUT_ELAPSED_TIME);
+	if(boss.GetPhase() != 3)
+		boss.TrackPlayer(player);
 	DrawBoss();
 	PhaseChange();
 }
@@ -23,7 +26,7 @@ void DrawBoss()
 		PhaseApply();
 		boss.AnimateRotate();
 		bossBody.DisplayObjectWithLighting(BOSS);
-		if ((boss.GetPhase() == 3) && (boss.GetRotation().x <= 0))
+		if (boss.GetPhase() == 3)
 			boss.AnimateSpecial(timer - timePhaseStart);
 	glPopMatrix();
 }
@@ -54,19 +57,18 @@ void PhaseApply()
 	if (boss.GetPhase() == 1)
 		boss.Shoot();
 	else if ((boss.GetPhase() == 2) && ((timer % 2000) > 1000))
-	{
 		boss.Shoot();
-	}
 	else if(boss.GetPhase() == 3)
 	{
-		if (boss.GetRotation().x > 0)
-			boss.SetRotation(boss.GetRotation().x - 0.4, 0, 0);
-		else {
-			boss.SetRotation(0, yRotate, 0);
-			yRotate += 0.1;
-			if (yRotate >= 360.0)
-				yRotate = yRotate - 360;
+		if ((timer - timePhaseStart) < 1000)
+		{
+			boss.SetRotation(mix(boss.GetRotation(), zero, 0.02));
+			return;
 		}
+		boss.SetRotationY(yRotate);
+		yRotate += 0.1;
+		if (yRotate >= 360.0)
+			yRotate = yRotate - 360;
 	}
 }
 
