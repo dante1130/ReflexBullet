@@ -170,14 +170,13 @@ const glm::ivec2& EnemyAI::GetPrevGridPos() const
 
 bool EnemyAI::isPlayerInView(const glm::vec3& lookAt)
 {
-	glm::vec2 look2D = glm::vec2(lookAt.x, lookAt.z);
+	glm::vec2 look2D = glm::normalize(glm::vec2(lookAt.x, lookAt.z));
 
 	for (glm::vec2 tempPos = m_gridPos; tempPos.x >= 0 && tempPos.y >= 0 && tempPos.x < 20 && tempPos.y < 26; tempPos += look2D)
 	{
 		switch (m_mainGrid[tempPos.x][tempPos.y])
 		{
 		case Grid::FULL:
-		case Grid::HALF:
 			return false;
 
 		case Grid::PLAYERTHERE:
