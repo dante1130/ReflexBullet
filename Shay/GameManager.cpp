@@ -693,32 +693,32 @@ void GM::MenuOptionChoosen(int option)
 		}
 		else if (option == 3)
 		{
-			std::cout << "mV +" << std::endl;
-			Audio::SetMusicVolume(Audio::GetMusicVolume() + 5);
-		}
-		else if (option == 4)
-		{
 			std::cout << "mV -" << std::endl;
 			Audio::SetMusicVolume(Audio::GetMusicVolume() - 5);
 		}
-		else if (option == 5)
+		else if (option == 4)
 		{
-			std::cout << "SFXV +" << std::endl;
-			Audio::SetSfxVolume(Audio::GetSfxVolume() + 5);
+			std::cout << "mV +" << std::endl;
+			Audio::SetMusicVolume(Audio::GetMusicVolume() + 5);
 		}
-		else if (option == 6)
+		else if (option == 5)
 		{
 			std::cout << "SFXV -" << std::endl;
 			Audio::SetSfxVolume(Audio::GetSfxVolume() - 5);
 		}
+		else if (option == 6)
+		{
+			std::cout << "SFXV +" << std::endl;
+			Audio::SetSfxVolume(Audio::GetSfxVolume() + 5);
+		}
 		else if (option == 7)
 		{
-			std::cout << "D +" << std::endl;
+			std::cout << "D -" << std::endl;
 			//RestartGame();
 		}
 		else if (option == 8)
 		{
-			std::cout << "D -" << std::endl;
+			std::cout << "D +" << std::endl;
 			//RestartGame();
 		}
 		else if (option == 9)
