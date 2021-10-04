@@ -189,11 +189,71 @@ void GM::StoreLODObj(std::string &fileName, ShelfObjectsOBJ &soOBJ)
 void GM::CreateGameBoundingBoxes()
 {
 	// Walls
-	collision.Push(glm::vec3(20, 5, 0.05), glm::vec3(0, 0, -2));
-	collision.Push(glm::vec3(20, 5, 28), glm::vec3(0, 0, 25.95));
-	collision.Push(glm::vec3(0.05, 5, 26), glm::vec3(-2, 0, 0));
-	collision.Push(glm::vec3(22, 5, 26), glm::vec3(19.95, 0, 0));
+	collision.Push(glm::vec3(20, 7, 0.05), glm::vec3(0, 0, -2));
+	collision.Push(glm::vec3(20, 5, 26), glm::vec3(0, 0, 25.95));
+	collision.Push(glm::vec3(0.05, 7, 26), glm::vec3(-2, 0, 0));
+	collision.Push(glm::vec3(22, 7, 26), glm::vec3(19.95, 0, 0));
 
+	// Counter
+	collision.Push(glm::vec3(9.05, 1, 3.05), glm::vec3(2.95, 0, 0));
+
+	// Shelves by the wall
+	collision.Push(glm::vec3(20.05, 1.5, 1.05), glm::vec3(8.95, 0, 0));
+
+	collision.Push(glm::vec3(20.05, 1.5, 10.05), glm::vec3(18.95, 0, 1));
+	collision.Push(glm::vec3(20.05, 0.5, 12.05), glm::vec3(18.95, 0, 9.95));
+
+	collision.Push(glm::vec3(20.05, 0.5, 16.05), glm::vec3(18.95, 0, 13.95));
+	collision.Push(glm::vec3(20.05, 1.5, 26), glm::vec3(18.95, 0, 15.95));
+
+	// Shelves
+	collision.Push(glm::vec3(19.05, 1.5, 26), glm::vec3(10.95, 0, 24.95));
+
+	collision.Push(glm::vec3(9.05, 1.5, 26), glm::vec3(6.95, 0, 22.95));
+
+	collision.Push(glm::vec3(5.05, 1.5, 26), glm::vec3(2.95, 0, 22.95));
+
+	collision.Push(glm::vec3(5.05, 1.5, 7.05), glm::vec3(1.95, 0, 4.95));
+	collision.Push(glm::vec3(7.05, 0.5, 7.05), glm::vec3(4.95, 0, 5.95));
+	collision.Push(glm::vec3(8.05, 1.5, 9.05), glm::vec3(6.95, 0, 4.95));
+	collision.Push(glm::vec3(10.05, 0.5, 7.05), glm::vec3(7.95, 0, 5.95));
+
+	collision.Push(glm::vec3(15.05, 1.5, 5.05), glm::vec3(10.95, 0, 2.95));
+	collision.Push(glm::vec3(17.05, 0.5, 5.05), glm::vec3(14.95, 0, 2.95));
+
+	collision.Push(glm::vec3(17.05, 1.5, 12.05), glm::vec3(15.95, 0, 6.95));
+	collision.Push(glm::vec3(17.05, 1.5, 8.05), glm::vec3(11.95, 0, 6.95));
+	collision.Push(glm::vec3(17.05, 1.5, 9.05), glm::vec3(10.95, 0, 7.95));
+
+	collision.Push(glm::vec3(17.05, 1.5, 19.05), glm::vec3(15.95, 0, 13.95));
+	collision.Push(glm::vec3(16.05, 1.5, 18.05), glm::vec3(10.95, 0, 16.95));
+	collision.Push(glm::vec3(17.05, 1.5, 19.05), glm::vec3(11.95, 0, 17.95));
+
+	collision.Push(glm::vec3(15.05, 1.5, 23.05), glm::vec3(10.95, 0, 20.95));
+	collision.Push(glm::vec3(17.05, 0.5, 23.05), glm::vec3(14.95, 0, 20.95));
+
+	// Train
+	collision.Push(glm::vec3(3.05, 0.5, 17.05), glm::vec3(1.95, 0, 8.95));
+	collision.Push(glm::vec3(4.05, 0.5, 15.05), glm::vec3(2.95, 0, 10.95));
+	
+
+	//
+	collision.Push(glm::vec3(13.05, 0.5, 15.05), glm::vec3(11.95, 0, 10.95));
+	collision.Push(glm::vec3(14.05, 1.5, 15.05), glm::vec3(12.95, 0, 10.95));
+	collision.Push(glm::vec3(15.05, 0.5, 14.05), glm::vec3(13.95, 0, 11.95));
+
+	//
+	collision.Push(glm::vec3(5.05, 1.5, 21.05), glm::vec3(1.95, 0, 18.95));
+	collision.Push(glm::vec3(7.05, 0.5, 20.05), glm::vec3(4.95, 0, 18.95));
+	collision.Push(glm::vec3(8.05, 1.5, 21.05), glm::vec3(6.95, 0, 16.95));
+	collision.Push(glm::vec3(10.05, 0.5, 20.05), glm::vec3(7.95, 0, 18.95));
+
+	//
+	collision.Push(glm::vec3(7.05, 0.5, 15.05), glm::vec3(5.95, 0, 10.95));
+	collision.Push(glm::vec3(10.05, 1.5, 13.55), glm::vec3(5.95, 0, 12.45));
+	collision.Push(glm::vec3(10.05, 0.5, 16.05), glm::vec3(8.95, 0, 9.95));
+
+	
 	player.GetCamera().SetCollision(collision);
 }
 
