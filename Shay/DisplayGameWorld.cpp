@@ -732,8 +732,8 @@ void DGW::DisplayOptionsMenu()
 			temp = std::to_string(player.GetCamera().GetCameraRotateSpeed());
 			temp = '[' + temp.substr(0, 4) + ']';
 		}
-		else if (count == 1) { temp = '[' + std::to_string(100) + ']'; }
-		else if (count == 2) { temp = '[' + std::to_string(100) + ']'; }
+		else if (count == 1) { temp = '[' + std::to_string(Audio::GetMusicVolume()) + ']'; }
+		else if (count == 2) { temp = '[' + std::to_string(Audio::GetSfxVolume()) + ']'; }
 		else if (count == 3) { temp = '[' + std::to_string(2) + ']'; }
 
 		glRasterPos3f(0.2, yCoord, 13.35);

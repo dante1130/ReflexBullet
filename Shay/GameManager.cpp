@@ -10,14 +10,12 @@ float elapsedTime = glutGet(GLUT_ELAPSED_TIME);
 
 glm::vec3 m_playerPos, m_floatPos, m_playerLook, m_floatLook, m_bossArea;
 
-
-Audio audio;
 Collision collision;
 
 void GM::GameInit(int w, int h)
 {
-	audio.AddMusic("music/gamefast.wav", "gameplay");
-	audio.PlayMusic("gameplay");
+	Audio::AddMusic("music/gamefast.wav", "gameplay");
+	Audio::PlayMusic("gameplay");
 
 	LTGW::CreateTextures();
 
@@ -696,18 +694,22 @@ void GM::MenuOptionChoosen(int option)
 		else if (option == 3)
 		{
 			std::cout << "mV +" << std::endl;
+			Audio::SetMusicVolume(Audio::GetMusicVolume() + 5);
 		}
 		else if (option == 4)
 		{
 			std::cout << "mV -" << std::endl;
+			Audio::SetMusicVolume(Audio::GetMusicVolume() - 5);
 		}
 		else if (option == 5)
 		{
 			std::cout << "SFXV +" << std::endl;
+			Audio::SetSfxVolume(Audio::GetSfxVolume() + 5);
 		}
 		else if (option == 6)
 		{
 			std::cout << "SFXV -" << std::endl;
+			Audio::SetSfxVolume(Audio::GetSfxVolume() - 5);
 		}
 		else if (option == 7)
 		{

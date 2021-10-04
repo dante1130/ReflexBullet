@@ -40,7 +40,7 @@ Camera::Camera()
 	m_collisionDetectionOn = true;
 
 	// sound objects
-	m_audio.AddSound("sounds/step.wav", "stairstep");
+	Audio::AddSound("sounds/step.wav", "stairstep");
 }
 
 //--------------------------------------------------------------------------------------
