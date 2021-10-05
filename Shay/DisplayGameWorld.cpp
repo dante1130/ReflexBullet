@@ -655,7 +655,7 @@ void DGW::DisplayUpgradeMenu()
 
 	float yCoord = 5.7;
 	std::string temp;
-	temp = "[" + std::to_string(99) + "]";
+	temp = "[" + std::to_string(player.GetSkillPoints()) + "]";
 	glBindTexture(GL_TEXTURE_2D, tpGW.GetTexture(T_MENU_OUTLINE_COLOUR));
 	glRasterPos3f(0.2, yCoord, 13.4);
 	RenderBitMapString(GLUT_BITMAP_TIMES_ROMAN_24, temp);
@@ -663,10 +663,10 @@ void DGW::DisplayUpgradeMenu()
 	yCoord -= 0.75;
 	for (int count = 0; count < 4; count++)
 	{
-		if		(count == 0) { temp = "[" + std::to_string(1) + "]"; }
-		else if (count == 1) { temp = '[' + std::to_string(1) + ']'; }
-		else if (count == 2) { temp = '[' + std::to_string(1) + ']'; }
-		else if (count == 3) { temp = '[' + std::to_string(1) + ']'; }
+		if		(count == 0) { temp = "[" + std::to_string(player.GetUpgradeOption(0)) + "]"; }
+		else if (count == 1) { temp = '[' + std::to_string(player.GetUpgradeOption(1)) + ']'; }
+		else if (count == 2) { temp = '[' + std::to_string(player.GetUpgradeOption(2)) + ']'; }
+		else if (count == 3) { temp = '[' + std::to_string(player.GetUpgradeOption(3)) + ']'; }
 
 		glRasterPos3f(0.2, yCoord, 14.9);
 		RenderBitMapString(GLUT_BITMAP_TIMES_ROMAN_24, temp);
