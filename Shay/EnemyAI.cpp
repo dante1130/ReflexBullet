@@ -36,7 +36,7 @@ void EnemyAI::ResetGrid()
 		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
 		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
 		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 0, 0, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-	};
+	}; 
 
 	for (int i = 0; i < m_mainGrid.size(); ++i)
 		for (int j = 0; j < m_mainGrid[i].size(); ++j)
@@ -142,15 +142,16 @@ void EnemyAI::DisplayWireframe()
 	}
 }
 
-void EnemyAI::SetPlayerPos(const glm::vec3& position)
+const glm::ivec2& EnemyAI::GetRandFree()
 {
-	m_prevPlayerPos = m_playerPos;
-	m_playerPos = glm::ivec2(position.x, position.z);
-}
+	std::vector<glm::ivec2> freePositions;
 
-void EnemyAI::SetGridPos(const glm::ivec2& position)
-{
-	m_gridPos = position;
+	for (int i = 0; i < m_mainGrid.size(); ++i)
+		for (int j = 0; j < m_mainGrid[i].size(); ++j)
+			if (m_mainGrid[i][j] == Grid::FREE) 
+				freePositions.push_back(glm::ivec2(i, j));
+			
+	return freePositions[rand() % freePositions.size()];
 }
 
 const glm::ivec2& EnemyAI::GetGridDest() const
@@ -168,16 +169,26 @@ const glm::ivec2& EnemyAI::GetPrevGridPos() const
 	return m_prevGridPos;
 }
 
+void EnemyAI::SetPlayerPos(const glm::vec3& position)
+{
+	m_prevPlayerPos = m_playerPos;
+	m_playerPos = glm::ivec2(position.x, position.z);
+}
+
+void EnemyAI::SetGridPos(const glm::ivec2& position)
+{
+	m_gridPos = position;
+}
+
 bool EnemyAI::isPlayerInView(const glm::vec3& lookAt)
 {
-	glm::vec2 look2D = glm::vec2(lookAt.x, lookAt.z);
+	glm::vec2 look2D = glm::normalize(glm::vec2(lookAt.x, lookAt.z));
 
 	for (glm::vec2 tempPos = m_gridPos; tempPos.x >= 0 && tempPos.y >= 0 && tempPos.x < 20 && tempPos.y < 26; tempPos += look2D)
 	{
 		switch (m_mainGrid[tempPos.x][tempPos.y])
 		{
 		case Grid::FULL:
-		case Grid::HALF:
 			return false;
 
 		case Grid::PLAYERTHERE:

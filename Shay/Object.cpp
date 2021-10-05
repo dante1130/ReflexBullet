@@ -71,6 +71,11 @@ void Object3D::SetTextureName(const std::string& fileName)
 	textureFile = fileName;
 }
 
+GLint Object3D::GetVertexCount() const
+{
+	return vertices.size();
+}
+
 const glm::vec3& Object3D::GetVertex(unsigned i) const
 {
 	return vertices[i];

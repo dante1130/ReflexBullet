@@ -1,8 +1,8 @@
 #include "Player.h"
 
 Player::Player()
-	: m_healthDecay(start_health_decay), m_firingSpeed(start_firing_speed), m_skillPoints(0), m_bulletOffsetScale(0.5f),
-		m_bullet_speed(start_bullet_speed), m_move_speed(start_move_speed)
+	: m_healthDecay(start_health_decay), m_firingSpeed(start_firing_speed), m_skillPoints(8), m_bulletOffsetScale(0.5f),
+		m_bullet_speed(start_bullet_speed), m_move_speed(start_move_speed) //for testing, player starts with 8 skill points for upgrade buy
 {
 	m_gun = Gun(Faction::PLAYER, start_bullet_speed, m_firingSpeed);
 	m_health = start_health;
@@ -30,7 +30,7 @@ void Player::Shoot()
 	m_gun.Shoot(newBullet);
 }
 
-const GLint Player::GetHealth()
+const GLfloat Player::GetHealth()
 {
 	return m_health;
 }
@@ -55,12 +55,25 @@ Gun& Player::GetGun()
 	return m_gun;
 }
 
+int Player::GetSkillPoints()
+{
+	return m_skillPoints;
+}
+
+int Player::GetUpgradeOption(int option)
+{
+	if (option < 4) { return m_upgrade_options[option]; }
+	else { return 0; }
+	
+}
+
 void Player::DecreaseFiringDelay(GLfloat added_firing_speed)
 {
 	if (m_gun.GetFiringDelay() > max_firing_speed && m_gun.GetFiringDelay() <= start_firing_speed)
 	{
 		m_firingSpeed -= added_firing_speed;
 		m_gun.SetFiringDelay(m_firingSpeed);
+		m_upgrade_options[0]++;
 	}
 }
 
@@ -76,7 +89,13 @@ void Player::AddBulletSpeed(GLfloat added_bullet_speed)
 	{
 		m_bullet_speed += added_bullet_speed;
 		m_gun.SetBulletVelocity(m_bullet_speed);
+		m_upgrade_options[1]++;
 	}
+}
+
+void Player::AddSkillPoints(int added_skill_point)
+{
+	m_skillPoints += added_skill_point;
 }
 
 void Player::ResetBulletSpeed()
@@ -91,6 +110,7 @@ void Player::AddMoveSpeed(GLfloat added_move_speed)
 	{
 		m_move_speed += added_move_speed;
 		m_camera.SetMoveSpeed(m_move_speed);
+		m_upgrade_options[3]++;
 	}
 }
 
@@ -98,4 +118,14 @@ void Player::ResetMoveSpeed()
 {
 	m_move_speed = start_move_speed;
 	m_camera.SetMoveSpeed(m_move_speed);
+}
+
+void Player::ResetSkillPoints()
+{
+	m_skillPoints = 0;
+}
+
+void Player::SpendSkillPoint()
+{
+	m_skillPoints--;
 }

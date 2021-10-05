@@ -18,19 +18,21 @@ void GM::GameInit(int w, int h)
 	Audio::PlayMusic("gameplay");
 
 	LTGW::CreateTextures();
+	LoadGameObjectFiles();
+	ReadLeaderboardFile("data/leaderboards.txt", LB);
+
+	LoadAnimation();
 
 	glClearColor(1, 1, 1, 1);
 	player.GetCamera().SetWorldCoordinates(0, 26);
 	player.GetCamera().ClearAABB();
-
 
 	player.GetCamera().SetRotateSpeed(camRotateSpeed);
 	player.GetCamera().SetMoveSpeed(gameWorldMovementSpeed);
 	player.GetCamera().Position(glm::vec3(0.5, playerHeight, 0.5), 180.0);
 	player.GetCamera().SetMaximumCrouchDepth(crouchDepth);
 
-	enemy.SetPosition(glm::vec3(4.5, 1, 4.5));
-	enemy.SetPlayerPos(player.GetCamera().GetPosition());
+	robots.Spawn(10);
 
 	CreateGameBoundingBoxes();
 	
@@ -51,11 +53,6 @@ void GM::GameInit(int w, int h)
 	//glEnable(GL_CULL_FACE);
 	
 	//glCullFace(GL_BACK);
-
-	LoadGameObjectFiles();
-	ReadLeaderboardFile("data/leaderboards.txt", LB);
-	
-	LoadAnimation();
 
 	PauseGame();
 }
@@ -80,7 +77,9 @@ void GM::LoadGameObjectFiles()
 	ReadOBJMTL("data/object/gameObjects/Chair.obj", Table[2]);
 	ReadOBJMTL("data/object/gameObjects/Chair1.obj", Table[3]);
 	ReadOBJMTL("data/object/gameObjects/Chair2.obj", Table[4]);
-
+	ReadOBJMTL("data/object/gameObjects/robotDummy.obj", robots.obj);
+	ReadOBJMTL("data/object/gameObjects/DisplayShelfMovies.obj", DisplayShelf[0]);
+	ReadOBJMTL("data/object/gameObjects/DisplayShelfBooks.obj", DisplayShelf[1]);
 
 
 	//
@@ -189,11 +188,72 @@ void GM::StoreLODObj(std::string &fileName, ShelfObjectsOBJ &soOBJ)
 void GM::CreateGameBoundingBoxes()
 {
 	// Walls
-	collision.Push(glm::vec3(20, 5, 0.05), glm::vec3(0, 0, -2));
+	collision.Push(glm::vec3(20, 7, 0.05), glm::vec3(0, 0, -2));
 	collision.Push(glm::vec3(20, 5, 28), glm::vec3(0, 0, 25.95));
-	collision.Push(glm::vec3(0.05, 5, 26), glm::vec3(-2, 0, 0));
-	collision.Push(glm::vec3(22, 5, 26), glm::vec3(19.95, 0, 0));
+	collision.Push(glm::vec3(0.05, 7, 26), glm::vec3(-2, 0, 0));
+	collision.Push(glm::vec3(22, 7, 26), glm::vec3(19.95, 0, 0));
 
+	// Counter
+	collision.Push(glm::vec3(9.05, 1, 3.05), glm::vec3(2.95, 0, 0));
+
+	// Shelves by the wall
+	collision.Push(glm::vec3(20.05, 1.5, 1.05), glm::vec3(8.95, 0, 0));
+
+	collision.Push(glm::vec3(20.05, 1.5, 10.05), glm::vec3(18.95, 0, 1));
+	collision.Push(glm::vec3(20.05, 0.5, 12.05), glm::vec3(18.95, 0, 9.95));
+
+	collision.Push(glm::vec3(20.05, 0.5, 16.05), glm::vec3(18.95, 0, 13.95));
+	collision.Push(glm::vec3(20.05, 1.5, 26), glm::vec3(18.95, 0, 15.95));
+
+	// Shelves
+	collision.Push(glm::vec3(19.05, 1.5, 26), glm::vec3(10.95, 0, 24.95));
+
+	collision.Push(glm::vec3(9.05, 1.5, 26), glm::vec3(6.95, 0, 22.95));
+
+	collision.Push(glm::vec3(5.05, 1.5, 26), glm::vec3(2.95, 0, 22.95));
+
+	collision.Push(glm::vec3(5.05, 1.5, 7.05), glm::vec3(1.95, 0, 4.95));
+	collision.Push(glm::vec3(7.05, 0.5, 7.05), glm::vec3(4.95, 0, 5.95));
+	collision.Push(glm::vec3(8.05, 1.5, 9.05), glm::vec3(6.95, 0, 4.95));
+	collision.Push(glm::vec3(10.05, 0.5, 7.05), glm::vec3(7.95, 0, 5.95));
+
+	collision.Push(glm::vec3(15.05, 1.5, 5.05), glm::vec3(10.95, 0, 2.95));
+	collision.Push(glm::vec3(17.05, 0.5, 5.05), glm::vec3(14.95, 0, 2.95));
+
+	collision.Push(glm::vec3(17.05, 1.5, 12.05), glm::vec3(15.95, 0, 6.95));
+	collision.Push(glm::vec3(17.05, 1.5, 8.05), glm::vec3(11.95, 0, 6.95));
+	collision.Push(glm::vec3(17.05, 1.5, 9.05), glm::vec3(10.95, 0, 7.95));
+
+	collision.Push(glm::vec3(17.05, 1.5, 19.05), glm::vec3(15.95, 0, 13.95));
+	collision.Push(glm::vec3(16.05, 1.5, 18.05), glm::vec3(10.95, 0, 16.95));
+	collision.Push(glm::vec3(17.05, 1.5, 19.05), glm::vec3(11.95, 0, 17.95));
+
+	collision.Push(glm::vec3(15.05, 1.5, 23.05), glm::vec3(10.95, 0, 20.95));
+	collision.Push(glm::vec3(17.05, 0.5, 23.05), glm::vec3(14.95, 0, 20.95));
+
+	// Train
+	collision.Push(glm::vec3(3.05, 0.5, 17.05), glm::vec3(1.95, 0, 8.95));
+	collision.Push(glm::vec3(4.05, 0.5, 15.05), glm::vec3(2.95, 0, 10.95));
+	
+
+	//
+	collision.Push(glm::vec3(13.05, 0.5, 15.05), glm::vec3(11.95, 0, 10.95));
+	collision.Push(glm::vec3(14.05, 1.5, 15.05), glm::vec3(12.95, 0, 10.95));
+	collision.Push(glm::vec3(15.05, 0.5, 14.05), glm::vec3(13.95, 0, 11.95));
+
+	//
+	collision.Push(glm::vec3(5.05, 1.5, 21.05), glm::vec3(1.95, 0, 18.95));
+	collision.Push(glm::vec3(7.05, 0.5, 20.05), glm::vec3(4.95, 0, 18.95));
+	collision.Push(glm::vec3(8.05, 1.5, 21.05), glm::vec3(6.95, 0, 16.95));
+	collision.Push(glm::vec3(10.05, 0.5, 20.05), glm::vec3(7.95, 0, 18.95));
+
+	//
+	collision.Push(glm::vec3(7.05, 0.5, 15.05), glm::vec3(5.95, 0, 10.95));
+	collision.Push(glm::vec3(10.05, 1.5, 13.55), glm::vec3(5.95, 0, 12.45));
+	collision.Push(glm::vec3(10.05, 0.5, 16.05), glm::vec3(8.95, 0, 9.95));
+
+	//
+	
 	player.GetCamera().SetCollision(collision);
 }
 
@@ -203,17 +263,29 @@ void GM::GameCollisionResolution()
 	for (int i = 0; i < player.GetGun().BulletCount(); ++i)
 	{
 		if (collision.Collide(player.GetGun().BulletAt(i).GetBoundingSphere()))
-		{
 			player.GetGun().RemoveBullet(i);
-		}
-	}
 
-	// Enemy's bullets
-	for (int i = 0; i < enemy.GetGun().BulletCount(); ++i)
-	{
-		if (collision.Collide(enemy.GetGun().BulletAt(i).GetBoundingSphere()))
+
+		for (int j = 0; j < robots.enemies.size(); ++j)
 		{
-			enemy.GetGun().RemoveBullet(i);
+			if (Collision::Collide(robots.enemies[j].GetBBox(), player.GetGun().BulletAt(i).GetBoundingSphere()))
+			{
+				player.GetGun().RemoveBullet(i);
+				robots.enemies.erase(robots.enemies.begin() + j);
+			}
+		}
+		
+	}
+		
+	// Enemies' bullets
+	for (auto& enemy : robots.enemies)
+	{
+		for (int i = 0; i < enemy.GetGun().BulletCount(); ++i)
+		{
+			if (collision.Collide(enemy.GetGun().BulletAt(i).GetBoundingSphere()))
+			{
+				enemy.GetGun().RemoveBullet(i);
+			}
 		}
 	}
 }
@@ -236,8 +308,11 @@ void GM::GameFixedUpdateLoop(int val)
 		player.Update(delta);
 
 		Enemy::SetPlayerPos(player.GetCamera().GetPosition());
-		enemy.Update(delta);
-		enemy.Shoot();
+		for (auto& enemy : robots.enemies)
+		{
+			enemy.Update(delta);
+			enemy.Shoot();
+		}
 		
 		player.GetCamera().KeyboardMovement();
 		if (bossOn)
@@ -364,6 +439,7 @@ void GM::GameKeys(unsigned char key, int x, int y)
 	case 'g':
 		PMV.m_PausedMenuChoosen = (PMV.m_PausedMenuChoosen + 1) % 5;
 		if (PMV.m_PausedMenuChoosen == 0) { PMV.m_PausedMenuChoosen = 1; }
+		break;
 	case 'b':
 	case 'B':
 		visibleShelves = false;
@@ -727,11 +803,48 @@ void GM::MenuOptionChoosen(int option)
 	}
 	else if (PMV.m_PausedMenuChoosen == 3) //Upgrade menu
 	{
-		if (option == 1) {  }
-		else if (option == 2) {  }
-		else if (option == 3) {  }
-		else if (option == 4) {  }
-		else if (option == 5) {  }
+		if (option == 1) 
+		{ 
+			if (player.GetSkillPoints() > 0)
+			{
+				player.DecreaseFiringDelay(0.1);
+				player.SpendSkillPoint();
+			}
+		}
+		else if (option == 2) 
+		{
+			if (player.GetSkillPoints() > 0)
+			{
+				player.AddBulletSpeed(1);
+				player.SpendSkillPoint();
+			}
+		}
+		else if (option == 3) 
+		{
+			if (player.GetSkillPoints() > 0)
+			{
+				//player.AddMoveSpeed(0.01); this should be the health decay option
+			}
+		}
+		else if (option == 4) 
+		{
+			if (player.GetSkillPoints() > 0)
+			{
+				player.AddMoveSpeed(0.01);
+				player.SpendSkillPoint();
+			}
+		}
+		else if (option == 5) 
+		{
+			if (player.GetSkillPoints() >= 10)
+			{
+				//go to boss level
+			}
+			else
+			{
+				UnpauseGame();
+			}
+		}
 	}
 	else if (PMV.m_PausedMenuChoosen == 4) //Start screen
 	{
@@ -826,7 +939,10 @@ void GM::RestartGame()
 
 	glClearColor(1, 1, 1, 1);
 
+
 	player.GetCamera().SetCameraLocation(0.5, playerHeight, 0.5);
-	player.GetCamera().SetCameraLookAt(glm::vec3(-1, 0, 0));
+	glm::vec3 cannotBindToTemporaryofTypeVec = { -1, 0, 0 };
+	player.GetCamera().SetCameraLookAt(cannotBindToTemporaryofTypeVec); //Florian: My laptop does not like this line "non-const lvalue reference to type
+															 // 'vec<...>' cannot bind to temporary of type 'vec<...>'"
 
 }

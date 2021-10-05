@@ -32,10 +32,11 @@ struct AnimationOBJ
 	int frame;
 };
 
+
+
 extern AnimationOBJ Train;
 extern AnimationOBJ DuckPerson;
 
-extern Enemy enemy;
 extern Player player;
 extern Object3D Shelf_1;
 extern Object3D ToyStore;
@@ -50,6 +51,8 @@ extern Object3D cashier[2];
 extern Object3D TrainArea;
 extern Object3D LightOBJ[2];
 extern Object3D Table[5];
+extern RobotEnemies robots;
+extern Object3D DisplayShelf[2];
 
 extern bool wireFrame;
 extern bool performanceMetric;
@@ -74,16 +77,11 @@ struct PauseMenuValues
 	glm::vec3 m_playerLook;
 	glm::vec3 m_floatLook;
 
-	PauseMenuValues()
+	PauseMenuValues() : m_PausedMenuChoosen{ 4 }, m_OptionHighlighted{ 0 }, m_PausedOverStart { true }, m_LeaderboardShowsAccuracyOverTime { true },
+		m_LeaderboardSwitchTime{ 0 }, m_floatMoving{ false }, m_playerPos{ glm::vec3{0, 0, 0} }, m_floatPos{ glm::vec3{0, 0, 0} }, m_playerLook{ glm::vec3{0, 0, 0} },
+		m_floatLook{ glm::vec3{0, 0, 0} }
 	{
-		m_PausedMenuChoosen = 4;
-		m_OptionHighlighted = 0;
-		m_PausedOverStart = true;
 
-		m_LeaderboardShowsAccuracyOverTime = true;
-		m_LeaderboardSwitchTime = 0;
-
-		m_floatMoving = false;
 	}
 };
 
@@ -282,6 +280,7 @@ namespace DGW
 
 	void DisplayIndividualTable(int seed, int rand, glm::vec3 playerPos, glm::vec3 tablePos);
 
+	void DisplayDisplayShelves();
 
 
 

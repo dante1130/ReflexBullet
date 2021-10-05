@@ -20,15 +20,17 @@ public:
 
 	static void DisplayWireframe();
 
-	static void SetPlayerPos(const glm::vec3& position);
-
-	void SetGridPos(const glm::ivec2& position);
+	static const glm::ivec2& GetRandFree();
 
 	const glm::ivec2& GetGridDest() const;
 
 	const glm::ivec2& GetGridPos() const;
 
 	const glm::ivec2& GetPrevGridPos() const;
+
+	static void SetPlayerPos(const glm::vec3& position);
+
+	void SetGridPos(const glm::ivec2& position);
 
 	bool isPlayerInView(const glm::vec3& lookAt);
 

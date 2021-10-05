@@ -10,6 +10,12 @@ struct Record
 	std::string name;
 	float time;
 	float accuracy;
+
+	Record() : name{ "" }, time{ 99999 }, accuracy{ 0 }
+	{
+
+	}
+
 };
 
 
