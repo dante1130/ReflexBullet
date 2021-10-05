@@ -188,8 +188,9 @@ void LTGW::CreateTextures()
 	tpGW.CreateTexture(TABLE_BOX2, GWimage, 200, 200);
 	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/Box3.raw", 200, 200);
 	tpGW.CreateTexture(TABLE_BOX3, GWimage, 200, 200);
-	//GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/Box4.raw", 200, 200);
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/Box4.raw", 200, 200);
 	tpGW.CreateTexture(TABLE_BOX4, GWimage, 200, 200);
+
 
 
 

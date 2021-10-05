@@ -50,6 +50,7 @@ extern Object3D cashier[2];
 extern Object3D TrainArea;
 extern Object3D LightOBJ[2];
 extern Object3D Table[5];
+extern Object3D DisplayShelf[2];
 
 extern bool wireFrame;
 extern bool performanceMetric;
@@ -277,6 +278,7 @@ namespace DGW
 
 	void DisplayIndividualTable(int seed, int rand, glm::vec3 playerPos, glm::vec3 tablePos);
 
+	void DisplayDisplayShelves();
 
 
 

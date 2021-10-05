@@ -80,6 +80,10 @@ void GM::LoadGameObjectFiles()
 	ReadOBJMTL("data/object/gameObjects/Chair.obj", Table[2]);
 	ReadOBJMTL("data/object/gameObjects/Chair1.obj", Table[3]);
 	ReadOBJMTL("data/object/gameObjects/Chair2.obj", Table[4]);
+	ReadOBJMTL("data/object/gameObjects/DisplayShelfMovies.obj", DisplayShelf[0]);
+	ReadOBJMTL("data/object/gameObjects/DisplayShelfBooks.obj", DisplayShelf[1]);
+
+
 
 
 
@@ -921,8 +925,10 @@ void GM::RestartGame()
 
 	glClearColor(1, 1, 1, 1);
 
+
 	player.GetCamera().SetCameraLocation(0.5, playerHeight, 0.5);
-	player.GetCamera().SetCameraLookAt(glm::vec3(-1, 0, 0)); //Florian: My laptop does not like this line "non-const lvalue reference to type
+	glm::vec3 cannotBindToTemporaryofTypeVec = { -1, 0, 0 };
+	player.GetCamera().SetCameraLookAt(cannotBindToTemporaryofTypeVec); //Florian: My laptop does not like this line "non-const lvalue reference to type
 															 // 'vec<...>' cannot bind to temporary of type 'vec<...>'"
 
 }
