@@ -1,7 +1,7 @@
 #include "Boss.h"
 
 glm::vec3 player_Pos, desiredRot;
-GLfloat hyp, arccos, arctan;
+GLfloat hyp, arccos, arctan, prevDesireY, prevDelta = 0;
 
 Boss::Boss()
 {
@@ -105,11 +105,14 @@ void Boss::TrackPlayer(Player& player)
 
 	if (player_Pos.z - m_position.z > 0)
 		desiredRot.y = -desiredRot.y;
-	if (std::abs(m_rotation.z - desiredRot.z) != 360)
-		m_rotation = mix(m_rotation, desiredRot, 0.02);
-	else
-		m_rotation = desiredRot;
-	
+
+	if (std::abs(desiredRot.y - prevDesireY) > 180)
+		m_rotation.y = (m_rotation.y + desiredRot.y) + desiredRot.y;
+
+	m_rotation = mix(m_rotation, desiredRot, 0.02);
+
+	prevDesireY = desiredRot.y;
+
 }
 
 void Boss::AnimateRotate()
@@ -121,21 +124,26 @@ void Boss::AnimateRotate()
 
 void Boss::AnimateSpecial(GLint delta)
 {
+	GLfloat time = (delta - prevDelta) / 1000;
 	if ((delta > 13000) && (m_lazerbeam[0].x - m_lazerbeam[1].x < 0))
 	{
-		m_lazerbeam[0].x += 0.1;
-		m_lazerbeam[1].x -= 0.1;
+		m_lazerbeam[0].x += 15 * time;
+		m_lazerbeam[1].x -= 15 * time;
 	}else if ((delta > 1100) && (m_lazerbeam[0].x - m_lazerbeam[1].x >= -20))
 	{
-		m_lazerbeam[0].x -= 0.1;
-		m_lazerbeam[1].x += 0.1;
+		m_lazerbeam[0].x -= 15 * time;
+		m_lazerbeam[1].x += 15 * time;
 	}
-
-	glColor3f(1, 1, 1);
 	glBegin(GL_QUADS);
 		glVertex3f(m_lazerbeam[1].x, m_lazerbeam[1].y, 0);
 		glVertex3f(m_lazerbeam[0].x, m_lazerbeam[1].y, 0);
 		glVertex3f(m_lazerbeam[0].x, m_lazerbeam[0].y, 0);
 		glVertex3f(m_lazerbeam[1].x, m_lazerbeam[0].y, 0);
 	glEnd();
+
+	prevDelta = delta;
 }
+
+//TO-DO List
+//Figure out why polygon is black (its lighting but figure out if possible without turning light on/off)
+//Less randomisation on phase change, not phase more than twice in a row

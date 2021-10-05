@@ -17,9 +17,7 @@ void PhaseChange();
 
 void PhaseApply();
 
-void PhaseThreeRotate(glm::vec3 rot, int timeDone, int currentTime, int inv);
-
 int PsudeoNumGen(int seed, int max, int rand);
 
-
+float findDiff(float a, float b);
 #endif

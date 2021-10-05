@@ -3,11 +3,12 @@
 Object3D bossBody;
 Boss boss;
 
-int timer, timePhaseStart = 0;
+int timer, timePhaseStart, lastTime = 0;
 float xRotate, yRotate;
 
 glm::vec3 pos(10, 3, 15);
 glm::vec3 zero(0, 0, 0);
+glm::vec3 saveRotate;
 
 void BossInit(Player& player)
 {
@@ -16,6 +17,7 @@ void BossInit(Player& player)
 		boss.TrackPlayer(player);
 	DrawBoss();
 	PhaseChange();
+	lastTime = timer;
 }
 
 void DrawBoss()
@@ -26,8 +28,13 @@ void DrawBoss()
 		PhaseApply();
 		boss.AnimateRotate();
 		bossBody.DisplayObjectWithLighting(BOSS);
-		if (boss.GetPhase() == 3)
+		if (boss.GetPhase() == 3) 
+		{
+			glPushMatrix();
+			tp.GetTexture(HEALTH);
 			boss.AnimateSpecial(timer - timePhaseStart);
+			glPopMatrix();
+		}
 	glPopMatrix();
 }
 
@@ -44,6 +51,7 @@ void PhaseChange()
 			boss.GetGun().SetFiringDelay(0.3);
 		else if (boss.GetPhase() == 3) {
 			yRotate = 0;
+			saveRotate = boss.GetRotation();
 		}
 		std::cout << "Phase changed to: " << boss.GetPhase() << std::endl;
 		timePhaseStart = timer;
@@ -54,19 +62,27 @@ void PhaseChange()
 
 void PhaseApply()
 {
-	if (boss.GetPhase() == 1)
-		boss.Shoot();
-	else if ((boss.GetPhase() == 2) && ((timer % 2000) > 1000))
-		boss.Shoot();
-	else if(boss.GetPhase() == 3)
+	if (timer - timePhaseStart > 1000)
 	{
-		if ((timer - timePhaseStart) < 1000)
+		if (boss.GetPhase() == 1)
+			boss.Shoot();
+		else if ((boss.GetPhase() == 2) && ((timer % 2000) > 1000))
+			boss.Shoot();
+	}
+
+	if (boss.GetPhase() == 3)
+	{
+		if (boss.GetRotation().z != 0)
 		{
 			boss.SetRotation(mix(boss.GetRotation(), zero, 0.02));
+			if ((boss.GetRotation().z > -0.05) && (boss.GetRotation().z < 0.05))
+				boss.SetRotation(0, 0, 0);
 			return;
 		}
+		if (lastTime == 0)
+			lastTime = glutGet(GLUT_ELAPSED_TIME);
 		boss.SetRotationY(yRotate);
-		yRotate += 0.1;
+		yRotate += 15 * (findDiff((float)timer, (float)lastTime) / 1000);
 		if (yRotate >= 360.0)
 			yRotate = yRotate - 360;
 	}
@@ -77,4 +93,9 @@ int PsudeoNumGen(int seed, int max, int rand)
 {
 	seed = (seed + rand) % max;
 	return seed;
+}
+
+float findDiff(float a, float b)
+{
+	return sqrt(pow(a - b, 2));
 }
