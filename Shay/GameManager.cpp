@@ -78,7 +78,8 @@ void GM::LoadGameObjectFiles()
 	ReadOBJMTL("data/object/gameObjects/Chair1.obj", Table[3]);
 	ReadOBJMTL("data/object/gameObjects/Chair2.obj", Table[4]);
 	ReadOBJMTL("data/object/gameObjects/robotDummy.obj", robots.obj);
-
+	ReadOBJMTL("data/object/gameObjects/DisplayShelfMovies.obj", DisplayShelf[0]);
+	ReadOBJMTL("data/object/gameObjects/DisplayShelfBooks.obj", DisplayShelf[1]);
 
 
 	//
@@ -188,7 +189,7 @@ void GM::CreateGameBoundingBoxes()
 {
 	// Walls
 	collision.Push(glm::vec3(20, 7, 0.05), glm::vec3(0, 0, -2));
-	collision.Push(glm::vec3(20, 5, 26), glm::vec3(0, 0, 25.95));
+	collision.Push(glm::vec3(20, 5, 28), glm::vec3(0, 0, 25.95));
 	collision.Push(glm::vec3(0.05, 7, 26), glm::vec3(-2, 0, 0));
 	collision.Push(glm::vec3(22, 7, 26), glm::vec3(19.95, 0, 0));
 
@@ -438,6 +439,7 @@ void GM::GameKeys(unsigned char key, int x, int y)
 	case 'g':
 		PMV.m_PausedMenuChoosen = (PMV.m_PausedMenuChoosen + 1) % 5;
 		if (PMV.m_PausedMenuChoosen == 0) { PMV.m_PausedMenuChoosen = 1; }
+		break;
 	case 'b':
 	case 'B':
 		visibleShelves = false;
@@ -798,11 +800,48 @@ void GM::MenuOptionChoosen(int option)
 	}
 	else if (PMV.m_PausedMenuChoosen == 3) //Upgrade menu
 	{
-		if (option == 1) {  }
-		else if (option == 2) {  }
-		else if (option == 3) {  }
-		else if (option == 4) {  }
-		else if (option == 5) {  }
+		if (option == 1) 
+		{ 
+			if (player.GetSkillPoints() > 0)
+			{
+				player.DecreaseFiringDelay(0.1);
+				player.SpendSkillPoint();
+			}
+		}
+		else if (option == 2) 
+		{
+			if (player.GetSkillPoints() > 0)
+			{
+				player.AddBulletSpeed(1);
+				player.SpendSkillPoint();
+			}
+		}
+		else if (option == 3) 
+		{
+			if (player.GetSkillPoints() > 0)
+			{
+				//player.AddMoveSpeed(0.01); this should be the health decay option
+			}
+		}
+		else if (option == 4) 
+		{
+			if (player.GetSkillPoints() > 0)
+			{
+				player.AddMoveSpeed(0.01);
+				player.SpendSkillPoint();
+			}
+		}
+		else if (option == 5) 
+		{
+			if (player.GetSkillPoints() >= 10)
+			{
+				//go to boss level
+			}
+			else
+			{
+				UnpauseGame();
+			}
+		}
 	}
 	else if (PMV.m_PausedMenuChoosen == 4) //Start screen
 	{
@@ -897,7 +936,10 @@ void GM::RestartGame()
 
 	glClearColor(1, 1, 1, 1);
 
+
 	player.GetCamera().SetCameraLocation(0.5, playerHeight, 0.5);
-	player.GetCamera().SetCameraLookAt(glm::vec3(-1, 0, 0));
+	glm::vec3 cannotBindToTemporaryofTypeVec = { -1, 0, 0 };
+	player.GetCamera().SetCameraLookAt(cannotBindToTemporaryofTypeVec); //Florian: My laptop does not like this line "non-const lvalue reference to type
+															 // 'vec<...>' cannot bind to temporary of type 'vec<...>'"
 
 }
