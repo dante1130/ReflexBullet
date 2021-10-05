@@ -57,17 +57,19 @@ constexpr auto TRAIN_AREA				= 44;
 constexpr auto BOSS						= 45;
 constexpr auto LIGHT_HEAD				= 46;
 constexpr auto LIGHT_TOP				= 47;
-constexpr auto TABLE_TABLE = 0;
-constexpr auto TABLE_BOX = 0;
+constexpr auto TABLE_TABLE				= 52;
 constexpr auto TABLE_CHAIR				= 48;
 constexpr auto TABLE_CHAIR1				= 49;
 constexpr auto TABLE_CHAIR2				= 50;
 constexpr auto TABLE_CHAIR3				= 51;
+constexpr auto TABLE_BOX1				= 53;
+constexpr auto TABLE_BOX2				= 54;
+constexpr auto TABLE_BOX3				= 55;
+constexpr auto TABLE_BOX4				= 56;
 
 
-
-//NEXT 49
-constexpr auto GWTEXTURE_END = 50;
+//NEXT 57
+constexpr auto GWTEXTURE_END = 60;
 
 
 #endif

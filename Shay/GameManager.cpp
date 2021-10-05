@@ -190,7 +190,7 @@ void GM::CreateGameBoundingBoxes()
 {
 	// Walls
 	collision.Push(glm::vec3(20, 7, 0.05), glm::vec3(0, 0, -2));
-	collision.Push(glm::vec3(20, 5, 26), glm::vec3(0, 0, 25.95));
+	collision.Push(glm::vec3(20, 5, 28), glm::vec3(0, 0, 25.95));
 	collision.Push(glm::vec3(0.05, 7, 26), glm::vec3(-2, 0, 0));
 	collision.Push(glm::vec3(22, 7, 26), glm::vec3(19.95, 0, 0));
 

@@ -1051,10 +1051,10 @@ void DGW::DisplayIndividualTable(int seed, int rand, glm::vec3 playerPos, glm::v
 	for (int count = 0; count < 8; count++)
 	{
 		
-
 		if (i == 1)
 		{
-			Table[1].DisplayObjectWithLighting(TABLE_BOX);
+			text = PsudeoNumGen(i, 4, rand + count);
+			Table[1].DisplayObjectWithLighting(TABLE_BOX1 + text);
 		}
 		else if (i == 2)
 		{

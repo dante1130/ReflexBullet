@@ -179,6 +179,21 @@ void LTGW::CreateTextures()
 	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/Chair4.raw", 2, 1);
 	tpGW.CreateTexture(TABLE_CHAIR3, GWimage, 2, 1);
 
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/Table.raw", 2, 1);
+	tpGW.CreateTexture(TABLE_TABLE, GWimage, 2, 1);
+
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/Box1.raw", 200, 200);
+	tpGW.CreateTexture(TABLE_BOX1, GWimage, 200, 200);
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/Box2.raw", 200, 200);
+	tpGW.CreateTexture(TABLE_BOX2, GWimage, 200, 200);
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/Box3.raw", 200, 200);
+	tpGW.CreateTexture(TABLE_BOX3, GWimage, 200, 200);
+	//GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/Box4.raw", 200, 200);
+	tpGW.CreateTexture(TABLE_BOX4, GWimage, 200, 200);
+
+
+
+
 
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);

@@ -74,16 +74,11 @@ struct PauseMenuValues
 	glm::vec3 m_playerLook;
 	glm::vec3 m_floatLook;
 
-	PauseMenuValues()
+	PauseMenuValues() : m_PausedMenuChoosen{ 4 }, m_OptionHighlighted{ 0 }, m_PausedOverStart { true }, m_LeaderboardShowsAccuracyOverTime { true },
+		m_LeaderboardSwitchTime{ 0 }, m_floatMoving{ false }, m_playerPos{ glm::vec3{0, 0, 0} }, m_floatPos{ glm::vec3{0, 0, 0} }, m_playerLook{ glm::vec3{0, 0, 0} },
+		m_floatLook{ glm::vec3{0, 0, 0} }
 	{
-		m_PausedMenuChoosen = 4;
-		m_OptionHighlighted = 0;
-		m_PausedOverStart = true;
 
-		m_LeaderboardShowsAccuracyOverTime = true;
-		m_LeaderboardSwitchTime = 0;
-
-		m_floatMoving = false;
 	}
 };
 
