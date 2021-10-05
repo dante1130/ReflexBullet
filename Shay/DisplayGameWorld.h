@@ -32,10 +32,11 @@ struct AnimationOBJ
 	int frame;
 };
 
+
+
 extern AnimationOBJ Train;
 extern AnimationOBJ DuckPerson;
 
-extern Enemy enemy;
 extern Player player;
 extern Object3D Shelf_1;
 extern Object3D ToyStore;
@@ -50,6 +51,7 @@ extern Object3D cashier[2];
 extern Object3D TrainArea;
 extern Object3D LightOBJ[2];
 extern Object3D Table[5];
+extern RobotEnemies robots;
 
 extern bool wireFrame;
 extern bool performanceMetric;

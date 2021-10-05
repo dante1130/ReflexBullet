@@ -11,14 +11,26 @@ Enemy::Enemy()
 	m_health = 10;
 }
 
+Enemy::Enemy(glm::vec3 position)
+	: m_position(glm::vec3(position)), m_moveSpeed(0.10f)
+{
+	m_ai.AIUpdate(m_position);
+	m_gun = Gun(Faction::ENEMY, 5, 1);
+	m_health = 10;
+}
+
 void Enemy::Update(GLfloat delta)
 {
 	m_ai.AIUpdate(m_position);
 
 	glm::vec2 direction = m_ai.GetGridDest() - m_ai.GetPrevGridPos();
 
-	m_position.x += (direction.x) * delta;
-	m_position.z += (direction.y) * delta;
+	glm::vec3 change = glm::vec3(direction.x * delta, 0, direction.y * delta);
+
+	m_position += change;
+
+	m_bBox.max += change;
+	m_bBox.min += change;
 
 	m_gun.Update(delta);
 }
@@ -39,6 +51,11 @@ void Enemy::Shoot()
 }
 
 // Getter
+const BoundingBox& Enemy::GetBBox() const
+{
+	return m_bBox;
+}
+
 Gun& Enemy::GetGun()
 {
 	return m_gun;
@@ -47,6 +64,11 @@ Gun& Enemy::GetGun()
 const glm::vec3& Enemy::GetPosition() const
 {
 	return m_position;
+}
+
+void Enemy::SetBBox(const BoundingBox& bBox)
+{
+	m_bBox = BoundingBox(bBox.max + m_position, bBox.min + m_position);
 }
 
 void Enemy::SetPosition(const glm::vec3& position)

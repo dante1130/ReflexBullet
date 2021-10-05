@@ -30,7 +30,7 @@ void Player::Shoot()
 	m_gun.Shoot(newBullet);
 }
 
-const GLint Player::GetHealth()
+const GLfloat Player::GetHealth()
 {
 	return m_health;
 }

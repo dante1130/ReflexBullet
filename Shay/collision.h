@@ -59,6 +59,12 @@ public:
 	//  Returns Methods
 	//----------------------------------------------------------------------------------
 
+	static bool Collide(const glm::vec3& point, const BoundingSphere& bSphere);
+
+	static bool Collide(const BoundingBox& bBox, const BoundingSphere& bSphere);
+
+	static bool Collide(const BoundingSphere& bSphere1, const BoundingSphere& bSphere2);
+
 	bool Collide(const BoundingSphere& bSphere);
 
 	/**

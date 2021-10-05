@@ -78,7 +78,8 @@ void LTGW::CreateTextures()
 	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/boss.raw", 256, 256);
 	tpGW.CreateTexture(BOSS, GWimage, 256, 256);
 
-
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/robotDummy.raw", 512, 512);
+	tpGW.CreateTexture(ROBOT, GWimage, 512, 512);
 
 	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/Paused.raw", 400, 100);
 	tpGW.CreateTexture(T_PAUSED, GWimage, 400, 100);

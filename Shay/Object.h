@@ -102,6 +102,7 @@ public:
 	*/
 	int GetMTLArrayLocation();
 
+	GLint GetVertexCount() const;
 
 	/**
 	 * @brief Returns a vertex of index i.

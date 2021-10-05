@@ -25,7 +25,7 @@ void Boss::Shoot()
 	m_gun.Shoot(newbullet);
 }
 
-const GLint Boss::GetHealth()
+const GLfloat Boss::GetHealth()
 {
 	return m_health;
 }

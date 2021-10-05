@@ -1,7 +1,6 @@
 #include "DisplayGameWorld.h"
 
 Player player;
-Enemy enemy;
 Object3D ToyStore;
 Object3D Shelf_1;
 std::vector<ShelfObjectsOBJ> Shelf_Objects;
@@ -12,6 +11,8 @@ Object3D s_Board;
 Object3D Sky;
 Object3D TrainArea;
 Object3D Table[5];
+
+RobotEnemies robots;
 
 Leaderboard LB;
 
@@ -51,24 +52,12 @@ void DGW::DisplayGameWorldMasterFunction()
 	ToyStore.DisplayObjectWithLighting(TOY_STORE);
 	glPopMatrix();
 
-	if (performanceMetric)
-	{
-		DisplayPerformanceMetrics();
-	}
-	if (visibleShelves)
-	{
-		DisplayShelves();
-	}
-	if (bossOn)
-	{
-		BossInit(player);
-	}
-	DrawHUD(player);
+	if (performanceMetric) DisplayPerformanceMetrics();
+	if (visibleShelves) DisplayShelves();
+	if (bossOn) BossInit(player);
+	if (wireFrame) EnemyAI::DisplayWireframe();
 
-	if (wireFrame)
-	{
-		EnemyAI::DisplayWireframe();
-	}
+	DrawHUD(player);
 
 	GLfloat mat_a2[] = { 0.1, 0.1, 0.1, 1.0 };
 	GLfloat mat_d2[] = { 0, 0, 1, 1.0 };
@@ -87,8 +76,7 @@ void DGW::DisplayGameWorldMasterFunction()
 	}
 	else
 	{
-		DGO::DisplayEnemy(enemy);
-		DGO::DisplayGunBullets(enemy.GetGun());
+		DGO::DisplayEnemies(robots);
 		DGO::DisplayGunBullets(player.GetGun());
 		DGO::DisplayGunBullets(boss.GetGun());
 	}

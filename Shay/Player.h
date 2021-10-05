@@ -13,7 +13,7 @@ public:
 
 	void Update(GLfloat delta) override;
 	void Shoot() override;
-	const GLint GetHealth() override;
+	const GLfloat GetHealth() override;
 	void SetHealth(const GLfloat& given_health) override;
 
 	// Getter

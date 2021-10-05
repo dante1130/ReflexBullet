@@ -18,19 +18,21 @@ void GM::GameInit(int w, int h)
 	Audio::PlayMusic("gameplay");
 
 	LTGW::CreateTextures();
+	LoadGameObjectFiles();
+	ReadLeaderboardFile("data/leaderboards.txt", LB);
+
+	LoadAnimation();
 
 	glClearColor(1, 1, 1, 1);
 	player.GetCamera().SetWorldCoordinates(0, 26);
 	player.GetCamera().ClearAABB();
-
 
 	player.GetCamera().SetRotateSpeed(camRotateSpeed);
 	player.GetCamera().SetMoveSpeed(gameWorldMovementSpeed);
 	player.GetCamera().Position(glm::vec3(0.5, playerHeight, 0.5), 180.0);
 	player.GetCamera().SetMaximumCrouchDepth(crouchDepth);
 
-	enemy.SetPosition(glm::vec3(4.5, 1, 4.5));
-	enemy.SetPlayerPos(player.GetCamera().GetPosition());
+	robots.Spawn(10);
 
 	CreateGameBoundingBoxes();
 	
@@ -51,11 +53,6 @@ void GM::GameInit(int w, int h)
 	//glEnable(GL_CULL_FACE);
 	
 	//glCullFace(GL_BACK);
-
-	LoadGameObjectFiles();
-	ReadLeaderboardFile("data/leaderboards.txt", LB);
-	
-	LoadAnimation();
 
 	PauseGame();
 }
@@ -80,6 +77,7 @@ void GM::LoadGameObjectFiles()
 	ReadOBJMTL("data/object/gameObjects/Chair.obj", Table[2]);
 	ReadOBJMTL("data/object/gameObjects/Chair1.obj", Table[3]);
 	ReadOBJMTL("data/object/gameObjects/Chair2.obj", Table[4]);
+	ReadOBJMTL("data/object/gameObjects/robotDummy.obj", robots.obj);
 
 
 
@@ -253,6 +251,7 @@ void GM::CreateGameBoundingBoxes()
 	collision.Push(glm::vec3(10.05, 1.5, 13.55), glm::vec3(5.95, 0, 12.45));
 	collision.Push(glm::vec3(10.05, 0.5, 16.05), glm::vec3(8.95, 0, 9.95));
 
+	//
 	
 	player.GetCamera().SetCollision(collision);
 }
@@ -263,17 +262,29 @@ void GM::GameCollisionResolution()
 	for (int i = 0; i < player.GetGun().BulletCount(); ++i)
 	{
 		if (collision.Collide(player.GetGun().BulletAt(i).GetBoundingSphere()))
-		{
 			player.GetGun().RemoveBullet(i);
-		}
-	}
 
-	// Enemy's bullets
-	for (int i = 0; i < enemy.GetGun().BulletCount(); ++i)
-	{
-		if (collision.Collide(enemy.GetGun().BulletAt(i).GetBoundingSphere()))
+
+		for (int j = 0; j < robots.enemies.size(); ++j)
 		{
-			enemy.GetGun().RemoveBullet(i);
+			if (Collision::Collide(robots.enemies[j].GetBBox(), player.GetGun().BulletAt(i).GetBoundingSphere()))
+			{
+				player.GetGun().RemoveBullet(i);
+				robots.enemies.erase(robots.enemies.begin() + j);
+			}
+		}
+		
+	}
+		
+	// Enemies' bullets
+	for (auto& enemy : robots.enemies)
+	{
+		for (int i = 0; i < enemy.GetGun().BulletCount(); ++i)
+		{
+			if (collision.Collide(enemy.GetGun().BulletAt(i).GetBoundingSphere()))
+			{
+				enemy.GetGun().RemoveBullet(i);
+			}
 		}
 	}
 }
@@ -296,8 +307,11 @@ void GM::GameFixedUpdateLoop(int val)
 		player.Update(delta);
 
 		Enemy::SetPlayerPos(player.GetCamera().GetPosition());
-		enemy.Update(delta);
-		enemy.Shoot();
+		for (auto& enemy : robots.enemies)
+		{
+			enemy.Update(delta);
+			enemy.Shoot();
+		}
 		
 		player.GetCamera().KeyboardMovement();
 		if (bossOn)
