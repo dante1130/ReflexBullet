@@ -450,9 +450,11 @@ void GM::GameKeys(unsigned char key, int x, int y)
 	case 'h':
 	case 'H':
 		player.SetHealth(player.GetHealth() + 10);
+		break;
 	case 'm':
 	case 'M':
 		Audio::SetMusicVolume(0);
+		break;
 	}
 }
 
