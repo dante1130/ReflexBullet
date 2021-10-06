@@ -153,6 +153,13 @@ public:
 	*/
 	void DisplayObjectWithLighting(int textureID);
 
+	/**
+	* @brief	Checks their is the same number of vertex normals to vertices
+	* @param	No param
+	* @return	bool	- true if failed read, false if success
+	*/
+	bool CheckVertexSizeGreaterThanOrEqualVertexNormalSize();
+
 private:
 	/**
 	 * @brief Allows access to the contents of faces vector.

@@ -275,6 +275,7 @@ void GM::GameCollisionResolution()
 			{
 				player.GetGun().RemoveBullet(i);
 				robots.enemies.erase(robots.enemies.begin() + j);
+				break;
 			}
 		}
 	}

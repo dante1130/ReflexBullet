@@ -52,6 +52,8 @@ void readObjFile(const std::string& fileName, Object3D& obj)
 		}
 	}
 	
+	obj.CheckVertexSizeGreaterThanOrEqualVertexNormalSize();
+
 	temp_file.close();
 }
 
