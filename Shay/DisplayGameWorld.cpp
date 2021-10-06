@@ -24,7 +24,7 @@ Object3D LightOBJ[2];
 AnimationOBJ Train;
 AnimationOBJ DuckPerson;
 
-UI PlayerUI(70.0, 100.0, 70.0, true);
+UI PlayerUI(70.0, 100.0, 70.0, false);
 
 float startFrameTime = -1;
 int frameCountPos = 0;

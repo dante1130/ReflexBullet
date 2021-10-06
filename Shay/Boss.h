@@ -22,6 +22,7 @@ public:
 	Gun& GetGun();
 	const GLint& GetPhase();
 	const glm::vec3& GetRotation();
+	const GLfloat GetStartHealth();
 
 	void SetPosition(glm::vec3 p);
 	void SetRotation(GLfloat x, GLfloat y, GLfloat z);
