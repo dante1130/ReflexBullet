@@ -32,6 +32,9 @@ add_custom_command(TARGET Shay PRE_BUILD
                     ${PROJECT_SOURCE_DIR}/Shay/music 
                     ${CMAKE_CURRENT_BINARY_DIR}/music)
 
+# MSVC compiler flags
+target_compile_options(${PROJECT_NAME} PUBLIC $<$<CXX_COMPILER_ID:MSVC>:/W4>)
+
 target_link_libraries(Shay ${PROJECT_SOURCE_DIR}/lib/x86/SDL2.lib)
 target_link_libraries(Shay ${PROJECT_SOURCE_DIR}/lib/x86/SDL2main.lib)
 target_link_libraries(Shay ${PROJECT_SOURCE_DIR}/lib/x86/SDL2_mixer.lib)
