@@ -133,7 +133,7 @@ void Object3D::DisplayObjectWithLighting(int textureID)
 
 	SetMaterialProperties(mtlLoc);
 	glBindTexture(GL_TEXTURE_2D, tpGW.GetTexture(textureID));
-	faceVectorSize = GetFaceVectorSize();
+	faceVectorSize = GetFaceVectorSize(); 
 	for (unsigned i = 0; i < faceVectorSize; ++i)
 	{
 		glBegin(GL_POLYGON);

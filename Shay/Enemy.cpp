@@ -15,8 +15,13 @@ Enemy::Enemy(glm::vec3 position)
 	: m_position(glm::vec3(position)), m_moveSpeed(0.10f)
 {
 	m_ai.AIUpdate(m_position);
-	m_gun = Gun(Faction::ENEMY, 5, 1);
+	m_gun = Gun(Faction::ENEMY, 2.5, 2.5);
 	m_health = 10;
+}
+
+void Enemy::Die()
+{
+	m_ai.Die();
 }
 
 void Enemy::Update(GLfloat delta)

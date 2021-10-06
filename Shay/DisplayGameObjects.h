@@ -32,6 +32,12 @@ struct RobotEnemies
 			enemies[i].SetBBox(tempBBox);
 		}
 	}
+
+	void Die(int index)
+	{
+		enemies[index].Die();
+		enemies.erase(enemies.begin() + index);
+	}
 };
 
 namespace DGO

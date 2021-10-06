@@ -1,4 +1,5 @@
 #include "Gun.h"
+#include <iostream>
 
 Gun::Gun()
 	: m_faction(), m_bullets(), m_bulletVelocity(0.0f), m_firingDelay(0.0f), m_firingBuffer(0.0f), m_isFiring(false)

@@ -7,6 +7,7 @@ enum class Grid
 	FULL, 
 	HALF, 
 	ENEMYTHERE,
+	ENEMYGOING,
 	PLAYERTHERE
 };
 

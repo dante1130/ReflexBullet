@@ -32,7 +32,7 @@ void GM::GameInit(int w, int h)
 	player.GetCamera().Position(glm::vec3(0.5, playerHeight, 0.5), 180.0);
 	player.GetCamera().SetMaximumCrouchDepth(crouchDepth);
 
-	robots.Spawn(10);
+	robots.Spawn(20);
 
 	CreateGameBoundingBoxes();
 	
@@ -274,7 +274,8 @@ void GM::GameCollisionResolution()
 			if (Collision::Collide(robots.enemies[j].GetBBox(), player.GetGun().BulletAt(i).GetBoundingSphere()))
 			{
 				player.GetGun().RemoveBullet(i);
-				robots.enemies.erase(robots.enemies.begin() + j);
+				robots.Die(j);
+				break;
 			}
 		}
 	}

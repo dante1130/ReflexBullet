@@ -12,6 +12,12 @@ EnemyAI::EnemyAI()
 	ResetGrid();
 }
 
+void EnemyAI::Die()
+{
+	m_mainGrid[m_gridPos.x][m_gridPos.y] = Grid::FREE;
+	m_mainGrid[m_gridDest.x][m_gridDest.y] = Grid::FREE;
+}
+
 void EnemyAI::ResetGrid()
 {
 	// I'm sorry.
@@ -74,6 +80,7 @@ void EnemyAI::AIUpdate(const glm::vec3& currentPos)
 		FindNextDest();
 		m_isMoving = true;
 		m_isFirstMove = true;
+		m_mainGrid[m_gridDest.x][m_gridDest.y] = Grid::ENEMYGOING;
 	}
 }
 
@@ -82,23 +89,19 @@ void EnemyAI::FindNextDest()
 	std::vector<glm::ivec2> possibleDests;
 
 	if (m_mainGrid[m_gridPos.x][m_gridPos.y + 1] == Grid::FREE && m_gridPos.y + 1 < 26)
-	{
 		possibleDests.push_back(glm::ivec2(m_gridPos.x, m_gridPos.y + 1));
-	}
-	if (m_mainGrid[m_gridPos.x + 1][m_gridPos.y] == Grid::FREE && m_gridPos.x + 1 < 20)
-	{
-		possibleDests.push_back(glm::ivec2(m_gridPos.x + 1, m_gridPos.y));
-	}
-	if (m_mainGrid[m_gridPos.x][m_gridPos.y - 1] == Grid::FREE && m_gridPos.y - 1 >= 0)
-	{
-		possibleDests.push_back(glm::ivec2(m_gridPos.x, m_gridPos.y - 1));
-	}
-	if (m_mainGrid[m_gridPos.x - 1][m_gridPos.y] == Grid::FREE && m_gridPos.x - 1 >= 0)
-	{
-		possibleDests.push_back(glm::ivec2(m_gridPos.x - 1, m_gridPos.y));
-	}
 
-	m_gridDest = possibleDests[rand() % possibleDests.size()];
+	if (m_mainGrid[m_gridPos.x + 1][m_gridPos.y] == Grid::FREE && m_gridPos.x + 1 < 20)
+		possibleDests.push_back(glm::ivec2(m_gridPos.x + 1, m_gridPos.y));
+
+	if (m_mainGrid[m_gridPos.x][m_gridPos.y - 1] == Grid::FREE && m_gridPos.y - 1 >= 0)
+		possibleDests.push_back(glm::ivec2(m_gridPos.x, m_gridPos.y - 1));
+
+	if (m_mainGrid[m_gridPos.x - 1][m_gridPos.y] == Grid::FREE && m_gridPos.x - 1 >= 0)
+		possibleDests.push_back(glm::ivec2(m_gridPos.x - 1, m_gridPos.y));
+
+	if (possibleDests.size() != 0) 
+		m_gridDest = possibleDests[rand() % possibleDests.size()];
 }
 
 void EnemyAI::DisplayWireframe()
@@ -125,6 +128,10 @@ void EnemyAI::DisplayWireframe()
 
 			case Grid::ENEMYTHERE:
 				glColor3f(1, 0, 0);
+				break;
+
+			case Grid::ENEMYGOING:
+				glColor3f(0, 1, 1);
 				break;
 
 			case Grid::PLAYERTHERE:

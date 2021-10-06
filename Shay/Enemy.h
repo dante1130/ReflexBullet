@@ -13,6 +13,8 @@ public:
 
 	Enemy(glm::vec3 position);
 
+	void Die();
+
 	void Update(GLfloat delta) override;
 	void Shoot() override;
 	void SetHealth(const GLfloat& given_health) override;
