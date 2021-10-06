@@ -22,6 +22,7 @@ public:
 	Gun& GetGun();
 	const GLint& GetPhase();
 	const glm::vec3& GetRotation();
+	const GLfloat GetStartHealth();
 
 	void SetPosition(glm::vec3 p);
 	void SetRotation(GLfloat x, GLfloat y, GLfloat z);
@@ -48,7 +49,7 @@ private:
 
 	glm::vec2 m_lazerbeam[2];
 
-	GLfloat startHealth = 30;
+	GLfloat startHealth = 50;
 	GLint phase;
 };
 

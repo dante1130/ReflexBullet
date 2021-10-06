@@ -3,9 +3,7 @@
 
 //HUD Stuff
 int h, w;
-GLfloat tempOffset;
-GLfloat addon[2] = { 0.0 };
-bool hudOn, orientPass = false;
+bool hudOn = false;
 
 UI::UI(float offX, float offY, float barT, bool orient)
 {
@@ -103,12 +101,18 @@ void UI::CalculateBar(GLfloat health, GLfloat startHealth)
 
 	
 	if (barHeight > tempOffset)
-		barHeight = (h - tempOffset) - (h - (tempOffset * 2)) * (1 - (health / startHealth));
-	
-	if (orientation)
-		addon[1] = barHeight - tempOffset;
-	else
-		addon[0] = barHeight - tempOffset;
+	{
+		if (orientation) //horizontal
+		{
+			barHeight = (w - barOffsetX) - (w - (barOffsetX * 2)) * (1 - (health / startHealth));
+			addon[1] = barHeight - barOffsetX;
+		}
+		else //vertical
+		{
+			barHeight = (h - barOffsetY) - (h - (barOffsetY * 2)) * (1 - (health / startHealth));
+			addon[0] = barHeight - barOffsetY;
+		}
+	}
 }
 
 void UI::GetScreenSize(int& width, int& height)

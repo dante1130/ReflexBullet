@@ -35,6 +35,11 @@ Gun& Boss::GetGun()
 	return m_gun;
 }
 
+const GLfloat Boss::GetStartHealth()
+{
+	return startHealth;
+}
+
 void Boss::SetHealth(const GLfloat& given_health)
 {
 	m_health = given_health;

@@ -100,6 +100,7 @@ void DGW::DisplayGameWorldMasterFunction()
 void DGW::GetSize(int& width, int& height)
 {
 	PlayerUI.GetScreenSize(width, height);
+	BossUI.GetScreenSize(width, height);
 }
 
 void DGW::DisplayShelves()

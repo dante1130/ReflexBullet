@@ -1,6 +1,7 @@
 #include "BossArea.h"
 
 Object3D bossBody;
+UI BossUI(300, 70, 100, true);
 Boss boss;
 
 int timer, timePhaseStart, lastTime = 0;
@@ -13,6 +14,7 @@ glm::vec3 saveRotate;
 void BossInit(Player& player)
 {
 	timer = glutGet(GLUT_ELAPSED_TIME);
+	BossUI.DrawHUD(boss.GetHealth(), boss.GetStartHealth());
 	if(boss.GetPhase() != 3)
 		boss.TrackPlayer(player);
 	DrawBoss();
