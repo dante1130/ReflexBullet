@@ -24,6 +24,8 @@ Object3D LightOBJ[2];
 AnimationOBJ Train;
 AnimationOBJ DuckPerson;
 
+UI PlayerUI(70.0, 100.0, 70.0, false);
+
 float startFrameTime = -1;
 int frameCountPos = 0;
 int lastFrameTime;
@@ -58,7 +60,7 @@ void DGW::DisplayGameWorldMasterFunction()
 	if (bossOn) BossInit(player);
 	if (wireFrame) EnemyAI::DisplayWireframe();
 
-	DrawHUD(player);
+	PlayerUI.DrawHUD(player.GetHealth(), player.GetStartHealth());
 
 	GLfloat mat_a2[] = { 0.1, 0.1, 0.1, 1.0 };
 	GLfloat mat_d2[] = { 0, 0, 1, 1.0 };
@@ -96,7 +98,7 @@ void DGW::DisplayGameWorldMasterFunction()
 
 void DGW::GetSize(int& width, int& height)
 {
-	GetScreenSize(width, height);
+	PlayerUI.GetScreenSize(width, height);
 }
 
 void DGW::DisplayShelves()

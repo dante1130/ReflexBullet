@@ -2,6 +2,8 @@
 #define BOSS_H
 
 #include "BaseCharacter.h"
+#include "definesGW.h"
+#include "LoadTexturesGameWorld.h"
 #include "Player.h"
 
 #include <math.h>

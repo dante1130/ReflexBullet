@@ -134,6 +134,8 @@ void Boss::AnimateSpecial(GLint delta)
 		m_lazerbeam[0].x -= 15 * time;
 		m_lazerbeam[1].x += 15 * time;
 	}
+	glBindTexture(GL_TEXTURE_2D, tpGW.GetTexture(HEALTH));
+	glColor3f(1,1,1);
 	glBegin(GL_QUADS);
 		glVertex3f(m_lazerbeam[1].x, m_lazerbeam[1].y, 0);
 		glVertex3f(m_lazerbeam[0].x, m_lazerbeam[1].y, 0);
