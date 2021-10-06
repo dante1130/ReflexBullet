@@ -78,9 +78,6 @@ void EnemyAI::AIUpdate(const glm::vec3& currentPos)
 	else
 	{
 		FindNextDest();
-		m_isMoving = true;
-		m_isFirstMove = true;
-		m_mainGrid[m_gridDest.x][m_gridDest.y] = Grid::ENEMYGOING;
 	}
 }
 
@@ -100,8 +97,13 @@ void EnemyAI::FindNextDest()
 	if (m_mainGrid[m_gridPos.x - 1][m_gridPos.y] == Grid::FREE && m_gridPos.x - 1 >= 0)
 		possibleDests.push_back(glm::ivec2(m_gridPos.x - 1, m_gridPos.y));
 
-	if (possibleDests.size() != 0) 
+	if (possibleDests.size() != 0)
+	{
 		m_gridDest = possibleDests[rand() % possibleDests.size()];
+		m_isMoving = true;
+		m_isFirstMove = true;
+		m_mainGrid[m_gridDest.x][m_gridDest.y] = Grid::ENEMYGOING;
+	}
 }
 
 void EnemyAI::DisplayWireframe()

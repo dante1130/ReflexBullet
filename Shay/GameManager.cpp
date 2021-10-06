@@ -271,7 +271,8 @@ void GM::GameCollisionResolution()
 			
 		for (int j = 0; j < robots.enemies.size(); ++j)
 		{
-			if (Collision::Collide(robots.enemies[j].GetBBox(), player.GetGun().BulletAt(i).GetBoundingSphere()))
+			if (Collision::Collide(robots.enemies[j].GetBBox(), 
+								   player.GetGun().BulletAt(i).GetBoundingSphere()))
 			{
 				player.GetGun().RemoveBullet(i);
 				robots.Die(j);
@@ -286,6 +287,11 @@ void GM::GameCollisionResolution()
 		for (int i = 0; i < enemy.GetGun().BulletCount(); ++i)
 		{
 			if (collision.Collide(enemy.GetGun().BulletAt(i).GetBoundingSphere()))
+			{
+				enemy.GetGun().RemoveBullet(i);
+			}
+			else if (Collision::Collide(player.GetCamera().GetPosition(), 
+										enemy.GetGun().BulletAt(i).GetBoundingSphere()))
 			{
 				enemy.GetGun().RemoveBullet(i);
 			}
