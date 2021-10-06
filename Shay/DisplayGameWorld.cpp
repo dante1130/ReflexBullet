@@ -24,7 +24,7 @@ Object3D LightOBJ[2];
 AnimationOBJ Train;
 AnimationOBJ DuckPerson;
 
-UI PlayerUI(70.0, 100.0, 70.0, false);
+UI PlayerUI(70.0, 100.0, 70.0, true);
 
 float startFrameTime = -1;
 int frameCountPos = 0;
@@ -99,6 +99,7 @@ void DGW::DisplayGameWorldMasterFunction()
 void DGW::GetSize(int& width, int& height)
 {
 	PlayerUI.GetScreenSize(width, height);
+	BossUI.GetScreenSize(width, height);
 }
 
 void DGW::DisplayShelves()

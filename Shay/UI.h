@@ -25,11 +25,15 @@ private:
 	void CalculateBar(GLfloat health, GLfloat startHealth);
 	void SetExtras();
 
-	bool orientation; //
+	bool orientation;
 	GLfloat healthColour[3] = { 0.0, 1.0, 0.0 };
 	GLfloat barOffsetX, barOffsetY;
 	GLfloat barThickness;
 	GLfloat barHeight;
+
+	bool orientPass = false;
+	GLfloat tempOffset;
+	GLfloat addon[2] = { 0.0 };
 };
 
 
