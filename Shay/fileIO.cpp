@@ -15,9 +15,11 @@ void readObjFile(const std::string& fileName, Object3D& obj)
 	}
 	else { std::cout << "Loading OBJ file " << fileName << std::endl; }
 
+	std::stringstream ss(temp_line);
+
 	while (getline(temp_file, temp_line))
 	{
-		std::stringstream ss(temp_line);
+		ss.str(temp_line);
 
 		getline(ss, prefix, ' ');
 		if (prefix.compare("v") == 0) {
@@ -50,6 +52,8 @@ void readObjFile(const std::string& fileName, Object3D& obj)
 			getline(ss, name);
 			obj.SetMTLName(name);
 		}
+
+		ss.clear();
 	}
 	
 	obj.CheckVertexSizeGreaterThanOrEqualVertexNormalSize();
