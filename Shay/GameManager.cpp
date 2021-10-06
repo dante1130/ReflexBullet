@@ -252,7 +252,8 @@ void GM::CreateGameBoundingBoxes()
 	collision.Push(glm::vec3(10.05, 1.5, 13.55), glm::vec3(5.95, 0, 12.45));
 	collision.Push(glm::vec3(10.05, 0.5, 16.05), glm::vec3(8.95, 0, 9.95));
 
-	//
+	// Floor
+	//collision.Push(glm::vec3(20, 0, 26), glm::vec3(0, -0.05, 0));
 	
 	player.GetCamera().SetCollision(collision);
 }
@@ -263,9 +264,11 @@ void GM::GameCollisionResolution()
 	for (int i = 0; i < player.GetGun().BulletCount(); ++i)
 	{
 		if (collision.Collide(player.GetGun().BulletAt(i).GetBoundingSphere()))
+		{
 			player.GetGun().RemoveBullet(i);
-
-
+			continue;
+		}
+			
 		for (int j = 0; j < robots.enemies.size(); ++j)
 		{
 			if (Collision::Collide(robots.enemies[j].GetBBox(), player.GetGun().BulletAt(i).GetBoundingSphere()))
@@ -274,7 +277,6 @@ void GM::GameCollisionResolution()
 				robots.enemies.erase(robots.enemies.begin() + j);
 			}
 		}
-		
 	}
 		
 	// Enemies' bullets
