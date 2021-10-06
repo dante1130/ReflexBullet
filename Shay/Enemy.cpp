@@ -28,15 +28,18 @@ void Enemy::Update(GLfloat delta)
 {
 	m_ai.AIUpdate(m_position);
 
-	glm::vec2 direction = m_ai.GetGridDest() - m_ai.GetPrevGridPos();
+	if (m_ai.GetIsMoving())
+	{
+		glm::vec2 direction = m_ai.GetGridDest() - m_ai.GetPrevGridPos();
 
-	glm::vec3 change = glm::vec3(direction.x * delta, 0, direction.y * delta);
+		glm::vec3 change = glm::vec3(direction.x * delta, 0, direction.y * delta);
 
-	m_position += change;
+		m_position += change;
 
-	m_bBox.max += change;
-	m_bBox.min += change;
-
+		m_bBox.max += change;
+		m_bBox.min += change;
+	}
+	
 	m_gun.Update(delta);
 }
 

@@ -151,6 +151,11 @@ void EnemyAI::DisplayWireframe()
 	}
 }
 
+bool EnemyAI::GetIsMoving() const
+{
+	return m_isMoving;
+}
+
 const glm::ivec2& EnemyAI::GetRandFree()
 {
 	std::vector<glm::ivec2> freePositions;
