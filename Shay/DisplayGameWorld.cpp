@@ -88,7 +88,7 @@ void DGW::DisplayGameWorldMasterFunction()
 
 	DisplayAnimation();
 	DisplayAreaHoldingTrain();
-	//DisplayCashier();
+	DisplayCashier();
 
 	DisplayLights();
 	DisplayTables();

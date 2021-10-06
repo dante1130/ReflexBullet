@@ -78,16 +78,34 @@ GLint Object3D::GetVertexCount() const
 
 const glm::vec3& Object3D::GetVertex(unsigned i) const
 {
+	if (i > vertices.size())
+	{
+		std::cout << "MODEL WARNING: Vertices index above maximum: " << i << " where max is " << vertices.size() << " MTL file: " << mtlFile << std::endl;
+		return glm::vec3{ -1, -1, -1 };
+	}
+
 	return vertices[i];
 }
 
 const glm::vec2& Object3D::GetCoord(unsigned i) const
 {
+	if (i > texCoord.size())
+	{
+		std::cout << "MODEL WARNING: texCoord index above maximum: " << i << " where max is " << texCoord.size() << " MTL file: " << mtlFile << std::endl;
+		return glm::vec2{ -1, -1 };
+	}
+
 	return texCoord[i];
 }
 
 const glm::vec3& Object3D:: GetVertexNormal(unsigned i) const
 {
+	if (i > vertexNormals.size())
+	{
+		std::cout << "MODEL WARNING: VertexNormal index above maximum: " << i << " where max is " << vertexNormals.size() << " MTL file: " << mtlFile << std::endl;
+		return glm::vec3{ -1, -1, -1 };
+	}
+
 	return vertexNormals[i];
 }
 
@@ -161,4 +179,18 @@ void Object3D::SetMaterialProperties(int index)
 	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, Materials[index].Ks);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, Materials[index].Ke);
 	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, Materials[index].Ns);
+}
+
+
+bool Object3D::CheckVertexSizeGreaterThanOrEqualVertexNormalSize()
+{
+	if (vertices.size() < vertexNormals.size())
+	{
+		std::cout << "MODEL WARNING: Vertices do not match with vertex normals"
+			<< "\nMTL file: " << mtlFile
+			<< "\nVertices: " << vertices.size()
+			<< "\nVertexNormals: " << vertexNormals.size() << std::endl;
+		return true;
+	}
+	return false;
 }
