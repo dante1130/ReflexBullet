@@ -50,6 +50,11 @@ Camera& Player::GetCamera()
 	return m_camera;
 }
 
+GLfloat Player::GetHealthDecay()
+{
+	return m_healthDecay;
+}
+
 Gun& Player::GetGun()
 {
 	return m_gun;
@@ -92,6 +97,14 @@ void Player::AddBulletSpeed(GLfloat added_bullet_speed)
 		m_upgrade_options[1]++;
 	}
 }
+void Player::DecreaseHealthDecay(GLfloat added_health_decay)
+{
+	if (m_healthDecay > max_health_decay && m_healthDecay <= start_health_decay)
+	{
+		m_healthDecay -= added_health_decay;
+		m_upgrade_options[2]++;
+	}
+}
 
 void Player::AddSkillPoints(int added_skill_point)
 {
@@ -118,6 +131,11 @@ void Player::ResetMoveSpeed()
 {
 	m_move_speed = start_move_speed;
 	m_camera.SetMoveSpeed(m_move_speed);
+}
+
+void Player::ResetHealthDecay()
+{
+	m_healthDecay = start_health_decay;
 }
 
 void Player::ResetSkillPoints()

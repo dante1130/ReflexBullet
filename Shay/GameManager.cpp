@@ -846,7 +846,8 @@ void GM::MenuOptionChoosen(int option)
 		{
 			if (player.GetSkillPoints() > 0)
 			{
-				//player.AddMoveSpeed(0.01); this should be the health decay option
+				player.DecreaseHealthDecay(0.01);
+				player.SpendSkillPoint();
 			}
 		}
 		else if (option == 4) 
