@@ -29,6 +29,8 @@ void Enemy::Update(GLfloat delta)
 {
 	if (m_isAlive)
 	{
+		if (m_health <= 0) Die();
+
 		m_ai.AIUpdate(m_position);
 
 		if (m_ai.GetIsMoving())

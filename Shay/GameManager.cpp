@@ -278,8 +278,9 @@ void GM::GameCollisionResolution()
 			if (Collision::Collide(robots.enemies[j].GetBBox(), 
 								   player.GetGun().BulletAt(i).GetBoundingSphere()))
 			{
+				player.SetHealth(player.GetHealth() + player.GetGun().BulletAt(i).GetDamage());
 				player.GetGun().RemoveBullet(i);
-				robots.enemies[j].Die();
+				robots.enemies[j].SetHealth(robots.enemies[j].GetHealth() - player.GetGun().BulletAt(i).GetDamage());
 				break;
 			}
 		}
@@ -297,6 +298,7 @@ void GM::GameCollisionResolution()
 			else if (Collision::Collide(player.GetCamera().GetPosition(), 
 										enemy.GetGun().BulletAt(i).GetBoundingSphere()))
 			{
+				player.SetHealth(player.GetHealth() - enemy.GetGun().BulletAt(i).GetDamage());
 				enemy.GetGun().RemoveBullet(i);
 			}
 		}
