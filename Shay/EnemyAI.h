@@ -24,6 +24,8 @@ public:
 
 	static const glm::ivec2& GetRandFree();
 
+	bool GetIsMoving() const;
+
 	const glm::ivec2& GetGridDest() const;
 
 	const glm::ivec2& GetGridPos() const;

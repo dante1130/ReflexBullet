@@ -275,10 +275,11 @@ void GM::GameCollisionResolution()
 			
 		for (int j = 0; j < robots.enemies.size(); ++j)
 		{
-			if (Collision::Collide(robots.enemies[j].GetBBox(), player.GetGun().BulletAt(i).GetBoundingSphere()))
+			if (Collision::Collide(robots.enemies[j].GetBBox(), 
+								   player.GetGun().BulletAt(i).GetBoundingSphere()))
 			{
 				player.GetGun().RemoveBullet(i);
-				robots.Die(j);
+				robots.enemies[j].Die();
 				break;
 			}
 		}
@@ -290,6 +291,11 @@ void GM::GameCollisionResolution()
 		for (int i = 0; i < enemy.GetGun().BulletCount(); ++i)
 		{
 			if (collision.Collide(enemy.GetGun().BulletAt(i).GetBoundingSphere()))
+			{
+				enemy.GetGun().RemoveBullet(i);
+			}
+			else if (Collision::Collide(player.GetCamera().GetPosition(), 
+										enemy.GetGun().BulletAt(i).GetBoundingSphere()))
 			{
 				enemy.GetGun().RemoveBullet(i);
 			}
@@ -315,10 +321,18 @@ void GM::GameFixedUpdateLoop(int val)
 		player.Update(delta);
 
 		Enemy::SetPlayerPos(player.GetCamera().GetPosition());
-		for (auto& enemy : robots.enemies)
+		for (int i = 0; i < robots.enemies.size(); ++i)
 		{
-			enemy.Update(delta);
-			enemy.Shoot();
+			robots.enemies[i].Update(delta);
+
+			if (robots.enemies[i].GetIsAlive())
+			{
+				robots.enemies[i].Shoot();
+			}
+			else if (robots.enemies[i].GetGun().BulletCount() == 0)
+			{
+				robots.enemies.erase(robots.enemies.begin() + i);
+			}
 		}
 		
 		player.GetCamera().KeyboardMovement();

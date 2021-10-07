@@ -5,14 +5,14 @@
 glm::vec3 Enemy::m_playerPos;
 
 Enemy::Enemy()
-	: m_position(0.0f), m_moveSpeed(0.10f)
+	: m_position(0.0f), m_moveSpeed(0.10f), m_isAlive(true)
 {
-	m_gun = Gun(Faction::ENEMY, 5, 1);
+	m_gun = Gun(Faction::ENEMY, 2.5, 2.5);
 	m_health = 10;
 }
 
 Enemy::Enemy(glm::vec3 position)
-	: m_position(glm::vec3(position)), m_moveSpeed(0.10f)
+	: m_position(glm::vec3(position)), m_moveSpeed(0.10f), m_isAlive(true)
 {
 	m_ai.AIUpdate(m_position);
 	m_gun = Gun(Faction::ENEMY, 2.5, 2.5);
@@ -21,22 +21,29 @@ Enemy::Enemy(glm::vec3 position)
 
 void Enemy::Die()
 {
+	m_isAlive = false;
 	m_ai.Die();
 }
 
 void Enemy::Update(GLfloat delta)
 {
-	m_ai.AIUpdate(m_position);
+	if (m_isAlive)
+	{
+		m_ai.AIUpdate(m_position);
 
-	glm::vec2 direction = m_ai.GetGridDest() - m_ai.GetPrevGridPos();
+		if (m_ai.GetIsMoving())
+		{
+			glm::vec2 direction = m_ai.GetGridDest() - m_ai.GetPrevGridPos();
 
-	glm::vec3 change = glm::vec3(direction.x * delta, 0, direction.y * delta);
+			glm::vec3 change = glm::vec3(direction.x * delta, 0, direction.y * delta);
 
-	m_position += change;
+			m_position += change;
 
-	m_bBox.max += change;
-	m_bBox.min += change;
-
+			m_bBox.max += change;
+			m_bBox.min += change;
+		}
+	}
+	
 	m_gun.Update(delta);
 }
 
@@ -56,6 +63,11 @@ void Enemy::Shoot()
 }
 
 // Getter
+bool Enemy::GetIsAlive() const
+{
+	return m_isAlive;
+}
+
 const BoundingBox& Enemy::GetBBox() const
 {
 	return m_bBox;
