@@ -20,6 +20,8 @@ public:
 	void SetHealth(const GLfloat& given_health) override;
 
 	// Getter
+	bool GetIsAlive() const;
+
 	Gun& GetGun();
 
 	const BoundingBox& GetBBox() const;
@@ -35,6 +37,8 @@ public:
 private:
 	/// Where the enemies is facing, static as all enemies will look at the player
 	static glm::vec3 m_playerPos;
+
+	bool m_isAlive;
 
 	BoundingBox m_bBox;
 	glm::vec3 m_position;

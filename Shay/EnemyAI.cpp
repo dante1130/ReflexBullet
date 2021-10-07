@@ -16,6 +16,7 @@ void EnemyAI::Die()
 {
 	m_mainGrid[m_gridPos.x][m_gridPos.y] = Grid::FREE;
 	m_mainGrid[m_gridDest.x][m_gridDest.y] = Grid::FREE;
+	m_isMoving = false;
 }
 
 void EnemyAI::ResetGrid()

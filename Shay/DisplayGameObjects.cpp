@@ -4,12 +4,15 @@ void DGO::DisplayEnemies(RobotEnemies& robots)
 {
 	for (auto& enemy : robots.enemies)
 	{
-		glPushMatrix();
-		glTranslatef(enemy.GetPosition().x,
-					 enemy.GetPosition().y,
-					 enemy.GetPosition().z);
-		robots.obj.DisplayObjectWithLighting(ROBOT);
-		glPopMatrix();
+		if (enemy.GetIsAlive())
+		{
+			glPushMatrix();
+			glTranslatef(enemy.GetPosition().x,
+				enemy.GetPosition().y,
+				enemy.GetPosition().z);
+			robots.obj.DisplayObjectWithLighting(ROBOT);
+			glPopMatrix();
+		}
 
 		DisplayGunBullets(enemy.GetGun());
 	}
