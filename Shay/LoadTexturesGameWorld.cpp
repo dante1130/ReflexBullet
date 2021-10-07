@@ -192,6 +192,9 @@ void LTGW::CreateTextures()
 	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/Box4.raw", 200, 200);
 	tpGW.CreateTexture(TABLE_BOX4, GWimage, 200, 200);
 
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/LightPlane.raw", 800, 600);
+	tpGW.CreateTexture(LIGHT_PLANE, GWimage, 800, 600);
+
 
 
 

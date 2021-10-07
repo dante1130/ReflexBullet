@@ -78,20 +78,13 @@ float z = 1;
 void Lighting::SetLight(int index)
 {
 	glPushMatrix();
-
+	
 	glPushMatrix();
 	glTranslatef(lights[index].light_position[0], lights[index].light_position[1], lights[index].light_position[2]);
-	glutSolidCube(0.3);
+	//glutSolidCube(0.5);
 	glPopMatrix();
 
-	z += 0.004;
-	if (z > 26) { z = 1; }
 
-	if (index == 0)
-	{
-		lights[index].light_position[2] = z;
-	}
-	
 	glLightfv(lights[index].light, GL_POSITION, lights[index].light_position);
 
 	glPopMatrix();
@@ -99,9 +92,52 @@ void Lighting::SetLight(int index)
 
 void Lighting::UpdateLighting(void)
 {
-
 	for (int i = 0; i < m_NumberOfLights; i++)
 	{
 		SetLight(i);
 	}
+}
+
+void Lighting::SetLightPosition(int light, GLfloat pos[3])
+{
+	lights[light].light_position[0] = pos[0];
+	lights[light].light_position[1] = pos[1];
+	lights[light].light_position[2] = pos[2];
+}
+
+void Lighting::SetLightAmbient(int light, GLfloat amb[3])
+{
+	lights[light].light_ambient[0] = amb[0];
+	lights[light].light_ambient[1] = amb[1];
+	lights[light].light_ambient[2] = amb[2];
+}
+
+void Lighting::SetLightDiffuse(int light, GLfloat diff[3])
+{
+	lights[light].light_diffuse[0] = diff[0];
+	lights[light].light_diffuse[1] = diff[1];
+	lights[light].light_diffuse[2] = diff[2];
+}
+
+void Lighting::SetLightSpec(int light, GLfloat spec[3])
+{
+	lights[light].light_specular[0] = spec[0];
+	lights[light].light_specular[1] = spec[1];
+	lights[light].light_specular[2] = spec[2];
+
+}
+
+void Lighting::SetLightDropOff(int light, GLfloat dropOff)
+{
+	lights[light].dropOff = dropOff;
+}
+
+void Lighting::EnableLight(int light)
+{
+	glEnable(lights[light].light);
+}
+
+void Lighting::DisableLight(int light)
+{
+	glDisable(lights[light].light);
 }

@@ -80,6 +80,10 @@ void GM::LoadGameObjectFiles()
 	ReadOBJMTL("data/object/gameObjects/robotDummy.obj", robots.obj);
 	ReadOBJMTL("data/object/gameObjects/DisplayShelfMovies.obj", DisplayShelf[0]);
 	ReadOBJMTL("data/object/gameObjects/DisplayShelfBooks.obj", DisplayShelf[1]);
+	ReadOBJMTL("data/object/gameObjects/Bench.obj", Bench);
+	ReadOBJMTL("data/object/gameObjects/LightPlane.obj", LightPlane);
+	ReadOBJMTL("data/object/gameObjects/ClawMachine.obj", ClawMachine);
+
 
 
 	//

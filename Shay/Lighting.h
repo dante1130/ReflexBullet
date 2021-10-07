@@ -56,7 +56,6 @@ struct Light
 /// Materials	- A vector of materials
 extern std::vector<Material> Materials;
 
-
 namespace Lighting
 {
 	/**
@@ -94,6 +93,59 @@ namespace Lighting
 	*/
 	void SetLight(int light);
 
+	/**
+	* @brief	Sets the lights position
+	* @param	light	- The light that you want to update
+	* @param	pos[3]	- The position of the light
+	* @return	Void
+	*/
+	void SetLightPosition(int light, GLfloat pos[3]);
+
+	/**
+	* @brief	Sets the lights ambient component
+	* @param	light	- The light that you want to update
+	* @param	amb[3]	- The ambient value of the light
+	* @return	Void
+	*/
+	void SetLightAmbient(int light, GLfloat amb[3]);
+
+	/**
+	* @brief	Sets the lights diffuse component
+	* @param	light	- The light that you want to update
+	* @param	diff[3]	- The diffuse value of the light
+	* @return	Void
+	*/
+	void SetLightDiffuse(int light, GLfloat diff[3]);
+
+	/**
+	* @brief	Sets the lights specular component
+	* @param	light	- The light that you want to update
+	* @param	spec[3]	- The specular value of the light
+	* @return	Void
+	*/
+	void SetLightSpec(int light, GLfloat spec[3]);
+
+	/**
+	* @brief	Sets the lights drop off
+	* @param	light	- The light that you want to update
+	* @param	dropOff	- The dropOff of the light (larger = more dropOff)
+	* @return	Void
+	*/
+	void SetLightDropOff(int light, GLfloat dropOff);
+
+	/**
+	* @brief	Enables the light
+	* @param	light	- The light that you want to update
+	* @return	Void
+	*/
+	void EnableLight(int light);
+
+	/**
+	* @brief	Disables the light
+	* @param	light	- The light that you want to update
+	* @return	Void
+	*/
+	void DisableLight(int light);
 
 }
 
