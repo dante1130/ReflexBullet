@@ -1,6 +1,4 @@
 #include "Enemy.h"
-#include <iostream>
-#include <glm\geometric.hpp>
 
 glm::vec3 Enemy::m_playerPos;
 
@@ -22,6 +20,7 @@ Enemy::Enemy(glm::vec3 position)
 void Enemy::Die()
 {
 	m_isAlive = false;
+	m_bBox = BoundingBox();
 	m_ai.Die();
 }
 
@@ -83,6 +82,11 @@ Gun& Enemy::GetGun()
 const glm::vec3& Enemy::GetPosition() const
 {
 	return m_position;
+}
+
+const glm::vec3& Enemy::GetPlayerPos() const 
+{
+	return m_playerPos;
 }
 
 void Enemy::SetBBox(const BoundingBox& bBox)

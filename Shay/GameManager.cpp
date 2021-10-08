@@ -14,6 +14,8 @@ Collision collision;
 
 void GM::GameInit(int w, int h)
 {
+	srand(time(0));
+
 	Audio::AddMusic("music/gamefast.wav", "gameplay");
 	Audio::PlayMusic("gameplay");
 
@@ -174,8 +176,6 @@ void GM::LoadGameShelfObject(const std::string& fileName, int textureID, int LOD
 		StoreLODObj(fileNameStorage, temp);
 	}
 	
-	
-	
 	Shelf_Objects.push_back(temp);
 }
 
@@ -236,8 +236,9 @@ void GM::CreateGameBoundingBoxes()
 	collision.Push(glm::vec3(17.05, 0.5, 23.05), glm::vec3(14.95, 0, 20.95));
 
 	// Train
-	collision.Push(glm::vec3(3.05, 0.5, 17.05), glm::vec3(1.95, 0, 8.95));
-	collision.Push(glm::vec3(4.05, 0.5, 15.05), glm::vec3(2.95, 0, 10.95));
+	collision.Push(glm::vec3(3.05, 1.5, 17.05), glm::vec3(1.95, 0, 14.95));
+	collision.Push(glm::vec3(3.05, 1.5, 11.05), glm::vec3(1.95, 0, 8.95));
+	collision.Push(glm::vec3(4.05, 0.5, 15.05), glm::vec3(1.95, 0, 10.95));
 	
 
 	//
@@ -253,7 +254,7 @@ void GM::CreateGameBoundingBoxes()
 
 	//
 	collision.Push(glm::vec3(7.05, 0.5, 15.05), glm::vec3(5.95, 0, 10.95));
-	collision.Push(glm::vec3(10.05, 1.5, 13.55), glm::vec3(5.95, 0, 12.45));
+	collision.Push(glm::vec3(10.05, 1.5, 14.05), glm::vec3(5.95, 0, 11.95));
 	collision.Push(glm::vec3(10.05, 0.5, 16.05), glm::vec3(8.95, 0, 9.95));
 
 	// Floor
@@ -267,7 +268,10 @@ void GM::GameCollisionResolution()
 	// Player's bullets
 	for (int i = 0; i < player.GetGun().BulletCount(); ++i)
 	{
-		if (collision.Collide(player.GetGun().BulletAt(i).GetBoundingSphere()))
+		BoundingSphere bulletBSphere(player.GetGun().BulletAt(i).GetBoundingSphere().center, 
+									 player.GetGun().BulletAt(i).GetBoundingSphere().radius - 0.20);
+
+		if (collision.Collide(bulletBSphere))
 		{
 			player.GetGun().RemoveBullet(i);
 			continue;
@@ -313,14 +317,17 @@ void GM::GameFixedUpdateLoop(int val)
 	delta = (newElapsedTime - elapsedTime) / 1000;
 	elapsedTime = newElapsedTime;
 
-	if (Starting) { GameStartUp(); }
-	
-	if (PMV.m_PausedMenuChoosen != 0) {	PausedFloatingPosition(); }
+	if (Starting) 
+		GameStartUp();
+	else if (PMV.m_PausedMenuChoosen != 0) 
+		PausedFloatingPosition();
 	else
 	{
 		gameRunTime = gameRunTime + newElapsedTime - lastUnpausedFrame;
 		lastUnpausedFrame = newElapsedTime;
 		player.Update(delta);
+
+		player.GetCamera().KeyboardMovement();
 
 		Enemy::SetPlayerPos(player.GetCamera().GetPosition());
 		for (int i = 0; i < robots.enemies.size(); ++i)
@@ -336,8 +343,7 @@ void GM::GameFixedUpdateLoop(int val)
 				robots.enemies.erase(robots.enemies.begin() + i);
 			}
 		}
-		
-		player.GetCamera().KeyboardMovement();
+
 		if (bossOn)
 			boss.Update(delta);
 	}

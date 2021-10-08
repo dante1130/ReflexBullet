@@ -71,7 +71,7 @@ void Collision::GetQuadrant(const glm::vec3& max, const glm::vec3& min)
 
 bool Collision::Collide(const glm::vec3& point, const BoundingSphere& bSphere)
 {
-	return glm::length(bSphere.center - point) <= bSphere.radius;
+	return glm::length(bSphere.center - point) < bSphere.radius;
 }
 
 bool Collision::Collide(const BoundingBox& bBox, const BoundingSphere& bSphere)
@@ -83,7 +83,7 @@ bool Collision::Collide(const BoundingBox& bBox, const BoundingSphere& bSphere)
 
 	distance = glm::length(point - bSphere.center);
 
-	return distance <= bSphere.radius;
+	return distance < bSphere.radius;
 }
 
 bool Collision::Collide(const BoundingSphere& bSphere1, const BoundingSphere& bSphere2)
@@ -91,7 +91,7 @@ bool Collision::Collide(const BoundingSphere& bSphere1, const BoundingSphere& bS
 	GLfloat radiusDistance = bSphere1.radius + bSphere2.radius;
 	GLfloat centerDistance = glm::length(bSphere2.center - bSphere1.center);
 
-	return centerDistance <= radiusDistance;
+	return centerDistance < radiusDistance;
 }
 
 bool Collision::Collide(const BoundingSphere& bSphere)
@@ -170,7 +170,7 @@ bool Collision::CheckCollision(int index, const BoundingSphere& bSphere)
 
 		distance = glm::length(point - bSphere.center);
 
-		if (distance <= bSphere.radius)
+		if (distance < bSphere.radius)
 		{
 			isColliding = true;
 			break;
