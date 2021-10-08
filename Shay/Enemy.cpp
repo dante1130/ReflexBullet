@@ -58,7 +58,7 @@ void Enemy::Shoot()
 		Bullet newBullet(m_gun.GetFaction(),
 						 m_position,
 						 glm::normalize(lookAt) * m_gun.GetBulletVelocity(),
-						 10);
+						 25);
 
 		m_gun.Shoot(newBullet);
 	}

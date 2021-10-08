@@ -828,47 +828,38 @@ void GM::MenuOptionChoosen(int option)
 	}
 	else if (PMV.m_PausedMenuChoosen == 3) //Upgrade menu
 	{
-		if (option == 1) 
-		{ 
-			if (player.GetSkillPoints() > 0)
+		if (player.GetSkillPoints() > 0)
+		{
+			if (option == 1)
 			{
 				player.DecreaseFiringDelay(0.1);
 				player.SpendSkillPoint();
 			}
-		}
-		else if (option == 2) 
-		{
-			if (player.GetSkillPoints() > 0)
+			else if (option == 2)
 			{
 				player.AddBulletSpeed(1);
 				player.SpendSkillPoint();
 			}
-		}
-		else if (option == 3) 
-		{
-			if (player.GetSkillPoints() > 0)
+			else if (option == 3)
 			{
 				player.DecreaseHealthDecay(0.01);
 				player.SpendSkillPoint();
 			}
-		}
-		else if (option == 4) 
-		{
-			if (player.GetSkillPoints() > 0)
+			else if (option == 4)
 			{
 				player.AddMoveSpeed(0.01);
 				player.SpendSkillPoint();
 			}
-		}
-		else if (option == 5) 
-		{
-			if (player.GetSkillPoints() >= 10)
+			else if (option == 5)
 			{
-				//go to boss level
-			}
-			else
-			{
-				UnpauseGame();
+				if (player.GetSkillPoints() >= 10)
+				{
+					//go to boss level
+				}
+				else
+				{
+					UnpauseGame();
+				}
 			}
 		}
 	}

@@ -27,6 +27,10 @@ public:
 	const BoundingBox& GetBBox() const;
 
 	const glm::vec3& GetPosition() const;
+	
+	const glm::vec3& GetPlayerPos() const {
+		return m_playerPos;
+	}
 
 	void SetBBox(const BoundingBox& bBox);
 
