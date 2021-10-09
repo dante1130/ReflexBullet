@@ -85,6 +85,9 @@ void GM::LoadGameObjectFiles()
 	ReadOBJMTL("data/object/gameObjects/Bench.obj", Bench);
 	ReadOBJMTL("data/object/gameObjects/LightPlane.obj", LightPlane);
 	ReadOBJMTL("data/object/gameObjects/ClawMachine.obj", ClawMachine);
+	ReadOBJMTL("data/object/gameObjects/Speaker.obj", Speaker);
+	ReadOBJMTL("data/object/gameObjects/ShelfEnd.obj", ShelfEnd);
+
 
 
 

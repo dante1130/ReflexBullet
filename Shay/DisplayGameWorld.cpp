@@ -15,6 +15,8 @@ Object3D DisplayShelf[2];
 Object3D Bench;
 Object3D LightPlane;
 Object3D ClawMachine;
+Object3D Speaker;
+Object3D ShelfEnd;
 
 RobotEnemies robots;
 
@@ -65,17 +67,6 @@ void DGW::DisplayGameWorldMasterFunction()
 
 	PlayerUI.DrawHUD(player.GetHealth(), player.GetStartHealth());
 
-	GLfloat mat_a2[] = { 0.1, 0.1, 0.1, 1.0 };
-	GLfloat mat_d2[] = { 0, 0, 1, 1.0 };
-	GLfloat mat_s2[] = { 1, 1, 1, 1.0 };
-	GLfloat low_sh2[] = { 5.0 };
-	GLfloat mat_e2[] = { 0, 0, 1, 1.0 };
-	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, mat_a2);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, mat_d2);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, mat_s2);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, mat_e2);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, low_sh2);
-
 	if (PMV.m_PausedMenuChoosen != 0 && !PMV.m_floatMoving)
 	{
 		DisplayPauseMenuOptions();
@@ -99,6 +90,8 @@ void DGW::DisplayGameWorldMasterFunction()
 	DisplayBench();
 	DisplayClawMachine();
 	DisplayPlaneWithLight();
+	DisplaySpeakers();
+	DisplayShelfEnd();
 
 	glutSwapBuffers();
 }
@@ -1198,13 +1191,65 @@ void DGW::DisplayPlaneWithLight()
 	glutSolidCube(0.5);
 	glPopMatrix();
 
+	//Used to get the position the light needs in relation to the light plane
 	pos[0] = 11 + 6 * cos(angle * PI / 180);
 	pos[2] = 13 + 6 * -sin(angle * PI / 180);
 
 	Lighting::SetLightPosition(0, pos);
 }
 
+void DGW::DisplaySpeakers()
+{
+	glPushMatrix();
+	//Front of store
+	glTranslatef(0, 2.5, 1);
+	Speaker.DisplayObjectWithLighting(SPEAKER);
+	glTranslatef(0, 0, 8);
+	Speaker.DisplayObjectWithLighting(SPEAKER);
+	glTranslatef(0, 0, 8);
+	Speaker.DisplayObjectWithLighting(SPEAKER);
+	glTranslatef(0, 0, 8);
+	Speaker.DisplayObjectWithLighting(SPEAKER);
 
+	//Back of store
+	glTranslatef(20, 0, 0);
+	glRotatef(180, 0, 1, 0);
+	Speaker.DisplayObjectWithLighting(SPEAKER);
+	glTranslatef(0, 0, 8);
+	Speaker.DisplayObjectWithLighting(SPEAKER);
+	glTranslatef(0, 0, 8);
+	Speaker.DisplayObjectWithLighting(SPEAKER);
+	glTranslatef(0, 0, 8);
+	Speaker.DisplayObjectWithLighting(SPEAKER);
+
+	//Right of store
+	glTranslatef(5, 0, 1);
+	glRotatef(90, 0, 1, 0);
+	Speaker.DisplayObjectWithLighting(SPEAKER);
+	glTranslatef(0, 0, 10);
+	Speaker.DisplayObjectWithLighting(SPEAKER);
+
+	//Left of store
+	glTranslatef(26, 0, 0);
+	glRotatef(180, 0, 1, 0);
+	Speaker.DisplayObjectWithLighting(SPEAKER);
+	glTranslatef(0, 0, 10);
+	Speaker.DisplayObjectWithLighting(SPEAKER);
+
+	glPopMatrix();
+}
+
+void DGW::DisplayShelfEnd()
+{
+	glPushMatrix();
+	glTranslatef(16.5, 0, 11.5);
+	ShelfEnd.DisplayObjectWithLighting(SHELF_END);
+
+	glTranslatef(0, 0, 3);
+	ShelfEnd.DisplayObjectWithLighting(SHELF_END);
+
+	glPopMatrix();
+}
 
 
 

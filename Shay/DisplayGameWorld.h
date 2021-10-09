@@ -56,6 +56,8 @@ extern Object3D DisplayShelf[2];
 extern Object3D Bench;
 extern Object3D LightPlane;
 extern Object3D ClawMachine;
+extern Object3D Speaker;
+extern Object3D ShelfEnd;
 
 extern bool wireFrame;
 extern bool performanceMetric;
@@ -331,6 +333,19 @@ namespace DGW
 	*/
 	void DisplayPlaneWithLight();
 
+	/**
+	* @brief	Displays the speakers placed around the toy store
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplaySpeakers();
+
+	/**
+	* @brief	Displays the shelf ends at the back middle of the store
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayShelfEnd();
 
 
 	/**
