@@ -3,11 +3,11 @@
 
 #include <stdlib.h>
 #include <GL/glut.h>
+#include <glm/glm.hpp>
 
 #include "LoadTexturesGameWorld.h"
 #include "definesGW.h"
 #include "BaseCharacter.h"
-
 
 
 extern bool hudOn;

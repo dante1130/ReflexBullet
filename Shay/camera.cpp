@@ -99,6 +99,11 @@ void Camera::SetCollisionDetectionOn(bool tempCol)
 	m_collisionDetectionOn = tempCol;
 }
 
+bool Camera::GetCrouch()
+{
+	return crouch;
+}
+
 void Camera::WSKeyboardMovement()
 {
 	if (m_deltaMoveFB == 0) { return; }

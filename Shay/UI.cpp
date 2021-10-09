@@ -104,12 +104,14 @@ void UI::CalculateBar(GLfloat health, GLfloat startHealth)
 	{
 		if (orientation) //horizontal
 		{
-			barHeight = (w - barOffsetX) - (w - (barOffsetX * 2)) * (1 - (health / startHealth));
+			GLfloat desiredHeight = (w - barOffsetX) - (w - (barOffsetX * 2)) * (1 - (health / startHealth));
+			barHeight = glm::mix(barHeight, desiredHeight, (GLfloat)0.02);
 			addon[1] = barHeight - barOffsetX;
 		}
 		else //vertical
 		{
 			barHeight = (h - barOffsetY) - (h - (barOffsetY * 2)) * (1 - (health / startHealth));
+	
 			addon[0] = barHeight - barOffsetY;
 		}
 	}

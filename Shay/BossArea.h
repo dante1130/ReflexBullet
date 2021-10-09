@@ -6,10 +6,12 @@
 #include "UI.h"
 #include "definesGW.h"
 #include "Player.h"
+#include "collision.h"
 
 extern Object3D bossBody;
 extern Boss boss;
 extern UI BossUI;
+extern BoundingSphere b_Sphere;
 
 void BossInit(Player &player);
 
@@ -18,6 +20,8 @@ void DrawBoss();
 void PhaseChange();
 
 void PhaseApply();
+
+void CollisionChecks(Player& player);
 
 int PsudeoNumGen(int seed, int max, int rand);
 

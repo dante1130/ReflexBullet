@@ -3,12 +3,12 @@
 glm::vec3 player_Pos, desiredRot;
 GLfloat hyp, arccos, arctan, prevDesireY, prevDelta, m_gradient = 0;
 
-Boss::Boss()
+Boss::Boss(GLfloat x, GLfloat y, GLfloat z)
 {
 	m_gun = Gun(Faction::ENEMY, 5, 1);
 	m_health = startHealth;
 	radius = 10;
-	SetPosition(0, 0, 0);
+	SetPosition(x, y, z);
 	SetRotation(0, 0, 0);
 	SetLazerBeamSize(0, -1.5, 0, -2.5);
 	SetPhase(1);
@@ -36,13 +36,9 @@ Gun& Boss::GetGun()
 	return m_gun;
 }
 
-const GLfloat Boss::GetStartHealth()
+const GLfloat Boss::GetStartHealth() const
 {
 	return startHealth;
-}
-void Boss::SetBoundSphere(const BoundingSphere& bs)
-{
-	b_Sphere = bs;
 }
 
 void Boss::SetHealth(const GLfloat& given_health)
@@ -92,13 +88,17 @@ void Boss::SetPosition(const glm::vec3& p)
 	m_position = p;
 }
 
-const GLint& Boss::GetPhase()
+const GLint& Boss::GetPhase() const
 {
 	return phase;
 }
-const glm::vec3& Boss::GetRotation()
+const glm::vec3& Boss::GetRotation() const
 {
 	return m_rotation;
+}
+const glm::vec3& Boss::GetPosition() const
+{
+	return m_position;
 }
 
 void Boss::TrackPlayer(Player& player)
@@ -119,7 +119,7 @@ void Boss::TrackPlayer(Player& player)
 	if (std::abs(desiredRot.y - prevDesireY) > 180)
 		m_rotation.y = (m_rotation.y + desiredRot.y) + desiredRot.y;
 
-	m_rotation = mix(m_rotation, desiredRot, 0.02);
+	m_rotation = glm::mix(m_rotation, desiredRot, 0.02);
 
 	prevDesireY = desiredRot.y;
 

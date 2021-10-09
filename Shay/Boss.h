@@ -1,19 +1,20 @@
 #ifndef BOSS_H
 #define BOSS_H
 
+#include <math.h>
+#include <glm/glm.hpp>
+
 #include "BaseCharacter.h"
 #include "definesGW.h"
 #include "LoadTexturesGameWorld.h"
 #include "Player.h"
 #include "BoundingSphere.h"
-#include "BoundingBox.h"
 
-#include <math.h>
 
 class Boss : public BaseCharacter
 {
 public:
-	Boss();
+	Boss(GLfloat x, GLfloat y, GLfloat z);
 
 	void Update(GLfloat delta) override;
 	void Shoot() override;
@@ -22,13 +23,13 @@ public:
 
 
 	Gun& GetGun();
-	const GLint& GetPhase();
-	const glm::vec3& GetRotation();
-	const GLfloat GetStartHealth();
+	const GLint& GetPhase() const;
+	const glm::vec3& GetRotation() const;
+	const glm::vec3& GetPosition() const;
+	const GLfloat GetStartHealth() const;
 
 	void SetPosition(const glm::vec3& p);
 	void SetRotation(const glm::vec3& r);
-	void SetBoundSphere(const BoundingSphere& bs);
 	void SetRotationY(GLfloat y);
 	void SetPhase(GLint i);
 
@@ -49,7 +50,6 @@ private:
 
 	glm::vec3 m_rotation;
 	glm::vec3 m_position;
-	BoundingSphere b_Sphere;
 
 	//special
 	glm::vec2 m_lazerbeam[2];

@@ -60,7 +60,7 @@ void DGW::DisplayGameWorldMasterFunction()
 
 	if (performanceMetric) DisplayPerformanceMetrics();
 	if (visibleShelves) DisplayShelves();
-	if (bossOn) BossInit(player);
+	if (bossOn && boss.GetHealth() > 0) BossInit(player);
 	if (wireFrame) EnemyAI::DisplayWireframe();
 
 	PlayerUI.DrawHUD(player.GetHealth(), player.GetStartHealth());
@@ -529,7 +529,6 @@ void DGW::DisplayPauseMenuOptions()
 	glDisable(GL_LIGHTING);
 
 	glm::vec3 pos = { 0.14, 6.5, 15.95 };
-	
 
 	if (PMV.m_OptionHighlighted != 0 && PMV.m_PausedMenuChoosen != 2)
 	{

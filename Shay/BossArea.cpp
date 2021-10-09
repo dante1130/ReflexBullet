@@ -1,13 +1,15 @@
 #include "BossArea.h"
 
+
+
 Object3D bossBody;
 UI BossUI(300, 70, 70, true);
-Boss boss;
+Boss boss(10, 3, 15);
+BoundingSphere b_Sphere(glm::vec3(10, 3, 15), 2);
 
 int timer, timePhaseStart, lastTime = 0;
 float xRotate, yRotate, temp_healthDecay;
 
-glm::vec3 pos(10, 3, 15);
 glm::vec3 zero(0, 0, 0);
 glm::vec3 saveRotate;
 
@@ -18,7 +20,7 @@ void BossInit(Player& player)
 	if (boss.GetPhase() != 3)
 		boss.TrackPlayer(player);
 	else {
-		if (boss.LazerCollision(player))
+		if (boss.LazerCollision(player) && !player.GetCamera().GetCrouch())
 		{
 			player.SetLazerHit(true);
 			std::cout << "HIT HIT HIT" << std::endl;
@@ -27,6 +29,7 @@ void BossInit(Player& player)
 			player.SetLazerHit(false);
 	}
 	DrawBoss();
+	CollisionChecks(player);
 	PhaseChange();
 	lastTime = timer;
 }
@@ -34,8 +37,7 @@ void BossInit(Player& player)
 void DrawBoss()
 {
 	glPushMatrix();
-		boss.SetPosition(pos);
-		glTranslatef(pos.x, pos.y, pos.z);
+		glTranslatef(boss.GetPosition().x, boss.GetPosition().y, boss.GetPosition().z);
 		PhaseApply();
 		boss.AnimateRotate();
 		bossBody.DisplayObjectWithLighting(BOSS);
@@ -96,6 +98,21 @@ void PhaseApply()
 		yRotate += 15 * (findDiff((float)timer, (float)lastTime) / 1000);
 		if (yRotate >= 360.0)
 			yRotate = yRotate - 360;
+	}
+}
+
+void CollisionChecks(Player& player)
+{
+	for (int i = 0; i < player.GetGun().BulletCount(); ++i)
+	{
+		BoundingSphere bulletBSphere(player.GetGun().BulletAt(i).GetBoundingSphere().center,
+			player.GetGun().BulletAt(i).GetBoundingSphere().radius - 0.20);
+
+		if (Collision::Collide(bulletBSphere, b_Sphere))
+		{
+			player.GetGun().RemoveBullet(i);
+			boss.SetHealth(boss.GetHealth() - 1);
+		}
 	}
 }
 

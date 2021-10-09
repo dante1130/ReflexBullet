@@ -23,7 +23,7 @@ public:
 	int GetSkillPoints();
 	int GetUpgradeOption(int option);
 	GLfloat GetHealthDecay();
-	bool GetLazerHit();
+	const bool GetLazerHit() const;
 
 	// Setters (for upgrade system)
 	void DecreaseFiringDelay(GLfloat added_firing_speed);
@@ -31,7 +31,7 @@ public:
 	void AddMoveSpeed(GLfloat added_move_speed);
 	void DecreaseHealthDecay(GLfloat added_health_decay);
 	void AddSkillPoints(int added_skill_point);
-	void SetLazerHit(bool hit);
+	void SetLazerHit(const bool& hit);
 	
 
 	void ResetFiringDelay();

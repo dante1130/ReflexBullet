@@ -47,7 +47,7 @@ void Player::SetHealth(const GLfloat& given_health)
 	m_health = given_health;
 }
 
-void Player::SetLazerHit(bool hit)
+void Player::SetLazerHit(const bool& hit)
 {
 	m_lazer_hit = hit;
 }
@@ -79,7 +79,7 @@ int Player::GetUpgradeOption(int option)
 	
 }
 
-bool Player::GetLazerHit()
+const bool Player::GetLazerHit() const
 {
 	return m_lazer_hit;
 }

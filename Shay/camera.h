@@ -243,6 +243,13 @@ public:
 	*/
 	float GetCameraRotateSpeed();
 
+	/**
+	* @brief	Returns if the camera is crouched
+	* @param	No param
+	* @return	bool	- if camera is crouched
+	*/
+	bool GetCrouch();
+
 private:
 	/// Initialize values for first run for m_prev if true
 	bool m_firstMouse;

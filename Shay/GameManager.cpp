@@ -33,8 +33,8 @@ void GM::GameInit(int w, int h)
 	player.GetCamera().SetMoveSpeed(gameWorldMovementSpeed);
 	player.GetCamera().Position(glm::vec3(0.5, playerHeight, 0.5), 180.0);
 	player.GetCamera().SetMaximumCrouchDepth(crouchDepth);
-
-	robots.Spawn(20);
+	
+	//robots.Spawn(20);
 
 	CreateGameBoundingBoxes();
 	
@@ -307,6 +307,22 @@ void GM::GameCollisionResolution()
 			}
 		}
 	}
+
+	if (bossOn)
+	{
+		for (int i = 0; i < boss.GetGun().BulletCount(); ++i)
+		{
+			BoundingSphere bulletBSphere(boss.GetGun().BulletAt(i).GetBoundingSphere().center,
+				boss.GetGun().BulletAt(i).GetBoundingSphere().radius - 0.20);
+			if(collision.Collide(bulletBSphere))
+				boss.GetGun().RemoveBullet(i);
+			if (Collision::Collide(player.GetCamera().GetPosition(), boss.GetGun().BulletAt(i).GetBoundingSphere()))
+			{
+				player.SetHealth(player.GetHealth() - boss.GetGun().BulletAt(i).GetDamage());
+				boss.GetGun().RemoveBullet(i);
+			}
+		}
+	}
 }
 
 void GM::GameFixedUpdateLoop(int val)
@@ -471,7 +487,6 @@ void GM::GameKeys(unsigned char key, int x, int y)
 		break;
 	case 'b':
 	case 'B':
-		visibleShelves = false;
 		ToyStore.Clear();
 		ReadOBJMTL("data/object/gameObjects/bossAreaV2.obj", ToyStore);
 		bossOn = true;
