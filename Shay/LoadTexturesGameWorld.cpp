@@ -195,7 +195,17 @@ void LTGW::CreateTextures()
 	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/LightPlane.raw", 800, 600);
 	tpGW.CreateTexture(LIGHT_PLANE, GWimage, 800, 600);
 
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/Speaker.raw", 128, 128);
+	tpGW.CreateTexture(SPEAKER, GWimage, 128, 128);
 
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/ClawMachine.raw", 512, 512);
+	tpGW.CreateTexture(CLAW_MACHINE, GWimage, 512, 512);
+
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/ShelfEnd.raw", 240, 120);
+	tpGW.CreateTexture(SHELF_END, GWimage, 240, 120);
+
+	//GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/ToyStore.raw", 1024, 1024);
+	//tpGW.CreateTexture(TOY_STORE, GWimage, 1024, 1024);
 
 
 
