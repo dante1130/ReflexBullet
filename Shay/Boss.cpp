@@ -2,11 +2,13 @@
 
 glm::vec3 player_Pos, desiredRot;
 GLfloat hyp, arccos, arctan, prevDesireY, prevDelta = 0;
+GLfloat tempX, tempZ, maxX, maxZ, m_gradient;
 
 Boss::Boss()
 {
 	m_gun = Gun(Faction::ENEMY, 5, 1);
 	m_health = startHealth;
+	radius = 10;
 	SetPosition(0, 0, 0);
 	SetRotation(0, 0, 0);
 	SetLazerBeamSize(0, -1.5, 0, -2.5);
@@ -38,6 +40,10 @@ Gun& Boss::GetGun()
 const GLfloat Boss::GetStartHealth()
 {
 	return startHealth;
+}
+void Boss::SetBoundSphere(const BoundingSphere& bs)
+{
+	b_Sphere = bs;
 }
 
 void Boss::SetHealth(const GLfloat& given_health)
@@ -82,7 +88,7 @@ void Boss::SetLazerBeamSize(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2)
 	m_lazerbeam[1].y = y2;
 }
 
-void Boss::SetPosition(glm::vec3 p)
+void Boss::SetPosition(const glm::vec3& p)
 {
 	m_position = p;
 }
@@ -134,23 +140,63 @@ void Boss::AnimateSpecial(GLint delta)
 	{
 		m_lazerbeam[0].x += 15 * time;
 		m_lazerbeam[1].x -= 15 * time;
-	}else if ((delta > 1100) && (m_lazerbeam[0].x - m_lazerbeam[1].x >= -20))
+	}else if ((delta > 1100) && (m_lazerbeam[0].x - m_lazerbeam[1].x >= -(radius * 2)))
 	{
 		m_lazerbeam[0].x -= 15 * time;
 		m_lazerbeam[1].x += 15 * time;
 	}
 	glBindTexture(GL_TEXTURE_2D, tpGW.GetTexture(HEALTH));
-	glColor3f(1,1,1);
+	glColor3f(1.0, 0.824, 0.0);
 	glBegin(GL_QUADS);
-		glVertex3f(m_lazerbeam[1].x, m_lazerbeam[1].y, 0);
-		glVertex3f(m_lazerbeam[0].x, m_lazerbeam[1].y, 0);
-		glVertex3f(m_lazerbeam[0].x, m_lazerbeam[0].y, 0);
-		glVertex3f(m_lazerbeam[1].x, m_lazerbeam[0].y, 0);
+		glVertex2f(m_lazerbeam[1].x, m_lazerbeam[1].y);
+		glVertex2f(m_lazerbeam[0].x, m_lazerbeam[1].y);
+		glVertex2f(m_lazerbeam[0].x, m_lazerbeam[0].y);
+		glVertex2f(m_lazerbeam[1].x, m_lazerbeam[0].y);
 	glEnd();
 
 	prevDelta = delta;
 }
+bool Boss::LazerCollision(Player& player)
+{
+	player_Pos = player.GetCamera().GetPosition(); //stores the players position
+	m_gradient = tan((m_rotation.y - 90) * (PI / 180)); //calculate the gradient of lazerbeam
+	GLfloat player_grad = (player_Pos.x - m_position.x) / (player_Pos.z - m_position.z); //calculate players gradient
 
-//TO-DO List
-//Figure out why polygon is black (its lighting but figure out if possible without turning light on/off)
-//Less randomisation on phase change, not phase more than twice in a row
+	//if gradients are super big or small, set them as fixed values
+	/*
+	if (m_gradient > 999)
+		m_gradient = 999;
+	if (m_gradient < 0.01)
+		m_gradient = 0.01;
+	if (player_grad > 999)
+		player_grad = 999;
+	if (player_grad < 0.01)
+		player_grad = 0.01;
+	*/
+
+	//difference between gradients
+	GLfloat sum = player_grad - m_gradient;
+
+	//calculates the x and z cordinates which are the out of bounds for the gradient (end of lazerbeam)
+	maxX = radius * sin(m_rotation.y * (PI / 180));
+	if ((m_rotation.y > 90) && (m_rotation.y <= 270))
+		maxX = maxX * -1;
+	maxZ = radius * cos(m_rotation.y * (PI / 180));
+	if (m_rotation.y > 180)
+		maxZ = maxZ * -1;
+
+	std::cout << "Player: " << player_grad << "   Bar: " << m_gradient;
+
+	//if player goes past length of lazer, return false (out of range)
+	/*
+	if ((player_Pos.x > maxX) || (player_Pos.z > maxZ) || (player_Pos.x < -maxX) || (player_Pos.z < -maxZ))
+		return false;
+	*/
+
+	//if the gradients are the same with 0.01+- (with relation to gradient size) then detect collision
+	if ((sum > (-0.01 * m_gradient)) && (sum < (0.01 * m_gradient))) 
+		return true;
+	else
+		return false;
+	
+}

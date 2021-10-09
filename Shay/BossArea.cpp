@@ -1,7 +1,7 @@
 #include "BossArea.h"
 
 Object3D bossBody;
-UI BossUI(300, 70, 100, true);
+UI BossUI(300, 70, 70, true);
 Boss boss;
 
 int timer, timePhaseStart, lastTime = 0;
@@ -15,8 +15,10 @@ void BossInit(Player& player)
 {
 	timer = glutGet(GLUT_ELAPSED_TIME);
 	BossUI.DrawHUD(boss.GetHealth(), boss.GetStartHealth());
-	if(boss.GetPhase() != 3)
+	if (boss.GetPhase() != 3)
 		boss.TrackPlayer(player);
+	else
+		std::cout << "   Collision: " << boss.LazerCollision(player) << std::endl;
 	DrawBoss();
 	PhaseChange();
 	lastTime = timer;
@@ -44,7 +46,8 @@ void PhaseChange()
 {
 	if (timer - timePhaseStart >= 15000)
 	{
-		boss.SetPhase(PsudeoNumGen(timer, 4, timer / 2));
+		boss.SetPhase(3);
+		//boss.SetPhase(PsudeoNumGen(timer, 4, timer / 2));
 		if (boss.GetPhase() == 0)
 			boss.SetPhase(1);
 		if (boss.GetPhase() == 1)  
@@ -78,7 +81,7 @@ void PhaseApply()
 		{
 			boss.SetRotation(mix(boss.GetRotation(), zero, 0.02));
 			if ((boss.GetRotation().z > -0.05) && (boss.GetRotation().z < 0.05))
-				boss.SetRotation(0, 0, 0);
+				boss.SetRotation(zero);
 			return;
 		}
 		if (lastTime == 0)

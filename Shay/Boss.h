@@ -5,6 +5,8 @@
 #include "definesGW.h"
 #include "LoadTexturesGameWorld.h"
 #include "Player.h"
+#include "BoundingSphere.h"
+#include "BoundingBox.h"
 
 #include <math.h>
 
@@ -24,9 +26,9 @@ public:
 	const glm::vec3& GetRotation();
 	const GLfloat GetStartHealth();
 
-	void SetPosition(glm::vec3 p);
-	void SetRotation(GLfloat x, GLfloat y, GLfloat z);
+	void SetPosition(const glm::vec3& p);
 	void SetRotation(const glm::vec3& r);
+	void SetBoundSphere(const BoundingSphere& bs);
 	void SetRotationY(GLfloat y);
 	void SetPhase(GLint i);
 
@@ -34,7 +36,7 @@ public:
 
 	void AnimateRotate();
 	void AnimateSpecial(GLint delta);
-	//void AnimateTarget();
+	bool LazerCollision(Player&  player);
 
 	//void CollisionDetection();
 	//void EnableCollision
@@ -43,11 +45,16 @@ private:
 
 	void SetPosition(GLfloat x, GLfloat y, GLfloat z);
 	void SetLazerBeamSize(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2);
+	void SetRotation(GLfloat x, GLfloat y, GLfloat z);
 
 	glm::vec3 m_rotation;
 	glm::vec3 m_position;
+	BoundingSphere b_Sphere;
 
+	//special
 	glm::vec2 m_lazerbeam[2];
+	float radius;
+
 
 	GLfloat startHealth = 50;
 	GLint phase;
