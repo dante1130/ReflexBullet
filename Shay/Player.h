@@ -23,6 +23,7 @@ public:
 	int GetSkillPoints();
 	int GetUpgradeOption(int option);
 	GLfloat GetHealthDecay();
+	bool GetLazerHit();
 
 	// Setters (for upgrade system)
 	void DecreaseFiringDelay(GLfloat added_firing_speed);
@@ -30,6 +31,7 @@ public:
 	void AddMoveSpeed(GLfloat added_move_speed);
 	void DecreaseHealthDecay(GLfloat added_health_decay);
 	void AddSkillPoints(int added_skill_point);
+	void SetLazerHit(bool hit);
 	
 
 	void ResetFiringDelay();
@@ -58,6 +60,7 @@ private:
 	GLfloat m_firingSpeed;
 	GLfloat m_move_speed;
 	GLfloat m_bullet_speed;
+	bool m_lazer_hit;
 	int m_skillPoints;
 
 	int m_upgrade_options[4] = { 0, 0, 0, 0 }; //Shows how many points are invested into each option

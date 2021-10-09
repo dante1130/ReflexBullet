@@ -1,8 +1,7 @@
 #include "Boss.h"
 
 glm::vec3 player_Pos, desiredRot;
-GLfloat hyp, arccos, arctan, prevDesireY, prevDelta = 0;
-GLfloat tempX, tempZ, maxX, maxZ, m_gradient;
+GLfloat hyp, arccos, arctan, prevDesireY, prevDelta, m_gradient = 0;
 
 Boss::Boss()
 {
@@ -161,42 +160,14 @@ bool Boss::LazerCollision(Player& player)
 	player_Pos = player.GetCamera().GetPosition(); //stores the players position
 	m_gradient = tan((m_rotation.y - 90) * (PI / 180)); //calculate the gradient of lazerbeam
 	GLfloat player_grad = (player_Pos.x - m_position.x) / (player_Pos.z - m_position.z); //calculate players gradient
-
-	//if gradients are super big or small, set them as fixed values
-	/*
-	if (m_gradient > 999)
-		m_gradient = 999;
-	if (m_gradient < 0.01)
-		m_gradient = 0.01;
-	if (player_grad > 999)
-		player_grad = 999;
-	if (player_grad < 0.01)
-		player_grad = 0.01;
-	*/
-
+	
 	//difference between gradients
 	GLfloat sum = player_grad - m_gradient;
 
-	//calculates the x and z cordinates which are the out of bounds for the gradient (end of lazerbeam)
-	maxX = radius * sin(m_rotation.y * (PI / 180));
-	if ((m_rotation.y > 90) && (m_rotation.y <= 270))
-		maxX = maxX * -1;
-	maxZ = radius * cos(m_rotation.y * (PI / 180));
-	if (m_rotation.y > 180)
-		maxZ = maxZ * -1;
-
-	std::cout << "Player: " << player_grad << "   Bar: " << m_gradient;
-
-	//if player goes past length of lazer, return false (out of range)
-	/*
-	if ((player_Pos.x > maxX) || (player_Pos.z > maxZ) || (player_Pos.x < -maxX) || (player_Pos.z < -maxZ))
-		return false;
-	*/
-
 	//if the gradients are the same with 0.01+- (with relation to gradient size) then detect collision
-	if ((sum > (-0.01 * m_gradient)) && (sum < (0.01 * m_gradient))) 
+	if ((sum > (-0.01 * std::abs(m_gradient))) && (sum < (0.01 * std::abs(m_gradient))))
 		return true;
 	else
 		return false;
-	
+
 }

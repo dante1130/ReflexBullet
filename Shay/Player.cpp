@@ -6,7 +6,7 @@ Player::Player()
 {
 	m_gun = Gun(Faction::PLAYER, start_bullet_speed, m_firingSpeed);
 	m_health = start_health;
-
+	m_lazer_hit = false;
 	m_camera.SetMoveSpeed(start_move_speed);
 }
 
@@ -18,6 +18,8 @@ void Player::Update(GLfloat delta)
 	if (m_health <= 0) m_health = 0;
 	if (m_health > start_health)
 		m_health = start_health;
+	if (m_lazer_hit)
+		m_health -= m_healthDecay * 100;
 }
 
 void Player::Shoot()
@@ -45,6 +47,11 @@ void Player::SetHealth(const GLfloat& given_health)
 	m_health = given_health;
 }
 
+void Player::SetLazerHit(bool hit)
+{
+	m_lazer_hit = hit;
+}
+
 Camera& Player::GetCamera()
 {
 	return m_camera;
@@ -70,6 +77,11 @@ int Player::GetUpgradeOption(int option)
 	if (option < 4) { return m_upgrade_options[option]; }
 	else { return 0; }
 	
+}
+
+bool Player::GetLazerHit()
+{
+	return m_lazer_hit;
 }
 
 void Player::DecreaseFiringDelay(GLfloat added_firing_speed)

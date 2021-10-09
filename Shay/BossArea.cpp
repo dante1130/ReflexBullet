@@ -5,7 +5,7 @@ UI BossUI(300, 70, 70, true);
 Boss boss;
 
 int timer, timePhaseStart, lastTime = 0;
-float xRotate, yRotate;
+float xRotate, yRotate, temp_healthDecay;
 
 glm::vec3 pos(10, 3, 15);
 glm::vec3 zero(0, 0, 0);
@@ -17,8 +17,15 @@ void BossInit(Player& player)
 	BossUI.DrawHUD(boss.GetHealth(), boss.GetStartHealth());
 	if (boss.GetPhase() != 3)
 		boss.TrackPlayer(player);
-	else
-		std::cout << "   Collision: " << boss.LazerCollision(player) << std::endl;
+	else {
+		if (boss.LazerCollision(player))
+		{
+			player.SetLazerHit(true);
+			std::cout << "HIT HIT HIT" << std::endl;
+		}
+		else if(player.GetLazerHit())
+			player.SetLazerHit(false);
+	}
 	DrawBoss();
 	PhaseChange();
 	lastTime = timer;
@@ -46,8 +53,7 @@ void PhaseChange()
 {
 	if (timer - timePhaseStart >= 15000)
 	{
-		boss.SetPhase(3);
-		//boss.SetPhase(PsudeoNumGen(timer, 4, timer / 2));
+		boss.SetPhase(PsudeoNumGen(timer, 4, timer / 2));
 		if (boss.GetPhase() == 0)
 			boss.SetPhase(1);
 		if (boss.GetPhase() == 1)  
