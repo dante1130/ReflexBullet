@@ -12,6 +12,9 @@ Object3D Sky;
 Object3D TrainArea;
 Object3D Table[5];
 Object3D DisplayShelf[2];
+Object3D Bench;
+Object3D LightPlane;
+Object3D ClawMachine;
 
 RobotEnemies robots;
 
@@ -93,6 +96,9 @@ void DGW::DisplayGameWorldMasterFunction()
 	DisplayLights();
 	DisplayTables();
 	DisplayDisplayShelves();
+	DisplayBench();
+	DisplayClawMachine();
+	DisplayPlaneWithLight();
 
 	glutSwapBuffers();
 }
@@ -512,7 +518,6 @@ void DGW::DisplayBoards(int seed, int rot)
 	}
 }
 
-
 int DGW::PsudeoNumGen(int seed, int max, int rand)
 {
 	seed = (seed + rand) % max;
@@ -528,7 +533,7 @@ void DGW::DisplayPauseMenuOptions()
 
 	if (PMV.m_OptionHighlighted != 0 && PMV.m_PausedMenuChoosen != 2)
 	{
-		glm::vec3 posTwo = { 0.13, 6.5, 16 };
+		glm::vec3 posTwo = { 0.132, 6.5, 16 };
 		posTwo.y = posTwo.y - 1.05 - 0.6 * (PMV.m_OptionHighlighted - 1);
 		DisplayIndividualOption(T_MENU_OUTLINE_COLOUR, posTwo, 0.6, 4.1);
 	}
@@ -1096,8 +1101,108 @@ void DGW::DisplayDisplayShelves()
 	glPopMatrix();
 }
 
+void DGW::DisplayBench()
+{
+	glm::vec3 pPos = player.GetCamera().GetPosition();
+	glm::vec3 bPos = { 8, 0, 11.25 };
 
+	glPushMatrix();
+	glTranslatef(8, 0, 11.25);
+	DisplayObjectsOnBench(2236, 89533, pPos, bPos);
 
+	glTranslatef(0, 0, 3.5);
+	glScalef(1, 1, -1);
+	bPos.z = 14.75;
+	DisplayObjectsOnBench(8937, 3834, pPos, bPos);
+
+	glPopMatrix();
+
+}
+
+void DGW::DisplayObjectsOnBench(int seed, int rand, glm::vec3 playerPos, glm::vec3 benchPos)
+{
+	float distance = sqrt(pow((benchPos.x - playerPos.x), 2) + pow((benchPos.z - playerPos.z), 2));
+
+	int LOD = 0;
+	if (distance > 12) { LOD = 3; }
+	if (distance > 8) { LOD = 2; }
+	else if (distance > 4) { LOD = 1; }
+
+	glPushMatrix();
+
+	Bench.DisplayObjectWithLighting(TABLE_TABLE);
+
+	int i = PsudeoNumGen(seed, Shelf_Objects.size(), rand);
+	int useLOD;
+	int size;
+	float xTrans = -0.5;
+
+	glTranslatef(1.8, 0.097285, -1.05);
+	glRotatef(90, 0, 1, 0);
+	for (int count = 0; count < 7; count++)
+	{
+		useLOD = LOD;
+		size = Shelf_Objects[i].obj.size();
+		if (LOD > size - 1) { useLOD = size - 1; }
+		
+		Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(Shelf_Objects[i].texture);
+
+		glTranslatef(xTrans, 0, 0);
+
+		if (count == 4) //switch to other side
+		{
+			glTranslatef(-xTrans, 0, -3.6);
+			glRotatef(180, 0, 1, 0);
+			xTrans = -0.7;
+		}
+
+		i = PsudeoNumGen(i + count, Shelf_Objects.size(), rand);
+	}
+
+	glPopMatrix();
+}
+
+void DGW::DisplayClawMachine()
+{
+	glPushMatrix();
+	glTranslatef(12.5, 0, 7.5);
+	ClawMachine.DisplayObjectWithLighting(CLAW_MACHINE);
+
+	glTranslatef(0, 0, 11);
+	ClawMachine.DisplayObjectWithLighting(CLAW_MACHINE);
+
+	glPopMatrix();
+}
+
+void DGW::DisplayPlaneWithLight()
+{
+	GLfloat pos[3] = { -13, 3, 11 };
+	int timeToRotate = 8000;
+	GLfloat time = (int)gameRunTime % timeToRotate;
+
+	GLfloat angle = (360.0 / timeToRotate) * time;
+
+	glPushMatrix();
+	glRotatef(90, 0, 1, 0);
+	glTranslatef(pos[0], pos[1], pos[2]);
+
+	glRotatef(angle, 0, 1, 0);
+	glTranslatef(0, 0, 6);
+	glScalef(5, 5, 5);
+
+	LightPlane.DisplayObjectWithLighting(LIGHT_PLANE);
+	
+	glTranslatef(0.13, 0.085, 0);
+	glRotatef(angle* 50, 1, 0, 0);
+	glScalef(0.01, 0.2, 0.03);
+	glutSolidCube(0.5);
+	glPopMatrix();
+
+	pos[0] = 11 + 6 * cos(angle * PI / 180);
+	pos[2] = 13 + 6 * -sin(angle * PI / 180);
+
+	Lighting::SetLightPosition(0, pos);
+}
 
 
 

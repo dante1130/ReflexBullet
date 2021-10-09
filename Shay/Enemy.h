@@ -2,6 +2,7 @@
 #define ENEMY_H
 
 #include <glm/vec3.hpp>
+#include <glm/geometric.hpp>
 #include "BaseCharacter.h"
 #include "BoundingBox.h"
 #include "EnemyAI.h"
@@ -27,6 +28,8 @@ public:
 	const BoundingBox& GetBBox() const;
 
 	const glm::vec3& GetPosition() const;
+	
+	const glm::vec3& GetPlayerPos() const;
 
 	void SetBBox(const BoundingBox& bBox);
 

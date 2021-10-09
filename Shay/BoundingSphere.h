@@ -10,6 +10,10 @@ struct BoundingSphere
 	glm::vec3 center;
 	/// The radius of the sphere
 	GLfloat radius;
+
+	BoundingSphere() : center(0), radius(0) {}
+
+	BoundingSphere(const glm::vec3& center, GLfloat radius) : center(center), radius(radius) {}
 };
 
 #endif

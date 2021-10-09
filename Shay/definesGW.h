@@ -70,7 +70,10 @@ constexpr auto TABLE_BOX4				= 56;
 
 constexpr auto ROBOT					= 57;
 
-//NEXT 58
-constexpr auto GWTEXTURE_END = 60;
+constexpr auto LIGHT_PLANE				= 58;
+constexpr auto CLAW_MACHINE = 0;
+
+//NEXT 59
+constexpr auto GWTEXTURE_END = 70;
 
 #endif

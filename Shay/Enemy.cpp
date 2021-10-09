@@ -1,6 +1,4 @@
 #include "Enemy.h"
-#include <iostream>
-#include <glm\geometric.hpp>
 
 glm::vec3 Enemy::m_playerPos;
 
@@ -22,6 +20,7 @@ Enemy::Enemy(glm::vec3 position)
 void Enemy::Die()
 {
 	m_isAlive = false;
+	m_bBox = BoundingBox();
 	m_ai.Die();
 }
 
@@ -29,6 +28,8 @@ void Enemy::Update(GLfloat delta)
 {
 	if (m_isAlive)
 	{
+		if (m_health <= 0) Die();
+
 		m_ai.AIUpdate(m_position);
 
 		if (m_ai.GetIsMoving())
@@ -56,7 +57,7 @@ void Enemy::Shoot()
 		Bullet newBullet(m_gun.GetFaction(),
 						 m_position,
 						 glm::normalize(lookAt) * m_gun.GetBulletVelocity(),
-						 10);
+						 25);
 
 		m_gun.Shoot(newBullet);
 	}
@@ -81,6 +82,11 @@ Gun& Enemy::GetGun()
 const glm::vec3& Enemy::GetPosition() const
 {
 	return m_position;
+}
+
+const glm::vec3& Enemy::GetPlayerPos() const 
+{
+	return m_playerPos;
 }
 
 void Enemy::SetBBox(const BoundingBox& bBox)

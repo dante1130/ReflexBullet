@@ -14,6 +14,8 @@ Collision collision;
 
 void GM::GameInit(int w, int h)
 {
+	srand(time(0));
+
 	Audio::AddMusic("music/gamefast.wav", "gameplay");
 	Audio::PlayMusic("gameplay");
 
@@ -80,6 +82,10 @@ void GM::LoadGameObjectFiles()
 	ReadOBJMTL("data/object/gameObjects/robotDummy.obj", robots.obj);
 	ReadOBJMTL("data/object/gameObjects/DisplayShelfMovies.obj", DisplayShelf[0]);
 	ReadOBJMTL("data/object/gameObjects/DisplayShelfBooks.obj", DisplayShelf[1]);
+	ReadOBJMTL("data/object/gameObjects/Bench.obj", Bench);
+	ReadOBJMTL("data/object/gameObjects/LightPlane.obj", LightPlane);
+	ReadOBJMTL("data/object/gameObjects/ClawMachine.obj", ClawMachine);
+
 
 
 	//
@@ -170,8 +176,6 @@ void GM::LoadGameShelfObject(const std::string& fileName, int textureID, int LOD
 		StoreLODObj(fileNameStorage, temp);
 	}
 	
-	
-	
 	Shelf_Objects.push_back(temp);
 }
 
@@ -232,8 +236,9 @@ void GM::CreateGameBoundingBoxes()
 	collision.Push(glm::vec3(17.05, 0.5, 23.05), glm::vec3(14.95, 0, 20.95));
 
 	// Train
-	collision.Push(glm::vec3(3.05, 0.5, 17.05), glm::vec3(1.95, 0, 8.95));
-	collision.Push(glm::vec3(4.05, 0.5, 15.05), glm::vec3(2.95, 0, 10.95));
+	collision.Push(glm::vec3(3.05, 1.5, 17.05), glm::vec3(1.95, 0, 14.95));
+	collision.Push(glm::vec3(3.05, 1.5, 11.05), glm::vec3(1.95, 0, 8.95));
+	collision.Push(glm::vec3(4.05, 0.5, 15.05), glm::vec3(1.95, 0, 10.95));
 	
 
 	//
@@ -249,7 +254,7 @@ void GM::CreateGameBoundingBoxes()
 
 	//
 	collision.Push(glm::vec3(7.05, 0.5, 15.05), glm::vec3(5.95, 0, 10.95));
-	collision.Push(glm::vec3(10.05, 1.5, 13.55), glm::vec3(5.95, 0, 12.45));
+	collision.Push(glm::vec3(10.05, 1.5, 14.05), glm::vec3(5.95, 0, 11.95));
 	collision.Push(glm::vec3(10.05, 0.5, 16.05), glm::vec3(8.95, 0, 9.95));
 
 	// Floor
@@ -263,7 +268,10 @@ void GM::GameCollisionResolution()
 	// Player's bullets
 	for (int i = 0; i < player.GetGun().BulletCount(); ++i)
 	{
-		if (collision.Collide(player.GetGun().BulletAt(i).GetBoundingSphere()))
+		BoundingSphere bulletBSphere(player.GetGun().BulletAt(i).GetBoundingSphere().center, 
+									 player.GetGun().BulletAt(i).GetBoundingSphere().radius - 0.20);
+
+		if (collision.Collide(bulletBSphere))
 		{
 			player.GetGun().RemoveBullet(i);
 			continue;
@@ -274,8 +282,9 @@ void GM::GameCollisionResolution()
 			if (Collision::Collide(robots.enemies[j].GetBBox(), 
 								   player.GetGun().BulletAt(i).GetBoundingSphere()))
 			{
+				player.SetHealth(player.GetHealth() + player.GetGun().BulletAt(i).GetDamage());
 				player.GetGun().RemoveBullet(i);
-				robots.enemies[j].Die();
+				robots.enemies[j].SetHealth(robots.enemies[j].GetHealth() - player.GetGun().BulletAt(i).GetDamage());
 				break;
 			}
 		}
@@ -293,6 +302,7 @@ void GM::GameCollisionResolution()
 			else if (Collision::Collide(player.GetCamera().GetPosition(), 
 										enemy.GetGun().BulletAt(i).GetBoundingSphere()))
 			{
+				player.SetHealth(player.GetHealth() - enemy.GetGun().BulletAt(i).GetDamage());
 				enemy.GetGun().RemoveBullet(i);
 			}
 		}
@@ -307,14 +317,17 @@ void GM::GameFixedUpdateLoop(int val)
 	delta = (newElapsedTime - elapsedTime) / 1000;
 	elapsedTime = newElapsedTime;
 
-	if (Starting) { GameStartUp(); }
-	
-	if (PMV.m_PausedMenuChoosen != 0) {	PausedFloatingPosition(); }
+	if (Starting) 
+		GameStartUp();
+	else if (PMV.m_PausedMenuChoosen != 0) 
+		PausedFloatingPosition();
 	else
 	{
 		gameRunTime = gameRunTime + newElapsedTime - lastUnpausedFrame;
 		lastUnpausedFrame = newElapsedTime;
 		player.Update(delta);
+
+		player.GetCamera().KeyboardMovement();
 
 		Enemy::SetPlayerPos(player.GetCamera().GetPosition());
 		for (int i = 0; i < robots.enemies.size(); ++i)
@@ -330,8 +343,7 @@ void GM::GameFixedUpdateLoop(int val)
 				robots.enemies.erase(robots.enemies.begin() + i);
 			}
 		}
-		
-		player.GetCamera().KeyboardMovement();
+
 		if (bossOn)
 			boss.Update(delta);
 	}
@@ -822,46 +834,38 @@ void GM::MenuOptionChoosen(int option)
 	}
 	else if (PMV.m_PausedMenuChoosen == 3) //Upgrade menu
 	{
-		if (option == 1) 
-		{ 
-			if (player.GetSkillPoints() > 0)
+		if (player.GetSkillPoints() > 0)
+		{
+			if (option == 1)
 			{
 				player.DecreaseFiringDelay(0.1);
 				player.SpendSkillPoint();
 			}
-		}
-		else if (option == 2) 
-		{
-			if (player.GetSkillPoints() > 0)
+			else if (option == 2)
 			{
 				player.AddBulletSpeed(1);
 				player.SpendSkillPoint();
 			}
-		}
-		else if (option == 3) 
-		{
-			if (player.GetSkillPoints() > 0)
+			else if (option == 3)
 			{
-				//player.AddMoveSpeed(0.01); this should be the health decay option
+				player.DecreaseHealthDecay(0.01);
+				player.SpendSkillPoint();
 			}
-		}
-		else if (option == 4) 
-		{
-			if (player.GetSkillPoints() > 0)
+			else if (option == 4)
 			{
 				player.AddMoveSpeed(0.01);
 				player.SpendSkillPoint();
 			}
-		}
-		else if (option == 5) 
-		{
-			if (player.GetSkillPoints() >= 10)
+			else if (option == 5)
 			{
-				//go to boss level
-			}
-			else
-			{
-				UnpauseGame();
+				if (player.GetSkillPoints() >= 10)
+				{
+					//go to boss level
+				}
+				else
+				{
+					UnpauseGame();
+				}
 			}
 		}
 	}

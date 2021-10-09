@@ -53,6 +53,9 @@ extern Object3D LightOBJ[2];
 extern Object3D Table[5];
 extern RobotEnemies robots;
 extern Object3D DisplayShelf[2];
+extern Object3D Bench;
+extern Object3D LightPlane;
+extern Object3D ClawMachine;
 
 extern bool wireFrame;
 extern bool performanceMetric;
@@ -276,13 +279,57 @@ namespace DGW
 	*/
 	void DisplayLights();
 
+	/**
+	* @brief	Displays the tables
+	* @param	No param
+	* @return	Void
+	*/
 	void DisplayTables();
 
+	/**
+	* @brief	Displays the individual tables and their objects as well as determining the LOD to use
+	* @param	No param
+	* @return	Void
+	*/
 	void DisplayIndividualTable(int seed, int rand, glm::vec3 playerPos, glm::vec3 tablePos);
 
+	/**
+	* @brief	Displays the display shelves
+	* @param	No param
+	* @return	Void
+	*/
 	void DisplayDisplayShelves();
 
+	/**
+	* @brief	Displays the benches
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayBench();
 
+	/**
+	* @brief	Displays individual objects on the benche
+	* @param	seed		- Used for randomness
+	* @param	rand		- Used for more rnadomness
+	* @param	playerPos	- The players position
+	* @param	benchPos	- The benches position
+	* @return	Void
+	*/
+	void DisplayObjectsOnBench(int seed, int rand, glm::vec3 playerPos, glm::vec3 benchPos);
+
+	/**
+	* @brief	Displays the claw machines
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayClawMachine();
+
+	/**
+	* @brief	Displays the plane holding the light
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayPlaneWithLight();
 
 
 

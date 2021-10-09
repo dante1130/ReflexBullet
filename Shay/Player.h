@@ -22,11 +22,13 @@ public:
 	const GLfloat GetStartHealth();
 	int GetSkillPoints();
 	int GetUpgradeOption(int option);
+	GLfloat GetHealthDecay();
 
 	// Setters (for upgrade system)
 	void DecreaseFiringDelay(GLfloat added_firing_speed);
 	void AddBulletSpeed(GLfloat added_bullet_speed);
 	void AddMoveSpeed(GLfloat added_move_speed);
+	void DecreaseHealthDecay(GLfloat added_health_decay);
 	void AddSkillPoints(int added_skill_point);
 	
 
@@ -34,6 +36,7 @@ public:
 	void ResetBulletSpeed();
 	void ResetMoveSpeed();
 	void ResetSkillPoints();
+	void ResetHealthDecay();
 
 	void SpendSkillPoint();
 
@@ -47,7 +50,7 @@ private:
 	const GLfloat max_firing_speed = 0.5;
 	const GLfloat max_bullet_speed = 10;
 	const GLfloat max_move_speed = 0.12;
-	const GLfloat max_health_decay = 0.005;
+	const GLfloat max_health_decay = 0.05;
 
 	Camera m_camera;
 	
