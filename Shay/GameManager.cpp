@@ -1,4 +1,5 @@
 #include "GameManager.h"
+#include <thread>
 
 bool ActiveGameWorld = false;
 float gameWorldMovementSpeed = 0.06;
@@ -14,16 +15,17 @@ Collision collision;
 
 void GM::GameInit(int w, int h)
 {
+	std::thread loadGameObjectFiles(LoadGameObjectFiles);
+	std::thread loadAnimation(LoadAnimation);
+
 	srand(time(0));
 
 	Audio::AddMusic("music/gamefast.wav", "gameplay");
 	Audio::PlayMusic("gameplay");
 
 	LTGW::CreateTextures();
-	LoadGameObjectFiles();
-	ReadLeaderboardFile("data/leaderboards.txt", LB);
 
-	LoadAnimation();
+	ReadLeaderboardFile("data/leaderboards.txt", LB);
 
 	glClearColor(1, 1, 1, 1);
 	player.GetCamera().SetWorldCoordinates(0, 26);
@@ -33,10 +35,13 @@ void GM::GameInit(int w, int h)
 	player.GetCamera().SetMoveSpeed(gameWorldMovementSpeed);
 	player.GetCamera().Position(glm::vec3(0.5, playerHeight, 0.5), 180.0);
 	player.GetCamera().SetMaximumCrouchDepth(crouchDepth);
-	
-	//robots.Spawn(20);
 
 	CreateGameBoundingBoxes();
+
+	loadGameObjectFiles.join();
+	loadAnimation.join();
+	
+	robots.Spawn(10);
 	
 	GameReshape(w, h); // Called once to reinit the reshape
 	DGW::GetSize(w, h);
