@@ -1,5 +1,7 @@
 #include "GameManager.h"
+#include <thread>
 
+int noOfSpawn = 10;
 bool ActiveGameWorld = false;
 float gameWorldMovementSpeed = 0.06;
 float camRotateSpeed = 1;
@@ -14,16 +16,17 @@ Collision collision;
 
 void GM::GameInit(int w, int h)
 {
+	std::thread loadGameObjectFiles(LoadGameObjectFiles);
+	std::thread loadAnimation(LoadAnimation);
+
 	srand(time(0));
 
 	Audio::AddMusic("music/gamefast.wav", "gameplay");
 	Audio::PlayMusic("gameplay");
 
 	LTGW::CreateTextures();
-	LoadGameObjectFiles();
-	ReadLeaderboardFile("data/leaderboards.txt", LB);
 
-	LoadAnimation();
+	ReadLeaderboardFile("data/leaderboards.txt", LB);
 
 	glClearColor(1, 1, 1, 1);
 	player.GetCamera().SetWorldCoordinates(0, 26);
@@ -33,10 +36,13 @@ void GM::GameInit(int w, int h)
 	player.GetCamera().SetMoveSpeed(gameWorldMovementSpeed);
 	player.GetCamera().Position(glm::vec3(0.5, playerHeight, 0.5), 180.0);
 	player.GetCamera().SetMaximumCrouchDepth(crouchDepth);
-	
-	//robots.Spawn(20);
 
 	CreateGameBoundingBoxes();
+
+	loadGameObjectFiles.join();
+	loadAnimation.join();
+	
+	robots.Spawn(noOfSpawn);
 	
 	GameReshape(w, h); // Called once to reinit the reshape
 	DGW::GetSize(w, h);
@@ -51,10 +57,6 @@ void GM::GameInit(int w, int h)
 
 	glutTimerFunc(FRAMETIME, GameFixedUpdateLoop, 0);
 	glutIdleFunc(GameUpdateLoop);
-
-	//glEnable(GL_CULL_FACE);
-	
-	//glCullFace(GL_BACK);
 
 	PauseGame();
 }
@@ -970,11 +972,15 @@ void GM::PausedFloatingPosition()
 
 void GM::RestartGame()
 {
-	GLfloat health = 100;;
+	GLfloat health = 100;
 	player.ResetFiringDelay();
 	player.ResetBulletSpeed();
 	player.ResetMoveSpeed();
 	player.SetHealth(health);
+
+	robots.enemies.clear();
+	robots.Spawn(noOfSpawn);
+
 	UnpauseGame();
 
 	zFar = 0.001;
