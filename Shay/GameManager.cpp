@@ -61,32 +61,34 @@ void GM::GameInit(int w, int h)
 
 void GM::LoadGameObjectFiles()
 {
-	ReadOBJMTL("data/object/gameObjects/ToyStore.obj", ToyStore);
-	ReadOBJMTL("data/object/gameObjects/Shelf_1.obj", Shelf_1);
-	ReadOBJMTL("data/object/gameObjects/s_Box.obj", s_Box);
-	ReadOBJMTL("data/object/gameObjects/s_Movies.obj", s_Movies);
-	ReadOBJMTL("data/object/gameObjects/s_Books.obj", s_Books);
-	ReadOBJMTL("data/object/gameObjects/Sky.obj", Sky);
-	ReadOBJMTL("data/object/gameObjects/s_boardgame.obj", s_Board);
-	ReadOBJMTL("data/object/gameObjects/Cachier.obj", cashier[0]);
-	ReadOBJMTL("data/object/gameObjects/Cachier1.obj", cashier[1]);
+	ReadOBJMTL("data/object/gameObjects/ToyStore.obj", GWO.ToyStore[0]);
+	ReadOBJMTL("data/object/gameObjects/ToyShopPillars.obj", GWO.ToyStore[1]);
+	ReadOBJMTL("data/object/gameObjects/Shelf_1.obj", GWO.Shelf_1);
+	ReadOBJMTL("data/object/gameObjects/s_Box.obj", GWO.s_Box);
+	ReadOBJMTL("data/object/gameObjects/s_Movies.obj", GWO.s_Movies);
+	ReadOBJMTL("data/object/gameObjects/s_Books.obj", GWO.s_Books);
+	ReadOBJMTL("data/object/gameObjects/Sky.obj", GWO.Sky);
+	ReadOBJMTL("data/object/gameObjects/s_boardgame.obj", GWO.s_Board);
+	ReadOBJMTL("data/object/gameObjects/Cachier.obj", GWO.cashier[0]);
+	ReadOBJMTL("data/object/gameObjects/Cachier1.obj", GWO.cashier[1]);
 	ReadOBJMTL("data/object/gameObjects/boss.obj", bossBody);
-	ReadOBJMTL("data/object/gameObjects/TrainArea.obj", TrainArea);
-	ReadOBJMTL("data/object/gameObjects/LightHead.obj", LightOBJ[0]);
-	ReadOBJMTL("data/object/gameObjects/LightTop.obj", LightOBJ[1]);
-	ReadOBJMTL("data/object/gameObjects/Table.obj", Table[0]);
-	ReadOBJMTL("data/object/gameObjects/Box.obj", Table[1]);
-	ReadOBJMTL("data/object/gameObjects/Chair.obj", Table[2]);
-	ReadOBJMTL("data/object/gameObjects/Chair1.obj", Table[3]);
-	ReadOBJMTL("data/object/gameObjects/Chair2.obj", Table[4]);
+	ReadOBJMTL("data/object/gameObjects/TrainArea.obj", GWO.TrainArea);
+	ReadOBJMTL("data/object/gameObjects/LightHead.obj", GWO.LightOBJ[0]);
+	ReadOBJMTL("data/object/gameObjects/LightTop.obj", GWO.LightOBJ[1]);
+	ReadOBJMTL("data/object/gameObjects/Table.obj", GWO.Table[0]);
+	ReadOBJMTL("data/object/gameObjects/Box.obj", GWO.Table[1]);
+	ReadOBJMTL("data/object/gameObjects/Chair.obj", GWO.Table[2]);
+	ReadOBJMTL("data/object/gameObjects/Chair1.obj", GWO.Table[3]);
+	ReadOBJMTL("data/object/gameObjects/Chair2.obj", GWO.Table[4]);
 	ReadOBJMTL("data/object/gameObjects/robotDummy.obj", robots.obj);
-	ReadOBJMTL("data/object/gameObjects/DisplayShelfMovies.obj", DisplayShelf[0]);
-	ReadOBJMTL("data/object/gameObjects/DisplayShelfBooks.obj", DisplayShelf[1]);
-	ReadOBJMTL("data/object/gameObjects/Bench.obj", Bench);
-	ReadOBJMTL("data/object/gameObjects/LightPlane.obj", LightPlane);
-	ReadOBJMTL("data/object/gameObjects/ClawMachine.obj", ClawMachine);
-	ReadOBJMTL("data/object/gameObjects/Speaker.obj", Speaker);
-	ReadOBJMTL("data/object/gameObjects/ShelfEnd.obj", ShelfEnd);
+	ReadOBJMTL("data/object/gameObjects/DisplayShelfMovies.obj", GWO.DisplayShelf[0]);
+	ReadOBJMTL("data/object/gameObjects/DisplayShelfBooks.obj", GWO.DisplayShelf[1]);
+	ReadOBJMTL("data/object/gameObjects/Bench.obj", GWO.Bench);
+	ReadOBJMTL("data/object/gameObjects/LightPlane.obj", GWO.LightPlane);
+	ReadOBJMTL("data/object/gameObjects/ClawMachine.obj", GWO.ClawMachine);
+	ReadOBJMTL("data/object/gameObjects/Speaker.obj", GWO.Speaker);
+	ReadOBJMTL("data/object/gameObjects/ShelfEnd.obj", GWO.ShelfEnd);
+	ReadOBJMTL("data/object/gameObjects/Counter.obj", GWO.Counter);
 
 
 
@@ -115,11 +117,11 @@ void GM::LoadAnimation()
 	Object3D temp, temp2;
 	std::string tempName, nameStart = "data/object/gameObjects/TrainAnimation/TrainAnimation_000", nameEnd = ".obj";
 
-	Train.texture = T_TRAIN;
+	GWO.Train.texture = T_TRAIN;
 
 	tempName = nameStart + "001" + nameEnd;
 	ReadOBJMTL(tempName, temp);
-	Train.obj.push_back(temp);
+	GWO.Train.obj.push_back(temp);
 	for (int count = 2; count <= 144; count++)
 	{
 		tempName = nameStart;
@@ -127,28 +129,28 @@ void GM::LoadAnimation()
 		else if (count < 100) { tempName = tempName + '0'; }
 		tempName = tempName + std::to_string(count) + nameEnd;
 
-		LoadAnimationFrame(tempName, Train);
+		LoadAnimationFrame(tempName, GWO.Train);
 		
 	}
-	std::cout << "Frames of animation loaded: " << Train.obj.size() << std::endl;
+	std::cout << "Frames of animation loaded: " << GWO.Train.obj.size() << std::endl;
 
 
 	std::string nameStartTwo = "data/object/gameObjects/DuckPersonAnimation/DuckPerson_0000";
-	DuckPerson.texture = T_DUCK_PERSON;
+	GWO.DuckPerson.texture = T_DUCK_PERSON;
 
 	tempName = nameStartTwo + "01" + nameEnd;
 	ReadOBJMTL(tempName, temp2);
-	DuckPerson.obj.push_back(temp2);
+	GWO.DuckPerson.obj.push_back(temp2);
 	for (int count = 2; count <= 24; count++)
 	{
 		tempName = nameStartTwo;
 		if (count < 10) { tempName = tempName + "0"; }
 		tempName = tempName + std::to_string(count) + nameEnd;
 
-		LoadAnimationFrame(tempName, DuckPerson);
+		LoadAnimationFrame(tempName, GWO.DuckPerson);
 
 	}
-	std::cout << "Frames of animation loaded: " << DuckPerson.obj.size() << std::endl;
+	std::cout << "Frames of animation loaded: " << GWO.DuckPerson.obj.size() << std::endl;
 
 }
 
@@ -179,7 +181,7 @@ void GM::LoadGameShelfObject(const std::string& fileName, int textureID, int LOD
 		StoreLODObj(fileNameStorage, temp);
 	}
 	
-	Shelf_Objects.push_back(temp);
+	GWO.Shelf_Objects.push_back(temp);
 }
 
 void GM::StoreLODObj(std::string &fileName, ShelfObjectsOBJ &soOBJ)
@@ -490,8 +492,8 @@ void GM::GameKeys(unsigned char key, int x, int y)
 		break;
 	case 'b':
 	case 'B':
-		ToyStore.Clear();
-		ReadOBJMTL("data/object/gameObjects/bossAreaV2.obj", ToyStore);
+		GWO.ToyStore[0].Clear();
+		ReadOBJMTL("data/object/gameObjects/bossAreaV2.obj", GWO.ToyStore[0]);
 		bossOn = true;
 		break;
 	case 'h':

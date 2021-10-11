@@ -21,15 +21,9 @@ void LTGW::CreateTextures()
 	// set texture count
 	tpGW.SetTextureCount(GWTEXTURE_END);
 
-	/// <summary>
-	/// ////////////////////////////////////DELETE AFTER
-	/// 
-	/// 
-	/// PLACE HOLDER TEXTURE
-	/// 
-	/// </summary>
-	GWimage = tpGW.LoadTexture("data/object/environmentStairsText.raw", 2024, 2024);
-	tpGW.CreateTexture(0, GWimage, 2024, 2024);
+
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/ToyStore.raw", 1024, 1024);
+	tpGW.CreateTexture(TOY_STORE, GWimage, 1024, 1024);
 
 
 	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/s_Books.raw", 256, 256);
@@ -203,9 +197,6 @@ void LTGW::CreateTextures()
 
 	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/ShelfEnd.raw", 240, 120);
 	tpGW.CreateTexture(SHELF_END, GWimage, 240, 120);
-
-	//GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/ToyStore.raw", 1024, 1024);
-	//tpGW.CreateTexture(TOY_STORE, GWimage, 1024, 1024);
 
 
 
