@@ -191,7 +191,8 @@ bool Collision::CheckCollision(int index, const glm::dvec3& end)
 		glm::vec3 max = m_list[index].GetMax(count);
 		glm::vec3 min = m_list[index].GetMin(count);
 
-		if ((end.x < max.x && end.x > min.x) && (end.z < max.z && end.z > min.z))
+		if ((end.x < max.x && end.x > min.x) && 
+			(end.z < max.z && end.z > min.z))
 		{
 			isColliding = true;
 			break;

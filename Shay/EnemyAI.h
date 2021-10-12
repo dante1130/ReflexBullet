@@ -52,6 +52,8 @@ private:
 	bool m_isMoving;
 	bool m_isFirstMove;
 
+	bool isDestinationReached(const glm::vec3& currentPos);
+
 	void FindNextDest();
 };
 

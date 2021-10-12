@@ -58,6 +58,17 @@ void EnemyAI::AIUpdate(const glm::vec3& currentPos)
 		m_isFirstMove = false;
 	}
 
+	if (m_gridPos.x < 0 || m_gridPos.y < 0 || m_gridPos.x >= 20 || m_gridPos.y >= 26)
+	{
+		glm::vec2 direction = m_gridDest - m_prevGridPos;
+
+		std::cout << "Prev grid pos: " << m_prevGridPos.x << " " << m_prevGridPos.y << std::endl;
+		std::cout << "Grid pos: " << m_gridPos.x << " " << m_gridPos.y << std::endl;
+		std::cout << "GridDest pos: " << m_gridDest.x << " " << m_gridDest.y << std::endl;
+		std::cout << "Curr pos: " << currentPos.x << " " << currentPos.z << std::endl;
+		std::cout << "Direction: " << direction.x << " " << direction.y << "\n\n";
+	}
+
 	m_gridPos.x = (GLint)currentPos.x;
 	m_gridPos.y = (GLint)currentPos.z;
 
@@ -67,8 +78,7 @@ void EnemyAI::AIUpdate(const glm::vec3& currentPos)
 	if (m_isMoving)
 	{
 		// Destination reached
-		if (floorf(currentPos.x * 10) / 10 == (GLfloat)m_gridDest.x + 0.5 &&
-			floorf(currentPos.z * 10) / 10 == (GLfloat)m_gridDest.y + 0.5)
+		if (isDestinationReached(currentPos))
 		{
 			m_isMoving = false;
 		}
@@ -82,20 +92,30 @@ void EnemyAI::AIUpdate(const glm::vec3& currentPos)
 	}
 }
 
+bool EnemyAI::isDestinationReached(const glm::vec3& currentPos)
+{
+	glm::vec2 currentPosFloor = glm::vec2(floorf(currentPos.x * 10) / 10, floorf(currentPos.z * 10) / 10);
+
+	return currentPosFloor.x >= (GLfloat)m_gridDest.x + 0.4 &&
+			currentPosFloor.y >= (GLfloat)m_gridDest.y + 0.4 &&
+			currentPosFloor.x <= (GLfloat)m_gridDest.x + 0.6 &&
+			currentPosFloor.y <= (GLfloat)m_gridDest.y + 0.6;
+}
+
 void EnemyAI::FindNextDest()
 {
 	std::vector<glm::ivec2> possibleDests;
 
-	if (m_mainGrid[m_gridPos.x][m_gridPos.y + 1] == Grid::FREE && m_gridPos.y + 1 < 26)
+	if (m_gridPos.y + 1 < 26 && m_mainGrid[m_gridPos.x][m_gridPos.y + 1] == Grid::FREE)
 		possibleDests.push_back(glm::ivec2(m_gridPos.x, m_gridPos.y + 1));
 
-	if (m_mainGrid[m_gridPos.x + 1][m_gridPos.y] == Grid::FREE && m_gridPos.x + 1 < 20)
+	if (m_gridPos.x + 1 < 20 && m_mainGrid[m_gridPos.x + 1][m_gridPos.y] == Grid::FREE)
 		possibleDests.push_back(glm::ivec2(m_gridPos.x + 1, m_gridPos.y));
 
-	if (m_mainGrid[m_gridPos.x][m_gridPos.y - 1] == Grid::FREE && m_gridPos.y - 1 >= 0)
+	if (m_gridPos.y - 1 >= 0 && m_mainGrid[m_gridPos.x][m_gridPos.y - 1] == Grid::FREE)
 		possibleDests.push_back(glm::ivec2(m_gridPos.x, m_gridPos.y - 1));
 
-	if (m_mainGrid[m_gridPos.x - 1][m_gridPos.y] == Grid::FREE && m_gridPos.x - 1 >= 0)
+	if (m_gridPos.x - 1 >= 0 && m_mainGrid[m_gridPos.x - 1][m_gridPos.y] == Grid::FREE)
 		possibleDests.push_back(glm::ivec2(m_gridPos.x - 1, m_gridPos.y));
 
 	if (possibleDests.size() != 0)

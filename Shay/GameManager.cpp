@@ -41,8 +41,6 @@ void GM::GameInit(int w, int h)
 
 	loadGameObjectFiles.join();
 	loadAnimation.join();
-	
-	robots.Spawn(noOfSpawn);
 
 	GameReshape(w, h); // Called once to reinit the reshape
 	DGW::GetSize(w, h);
@@ -263,11 +261,14 @@ void GM::CreateGameBoundingBoxes()
 	collision.Push(glm::vec3(7.05, 0.5, 15.05), glm::vec3(5.95, 0, 10.95));
 	collision.Push(glm::vec3(10.05, 1.5, 14.05), glm::vec3(5.95, 0, 11.95));
 	collision.Push(glm::vec3(10.05, 0.5, 16.05), glm::vec3(8.95, 0, 9.95));
-
-	// Floor
-	//collision.Push(glm::vec3(20, 0, 26), glm::vec3(0, -0.05, 0));
 	
 	player.GetCamera().SetCollision(collision);
+
+	// Floor
+	collision.Push(glm::vec3(20, 0, 26), glm::vec3(0, -0.05, 0));
+
+	// Ceiling
+	collision.Push(glm::vec3(20, 5.05, 26), glm::vec3(0, 4.95, 0));
 }
 
 void GM::GameCollisionResolution()
@@ -307,6 +308,7 @@ void GM::PlayerBulletCollisionResolution()
 				player.SetHealth(player.GetHealth() + playerBullet.GetDamage());
 				player.GetGun().RemoveBullet(i);
 				robots.enemies[j].SetHealth(robots.enemies[j].GetHealth() - playerBullet.GetDamage());
+				break;
 			}
 		}
 	}
