@@ -1,33 +1,12 @@
 #include "DisplayGameWorld.h"
 
 Player player;
-Object3D ToyStore;
-Object3D Shelf_1;
-std::vector<ShelfObjectsOBJ> Shelf_Objects;
-Object3D s_Box;
-Object3D s_Movies;
-Object3D s_Books;
-Object3D s_Board;
-Object3D Sky;
-Object3D TrainArea;
-Object3D Table[5];
-Object3D DisplayShelf[2];
-Object3D Bench;
-Object3D LightPlane;
-Object3D ClawMachine;
-Object3D Speaker;
-Object3D ShelfEnd;
+
+GameWorldObjects GWO;
 
 RobotEnemies robots;
 
 Leaderboard LB;
-
-Object3D cashier[2];
-Object3D LightOBJ[2];
-
-
-AnimationOBJ Train;
-AnimationOBJ DuckPerson;
 
 UI PlayerUI(70.0, 100.0, 70.0, false);
 
@@ -51,13 +30,15 @@ void DGW::DisplayGameWorldMasterFunction()
 	glPushMatrix();
 	glDisable(GL_LIGHTING);
 	glScalef(-1, 1, 1);
-	Sky.DisplayObjectWithLighting(SKY);
+	GWO.Sky.DisplayObjectWithLighting(SKY);
 	glEnable(GL_LIGHTING);
 	glPopMatrix();
 
 	glPushMatrix();
 	glScalef(-1, 1, 1);
-	ToyStore.DisplayObjectWithLighting(TOY_STORE);
+	GWO.ToyStore[0].DisplayObjectWithLighting(TOY_STORE);
+	GWO.ToyStore[1].DisplayObjectWithLighting(TOY_STORE);
+	GWO.Counter.DisplayObjectWithLighting(TOY_STORE);
 	glPopMatrix();
 
 	if (performanceMetric) DisplayPerformanceMetrics();
@@ -143,7 +124,7 @@ void DGW::DisplayShelves()
 	glPushMatrix();
 	glTranslatef(0.5, 0, 0);
 	glScalef(0.5, 1, 1);
-	Shelf_1.DisplayObjectWithLighting(SHELF_1); //Cover up corner shelf
+	GWO.Shelf_1.DisplayObjectWithLighting(SHELF_1); //Cover up corner shelf
 	glPopMatrix();
 	//switch sides
 	glTranslatef(0, 0, 10);
@@ -191,7 +172,7 @@ void DGW::DisplayShelves()
 	glPushMatrix();
 	glTranslatef(-0.5, 0, 0);
 	glScalef(0.5, 1, 1);
-	Shelf_1.DisplayObjectWithLighting(SHELF_1); //Cover up corner shelf
+	GWO.Shelf_1.DisplayObjectWithLighting(SHELF_1); //Cover up corner shelf
 	glPopMatrix();
 	//Switch sides
 	glTranslatef(0, 0, 10);
@@ -214,7 +195,7 @@ void DGW::DisplayShelves()
 	DisplayShelfContentsCulling(1, 905678, 1, look, pos, cullPoints);
 	glPushMatrix();
 	glTranslatef(-1, 0, 0);
-	Shelf_1.DisplayObjectWithLighting(SHELF_1); //Cover up corner shelf
+	GWO.Shelf_1.DisplayObjectWithLighting(SHELF_1); //Cover up corner shelf
 	glPopMatrix();
 
 	glTranslatef(2, 0, 0);
@@ -247,7 +228,7 @@ void DGW::DisplayShelves()
 	DisplayShelfContentsCulling(2, 17897, 1, look, pos, cullPoints);
 	glPushMatrix();
 	glTranslatef(1, 0, 0);
-	Shelf_1.DisplayObjectWithLighting(SHELF_1); //Cover up corner shelf
+	GWO.Shelf_1.DisplayObjectWithLighting(SHELF_1); //Cover up corner shelf
 	glPopMatrix();
 
 	//Middle back
@@ -334,7 +315,7 @@ void DGW::DisplayShelfContentsCulling(unsigned int objectList, int seed,
 void DGW::DisplayShelfContentsCulling(unsigned int objectList, float xPos, int xDirection, float zPos, int zDirection, int seed,
 									  bool ShelfCulling, glm::vec3& look, glm::vec3& pos, float *cullPoints)
 {
-	if (!ShelfCulling){	Shelf_1.DisplayObjectWithLighting(SHELF_1);	}
+	if (!ShelfCulling){ GWO.Shelf_1.DisplayObjectWithLighting(SHELF_1);	}
 	
 	glm::vec3 direction = -pos;
 	direction.x += cullPoints[0];
@@ -357,7 +338,7 @@ void DGW::DisplayShelfContentsCulling(unsigned int objectList, float xPos, int x
 	float distanceOne = sqrt(pow((cullPoints[0] - pos.x), 2) + pow((cullPoints[1] - pos.z), 2));
 	float distanceTwo = sqrt(pow((cullPoints[2] - pos.x), 2) + pow((cullPoints[3] - pos.z), 2));
 
-	if (angleOne > 1.1* xRatio && angleTwo > 1.1* xRatio)
+	if (angleOne > 1.2* xRatio && angleTwo > 1.2* xRatio)
 	{
 		if(!(distanceOne <= 1.2 || distanceTwo <= 1.2)) { return; }
 	}
@@ -372,7 +353,7 @@ void DGW::DisplayShelfContentsCulling(unsigned int objectList, float xPos, int x
 
 	DisplayShelfContents(objectList, xPos, xDirection, zPos, zDirection, seed, PsudeoNumGen(seed, 2, xPos + zPos), pos, LOD);
 
-	if (ShelfCulling) { Shelf_1.DisplayObjectWithLighting(SHELF_1); }
+	if (ShelfCulling) { GWO.Shelf_1.DisplayObjectWithLighting(SHELF_1); }
 
 }
 
@@ -396,7 +377,7 @@ void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirecti
 	//If selecting at random from the object list or choosing perticular object
 	if (objectList == 0)
 	{
-		int arraySize = Shelf_Objects.size();
+		int arraySize = GWO.Shelf_Objects.size();
 		int i = PsudeoNumGen(seed, arraySize, 0), rot;
 
 		glPushMatrix();
@@ -417,14 +398,14 @@ void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirecti
 		i = PsudeoNumGen(i+1, arraySize, sqrt(seed));
 
 		int useLOD = LOD;
-		int size = Shelf_Objects[i].obj.size();
+		int size = GWO.Shelf_Objects[i].obj.size();
 		if (LOD > size - 1) { useLOD = size-1; }
 
 
 		glTranslatef(-1.75, 0.5, 0.1);
 		glPushMatrix();
 		glRotatef(((seed * 2) % 20) * rot, 0, 1, 0);
-		Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		GWO.Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(GWO.Shelf_Objects[i].texture);
 		glPopMatrix();
 		for (int count = 0; count < 3; count++)
 		{
@@ -435,32 +416,32 @@ void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirecti
 			glTranslatef(0.45, 0, 0);
 			glPushMatrix();
 			glRotatef(((seed * count) % 20) * rot, 0, 1, 0);
-			Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(Shelf_Objects[i].texture);
+			GWO.Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(GWO.Shelf_Objects[i].texture);
 			glPopMatrix();
 		}
 		glTranslatef(-1.35, 0, -0.4);
-		Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		GWO.Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(GWO.Shelf_Objects[i].texture);
 		glTranslatef(0.45, 0, 0);
-		Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		GWO.Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(GWO.Shelf_Objects[i].texture);
 		glTranslatef(0.45, 0, 0);
-		Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		GWO.Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(GWO.Shelf_Objects[i].texture);
 		glTranslatef(0.45, 0, 0);
-		Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		GWO.Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(GWO.Shelf_Objects[i].texture);
 		
 		
 		i = PsudeoNumGen(seed, arraySize, seed);
 		useLOD = LOD;
-		size = Shelf_Objects[i].obj.size();
+		size = GWO.Shelf_Objects[i].obj.size();
 		if (LOD > size - 1) { useLOD = size - 1; }
 
 		glTranslatef(-1.35, 0.5, 0.4);
-		Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		GWO.Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(GWO.Shelf_Objects[i].texture);
 		glTranslatef(0.45, 0, 0);
-		Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		GWO.Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(GWO.Shelf_Objects[i].texture);
 		glTranslatef(0.45, 0, 0);
-		Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		GWO.Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(GWO.Shelf_Objects[i].texture);
 		glTranslatef(0.45, 0, 0);
-		Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		GWO.Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(GWO.Shelf_Objects[i].texture);
 		
 		glPopMatrix();
 		
@@ -468,14 +449,14 @@ void DGW::DisplayShelfContents(unsigned int objectList, float xPos, int xDirecti
 	}
 	else if (objectList == 1)
 	{
-		s_Movies.DisplayObjectWithLighting(S_MOVIES);
+		GWO.s_Movies.DisplayObjectWithLighting(S_MOVIES);
 	}
 	else if (objectList == 2)
 	{
 		int text = S_BOOKS;
 		if (seed % 2 == 1) { text = S_BOOKS2; }
 
-		s_Books.DisplayObjectWithLighting(text);
+		GWO.s_Books.DisplayObjectWithLighting(text);
 
 
 	}
@@ -490,7 +471,7 @@ void DGW::DisplayBoxes(int seed, int rot)
 		else { rot = 1; }
 		glPushMatrix();
 		glRotatef(((seed * count) % 30) * rot, 0, 1, 0);
-		s_Box.DisplayObjectWithLighting(S_BOX_1 + (seed * count) % 3);
+		GWO.s_Box.DisplayObjectWithLighting(S_BOX_1 + (seed * count) % 3);
 		glPopMatrix();
 		glTranslatef(0.45, 0, 0);
 	}
@@ -505,7 +486,7 @@ void DGW::DisplayBoards(int seed, int rot)
 		else { rot = 1; }
 		glPushMatrix();
 		glRotatef(((seed * count) % 10) * rot, 0, 1, 0);
-		s_Board.DisplayObjectWithLighting(S_BOARD_1 + (seed * count) % 3);
+		GWO.s_Board.DisplayObjectWithLighting(S_BOARD_1 + (seed * count) % 3);
 		glPopMatrix();
 		glTranslatef(0.45, 0, 0);
 	}
@@ -535,7 +516,7 @@ void DGW::DisplayPauseMenuOptions()
 		posTwo.y = posTwo.y - 1.05 - 0.6 * ((PMV.m_OptionHighlighted - 1)/2);
 		if (PMV.m_OptionHighlighted == 9)
 		{
-			posTwo.x = 0.125;
+			posTwo.x = 0.129;
 			DisplayIndividualOption(T_MENU_OUTLINE_COLOUR, posTwo, 0.6, 4.1);
 		}
 		else if (PMV.m_OptionHighlighted % 2 == 1)
@@ -668,7 +649,7 @@ void DGW::DisplayUpgradeMenu()
 
 void DGW::DisplayOptionsMenu()
 {
-	glm::vec3 pos = { 0.13, 6.5, 15.95 };
+	glm::vec3 pos = { 0.132, 6.5, 15.95 };
 
 	//Title
 	DisplayIndividualOption(T_OPTIONS_MENU, pos, 1, 4);
@@ -862,9 +843,9 @@ void DGW::DisplayAnimation()
 	glPushMatrix();
 	glScalef(-1, 1, 1);
 
-	Train.frame = (int)gameRunTime % 6000 / (1000 / 24);
-	if (Train.frame > Train.obj.size()-1) { Train.frame = Train.obj.size()-1; }
-	Train.obj[Train.frame].DisplayObjectWithLighting(Train.texture);
+	GWO.Train.frame = (int)gameRunTime % 6000 / (1000 / 24);
+	if (GWO.Train.frame > GWO.Train.obj.size()-1) { GWO.Train.frame = GWO.Train.obj.size()-1; }
+	GWO.Train.obj[GWO.Train.frame].DisplayObjectWithLighting(GWO.Train.texture);
 
 
 	
@@ -874,18 +855,18 @@ void DGW::DisplayAnimation()
 
 	glPushMatrix();
 	glTranslatef(1, 0, zPos);
-	DuckPerson.frame = (int)gameRunTime % 1000 / (1000 / 24);
-	if (DuckPerson.frame > DuckPerson.obj.size() - 1) { DuckPerson.frame = DuckPerson.obj.size() - 1; }
-	DuckPerson.obj[DuckPerson.frame].DisplayObjectWithLighting(DuckPerson.texture);
+	GWO.DuckPerson.frame = (int)gameRunTime % 1000 / (1000 / 24);
+	if (GWO.DuckPerson.frame > GWO.DuckPerson.obj.size() - 1) { GWO.DuckPerson.frame = GWO.DuckPerson.obj.size() - 1; }
+	GWO.DuckPerson.obj[GWO.DuckPerson.frame].DisplayObjectWithLighting(GWO.DuckPerson.texture);
 	glPopMatrix();
 
 	glPushMatrix();
 	result = (int)(gameRunTime + 4500) % 9000 / 1000.0;
 	zPos = -14 + result * movement;
 	glTranslatef(1, 0, zPos);
-	DuckPerson.frame = (int)gameRunTime % 1000 / (1000 / 24);
-	if (DuckPerson.frame > DuckPerson.obj.size() - 1) { DuckPerson.frame = DuckPerson.obj.size() - 1; }
-	DuckPerson.obj[DuckPerson.frame].DisplayObjectWithLighting(DuckPerson.texture);
+	GWO.DuckPerson.frame = (int)gameRunTime % 1000 / (1000 / 24);
+	if (GWO.DuckPerson.frame > GWO.DuckPerson.obj.size() - 1) { GWO.DuckPerson.frame = GWO.DuckPerson.obj.size() - 1; }
+	GWO.DuckPerson.obj[GWO.DuckPerson.frame].DisplayObjectWithLighting(GWO.DuckPerson.texture);
 	glPopMatrix();
 
 	glPushMatrix();
@@ -893,9 +874,9 @@ void DGW::DisplayAnimation()
 	zPos = 44 - result * movement;
 	glTranslatef(2.2, 0, zPos);
 	glRotatef(180, 0, 1, 0);
-	DuckPerson.frame = (int)(gameRunTime+5555) % 1000 / (1000 / 24);
-	if (DuckPerson.frame > DuckPerson.obj.size() - 1) { DuckPerson.frame = DuckPerson.obj.size() - 1; }
-	DuckPerson.obj[DuckPerson.frame].DisplayObjectWithLighting(DuckPerson.texture);
+	GWO.DuckPerson.frame = (int)(gameRunTime+5555) % 1000 / (1000 / 24);
+	if (GWO.DuckPerson.frame > GWO.DuckPerson.obj.size() - 1) { GWO.DuckPerson.frame = GWO.DuckPerson.obj.size() - 1; }
+	GWO.DuckPerson.obj[GWO.DuckPerson.frame].DisplayObjectWithLighting(GWO.DuckPerson.texture);
 	glPopMatrix();
 
 	glPopMatrix();
@@ -911,7 +892,7 @@ void DGW::DisplayCashier()
 	//Body
 	glPushMatrix();
 	glScalef(-1, 1, 1);
-	cashier[0].DisplayObjectWithLighting(T_DUCK_PERSON);
+	GWO.cashier[0].DisplayObjectWithLighting(T_DUCK_PERSON);
 	glPopMatrix();
 
 	//Head
@@ -924,7 +905,7 @@ void DGW::DisplayCashier()
 	glTranslatef(duckHeadPos.x, duckHeadPos.y, duckHeadPos.z);
 	glRotatef(angle, 0, 1, 0);
 	glRotatef(30, 1, 0, 0);
-	cashier[1].DisplayObjectWithLighting(T_DUCK_PERSON);
+	GWO.cashier[1].DisplayObjectWithLighting(T_DUCK_PERSON);
 
 	glPopMatrix();
 }
@@ -933,7 +914,7 @@ void DGW::DisplayAreaHoldingTrain()
 {
 	glPushMatrix();
 	glScalef(-1, 1, 1);
-	TrainArea.DisplayObjectWithLighting(TRAIN_AREA);
+	GWO.TrainArea.DisplayObjectWithLighting(TRAIN_AREA);
 	glPopMatrix();
 }
 
@@ -941,38 +922,38 @@ void DGW::DisplayLights()
 {
 	glPushMatrix();
 	glTranslatef(1.5, 3, 1.5);
-	LightOBJ[0].DisplayObjectWithLighting(LIGHT_HEAD);
-	LightOBJ[1].DisplayObjectWithLighting(LIGHT_TOP);
+	GWO.LightOBJ[0].DisplayObjectWithLighting(LIGHT_HEAD);
+	GWO.LightOBJ[1].DisplayObjectWithLighting(LIGHT_TOP);
 	glPopMatrix();
 
 	glPushMatrix();
 	glTranslatef(1.5, 3, 24.5);
-	LightOBJ[0].DisplayObjectWithLighting(LIGHT_HEAD);
-	LightOBJ[1].DisplayObjectWithLighting(LIGHT_TOP);
+	GWO.LightOBJ[0].DisplayObjectWithLighting(LIGHT_HEAD);
+	GWO.LightOBJ[1].DisplayObjectWithLighting(LIGHT_TOP);
 	glPopMatrix();
 
 	glPushMatrix();
 	glTranslatef(18.5, 3, 1.5);
-	LightOBJ[0].DisplayObjectWithLighting(LIGHT_HEAD);
-	LightOBJ[1].DisplayObjectWithLighting(LIGHT_TOP);
+	GWO.LightOBJ[0].DisplayObjectWithLighting(LIGHT_HEAD);
+	GWO.LightOBJ[1].DisplayObjectWithLighting(LIGHT_TOP);
 	glPopMatrix();
 
 	glPushMatrix();
 	glTranslatef(18.5, 3, 24.5);
-	LightOBJ[0].DisplayObjectWithLighting(LIGHT_HEAD);
-	LightOBJ[1].DisplayObjectWithLighting(LIGHT_TOP);
+	GWO.LightOBJ[0].DisplayObjectWithLighting(LIGHT_HEAD);
+	GWO.LightOBJ[1].DisplayObjectWithLighting(LIGHT_TOP);
 	glPopMatrix();
 
 	glPushMatrix();
 	glTranslatef(18.5, 3, 13);
-	LightOBJ[0].DisplayObjectWithLighting(LIGHT_HEAD);
-	LightOBJ[1].DisplayObjectWithLighting(LIGHT_TOP);
+	GWO.LightOBJ[0].DisplayObjectWithLighting(LIGHT_HEAD);
+	GWO.LightOBJ[1].DisplayObjectWithLighting(LIGHT_TOP);
 	glPopMatrix();
 
 	glPushMatrix();
 	glTranslatef(-2, 2, 13);
-	LightOBJ[0].DisplayObjectWithLighting(LIGHT_HEAD);
-	LightOBJ[1].DisplayObjectWithLighting(LIGHT_TOP);
+	GWO.LightOBJ[0].DisplayObjectWithLighting(LIGHT_HEAD);
+	GWO.LightOBJ[1].DisplayObjectWithLighting(LIGHT_TOP);
 	glPopMatrix();
 	
 }
@@ -1032,7 +1013,7 @@ void DGW::DisplayIndividualTable(int seed, int rand, glm::vec3 playerPos, glm::v
 	if (distance > 8) { LOD = 2; }
 	else if (distance > 4) { LOD = 1; }
 
-	Table[0].DisplayObjectWithLighting(TABLE_TABLE);
+	GWO.Table[0].DisplayObjectWithLighting(TABLE_TABLE);
 
 	glPushMatrix();
 	glTranslatef(0.3, 0, 0.8);
@@ -1045,14 +1026,14 @@ void DGW::DisplayIndividualTable(int seed, int rand, glm::vec3 playerPos, glm::v
 		if (i == 1)
 		{
 			text = PsudeoNumGen(i, 4, rand + count);
-			Table[1].DisplayObjectWithLighting(TABLE_BOX1 + text);
+			GWO.Table[1].DisplayObjectWithLighting(TABLE_BOX1 + text);
 		}
 		else if (i == 2)
 		{
 			text = PsudeoNumGen(i, 4, rand + count);
-			if (LOD == 0) { Table[2].DisplayObjectWithLighting(TABLE_CHAIR + text); }
-			else if (LOD == 1) { Table[3].DisplayObjectWithLighting(TABLE_CHAIR + text); }
-			else { Table[4].DisplayObjectWithLighting(TABLE_CHAIR + text); }
+			if (LOD == 0) { GWO.Table[2].DisplayObjectWithLighting(TABLE_CHAIR + text); }
+			else if (LOD == 1) { GWO.Table[3].DisplayObjectWithLighting(TABLE_CHAIR + text); }
+			else { GWO.Table[4].DisplayObjectWithLighting(TABLE_CHAIR + text); }
 		}
 
 
@@ -1076,19 +1057,19 @@ void DGW::DisplayDisplayShelves()
 	glTranslatef(-3.5, 0, 16);
 	glPushMatrix();
 	glRotatef(180, 0, 1, 0);
-	DisplayShelf[0].DisplayObjectWithLighting(S_MOVIES);
+	GWO.DisplayShelf[0].DisplayObjectWithLighting(S_MOVIES);
 	glPopMatrix();
 	glTranslatef(-1, 0, 0);
-	DisplayShelf[0].DisplayObjectWithLighting(S_MOVIES);
+	GWO.DisplayShelf[0].DisplayObjectWithLighting(S_MOVIES);
 	
 
 	glTranslatef(-17, 0, 0);
 	glPushMatrix();
 	glRotatef(180, 0, 1, 0);
-	DisplayShelf[1].DisplayObjectWithLighting(S_BOOKS2);
+	GWO.DisplayShelf[1].DisplayObjectWithLighting(S_BOOKS2);
 	glPopMatrix();
 	glTranslatef(-1, 0, 0);
-	DisplayShelf[1].DisplayObjectWithLighting(S_BOOKS2);
+	GWO.DisplayShelf[1].DisplayObjectWithLighting(S_BOOKS2);
 
 	glPopMatrix();
 }
@@ -1122,9 +1103,9 @@ void DGW::DisplayObjectsOnBench(int seed, int rand, glm::vec3 playerPos, glm::ve
 
 	glPushMatrix();
 
-	Bench.DisplayObjectWithLighting(TABLE_TABLE);
+	GWO.Bench.DisplayObjectWithLighting(TABLE_TABLE);
 
-	int i = PsudeoNumGen(seed, Shelf_Objects.size(), rand);
+	int i = PsudeoNumGen(seed, GWO.Shelf_Objects.size(), rand);
 	int useLOD;
 	int size;
 	float xTrans = -0.5;
@@ -1134,10 +1115,10 @@ void DGW::DisplayObjectsOnBench(int seed, int rand, glm::vec3 playerPos, glm::ve
 	for (int count = 0; count < 7; count++)
 	{
 		useLOD = LOD;
-		size = Shelf_Objects[i].obj.size();
+		size = GWO.Shelf_Objects[i].obj.size();
 		if (LOD > size - 1) { useLOD = size - 1; }
 		
-		Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(Shelf_Objects[i].texture);
+		GWO.Shelf_Objects[i].obj[useLOD].DisplayObjectWithLighting(GWO.Shelf_Objects[i].texture);
 
 		glTranslatef(xTrans, 0, 0);
 
@@ -1148,7 +1129,7 @@ void DGW::DisplayObjectsOnBench(int seed, int rand, glm::vec3 playerPos, glm::ve
 			xTrans = -0.7;
 		}
 
-		i = PsudeoNumGen(i + count, Shelf_Objects.size(), rand);
+		i = PsudeoNumGen(i + count, GWO.Shelf_Objects.size(), rand);
 	}
 
 	glPopMatrix();
@@ -1158,10 +1139,10 @@ void DGW::DisplayClawMachine()
 {
 	glPushMatrix();
 	glTranslatef(12.5, 0, 7.5);
-	ClawMachine.DisplayObjectWithLighting(CLAW_MACHINE);
+	GWO.ClawMachine.DisplayObjectWithLighting(CLAW_MACHINE);
 
 	glTranslatef(0, 0, 11);
-	ClawMachine.DisplayObjectWithLighting(CLAW_MACHINE);
+	GWO.ClawMachine.DisplayObjectWithLighting(CLAW_MACHINE);
 
 	glPopMatrix();
 }
@@ -1182,7 +1163,7 @@ void DGW::DisplayPlaneWithLight()
 	glTranslatef(0, 0, 6);
 	glScalef(5, 5, 5);
 
-	LightPlane.DisplayObjectWithLighting(LIGHT_PLANE);
+	GWO.LightPlane.DisplayObjectWithLighting(LIGHT_PLANE);
 	
 	glTranslatef(0.13, 0.085, 0);
 	glRotatef(angle* 50, 1, 0, 0);
@@ -1202,38 +1183,38 @@ void DGW::DisplaySpeakers()
 	glPushMatrix();
 	//Front of store
 	glTranslatef(0, 2.5, 1);
-	Speaker.DisplayObjectWithLighting(SPEAKER);
+	GWO.Speaker.DisplayObjectWithLighting(SPEAKER);
 	glTranslatef(0, 0, 8);
-	Speaker.DisplayObjectWithLighting(SPEAKER);
+	GWO.Speaker.DisplayObjectWithLighting(SPEAKER);
 	glTranslatef(0, 0, 8);
-	Speaker.DisplayObjectWithLighting(SPEAKER);
+	GWO.Speaker.DisplayObjectWithLighting(SPEAKER);
 	glTranslatef(0, 0, 8);
-	Speaker.DisplayObjectWithLighting(SPEAKER);
+	GWO.Speaker.DisplayObjectWithLighting(SPEAKER);
 
 	//Back of store
 	glTranslatef(20, 0, 0);
 	glRotatef(180, 0, 1, 0);
-	Speaker.DisplayObjectWithLighting(SPEAKER);
+	GWO.Speaker.DisplayObjectWithLighting(SPEAKER);
 	glTranslatef(0, 0, 8);
-	Speaker.DisplayObjectWithLighting(SPEAKER);
+	GWO.Speaker.DisplayObjectWithLighting(SPEAKER);
 	glTranslatef(0, 0, 8);
-	Speaker.DisplayObjectWithLighting(SPEAKER);
+	GWO.Speaker.DisplayObjectWithLighting(SPEAKER);
 	glTranslatef(0, 0, 8);
-	Speaker.DisplayObjectWithLighting(SPEAKER);
+	GWO.Speaker.DisplayObjectWithLighting(SPEAKER);
 
 	//Right of store
 	glTranslatef(5, 0, 1);
 	glRotatef(90, 0, 1, 0);
-	Speaker.DisplayObjectWithLighting(SPEAKER);
+	GWO.Speaker.DisplayObjectWithLighting(SPEAKER);
 	glTranslatef(0, 0, 10);
-	Speaker.DisplayObjectWithLighting(SPEAKER);
+	GWO.Speaker.DisplayObjectWithLighting(SPEAKER);
 
 	//Left of store
 	glTranslatef(26, 0, 0);
 	glRotatef(180, 0, 1, 0);
-	Speaker.DisplayObjectWithLighting(SPEAKER);
+	GWO.Speaker.DisplayObjectWithLighting(SPEAKER);
 	glTranslatef(0, 0, 10);
-	Speaker.DisplayObjectWithLighting(SPEAKER);
+	GWO.Speaker.DisplayObjectWithLighting(SPEAKER);
 
 	glPopMatrix();
 }
@@ -1242,13 +1223,16 @@ void DGW::DisplayShelfEnd()
 {
 	glPushMatrix();
 	glTranslatef(16.5, 0, 11.5);
-	ShelfEnd.DisplayObjectWithLighting(SHELF_END);
+	GWO.ShelfEnd.DisplayObjectWithLighting(SHELF_END);
 
 	glTranslatef(0, 0, 3);
-	ShelfEnd.DisplayObjectWithLighting(SHELF_END);
+	GWO.ShelfEnd.DisplayObjectWithLighting(SHELF_END);
 
 	glPopMatrix();
 }
+
+
+
 
 
 

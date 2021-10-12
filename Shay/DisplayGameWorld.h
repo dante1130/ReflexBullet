@@ -32,37 +32,32 @@ struct AnimationOBJ
 	int frame;
 };
 
+struct GameWorldObjects
+{
+	Object3D Shelf_1;
+	Object3D ToyStore[2];
+	Object3D s_Box;
+	Object3D s_Movies;
+	Object3D s_Books;
+	Object3D Sky;
+	Object3D s_Board;
+	Object3D cashier[2];
+	Object3D TrainArea;
+	Object3D LightOBJ[2];
+	Object3D Table[5];
+	Object3D DisplayShelf[2];
+	Object3D Bench;
+	Object3D LightPlane;
+	Object3D ClawMachine;
+	Object3D Speaker;
+	Object3D ShelfEnd;
+	Object3D Counter;
 
+	std::vector<ShelfObjectsOBJ> Shelf_Objects;
 
-extern AnimationOBJ Train;
-extern AnimationOBJ DuckPerson;
-
-extern Player player;
-extern Object3D Shelf_1;
-extern Object3D ToyStore;
-extern std::vector<ShelfObjectsOBJ> Shelf_Objects;
-extern Object3D s_Box;
-extern Object3D s_Movies;
-extern Object3D s_Books;
-extern Object3D Sky;
-extern Object3D s_Board;
-extern Leaderboard LB;
-extern Object3D cashier[2];
-extern Object3D TrainArea;
-extern Object3D LightOBJ[2];
-extern Object3D Table[5];
-extern RobotEnemies robots;
-extern Object3D DisplayShelf[2];
-extern Object3D Bench;
-extern Object3D LightPlane;
-extern Object3D ClawMachine;
-extern Object3D Speaker;
-extern Object3D ShelfEnd;
-
-extern bool wireFrame;
-extern bool performanceMetric;
-extern bool visibleShelves;
-extern bool bossOn;
+	AnimationOBJ Train;
+	AnimationOBJ DuckPerson;
+};
 
 struct PauseMenuValues
 {
@@ -90,9 +85,18 @@ struct PauseMenuValues
 	}
 };
 
+extern bool wireFrame;
+extern bool performanceMetric;
+extern bool visibleShelves;
+extern bool bossOn;
+
 extern PauseMenuValues PMV;
 extern GLfloat gameRunTime;
 extern GLfloat lastUnpausedFrame;
+extern GameWorldObjects GWO;
+extern Leaderboard LB;
+extern RobotEnemies robots;
+extern Player player;
 
 namespace DGW
 {
