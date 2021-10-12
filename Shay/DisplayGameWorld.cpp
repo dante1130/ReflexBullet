@@ -508,7 +508,19 @@ void DGW::DisplayPauseMenuOptions()
 	{
 		glm::vec3 posTwo = { 0.132, 6.5, 16 };
 		posTwo.y = posTwo.y - 1.05 - 0.6 * (PMV.m_OptionHighlighted - 1);
-		DisplayIndividualOption(T_MENU_OUTLINE_COLOUR, posTwo, 0.6, 4.1);
+
+		if (PMV.m_PausedMenuChoosen == 7)
+		{
+			if (PMV.m_OptionHighlighted == 5) { DisplayIndividualOption(T_MENU_OUTLINE_COLOUR, posTwo, 0.6, 4.1); }
+		}
+		else if (PMV.m_PausedMenuChoosen == 6)
+		{
+			if (PMV.m_OptionHighlighted >= 4) { DisplayIndividualOption(T_MENU_OUTLINE_COLOUR, posTwo, 0.6, 4.1); }
+		}
+		else
+		{
+			DisplayIndividualOption(T_MENU_OUTLINE_COLOUR, posTwo, 0.6, 4.1);
+		}
 	}
 	else if (PMV.m_OptionHighlighted != 0 && PMV.m_PausedMenuChoosen == 2)
 	{
@@ -566,6 +578,19 @@ void DGW::DisplayPauseMenuOptions()
 
 		pos.y = pos.y - 0.6;
 		DisplayIndividualOption(T_ACCURACY_TIME, pos, 0.5, 4);
+
+		pos.y = pos.y - 0.13;
+		glBindTexture(GL_TEXTURE_2D, tpGW.GetTexture(T_MENU_OUTLINE_COLOUR));
+		glRasterPos3f(0.2, pos.y, 14.4);
+		std::string temp = std::to_string(gameRunTime/1000);
+		temp = temp.substr(0, 7) + " seconds";
+		RenderBitMapString(GLUT_BITMAP_HELVETICA_18, temp);
+
+		temp = "N/A";
+		temp = temp.substr(0, 5) + "%";
+		glRasterPos3f(0.2, pos.y - 0.25, 14.4);
+		RenderBitMapString(GLUT_BITMAP_HELVETICA_18, temp);
+
 	}
 	else if (PMV.m_PausedMenuChoosen == 6)
 	{
@@ -809,6 +834,19 @@ void DGW::DisplayVicotryScreen()
 
 	pos.y = pos.y - 0.6;
 	DisplayIndividualOption(T_CONTINUE, pos, 0.5, 4);
+
+
+	pos.y = pos.y + 1.07;
+	glBindTexture(GL_TEXTURE_2D, tpGW.GetTexture(T_MENU_OUTLINE_COLOUR));
+	glRasterPos3f(0.2, pos.y, 14.4);
+	std::string temp = std::to_string(gameRunTime / 1000);
+	temp = temp.substr(0, 7) + " seconds";
+	RenderBitMapString(GLUT_BITMAP_HELVETICA_18, temp);
+
+	temp = "N/A";
+	temp = temp.substr(0, 5) + "%";
+	glRasterPos3f(0.2, pos.y - 0.25, 14.4);
+	RenderBitMapString(GLUT_BITMAP_HELVETICA_18, temp);
 }
 
 

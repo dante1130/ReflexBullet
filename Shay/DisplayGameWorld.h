@@ -257,8 +257,18 @@ namespace DGW
 	*/
 	void DisplayCredits();
 
+	/**
+	* @brief	Displays the defeat screen
+	* @param	No param
+	* @return	Void
+	*/
 	void DisplayDefeatScreen();
 
+	/**
+	* @brief	Displays the victory screen
+	* @param	No param
+	* @return	Void
+	*/
 	void DisplayVicotryScreen();
 
 	/**

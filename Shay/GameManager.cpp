@@ -970,7 +970,15 @@ void GM::MenuOptionChoosen(int option)
 		if (option == 4){ PMV.m_PausedMenuChoosen = 4; } //Return to start screen
 		else if (option == 5) { exit(0); }
 	}
-
+	else if (PMV.m_PausedMenuChoosen == 6) //Defeat
+	{
+		if (option == 4) { RestartGame(); } //Restart game
+		else if (option == 5) { PMV.m_PausedMenuChoosen = 4; } //Return to start screen
+	}
+	else if (PMV.m_PausedMenuChoosen == 7) //Victory
+	{
+		if (option == 5) { PMV.m_PausedMenuChoosen = 4; } //Return to start screen
+	}
 
 }
 
@@ -1052,6 +1060,7 @@ void GM::RestartGame()
 
 	zFar = 0.001;
 	Starting = true;
+	gameRunTime = 0;
 
 	glClearColor(1, 1, 1, 1);
 
