@@ -43,7 +43,7 @@ void GM::GameInit(int w, int h)
 	loadAnimation.join();
 	
 	robots.Spawn(noOfSpawn);
-	
+
 	GameReshape(w, h); // Called once to reinit the reshape
 	DGW::GetSize(w, h);
 	Lighting::LightingInit();
@@ -272,62 +272,125 @@ void GM::CreateGameBoundingBoxes()
 
 void GM::GameCollisionResolution()
 {
+	GM::PlayerBulletCollisionResolution();
+	GM::EnemyBulletCollisionResolution();
+
+	if (bossOn)
+	{
+		GM::BossBulletCollisionResolution();
+	}
+}
+
+void GM::PlayerBulletCollisionResolution()
+{
 	// Player's bullets
 	for (int i = 0; i < player.GetGun().BulletCount(); ++i)
 	{
-		BoundingSphere bulletBSphere(player.GetGun().BulletAt(i).GetBoundingSphere().center, 
-									 player.GetGun().BulletAt(i).GetBoundingSphere().radius - 0.20);
+		const Bullet& playerBullet = player.GetGun().BulletAt(i);
 
+		BoundingSphere bulletBSphere(playerBullet.GetBoundingSphere().center,
+			playerBullet.GetBoundingSphere().radius - 0.20);
+
+		// Collision with world objects
 		if (collision.Collide(bulletBSphere))
 		{
 			player.GetGun().RemoveBullet(i);
 			continue;
 		}
-			
+
 		for (int j = 0; j < robots.enemies.size(); ++j)
 		{
-			if (Collision::Collide(robots.enemies[j].GetBBox(), 
-								   player.GetGun().BulletAt(i).GetBoundingSphere()))
+			// Collision with robots
+			if (Collision::Collide(robots.enemies[j].GetBBox(),
+				playerBullet.GetBoundingSphere()))
 			{
-				player.SetHealth(player.GetHealth() + player.GetGun().BulletAt(i).GetDamage());
+				player.SetHealth(player.GetHealth() + playerBullet.GetDamage());
 				player.GetGun().RemoveBullet(i);
-				robots.enemies[j].SetHealth(robots.enemies[j].GetHealth() - player.GetGun().BulletAt(i).GetDamage());
-				break;
+				robots.enemies[j].SetHealth(robots.enemies[j].GetHealth() - playerBullet.GetDamage());
 			}
 		}
 	}
-		
+}
+
+void GM::EnemyBulletCollisionResolution()
+{
 	// Enemies' bullets
 	for (auto& enemy : robots.enemies)
 	{
 		for (int i = 0; i < enemy.GetGun().BulletCount(); ++i)
 		{
-			if (collision.Collide(enemy.GetGun().BulletAt(i).GetBoundingSphere()))
+			const Bullet& enemyBullet = enemy.GetGun().BulletAt(i);
+
+			BoundingSphere bulletBSphere(enemyBullet.GetBoundingSphere().center,
+										enemyBullet.GetBoundingSphere().radius - 0.20);
+
+			// Collision with world objects
+			if (collision.Collide(bulletBSphere))
 			{
 				enemy.GetGun().RemoveBullet(i);
 			}
-			else if (Collision::Collide(player.GetCamera().GetPosition(), 
-										enemy.GetGun().BulletAt(i).GetBoundingSphere()))
+			// Collision with player
+			else if (Collision::Collide(player.GetCamera().GetPosition(),
+				enemyBullet.GetBoundingSphere()))
 			{
-				player.SetHealth(player.GetHealth() - enemy.GetGun().BulletAt(i).GetDamage());
+				player.SetHealth(player.GetHealth() - enemyBullet.GetDamage());
 				enemy.GetGun().RemoveBullet(i);
+			}
+			else
+			{
+				bool isPlayerBulletCollide = false;
+
+				// Collision with player's bullets
+				for (int j = 0; j < player.GetGun().BulletCount(); ++j)
+				{
+					const Bullet& playerBullet = player.GetGun().BulletAt(j);
+
+					if (Collision::Collide(enemyBullet.GetBoundingSphere(),
+						playerBullet.GetBoundingSphere()))
+					{
+						enemy.GetGun().RemoveBullet(i);
+						player.GetGun().RemoveBullet(j);
+						isPlayerBulletCollide = true;
+						break;
+					}
+				}
+
+				// BUG FOR NOW
+				/*
+				if (!isPlayerBulletCollide)
+				{
+					// Collision with robots' bullets
+					for (int j = 1; j < enemy.GetGun().BulletCount(); ++j)
+					{
+						const Bullet& otherEnemyBullet = enemy.GetGun().BulletAt(j);
+
+						if (Collision::Collide(enemyBullet.GetBoundingSphere(),
+											   otherEnemyBullet.GetBoundingSphere()))
+						{
+							enemy.GetGun().RemoveBullet(i);
+							enemy.GetGun().RemoveBullet(j);
+							break;
+						}
+					}
+				}
+				*/
 			}
 		}
 	}
+}
 
-	if (bossOn)
+void GM::BossBulletCollisionResolution()
+{
+	for (int i = 0; i < boss.GetGun().BulletCount(); ++i)
 	{
-		for (int i = 0; i < boss.GetGun().BulletCount(); ++i)
+		BoundingSphere bulletBSphere(boss.GetGun().BulletAt(i).GetBoundingSphere().center,
+			boss.GetGun().BulletAt(i).GetBoundingSphere().radius - 0.20);
+		if (collision.Collide(bulletBSphere))
+			boss.GetGun().RemoveBullet(i);
+		if (Collision::Collide(player.GetCamera().GetPosition(), boss.GetGun().BulletAt(i).GetBoundingSphere()))
 		{
-			BoundingSphere bulletBSphere(boss.GetGun().BulletAt(i).GetBoundingSphere().center,
-				boss.GetGun().BulletAt(i).GetBoundingSphere().radius - 0.20);
-			if(collision.Collide(bulletBSphere))
-				boss.GetGun().RemoveBullet(i);
-			if (Collision::Collide(player.GetCamera().GetPosition(), boss.GetGun().BulletAt(i).GetBoundingSphere()))
-			{
-				player.SetHealth(player.GetHealth() - boss.GetGun().BulletAt(i).GetDamage());
-				boss.GetGun().RemoveBullet(i);
-			}
+			player.SetHealth(player.GetHealth() - boss.GetGun().BulletAt(i).GetDamage());
+			boss.GetGun().RemoveBullet(i);
 		}
 	}
 }

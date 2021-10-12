@@ -82,6 +82,12 @@ namespace GM
 	 */
 	void GameCollisionResolution();
 
+	void PlayerBulletCollisionResolution();
+
+	void EnemyBulletCollisionResolution();
+
+	void BossBulletCollisionResolution();
+
 	/**
 	* @brief	If a fixed update loop for the game. This will handle all AI and other fixed update processes
 	* @param	val	- Some value //currently unused
