@@ -160,7 +160,15 @@ bool Boss::LazerCollision(Player& player)
 	player_Pos = player.GetCamera().GetPosition(); //stores the players position
 	m_gradient = tan((m_rotation.y - 90) * (PI / 180)); //calculate the gradient of lazerbeam
 	GLfloat player_grad = (player_Pos.x - m_position.x) / (player_Pos.z - m_position.z); //calculate players gradient
-	
+
+	if (m_gradient < 0.001 && m_gradient > -0.001)
+		if (player_Pos.z < 0.01 && player_Pos.z > -0.01)
+			return true;
+
+	if (m_gradient > 1000 || m_gradient < -1000)
+		if (player_Pos.x < 0.01 && player_Pos.x > -0.01)
+			return true;
+
 	//difference between gradients
 	GLfloat sum = player_grad - m_gradient;
 

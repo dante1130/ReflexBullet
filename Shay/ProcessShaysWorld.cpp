@@ -88,7 +88,7 @@ void PSW::myinit()
 	glu_cylinder = gluNewQuadric();
 	gluQuadricTexture(glu_cylinder, GL_TRUE);
 
-	loadObjFiles();
+	std::thread loadObjectFiles(loadObjFiles);
 
 	// set the world co-ordinates (used to set quadrants for bounding boxes)
 	cam.SetWorldCoordinates(36000.0, 43200.0);
@@ -105,6 +105,8 @@ void PSW::myinit()
 	// load texture images and create display lists
 	CreateTextureList();
 	CreateTextures();
+
+	loadObjectFiles.join();
 
 	cam.SetMoveSpeed(movementSpeed);
 	cam.SetRotateSpeed(rotationSpeed);

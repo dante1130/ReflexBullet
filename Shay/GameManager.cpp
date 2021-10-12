@@ -14,6 +14,7 @@ glm::vec3 m_playerPos, m_floatPos, m_playerLook, m_floatLook, m_bossArea;
 
 Collision collision;
 
+
 void GM::GameInit(int w, int h)
 {
 	std::thread loadGameObjectFiles(LoadGameObjectFiles);
@@ -554,13 +555,13 @@ void GM::GameKeys(unsigned char key, int x, int y)
 		player.ResetMoveSpeed();
 		break;
 	case 'g':
-		PMV.m_PausedMenuChoosen = (PMV.m_PausedMenuChoosen + 1) % 5;
+		PMV.m_PausedMenuChoosen = (PMV.m_PausedMenuChoosen + 1) % 8;
 		if (PMV.m_PausedMenuChoosen == 0) { PMV.m_PausedMenuChoosen = 1; }
 		break;
 	case 'b':
 	case 'B':
-		GWO.ToyStore[0].Clear();
-		ReadOBJMTL("data/object/gameObjects/bossAreaV2.obj", GWO.ToyStore[0]);
+		//GWO.ToyStore[0].Clear();
+		//ReadOBJMTL("data/object/gameObjects/bossAreaV2.obj", GWO.ToyStore[0]);
 		bossOn = true;
 		break;
 	case 'h':
@@ -923,22 +924,22 @@ void GM::MenuOptionChoosen(int option)
 	{
 		if (player.GetSkillPoints() > 0)
 		{
-			if (option == 1)
+			if (option == 1 && player.GetUpgradeOption(0) < 5)
 			{
 				player.DecreaseFiringDelay(0.1);
 				player.SpendSkillPoint();
 			}
-			else if (option == 2)
+			else if (option == 2 && player.GetUpgradeOption(1) < 5)
 			{
 				player.AddBulletSpeed(1);
 				player.SpendSkillPoint();
 			}
-			else if (option == 3)
+			else if (option == 3 && player.GetUpgradeOption(2) < 5)
 			{
 				player.DecreaseHealthDecay(0.01);
 				player.SpendSkillPoint();
 			}
-			else if (option == 4)
+			else if (option == 4 && player.GetUpgradeOption(3) < 4)
 			{
 				player.AddMoveSpeed(0.01);
 				player.SpendSkillPoint();
@@ -948,6 +949,9 @@ void GM::MenuOptionChoosen(int option)
 				if (player.GetSkillPoints() >= 10)
 				{
 					//go to boss level
+					GWO.ToyStore[0].Clear();
+					ReadOBJMTL("data/object/gameObjects/bossAreaV2.obj", GWO.ToyStore[0]);
+					bossOn = true;
 				}
 				else
 				{
@@ -968,7 +972,15 @@ void GM::MenuOptionChoosen(int option)
 		if (option == 4){ PMV.m_PausedMenuChoosen = 4; } //Return to start screen
 		else if (option == 5) { exit(0); }
 	}
-
+	else if (PMV.m_PausedMenuChoosen == 6) //Defeat
+	{
+		if (option == 4) { RestartGame(); } //Restart game
+		else if (option == 5) { PMV.m_PausedMenuChoosen = 4; } //Return to start screen
+	}
+	else if (PMV.m_PausedMenuChoosen == 7) //Victory
+	{
+		if (option == 5) { PMV.m_PausedMenuChoosen = 4; } //Return to start screen
+	}
 
 }
 
@@ -1050,6 +1062,7 @@ void GM::RestartGame()
 
 	zFar = 0.001;
 	Starting = true;
+	gameRunTime = 0;
 
 	glClearColor(1, 1, 1, 1);
 

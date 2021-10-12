@@ -37,7 +37,7 @@ void DGW::DisplayGameWorldMasterFunction()
 	glPushMatrix();
 	glScalef(-1, 1, 1);
 	GWO.ToyStore[0].DisplayObjectWithLighting(TOY_STORE);
-	GWO.ToyStore[1].DisplayObjectWithLighting(TOY_STORE);
+	if (bossOn == false) { GWO.ToyStore[1].DisplayObjectWithLighting(TOY_STORE); };
 	GWO.Counter.DisplayObjectWithLighting(TOY_STORE);
 	glPopMatrix();
 
@@ -508,7 +508,19 @@ void DGW::DisplayPauseMenuOptions()
 	{
 		glm::vec3 posTwo = { 0.132, 6.5, 16 };
 		posTwo.y = posTwo.y - 1.05 - 0.6 * (PMV.m_OptionHighlighted - 1);
-		DisplayIndividualOption(T_MENU_OUTLINE_COLOUR, posTwo, 0.6, 4.1);
+
+		if (PMV.m_PausedMenuChoosen == 7)
+		{
+			if (PMV.m_OptionHighlighted == 5) { DisplayIndividualOption(T_MENU_OUTLINE_COLOUR, posTwo, 0.6, 4.1); }
+		}
+		else if (PMV.m_PausedMenuChoosen == 6)
+		{
+			if (PMV.m_OptionHighlighted >= 4) { DisplayIndividualOption(T_MENU_OUTLINE_COLOUR, posTwo, 0.6, 4.1); }
+		}
+		else
+		{
+			DisplayIndividualOption(T_MENU_OUTLINE_COLOUR, posTwo, 0.6, 4.1);
+		}
 	}
 	else if (PMV.m_OptionHighlighted != 0 && PMV.m_PausedMenuChoosen == 2)
 	{
@@ -566,6 +578,27 @@ void DGW::DisplayPauseMenuOptions()
 
 		pos.y = pos.y - 0.6;
 		DisplayIndividualOption(T_ACCURACY_TIME, pos, 0.5, 4);
+
+		pos.y = pos.y - 0.13;
+		glBindTexture(GL_TEXTURE_2D, tpGW.GetTexture(T_MENU_OUTLINE_COLOUR));
+		glRasterPos3f(0.2, pos.y, 14.4);
+		std::string temp = std::to_string(gameRunTime/1000);
+		temp = temp.substr(0, 7) + " seconds";
+		RenderBitMapString(GLUT_BITMAP_HELVETICA_18, temp);
+
+		temp = "N/A";
+		temp = temp.substr(0, 5) + "%";
+		glRasterPos3f(0.2, pos.y - 0.25, 14.4);
+		RenderBitMapString(GLUT_BITMAP_HELVETICA_18, temp);
+
+	}
+	else if (PMV.m_PausedMenuChoosen == 6)
+	{
+		DisplayDefeatScreen();
+	}
+	else if (PMV.m_PausedMenuChoosen == 7)
+	{
+		DisplayVicotryScreen();
 	}
 	
 	//Background
@@ -765,6 +798,57 @@ void DGW::DisplayCredits()
 	DisplayIndividualOption(T_EXIT, pos, 0.5, 4);
 
 }
+
+void DGW::DisplayDefeatScreen()
+{
+	glm::vec3 pos = { 0.135, 6.5, 15.95 };
+
+	//Title
+	DisplayIndividualOption(T_GAME_OVER, pos, 1, 4);
+	
+	pos.y = pos.y - 1.1;
+	DisplayIndividualOption(T_DEFEAT, pos, 1.7, 4);
+
+	pos.y = pos.y - 1.8;
+	DisplayIndividualOption(T_RESTART_GAME, pos, 0.5, 4);
+
+	pos.y = pos.y - 0.6;
+	DisplayIndividualOption(T_RETURN, pos, 0.5, 4);
+}
+
+void DGW::DisplayVicotryScreen()
+{
+	glm::vec3 pos = { 0.135, 6.5, 15.95 };
+
+	//Title
+	DisplayIndividualOption(T_GAME_OVER, pos, 1, 4);
+
+	pos.y = pos.y - 1.1;
+	DisplayIndividualOption(T_VICTORY, pos, 1.1, 4);
+
+	pos.y = pos.y - 1.2;
+	DisplayIndividualOption(T_ACCURACY_TIME, pos, 0.5, 4);
+
+	pos.y = pos.y - 0.6;
+	DisplayIndividualOption(T_ENTER_HERE, pos, 0.5, 4);
+
+	pos.y = pos.y - 0.6;
+	DisplayIndividualOption(T_CONTINUE, pos, 0.5, 4);
+
+
+	pos.y = pos.y + 1.07;
+	glBindTexture(GL_TEXTURE_2D, tpGW.GetTexture(T_MENU_OUTLINE_COLOUR));
+	glRasterPos3f(0.2, pos.y, 14.4);
+	std::string temp = std::to_string(gameRunTime / 1000);
+	temp = temp.substr(0, 7) + " seconds";
+	RenderBitMapString(GLUT_BITMAP_HELVETICA_18, temp);
+
+	temp = "N/A";
+	temp = temp.substr(0, 5) + "%";
+	glRasterPos3f(0.2, pos.y - 0.25, 14.4);
+	RenderBitMapString(GLUT_BITMAP_HELVETICA_18, temp);
+}
+
 
 void DGW::DisplayPauseMenuLeaderboard()
 {

@@ -112,6 +112,7 @@ void CollisionChecks(Player& player)
 		{
 			player.GetGun().RemoveBullet(i);
 			boss.SetHealth(boss.GetHealth() - 1);
+			player.SetHealth(player.GetHealth() + 5);
 		}
 	}
 }
