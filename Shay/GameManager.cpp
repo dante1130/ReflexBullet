@@ -14,6 +14,7 @@ glm::vec3 m_playerPos, m_floatPos, m_playerLook, m_floatLook, m_bossArea;
 
 Collision collision;
 
+
 void GM::GameInit(int w, int h)
 {
 	std::thread loadGameObjectFiles(LoadGameObjectFiles);
@@ -552,13 +553,13 @@ void GM::GameKeys(unsigned char key, int x, int y)
 		player.ResetMoveSpeed();
 		break;
 	case 'g':
-		PMV.m_PausedMenuChoosen = (PMV.m_PausedMenuChoosen + 1) % 5;
+		PMV.m_PausedMenuChoosen = (PMV.m_PausedMenuChoosen + 1) % 8;
 		if (PMV.m_PausedMenuChoosen == 0) { PMV.m_PausedMenuChoosen = 1; }
 		break;
 	case 'b':
 	case 'B':
-		GWO.ToyStore[0].Clear();
-		ReadOBJMTL("data/object/gameObjects/bossAreaV2.obj", GWO.ToyStore[0]);
+		//GWO.ToyStore[0].Clear();
+		//ReadOBJMTL("data/object/gameObjects/bossAreaV2.obj", GWO.ToyStore[0]);
 		bossOn = true;
 		break;
 	case 'h':

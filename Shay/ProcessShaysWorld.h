@@ -10,6 +10,7 @@
 #include "Object.h"
 #include "DisplayEXTRAShaysWorld.h"
 #include "GameManager.h"
+#include <thread>
 #include <GL/glut.h>
 
 namespace PSW

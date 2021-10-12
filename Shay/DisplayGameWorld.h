@@ -62,7 +62,7 @@ struct GameWorldObjects
 struct PauseMenuValues
 {
 	//Pause menu
-	int m_PausedMenuChoosen; //0-unpause, 1-basic pause menu, 2-options, 3-upgrade, 4-start screen, 5-credits
+	int m_PausedMenuChoosen; //0-unpause, 1-basic pause menu, 2-options, 3-upgrade, 4-start screen, 5-credits, 6-defeat screen, 7-victory screen
 	int m_OptionHighlighted;
 	bool m_PausedOverStart;
 
@@ -256,6 +256,10 @@ namespace DGW
 	* @return	Void
 	*/
 	void DisplayCredits();
+
+	void DisplayDefeatScreen();
+
+	void DisplayVicotryScreen();
 
 	/**
 	* @brief	Displays different animations

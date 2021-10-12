@@ -37,7 +37,7 @@ void DGW::DisplayGameWorldMasterFunction()
 	glPushMatrix();
 	glScalef(-1, 1, 1);
 	GWO.ToyStore[0].DisplayObjectWithLighting(TOY_STORE);
-	GWO.ToyStore[1].DisplayObjectWithLighting(TOY_STORE);
+	if (bossOn == false) { GWO.ToyStore[1].DisplayObjectWithLighting(TOY_STORE); };
 	GWO.Counter.DisplayObjectWithLighting(TOY_STORE);
 	glPopMatrix();
 
@@ -567,6 +567,14 @@ void DGW::DisplayPauseMenuOptions()
 		pos.y = pos.y - 0.6;
 		DisplayIndividualOption(T_ACCURACY_TIME, pos, 0.5, 4);
 	}
+	else if (PMV.m_PausedMenuChoosen == 6)
+	{
+		DisplayDefeatScreen();
+	}
+	else if (PMV.m_PausedMenuChoosen == 7)
+	{
+		DisplayVicotryScreen();
+	}
 	
 	//Background
 	glColor3f(0, 0, 0);
@@ -765,6 +773,44 @@ void DGW::DisplayCredits()
 	DisplayIndividualOption(T_EXIT, pos, 0.5, 4);
 
 }
+
+void DGW::DisplayDefeatScreen()
+{
+	glm::vec3 pos = { 0.135, 6.5, 15.95 };
+
+	//Title
+	DisplayIndividualOption(T_GAME_OVER, pos, 1, 4);
+	
+	pos.y = pos.y - 1.1;
+	DisplayIndividualOption(T_DEFEAT, pos, 1.7, 4);
+
+	pos.y = pos.y - 1.8;
+	DisplayIndividualOption(T_RESTART_GAME, pos, 0.5, 4);
+
+	pos.y = pos.y - 0.6;
+	DisplayIndividualOption(T_RETURN, pos, 0.5, 4);
+}
+
+void DGW::DisplayVicotryScreen()
+{
+	glm::vec3 pos = { 0.135, 6.5, 15.95 };
+
+	//Title
+	DisplayIndividualOption(T_GAME_OVER, pos, 1, 4);
+
+	pos.y = pos.y - 1.1;
+	DisplayIndividualOption(T_VICTORY, pos, 1.1, 4);
+
+	pos.y = pos.y - 1.2;
+	DisplayIndividualOption(T_ACCURACY_TIME, pos, 0.5, 4);
+
+	pos.y = pos.y - 0.6;
+	DisplayIndividualOption(T_ENTER_HERE, pos, 0.5, 4);
+
+	pos.y = pos.y - 0.6;
+	DisplayIndividualOption(T_CONTINUE, pos, 0.5, 4);
+}
+
 
 void DGW::DisplayPauseMenuLeaderboard()
 {
