@@ -65,8 +65,8 @@ void EnemyAI::AIUpdate(const glm::vec3& currentPos)
 		std::cout << "Prev grid pos: " << m_prevGridPos.x << " " << m_prevGridPos.y << std::endl;
 		std::cout << "Grid pos: " << m_gridPos.x << " " << m_gridPos.y << std::endl;
 		std::cout << "GridDest pos: " << m_gridDest.x << " " << m_gridDest.y << std::endl;
-		std::cout << "Curr pos: " << currentPos.x << " " << currentPos.z << std::endl;
-		std::cout << "Direction: " << direction.x << " " << direction.y << "\n\n";
+		std::cout << "Curr pos: " << currentPos.x << " " << currentPos.z << "\n\n";
+		
 	}
 
 	m_gridPos.x = (GLint)currentPos.x;
@@ -77,11 +77,11 @@ void EnemyAI::AIUpdate(const glm::vec3& currentPos)
 
 	if (m_isMoving)
 	{
-		// Destination reached
 		if (isDestinationReached(currentPos))
 		{
 			m_isMoving = false;
 		}
+			
 
 		m_mainGrid[m_prevGridPos.x][m_prevGridPos.y] = Grid::FREE;
 		m_mainGrid[m_gridPos.x][m_gridPos.y] = Grid::ENEMYTHERE;
@@ -96,10 +96,10 @@ bool EnemyAI::isDestinationReached(const glm::vec3& currentPos)
 {
 	glm::vec2 currentPosFloor = glm::vec2(floorf(currentPos.x * 10) / 10, floorf(currentPos.z * 10) / 10);
 
-	return currentPosFloor.x >= (GLfloat)m_gridDest.x + 0.4 &&
-			currentPosFloor.y >= (GLfloat)m_gridDest.y + 0.4 &&
-			currentPosFloor.x <= (GLfloat)m_gridDest.x + 0.6 &&
-			currentPosFloor.y <= (GLfloat)m_gridDest.y + 0.6;
+	return currentPosFloor.x >= (GLfloat)m_gridDest.x + 0.4f &&
+			currentPosFloor.y >= (GLfloat)m_gridDest.y + 0.4f &&
+			currentPosFloor.x <= (GLfloat)m_gridDest.x + 0.6f &&
+			currentPosFloor.y <= (GLfloat)m_gridDest.y + 0.6f;
 }
 
 void EnemyAI::FindNextDest()

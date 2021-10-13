@@ -45,6 +45,7 @@ private:
 
 	BoundingBox m_bBox;
 	glm::vec3 m_position;
+	glm::vec3 m_prevPosition;
 	GLfloat m_moveSpeed;
 	EnemyAI m_ai;
 };

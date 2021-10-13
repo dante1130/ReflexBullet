@@ -1,7 +1,7 @@
 #include "GameManager.h"
 #include <thread>
 
-int noOfSpawn = 10;
+int noOfSpawn = 100;
 bool ActiveGameWorld = false;
 float gameWorldMovementSpeed = 0.06;
 float camRotateSpeed = 1;
