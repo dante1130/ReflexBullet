@@ -16,6 +16,10 @@ void DeleteImageFromMemory()
 
 	if (imageThreading != nullptr)
 	{
+		for (int count = 0; count <= 253; count++)
+		{
+			delete[] imageThreading[count];
+		}
 		delete[] imageThreading;
 	}
 	imageThreading = nullptr;
