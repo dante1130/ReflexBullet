@@ -54,9 +54,8 @@ void Audio::AddSound(const char* soundPath, const char* soundName)
 void Audio::PlaySound(const char* soundName)
 {
 	auto itr = m_sounds.find(soundName);
-	
-	if (itr != m_sounds.end())
-		Mix_PlayChannel(-1, itr->second, 0);
+
+	if (itr != m_sounds.end()) Mix_PlayChannel(-1, itr->second, 0);
 }
 
 void Audio::PlayMusic(const char* musicName)

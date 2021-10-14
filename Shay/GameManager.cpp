@@ -23,6 +23,7 @@ void GM::GameInit(int w, int h)
 	srand(time(0));
 
 	Audio::AddMusic("music/gamefast.wav", "gameplay");
+	Audio::AddSound("music/shooting.wav", "playerShoot");
 	Audio::PlayMusic("gameplay");
 
 	LTGW::CreateTextures();

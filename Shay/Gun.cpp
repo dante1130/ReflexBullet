@@ -65,6 +65,12 @@ GLfloat Gun::GetFiringDelay() const
 	return m_firingDelay;
 }
 
+
+bool Gun::GetIsFiring() const
+{
+	return m_isFiring;
+}
+
 void Gun::SetFaction(Faction faction)
 {
 	m_faction = faction;
@@ -79,3 +85,4 @@ void Gun::SetFiringDelay(GLfloat firingDelay)
 {
 	m_firingDelay = firingDelay;
 }
+

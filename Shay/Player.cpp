@@ -30,6 +30,8 @@ void Player::Shoot()
 					 10);
 
 	m_gun.Shoot(newBullet);
+
+	if(m_gun.GetIsFiring()) Audio::PlaySound("playerShoot");
 }
 
 const GLfloat Player::GetHealth()
