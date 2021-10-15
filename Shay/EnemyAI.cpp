@@ -81,7 +81,6 @@ void EnemyAI::AIUpdate(const glm::vec3& currentPos)
 		{
 			m_isMoving = false;
 		}
-			
 
 		m_mainGrid[m_prevGridPos.x][m_prevGridPos.y] = Grid::FREE;
 		m_mainGrid[m_gridPos.x][m_gridPos.y] = Grid::ENEMYTHERE;
@@ -96,10 +95,11 @@ bool EnemyAI::isDestinationReached(const glm::vec3& currentPos)
 {
 	glm::vec2 currentPosFloor = glm::vec2(floorf(currentPos.x * 10) / 10, floorf(currentPos.z * 10) / 10);
 
-	return currentPosFloor.x >= (GLfloat)m_gridDest.x + 0.4f &&
-			currentPosFloor.y >= (GLfloat)m_gridDest.y + 0.4f &&
-			currentPosFloor.x <= (GLfloat)m_gridDest.x + 0.6f &&
-			currentPosFloor.y <= (GLfloat)m_gridDest.y + 0.6f;
+	glm::vec2 gridDestf = glm::vec2((GLfloat)m_gridDest.x + 0.5f, (GLfloat)m_gridDest.y + 0.5f);
+
+	//std::cout << glm::distance(currentPosFloor, gridDestf) << std::endl;
+
+	return glm::distance(currentPosFloor, gridDestf) == 0;
 }
 
 void EnemyAI::FindNextDest()
@@ -232,5 +232,3 @@ bool EnemyAI::isPlayerInView(const glm::vec3& lookAt)
 	}
 	return false;
 }
-
-

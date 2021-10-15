@@ -11,7 +11,7 @@ Enemy::Enemy()
 }
 
 Enemy::Enemy(glm::vec3 position)
-	: m_position(glm::vec3(position)), m_prevPosition(glm::vec3(position)), m_moveSpeed(0.10f), m_isAlive(true)
+	: m_position(glm::vec3(position)), m_moveSpeed(0.10f), m_isAlive(true)
 {
 	m_ai.AIUpdate(m_position);
 	m_gun = Gun(Faction::ENEMY, 2.5, 2.5);
@@ -35,17 +35,7 @@ void Enemy::Update(GLfloat delta)
 
 		if (m_ai.GetIsMoving())
 		{
-			glm::vec2 gridDest = glm::vec2((GLfloat)m_ai.GetGridDest().x + 0.5, (GLfloat)m_ai.GetGridDest().y + 0.5);
-
-			glm::vec2 direction = glm::normalize(gridDest - glm::vec2(m_prevPosition.x, m_prevPosition.z));
-
-			/*
-			std::cout << "Current pos: " << m_position.x << " " << m_position.z << std::endl;
-			std::cout << "Prev pos: " << m_prevPosition.x << " " << m_prevPosition.z << std::endl;
-			std::cout << "Grid dest: " << gridDest.x << " " << gridDest.y << std::endl;
-			std::cout << "Direction: " << direction.x << " " << direction.y << "\n\n";
-			*/
-			
+			glm::vec2 direction = m_ai.GetGridDest() - m_ai.GetPrevGridPos();
 
 			glm::vec3 change = glm::vec3(direction.x * delta, 0, direction.y * delta);
 
@@ -53,10 +43,6 @@ void Enemy::Update(GLfloat delta)
 
 			m_bBox.max += change;
 			m_bBox.min += change;
-		}
-		else
-		{
-			m_prevPosition = m_position;
 		}
 	}
 	
