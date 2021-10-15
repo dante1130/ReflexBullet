@@ -13,6 +13,7 @@ Enemy::Enemy()
 Enemy::Enemy(glm::vec3 position)
 	: m_position(glm::vec3(position)), m_moveSpeed(0.10f), m_isAlive(true), m_ai()
 {
+	std::cout << position.x << " " << position.z << std::endl;
 	m_ai.AIUpdate(position);
 	m_gun = Gun(Faction::ENEMY, 2.5, 2.5);
 	m_health = 10;

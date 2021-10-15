@@ -184,7 +184,7 @@ const glm::ivec2& EnemyAI::GetRandFree()
 			if (m_mainGrid[i][j] == Grid::FREE) 
 				freePositions.push_back(glm::ivec2(i, j));
 			
-	return freePositions[rand() % freePositions.size()];
+	return freePositions[rand() % freePositions.size() - 1];
 }
 
 const glm::ivec2& EnemyAI::GetGridDest() const
