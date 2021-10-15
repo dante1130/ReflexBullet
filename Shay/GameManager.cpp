@@ -998,6 +998,7 @@ void GM::GameReshape(int w, int h)
 	glViewport(0, 0, w, h);
 	gluPerspective(90, ratio, 0.001, zFar);
 	glMatrixMode(GL_MODELVIEW);
+	elapsedTime = glutGet(GLUT_ELAPSED_TIME);
 }
 
 void GM::PausedFloatingPosition()
