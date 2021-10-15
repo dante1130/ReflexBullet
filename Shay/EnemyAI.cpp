@@ -93,13 +93,13 @@ void EnemyAI::AIUpdate(const glm::vec3& currentPos)
 
 bool EnemyAI::isDestinationReached(const glm::vec3& currentPos)
 {
-	glm::vec2 currentPosFloor = glm::vec2(floorf(currentPos.x * 10) / 10, floorf(currentPos.z * 10) / 10);
+	glm::vec2 currentPosFloor = glm::vec2(roundf(currentPos.x * 10) / 10, roundf(currentPos.z * 10) / 10);
 
 	glm::vec2 gridDestf = glm::vec2((GLfloat)m_gridDest.x + 0.5f, (GLfloat)m_gridDest.y + 0.5f);
 
-	GLfloat distance = ceilf(glm::distance(currentPosFloor, gridDestf) * 10) / 10;
+	GLfloat distance = roundf(glm::distance(currentPosFloor, gridDestf) * 10) / 10;
 
-	std::cout << distance << std::endl;
+	//std::cout << distance << std::endl;
 
 	return distance == 0;
 }
