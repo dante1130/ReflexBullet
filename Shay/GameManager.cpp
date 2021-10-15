@@ -1051,14 +1051,14 @@ void GM::PausedFloatingPosition()
 
 void GM::RestartGame()
 {
+	robots.enemies.clear();
+	robots.Spawn(noOfSpawn);
+
 	GLfloat health = 100;
 	player.ResetFiringDelay();
 	player.ResetBulletSpeed();
 	player.ResetMoveSpeed();
 	player.SetHealth(health);
-
-	robots.enemies.clear();
-	robots.Spawn(noOfSpawn);
 
 	UnpauseGame();
 
