@@ -1,6 +1,6 @@
 #include "GameManager.h"
 
-int noOfSpawn = 100;
+int noOfSpawn = 10;
 bool ActiveGameWorld = false;
 float gameWorldMovementSpeed = 0.06;
 float camRotateSpeed = 1;
@@ -757,7 +757,11 @@ void GM::GameMouseClick(int button, int state, int x, int y)
 {
 	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && PMV.m_PausedMenuChoosen == 0)
 	{
-		player.Shoot();
+		if (!player.GetGun().GetIsFiring())
+		{
+			Audio::PlaySound("playerShoot");
+			player.Shoot();
+		}
 	}
 	else if (PMV.m_PausedMenuChoosen != 0)
 	{
