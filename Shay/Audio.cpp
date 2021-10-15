@@ -66,6 +66,14 @@ void Audio::PlayMusic(const char* musicName)
 		Mix_PlayMusic(itr->second, -1);
 }
 
+void Audio::PlayMusicFadeIn(const char* musicName)
+{
+	auto itr = m_music.find(musicName);
+
+	if (itr != m_music.end())
+		Mix_FadeInMusic(itr->second, -1, 2000);
+}
+
 void Audio::SetSfxVolume(int volume)
 {
 	if (volume > 100)

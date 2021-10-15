@@ -97,9 +97,11 @@ bool EnemyAI::isDestinationReached(const glm::vec3& currentPos)
 
 	glm::vec2 gridDestf = glm::vec2((GLfloat)m_gridDest.x + 0.5f, (GLfloat)m_gridDest.y + 0.5f);
 
-	//std::cout << glm::distance(currentPosFloor, gridDestf) << std::endl;
+	GLfloat distance = ceilf(glm::distance(currentPosFloor, gridDestf) * 10) / 10;
 
-	return glm::distance(currentPosFloor, gridDestf) == 0;
+	std::cout << distance << std::endl;
+
+	return distance == 0;
 }
 
 void EnemyAI::FindNextDest()

@@ -71,6 +71,8 @@ public:
 	*/
 	static void PlayMusic(const char* musicName);
 
+	static void PlayMusicFadeIn(const char* musicName);
+
 	static void SetSfxVolume(int volume);
 
 	static void SetMusicVolume(int volume);
