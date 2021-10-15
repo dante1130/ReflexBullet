@@ -11,6 +11,7 @@
 #include "Leaderboards.h"
 #include "Enemy.h"
 #include "BossArea.h"
+#include <thread>
 #include <ctime>
 #include <GL/glut.h>
 

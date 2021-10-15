@@ -1,6 +1,5 @@
 #include "EnemyAI.h"
-#include <iostream>
-#include <glm\geometric.hpp>
+
 
 std::array<std::array<Grid, 26>, 20> EnemyAI::m_mainGrid;	
 glm::ivec2 EnemyAI::m_playerPos;
@@ -183,8 +182,10 @@ const glm::ivec2& EnemyAI::GetRandFree()
 		for (int j = 0; j < m_mainGrid[i].size(); ++j)
 			if (m_mainGrid[i][j] == Grid::FREE) 
 				freePositions.push_back(glm::ivec2(i, j));
-			
-	return freePositions[rand() % freePositions.size() - 1];
+
+	int index = 1 + rand() % (freePositions.size() - 1);
+
+	return freePositions[index];
 }
 
 const glm::ivec2& EnemyAI::GetGridDest() const

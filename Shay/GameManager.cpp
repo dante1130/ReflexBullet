@@ -1,5 +1,4 @@
 #include "GameManager.h"
-#include <thread>
 
 int noOfSpawn = 100;
 bool ActiveGameWorld = false;

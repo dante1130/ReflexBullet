@@ -7,6 +7,8 @@
 #include <glm/vec3.hpp>
 #include "Grid.h"
 #include "math.h"
+#include <iostream>
+#include <glm\geometric.hpp>
 #include <GL/glut.h>
 
 class EnemyAI
