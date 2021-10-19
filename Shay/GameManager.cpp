@@ -1,6 +1,8 @@
 #include "GameManager.h"
 
-int noOfSpawn = 10;
+const int startingSpawnCount = 10;
+
+int noOfSpawn = startingSpawnCount;
 int waveLevel = 1;
 
 bool ActiveGameWorld = false;
@@ -1103,16 +1105,21 @@ void GM::RestartGame()
 		bossOn = false;
 	}
 
+	noOfSpawn = startingSpawnCount;
+	waveLevel = 1;
+
 	robots.enemies.clear();
 	robots.Spawn(noOfSpawn);
 
 	player.SetHealth(100);
+
 	player.ResetFiringDelay();
 	player.ResetBulletSpeed();
 	player.ResetMoveSpeed();
 	player.ResetBullets();
 	player.ResetHealthDecay();
 	player.ResetSkillPoints();
+	player.ResetUpgradeOptions();
 
 	UnpauseGame();
 

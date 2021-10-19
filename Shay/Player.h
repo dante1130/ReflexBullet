@@ -45,6 +45,7 @@ public:
 	void ResetSkillPoints();
 	void ResetHealthDecay();
 	void ResetBullets();
+	void ResetUpgradeOptions();
 
 	void SpendSkillPoint();
 

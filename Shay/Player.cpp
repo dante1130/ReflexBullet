@@ -189,6 +189,12 @@ void Player::ResetBullets()
 	m_bulletShots = 0;
 }
 
+void Player::ResetUpgradeOptions()
+{
+	for (int i = 0; i < 4; ++i)
+		m_upgrade_options[i] = 0;
+}
+
 void Player::SpendSkillPoint()
 {
 	m_skillPoints--;
