@@ -269,7 +269,7 @@ namespace DGW
 	* @param	No param
 	* @return	Void
 	*/
-	void DisplayVicotryScreen();
+	void DisplayVictoryScreen();
 
 	/**
 	* @brief	Displays different animations

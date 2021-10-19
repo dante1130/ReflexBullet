@@ -598,7 +598,7 @@ void DGW::DisplayPauseMenuOptions()
 	}
 	else if (PMV.m_PausedMenuChoosen == 7)
 	{
-		DisplayVicotryScreen();
+		DisplayVictoryScreen();
 	}
 	
 	//Background
@@ -816,7 +816,7 @@ void DGW::DisplayDefeatScreen()
 	DisplayIndividualOption(T_RETURN, pos, 0.5, 4);
 }
 
-void DGW::DisplayVicotryScreen()
+void DGW::DisplayVictoryScreen()
 {
 	glm::vec3 pos = { 0.135, 6.5, 15.95 };
 

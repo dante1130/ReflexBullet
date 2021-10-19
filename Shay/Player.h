@@ -3,6 +3,7 @@
 
 #include <glm/vec3.hpp>
 #include <glm\geometric.hpp>
+#include "BoundingSphere.h"
 #include "BaseCharacter.h"
 #include "camera.h"
 
@@ -25,6 +26,7 @@ public:
 	GLfloat GetHealthDecay();
 	const bool GetLazerHit() const;
 	GLfloat GetAccuracy() const;
+	const BoundingSphere& GetBoundingSphere() const;
 
 	// Setters (for upgrade system)
 	void DecreaseFiringDelay(GLfloat added_firing_speed);
@@ -59,6 +61,8 @@ private:
 	const GLfloat max_health_decay = 0.05;
 
 	Camera m_camera;
+
+	BoundingSphere m_bSphere;
 	
 	GLfloat m_healthDecay;
 	GLfloat m_firingSpeed;

@@ -96,6 +96,8 @@ namespace GM
 	*/
 	void GameFixedUpdateLoop(int val);
 
+	void GameFixedUpdates(float delta);
+
 	/**
 	* @brief	A non fixed update loop
 	* @param	No param

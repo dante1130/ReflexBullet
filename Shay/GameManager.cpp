@@ -334,8 +334,8 @@ void GM::EnemyBulletCollisionResolution()
 				enemy.GetGun().RemoveBullet(i);
 			}
 			// Collision with player
-			else if (Collision::Collide(player.GetCamera().GetPosition(),
-				enemyBullet.GetBoundingSphere()))
+			else if (Collision::Collide(player.GetBoundingSphere(),
+										enemyBullet.GetBoundingSphere()))
 			{
 				player.SetHealth(player.GetHealth() - enemyBullet.GetDamage());
 				enemy.GetGun().RemoveBullet(i);
@@ -358,26 +358,6 @@ void GM::EnemyBulletCollisionResolution()
 						break;
 					}
 				}
-
-				// BUG FOR NOW
-				/*
-				if (!isPlayerBulletCollide)
-				{
-					// Collision with robots' bullets
-					for (int j = 1; j < enemy.GetGun().BulletCount(); ++j)
-					{
-						const Bullet& otherEnemyBullet = enemy.GetGun().BulletAt(j);
-
-						if (Collision::Collide(enemyBullet.GetBoundingSphere(),
-											   otherEnemyBullet.GetBoundingSphere()))
-						{
-							enemy.GetGun().RemoveBullet(i);
-							enemy.GetGun().RemoveBullet(j);
-							break;
-						}
-					}
-				}
-				*/
 			}
 		}
 	}
@@ -391,7 +371,7 @@ void GM::BossBulletCollisionResolution()
 			boss.GetGun().BulletAt(i).GetBoundingSphere().radius - 0.20);
 		if (collision.Collide(bulletBSphere))
 			boss.GetGun().RemoveBullet(i);
-		if (Collision::Collide(player.GetCamera().GetPosition(), boss.GetGun().BulletAt(i).GetBoundingSphere()))
+		if (Collision::Collide(player.GetBoundingSphere(), boss.GetGun().BulletAt(i).GetBoundingSphere()))
 		{
 			player.SetHealth(player.GetHealth() - boss.GetGun().BulletAt(i).GetDamage());
 			boss.GetGun().RemoveBullet(i);
@@ -415,30 +395,54 @@ void GM::GameFixedUpdateLoop(int val)
 	{
 		gameRunTime = gameRunTime + newElapsedTime - lastUnpausedFrame;
 		lastUnpausedFrame = newElapsedTime;
-		player.Update(delta);
 
-		player.GetCamera().KeyboardMovement();
-
-		Enemy::SetPlayerPos(player.GetCamera().GetPosition());
-		for (int i = 0; i < robots.enemies.size(); ++i)
-		{
-			robots.enemies[i].Update(delta);
-
-			if (robots.enemies[i].GetIsAlive())
-			{
-				robots.enemies[i].Shoot();
-			}
-			else if (robots.enemies[i].GetGun().BulletCount() == 0)
-			{
-				robots.enemies.erase(robots.enemies.begin() + i);
-			}
-		}
-
-		if (bossOn)
-			boss.Update(delta);
+		GameFixedUpdates(delta);
 	}
 
 	GameCollisionResolution();
+}
+
+void GM::GameFixedUpdates(float delta)
+{
+	// Player
+	player.Update(delta);
+	player.GetCamera().KeyboardMovement();
+
+	// Enemies
+	Enemy::SetPlayerPos(player.GetCamera().GetPosition());
+
+	for (int i = 0; i < robots.enemies.size(); ++i)
+	{
+		robots.enemies[i].Update(delta);
+
+		if (robots.enemies[i].GetIsAlive())
+		{
+			robots.enemies[i].Shoot();
+		}
+		else if (robots.enemies[i].GetGun().BulletCount() == 0)
+		{
+			robots.enemies.erase(robots.enemies.begin() + i);
+		}
+	}
+
+	// Boss
+	if (bossOn)
+		boss.Update(delta);
+
+	// Display defeat screen
+	if (player.GetHealth() == 0)
+	{
+		PMV.m_PausedMenuChoosen = 6;
+		PauseGame();
+	}
+	// Display victory screen
+	else if (robots.isAllDead())
+	{
+		robots.enemies.clear();
+
+		PMV.m_PausedMenuChoosen = 7;
+		PauseGame();
+	}
 }
 
 void GM::GameStartUp()
@@ -1063,6 +1067,7 @@ void GM::RestartGame()
 	player.ResetFiringDelay();
 	player.ResetBulletSpeed();
 	player.ResetMoveSpeed();
+	player.ResetBullets();
 	player.SetHealth(health);
 
 	UnpauseGame();
@@ -1076,7 +1081,5 @@ void GM::RestartGame()
 
 	player.GetCamera().SetCameraLocation(0.5, playerHeight, 0.5);
 	glm::vec3 cannotBindToTemporaryofTypeVec = { -1, 0, 0 };
-	player.GetCamera().SetCameraLookAt(cannotBindToTemporaryofTypeVec); //Florian: My laptop does not like this line "non-const lvalue reference to type
-															 // 'vec<...>' cannot bind to temporary of type 'vec<...>'"
-
+	player.GetCamera().SetCameraLookAt(cannotBindToTemporaryofTypeVec);
 }
