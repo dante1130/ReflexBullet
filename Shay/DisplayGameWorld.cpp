@@ -586,7 +586,7 @@ void DGW::DisplayPauseMenuOptions()
 		temp = temp.substr(0, 7) + " seconds";
 		RenderBitMapString(GLUT_BITMAP_HELVETICA_18, temp);
 
-		temp = "N/A";
+		temp = std::to_string(player.GetAccuracy());
 		temp = temp.substr(0, 5) + "%";
 		glRasterPos3f(0.2, pos.y - 0.25, 14.4);
 		RenderBitMapString(GLUT_BITMAP_HELVETICA_18, temp);
@@ -843,7 +843,7 @@ void DGW::DisplayVicotryScreen()
 	temp = temp.substr(0, 7) + " seconds";
 	RenderBitMapString(GLUT_BITMAP_HELVETICA_18, temp);
 
-	temp = "N/A";
+	temp = std::to_string(player.GetAccuracy());
 	temp = temp.substr(0, 5) + "%";
 	glRasterPos3f(0.2, pos.y - 0.25, 14.4);
 	RenderBitMapString(GLUT_BITMAP_HELVETICA_18, temp);

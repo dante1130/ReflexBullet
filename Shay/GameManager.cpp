@@ -306,6 +306,7 @@ void GM::PlayerBulletCollisionResolution()
 			if (Collision::Collide(robots.enemies[j].GetBBox(),
 				playerBullet.GetBoundingSphere()))
 			{
+				player.IncrementBulletHits();
 				player.SetHealth(player.GetHealth() + playerBullet.GetDamage());
 				player.GetGun().RemoveBullet(i);
 				robots.enemies[j].SetHealth(robots.enemies[j].GetHealth() - playerBullet.GetDamage());
@@ -760,6 +761,7 @@ void GM::GameMouseClick(int button, int state, int x, int y)
 		if (!player.GetGun().GetIsFiring())
 		{
 			Audio::PlaySound("playerShoot");
+			player.IncrementBulletShots();
 			player.Shoot();
 		}
 	}

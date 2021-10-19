@@ -24,6 +24,7 @@ public:
 	int GetUpgradeOption(int option);
 	GLfloat GetHealthDecay();
 	const bool GetLazerHit() const;
+	GLfloat GetAccuracy() const;
 
 	// Setters (for upgrade system)
 	void DecreaseFiringDelay(GLfloat added_firing_speed);
@@ -33,12 +34,15 @@ public:
 	void AddSkillPoints(int added_skill_point);
 	void SetLazerHit(const bool& hit);
 	
-
+	void IncrementBulletHits();
+	void IncrementBulletShots();
+	
 	void ResetFiringDelay();
 	void ResetBulletSpeed();
 	void ResetMoveSpeed();
 	void ResetSkillPoints();
 	void ResetHealthDecay();
+	void ResetBullets();
 
 	void SpendSkillPoint();
 
@@ -66,6 +70,9 @@ private:
 	int m_upgrade_options[4] = { 0, 0, 0, 0 }; //Shows how many points are invested into each option
 
 	glm::vec3 m_bulletOffsetScale;
+
+	GLint m_bulletShots;
+	GLint m_bulletHits;
 
 	// Audio audio
 };

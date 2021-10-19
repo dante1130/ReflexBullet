@@ -2,7 +2,7 @@
 
 Player::Player()
 	: m_healthDecay(start_health_decay), m_firingSpeed(start_firing_speed), m_skillPoints(8), m_bulletOffsetScale(0.5f),
-		m_bullet_speed(start_bullet_speed), m_move_speed(start_move_speed) //for testing, player starts with 8 skill points for upgrade buy
+		m_bullet_speed(start_bullet_speed), m_move_speed(start_move_speed), m_bulletShots(0), m_bulletHits(0) //for testing, player starts with 8 skill points for upgrade buy
 {
 	m_gun = Gun(Faction::PLAYER, start_bullet_speed, m_firingSpeed);
 	m_health = start_health;
@@ -85,6 +85,13 @@ const bool Player::GetLazerHit() const
 	return m_lazer_hit;
 }
 
+GLfloat Player::GetAccuracy() const 
+{
+	GLfloat accuracy = (m_bulletShots == 0) ? 100.00f : ((GLfloat)m_bulletHits / m_bulletShots) * 100;
+
+	return accuracy;
+}
+
 void Player::DecreaseFiringDelay(GLfloat added_firing_speed)
 {
 	if (m_gun.GetFiringDelay() > max_firing_speed && m_gun.GetFiringDelay() <= start_firing_speed)
@@ -140,6 +147,16 @@ void Player::AddMoveSpeed(GLfloat added_move_speed)
 	}
 }
 
+void Player::IncrementBulletHits()
+{
+	++m_bulletHits;
+}
+
+void Player::IncrementBulletShots()
+{
+	++m_bulletShots;
+}
+
 void Player::ResetMoveSpeed()
 {
 	m_move_speed = start_move_speed;
@@ -154,6 +171,15 @@ void Player::ResetHealthDecay()
 void Player::ResetSkillPoints()
 {
 	m_skillPoints = 0;
+}
+
+void Player::ResetBullets()
+{
+	for (int i = 0; i < m_gun.BulletCount(); ++i)
+		m_gun.RemoveBullet(i);
+
+	m_bulletHits = 0;
+	m_bulletShots = 0;
 }
 
 void Player::SpendSkillPoint()
