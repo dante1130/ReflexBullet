@@ -1,7 +1,7 @@
 #include "Player.h"
 
 Player::Player()
-	: m_bSphere(glm::vec3(0), 0.10), m_healthDecay(start_health_decay), m_firingSpeed(start_firing_speed), m_skillPoints(8), m_bulletOffsetScale(0.5f),
+	: m_bSphere(glm::vec3(0), 0.10), m_healthDecay(start_health_decay), m_firingSpeed(start_firing_speed), m_skillPoints(0), m_bulletOffsetScale(0.5f),
 		m_bullet_speed(start_bullet_speed), m_move_speed(start_move_speed), m_bulletShots(0), m_bulletHits(0) //for testing, player starts with 8 skill points for upgrade buy
 {
 	m_gun = Gun(Faction::PLAYER, start_bullet_speed, m_firingSpeed);
