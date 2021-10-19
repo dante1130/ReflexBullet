@@ -18,6 +18,7 @@ bool wireFrame = false;
 bool performanceMetric = true;
 bool visibleShelves = true;
 bool bossOn = false;
+bool displayMap = true;
 
 PauseMenuValues PMV;
 GLfloat gameRunTime = 0;
@@ -42,9 +43,11 @@ void DGW::DisplayGameWorldMasterFunction()
 	glPopMatrix();
 
 	if (performanceMetric) DisplayPerformanceMetrics();
+	if (wireFrame) EnemyAI::DisplayWireframe();
+	if (displayMap) EnemyAI::DisplayMap();
 	if (visibleShelves) DisplayShelves();
 	if (bossOn && boss.GetHealth() > 0) BossInit(player);
-	if (wireFrame) EnemyAI::DisplayWireframe();
+
 
 	PlayerUI.DrawHUD(player.GetHealth(), player.GetStartHealth());
 
@@ -602,6 +605,7 @@ void DGW::DisplayPauseMenuOptions()
 	}
 	
 	//Background
+	glPushAttrib(GL_CURRENT_BIT);
 	glColor3f(0, 0, 0);
 	glBegin(GL_POLYGON);
 	glVertex3f(0.125, 2.5, 10);
@@ -609,7 +613,8 @@ void DGW::DisplayPauseMenuOptions()
 	glVertex3f(0.125, 6.5, 16);
 	glVertex3f(0.125, 6.5, 10);
 	glEnd();
-	glColor3f(1, 1, 1);
+	glPopAttrib();
+
 	
 	DisplayPauseMenuLeaderboard();
 

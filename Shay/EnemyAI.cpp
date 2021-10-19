@@ -126,6 +126,7 @@ void EnemyAI::FindNextDest()
 
 void EnemyAI::DisplayWireframe()
 {
+	glDisable(GL_LIGHTING);
 	for (GLfloat i = 0.5f; i < m_mainGrid.size(); ++i)
 	{
 		for (GLfloat j = 0.5f; j < m_mainGrid[i].size(); ++j)
@@ -167,6 +168,71 @@ void EnemyAI::DisplayWireframe()
 			glPopAttrib();
 		}
 	}
+	glEnable(GL_LIGHTING);
+}
+
+void EnemyAI::DisplayMap()
+{
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+	gluOrtho2D(0, 1280, 0, 720);
+
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glLoadIdentity();
+
+	glDisable(GL_LIGHTING);
+
+	for (int i = 0; i < m_mainGrid.size(); ++i)
+	{
+		for (int j = 0; j < m_mainGrid[i].size(); ++j)
+		{
+			glPushAttrib(GL_CURRENT_BIT);
+
+			switch (m_mainGrid[i][j])
+			{
+			case Grid::FREE:
+			case Grid::ENEMYGOING:
+				glColor3f(0, 1, 0);
+				break;
+
+			case Grid::FULL:
+			case Grid::HALF:
+				glColor3f(0, 0, 1);
+				break;
+
+			case Grid::ENEMYTHERE:
+				glColor3f(1, 0, 0);
+				break;
+
+			case Grid::PLAYERTHERE:
+				glColor3f(1, 1, 0);
+				break;
+			}
+
+			glPushMatrix();
+			glTranslatef(1200, 550, 0);
+			glScalef(5, 5, 0);
+			glRotatef(90, 0, 0, 1);
+			glRotatef(180, 1, 1, 0);
+			glBegin(GL_POLYGON);
+			glVertex2f(i, j);
+			glVertex2f(i + 1, j);
+			glVertex2f(i + 1, j + 1);
+			glVertex2f(i, j + 1);
+			glEnd();
+			glPopMatrix();
+
+			glPopAttrib();
+		}
+	}
+
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+	glPopMatrix();
+	glEnable(GL_LIGHTING);
 }
 
 bool EnemyAI::GetIsMoving() const

@@ -579,6 +579,9 @@ void GM::GameKeys(unsigned char key, int x, int y)
 	case 'I':
 		performanceMetric = !performanceMetric;
 		break;
+	case 9: // Tab
+		displayMap = !displayMap;
+		break;
 	case 49: // 1
 		player.AddBulletSpeed(1);
 		break;

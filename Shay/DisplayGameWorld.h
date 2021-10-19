@@ -89,6 +89,7 @@ extern bool wireFrame;
 extern bool performanceMetric;
 extern bool visibleShelves;
 extern bool bossOn;
+extern bool displayMap;
 
 extern PauseMenuValues PMV;
 extern GLfloat gameRunTime;

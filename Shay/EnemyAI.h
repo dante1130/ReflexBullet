@@ -24,6 +24,8 @@ public:
 
 	static void DisplayWireframe();
 
+	static void DisplayMap();
+
 	static const glm::ivec2& GetRandFree();
 
 	bool GetIsMoving() const;
