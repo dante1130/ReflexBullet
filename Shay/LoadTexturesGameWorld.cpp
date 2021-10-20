@@ -69,6 +69,9 @@ void LTGW::CreateTextures()
 	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/pnary.raw", 128, 96);
 	tpGW.CreateTexture(S_BOARD_3, GWimage, 128, 96);
 
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/xylophone.raw", 512, 512);
+	tpGW.CreateTexture(S_XYLOPHONE, GWimage, 512, 512);
+
 	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/boss.raw", 256, 256);
 	tpGW.CreateTexture(BOSS, GWimage, 256, 256);
 

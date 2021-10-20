@@ -107,6 +107,7 @@ void GM::LoadGameObjectFiles()
 	LoadGameShelfObject("data/object/gameObjects/s_plane", WOOD, 4);
 	LoadGameShelfObject("data/object/gameObjects/s_car", WOOD, 3);
 	LoadGameShelfObject("data/object/gameObjects/s_truck", WOOD, 4);
+	LoadGameShelfObject("data/object/gameObjects/xylophone", S_XYLOPHONE, 1);
 
 
 
