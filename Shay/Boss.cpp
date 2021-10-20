@@ -144,12 +144,15 @@ void Boss::AnimateSpecial(GLint delta)
 		m_lazerbeam[0].x -= 15 * time;
 		m_lazerbeam[1].x += 15 * time;
 	}
-	glBindTexture(GL_TEXTURE_2D, tpGW.GetTexture(HEALTH));
-	glColor3f(1.0, 0.824, 0.0);
+
 	glBegin(GL_QUADS);
+		glTexCoord2f(0, 1);
 		glVertex2f(m_lazerbeam[1].x, m_lazerbeam[1].y);
+		glTexCoord2f(1, 1);
 		glVertex2f(m_lazerbeam[0].x, m_lazerbeam[1].y);
+		glTexCoord2f(1, 0);
 		glVertex2f(m_lazerbeam[0].x, m_lazerbeam[0].y);
+		glTexCoord2f(0, 0);
 		glVertex2f(m_lazerbeam[1].x, m_lazerbeam[0].y);
 	glEnd();
 
@@ -158,28 +161,16 @@ void Boss::AnimateSpecial(GLint delta)
 bool Boss::LazerCollision(Player& player)
 {
 	player_Pos = player.GetCamera().GetPosition(); //stores the players position
-	m_gradient = tan((m_rotation.y - 90) * (PI / 180)); //calculate the gradient of lazerbeam
-	GLfloat player_grad = (player_Pos.x - m_position.x) / (player_Pos.z - m_position.z); //calculate players gradient
-
-	std::cout << "Player gradient: " << player_grad << "   Boss gradient: " << m_gradient <<  "     Player location: x: " << player_Pos.x - m_position.x << "  z: " << player_Pos.z - m_position.z << std::endl;
-
-	if (m_gradient < 0.005 && m_gradient > -0.005) {
-		if (player_Pos.z - m_position.z < 0.3 && player_Pos.z - m_position.z > -0.3)
-			return true;
-	}
-
-	if (m_gradient > 500 || m_gradient < -500) {
-		if (player_Pos.x - m_position.x < 0.3 && player_Pos.x - m_position.x > -0.3)
-			return true;
-	}
-
-	//difference between gradients
-	GLfloat sum = player_grad - m_gradient;
-
-	//if the gradients are the same with 0.01+- (with relation to gradient size) then detect collision
-	if ((sum > (-0.01 * std::abs(m_gradient))) && (sum < (0.01 * std::abs(m_gradient))))
+	GLfloat ac = sqrt(pow(player_Pos.x - m_position.x + radius, 2) + pow(player_Pos.z - m_position.z, 2)); // length of side ac (distance from top to player)
+	GLfloat bc = sqrt(pow(player_Pos.x - m_position.x, 2) + pow(player_Pos.z - m_position.z, 2)); //length of side bc (distance from boss to player)
+	GLfloat playerAngle = 180 - acos((radius * radius + bc * bc - ac * ac) / (2 * radius * bc)) * 180.0 / PI; //angle between abc
+	if (player_Pos.z - m_position.z > 0)
+		playerAngle = (180 - playerAngle) + 180;
+	GLfloat sum = m_rotation.y - playerAngle; //difference between the angles
+	GLfloat diff = 90 - atan(2 * bc / 0.5) * 180.0 / PI; //how much range between being hit by the laser
+	
+	if ((sum < diff && sum > -diff) || (sum + 180 < diff && sum + 180 > -diff))
 		return true;
 	else
 		return false;
-
 }

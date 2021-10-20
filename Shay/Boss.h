@@ -5,7 +5,6 @@
 #include <glm/glm.hpp>
 
 #include "BaseCharacter.h"
-#include "definesGW.h"
 #include "LoadTexturesGameWorld.h"
 #include "Player.h"
 #include "BoundingSphere.h"

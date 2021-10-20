@@ -44,7 +44,7 @@ void DrawBoss()
 		if (boss.GetPhase() == 3) 
 		{
 			glPushMatrix();
-			tp.GetTexture(HEALTH);
+			glBindTexture(GL_TEXTURE_2D, tpGW.GetTexture(B_LAZER));
 			boss.AnimateSpecial(timer - timePhaseStart);
 			glPopMatrix();
 		}
@@ -117,7 +117,6 @@ void CollisionChecks(Player& player)
 		}
 	}
 }
-
 
 int PsudeoNumGen(int seed, int max, int rand)
 {

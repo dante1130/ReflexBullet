@@ -1,6 +1,6 @@
 #include "GameManager.h"
 
-const int startingSpawnCount = 10;
+const int startingSpawnCount = 1;
 
 int noOfSpawn = startingSpawnCount;
 int waveLevel = 1;

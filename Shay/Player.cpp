@@ -31,7 +31,7 @@ void Player::Update(GLfloat delta)
 	if (m_health > start_health)
 		m_health = start_health;
 	if (m_lazer_hit)
-		m_health -= 5;
+		m_health -= m_healthDecay * 5;
 }
 
 void Player::Shoot()

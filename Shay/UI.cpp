@@ -113,7 +113,6 @@ void UI::CalculateBar(GLfloat health, GLfloat startHealth)
 			barHeight = (h - barOffsetY) - (h - (barOffsetY * 2)) * (1 - (health / startHealth));
 			addon[0] = barHeight - barOffsetY;
 		}
-		std::cout << "Bar height: " << barHeight << "   Offset: " << tempOffset << std::endl;
 	}
 }
 

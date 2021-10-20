@@ -4,7 +4,7 @@
 #include "Object.h"
 #include "Boss.h"
 #include "UI.h"
-#include "definesGW.h"
+#include "LoadTexturesGameWorld.h"
 #include "Player.h"
 #include "collision.h"
 
