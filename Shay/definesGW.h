@@ -81,7 +81,10 @@ constexpr auto T_VICTORY = 0;
 constexpr auto T_CONTINUE				= 63;
 constexpr auto T_ENTER_HERE = 0;
 
-//NEXT 64
+constexpr auto DUCK_GUN = 64;
+constexpr auto S_XYLOPHONE = 65;
+
+//NEXT 66
 constexpr auto GWTEXTURE_END = 70;
 
 #endif

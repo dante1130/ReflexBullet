@@ -1,18 +1,28 @@
 #include "Player.h"
 
 Player::Player()
-	: m_bSphere(glm::vec3(0), 0.10), m_healthDecay(start_health_decay), m_firingSpeed(start_firing_speed), m_skillPoints(8), m_bulletOffsetScale(0.5f),
-		m_bullet_speed(start_bullet_speed), m_move_speed(start_move_speed), m_bulletShots(0), m_bulletHits(0) //for testing, player starts with 8 skill points for upgrade buy
+	: m_prevPos(m_camera.GetPosition()), m_healthDecay(start_health_decay), 
+	m_firingSpeed(start_firing_speed), m_skillPoints(0), 
+	m_bulletOffsetScale(0.5f), m_bullet_speed(start_bullet_speed), 
+	m_move_speed(start_move_speed), m_bulletShots(0), m_bulletHits(0)
 {
 	m_gun = Gun(Faction::PLAYER, start_bullet_speed, m_firingSpeed);
 	m_health = start_health;
 	m_lazer_hit = false;
 	m_camera.SetMoveSpeed(start_move_speed);
+	m_bBox = BoundingBox(glm::vec3(m_camera.GetPosition().x + 0.25, m_camera.GetPosition().y + 0.25, m_camera.GetPosition().z + 0.25),
+						 glm::vec3(m_camera.GetPosition().x - 0.25, 0, m_camera.GetPosition().z - 0.25));
+						 
 }
 
 void Player::Update(GLfloat delta)
 {
-	m_bSphere.center = m_camera.GetPosition();
+	glm::vec3 change = m_camera.GetPosition() - m_prevPos;
+
+	m_bBox.min += change;
+	m_bBox.max += change;
+
+	m_prevPos = m_camera.GetPosition();
 
 	m_gun.Update(delta);
 
@@ -21,7 +31,7 @@ void Player::Update(GLfloat delta)
 	if (m_health > start_health)
 		m_health = start_health;
 	if (m_lazer_hit)
-		m_health -= m_healthDecay * 100;
+		m_health -= 5;
 }
 
 void Player::Shoot()
@@ -94,9 +104,9 @@ GLfloat Player::GetAccuracy() const
 	return accuracy;
 }
 
-const BoundingSphere& Player::GetBoundingSphere() const
+const BoundingBox& Player::GetBoundingBox() const
 {
-	return m_bSphere;
+	return m_bBox;
 }
 
 void Player::DecreaseFiringDelay(GLfloat added_firing_speed)
@@ -187,6 +197,12 @@ void Player::ResetBullets()
 
 	m_bulletHits = 0;
 	m_bulletShots = 0;
+}
+
+void Player::ResetUpgradeOptions()
+{
+	for (int i = 0; i < 4; ++i)
+		m_upgrade_options[i] = 0;
 }
 
 void Player::SpendSkillPoint()

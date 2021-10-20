@@ -100,7 +100,7 @@ void UI::CalculateBar(GLfloat health, GLfloat startHealth)
 	}
 
 	
-	if (barHeight > tempOffset)
+	if (health > 0)
 	{
 		if (orientation) //horizontal
 		{
@@ -111,9 +111,9 @@ void UI::CalculateBar(GLfloat health, GLfloat startHealth)
 		else //vertical
 		{
 			barHeight = (h - barOffsetY) - (h - (barOffsetY * 2)) * (1 - (health / startHealth));
-	
 			addon[0] = barHeight - barOffsetY;
 		}
+		std::cout << "Bar height: " << barHeight << "   Offset: " << tempOffset << std::endl;
 	}
 }
 

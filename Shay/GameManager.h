@@ -237,6 +237,7 @@ namespace GM
 	*/
 	void RestartGame();
 
+	void ProgressGame();
 }
 
 #endif

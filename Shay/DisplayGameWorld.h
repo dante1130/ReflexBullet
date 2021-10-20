@@ -52,6 +52,7 @@ struct GameWorldObjects
 	Object3D Speaker;
 	Object3D ShelfEnd;
 	Object3D Counter;
+	Object3D DuckGun;
 
 	std::vector<ShelfObjectsOBJ> Shelf_Objects;
 
@@ -89,6 +90,7 @@ extern bool wireFrame;
 extern bool performanceMetric;
 extern bool visibleShelves;
 extern bool bossOn;
+extern bool displayMap;
 
 extern PauseMenuValues PMV;
 extern GLfloat gameRunTime;

@@ -1,6 +1,10 @@
 #include "GameManager.h"
 
-int noOfSpawn = 1;
+const int startingSpawnCount = 10;
+
+int noOfSpawn = startingSpawnCount;
+int waveLevel = 1;
+
 bool ActiveGameWorld = false;
 float gameWorldMovementSpeed = 0.06;
 float camRotateSpeed = 1;
@@ -103,6 +107,7 @@ void GM::LoadGameObjectFiles()
 	LoadGameShelfObject("data/object/gameObjects/s_plane", WOOD, 4);
 	LoadGameShelfObject("data/object/gameObjects/s_car", WOOD, 3);
 	LoadGameShelfObject("data/object/gameObjects/s_truck", WOOD, 4);
+	LoadGameShelfObject("data/object/gameObjects/xylophone", S_XYLOPHONE, 1);
 
 
 
@@ -291,7 +296,7 @@ void GM::PlayerBulletCollisionResolution()
 		const Bullet& playerBullet = player.GetGun().BulletAt(i);
 
 		BoundingSphere bulletBSphere(playerBullet.GetBoundingSphere().center,
-			playerBullet.GetBoundingSphere().radius - 0.20);
+									 playerBullet.GetBoundingSphere().radius - 0.20);
 
 		// Collision with world objects
 		if (collision.Collide(bulletBSphere))
@@ -304,7 +309,7 @@ void GM::PlayerBulletCollisionResolution()
 		{
 			// Collision with robots
 			if (Collision::Collide(robots.enemies[j].GetBBox(),
-				playerBullet.GetBoundingSphere()))
+								   playerBullet.GetBoundingSphere()))
 			{
 				player.IncrementBulletHits();
 				player.SetHealth(player.GetHealth() + playerBullet.GetDamage());
@@ -321,6 +326,11 @@ void GM::EnemyBulletCollisionResolution()
 	// Enemies' bullets
 	for (auto& enemy : robots.enemies)
 	{
+		if (Collision::Collide(enemy.GetBBox(), player.GetBoundingBox()))
+		{
+			player.SetHealth(player.GetHealth() - 0.75);
+		}
+
 		for (int i = 0; i < enemy.GetGun().BulletCount(); ++i)
 		{
 			const Bullet& enemyBullet = enemy.GetGun().BulletAt(i);
@@ -334,7 +344,7 @@ void GM::EnemyBulletCollisionResolution()
 				enemy.GetGun().RemoveBullet(i);
 			}
 			// Collision with player
-			else if (Collision::Collide(player.GetBoundingSphere(),
+			else if (Collision::Collide(player.GetBoundingBox(),
 										enemyBullet.GetBoundingSphere()))
 			{
 				player.SetHealth(player.GetHealth() - enemyBullet.GetDamage());
@@ -342,8 +352,6 @@ void GM::EnemyBulletCollisionResolution()
 			}
 			else
 			{
-				bool isPlayerBulletCollide = false;
-
 				// Collision with player's bullets
 				for (int j = 0; j < player.GetGun().BulletCount(); ++j)
 				{
@@ -354,7 +362,6 @@ void GM::EnemyBulletCollisionResolution()
 					{
 						enemy.GetGun().RemoveBullet(i);
 						player.GetGun().RemoveBullet(j);
-						isPlayerBulletCollide = true;
 						break;
 					}
 				}
@@ -367,14 +374,36 @@ void GM::BossBulletCollisionResolution()
 {
 	for (int i = 0; i < boss.GetGun().BulletCount(); ++i)
 	{
-		BoundingSphere bulletBSphere(boss.GetGun().BulletAt(i).GetBoundingSphere().center,
-			boss.GetGun().BulletAt(i).GetBoundingSphere().radius - 0.20);
+		const Bullet& bossBullet = boss.GetGun().BulletAt(i);
+
+		BoundingSphere bulletBSphere(bossBullet.GetBoundingSphere().center,
+									 bossBullet.GetBoundingSphere().radius - 0.20);
+
 		if (collision.Collide(bulletBSphere))
-			boss.GetGun().RemoveBullet(i);
-		if (Collision::Collide(player.GetBoundingSphere(), boss.GetGun().BulletAt(i).GetBoundingSphere()))
 		{
-			player.SetHealth(player.GetHealth() - boss.GetGun().BulletAt(i).GetDamage());
 			boss.GetGun().RemoveBullet(i);
+		}
+		else if (Collision::Collide(player.GetBoundingBox(), 
+									bossBullet.GetBoundingSphere()))
+		{
+			player.SetHealth(player.GetHealth() - bossBullet.GetDamage());
+			boss.GetGun().RemoveBullet(i);
+		}
+		else
+		{
+			// Collision with player's bullets
+			for (int j = 0; j < player.GetGun().BulletCount(); ++j)
+			{
+				const Bullet& playerBullet = player.GetGun().BulletAt(j);
+
+				if (Collision::Collide(bossBullet.GetBoundingSphere(),
+									   playerBullet.GetBoundingSphere()))
+				{
+					boss.GetGun().RemoveBullet(i);
+					player.GetGun().RemoveBullet(j);
+					break;
+				}
+			}
 		}
 	}
 }
@@ -393,7 +422,7 @@ void GM::GameFixedUpdateLoop(int val)
 		PausedFloatingPosition();
 	else
 	{
-		gameRunTime = gameRunTime + newElapsedTime - lastUnpausedFrame;
+		gameRunTime += newElapsedTime - lastUnpausedFrame;
 		lastUnpausedFrame = newElapsedTime;
 
 		GameFixedUpdates(delta);
@@ -429,18 +458,33 @@ void GM::GameFixedUpdates(float delta)
 	if (bossOn)
 		boss.Update(delta);
 
-	// Display defeat screen
+	// Lose condition
 	if (player.GetHealth() == 0)
 	{
+		// Display game over screen
 		PMV.m_PausedMenuChoosen = 6;
 		PauseGame();
 	}
-	// Display victory screen
+	// Victory condition
+	else if (bossOn)
+	{
+		if (boss.GetHealth() == 0)
+		{
+			// Display victory screen
+			PMV.m_PausedMenuChoosen = 7;
+			PauseGame();
+		}
+	}
+	// Win wave condition
 	else if (robots.isAllDead())
 	{
 		robots.enemies.clear();
 
-		PMV.m_PausedMenuChoosen = 7;
+		player.AddSkillPoints(waveLevel);
+		++waveLevel;
+
+		// Display upgrade menu
+		PMV.m_PausedMenuChoosen = 3;
 		PauseGame();
 	}
 }
@@ -541,6 +585,9 @@ void GM::GameKeys(unsigned char key, int x, int y)
 	case 'I':
 		performanceMetric = !performanceMetric;
 		break;
+	case 9: // Tab
+		displayMap = !displayMap;
+		break;
 	case 49: // 1
 		player.AddBulletSpeed(1);
 		break;
@@ -565,8 +612,8 @@ void GM::GameKeys(unsigned char key, int x, int y)
 		break;
 	case 'b':
 	case 'B':
-		//GWO.ToyStore[0].Clear();
-		//ReadOBJMTL("data/object/gameObjects/bossAreaV2.obj", GWO.ToyStore[0]);
+		GWO.ToyStore[0].Clear();
+		ReadOBJMTL("data/object/gameObjects/bossAreaV2.obj", GWO.ToyStore[0]);
 		bossOn = true;
 		break;
 	case 'h':
@@ -957,20 +1004,19 @@ void GM::MenuOptionChoosen(int option)
 				player.AddMoveSpeed(0.01);
 				player.SpendSkillPoint();
 			}
-			else if (option == 5)
+		}
+
+		if (option == 5)
+		{
+			if (player.GetSkillPoints() >= 10)
 			{
-				if (player.GetSkillPoints() >= 10)
-				{
-					//go to boss level
-					GWO.ToyStore[0].Clear();
-					ReadOBJMTL("data/object/gameObjects/bossAreaV2.obj", GWO.ToyStore[0]);
-					bossOn = true;
-				}
-				else
-				{
-					UnpauseGame();
-				}
+				//go to boss level
+				GWO.ToyStore[0].Clear();
+				ReadOBJMTL("data/object/gameObjects/bossAreaV2.obj", GWO.ToyStore[0]);
+				bossOn = true;
 			}
+
+			ProgressGame();
 		}
 	}
 	else if (PMV.m_PausedMenuChoosen == 4) //Start screen
@@ -1063,15 +1109,29 @@ void GM::PausedFloatingPosition()
 
 void GM::RestartGame()
 {
+	if (bossOn)
+	{
+		GWO.ToyStore[0].Clear();
+		ReadOBJMTL("data/object/gameObjects/ToyStore.obj", GWO.ToyStore[0]);
+
+		bossOn = false;
+	}
+
+	noOfSpawn = startingSpawnCount;
+	waveLevel = 1;
+
 	robots.enemies.clear();
 	robots.Spawn(noOfSpawn);
 
-	GLfloat health = 100;
+	player.SetHealth(100);
+
 	player.ResetFiringDelay();
 	player.ResetBulletSpeed();
 	player.ResetMoveSpeed();
 	player.ResetBullets();
-	player.SetHealth(health);
+	player.ResetHealthDecay();
+	player.ResetSkillPoints();
+	player.ResetUpgradeOptions();
 
 	UnpauseGame();
 
@@ -1081,6 +1141,24 @@ void GM::RestartGame()
 
 	glClearColor(1, 1, 1, 1);
 
+	player.GetCamera().SetCameraLocation(0.5, playerHeight, 0.5);
+	glm::vec3 cannotBindToTemporaryofTypeVec = { -1, 0, 0 };
+	player.GetCamera().SetCameraLookAt(cannotBindToTemporaryofTypeVec);
+}
+
+void GM::ProgressGame()
+{
+	noOfSpawn += 2;
+	robots.Spawn(noOfSpawn);
+
+	player.SetHealth(100);
+
+	UnpauseGame();
+
+	zFar = 0.001;
+	Starting = true;
+
+	glClearColor(1, 1, 1, 1);
 
 	player.GetCamera().SetCameraLocation(0.5, playerHeight, 0.5);
 	glm::vec3 cannotBindToTemporaryofTypeVec = { -1, 0, 0 };

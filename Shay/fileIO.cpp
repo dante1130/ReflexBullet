@@ -32,7 +32,7 @@ void readObjFile(const std::string& fileName, Object3D& obj)
 		}
 		else if (prefix.compare("usemtl") == 0) {
 			getline(ss, name, ' ');
-			obj.SetTextureName(name);
+			obj.SetTextureName(name); 
 		}
 		else if (prefix.compare("vn") == 0){
 			ss >> tempNormalVertex.x >> tempNormalVertex.y >> tempNormalVertex.z;

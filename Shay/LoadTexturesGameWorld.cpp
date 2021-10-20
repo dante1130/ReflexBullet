@@ -69,6 +69,9 @@ void LTGW::CreateTextures()
 	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/pnary.raw", 128, 96);
 	tpGW.CreateTexture(S_BOARD_3, GWimage, 128, 96);
 
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/xylophone.raw", 512, 512);
+	tpGW.CreateTexture(S_XYLOPHONE, GWimage, 512, 512);
+
 	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/boss.raw", 256, 256);
 	tpGW.CreateTexture(BOSS, GWimage, 256, 256);
 
@@ -198,12 +201,14 @@ void LTGW::CreateTextures()
 	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/ShelfEnd.raw", 240, 120);
 	tpGW.CreateTexture(SHELF_END, GWimage, 240, 120);
 
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/duckgun.raw", 128, 128);
+	tpGW.CreateTexture(DUCK_GUN, GWimage, 128, 128);
+
 	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/GameOver.raw", 400, 100);
 	tpGW.CreateTexture(T_GAME_OVER, GWimage, 400, 100);
 
 	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/Continue.raw", 400, 50);
 	tpGW.CreateTexture(T_CONTINUE, GWimage, 400, 50);
-
 
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
