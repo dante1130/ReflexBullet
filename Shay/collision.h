@@ -63,6 +63,8 @@ public:
 
 	static bool Collide(const BoundingBox& bBox, const BoundingSphere& bSphere);
 
+	static bool Collide(const BoundingBox& bBox1, const BoundingBox& bBox2);
+
 	static bool Collide(const BoundingSphere& bSphere1, const BoundingSphere& bSphere2);
 
 	bool Collide(const BoundingSphere& bSphere);

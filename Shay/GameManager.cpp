@@ -325,6 +325,11 @@ void GM::EnemyBulletCollisionResolution()
 	// Enemies' bullets
 	for (auto& enemy : robots.enemies)
 	{
+		if (Collision::Collide(enemy.GetBBox(), player.GetBoundingBox()))
+		{
+			player.SetHealth(player.GetHealth() - 0.75);
+		}
+
 		for (int i = 0; i < enemy.GetGun().BulletCount(); ++i)
 		{
 			const Bullet& enemyBullet = enemy.GetGun().BulletAt(i);
@@ -1148,7 +1153,6 @@ void GM::ProgressGame()
 
 	zFar = 0.001;
 	Starting = true;
-	gameRunTime = 0;
 
 	glClearColor(1, 1, 1, 1);
 
