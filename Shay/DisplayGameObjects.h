@@ -6,6 +6,7 @@
 #include "Object.h"
 #include "definesGW.h"
 #include "glm/vec3.hpp"
+#include <algorithm>
 #include <glm/common.hpp>
 #include <vector>
 #include <GL/glut.h>
@@ -32,6 +33,15 @@ struct RobotEnemies
 			enemies[i].SetBBox(tempBBox);
 		}
 	}
+
+	bool isAllDead()
+	{
+		int aliveCount = std::count_if(enemies.begin(), enemies.end(), [](Enemy enemy) {
+			return enemy.GetIsAlive();
+		});
+
+		return aliveCount == 0;
+	}
 };
 
 namespace DGO
@@ -41,6 +51,8 @@ namespace DGO
 	void DisplayGunBullets(const Gun& gun);
 
 	void DisplayBullets(const Bullet& bullet);
+
+	void DisplayDuckGun(const Object3D& duckGun);
 }
 
 #endif

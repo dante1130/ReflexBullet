@@ -1,6 +1,5 @@
 #include "EnemyAI.h"
-#include <iostream>
-#include <glm\geometric.hpp>
+
 
 std::array<std::array<Grid, 26>, 20> EnemyAI::m_mainGrid;	
 glm::ivec2 EnemyAI::m_playerPos;
@@ -58,17 +57,6 @@ void EnemyAI::AIUpdate(const glm::vec3& currentPos)
 		m_isFirstMove = false;
 	}
 
-	if (m_gridPos.x < 0 || m_gridPos.y < 0 || m_gridPos.x >= 20 || m_gridPos.y >= 26)
-	{
-		glm::vec2 direction = m_gridDest - m_prevGridPos;
-
-		std::cout << "Prev grid pos: " << m_prevGridPos.x << " " << m_prevGridPos.y << std::endl;
-		std::cout << "Grid pos: " << m_gridPos.x << " " << m_gridPos.y << std::endl;
-		std::cout << "GridDest pos: " << m_gridDest.x << " " << m_gridDest.y << std::endl;
-		std::cout << "Curr pos: " << currentPos.x << " " << currentPos.z << std::endl;
-		std::cout << "Direction: " << direction.x << " " << direction.y << "\n\n";
-	}
-
 	m_gridPos.x = (GLint)currentPos.x;
 	m_gridPos.y = (GLint)currentPos.z;
 
@@ -77,7 +65,6 @@ void EnemyAI::AIUpdate(const glm::vec3& currentPos)
 
 	if (m_isMoving)
 	{
-		// Destination reached
 		if (isDestinationReached(currentPos))
 		{
 			m_isMoving = false;
@@ -94,12 +81,11 @@ void EnemyAI::AIUpdate(const glm::vec3& currentPos)
 
 bool EnemyAI::isDestinationReached(const glm::vec3& currentPos)
 {
-	glm::vec2 currentPosFloor = glm::vec2(floorf(currentPos.x * 10) / 10, floorf(currentPos.z * 10) / 10);
+	glm::vec2 currentPos2D= glm::vec2(currentPos.x, currentPos.z);
 
-	return currentPosFloor.x >= (GLfloat)m_gridDest.x + 0.4 &&
-			currentPosFloor.y >= (GLfloat)m_gridDest.y + 0.4 &&
-			currentPosFloor.x <= (GLfloat)m_gridDest.x + 0.6 &&
-			currentPosFloor.y <= (GLfloat)m_gridDest.y + 0.6;
+	glm::vec2 prevGridPosf = glm::vec2((GLfloat)m_prevGridPos.x + 0.5f, (GLfloat)m_prevGridPos.y + 0.5f);
+
+	return glm::distance(prevGridPosf, currentPos2D) >= 1;
 }
 
 void EnemyAI::FindNextDest()
@@ -129,6 +115,7 @@ void EnemyAI::FindNextDest()
 
 void EnemyAI::DisplayWireframe()
 {
+	glDisable(GL_LIGHTING);
 	for (GLfloat i = 0.5f; i < m_mainGrid.size(); ++i)
 	{
 		for (GLfloat j = 0.5f; j < m_mainGrid[i].size(); ++j)
@@ -170,6 +157,71 @@ void EnemyAI::DisplayWireframe()
 			glPopAttrib();
 		}
 	}
+	glEnable(GL_LIGHTING);
+}
+
+void EnemyAI::DisplayMap()
+{
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+	gluOrtho2D(0, 1280, 0, 720);
+
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glLoadIdentity();
+
+	glDisable(GL_LIGHTING);
+
+	for (int i = 0; i < m_mainGrid.size(); ++i)
+	{
+		for (int j = 0; j < m_mainGrid[i].size(); ++j)
+		{
+			glPushAttrib(GL_CURRENT_BIT);
+
+			switch (m_mainGrid[i][j])
+			{
+			case Grid::FREE:
+			case Grid::ENEMYGOING:
+				glColor3f(0, 1, 0);
+				break;
+
+			case Grid::FULL:
+			case Grid::HALF:
+				glColor3f(0, 0, 1);
+				break;
+
+			case Grid::ENEMYTHERE:
+				glColor3f(1, 0, 0);
+				break;
+
+			case Grid::PLAYERTHERE:
+				glColor3f(1, 1, 0);
+				break;
+			}
+
+			glPushMatrix();
+			glTranslatef(1200, 550, 0);
+			glScalef(5, 5, 0);
+			glRotatef(90, 0, 0, 1);
+			glRotatef(180, 1, 1, 0);
+			glBegin(GL_POLYGON);
+			glVertex2f(i, j);
+			glVertex2f(i + 1, j);
+			glVertex2f(i + 1, j + 1);
+			glVertex2f(i, j + 1);
+			glEnd();
+			glPopMatrix();
+
+			glPopAttrib();
+		}
+	}
+
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+	glPopMatrix();
+	glEnable(GL_LIGHTING);
 }
 
 bool EnemyAI::GetIsMoving() const
@@ -185,8 +237,10 @@ const glm::ivec2& EnemyAI::GetRandFree()
 		for (int j = 0; j < m_mainGrid[i].size(); ++j)
 			if (m_mainGrid[i][j] == Grid::FREE) 
 				freePositions.push_back(glm::ivec2(i, j));
-			
-	return freePositions[rand() % freePositions.size()];
+
+	int index = 1 + rand() % (freePositions.size() - 1);
+
+	return freePositions[index];
 }
 
 const glm::ivec2& EnemyAI::GetGridDest() const
@@ -232,5 +286,3 @@ bool EnemyAI::isPlayerInView(const glm::vec3& lookAt)
 	}
 	return false;
 }
-
-

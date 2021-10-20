@@ -77,6 +77,12 @@ public:
 	 */
 	GLfloat GetFiringDelay() const;
 
+	/**
+	 * @brief Getter for is firing.
+	 * @return bool
+	 */
+	bool GetIsFiring() const;
+
 	// Setter
 
 	/**

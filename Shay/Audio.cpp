@@ -54,9 +54,8 @@ void Audio::AddSound(const char* soundPath, const char* soundName)
 void Audio::PlaySound(const char* soundName)
 {
 	auto itr = m_sounds.find(soundName);
-	
-	if (itr != m_sounds.end())
-		Mix_PlayChannel(-1, itr->second, 0);
+
+	if (itr != m_sounds.end()) Mix_PlayChannel(-1, itr->second, 0);
 }
 
 void Audio::PlayMusic(const char* musicName)
@@ -65,6 +64,14 @@ void Audio::PlayMusic(const char* musicName)
 
 	if (itr != m_music.end())
 		Mix_PlayMusic(itr->second, -1);
+}
+
+void Audio::PlayMusicFadeIn(const char* musicName)
+{
+	auto itr = m_music.find(musicName);
+
+	if (itr != m_music.end())
+		Mix_FadeInMusic(itr->second, -1, 2000);
 }
 
 void Audio::SetSfxVolume(int volume)

@@ -18,6 +18,7 @@ bool wireFrame = false;
 bool performanceMetric = true;
 bool visibleShelves = true;
 bool bossOn = false;
+bool displayMap = true;
 
 PauseMenuValues PMV;
 GLfloat gameRunTime = 0;
@@ -42,9 +43,11 @@ void DGW::DisplayGameWorldMasterFunction()
 	glPopMatrix();
 
 	if (performanceMetric) DisplayPerformanceMetrics();
+	if (wireFrame) EnemyAI::DisplayWireframe();
+	if (displayMap) EnemyAI::DisplayMap();
 	if (visibleShelves) DisplayShelves();
 	if (bossOn && boss.GetHealth() > 0) BossInit(player);
-	if (wireFrame) EnemyAI::DisplayWireframe();
+
 
 	PlayerUI.DrawHUD(player.GetHealth(), player.GetStartHealth());
 
@@ -586,7 +589,7 @@ void DGW::DisplayPauseMenuOptions()
 		temp = temp.substr(0, 7) + " seconds";
 		RenderBitMapString(GLUT_BITMAP_HELVETICA_18, temp);
 
-		temp = "N/A";
+		temp = std::to_string(player.GetAccuracy());
 		temp = temp.substr(0, 5) + "%";
 		glRasterPos3f(0.2, pos.y - 0.25, 14.4);
 		RenderBitMapString(GLUT_BITMAP_HELVETICA_18, temp);
@@ -598,10 +601,11 @@ void DGW::DisplayPauseMenuOptions()
 	}
 	else if (PMV.m_PausedMenuChoosen == 7)
 	{
-		DisplayVicotryScreen();
+		DisplayVictoryScreen();
 	}
 	
 	//Background
+	glPushAttrib(GL_CURRENT_BIT);
 	glColor3f(0, 0, 0);
 	glBegin(GL_POLYGON);
 	glVertex3f(0.125, 2.5, 10);
@@ -609,7 +613,8 @@ void DGW::DisplayPauseMenuOptions()
 	glVertex3f(0.125, 6.5, 16);
 	glVertex3f(0.125, 6.5, 10);
 	glEnd();
-	glColor3f(1, 1, 1);
+	glPopAttrib();
+
 	
 	DisplayPauseMenuLeaderboard();
 
@@ -816,7 +821,7 @@ void DGW::DisplayDefeatScreen()
 	DisplayIndividualOption(T_RETURN, pos, 0.5, 4);
 }
 
-void DGW::DisplayVicotryScreen()
+void DGW::DisplayVictoryScreen()
 {
 	glm::vec3 pos = { 0.135, 6.5, 15.95 };
 
@@ -843,7 +848,7 @@ void DGW::DisplayVicotryScreen()
 	temp = temp.substr(0, 7) + " seconds";
 	RenderBitMapString(GLUT_BITMAP_HELVETICA_18, temp);
 
-	temp = "N/A";
+	temp = std::to_string(player.GetAccuracy());
 	temp = temp.substr(0, 5) + "%";
 	glRasterPos3f(0.2, pos.y - 0.25, 14.4);
 	RenderBitMapString(GLUT_BITMAP_HELVETICA_18, temp);

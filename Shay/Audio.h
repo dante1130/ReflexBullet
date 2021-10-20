@@ -2,6 +2,7 @@
 #define AUDIO_H
 
 #include <SDL.h>
+#include <iostream> // debugging purposes
 #include <SDL_mixer.h>
 #include <glm/vec3.hpp>
 #include <string>
@@ -61,7 +62,7 @@ public:
 	* @param	soundName const char*
 	* @return	void
 	*/
-	void PlaySound(const char* soundName);
+	static void PlaySound(const char* soundName);
 
 	/**
 	* @brief	Plays the music based on the label of the music effect.
@@ -69,6 +70,8 @@ public:
 	* @return	void
 	*/
 	static void PlayMusic(const char* musicName);
+
+	static void PlayMusicFadeIn(const char* musicName);
 
 	static void SetSfxVolume(int volume);
 

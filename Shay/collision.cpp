@@ -86,6 +86,13 @@ bool Collision::Collide(const BoundingBox& bBox, const BoundingSphere& bSphere)
 	return distance < bSphere.radius;
 }
 
+bool Collision::Collide(const BoundingBox& bBox1, const BoundingBox& bBox2)
+{
+	return (bBox1.min.x <= bBox2.max.x && bBox1.max.x >= bBox2.min.x) &&
+		   (bBox1.min.y <= bBox2.max.y && bBox1.max.y >= bBox2.min.y) &&
+		   (bBox1.min.z <= bBox2.max.z && bBox1.max.z >= bBox2.min.z);
+}
+
 bool Collision::Collide(const BoundingSphere& bSphere1, const BoundingSphere& bSphere2)
 {
 	GLfloat radiusDistance = bSphere1.radius + bSphere2.radius;

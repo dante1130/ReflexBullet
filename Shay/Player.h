@@ -2,7 +2,8 @@
 #define PLAYER_H
 
 #include <glm/vec3.hpp>
-#include <glm\geometric.hpp>
+#include <glm/geometric.hpp>
+#include "BoundingBox.h"
 #include "BaseCharacter.h"
 #include "camera.h"
 
@@ -24,6 +25,8 @@ public:
 	int GetUpgradeOption(int option);
 	GLfloat GetHealthDecay();
 	const bool GetLazerHit() const;
+	GLfloat GetAccuracy() const;
+	const BoundingBox& GetBoundingBox() const;
 
 	// Setters (for upgrade system)
 	void DecreaseFiringDelay(GLfloat added_firing_speed);
@@ -33,12 +36,16 @@ public:
 	void AddSkillPoints(int added_skill_point);
 	void SetLazerHit(const bool& hit);
 	
-
+	void IncrementBulletHits();
+	void IncrementBulletShots();
+	
 	void ResetFiringDelay();
 	void ResetBulletSpeed();
 	void ResetMoveSpeed();
 	void ResetSkillPoints();
 	void ResetHealthDecay();
+	void ResetBullets();
+	void ResetUpgradeOptions();
 
 	void SpendSkillPoint();
 
@@ -55,6 +62,10 @@ private:
 	const GLfloat max_health_decay = 0.05;
 
 	Camera m_camera;
+
+	BoundingBox m_bBox;
+
+	glm::vec3 m_prevPos;
 	
 	GLfloat m_healthDecay;
 	GLfloat m_firingSpeed;
@@ -67,7 +78,8 @@ private:
 
 	glm::vec3 m_bulletOffsetScale;
 
-	// Audio audio
+	GLint m_bulletShots;
+	GLint m_bulletHits;
 };
 
 #endif

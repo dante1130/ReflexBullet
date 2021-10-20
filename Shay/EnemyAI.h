@@ -7,6 +7,8 @@
 #include <glm/vec3.hpp>
 #include "Grid.h"
 #include "math.h"
+#include <iostream>
+#include <glm\geometric.hpp>
 #include <GL/glut.h>
 
 class EnemyAI
@@ -21,6 +23,8 @@ public:
 	void AIUpdate(const glm::vec3& currentPos);
 
 	static void DisplayWireframe();
+
+	static void DisplayMap();
 
 	static const glm::ivec2& GetRandFree();
 

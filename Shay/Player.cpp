@@ -1,17 +1,29 @@
 #include "Player.h"
 
 Player::Player()
-	: m_healthDecay(start_health_decay), m_firingSpeed(start_firing_speed), m_skillPoints(8), m_bulletOffsetScale(0.5f),
-		m_bullet_speed(start_bullet_speed), m_move_speed(start_move_speed) //for testing, player starts with 8 skill points for upgrade buy
+	: m_prevPos(m_camera.GetPosition()), m_healthDecay(start_health_decay), 
+	m_firingSpeed(start_firing_speed), m_skillPoints(0), 
+	m_bulletOffsetScale(0.5f), m_bullet_speed(start_bullet_speed), 
+	m_move_speed(start_move_speed), m_bulletShots(0), m_bulletHits(0)
 {
 	m_gun = Gun(Faction::PLAYER, start_bullet_speed, m_firingSpeed);
 	m_health = start_health;
 	m_lazer_hit = false;
 	m_camera.SetMoveSpeed(start_move_speed);
+	m_bBox = BoundingBox(glm::vec3(m_camera.GetPosition().x + 0.25, m_camera.GetPosition().y + 0.25, m_camera.GetPosition().z + 0.25),
+						 glm::vec3(m_camera.GetPosition().x - 0.25, 0, m_camera.GetPosition().z - 0.25));
+						 
 }
 
 void Player::Update(GLfloat delta)
 {
+	glm::vec3 change = m_camera.GetPosition() - m_prevPos;
+
+	m_bBox.min += change;
+	m_bBox.max += change;
+
+	m_prevPos = m_camera.GetPosition();
+
 	m_gun.Update(delta);
 
 	m_health -= m_healthDecay;
@@ -30,6 +42,7 @@ void Player::Shoot()
 					 10);
 
 	m_gun.Shoot(newBullet);
+
 }
 
 const GLfloat Player::GetHealth()
@@ -82,6 +95,18 @@ int Player::GetUpgradeOption(int option)
 const bool Player::GetLazerHit() const
 {
 	return m_lazer_hit;
+}
+
+GLfloat Player::GetAccuracy() const 
+{
+	GLfloat accuracy = (m_bulletShots == 0) ? 100.00f : ((GLfloat)m_bulletHits / m_bulletShots) * 100;
+
+	return accuracy;
+}
+
+const BoundingBox& Player::GetBoundingBox() const
+{
+	return m_bBox;
 }
 
 void Player::DecreaseFiringDelay(GLfloat added_firing_speed)
@@ -139,6 +164,16 @@ void Player::AddMoveSpeed(GLfloat added_move_speed)
 	}
 }
 
+void Player::IncrementBulletHits()
+{
+	++m_bulletHits;
+}
+
+void Player::IncrementBulletShots()
+{
+	++m_bulletShots;
+}
+
 void Player::ResetMoveSpeed()
 {
 	m_move_speed = start_move_speed;
@@ -153,6 +188,21 @@ void Player::ResetHealthDecay()
 void Player::ResetSkillPoints()
 {
 	m_skillPoints = 0;
+}
+
+void Player::ResetBullets()
+{
+	for (int i = 0; i < m_gun.BulletCount(); ++i)
+		m_gun.RemoveBullet(i);
+
+	m_bulletHits = 0;
+	m_bulletShots = 0;
+}
+
+void Player::ResetUpgradeOptions()
+{
+	for (int i = 0; i < 4; ++i)
+		m_upgrade_options[i] = 0;
 }
 
 void Player::SpendSkillPoint()

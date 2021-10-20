@@ -11,6 +11,7 @@
 #include "Leaderboards.h"
 #include "Enemy.h"
 #include "BossArea.h"
+#include <thread>
 #include <ctime>
 #include <GL/glut.h>
 
@@ -94,6 +95,8 @@ namespace GM
 	* @return	Void
 	*/
 	void GameFixedUpdateLoop(int val);
+
+	void GameFixedUpdates(float delta);
 
 	/**
 	* @brief	A non fixed update loop
@@ -234,6 +237,7 @@ namespace GM
 	*/
 	void RestartGame();
 
+	void ProgressGame();
 }
 
 #endif
