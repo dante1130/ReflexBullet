@@ -1,6 +1,6 @@
 #include "GameManager.h"
 
-int noOfSpawn = 10;
+int noOfSpawn = 1;
 bool ActiveGameWorld = false;
 float gameWorldMovementSpeed = 0.06;
 float camRotateSpeed = 1;
@@ -590,6 +590,7 @@ void GM::PauseGame()
 	PMV.m_floatLook = PMV.m_playerLook;
 	PMV.m_floatMoving = true;
 	hudOn = false;
+	bossOn = false;
 }
 
 void GM::UnpauseGame()
@@ -604,6 +605,8 @@ void GM::UnpauseGame()
 	player.GetCamera().SetCameraLookAt(PMV.m_playerLook);
 	lastUnpausedFrame = glutGet(GLUT_ELAPSED_TIME);
 	hudOn = true;
+	if (player.GetSkillPoints() >= 10)
+		bossOn = true;
 }
 
 void GM::GameReleaseKeys(unsigned char key, int x, int y)

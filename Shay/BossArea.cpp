@@ -55,19 +55,20 @@ void PhaseChange()
 {
 	if (timer - timePhaseStart >= 15000)
 	{
-		boss.SetPhase(PsudeoNumGen(timer, 4, timer / 2));
-		if (boss.GetPhase() == 0)
-			boss.SetPhase(1);
-		if (boss.GetPhase() == 1)  
-			boss.GetGun().SetFiringDelay(1);
-		else if (boss.GetPhase() == 2)
-			boss.GetGun().SetFiringDelay(0.3);
-		else if (boss.GetPhase() == 3) {
-			yRotate = 0;
-			saveRotate = boss.GetRotation();
+		int temp = PsudeoNumGen(timer, 3, timePhaseStart) + 1;
+		if (temp != boss.GetPhase()) {
+			boss.SetPhase(temp);
+			if (boss.GetPhase() == 1)
+				boss.GetGun().SetFiringDelay(1);
+			else if (boss.GetPhase() == 2)
+				boss.GetGun().SetFiringDelay(0.3);
+			else if (boss.GetPhase() == 3) {
+				yRotate = 0;
+				saveRotate = boss.GetRotation();
+			}
+			std::cout << "Phase changed to: " << boss.GetPhase() << std::endl;
+			timePhaseStart = timer;
 		}
-		std::cout << "Phase changed to: " << boss.GetPhase() << std::endl;
-		timePhaseStart = timer;
 	}
 
 }
