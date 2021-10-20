@@ -57,17 +57,6 @@ void EnemyAI::AIUpdate(const glm::vec3& currentPos)
 		m_isFirstMove = false;
 	}
 
-	if (m_gridPos.x < 0 || m_gridPos.y < 0 || m_gridPos.x >= 20 || m_gridPos.y >= 26)
-	{
-		glm::vec2 direction = m_gridDest - m_prevGridPos;
-
-		std::cout << "Prev grid pos: " << m_prevGridPos.x << " " << m_prevGridPos.y << std::endl;
-		std::cout << "Grid pos: " << m_gridPos.x << " " << m_gridPos.y << std::endl;
-		std::cout << "GridDest pos: " << m_gridDest.x << " " << m_gridDest.y << std::endl;
-		std::cout << "Curr pos: " << currentPos.x << " " << currentPos.z << "\n\n";
-		
-	}
-
 	m_gridPos.x = (GLint)currentPos.x;
 	m_gridPos.y = (GLint)currentPos.z;
 
@@ -92,11 +81,11 @@ void EnemyAI::AIUpdate(const glm::vec3& currentPos)
 
 bool EnemyAI::isDestinationReached(const glm::vec3& currentPos)
 {
-	glm::vec2 currentPosFloor = glm::vec2(currentPos.x, currentPos.z);
+	glm::vec2 currentPos2D= glm::vec2(currentPos.x, currentPos.z);
 
 	glm::vec2 prevGridPosf = glm::vec2((GLfloat)m_prevGridPos.x + 0.5f, (GLfloat)m_prevGridPos.y + 0.5f);
 
-	return glm::distance(prevGridPosf, currentPosFloor) >= 1;
+	return glm::distance(prevGridPosf, currentPos2D) >= 1;
 }
 
 void EnemyAI::FindNextDest()

@@ -2,8 +2,8 @@
 #define PLAYER_H
 
 #include <glm/vec3.hpp>
-#include <glm\geometric.hpp>
-#include "BoundingSphere.h"
+#include <glm/geometric.hpp>
+#include "BoundingBox.h"
 #include "BaseCharacter.h"
 #include "camera.h"
 
@@ -26,7 +26,7 @@ public:
 	GLfloat GetHealthDecay();
 	const bool GetLazerHit() const;
 	GLfloat GetAccuracy() const;
-	const BoundingSphere& GetBoundingSphere() const;
+	const BoundingBox& GetBoundingBox() const;
 
 	// Setters (for upgrade system)
 	void DecreaseFiringDelay(GLfloat added_firing_speed);
@@ -63,7 +63,9 @@ private:
 
 	Camera m_camera;
 
-	BoundingSphere m_bSphere;
+	BoundingBox m_bBox;
+
+	glm::vec3 m_prevPos;
 	
 	GLfloat m_healthDecay;
 	GLfloat m_firingSpeed;
@@ -78,8 +80,6 @@ private:
 
 	GLint m_bulletShots;
 	GLint m_bulletHits;
-
-	// Audio audio
 };
 
 #endif

@@ -51,6 +51,8 @@ namespace DGO
 	void DisplayGunBullets(const Gun& gun);
 
 	void DisplayBullets(const Bullet& bullet);
+
+	void DisplayDuckGun(const Object3D& duckGun);
 }
 
 #endif

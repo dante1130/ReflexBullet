@@ -52,6 +52,7 @@ struct GameWorldObjects
 	Object3D Speaker;
 	Object3D ShelfEnd;
 	Object3D Counter;
+	Object3D DuckGun;
 
 	std::vector<ShelfObjectsOBJ> Shelf_Objects;
 

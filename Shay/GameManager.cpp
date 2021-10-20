@@ -338,7 +338,7 @@ void GM::EnemyBulletCollisionResolution()
 				enemy.GetGun().RemoveBullet(i);
 			}
 			// Collision with player
-			else if (Collision::Collide(player.GetBoundingSphere(),
+			else if (Collision::Collide(player.GetBoundingBox(),
 										enemyBullet.GetBoundingSphere()))
 			{
 				player.SetHealth(player.GetHealth() - enemyBullet.GetDamage());
@@ -377,7 +377,7 @@ void GM::BossBulletCollisionResolution()
 		{
 			boss.GetGun().RemoveBullet(i);
 		}
-		else if (Collision::Collide(player.GetBoundingSphere(), 
+		else if (Collision::Collide(player.GetBoundingBox(), 
 									bossBullet.GetBoundingSphere()))
 		{
 			player.SetHealth(player.GetHealth() - bossBullet.GetDamage());
