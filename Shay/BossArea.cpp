@@ -55,7 +55,8 @@ void PhaseChange()
 {
 	if (timer - timePhaseStart >= 15000)
 	{
-		boss.SetPhase(PsudeoNumGen(timer, 4, timer / 2));
+		boss.SetPhase(3);
+		//boss.SetPhase(PsudeoNumGen(timer, 4, timer / 2));
 		if (boss.GetPhase() == 0)
 			boss.SetPhase(1);
 		if (boss.GetPhase() == 1)  

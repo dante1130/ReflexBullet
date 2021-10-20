@@ -161,13 +161,17 @@ bool Boss::LazerCollision(Player& player)
 	m_gradient = tan((m_rotation.y - 90) * (PI / 180)); //calculate the gradient of lazerbeam
 	GLfloat player_grad = (player_Pos.x - m_position.x) / (player_Pos.z - m_position.z); //calculate players gradient
 
-	if (m_gradient < 0.001 && m_gradient > -0.001)
-		if (player_Pos.z < 0.01 && player_Pos.z > -0.01)
-			return true;
+	std::cout << "Player gradient: " << player_grad << "   Boss gradient: " << m_gradient <<  "     Player location: x: " << player_Pos.x - m_position.x << "  z: " << player_Pos.z - m_position.z << std::endl;
 
-	if (m_gradient > 1000 || m_gradient < -1000)
-		if (player_Pos.x < 0.01 && player_Pos.x > -0.01)
+	if (m_gradient < 0.005 && m_gradient > -0.005) {
+		if (player_Pos.z - m_position.z < 0.3 && player_Pos.z - m_position.z > -0.3)
 			return true;
+	}
+
+	if (m_gradient > 500 || m_gradient < -500) {
+		if (player_Pos.x - m_position.x < 0.3 && player_Pos.x - m_position.x > -0.3)
+			return true;
+	}
 
 	//difference between gradients
 	GLfloat sum = player_grad - m_gradient;
