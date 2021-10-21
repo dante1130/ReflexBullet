@@ -301,6 +301,7 @@ void GM::PlayerBulletCollisionResolution()
 		// Collision with world objects
 		if (collision.Collide(bulletBSphere))
 		{
+			player.IncrementBulletShots();
 			player.GetGun().RemoveBullet(i);
 			continue;
 		}
@@ -311,6 +312,7 @@ void GM::PlayerBulletCollisionResolution()
 			if (Collision::Collide(robots.enemies[j].GetBBox(),
 								   playerBullet.GetBoundingSphere()))
 			{
+				player.IncrementBulletShots();
 				player.IncrementBulletHits();
 				player.SetHealth(player.GetHealth() + playerBullet.GetDamage());
 				player.GetGun().RemoveBullet(i);
@@ -471,14 +473,11 @@ void GM::GameFixedUpdates(float delta)
 		PauseGame();
 	}
 	// Victory condition
-	else if (bossOn)
+	else if (bossOn && boss.GetHealth() == 0)
 	{
-		if (boss.GetHealth() == 0)
-		{
-			// Display victory screen
-			PMV.m_PausedMenuChoosen = 7;
-			PauseGame();
-		}
+		// Display victory screen
+		PMV.m_PausedMenuChoosen = 7;
+		PauseGame();
 	}
 	// Win wave condition
 	else if (robots.isAllDead())
@@ -857,7 +856,6 @@ void GM::GameMouseClick(int button, int state, int x, int y)
 		if (!player.GetGun().GetIsFiring())
 		{
 			Audio::PlaySound("playerShoot");
-			player.IncrementBulletShots();
 			player.Shoot();
 		}
 	}
@@ -1219,6 +1217,8 @@ void GM::RestartGame()
 
 void GM::ProgressGame()
 {
+	player.GetGun().RemoveAllBullets();
+
 	noOfSpawn += 2;
 	robots.Spawn(noOfSpawn);
 

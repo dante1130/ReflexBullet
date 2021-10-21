@@ -111,6 +111,8 @@ void CollisionChecks(Player& player)
 
 		if (Collision::Collide(bulletBSphere, b_Sphere))
 		{
+			player.IncrementBulletHits();
+			player.IncrementBulletShots();
 			player.GetGun().RemoveBullet(i);
 			boss.SetHealth(boss.GetHealth() - 1);
 			player.SetHealth(player.GetHealth() + 5);

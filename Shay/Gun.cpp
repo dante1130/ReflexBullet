@@ -40,6 +40,11 @@ void Gun::RemoveBullet(int index)
 	m_bullets.erase(m_bullets.begin() + index);
 }
 
+void Gun::RemoveAllBullets()
+{
+	m_bullets.clear();
+}
+
 const Bullet& Gun::BulletAt(int index) const
 {
 	return m_bullets[index];
