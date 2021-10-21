@@ -76,16 +76,16 @@ constexpr auto SHELF_END				= 61;
 constexpr auto SPEAKER					= 59;
 
 constexpr auto T_GAME_OVER				= 62;
-constexpr auto T_DEFEAT = 0;
-constexpr auto T_VICTORY = 0;
+constexpr auto T_DEFEAT					= 69;
+constexpr auto T_VICTORY				= 68;
 constexpr auto T_CONTINUE				= 63;
-constexpr auto T_ENTER_HERE = 0;
+constexpr auto T_ENTER_HERE				= 67;
 
 constexpr auto DUCK_GUN = 64;
 constexpr auto S_XYLOPHONE = 65;
 constexpr auto B_LAZER = 66;
 
-//NEXT 67
-constexpr auto GWTEXTURE_END = 70;
+//NEXT 70
+constexpr auto GWTEXTURE_END = 80;
 
 #endif

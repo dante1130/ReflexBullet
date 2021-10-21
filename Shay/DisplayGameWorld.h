@@ -66,6 +66,7 @@ struct PauseMenuValues
 	int m_PausedMenuChoosen; //0-unpause, 1-basic pause menu, 2-options, 3-upgrade, 4-start screen, 5-credits, 6-defeat screen, 7-victory screen
 	int m_OptionHighlighted;
 	bool m_PausedOverStart;
+	bool m_UpgradeOverPaused;
 
 	//Leaderboard
 	bool m_LeaderboardShowsAccuracyOverTime;
@@ -78,9 +79,12 @@ struct PauseMenuValues
 	glm::vec3 m_playerLook;
 	glm::vec3 m_floatLook;
 
-	PauseMenuValues() : m_PausedMenuChoosen{ 4 }, m_OptionHighlighted{ 0 }, m_PausedOverStart { true }, m_LeaderboardShowsAccuracyOverTime { true },
+	//Victory record
+	Record tempRecord;
+
+	PauseMenuValues() : m_PausedMenuChoosen{ 4 }, m_OptionHighlighted{ 0 }, m_PausedOverStart { false }, m_LeaderboardShowsAccuracyOverTime { true },
 		m_LeaderboardSwitchTime{ 0 }, m_floatMoving{ false }, m_playerPos{ glm::vec3{0, 0, 0} }, m_floatPos{ glm::vec3{0, 0, 0} }, m_playerLook{ glm::vec3{0, 0, 0} },
-		m_floatLook{ glm::vec3{0, 0, 0} }
+		m_floatLook{ glm::vec3{0, 0, 0} }, m_UpgradeOverPaused { false }
 	{
 
 	}
