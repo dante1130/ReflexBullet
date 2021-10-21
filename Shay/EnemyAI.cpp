@@ -145,7 +145,7 @@ void EnemyAI::DisplayWireframe()
 				break;
 
 			case Grid::PLAYERTHERE:
-				glColor3f(1, 1, 0);
+				glColor3f(1, 1, 1);
 				break;
 			}
 
@@ -196,7 +196,7 @@ void EnemyAI::DisplayMap()
 				break;
 
 			case Grid::PLAYERTHERE:
-				glColor3f(1, 1, 0);
+				glColor3f(1, 1, 1);
 				break;
 			}
 
