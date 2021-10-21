@@ -94,7 +94,7 @@ void GM::LoadGameObjectFiles()
 	ReadOBJMTL("data/object/gameObjects/Speaker.obj", GWO.Speaker);
 	ReadOBJMTL("data/object/gameObjects/ShelfEnd.obj", GWO.ShelfEnd);
 	ReadOBJMTL("data/object/gameObjects/Counter.obj", GWO.Counter);
-
+	ReadOBJMTL("data/object/gameObjects/duckgun.obj", GWO.DuckGun);
 
 
 

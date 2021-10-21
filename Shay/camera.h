@@ -125,6 +125,10 @@ public:
 
 	glm::vec3 GetLook() const;
 
+	GLdouble GetPitch() const;
+
+	GLdouble GetYaw() const;
+
 	/**
 	 * @brief Returns the x position of the camera.
 	 * @return GLdouble

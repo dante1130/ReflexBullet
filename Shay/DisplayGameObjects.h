@@ -3,6 +3,7 @@
 
 #include "Gun.h"
 #include "Enemy.h"
+#include "Player.h"
 #include "Object.h"
 #include "definesGW.h"
 #include "glm/vec3.hpp"
@@ -52,7 +53,6 @@ namespace DGO
 
 	void DisplayBullets(const Bullet& bullet);
 
-	void DisplayDuckGun(const Object3D& duckGun);
 }
 
 #endif

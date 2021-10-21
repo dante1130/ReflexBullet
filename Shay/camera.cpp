@@ -420,6 +420,16 @@ glm::vec3 Camera::GetLook() const
 	return m_look;
 }
 
+GLdouble Camera::GetPitch() const
+{
+	return m_rotateAngleUD;
+}
+
+GLdouble Camera::GetYaw() const
+{
+	return m_rotateAngleLR;
+}
+
 GLdouble Camera::GetLR() const
 {
 	return m_pos.x;

@@ -371,13 +371,14 @@ namespace DGW
 	*/
 	void DisplayShelfEnd();
 
-
 	/**
 	* @brief	Displays the games current performance metrics
 	* @param	No param
 	* @return	Void
 	*/
 	void DisplayPerformanceMetrics();
+
+	void DisplayDuckGun();
 
 	/**
 	* @brief	Renders a string onto the screen for a specific font
