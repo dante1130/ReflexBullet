@@ -122,6 +122,15 @@ namespace GM
 	void GameKeys(unsigned char key, int x, int y);
 
 	/**
+	* @brief	Reads in the keyboard input to store into a string
+	* @param	string	- The string you want to store to
+	* @param	key		- The key the user pressed
+	* @param	maximum	- The maximum length the string is allowed to be
+	* @return	Void
+	*/
+	void ReadKeysForString(std::string& string, unsigned char& key, int maximum);
+
+	/**
 	* @brief	Pauses the game
 	* @param	No param
 	* @return	Void
@@ -238,6 +247,9 @@ namespace GM
 	void RestartGame();
 
 	void ProgressGame();
+
+	void ExitGame(int num);
+
 }
 
 #endif

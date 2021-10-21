@@ -837,6 +837,10 @@ void DGW::DisplayVictoryScreen()
 	pos.y = pos.y - 0.6;
 	DisplayIndividualOption(T_ENTER_HERE, pos, 0.5, 4);
 
+	glBindTexture(GL_TEXTURE_2D, tpGW.GetTexture(T_MENU_OUTLINE_COLOUR));
+	glRasterPos3f(0.2, pos.y - 0.25, 14.2);
+	RenderBitMapString(GLUT_BITMAP_HELVETICA_18, PMV.tempRecord.name);
+
 	pos.y = pos.y - 0.6;
 	DisplayIndividualOption(T_CONTINUE, pos, 0.5, 4);
 
