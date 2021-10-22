@@ -858,7 +858,7 @@ void GM::GameMouseClick(int button, int state, int x, int y)
 			player.Shoot();
 		}
 	}
-	else if (PMV.m_PausedMenuChoosen != 0)
+	else if (PMV.m_PausedMenuChoosen != 0 && PMV.m_floatMoving == false)
 	{
 		GameMouseClickOption(button, state, x, y);
 	}
