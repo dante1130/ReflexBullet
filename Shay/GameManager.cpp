@@ -866,6 +866,7 @@ void GM::GameMouseClick(int button, int state, int x, int y)
 
 void GM::GameMouseClickOption(int button, int state, int x, int y)
 {
+
 	//std::cout << "Mouse clicked: Button - " << button << " state - " << state << " POS x/y - " << x << " : " << y << std::endl;
 
 	if (button != 0 || state != 0) { return; }
