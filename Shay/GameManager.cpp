@@ -1188,7 +1188,6 @@ void GM::RestartGame()
 	waveLevel = 1;
 
 	robots.enemies.clear();
-	robots.Spawn(noOfSpawn);
 
 	player.SetHealth(100);
 
@@ -1213,6 +1212,8 @@ void GM::RestartGame()
 	player.GetCamera().SetCameraLocation(0.5, playerHeight, 0.5);
 	glm::vec3 cannotBindToTemporaryofTypeVec = { -1, 0, 0 };
 	player.GetCamera().SetCameraLookAt(cannotBindToTemporaryofTypeVec);
+
+	robots.Spawn(noOfSpawn, player.GetCamera().GetPosition());
 }
 
 void GM::ProgressGame()
@@ -1220,8 +1221,7 @@ void GM::ProgressGame()
 	player.GetGun().RemoveAllBullets();
 
 	noOfSpawn += 2;
-	robots.Spawn(noOfSpawn);
-
+	
 	player.SetHealth(100);
 
 	UnpauseGame();
@@ -1234,6 +1234,8 @@ void GM::ProgressGame()
 	player.GetCamera().SetCameraLocation(0.5, playerHeight, 0.5);
 	glm::vec3 cannotBindToTemporaryofTypeVec = { -1, 0, 0 };
 	player.GetCamera().SetCameraLookAt(cannotBindToTemporaryofTypeVec);
+
+	robots.Spawn(noOfSpawn, player.GetCamera().GetPosition());
 }
 
 void GM::ExitGame(int num)
