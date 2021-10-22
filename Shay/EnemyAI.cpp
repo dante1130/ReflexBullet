@@ -1,6 +1,5 @@
 #include "EnemyAI.h"
 
-
 std::array<std::array<Grid, 26>, 20> EnemyAI::m_mainGrid;	
 glm::ivec2 EnemyAI::m_playerPos;
 glm::ivec2 EnemyAI::m_prevPlayerPos;
@@ -116,12 +115,12 @@ void EnemyAI::FindNextDest()
 void EnemyAI::DisplayWireframe()
 {
 	glDisable(GL_LIGHTING);
+	glPushAttrib(GL_CURRENT_BIT);
+
 	for (GLfloat i = 0.5f; i < m_mainGrid.size(); ++i)
 	{
 		for (GLfloat j = 0.5f; j < m_mainGrid[i].size(); ++j)
 		{
-			glPushAttrib(GL_CURRENT_BIT);
-
 			switch (m_mainGrid[i][j])
 			{
 			case Grid::FREE:
@@ -153,10 +152,10 @@ void EnemyAI::DisplayWireframe()
 			glTranslatef(i, 0, j);
 			glutWireCube(1);
 			glPopMatrix();
-
-			glPopAttrib();
 		}
 	}
+
+	glPopAttrib();
 	glEnable(GL_LIGHTING);
 }
 
@@ -173,12 +172,12 @@ void EnemyAI::DisplayMap()
 
 	glDisable(GL_LIGHTING);
 
+	glPushAttrib(GL_CURRENT_BIT);
+
 	for (int i = 0; i < m_mainGrid.size(); ++i)
 	{
 		for (int j = 0; j < m_mainGrid[i].size(); ++j)
 		{
-			glPushAttrib(GL_CURRENT_BIT);
-
 			switch (m_mainGrid[i][j])
 			{
 			case Grid::FREE:
@@ -212,10 +211,10 @@ void EnemyAI::DisplayMap()
 			glVertex2f(i, j + 1);
 			glEnd();
 			glPopMatrix();
-
-			glPopAttrib();
 		}
 	}
+
+	glPopAttrib();
 
 	glMatrixMode(GL_PROJECTION);
 	glPopMatrix();

@@ -1326,13 +1326,6 @@ void DGW::DisplayShelfEnd()
 	glPopMatrix();
 }
 
-
-
-
-
-
-
-
 void DGW::DisplayPerformanceMetrics()
 {
 	/*
@@ -1382,12 +1375,13 @@ void DGW::DisplayDuckGun()
 	glClear(GL_DEPTH_BUFFER_BIT); // Needed to prevent the gun from clipping to other objects.
 
 	glPushMatrix();
-	glTranslatef(player.GetCamera().GetLook().x + player.GetCamera().GetPosition().x,
-				 player.GetCamera().GetLook().y + player.GetCamera().GetPosition().y - 0.5,
-				 player.GetCamera().GetLook().z + player.GetCamera().GetPosition().z);
+	glTranslatef(player.GetCamera().GetPosition().x,
+				 player.GetCamera().GetPosition().y,
+				 player.GetCamera().GetPosition().z);
 	glRotatef(-player.GetCamera().GetYaw(), 0, 1, 0);
 	glRotatef(player.GetCamera().GetPitch(), 1, 0, 0);
 	glRotatef(180, 0, 1, 0);
+	glTranslatef(-0.5, -0.35, 0.5);
 	glScalef(5, 5, 5);
 	GWO.DuckGun.DisplayObjectWithLighting(DUCK_GUN);
 	glPopMatrix();
