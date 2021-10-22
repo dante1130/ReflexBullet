@@ -17,7 +17,7 @@ struct RobotEnemies
 	Object3D obj;
 	std::vector<Enemy> enemies;
 
-	void Spawn(int noOfEnemies)
+	void Spawn(int noOfEnemies, glm::vec3 playerPos)
 	{
 		BoundingBox tempBBox(obj.GetVertex(0), obj.GetVertex(0));
 
@@ -29,7 +29,15 @@ struct RobotEnemies
 
 		for (int i = 0; i < noOfEnemies; ++i)
 		{
-			glm::ivec2 position = EnemyAI::GetRandFree();
+			glm::ivec2 position;
+			glm::ivec2 playerPos2D = glm::ivec2(playerPos.x, playerPos.z);
+
+			do 
+			{
+				position = EnemyAI::GetRandFree();
+			} while ((position.x >= playerPos2D.x - 2 && position.x <= playerPos2D.x + 2) &&
+					 (position.y >= playerPos2D.y - 2 && position.y <= playerPos2D.y + 2));
+
 			enemies.push_back(Enemy(glm::vec3(position.x + 0.5, 0.5, position.y + 0.5)));
 			enemies[i].SetBBox(tempBBox);
 		}

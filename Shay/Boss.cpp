@@ -22,7 +22,7 @@ void Boss::Update(GLfloat delta)
 void Boss::Shoot()
 {
 	glm::vec3 sum = player_Pos - m_position;
-	Bullet newbullet(m_gun.GetFaction(), m_position + glm::normalize(sum), glm::normalize(sum) * m_gun.GetBulletVelocity(), 1);
+	Bullet newbullet(m_gun.GetFaction(), m_position + glm::normalize(sum), glm::normalize(sum) * m_gun.GetBulletVelocity(), 10);
 	m_gun.Shoot(newbullet);
 }
 
