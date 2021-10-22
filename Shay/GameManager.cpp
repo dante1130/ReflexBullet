@@ -1060,8 +1060,6 @@ void GM::MenuOptionChoosen(int option)
 			if (player.GetSkillPoints() >= 10)
 			{
 				//go to boss level
-				GWO.ToyStore[0].Clear();
-				ReadOBJMTL("data/object/gameObjects/bossAreaV2.obj", GWO.ToyStore[0]);
 				bossOn = true;
 			}
 
