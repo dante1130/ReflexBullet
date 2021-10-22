@@ -72,8 +72,11 @@ void LTGW::CreateTextures()
 	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/xylophone.raw", 512, 512);
 	tpGW.CreateTexture(S_XYLOPHONE, GWimage, 512, 512);
 
-	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/boss.raw", 256, 256);
-	tpGW.CreateTexture(BOSS, GWimage, 256, 256);
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/house.raw", 256, 256);
+	tpGW.CreateTexture(S_HOUSE, GWimage, 256, 256);
+
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/bossBody.raw", 1024, 1024);
+	tpGW.CreateTexture(BOSS, GWimage, 1024, 1024);
 
 	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/robotDummy.raw", 512, 512);
 	tpGW.CreateTexture(ROBOT, GWimage, 512, 512);

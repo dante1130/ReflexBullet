@@ -76,7 +76,7 @@ void GM::LoadGameObjectFiles()
 	ReadOBJMTL("data/object/gameObjects/s_boardgame.obj", GWO.s_Board);
 	ReadOBJMTL("data/object/gameObjects/Cachier.obj", GWO.cashier[0]);
 	ReadOBJMTL("data/object/gameObjects/Cachier1.obj", GWO.cashier[1]);
-	ReadOBJMTL("data/object/gameObjects/boss.obj", bossBody);
+	ReadOBJMTL("data/object/gameObjects/bossBody.obj", bossBody);
 	ReadOBJMTL("data/object/gameObjects/TrainArea.obj", GWO.TrainArea);
 	ReadOBJMTL("data/object/gameObjects/LightHead.obj", GWO.LightOBJ[0]);
 	ReadOBJMTL("data/object/gameObjects/LightTop.obj", GWO.LightOBJ[1]);
@@ -108,6 +108,7 @@ void GM::LoadGameObjectFiles()
 	LoadGameShelfObject("data/object/gameObjects/s_car", WOOD, 3);
 	LoadGameShelfObject("data/object/gameObjects/s_truck", WOOD, 4);
 	LoadGameShelfObject("data/object/gameObjects/xylophone", S_XYLOPHONE, 1);
+	LoadGameShelfObject("data/object/gameObjects/house", S_HOUSE, 1);
 
 
 
@@ -631,8 +632,6 @@ void GM::GameKeys(unsigned char key, int x, int y)
 		break;
 	case 'b':
 	case 'B':
-		//GWO.ToyStore[0].Clear();
-		//ReadOBJMTL("data/object/gameObjects/bossAreaV2.obj", GWO.ToyStore[0]);
 		bossOn = true;
 		break;
 	case 'h':
@@ -859,7 +858,7 @@ void GM::GameMouseClick(int button, int state, int x, int y)
 			player.Shoot();
 		}
 	}
-	else if (PMV.m_PausedMenuChoosen != 0)
+	else if (PMV.m_PausedMenuChoosen != 0 && PMV.m_floatMoving == false)
 	{
 		GameMouseClickOption(button, state, x, y);
 	}
@@ -867,6 +866,7 @@ void GM::GameMouseClick(int button, int state, int x, int y)
 
 void GM::GameMouseClickOption(int button, int state, int x, int y)
 {
+
 	//std::cout << "Mouse clicked: Button - " << button << " state - " << state << " POS x/y - " << x << " : " << y << std::endl;
 
 	if (button != 0 || state != 0) { return; }
