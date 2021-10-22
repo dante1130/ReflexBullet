@@ -35,7 +35,8 @@ struct RobotEnemies
 			do 
 			{
 				position = EnemyAI::GetRandFree();
-			} while (position.x <= playerPos2D.x + 2 && position.y <= playerPos2D.y + 2);
+			} while ((position.x >= playerPos2D.x - 2 && position.x <= playerPos2D.x + 2) &&
+					 (position.y >= playerPos2D.y - 2 && position.y <= playerPos2D.y + 2));
 
 			enemies.push_back(Enemy(glm::vec3(position.x + 0.5, 0.5, position.y + 0.5)));
 			enemies[i].SetBBox(tempBBox);
