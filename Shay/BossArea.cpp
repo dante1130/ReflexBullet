@@ -16,7 +16,6 @@ glm::vec3 saveRotate;
 void BossInit(Player& player)
 {
 	timer = glutGet(GLUT_ELAPSED_TIME);
-	BossUI.DrawHUD(boss.GetHealth(), boss.GetStartHealth());
 	if (boss.GetPhase() != 3)
 		boss.TrackPlayer(player);
 	else {
