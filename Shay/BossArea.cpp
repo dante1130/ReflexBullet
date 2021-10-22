@@ -44,8 +44,10 @@ void DrawBoss()
 		if (boss.GetPhase() == 3) 
 		{
 			glPushMatrix();
+			glDisable(GL_LIGHTING);
 			glBindTexture(GL_TEXTURE_2D, tpGW.GetTexture(B_LAZER));
 			boss.AnimateSpecial(timer - timePhaseStart);
+			glEnable(GL_LIGHTING);
 			glPopMatrix();
 		}
 	glPopMatrix();
@@ -96,7 +98,7 @@ void PhaseApply()
 		if (lastTime == 0)
 			lastTime = glutGet(GLUT_ELAPSED_TIME);
 		boss.SetRotationY(yRotate);
-		yRotate += 15 * (findDiff((float)timer, (float)lastTime) / 1000);
+		yRotate += 15 * (findDiff(timer, lastTime) / 1000);
 		if (yRotate >= 360.0)
 			yRotate = yRotate - 360;
 	}

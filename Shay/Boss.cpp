@@ -7,7 +7,7 @@ Boss::Boss(GLfloat x, GLfloat y, GLfloat z)
 {
 	m_gun = Gun(Faction::ENEMY, 5, 1);
 	m_health = startHealth;
-	radius = 10;
+	radius = 20;
 	SetPosition(x, y, z);
 	SetRotation(0, 0, 0);
 	SetLazerBeamSize(0, -1.5, 0, -2.5);
