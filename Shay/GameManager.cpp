@@ -1,6 +1,6 @@
 #include "GameManager.h"
 
-const int startingSpawnCount = 1;
+const int startingSpawnCount = 10;
 
 int noOfSpawn = startingSpawnCount;
 int waveLevel = 1;
@@ -94,7 +94,7 @@ void GM::LoadGameObjectFiles()
 	ReadOBJMTL("data/object/gameObjects/Speaker.obj", GWO.Speaker);
 	ReadOBJMTL("data/object/gameObjects/ShelfEnd.obj", GWO.ShelfEnd);
 	ReadOBJMTL("data/object/gameObjects/Counter.obj", GWO.Counter);
-
+	ReadOBJMTL("data/object/gameObjects/duckgun.obj", GWO.DuckGun);
 
 
 
@@ -302,6 +302,7 @@ void GM::PlayerBulletCollisionResolution()
 		// Collision with world objects
 		if (collision.Collide(bulletBSphere))
 		{
+			player.IncrementBulletShots();
 			player.GetGun().RemoveBullet(i);
 			continue;
 		}
@@ -312,6 +313,7 @@ void GM::PlayerBulletCollisionResolution()
 			if (Collision::Collide(robots.enemies[j].GetBBox(),
 								   playerBullet.GetBoundingSphere()))
 			{
+				player.IncrementBulletShots();
 				player.IncrementBulletHits();
 				player.SetHealth(player.GetHealth() + playerBullet.GetDamage());
 				player.GetGun().RemoveBullet(i);
@@ -417,10 +419,15 @@ void GM::GameFixedUpdateLoop(int val)
 	delta = (newElapsedTime - elapsedTime) / 1000;
 	elapsedTime = newElapsedTime;
 
-	if (Starting) 
+	if (Starting && PMV.m_PausedMenuChoosen != 0)
+	{
 		GameStartUp();
-	else if (PMV.m_PausedMenuChoosen != 0) 
 		PausedFloatingPosition();
+	}
+	else if (PMV.m_PausedMenuChoosen != 0)
+		PausedFloatingPosition();
+	else if (Starting)
+		GameStartUp();
 	else
 	{
 		gameRunTime += newElapsedTime - lastUnpausedFrame;
@@ -467,14 +474,11 @@ void GM::GameFixedUpdates(float delta)
 		PauseGame();
 	}
 	// Victory condition
-	else if (bossOn)
+	else if (bossOn && boss.GetHealth() == 0)
 	{
-		if (boss.GetHealth() == 0)
-		{
-			// Display victory screen
-			PMV.m_PausedMenuChoosen = 7;
-			PauseGame();
-		}
+		// Display victory screen
+		PMV.m_PausedMenuChoosen = 7;
+		PauseGame();
 	}
 	// Win wave condition
 	else if (robots.isAllDead())
@@ -509,6 +513,12 @@ void GM::GameUpdateLoop()
 
 void GM::GameKeys(unsigned char key, int x, int y)
 {
+	if (PMV.m_PausedMenuChoosen == 7)
+	{
+		ReadKeysForString(PMV.tempRecord.name, key, 20);
+		return;
+	}
+
 	switch (key)
 	{
 	case 'x':
@@ -541,7 +551,16 @@ void GM::GameKeys(unsigned char key, int x, int y)
 		player.GetCamera().DirectionLR(1);
 		break;
 	case 27:
-		exit(1);
+		if (PMV.m_PausedMenuChoosen != 6)
+		{
+			if (PMV.m_PausedMenuChoosen == 4) { PMV.m_PausedOverStart = false; }
+			else { PMV.m_PausedOverStart = true; }
+			if (PMV.m_PausedMenuChoosen == 3) { PMV.m_UpgradeOverPaused = true; }
+			else { PMV.m_UpgradeOverPaused = false; }
+			PMV.m_PausedMenuChoosen = 5;
+			PauseGame();
+		}
+
 		break;
 	case 'C':
 	case 'c':
@@ -626,6 +645,26 @@ void GM::GameKeys(unsigned char key, int x, int y)
 	}
 }
 
+void GM::ReadKeysForString(std::string &string, unsigned char &key, int maximum)
+{
+	int size = string.size();
+
+	if ((int)key == 8) //If delete has been pressed
+	{
+		if (size > 0)
+		{
+			string = string.substr(0, size - 1);
+		}
+	}
+	else
+	{
+		if (size + 1 < maximum)
+		{
+			string.push_back(key);
+		}
+	}
+}
+
 void GM::PauseGame()
 {
 	//glutPassiveMotionFunc(NULL);
@@ -637,6 +676,7 @@ void GM::PauseGame()
 	PMV.m_floatMoving = true;
 	hudOn = false;
 	bossOn = false;
+	displayMap = false;
 }
 
 void GM::UnpauseGame()
@@ -653,6 +693,7 @@ void GM::UnpauseGame()
 	hudOn = true;
 	if (player.GetSkillPoints() >= 10)
 		bossOn = true;
+	displayMap = true;
 }
 
 void GM::GameReleaseKeys(unsigned char key, int x, int y)
@@ -814,7 +855,6 @@ void GM::GameMouseClick(int button, int state, int x, int y)
 		if (!player.GetGun().GetIsFiring())
 		{
 			Audio::PlaySound("playerShoot");
-			player.IncrementBulletShots();
 			player.Shoot();
 		}
 	}
@@ -860,6 +900,15 @@ void GM::GameMouseClickOption(int button, int state, int x, int y)
 	int max = 5;
 	if (PMV.m_PausedMenuChoosen == 4) { max = 4; }
 	PMV.m_OptionHighlighted = 0;
+
+	if (PMV.m_PausedMenuChoosen == 5) //credits
+	{
+		if (y > yMin && y < yMin + yChange * 3)
+		{
+			ExitGame(0);
+		}
+	}
+
 	for (int count = 0; count < max; count++)
 	{
 		if (y > yTop && y < yBottom)
@@ -1023,12 +1072,18 @@ void GM::MenuOptionChoosen(int option)
 		if (option == 1) { RestartGame(); }
 		else if (option == 2) { PMV.m_PausedMenuChoosen = 2; PMV.m_PausedOverStart = false; }
 		else if (option == 3) { PMV.m_PausedMenuChoosen = 5; }
-		else if (option == 4) { exit(0); }
+		else if (option == 4) { ExitGame(0); }
 	}
 	else if (PMV.m_PausedMenuChoosen == 5) //Credits
 	{
-		if (option == 4){ PMV.m_PausedMenuChoosen = 4; } //Return to start screen
-		else if (option == 5) { exit(0); }
+		if (option == 4){
+			if (PMV.m_PausedOverStart && PMV.m_UpgradeOverPaused == false) { PMV.m_PausedMenuChoosen = 1; }
+			else if (PMV.m_PausedOverStart && PMV.m_UpgradeOverPaused) { PMV.m_PausedMenuChoosen = 3; }
+			else { PMV.m_PausedMenuChoosen = 4; }
+		
+		
+		} //Return to start screen
+		else if (option == 5) { ExitGame(0); }
 	}
 	else if (PMV.m_PausedMenuChoosen == 6) //Defeat
 	{
@@ -1037,7 +1092,19 @@ void GM::MenuOptionChoosen(int option)
 	}
 	else if (PMV.m_PausedMenuChoosen == 7) //Victory
 	{
-		if (option == 5) { PMV.m_PausedMenuChoosen = 4; } //Return to start screen
+		if (option == 5) //Returns to start screen and stores the record
+		{
+			if (PMV.tempRecord.name.size() == 0){ PMV.tempRecord.name = "anonymous"; }
+			PMV.tempRecord.time = gameRunTime/1000.0;
+			PMV.tempRecord.accuracy = player.GetAccuracy();
+
+			std::cout << PMV.tempRecord.name << " completed the game with a time of " << PMV.tempRecord.time << " and with an accuracy of " << PMV.tempRecord.accuracy << std::endl;
+
+			LB.SetRecord(PMV.tempRecord);
+			WriteLeaderboardFile("data/leaderboards.txt", LB);
+
+			PMV.m_PausedMenuChoosen = 4;
+		} 
 	}
 
 }
@@ -1132,6 +1199,8 @@ void GM::RestartGame()
 	player.ResetSkillPoints();
 	player.ResetUpgradeOptions();
 
+	PMV.tempRecord.name = "";
+
 	UnpauseGame();
 
 	zFar = 0.001;
@@ -1147,6 +1216,8 @@ void GM::RestartGame()
 
 void GM::ProgressGame()
 {
+	player.GetGun().RemoveAllBullets();
+
 	noOfSpawn += 2;
 	robots.Spawn(noOfSpawn);
 
@@ -1162,4 +1233,12 @@ void GM::ProgressGame()
 	player.GetCamera().SetCameraLocation(0.5, playerHeight, 0.5);
 	glm::vec3 cannotBindToTemporaryofTypeVec = { -1, 0, 0 };
 	player.GetCamera().SetCameraLookAt(cannotBindToTemporaryofTypeVec);
+}
+
+void GM::ExitGame(int num)
+{
+
+
+
+	exit(num);
 }

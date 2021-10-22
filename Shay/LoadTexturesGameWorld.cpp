@@ -216,6 +216,19 @@ void LTGW::CreateTextures()
 	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/Continue.raw", 400, 50);
 	tpGW.CreateTexture(T_CONTINUE, GWimage, 400, 50);
 
+	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/EnterName.raw", 400, 50);
+	tpGW.CreateTexture(T_ENTER_HERE, GWimage, 400, 50);
+
+	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/Victory.raw", 400, 110);
+	tpGW.CreateTexture(T_VICTORY, GWimage, 400, 110);
+
+	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/Defeat.raw", 400, 170);
+	tpGW.CreateTexture(T_DEFEAT, GWimage, 400, 170);
+
+
+
+
+
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 

@@ -48,6 +48,8 @@ public:
 	 */
 	void RemoveBullet(int index);
 
+	void RemoveAllBullets();
+
 	/**
 	 * @brief Gets the bullet at an index.
 	 * @param index int
