@@ -464,7 +464,9 @@ void GM::GameFixedUpdates(float delta)
 
 	// Boss
 	if (bossOn)
+	{
 		boss.Update(delta);
+	}
 
 	// Lose condition
 	if (player.GetHealth() == 0)
