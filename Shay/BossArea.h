@@ -17,13 +17,6 @@ void BossInit(Player &player);
 
 void DrawBoss();
 
-void PhaseChange();
-
-void PhaseApply();
-
 void CollisionChecks(Player& player);
 
-int PsudeoNumGen(int seed, int max, int rand);
-
-float findDiff(float a, float b);
 #endif

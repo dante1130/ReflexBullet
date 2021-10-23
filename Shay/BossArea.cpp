@@ -1,7 +1,5 @@
 #include "BossArea.h"
 
-
-
 Object3D bossBody, bossPivot;
 UI BossUI(300, 70, 70, true);
 Boss boss(10, 3, 15);
