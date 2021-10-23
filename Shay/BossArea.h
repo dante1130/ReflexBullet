@@ -8,7 +8,7 @@
 #include "Player.h"
 #include "collision.h"
 
-extern Object3D bossBody;
+extern Object3D bossBody, bossPivot;
 extern Boss boss;
 extern UI BossUI;
 extern BoundingSphere b_Sphere;

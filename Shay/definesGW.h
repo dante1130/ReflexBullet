@@ -85,8 +85,9 @@ constexpr auto DUCK_GUN					= 70;
 constexpr auto S_XYLOPHONE				= 71;
 constexpr auto B_LAZER					= 72;
 constexpr auto S_HOUSE					= 73;
+constexpr auto B_PIVOT					= 74;
 
-//NEXT 74
+//NEXT 75
 constexpr auto GWTEXTURE_END = 80;
 
 #endif

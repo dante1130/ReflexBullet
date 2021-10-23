@@ -2,7 +2,7 @@
 
 
 
-Object3D bossBody;
+Object3D bossBody, bossPivot;
 UI BossUI(300, 70, 70, true);
 Boss boss(10, 3, 15);
 BoundingSphere b_Sphere(glm::vec3(10, 3, 15), 2);
@@ -24,6 +24,10 @@ void BossInit(Player& player)
 
 void DrawBoss()
 {
+	glPushMatrix();
+		glTranslatef(boss.GetPosition().x, boss.GetPosition().y, boss.GetPosition().z);
+		bossPivot.DisplayObjectWithLighting(B_PIVOT);
+	glPopMatrix();
 	glPushMatrix();
 		boss.Animate();
 		bossBody.DisplayObjectWithLighting(BOSS);

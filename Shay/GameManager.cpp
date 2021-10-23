@@ -30,7 +30,7 @@ void GM::GameInit(int w, int h)
 	Audio::AddSound("music/lasershot.wav", "enemyShoot"); //unused for now
 	Audio::AddSound("music/bossShoot.wav", "bossShoot");//unused for now
 	Audio::AddSound("music/laser.wav", "laserAttack"); //unused for now
-	Audio::AddSound("music/hurtSound.wav", "playerHurt"); //unused for now
+	Audio::AddSound("music/hurtSound.wav", "playerHurt"); 
 	Audio::AddSound("music/bulletExplosion.wav", "bulletCollide");
 	Audio::AddSound("music/deathSound.wav", "deathSound");
 	Audio::PlayMusicFadeIn("gameplay");
@@ -83,6 +83,7 @@ void GM::LoadGameObjectFiles()
 	ReadOBJMTL("data/object/gameObjects/Cachier.obj", GWO.cashier[0]);
 	ReadOBJMTL("data/object/gameObjects/Cachier1.obj", GWO.cashier[1]);
 	ReadOBJMTL("data/object/gameObjects/bossBody.obj", bossBody);
+	ReadOBJMTL("data/object/gameObjects/bossPivot.obj", bossPivot);
 	ReadOBJMTL("data/object/gameObjects/TrainArea.obj", GWO.TrainArea);
 	ReadOBJMTL("data/object/gameObjects/LightHead.obj", GWO.LightOBJ[0]);
 	ReadOBJMTL("data/object/gameObjects/LightTop.obj", GWO.LightOBJ[1]);
