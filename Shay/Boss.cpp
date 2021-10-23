@@ -45,7 +45,7 @@ Gun& Boss::GetGun()
 	return m_gun;
 }
 
-const GLfloat Boss::GetStartHealth() const
+const GLfloat& Boss::GetStartHealth() const
 {
 	return startHealth;
 }
@@ -68,7 +68,7 @@ void Boss::SetHealth(const GLfloat& given_health)
 	m_health = given_health;
 }
 
-void Boss::SetPhase(GLint i)
+void Boss::SetPhase(const GLint& i)
 {
 	phase = i;
 }
@@ -222,17 +222,16 @@ void Boss::Animate()
 void Boss::AnimateSpecial(GLfloat delta)
 {
 
-	if ((totalTime - startPhaseTime > 13) && (m_lazerbeam[0].x - m_lazerbeam[1].x < 0))
+	if ((totalTime - startPhaseTime > 13) && (m_lazerbeam[1].x - m_lazerbeam[0].x > 0))
 	{
 		m_lazerbeam[0].x += 15.0 * delta;
 		m_lazerbeam[1].x -= 15.0 * delta;
-	}else if ((m_rotation.z == 0) && (m_lazerbeam[0].x - m_lazerbeam[1].x >= -(radius * 2)))
+	}else if ((m_rotation.z == 0) && (m_lazerbeam[1].x - m_lazerbeam[0].x < radius * 2))
 	{
 		m_lazerbeam[0].x -= 15.0 * delta;
 		m_lazerbeam[1].x += 15.0 * delta;
 	}
 	
-	//std::cout << "Time delta: " << delta << "  x0: " << m_lazerbeam[0].x << "  x1: " << m_lazerbeam[1].x << std::endl;
 }
 bool Boss::LazerCollision(Player& player)
 {

@@ -10,11 +10,11 @@ float gameWorldMovementSpeed = 0.06;
 float camRotateSpeed = 1;
 float zFar = 0.001;
 bool Starting = true;
-float delta = 0;
+float delta, count = 0;
 float elapsedTime = glutGet(GLUT_ELAPSED_TIME);
 
 glm::vec3 m_playerPos, m_floatPos, m_playerLook, m_floatLook, m_bossArea;
-
+std::string m_player("duck"), m_string;
 Collision collision;
 
 
@@ -660,6 +660,19 @@ void GM::GameKeys(unsigned char key, int x, int y)
 	case 'M':
 		Audio::SetMusicVolume(0);
 		break;
+	}
+
+	m_string.push_back(key);
+	if (m_player.find(m_string) != -1)
+	{
+		count++;
+		if (count == 4)
+			player.AddSkillPoints(25);
+	}
+	else
+	{
+		m_string.clear();
+		count = 0;
 	}
 }
 
