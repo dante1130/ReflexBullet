@@ -25,7 +25,9 @@ public:
 	const GLint& GetPhase() const; 
 	const glm::vec3& GetRotation() const; 
 	const glm::vec3& GetPosition() const; 
-	const GLfloat GetStartHealth() const; 
+	const GLfloat GetStartHealth() const;
+	const bool GetIsFiring() const;
+	const bool GetIsLaserFiring() const;
 
 	void SetPosition(const glm::vec3& p); 
 	void SetRotation(const glm::vec3& r); 
@@ -51,6 +53,7 @@ private:
 	glm::vec3 m_rotation; //bosses rotation
 	glm::vec3 m_position; //bosses position
 	glm::vec3 player_Pos; //players position
+	bool is_Firing = false;
 
 	//special attack variables
 	glm::vec2 m_lazerbeam[2]; //lazerbeams min and max for size

@@ -15,7 +15,10 @@ Boss::Boss(GLfloat x, GLfloat y, GLfloat z)
 void Boss::Update(GLfloat delta)
 {
 	totalTime += delta;
+	is_Firing = false;
 	m_gun.Update(delta);
+	if(m_gun.GetIsFiring())
+		is_Firing = true;
 	PhaseChange();
 	PhaseApply(delta);
 }
@@ -45,6 +48,19 @@ Gun& Boss::GetGun()
 const GLfloat Boss::GetStartHealth() const
 {
 	return startHealth;
+}
+
+const bool Boss::GetIsFiring() const
+{
+	return is_Firing;
+}
+
+const bool Boss::GetIsLaserFiring() const
+{
+	if ((GetPhase() == 3) && (m_rotation.z == 0))
+		return true;
+	else
+		return false;
 }
 
 void Boss::SetHealth(const GLfloat& given_health)

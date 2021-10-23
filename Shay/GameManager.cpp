@@ -27,6 +27,12 @@ void GM::GameInit(int w, int h)
 
 	Audio::AddMusic("music/gamefast.wav", "gameplay");
 	Audio::AddSound("music/shooting.wav", "playerShoot");
+	Audio::AddSound("music/lasershot.wav", "enemyShoot"); //unused for now
+	Audio::AddSound("music/bossShoot.wav", "bossShoot");//unused for now
+	Audio::AddSound("music/laser.wav", "laserAttack"); //unused for now
+	Audio::AddSound("music/hurtSound.wav", "playerHurt"); //unused for now
+	Audio::AddSound("music/bulletExplosion.wav", "bulletCollide");
+	Audio::AddSound("music/deathSound.wav", "deathSound");
 	Audio::PlayMusicFadeIn("gameplay");
 
 	LTGW::CreateTextures();
@@ -302,6 +308,7 @@ void GM::PlayerBulletCollisionResolution()
 		// Collision with world objects
 		if (collision.Collide(bulletBSphere))
 		{
+			Audio::PlaySound("bulletCollide");
 			player.IncrementBulletShots();
 			player.GetGun().RemoveBullet(i);
 			continue;
@@ -313,6 +320,7 @@ void GM::PlayerBulletCollisionResolution()
 			if (Collision::Collide(robots.enemies[j].GetBBox(),
 								   playerBullet.GetBoundingSphere()))
 			{
+				Audio::PlaySound("deathSound");
 				player.IncrementBulletShots();
 				player.IncrementBulletHits();
 				player.SetHealth(player.GetHealth() + playerBullet.GetDamage());
@@ -350,6 +358,7 @@ void GM::EnemyBulletCollisionResolution()
 			else if (Collision::Collide(player.GetBoundingBox(),
 										enemyBullet.GetBoundingSphere()))
 			{
+				Audio::PlaySound("playerHurt");
 				player.SetHealth(player.GetHealth() - enemyBullet.GetDamage());
 				enemy.GetGun().RemoveBullet(i);
 			}
@@ -363,6 +372,7 @@ void GM::EnemyBulletCollisionResolution()
 					if (Collision::Collide(enemyBullet.GetBoundingSphere(),
 						playerBullet.GetBoundingSphere()))
 					{
+						Audio::PlaySound("bulletCollide");
 						enemy.GetGun().RemoveBullet(i);
 						player.GetGun().RemoveBullet(j);
 						break;
@@ -402,6 +412,7 @@ void GM::BossBulletCollisionResolution()
 				if (Collision::Collide(bossBullet.GetBoundingSphere(),
 									   playerBullet.GetBoundingSphere()))
 				{
+					Audio::PlaySound("bulletCollide");
 					boss.GetGun().RemoveBullet(i);
 					player.GetGun().RemoveBullet(j);
 					break;
@@ -466,6 +477,10 @@ void GM::GameFixedUpdates(float delta)
 	if (bossOn)
 	{
 		boss.Update(delta);
+		//if (boss.GetIsFiring())
+			//Audio::PlaySound("bossShoot"); 
+		//if (boss.GetIsLaserFiring())
+			//Audio::PlaySound("laserAttack");
 	}
 
 	// Lose condition
