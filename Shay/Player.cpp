@@ -10,7 +10,7 @@ Player::Player()
 	m_health = start_health;
 	m_lazer_hit = false;
 	m_camera.SetMoveSpeed(start_move_speed);
-	m_bBox = BoundingBox(glm::vec3(m_camera.GetPosition().x + 0.25, m_camera.GetPosition().y + 0.25, m_camera.GetPosition().z + 0.25),
+	m_bBox = BoundingBox(glm::vec3(m_camera.GetPosition().x + 0.25, m_camera.GetPosition().y + 0.10, m_camera.GetPosition().z + 0.25),
 						 glm::vec3(m_camera.GetPosition().x - 0.25, 0, m_camera.GetPosition().z - 0.25));
 						 
 }
