@@ -8,7 +8,6 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include <iostream>
 #include <cmath>
 #include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
@@ -22,6 +21,10 @@
 
 //--------------------------------------------------------------------------------------
 
+/**
+ * @class Camera
+ * @brief The camera class, handles the perspective and the movement.
+ */
 class Camera
 {
 public:
@@ -44,21 +47,21 @@ public:
 	 */
 	void AddAABB(const glm::vec3& max, const glm::vec3& min);
 
-	void ClearAABB();
-
 	/**
-	 * @brief Prints the x, y and z values to console, used for debugging.
+	 * @brief Clears the AABB collision vector.
 	 * @return void
 	 */
-	void PrintPos()
-	{
-		std::cout << m_pos.x << " " << m_pos.y << " " << m_pos.z << std::endl;
-	}
+	void ClearAABB();
 	
 	//----------------------------------------------------------------------------------
 	//  Set Methods
 	//----------------------------------------------------------------------------------
 
+	/**
+	 * @brief Setter for collision.
+	 * @param collision const Collision&
+	 * @return void
+	 */
 	void SetCollision(const Collision& collision);
 
 	/**
@@ -115,6 +118,10 @@ public:
 	//  Get Methods
 	//----------------------------------------------------------------------------------
 
+	/**
+	 * @brief Getter for position, also includes the crouch depth.
+	 * @return glm::vec3
+	 */
 	glm::vec3 GetPosition() const;
 
 	/**
@@ -123,10 +130,22 @@ public:
 	 */
 	GLdouble GetMoveSpeed() const;
 
+	/**
+	 * @brief Getter for the lookAt vector.
+	 * @return glm::vec3
+	 */
 	glm::vec3 GetLook() const;
 
+	/**
+	 * @brief Getter for pitch.
+	 * @return GLdouble
+	 */
 	GLdouble GetPitch() const;
 
+	/**
+	 * @brief Getter for yaw.
+	 * @return GLdouble
+	 */
 	GLdouble GetYaw() const;
 
 	/**
@@ -277,6 +296,7 @@ private:
 	GLdouble m_plainHeight;
 
 	// rotation variables
+
 	/// Previous mouse position.
 	glm::ivec2 m_prev; 
 	/// yaw.
@@ -285,6 +305,7 @@ private:
 	GLdouble m_rotateAngleUD, m_deltaAngleUD;
 
 	// movement variables
+
 	/// The position.
 	glm::dvec3 m_pos;
 		
@@ -293,7 +314,7 @@ private:
 
 	/// The center or where to look at.
 	glm::dvec3 m_look;
-	glm::dvec3 m_lookK; // I don't know what this is yet.
+	glm::dvec3 m_lookK;
 	/// Delta for movement.
 	GLdouble m_deltaMoveLR, m_deltaMoveFB, m_deltaMoveUD;
 	/// Direction of where the player is going.

@@ -12,11 +12,24 @@
 #include <vector>
 #include <GL/glut.h>
 
+/**
+ * @struct RobotEnemies
+ * @brief Struct for enemies in the game world.
+ */
 struct RobotEnemies
 {
+	/// The obj to be used to display the enemies, also used to calculate the bounding boxes.
 	Object3D obj;
+
+	/// Vector of enemies. 
 	std::vector<Enemy> enemies;
 
+	/**
+	 * @brief Spawns enemies by specified amount.
+	 * @param noOfEnemies int
+	 * @param playerPos glm::vec3
+	 * @return void
+	 */
 	void Spawn(int noOfEnemies, glm::vec3 playerPos)
 	{
 		BoundingBox tempBBox(obj.GetVertex(0), obj.GetVertex(0));
@@ -43,6 +56,10 @@ struct RobotEnemies
 		}
 	}
 
+	/**
+	 * @brief Returns a boolean to check if all enemies are dead.
+	 * @return bool
+	 */
 	bool isAllDead()
 	{
 		int aliveCount = std::count_if(enemies.begin(), enemies.end(), [](Enemy enemy) {
@@ -55,12 +72,26 @@ struct RobotEnemies
 
 namespace DGO
 {
+	/**
+	 * @brief Displays the enemies from the RobotEnemies struct.
+	 * @param robots RobotEnemies&
+	 * @return void
+	 */
 	void DisplayEnemies(RobotEnemies& robots);
 
+	/**
+	 * @brief Displays all the bullets in the gun.
+	 * @param gun const Gun&
+	 * @return void
+	 */
 	void DisplayGunBullets(const Gun& gun);
 
+	/**
+	 * @brief Displays the bullet.
+	 * @param bullet const Bullet&
+	 * @return void
+	 */
 	void DisplayBullets(const Bullet& bullet);
-
 }
 
 #endif

@@ -27,11 +27,13 @@ void Player::Update(GLfloat delta)
 	m_gun.Update(delta);
 
 	m_health -= m_healthDecay;
-	if (m_health <= 0) m_health = 0;
-	if (m_health > start_health)
+
+	if (m_lazer_hit) m_health -= m_healthDecay * 5;
+
+	if (m_health <= 0) 
+		m_health = 0;
+	else if (m_health > start_health)
 		m_health = start_health;
-	if (m_lazer_hit)
-		m_health -= m_healthDecay * 5;
 }
 
 void Player::Shoot()

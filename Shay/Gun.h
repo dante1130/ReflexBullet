@@ -3,7 +3,6 @@
 
 
 #include <vector>
-#include "Faction.h"
 #include "Bullet.h"
 #include <gl/glut.h>
 
@@ -21,11 +20,10 @@ public:
 
 	/**
 	 * @brief Parameterized constructor.
-	 * @param faction Faction
 	 * @param bulletVelocity GLfloat
 	 * @param firingDelay GLfloat
 	 */
-	Gun(Faction faction, GLfloat bulletVelocity, GLfloat firingDelay);
+	Gun(GLfloat bulletVelocity, GLfloat firingDelay);
 
 	/**
 	 * @brief Updates the bullets in the gun.
@@ -48,6 +46,10 @@ public:
 	 */
 	void RemoveBullet(int index);
 
+	/**
+	 * @brief Removes all the bullets in the gun.
+	 * @return void
+	 */
 	void RemoveAllBullets();
 
 	/**
@@ -57,15 +59,13 @@ public:
 	 */
 	const Bullet& BulletAt(int index) const;
 
+	/**
+	 * @brief Returns the bullet count that is currently in the scene.
+	 * @return int
+	 */
 	int BulletCount() const;
 
 	// Getter
-
-	/**
-	 * @brief Getter for faction.
-	 * @return Faction
-	 */
-	Faction GetFaction() const;
 
 	/**
 	 * @brief Getter for bullet velocity.
@@ -88,13 +88,6 @@ public:
 	// Setter
 
 	/**
-	 * @brief Setter for faction.
-	 * @param faction Faction
-	 * @return void
-	 */
-	void SetFaction(Faction faction);
-
-	/**
 	 * @brief Setter for bullet velocity.
 	 * @param bulletVelocity GLfloat
 	 * @return void
@@ -109,11 +102,19 @@ public:
 	void SetFiringDelay(GLfloat firingDelay);
 
 private:
-	Faction m_faction;
+	/// Vector containing the bullets
 	std::vector<Bullet> m_bullets;
+	
+	/// The bullet velocity.
 	GLfloat m_bulletVelocity;
+
+	/// The firing delay.
 	GLfloat m_firingDelay;
+
+	/// The firing buffer.
 	GLfloat m_firingBuffer;
+
+	/// Boolean for if the firing delay is occuring.
 	bool m_isFiring;
 	
 	//Audio audio;

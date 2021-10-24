@@ -2,11 +2,11 @@
 #include <iostream>
 
 Gun::Gun()
-	: m_faction(), m_bullets(), m_bulletVelocity(0.0f), m_firingDelay(0.0f), m_firingBuffer(0.0f), m_isFiring(false)
+	: m_bullets(), m_bulletVelocity(0.0f), m_firingDelay(0.0f), m_firingBuffer(0.0f), m_isFiring(false)
 {}
 
-Gun::Gun(Faction faction, GLfloat bulletVelocity, GLfloat firingDelay)
-	: m_faction(faction), m_bullets(), m_bulletVelocity(bulletVelocity), m_firingDelay(firingDelay), m_firingBuffer(0.0f), m_isFiring(false)
+Gun::Gun(GLfloat bulletVelocity, GLfloat firingDelay)
+	: m_bullets(), m_bulletVelocity(bulletVelocity), m_firingDelay(firingDelay), m_firingBuffer(0.0f), m_isFiring(false)
 {}
 
 void Gun::Update(GLfloat delta)

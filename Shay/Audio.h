@@ -13,10 +13,9 @@
 * @author	Andrew Ho
 * @brief	Plays sound effects and music.
 * 
-* Audio player using SDL_Mixer, can be used to play load .wav files
-* and play them.
+* Encapsulated audio player using SDL_Mixer, can be used to play load sound files
+* and play them as an sfx or music.
 * 
-* Future implementations include playing music.
 */
 class Audio
 {
@@ -36,11 +35,18 @@ public:
 	*/
 	~Audio();
 
+	/**
+	 * @brief	Getter for the sfx volume.
+	 * @return	int
+	 */
 	static int GetSfxVolume();
 
+	/**
+	 * @brief	Getter for the music volume.
+	 * @return	int
+	 */
 	static int GetMusicVolume();
 	
-
 	/**
 	* @brief	Loads a .wav file based on a given path, and gives a label for the sound.
 	* @param	soundPath const char*
@@ -71,10 +77,25 @@ public:
 	*/
 	static void PlayMusic(const char* musicName);
 
+	/**
+	 * @brief	Getter for the sfx volume.
+	 * @param	musicName const char*
+	 * @return	void
+	 */
 	static void PlayMusicFadeIn(const char* musicName);
 
+	/**
+	 * @brief	Setter for sfx volume.
+	 * @param	volume int
+	 * @return  void
+	 */
 	static void SetSfxVolume(int volume);
 
+	/**
+	 * @brief	Setter for music volume.
+	 * @param	volume int
+	 * @return  void
+	 */
 	static void SetMusicVolume(int volume);
 
 private:
@@ -84,8 +105,10 @@ private:
 	/// Music stored as values into a map, key is a string that contains the label.
 	static std::map<std::string, Mix_Music*> m_music;
 
+	/// The sfx volume.
 	static int m_sfxVolume;
 
+	/// The music volume.
 	static int m_musicVolume;
 
 	/// Position of which the sound should be played

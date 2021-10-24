@@ -9,7 +9,6 @@
 /**
  * @class Bullet
  * @brief Represents a bullet.
- * @todo Give a better brief description.
  */
 class Bullet
 {
@@ -22,7 +21,7 @@ public:
 	/**
 	 * @brief Parameterized constructor.
 	 */
-	Bullet(Faction faction, const glm::vec3& position, const glm::vec3& velocity, GLint damage);
+	Bullet(const glm::vec3& position, const glm::vec3& velocity, GLint damage);
 
 	/**
 	 * @brief Updates the bullet with delta time.
@@ -32,12 +31,6 @@ public:
 	void Update(GLfloat delta);
 
 	// Getters
-
-	/**
-	 * @brief Getter for faction.
-	 * @return Faction
-	 */
-	Faction GetFaction() const;
 
 	/**
 	 * @brief Getter for position.
@@ -62,13 +55,6 @@ public:
 	// Setters
 
 	/**
-	 * @brief Setter for faction.
-	 * @param faction Faction
-	 * @return void
-	 */
-	void SetFaction(Faction faction);
-
-	/**
 	 * @brief Setter for position.
 	 * @param position const glm::vec3& 
 	 * @return void
@@ -90,8 +76,6 @@ public:
 	void SetDamage(GLfloat damage);
 
 private:
-	/// The faction (PLAYER / ENEMY)
-	Faction m_faction;
 	/// The position of the bullet
 	glm::vec3 m_position;
 	/// The velocity of which the bullet is moving to
@@ -100,7 +84,6 @@ private:
 	GLint m_damage;
 	/// Bounding sphere for collision detection
 	BoundingSphere m_bSphere;
-	//Audio* m_audio;
 };
 
 #endif
