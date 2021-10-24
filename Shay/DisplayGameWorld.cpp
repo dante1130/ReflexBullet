@@ -535,21 +535,24 @@ void DGW::DisplayPauseMenuOptions()
 	{
 		glm::vec3 posTwo = { 0.132, 6.5, 16 };
 		posTwo.y = posTwo.y - 1.05 - 0.6 * ((PMV.m_OptionHighlighted - 1)/2);
-		if (PMV.m_OptionHighlighted == 9)
+
+		if (!(PMV.m_OptionHighlighted == 7 || PMV.m_OptionHighlighted == 8))
 		{
-			posTwo.x = 0.129;
-			DisplayIndividualOption(T_MENU_OUTLINE_COLOUR, posTwo, 0.6, 4.1);
+			if (PMV.m_OptionHighlighted == 9)
+			{
+				posTwo.x = 0.129;
+				DisplayIndividualOption(T_MENU_OUTLINE_COLOUR, posTwo, 0.6, 4.1);
+			}
+			else if (PMV.m_OptionHighlighted % 2 == 1)
+			{
+				posTwo.z = posTwo.z - 3;
+				DisplayIndividualOption(T_MENU_OUTLINE_COLOUR, posTwo, 0.6, 1.1);
+			}
+			else
+			{
+				DisplayIndividualOption(T_MENU_OUTLINE_COLOUR, posTwo, 0.6, 1.1);
+			}
 		}
-		else if (PMV.m_OptionHighlighted % 2 == 1)
-		{
-			posTwo.z = posTwo.z - 3;
-			DisplayIndividualOption(T_MENU_OUTLINE_COLOUR, posTwo, 0.6, 1.1);
-		}
-		else
-		{
-			DisplayIndividualOption(T_MENU_OUTLINE_COLOUR, posTwo, 0.6, 1.1);
-		}
-		
 	}
 
 	if (PMV.m_PausedMenuChoosen == 2)
@@ -708,10 +711,9 @@ void DGW::DisplayOptionsMenu()
 	pos.y = pos.y - 0.6;
 	DisplayIndividualOption(T_SFX_VOLUME, pos, 0.5, 2);
 
-	pos.y = pos.y - 0.6;
-	DisplayIndividualOption(T_DIFFICULTY, pos, 0.5, 2);
 
-	pos.y = pos.y - 0.6;
+
+	pos.y = pos.y - 1.2;
 	pos.z = 15.95;
 	DisplayIndividualOption(T_RETURN, pos, 0.5, 4);
 
@@ -719,7 +721,7 @@ void DGW::DisplayOptionsMenu()
 	pos.y = 5.4;
 	pos.x = 0.134;
 	pos.z = 15.94;
-	for (int count = 0; count < 4; count++)
+	for (int count = 0; count < 3; count++)
 	{
 		for (int i = 0; i < 2; i++)
 		{
@@ -743,7 +745,7 @@ void DGW::DisplayOptionsMenu()
 	std::string temp;
 	glBindTexture(GL_TEXTURE_2D, tpGW.GetTexture(T_MENU_OUTLINE_COLOUR));
 
-	for (int count = 0; count < 4; count++)
+	for (int count = 0; count < 3; count++)
 	{
 		if (count == 0)
 		{
@@ -752,7 +754,6 @@ void DGW::DisplayOptionsMenu()
 		}
 		else if (count == 1) { temp = '[' + std::to_string(Audio::GetMusicVolume()) + ']'; }
 		else if (count == 2) { temp = '[' + std::to_string(Audio::GetSfxVolume()) + ']'; }
-		else if (count == 3) { temp = '[' + std::to_string(2) + ']'; }
 
 		glRasterPos3f(0.2, yCoord, 13.35);
 		RenderBitMapString(GLUT_BITMAP_TIMES_ROMAN_24, temp);
@@ -1420,9 +1421,6 @@ void DGW::DisplayControls()
 	glTexCoord2f(0, 1);
 	glVertex3f(pos.x, pos.y - 0.5, pos.z);
 	glEnd();
-
-
-	std::cout << "controls" << std::endl;
 
 	glEnable(GL_LIGHTING);
 
