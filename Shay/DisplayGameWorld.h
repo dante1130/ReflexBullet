@@ -82,6 +82,9 @@ struct PauseMenuValues
 	//Victory record
 	Record tempRecord;
 
+	//Controls
+	bool m_ShowControls = false;
+
 	PauseMenuValues() : m_PausedMenuChoosen{ 4 }, m_OptionHighlighted{ 0 }, m_PausedOverStart { false }, m_LeaderboardShowsAccuracyOverTime { true },
 		m_LeaderboardSwitchTime{ 0 }, m_floatMoving{ false }, m_playerPos{ glm::vec3{0, 0, 0} }, m_floatPos{ glm::vec3{0, 0, 0} }, m_playerLook{ glm::vec3{0, 0, 0} },
 		m_floatLook{ glm::vec3{0, 0, 0} }, m_UpgradeOverPaused { false }
@@ -387,6 +390,16 @@ namespace DGW
 	* @return	Void
 	*/
 	void RenderBitMapString(void* font, std::string string);
+
+	/**
+	* @brief	Displays the controls for the game
+	* @param	No param
+	* @return	Void
+	*/
+	void DisplayControls();
+
+
+
 }
 
 #endif

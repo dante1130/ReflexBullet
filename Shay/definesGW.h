@@ -86,6 +86,8 @@ constexpr auto S_XYLOPHONE				= 71;
 constexpr auto B_LAZER					= 72;
 constexpr auto S_HOUSE					= 73;
 
+constexpr auto T_GAME_CONTROLS			= 74;
+
 //NEXT 74
 constexpr auto GWTEXTURE_END = 80;
 

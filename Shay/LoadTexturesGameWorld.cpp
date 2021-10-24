@@ -226,6 +226,9 @@ void LTGW::CreateTextures()
 	tpGW.CreateTexture(T_DEFEAT, GWimage, 400, 170);
 
 
+	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/GameControls.raw", 641, 635);
+	tpGW.CreateTexture(T_GAME_CONTROLS, GWimage, 641, 635);
+
 
 
 

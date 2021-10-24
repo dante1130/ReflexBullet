@@ -64,6 +64,8 @@ void DGW::DisplayGameWorldMasterFunction()
 	DisplayPlaneWithLight();
 	DisplaySpeakers();
 	DisplayShelfEnd();
+
+	if (PMV.m_ShowControls) { DisplayControls(); }
 	
 	if (PMV.m_PausedMenuChoosen != 0 && !PMV.m_floatMoving)
 	{
@@ -1399,3 +1401,27 @@ void DGW::RenderBitMapString(void* font, std::string string)
 	return;
 }
 
+void DGW::DisplayControls()
+{
+	glDisable(GL_LIGHTING);
+
+	glm::vec3 pos = {0.8, 1.1, 0.8};
+
+	glBindTexture(GL_TEXTURE_2D, tpGW.GetTexture(T_GAME_CONTROLS));
+	glBegin(GL_POLYGON);
+	glTexCoord2f(0, 0);
+	glVertex3f(pos.x, pos.y, pos.z);
+	glTexCoord2f(1, 0);
+	glVertex3f(pos.x - 0.5, pos.y, pos.z);
+	glTexCoord2f(1, 1);
+	glVertex3f(pos.x - 0.5, pos.y - 0.5, pos.z);
+	glTexCoord2f(0, 1);
+	glVertex3f(pos.x, pos.y - 0.5, pos.z);
+	glEnd();
+
+
+	std::cout << "controls" << std::endl;
+
+	glEnable(GL_LIGHTING);
+
+}

@@ -428,7 +428,7 @@ void GM::GameFixedUpdateLoop(int val)
 		PausedFloatingPosition();
 	else if (Starting)
 		GameStartUp();
-	else
+	else if (PMV.m_ShowControls == false)
 	{
 		gameRunTime += newElapsedTime - lastUnpausedFrame;
 		lastUnpausedFrame = newElapsedTime;
@@ -566,6 +566,14 @@ void GM::GameKeys(unsigned char key, int x, int y)
 	case 'c':
 	case ' ':
 		if (!PMV.m_floatMoving) { player.GetCamera().SetCrouch(true); }
+		if (PMV.m_ShowControls)
+		{
+			PMV.m_ShowControls = false;
+			zFar = 1000;
+			Starting = false;
+			glClearColor(0.5, 0.5, 0.5, 1);
+			GameReshape(glutGet(GLUT_WINDOW_WIDTH), glutGet(GLUT_WINDOW_HEIGHT));
+		}
 		break;
 	case 'p':
 	case 'P':
@@ -1174,6 +1182,8 @@ void GM::PausedFloatingPosition()
 
 void GM::RestartGame()
 {
+	PMV.m_ShowControls = true;
+
 	if (bossOn)
 	{
 		GWO.ToyStore[0].Clear();
@@ -1216,6 +1226,8 @@ void GM::RestartGame()
 
 void GM::ProgressGame()
 {
+	PMV.m_ShowControls = true;
+
 	player.GetGun().RemoveAllBullets();
 
 	noOfSpawn += 2;
