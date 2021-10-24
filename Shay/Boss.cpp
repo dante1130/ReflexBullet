@@ -21,14 +21,16 @@ void Boss::Update(GLfloat delta)
 		is_Firing = true;
 	PhaseChange();
 	PhaseApply(delta);
+
+	if (m_health <= 0)
+		m_gun.RemoveAllBullets();
 }
 
 void Boss::Shoot()
 {
 	glm::vec3 sum = player_Pos - m_position;
-
 	Bullet newbullet(m_gun.GetFaction(), 
-					 m_position + glm::normalize(sum), 
+					 m_position + (glm::normalize(sum) * glm::vec3(2.5)), 
 					 glm::normalize(sum) * m_gun.GetBulletVelocity(), 
 					 15);
 
@@ -110,6 +112,11 @@ void Boss::SetPosition(const glm::vec3& p)
 	m_position = p;
 }
 
+void Boss::SetPlayerPosition(const glm::vec3& player)
+{
+	player_Pos = player;
+}
+
 const GLint& Boss::GetPhase() const
 {
 	return phase;
@@ -123,17 +130,17 @@ const glm::vec3& Boss::GetPosition() const
 	return m_position;
 }
 
-void Boss::TrackPlayer(Player& player)
+void Boss::TrackPlayer()
 {
-	player_Pos = player.GetCamera().GetPosition();
+
 	GLfloat hyp = std::sqrt(std::pow(player_Pos.x - m_position.x, 2) + std::pow(player_Pos.z - m_position.z, 2));
 	GLfloat arccos = (player_Pos.x - m_position.x) / hyp;
 
-	desiredRotation.y = (std::acos(arccos) * (180 / PI));
+	desiredRotation.y = (std::acos(arccos) * (180 / M_PI));
 
 	GLfloat arctan = hyp / (m_position.y - player_Pos.y);
 
-	desiredRotation.z = (std::atan(arctan) * (180 / PI));
+	desiredRotation.z = (std::atan(arctan) * (180 / M_PI));
 
 	if (player_Pos.z - m_position.z > 0)
 		desiredRotation.y = -desiredRotation.y;
@@ -233,16 +240,15 @@ void Boss::AnimateSpecial(GLfloat delta)
 	}
 	
 }
-bool Boss::LazerCollision(Player& player)
+bool Boss::LazerCollision()
 {
-	player_Pos = player.GetCamera().GetPosition(); //stores the players position
 	GLfloat ac = sqrt(pow(player_Pos.x - m_position.x + radius, 2) + pow(player_Pos.z - m_position.z, 2)); // length of side ac (distance from top to player)
 	GLfloat bc = sqrt(pow(player_Pos.x - m_position.x, 2) + pow(player_Pos.z - m_position.z, 2)); //length of side bc (distance from boss to player)
-	GLfloat playerAngle = 180 - acos((radius * radius + bc * bc - ac * ac) / (2 * radius * bc)) * 180.0 / PI; //angle between abc
+	GLfloat playerAngle = 180 - acos((radius * radius + bc * bc - ac * ac) / (2 * radius * bc)) * 180.0 / M_PI; //angle between abc
 	if (player_Pos.z - m_position.z > 0)
 		playerAngle = (180 - playerAngle) + 180;
 	GLfloat sum = m_rotation.y - playerAngle; //difference between the angles
-	GLfloat diff = 90 - atan(2 * bc / 0.5) * 180.0 / PI; //how much range between being hit by the laser
+	GLfloat diff = 90 - atan(2 * bc / 0.5) * 180.0 / M_PI; //how much range between being hit by the laser
 	
 	if ((sum < diff && sum > -diff) || (sum + 180 < diff && sum + 180 > -diff))
 		return true;

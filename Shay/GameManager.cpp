@@ -514,6 +514,8 @@ void GM::GameFixedUpdates(float delta)
 	{
 		if (boss.GetHealth() == 0)
 		{
+			boss.GetGun().RemoveAllBullets();
+
 			// Display victory screen
 			PMV.m_PausedMenuChoosen = 7;
 			PauseGame();
@@ -1244,6 +1246,7 @@ void GM::RestartGame()
 		collision.Clear();
 		CreateGameBoundingBoxes();
 
+		boss.SetHealth(boss.GetStartHealth());
 		bossOn = false;
 	}
 
