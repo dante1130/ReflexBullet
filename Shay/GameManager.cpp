@@ -573,10 +573,6 @@ void GM::GameKeys(unsigned char key, int x, int y)
 
 	switch (key)
 	{
-	case 'x':
-		player.GetCamera().PrintPos();
-		break;
-
 		// move forwards
 	case 'W':
 	case 'w':

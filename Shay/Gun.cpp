@@ -55,11 +55,6 @@ int Gun::BulletCount() const
 	return m_bullets.size();
 }
 
-Faction Gun::GetFaction() const
-{
-	return m_faction;
-}
-
 GLfloat Gun::GetBulletVelocity() const
 {
 	return m_bulletVelocity;
@@ -74,11 +69,6 @@ GLfloat Gun::GetFiringDelay() const
 bool Gun::GetIsFiring() const
 {
 	return m_isFiring;
-}
-
-void Gun::SetFaction(Faction faction)
-{
-	m_faction = faction;
 }
 
 void Gun::SetBulletVelocity(GLfloat bulletVelocity)

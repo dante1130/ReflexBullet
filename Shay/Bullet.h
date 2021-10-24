@@ -2,7 +2,6 @@
 #define BULLET_H
 
 #include <glm/vec3.hpp>
-#include "Faction.h"
 #include "BoundingSphere.h"
 #include <GL/glut.h>
 

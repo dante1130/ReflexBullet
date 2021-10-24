@@ -221,10 +221,6 @@ void PSW::keys(unsigned char key, int x, int y)
 		cam.SetCameraLocation(2613.56, 10450, 9250);
 		break;
 
-	case 'x':
-		cam.PrintPos();
-		break;
-
 		// move forwards
 	case 'W':
 	case 'w':

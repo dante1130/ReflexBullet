@@ -3,7 +3,7 @@
 
 Boss::Boss(GLfloat x, GLfloat y, GLfloat z)
 {
-	m_gun = Gun(Faction::ENEMY, 5, 1);
+	m_gun = Gun(5, 1);
 	m_health = startHealth;
 	radius = 20;
 	SetPosition(x, y, z);
@@ -29,8 +29,7 @@ void Boss::Update(GLfloat delta)
 void Boss::Shoot()
 {
 	glm::vec3 sum = player_Pos - m_position;
-	Bullet newbullet(m_gun.GetFaction(), 
-					 m_position + (glm::normalize(sum) * glm::vec3(2.5)), 
+	Bullet newbullet(m_position + (glm::normalize(sum) * glm::vec3(2.5)), 
 					 glm::normalize(sum) * m_gun.GetBulletVelocity(), 
 					 15);
 
