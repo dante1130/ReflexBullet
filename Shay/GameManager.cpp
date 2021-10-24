@@ -5,6 +5,8 @@ const int startingSpawnCount = 10;
 int noOfSpawn = startingSpawnCount;
 int waveLevel = 1;
 
+bool isLeftMouse = false;
+
 bool ActiveGameWorld = false;
 float gameWorldMovementSpeed = 0.06;
 float camRotateSpeed = 1;
@@ -549,6 +551,15 @@ void GM::GameStartUp()
 
 void GM::GameUpdateLoop()
 {
+	if (isLeftMouse)
+	{
+		if (!player.GetGun().GetIsFiring())
+		{
+			Audio::PlaySound("playerShoot");
+			player.Shoot();
+		}
+	}
+	
 	glutPostRedisplay();
 }
 
@@ -912,13 +923,11 @@ void GM::GameMouseOverOptionOptions(int x, int y, float xMax, float xMin, float 
 
 void GM::GameMouseClick(int button, int state, int x, int y)
 {
-	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && PMV.m_PausedMenuChoosen == 0)
+	if (button == GLUT_LEFT_BUTTON &&  PMV.m_PausedMenuChoosen == 0)
 	{
-		if (!player.GetGun().GetIsFiring())
-		{
-			Audio::PlaySound("playerShoot");
-			player.Shoot();
-		}
+		isLeftMouse = (state == GLUT_DOWN);
+
+
 	}
 	else if (PMV.m_PausedMenuChoosen != 0 && PMV.m_floatMoving == false)
 	{
