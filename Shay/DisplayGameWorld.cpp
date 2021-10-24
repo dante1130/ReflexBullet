@@ -46,7 +46,7 @@ void DGW::DisplayGameWorldMasterFunction()
 	if (wireFrame) EnemyAI::DisplayWireframe();
 	if (displayMap) EnemyAI::DisplayMap();
 	if (visibleShelves) DisplayShelves();
-	if (bossOn && boss.GetHealth() > 0) BossInit(player);
+	if (bossOn) BossInit(player);
 
 	PlayerUI.DrawHUD(player.GetHealth(), player.GetStartHealth());
 	Lighting::UpdateLighting();

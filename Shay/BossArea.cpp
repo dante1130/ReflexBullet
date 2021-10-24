@@ -8,16 +8,19 @@ BoundingSphere b_Sphere(glm::vec3(10, 3, 15), 2);
 
 void BossInit(Player& player)
 {
-	if (boss.GetPhase() != 3)
-		boss.TrackPlayer(player);
-	else if(boss.GetRotation().z == 0){
-		if (boss.LazerCollision(player) && !player.GetCamera().GetCrouch())
-			player.SetLazerHit(true);
-		else if(player.GetLazerHit())
-			player.SetLazerHit(false);
+	if (boss.GetHealth() > 0) {
+		boss.SetPlayerPosition(player.GetCamera().GetPosition());
+		if (boss.GetPhase() != 3)
+			boss.TrackPlayer();
+		else if (boss.GetRotation().z == 0) {
+			if (boss.LazerCollision() && !player.GetCamera().GetCrouch())
+				player.SetLazerHit(true);
+			else if (player.GetLazerHit())
+				player.SetLazerHit(false);
+		}
+		DrawBoss();
+		CollisionChecks(player);
 	}
-	DrawBoss();
-	CollisionChecks(player);
 }
 
 void DrawBoss()

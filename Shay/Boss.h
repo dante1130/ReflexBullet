@@ -1,13 +1,12 @@
 #ifndef BOSS_H
 #define BOSS_H
+#define _USE_MATH_DEFINES
 
-#include <math.h>
 #include <glm/glm.hpp>
+#include <cmath>
 
 #include "BaseCharacter.h"
 #include "LoadTexturesGameWorld.h"
-#include "Player.h"
-#include "BoundingSphere.h"
 
 
 class Boss : public BaseCharacter
@@ -83,6 +82,7 @@ public:
 	const bool GetIsLaserFiring() const;
 
 
+
 	/**
 	 * @brief Sets position of boss given a vector.
 	 * @param p const glm::vec3&
@@ -102,6 +102,8 @@ public:
 	 */
 	void SetPhase(const GLint& i);
 
+	void SetPlayerPosition(const glm::vec3& player);
+
 
 
 	/**
@@ -110,7 +112,7 @@ public:
 	 * @param player Player&
 	 * @return void
 	 */
-	void TrackPlayer(Player& player);
+	void TrackPlayer();
 	/**
 	 * @brief Applies rotation and translation based 
 	 * on m_rotation and m_position. Also draws 
@@ -124,7 +126,7 @@ public:
 	 * @param player Player&
 	 * @return bool
 	 */
-	bool LazerCollision(Player& player);
+	bool LazerCollision();
 
 
 private:

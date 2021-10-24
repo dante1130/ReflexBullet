@@ -1219,7 +1219,7 @@ void GM::RestartGame()
 	{
 		GWO.ToyStore[0].Clear();
 		ReadOBJMTL("data/object/gameObjects/ToyStore.obj", GWO.ToyStore[0]);
-
+		boss.SetHealth(boss.GetStartHealth());
 		bossOn = false;
 	}
 
