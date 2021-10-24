@@ -73,8 +73,22 @@ void DGW::DisplayGameWorldMasterFunction()
 	else
 	{
 		DGO::DisplayEnemies(robots);
+
+		glPushAttrib(GL_CURRENT_BIT);
+		glColor3f(1, 0, 0);
+		for (auto& robot : robots.enemies)
+			DGO::DisplayGunBullets(robot.GetGun());
+		glPopAttrib();
+
+		glPushAttrib(GL_CURRENT_BIT);
+		glColor3f(0, 0, 1);
 		DGO::DisplayGunBullets(player.GetGun());
+		glPopAttrib();
+
+		glPushAttrib(GL_CURRENT_BIT);
+		glColor3f(1, 0, 1);
 		DGO::DisplayGunBullets(boss.GetGun());
+		glPopAttrib();
 
 		// Important! Display the gun as the last item as it clears the depth buffer.
 		if (!PMV.m_floatMoving) DisplayDuckGun();

@@ -76,6 +76,8 @@ namespace GM
 	*/
 	void CreateGameBoundingBoxes();
 
+	void ChangeToBossCover();
+
 	/**
 	 * @brief	Collision resolution between the available collision types.
 	 * @param	No param

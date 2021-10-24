@@ -24,6 +24,11 @@ void Collision::Push(const glm::vec3& max, const glm::vec3& min)
 	GetQuadrant(max, min);
 }
 
+AABBVector& Collision::GetQuadrant(int index)
+{
+	return m_list[index];
+}
+
 void Collision::SetWorldX(const double& tempX)
 {
 	m_worldSizeX = tempX;

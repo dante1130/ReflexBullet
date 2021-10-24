@@ -13,8 +13,6 @@ void DGO::DisplayEnemies(RobotEnemies& robots)
 
 		angle = angle / PI * 180;
 
-		//std::cout << angle << std::endl;
-
 		if (enemy.GetIsAlive())
 		{
 			glPushMatrix();
@@ -25,8 +23,6 @@ void DGO::DisplayEnemies(RobotEnemies& robots)
 			robots.obj.DisplayObjectWithLighting(ROBOT);
 			glPopMatrix();
 		}
-
-		DisplayGunBullets(enemy.GetGun());
 	}
 }
 

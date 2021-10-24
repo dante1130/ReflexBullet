@@ -23,7 +23,7 @@ void GM::GameInit(int w, int h)
 	std::thread loadGameObjectFiles(LoadGameObjectFiles);
 	std::thread loadAnimation(LoadAnimation);
 
-	srand(time(0));
+	srand(time(0)); // Seeds the random gen
 
 	Audio::AddMusic("music/gamefast.wav", "gameplay");
 	Audio::AddSound("music/shooting.wav", "playerShoot");
@@ -212,7 +212,7 @@ void GM::CreateGameBoundingBoxes()
 {
 	// Walls
 	collision.Push(glm::vec3(20, 7, 0.05), glm::vec3(0, 0, -2));
-	collision.Push(glm::vec3(20, 5, 28), glm::vec3(0, 0, 25.95));
+	collision.Push(glm::vec3(20, 7, 28), glm::vec3(0, 0, 25.95));
 	collision.Push(glm::vec3(0.05, 7, 26), glm::vec3(-2, 0, 0));
 	collision.Push(glm::vec3(22, 7, 26), glm::vec3(19.95, 0, 0));
 
@@ -235,9 +235,11 @@ void GM::CreateGameBoundingBoxes()
 
 	collision.Push(glm::vec3(5.05, 1.5, 26), glm::vec3(2.95, 0, 22.95));
 
+	// Bottom right pillar
 	collision.Push(glm::vec3(5.05, 1.5, 7.05), glm::vec3(1.95, 0, 4.95));
 	collision.Push(glm::vec3(7.05, 0.5, 7.05), glm::vec3(4.95, 0, 5.95));
-	collision.Push(glm::vec3(8.05, 1.5, 9.05), glm::vec3(6.95, 0, 4.95));
+	collision.Push(glm::vec3(8.05, 1.5, 9.05), glm::vec3(6.95, 0, 6.95));
+	collision.Push(glm::vec3(8.05, 5, 7.05), glm::vec3(6.95, 0, 4.95));
 	collision.Push(glm::vec3(10.05, 0.5, 7.05), glm::vec3(7.95, 0, 5.95));
 
 	collision.Push(glm::vec3(15.05, 1.5, 5.05), glm::vec3(10.95, 0, 2.95));
@@ -259,21 +261,22 @@ void GM::CreateGameBoundingBoxes()
 	collision.Push(glm::vec3(3.05, 1.5, 11.05), glm::vec3(1.95, 0, 8.95));
 	collision.Push(glm::vec3(4.05, 0.5, 15.05), glm::vec3(1.95, 0, 10.95));
 	
-
-	//
+	
+	// Middle left pillar
 	collision.Push(glm::vec3(13.05, 0.5, 15.05), glm::vec3(11.95, 0, 10.95));
-	collision.Push(glm::vec3(14.05, 1.5, 15.05), glm::vec3(12.95, 0, 10.95));
+	collision.Push(glm::vec3(14.05, 5, 15.05), glm::vec3(12.95, 0, 10.95));
 	collision.Push(glm::vec3(15.05, 0.5, 14.05), glm::vec3(13.95, 0, 11.95));
 
-	//
+	// Top right pillar
 	collision.Push(glm::vec3(5.05, 1.5, 21.05), glm::vec3(1.95, 0, 18.95));
 	collision.Push(glm::vec3(7.05, 0.5, 20.05), glm::vec3(4.95, 0, 18.95));
-	collision.Push(glm::vec3(8.05, 1.5, 21.05), glm::vec3(6.95, 0, 16.95));
+	collision.Push(glm::vec3(8.05, 1.5, 19.05), glm::vec3(6.95, 0, 16.95));
+	collision.Push(glm::vec3(8.05, 5, 21.05), glm::vec3(6.95, 0, 18.95));
 	collision.Push(glm::vec3(10.05, 0.5, 20.05), glm::vec3(7.95, 0, 18.95));
 
-	//
+	// Middle pillar
 	collision.Push(glm::vec3(7.05, 0.5, 15.05), glm::vec3(5.95, 0, 10.95));
-	collision.Push(glm::vec3(10.05, 1.5, 14.05), glm::vec3(5.95, 0, 11.95));
+	collision.Push(glm::vec3(10.05, 5, 14.05), glm::vec3(5.95, 0, 11.95));
 	collision.Push(glm::vec3(10.05, 0.5, 16.05), glm::vec3(8.95, 0, 9.95));
 	
 	player.GetCamera().SetCollision(collision);
@@ -283,6 +286,22 @@ void GM::CreateGameBoundingBoxes()
 
 	// Ceiling
 	collision.Push(glm::vec3(20, 5.05, 26), glm::vec3(0, 4.95, 0));
+}
+
+void GM::ChangeToBossCover()
+{
+	for (int i = 0; i < 4; ++i)
+	{
+		AABBVector& bBoxes = collision.GetQuadrant(i);
+
+		for (int j = 0; j < bBoxes.Size(); ++j)
+		{
+			if (bBoxes.GetMax(j).y == 5)
+			{
+				bBoxes.SetData(j, glm::vec3(bBoxes.GetMax(j).x, 0.5, bBoxes.GetMax(j).y), bBoxes.GetMin(j));
+			}
+		}
+	}
 }
 
 void GM::GameCollisionResolution()
@@ -324,7 +343,7 @@ void GM::PlayerBulletCollisionResolution()
 				Audio::PlaySound("deathSound");
 				player.IncrementBulletShots();
 				player.IncrementBulletHits();
-				player.SetHealth(player.GetHealth() + playerBullet.GetDamage());
+				player.SetHealth(player.GetHealth() + 15 - waveLevel);
 				player.GetGun().RemoveBullet(i);
 				robots.enemies[j].SetHealth(robots.enemies[j].GetHealth() - playerBullet.GetDamage());
 				break;
@@ -414,7 +433,6 @@ void GM::BossBulletCollisionResolution()
 									   playerBullet.GetBoundingSphere()))
 				{
 					Audio::PlaySound("bulletCollide");
-					boss.GetGun().RemoveBullet(i);
 					player.GetGun().RemoveBullet(j);
 					break;
 				}
@@ -492,11 +510,14 @@ void GM::GameFixedUpdates(float delta)
 		PauseGame();
 	}
 	// Victory condition
-	else if (bossOn && boss.GetHealth() == 0)
+	else if (bossOn)
 	{
-		// Display victory screen
-		PMV.m_PausedMenuChoosen = 7;
-		PauseGame();
+		if (boss.GetHealth() == 0)
+		{
+			// Display victory screen
+			PMV.m_PausedMenuChoosen = 7;
+			PauseGame();
+		}	
 	}
 	// Win wave condition
 	else if (robots.isAllDead())
@@ -1220,6 +1241,9 @@ void GM::RestartGame()
 		GWO.ToyStore[0].Clear();
 		ReadOBJMTL("data/object/gameObjects/ToyStore.obj", GWO.ToyStore[0]);
 
+		collision.Clear();
+		CreateGameBoundingBoxes();
+
 		bossOn = false;
 	}
 
@@ -1257,6 +1281,11 @@ void GM::RestartGame()
 
 void GM::ProgressGame()
 {
+	if (bossOn)
+	{
+		ChangeToBossCover();
+	}
+
 	PMV.m_ShowControls = true;
 
 	player.GetGun().RemoveAllBullets();
