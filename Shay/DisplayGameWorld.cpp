@@ -49,7 +49,6 @@ void DGW::DisplayGameWorldMasterFunction()
 	if (bossOn && boss.GetHealth() > 0) BossInit(player);
 
 	PlayerUI.DrawHUD(player.GetHealth(), player.GetStartHealth());
-
 	Lighting::UpdateLighting();
 
 	DisplayAnimation();
@@ -79,7 +78,10 @@ void DGW::DisplayGameWorldMasterFunction()
 
 		// Important! Display the gun as the last item as it clears the depth buffer.
 		if (!PMV.m_floatMoving) DisplayDuckGun();
+
+		
 	}
+	if (bossOn && boss.GetHealth() > 0) BossUI.DrawHUD(boss.GetHealth(), boss.GetStartHealth());
 
 	glutSwapBuffers();
 }

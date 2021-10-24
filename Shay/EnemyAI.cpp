@@ -200,10 +200,10 @@ void EnemyAI::DisplayMap()
 			}
 
 			glPushMatrix();
-			glTranslatef(1200, 550, 0);
-			glScalef(5, 5, 0);
+			glTranslatef(1250, 500, 0);
 			glRotatef(90, 0, 0, 1);
 			glRotatef(180, 1, 1, 0);
+			glScalef(8, 8, 0);
 			glBegin(GL_POLYGON);
 			glVertex2f(i, j);
 			glVertex2f(i + 1, j);

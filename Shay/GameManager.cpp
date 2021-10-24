@@ -10,11 +10,11 @@ float gameWorldMovementSpeed = 0.06;
 float camRotateSpeed = 1;
 float zFar = 0.001;
 bool Starting = true;
-float delta = 0;
+float delta, count = 0;
 float elapsedTime = glutGet(GLUT_ELAPSED_TIME);
 
 glm::vec3 m_playerPos, m_floatPos, m_playerLook, m_floatLook, m_bossArea;
-
+std::string m_player("duck"), m_string;
 Collision collision;
 
 
@@ -27,6 +27,12 @@ void GM::GameInit(int w, int h)
 
 	Audio::AddMusic("music/gamefast.wav", "gameplay");
 	Audio::AddSound("music/shooting.wav", "playerShoot");
+	Audio::AddSound("music/lasershot.wav", "enemyShoot"); //unused for now
+	Audio::AddSound("music/bossShoot.wav", "bossShoot");//unused for now
+	Audio::AddSound("music/laser.wav", "laserAttack"); //unused for now
+	Audio::AddSound("music/hurtSound.wav", "playerHurt"); 
+	Audio::AddSound("music/bulletExplosion.wav", "bulletCollide");
+	Audio::AddSound("music/deathSound.wav", "deathSound");
 	Audio::PlayMusicFadeIn("gameplay");
 
 	LTGW::CreateTextures();
@@ -77,6 +83,7 @@ void GM::LoadGameObjectFiles()
 	ReadOBJMTL("data/object/gameObjects/Cachier.obj", GWO.cashier[0]);
 	ReadOBJMTL("data/object/gameObjects/Cachier1.obj", GWO.cashier[1]);
 	ReadOBJMTL("data/object/gameObjects/bossBody.obj", bossBody);
+	ReadOBJMTL("data/object/gameObjects/bossPivot.obj", bossPivot);
 	ReadOBJMTL("data/object/gameObjects/TrainArea.obj", GWO.TrainArea);
 	ReadOBJMTL("data/object/gameObjects/LightHead.obj", GWO.LightOBJ[0]);
 	ReadOBJMTL("data/object/gameObjects/LightTop.obj", GWO.LightOBJ[1]);
@@ -302,6 +309,7 @@ void GM::PlayerBulletCollisionResolution()
 		// Collision with world objects
 		if (collision.Collide(bulletBSphere))
 		{
+			Audio::PlaySound("bulletCollide");
 			player.IncrementBulletShots();
 			player.GetGun().RemoveBullet(i);
 			continue;
@@ -313,6 +321,7 @@ void GM::PlayerBulletCollisionResolution()
 			if (Collision::Collide(robots.enemies[j].GetBBox(),
 								   playerBullet.GetBoundingSphere()))
 			{
+				Audio::PlaySound("deathSound");
 				player.IncrementBulletShots();
 				player.IncrementBulletHits();
 				player.SetHealth(player.GetHealth() + playerBullet.GetDamage());
@@ -350,6 +359,7 @@ void GM::EnemyBulletCollisionResolution()
 			else if (Collision::Collide(player.GetBoundingBox(),
 										enemyBullet.GetBoundingSphere()))
 			{
+				Audio::PlaySound("playerHurt");
 				player.SetHealth(player.GetHealth() - enemyBullet.GetDamage());
 				enemy.GetGun().RemoveBullet(i);
 			}
@@ -363,6 +373,7 @@ void GM::EnemyBulletCollisionResolution()
 					if (Collision::Collide(enemyBullet.GetBoundingSphere(),
 						playerBullet.GetBoundingSphere()))
 					{
+						Audio::PlaySound("bulletCollide");
 						enemy.GetGun().RemoveBullet(i);
 						player.GetGun().RemoveBullet(j);
 						break;
@@ -402,6 +413,7 @@ void GM::BossBulletCollisionResolution()
 				if (Collision::Collide(bossBullet.GetBoundingSphere(),
 									   playerBullet.GetBoundingSphere()))
 				{
+					Audio::PlaySound("bulletCollide");
 					boss.GetGun().RemoveBullet(i);
 					player.GetGun().RemoveBullet(j);
 					break;
@@ -464,7 +476,13 @@ void GM::GameFixedUpdates(float delta)
 
 	// Boss
 	if (bossOn)
+	{
 		boss.Update(delta);
+		//if (boss.GetIsFiring())
+			//Audio::PlaySound("bossShoot"); 
+		//if (boss.GetIsLaserFiring())
+			//Audio::PlaySound("laserAttack");
+	}
 
 	// Lose condition
 	if (player.GetHealth() == 0)
@@ -650,6 +668,19 @@ void GM::GameKeys(unsigned char key, int x, int y)
 	case 'M':
 		Audio::SetMusicVolume(0);
 		break;
+	}
+
+	m_string.push_back(key);
+	if (m_player.find(m_string) != -1)
+	{
+		count++;
+		if (count == 4)
+			player.AddSkillPoints(25);
+	}
+	else
+	{
+		m_string.clear();
+		count = 0;
 	}
 }
 

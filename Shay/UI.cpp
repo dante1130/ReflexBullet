@@ -11,6 +11,7 @@ UI::UI(float offX, float offY, float barT, bool orient)
 	barOffsetY = offY;
 	barThickness = barT;
 	orientation = orient;
+	SetExtras();
 }
 
 void UI::SetExtras()
@@ -32,11 +33,6 @@ void UI::SetExtras()
 
 void UI::DrawHUD(GLfloat health, GLfloat startHealth)
 {	
-	if (!orientPass)
-	{
-		SetExtras();
-		orientPass = true;
-	}
 	if (hudOn) 
 	{
 		glMatrixMode(GL_PROJECTION);
@@ -107,11 +103,13 @@ void UI::CalculateBar(GLfloat health, GLfloat startHealth)
 			GLfloat desiredHeight = (w - barOffsetX) - (w - (barOffsetX * 2)) * (1 - (health / startHealth));
 			barHeight = glm::mix(barHeight, desiredHeight, (GLfloat)0.02);
 			addon[1] = barHeight - barOffsetX;
+			addon[0] = barThickness * (w / 1280);
 		}
 		else //vertical
 		{
 			barHeight = (h - barOffsetY) - (h - (barOffsetY * 2)) * (1 - (health / startHealth));
 			addon[0] = barHeight - barOffsetY;
+			addon[1] = barThickness * (h / 720);
 		}
 	}
 }

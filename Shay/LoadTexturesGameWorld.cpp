@@ -84,6 +84,9 @@ void LTGW::CreateTextures()
 	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/lazer.raw", 64, 64);
 	tpGW.CreateTexture(B_LAZER, GWimage, 64, 64);
 
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/roofThing.raw", 256, 256);
+	tpGW.CreateTexture(B_PIVOT, GWimage, 256, 256);
+
 	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/Paused.raw", 400, 100);
 	tpGW.CreateTexture(T_PAUSED, GWimage, 400, 100);
 
