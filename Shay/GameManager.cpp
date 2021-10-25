@@ -42,6 +42,9 @@ void GM::GameInit(int w, int h)
 	ReadLeaderboardFile("data/leaderboards.txt", LB);
 
 	glClearColor(1, 1, 1, 1);
+
+	EnemyAI::ResetGrid();
+
 	player.GetCamera().SetWorldCoordinates(0, 26);
 	player.GetCamera().ClearAABB();
 
@@ -1272,6 +1275,8 @@ void GM::RestartGame()
 {
 	PMV.m_ShowControls = true;
 
+	EnemyAI::ResetGrid();
+
 	collision.Clear();
 	CreateGameBoundingBoxes();
 
@@ -1317,6 +1322,7 @@ void GM::ProgressGame()
 	if (bossOn)
 	{
 		ChangeToBossCover();
+		EnemyAI::SwitchBossGrid();
 		noOfSpawn = 15;
 		waveLevel = 5;
 	}

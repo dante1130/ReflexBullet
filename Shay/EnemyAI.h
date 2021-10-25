@@ -35,6 +35,12 @@ public:
 	static void ResetGrid();
 
 	/**
+	 * @brief Switches the grid to the boss grid.
+	 * @return void
+	 */
+	static void SwitchBossGrid();
+
+	/**
 	 * @brief Updates the AI, to be called every game tick.
 	 * @param currentPos const glm::vec3&
 	 * @return void
