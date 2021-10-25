@@ -498,9 +498,9 @@ void GM::GameFixedUpdates(float delta)
 	{
 		boss.Update(delta);
 		//if (boss.GetIsFiring())
-			//Audio::PlaySound("bossShoot"); 
-		//if (boss.GetIsLaserFiring())
-			//Audio::PlaySound("laserAttack");
+		//	Audio::PlaySound("bossShoot"); 
+		if (boss.GetIsLaserFiring())
+			Audio::PlaySound("laserAttack");
 	}
 
 	// Lose condition
@@ -600,12 +600,15 @@ void GM::GameKeys(unsigned char key, int x, int y)
 	case 27:
 		if (PMV.m_PausedMenuChoosen != 6)
 		{
+			bool pause = false;
+			if (PMV.m_PausedMenuChoosen == 0) { pause = true; }
+
 			if (PMV.m_PausedMenuChoosen == 4) { PMV.m_PausedOverStart = false; }
 			else { PMV.m_PausedOverStart = true; }
 			if (PMV.m_PausedMenuChoosen == 3) { PMV.m_UpgradeOverPaused = true; }
 			else { PMV.m_UpgradeOverPaused = false; }
 			PMV.m_PausedMenuChoosen = 5;
-			PauseGame();
+			if (pause) { PauseGame(); }
 		}
 
 		break;
@@ -628,7 +631,6 @@ void GM::GameKeys(unsigned char key, int x, int y)
 
 		if (PMV.m_PausedMenuChoosen == 0) { PMV.m_PausedMenuChoosen = 1; }
 		else { PMV.m_PausedMenuChoosen = 0; }
-
 
 		if (PMV.m_PausedMenuChoosen == 1)
 		{
@@ -688,6 +690,7 @@ void GM::GameKeys(unsigned char key, int x, int y)
 	case 'b':
 	case 'B':
 		bossOn = true;
+		ChangeToBossCover();
 		break;
 	case 'h':
 	case 'H':
@@ -735,6 +738,8 @@ void GM::ReadKeysForString(std::string &string, unsigned char &key, int maximum)
 
 void GM::PauseGame()
 {
+	if(PMV.m_PausedMenuChoosen)
+
 	//glutPassiveMotionFunc(NULL);
 	glutMotionFunc(NULL);
 	PMV.m_playerPos = player.GetCamera().GetPosition();
@@ -745,6 +750,14 @@ void GM::PauseGame()
 	hudOn = false;
 	bossOn = false;
 	displayMap = false;
+
+	if (player.GetCamera().GetCrouch())
+	{
+		PMV.m_WasCrouching = true;
+		player.GetCamera().SetCrouch(false);
+	}
+	else
+		PMV.m_WasCrouching = false;
 }
 
 void GM::UnpauseGame()
@@ -755,6 +768,17 @@ void GM::UnpauseGame()
 	//glutPassiveMotionFunc(GameMouseMove);
 	glutMotionFunc(GameMouseMove);
 	PMV.m_floatMoving = false;
+
+	if (PMV.m_WasCrouching)
+	{
+		player.GetCamera().SetCrouch(true);
+		PMV.m_playerPos.y = PMV.m_playerPos.y - crouchDepth;
+	}
+	else
+		player.GetCamera().SetCrouch(false);
+
+	PMV.m_WasCrouching = false;
+
 	player.GetCamera().SetCameraLocation(PMV.m_playerPos.x, PMV.m_playerPos.y, PMV.m_playerPos.z);
 	player.GetCamera().SetCameraLookAt(PMV.m_playerLook);
 	lastUnpausedFrame = glutGet(GLUT_ELAPSED_TIME);
@@ -762,6 +786,7 @@ void GM::UnpauseGame()
 	if (player.GetSkillPoints() >= 10)
 		bossOn = true;
 	displayMap = true;
+
 }
 
 void GM::GameReleaseKeys(unsigned char key, int x, int y)
@@ -846,7 +871,8 @@ void GM::MouseOverOption(int x, int y)
 	}
 
 	int max = 5;
-	if (PMV.m_PausedMenuChoosen == 4 || PMV.m_PausedMenuChoosen == 1) { max = 4; }
+	if (PMV.m_PausedMenuChoosen == 1) { max = 4; }
+	if (PMV.m_PausedMenuChoosen == 4) { max = 3; }
 	PMV.m_OptionHighlighted = 0;
 	for (int count = 0; count < max; count++)
 	{
@@ -1137,7 +1163,6 @@ void GM::MenuOptionChoosen(int option)
 		if (option == 1) { RestartGame(); }
 		else if (option == 2) { PMV.m_PausedMenuChoosen = 2; PMV.m_PausedOverStart = false; }
 		else if (option == 3) { PMV.m_PausedMenuChoosen = 5; }
-		else if (option == 4) { ExitGame(0); }
 	}
 	else if (PMV.m_PausedMenuChoosen == 5) //Credits
 	{
@@ -1242,17 +1267,11 @@ void GM::RestartGame()
 {
 	PMV.m_ShowControls = true;
 
-	if (bossOn)
-	{
-		GWO.ToyStore[0].Clear();
-		ReadOBJMTL("data/object/gameObjects/ToyStore.obj", GWO.ToyStore[0]);
+	collision.Clear();
+	CreateGameBoundingBoxes();
 
-		collision.Clear();
-		CreateGameBoundingBoxes();
-
-		boss.SetHealth(boss.GetStartHealth());
-		bossOn = false;
-	}
+	boss.SetHealth(boss.GetStartHealth());
+	bossOn = false;
 
 	noOfSpawn = startingSpawnCount;
 	waveLevel = 1;

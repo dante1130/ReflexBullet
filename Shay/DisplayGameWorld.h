@@ -78,6 +78,7 @@ struct PauseMenuValues
 	glm::vec3 m_floatPos;
 	glm::vec3 m_playerLook;
 	glm::vec3 m_floatLook;
+	bool m_WasCrouching = false;
 
 	//Victory record
 	Record tempRecord;

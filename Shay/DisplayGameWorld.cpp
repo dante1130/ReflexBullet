@@ -797,9 +797,6 @@ void DGW::DisplayStartScreen()
 	DisplayIndividualOption(T_OPTIONS, pos, 0.5, 4);
 
 	pos.y = pos.y - 0.6;
-	DisplayIndividualOption(T_CREDITS, pos, 0.5, 4);
-
-	pos.y = pos.y - 0.6;
 	DisplayIndividualOption(T_EXIT, pos, 0.5, 4);
 }
 
