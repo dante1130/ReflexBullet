@@ -35,6 +35,15 @@ void GM::GameInit(int w, int h)
 	Audio::AddSound("music/hurtSound.wav", "playerHurt"); 
 	Audio::AddSound("music/bulletExplosion.wav", "bulletCollide");
 	Audio::AddSound("music/deathSound.wav", "deathSound");
+	Audio::AddSound("music/menuHover.wav", "menuHover");
+	Audio::AddSound("music/cashierSkill1.wav", "cashier1");
+	Audio::AddSound("music/cashierSkill2.wav", "cashier2");
+	Audio::AddSound("music/cashierSkill3.wav", "cashier3");
+	Audio::AddSound("music/cashierSkill4.wav", "cashier4");
+	Audio::AddSound("music/announcer1.wav", "announcer1");
+	Audio::AddSound("music/announcer2.wav", "announcer2");
+	Audio::AddSound("music/announcer3.wav", "announcer3");
+	Audio::AddSound("music/announcer4.wav", "announcer4");
 	Audio::PlayMusicFadeIn("gameplay");
 
 	LTGW::CreateTextures();
@@ -529,6 +538,22 @@ void GM::GameFixedUpdates(float delta)
 
 		player.AddSkillPoints(waveLevel);
 		++waveLevel;
+		int randnum = rand() % (4 - 1 + 1) + 1;
+		switch (randnum)
+		{
+		case 1:
+			Audio::PlaySound("cashier1");
+			break;
+		case 2:
+			Audio::PlaySound("cashier2");
+			break;
+		case 3:
+			Audio::PlaySound("cashier3");
+			break;
+		case 4:
+			Audio::PlaySound("cashier4");
+			break;
+		}
 
 		// Display upgrade menu
 		PMV.m_PausedMenuChoosen = 3;
@@ -1123,6 +1148,7 @@ void GM::MenuOptionChoosen(int option)
 	}
 	else if (PMV.m_PausedMenuChoosen == 3) //Upgrade menu
 	{
+		
 		if (player.GetSkillPoints() > 0)
 		{
 			if (option == 1 && player.GetUpgradeOption(0) < 5)
