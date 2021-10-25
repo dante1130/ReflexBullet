@@ -190,7 +190,7 @@ void PSW::GoToGameWorld()
 {
 	GLdouble x = cam.GetLR(), z = cam.GetFB();
 
-	if ((x < -8860 && x > -9846) && (z < 10200 && z > 9500))
+	if ((x < -8660 && x > -9846) && (z < 11200 && z > 9500))
 	{
 
 		tempBool = true;
