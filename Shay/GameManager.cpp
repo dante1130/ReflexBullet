@@ -477,6 +477,27 @@ void GM::GameFixedUpdateLoop(int val)
 		GameFixedUpdates(delta);
 		GameCollisionResolution();
 	}
+	if ((int)elapsedTime % 500 == 0) // Every time elapsed time has no remainders when divided by 500, do the next part
+	{
+		//1 in 3 chance to play a random announcer line
+		int randnum = rand() % (12 - 1 + 1) + 1;
+		switch (randnum)
+		{
+		case 3:
+			Audio::PlaySound("announcer1");
+			break;
+		case 6:
+			Audio::PlaySound("announcer2");
+			break;
+		case 9:
+			Audio::PlaySound("announcer3");
+			break;
+		case 12:
+			Audio::PlaySound("announcer4");
+			break;
+		}
+	}
+	
 }
 
 void GM::GameFixedUpdates(float delta)
@@ -1166,12 +1187,12 @@ void GM::MenuOptionChoosen(int option)
 				player.AddBulletSpeed(1);
 				player.SpendSkillPoint();
 			}
-			else if (option == 3 && player.GetUpgradeOption(2) < 5)
+			else if (option == 3 && player.GetUpgradeOption(2) < 3)
 			{
 				player.DecreaseHealthDecay(0.01);
 				player.SpendSkillPoint();
 			}
-			else if (option == 4 && player.GetUpgradeOption(3) < 4)
+			else if (option == 4 && player.GetUpgradeOption(3) < 5)
 			{
 				player.AddMoveSpeed(0.01);
 				player.SpendSkillPoint();

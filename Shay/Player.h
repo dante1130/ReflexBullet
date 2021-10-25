@@ -229,7 +229,7 @@ private:
 	const GLfloat max_bullet_speed = 10;
 
 	/// Constant for player max movement speed.
-	const GLfloat max_move_speed = 0.12;
+	const GLfloat max_move_speed = 0.13;
 
 	/// Constant for player max health decay.
 	const GLfloat max_health_decay = 0.05;
