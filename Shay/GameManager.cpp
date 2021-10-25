@@ -499,8 +499,13 @@ void GM::GameFixedUpdates(float delta)
 		boss.Update(delta);
 		//if (boss.GetIsFiring())
 		//	Audio::PlaySound("bossShoot"); 
-		if (boss.GetIsLaserFiring())
-			Audio::PlaySound("laserAttack");
+		//if (boss.GetIsLaserFiring())
+		//	Audio::PlaySound("laserAttack");
+
+		if (robots.enemies.size() < 12)
+		{
+			robots.Spawn(1, player.GetCamera().GetPosition(), robots.enemies.size());
+		}
 	}
 
 	// Lose condition
@@ -1302,24 +1307,27 @@ void GM::RestartGame()
 	glm::vec3 cannotBindToTemporaryofTypeVec = { -1, 0, 0 };
 	player.GetCamera().SetCameraLookAt(cannotBindToTemporaryofTypeVec);
 
-	robots.Spawn(noOfSpawn, player.GetCamera().GetPosition());
+	robots.Spawn(noOfSpawn, player.GetCamera().GetPosition(), 0);
 }
 
 void GM::ProgressGame()
 {
+	noOfSpawn += 2;
+
 	if (bossOn)
 	{
 		ChangeToBossCover();
+		noOfSpawn = 15;
+		waveLevel = 5;
 	}
 
 	PMV.m_ShowControls = true;
 
 	player.GetGun().RemoveAllBullets();
-
-	noOfSpawn += 2;
 	
 	player.SetHealth(100);
 
+	PMV.m_WasCrouching = false;
 	UnpauseGame();
 
 	zFar = 0.001;
@@ -1331,7 +1339,7 @@ void GM::ProgressGame()
 	glm::vec3 cannotBindToTemporaryofTypeVec = { -1, 0, 0 };
 	player.GetCamera().SetCameraLookAt(cannotBindToTemporaryofTypeVec);
 
-	robots.Spawn(noOfSpawn, player.GetCamera().GetPosition());
+	robots.Spawn(noOfSpawn, player.GetCamera().GetPosition(), 0);
 }
 
 void GM::ExitGame(int num)
