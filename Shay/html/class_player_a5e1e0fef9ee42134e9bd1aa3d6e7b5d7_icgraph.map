@@ -1,0 +1,11 @@
+<map id="Player::DecreaseFiringDelay" name="Player::DecreaseFiringDelay">
+<area shape="rect" id="node1" title="Decrease firing delay by a specified amount." alt="" coords="1368,31,1555,57"/>
+<area shape="rect" id="node2" href="$namespace_g_m.html#a50f2ee84a60559027660d9f376acfd4e" title="Handles all the key inputs for the game world." alt="" coords="930,5,1046,32"/>
+<area shape="rect" id="node6" href="$namespace_g_m.html#ad0075febca06a02cbd74fe698aeab38c" title="Decides the action of a button for the menu." alt="" coords="1148,56,1320,83"/>
+<area shape="rect" id="node3" href="$namespace_g_m.html#a4de584cdd6ff4f9f35e7de9a173eed8a" title="Initialises the game objects." alt="" coords="283,31,385,57"/>
+<area shape="rect" id="node4" href="$namespace_p_s_w.html#a748a46361b4d8570306aaacbcc5e464f" title="Handles all the render steps for the program &#45; still needs work, barebones right now." alt="" coords="104,31,235,57"/>
+<area shape="rect" id="node5" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,31,56,57"/>
+<area shape="rect" id="node7" href="$namespace_g_m.html#a6208ff8e88020f18e0b1094ded7166fb" title="Handles when the mouse is clicked when the game is paused." alt="" coords="636,56,828,83"/>
+<area shape="rect" id="node9" href="$namespace_g_m.html#aadab86395febe3dc09183d51b8dd61ab" title="Handles when the mouse is clicked when the game is paused on the options menu." alt="" coords="876,107,1100,149"/>
+<area shape="rect" id="node8" href="$namespace_g_m.html#a2889fa0cda958c68427e36fb9c67598e" title="Handles when the mouse is clicked." alt="" coords="433,56,588,83"/>
+</map>

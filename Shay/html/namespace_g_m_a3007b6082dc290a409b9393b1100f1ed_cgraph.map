@@ -1,0 +1,4 @@
+<map id="GM::GameStartUp" name="GM::GameStartUp">
+<area shape="rect" id="node1" title="Handles the visual game startup." alt="" coords="5,5,136,32"/>
+<area shape="rect" id="node2" href="$namespace_g_m.html#a7865d8da944f015ba6322e7eeefe4e45" title="Handles reshaping the game window." alt="" coords="184,5,321,32"/>
+</map>

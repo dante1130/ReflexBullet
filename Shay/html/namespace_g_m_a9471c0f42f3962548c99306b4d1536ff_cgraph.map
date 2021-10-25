@@ -1,0 +1,8 @@
+<map id="GM::ChangeToBossCover" name="GM::ChangeToBossCover">
+<area shape="rect" id="node1" title="Changes pillar collisions to half cover for the boss." alt="" coords="5,107,176,133"/>
+<area shape="rect" id="node2" href="$class_a_a_b_b_vector.html#a867af5c3801c8c611c083388d3cf0f1f" title="Gets the maximum extent." alt="" coords="225,5,376,32"/>
+<area shape="rect" id="node3" href="$class_a_a_b_b_vector.html#a406924fc68ccdd9a5898aa5994cc9684" title="Gets the maximum extent." alt="" coords="227,56,374,83"/>
+<area shape="rect" id="node4" href="$class_collision.html#aa050b00e13099c5d316071afe243a516" title="Gets the reference to the AABBvector of a quadrant." alt="" coords="224,107,377,133"/>
+<area shape="rect" id="node5" href="$class_a_a_b_b_vector.html#a9f0c29c0a98bed22280bfa913073eb2a" title="Set the values of the data at an index." alt="" coords="225,157,376,184"/>
+<area shape="rect" id="node6" href="$class_a_a_b_b_vector.html#a91f3f1ea946b9eb97042d8c6f48ae509" title="Return size of vector." alt="" coords="235,208,366,235"/>
+</map>

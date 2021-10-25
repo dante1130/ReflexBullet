@@ -1,0 +1,15 @@
+<map id="ReadOBJMTL" name="ReadOBJMTL">
+<area shape="rect" id="node1" title=" " alt="" coords="5,157,108,184"/>
+<area shape="rect" id="node2" href="$file_i_o_8cpp.html#a3eec3a3b7637618ab0b789529194ab84" title=" " alt="" coords="156,56,255,83"/>
+<area shape="rect" id="node5" href="$file_i_o_8cpp.html#ade49629f63bf746df80c6e31b0eba037" title="Reads file and stores values inside Object3D obj." alt="" coords="161,259,249,285"/>
+<area shape="rect" id="node3" href="$class_object3_d.html#ada639297ce2ebbc9475b8824a2410a9d" title="Returns the mrl file name associated with the object." alt="" coords="343,5,507,32"/>
+<area shape="rect" id="node4" href="$class_object3_d.html#a71cf26c202141202848555d53fd46162" title="Assigns which material the object uses." alt="" coords="321,56,530,83"/>
+<area shape="rect" id="node6" href="$class_object3_d.html#a6f2641eb26562f7d1e2935afb2c35fa3" title="Creates a texture coordinate based of float parameters." alt="" coords="355,107,496,133"/>
+<area shape="rect" id="node7" href="$class_object3_d.html#aabda6fb93bccc732e30ce3b74f2d87e0" title="Creates faces using FaceBase array." alt="" coords="354,157,497,184"/>
+<area shape="rect" id="node8" href="$class_object3_d.html#a5f9c46e360a1a8b85cab02ab90582150" title="Creates a vertex based of float parameters." alt="" coords="353,208,498,235"/>
+<area shape="rect" id="node9" href="$class_object3_d.html#a7617c94ba42175db1b3a242e1bbc0db4" title="Stores the vertex normals." alt="" coords="332,259,519,285"/>
+<area shape="rect" id="node10" href="$class_object3_d.html#a08fdd60647d27452ece55995fd7c1187" title="Checks their is the same number of vertex normals to vertices." alt="" coords="303,310,548,351"/>
+<area shape="rect" id="node11" href="$class_object3_d.html#a6e947a7111d859d3cdab8aee67b7dafb" title="Assigns an object an mtl file name." alt="" coords="344,376,507,403"/>
+<area shape="rect" id="node12" href="$class_object3_d.html#a9b5cc19b3ef68259b4eb6eb965a48d6d" title="Saves the texture name to program." alt="" coords="335,427,516,453"/>
+<area shape="rect" id="node13" href="$file_i_o_8cpp.html#a2a79af5082bb9f0c48e6f263ff2f1d8f" title="Converts combined v and vt string into values." alt="" coords="376,477,475,504"/>
+</map>

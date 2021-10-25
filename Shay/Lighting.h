@@ -96,7 +96,7 @@ namespace Lighting
 	/**
 	* @brief	Sets the lights position
 	* @param	light	- The light that you want to update
-	* @param	pos[3]	- The position of the light
+	* @param	pos [3]	- The position of the light
 	* @return	Void
 	*/
 	void SetLightPosition(int light, GLfloat pos[3]);
@@ -104,7 +104,7 @@ namespace Lighting
 	/**
 	* @brief	Sets the lights ambient component
 	* @param	light	- The light that you want to update
-	* @param	amb[3]	- The ambient value of the light
+	* @param	amb [3]	- The ambient value of the light
 	* @return	Void
 	*/
 	void SetLightAmbient(int light, GLfloat amb[3]);
@@ -112,7 +112,7 @@ namespace Lighting
 	/**
 	* @brief	Sets the lights diffuse component
 	* @param	light	- The light that you want to update
-	* @param	diff[3]	- The diffuse value of the light
+	* @param	diff [3]	- The diffuse value of the light
 	* @return	Void
 	*/
 	void SetLightDiffuse(int light, GLfloat diff[3]);
@@ -120,7 +120,7 @@ namespace Lighting
 	/**
 	* @brief	Sets the lights specular component
 	* @param	light	- The light that you want to update
-	* @param	spec[3]	- The specular value of the light
+	* @param	spec [3]	- The specular value of the light
 	* @return	Void
 	*/
 	void SetLightSpec(int light, GLfloat spec[3]);

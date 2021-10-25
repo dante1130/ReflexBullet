@@ -25,7 +25,8 @@ namespace GM
 
 	/**
 	* @brief	Initialises the game objects
-	* @param	No param
+	* @param	w	- Width
+	* @param	h	- Heigth
 	* @return	void
 	*/
 	void GameInit(int w, int h);
@@ -282,7 +283,7 @@ namespace GM
 
 	/**
 	* @brief	Exits the game
-	* @param	No param
+	* @param	num	- The exit code
 	* @return	Void
 	*/
 	void ExitGame(int num);

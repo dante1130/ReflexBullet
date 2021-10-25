@@ -1,0 +1,7 @@
+<map id="Boss::PhaseChange" name="Boss::PhaseChange">
+<area shape="rect" id="node1" title="Changes the phase of boss every 15 seconds." alt="" coords="5,81,147,108"/>
+<area shape="rect" id="node2" href="$class_boss.html#a99bc725589303f529fb5bf0609cb9bc8" title="Returns gun object m_gun." alt="" coords="211,5,317,32"/>
+<area shape="rect" id="node3" href="$class_boss.html#ac044f3276ab30234c3f60ceb347b956f" title="Returns the phase number of boss." alt="" coords="205,56,323,83"/>
+<area shape="rect" id="node4" href="$class_gun.html#a1d20c591ded9c216ce38dbfe8d31eeae" title="Setter for firing delay." alt="" coords="195,107,333,133"/>
+<area shape="rect" id="node5" href="$class_boss.html#ac97a9558606cd7592a84a41835877b52" title="Sets phase of boss given a GLint." alt="" coords="205,157,323,184"/>
+</map>

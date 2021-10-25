@@ -1,0 +1,16 @@
+<map id="Boss::GetPhase" name="Boss::GetPhase">
+<area shape="rect" id="node1" title="Returns the phase number of boss." alt="" coords="1263,107,1381,133"/>
+<area shape="rect" id="node2" href="$class_boss.html#ac73319510e07cb0fbf120712e57e68f2" title="Applies rotation and translation based on m_rotation and m_position. Also draws laser&#45;beam during pha..." alt="" coords="1083,5,1191,32"/>
+<area shape="rect" id="node4" href="$_boss_area_8h.html#ac6344a06aa467294f75db2faf1531f00" title=" " alt="" coords="745,56,814,83"/>
+<area shape="rect" id="node9" href="$class_boss.html#aa853357728be4ba2130f71327e18e873" title="Returns boolean depending if boss is firing laser." alt="" coords="1060,107,1215,133"/>
+<area shape="rect" id="node10" href="$class_boss.html#a9311b012fcfe8885cf6267c111d5b0bd" title="Applies effects of phase onto boss." alt="" coords="1072,157,1203,184"/>
+<area shape="rect" id="node14" href="$class_boss.html#a06181e1870bc835e251d8b56556958f4" title="Changes the phase of boss every 15 seconds." alt="" coords="1067,208,1208,235"/>
+<area shape="rect" id="node3" href="$_boss_area_8h.html#a03b6a83c6a159c9d3d81e32670d28295" title=" " alt="" coords="921,5,1002,32"/>
+<area shape="rect" id="node5" href="$namespace_d_g_w.html#a44a4b848e72b3ef6be67c00101efb485" title="Is the master function which handles all the displaying for the game world." alt="" coords="433,70,648,111"/>
+<area shape="rect" id="node6" href="$namespace_g_m.html#a4de584cdd6ff4f9f35e7de9a173eed8a" title="Initialises the game objects." alt="" coords="283,109,385,136"/>
+<area shape="rect" id="node7" href="$namespace_p_s_w.html#a748a46361b4d8570306aaacbcc5e464f" title="Handles all the render steps for the program &#45; still needs work, barebones right now." alt="" coords="104,109,235,136"/>
+<area shape="rect" id="node8" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,109,56,136"/>
+<area shape="rect" id="node11" href="$class_boss.html#a1f7b8eb807ba0483814a85c2e167b8ab" title="Updates the bosses actions and phases." alt="" coords="911,157,1012,184"/>
+<area shape="rect" id="node12" href="$namespace_g_m.html#aa2ea0684203071ed400a31a635e02c57" title="Updates by the game tick." alt="" coords="696,152,863,179"/>
+<area shape="rect" id="node13" href="$namespace_g_m.html#a239894ede0787099f0991b08049a7122" title="If a fixed update loop for the game. This will handle all AI and other fixed update processes." alt="" coords="447,141,634,168"/>
+</map>

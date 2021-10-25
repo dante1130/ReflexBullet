@@ -1,0 +1,5 @@
+<map id="Player::Update" name="Player::Update">
+<area shape="rect" id="node1" title="Updates the player, to be called every game tick." alt="" coords="5,31,113,57"/>
+<area shape="rect" id="node2" href="$class_camera.html#af01f8cd3c75ea3b9e578cfe0a95c9955" title="Getter for position, also includes the crouch depth." alt="" coords="161,5,304,32"/>
+<area shape="rect" id="node3" href="$class_gun.html#a07f295e05059dd88b05c6ca3cfe49b72" title="Updates the bullets in the gun." alt="" coords="185,56,280,83"/>
+</map>

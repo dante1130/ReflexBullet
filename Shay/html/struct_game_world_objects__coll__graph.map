@@ -1,0 +1,5 @@
+<map id="GameWorldObjects" name="GameWorldObjects">
+<area shape="rect" id="node1" title=" " alt="" coords="69,556,205,765"/>
+<area shape="rect" id="node2" href="$struct_animation_o_b_j.html" title=" " alt="" coords="5,123,111,229"/>
+<area shape="rect" id="node3" href="$class_object3_d.html" title="A 3D object." alt="" coords="135,5,298,347"/>
+</map>

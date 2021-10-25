@@ -1,0 +1,11 @@
+<map id="Boss::SetPhase" name="Boss::SetPhase">
+<area shape="rect" id="node1" title="Sets phase of boss given a GLint." alt="" coords="1221,31,1339,57"/>
+<area shape="rect" id="node2" href="$class_boss.html#aacce807c818f95067de3964aca814749" title="Constructor, takes in a position." alt="" coords="1057,5,1148,32"/>
+<area shape="rect" id="node3" href="$class_boss.html#a06181e1870bc835e251d8b56556958f4" title="Changes the phase of boss every 15 seconds." alt="" coords="1032,56,1173,83"/>
+<area shape="rect" id="node4" href="$class_boss.html#a1f7b8eb807ba0483814a85c2e167b8ab" title="Updates the bosses actions and phases." alt="" coords="883,56,984,83"/>
+<area shape="rect" id="node5" href="$namespace_g_m.html#aa2ea0684203071ed400a31a635e02c57" title="Updates by the game tick." alt="" coords="668,56,835,83"/>
+<area shape="rect" id="node6" href="$namespace_g_m.html#a239894ede0787099f0991b08049a7122" title="If a fixed update loop for the game. This will handle all AI and other fixed update processes." alt="" coords="433,56,620,83"/>
+<area shape="rect" id="node7" href="$namespace_g_m.html#a4de584cdd6ff4f9f35e7de9a173eed8a" title="Initialises the game objects." alt="" coords="283,56,385,83"/>
+<area shape="rect" id="node8" href="$namespace_p_s_w.html#a748a46361b4d8570306aaacbcc5e464f" title="Handles all the render steps for the program &#45; still needs work, barebones right now." alt="" coords="104,56,235,83"/>
+<area shape="rect" id="node9" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,56,56,83"/>
+</map>

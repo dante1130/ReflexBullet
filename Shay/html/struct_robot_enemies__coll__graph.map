@@ -1,0 +1,4 @@
+<map id="RobotEnemies" name="RobotEnemies">
+<area shape="rect" id="node1" title="Struct for enemies in the game world." alt="" coords="33,409,140,501"/>
+<area shape="rect" id="node2" href="$class_object3_d.html" title="A 3D object." alt="" coords="5,5,168,347"/>
+</map>

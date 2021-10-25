@@ -1,4 +1,0 @@
-<map id="DisplayLights" name="DisplayLights">
-<area shape="rect" id="node1" title="Displays the lights on the roof." alt="" coords="5,5,105,32"/>
-<area shape="rect" id="node2" href="$class_textured_polygons.html#ae6b2615e41f9263aaafc9a7f1ed2b94c" title="Returns texture." alt="" coords="153,5,352,32"/>
-</map>

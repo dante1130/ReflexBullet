@@ -1,0 +1,6 @@
+<map id="Collision::CheckCollision" name="Collision::CheckCollision">
+<area shape="rect" id="node1" title="Checks if collision occured with a boundingSphere." alt="" coords="5,56,171,83"/>
+<area shape="rect" id="node2" href="$class_a_a_b_b_vector.html#a867af5c3801c8c611c083388d3cf0f1f" title="Gets the maximum extent." alt="" coords="219,5,369,32"/>
+<area shape="rect" id="node3" href="$class_a_a_b_b_vector.html#a406924fc68ccdd9a5898aa5994cc9684" title="Gets the maximum extent." alt="" coords="221,56,367,83"/>
+<area shape="rect" id="node4" href="$class_a_a_b_b_vector.html#a91f3f1ea946b9eb97042d8c6f48ae509" title="Return size of vector." alt="" coords="229,107,359,133"/>
+</map>

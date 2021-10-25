@@ -1,0 +1,5 @@
+<map id="EnemyAI::AIUpdate" name="EnemyAI::AIUpdate">
+<area shape="rect" id="node1" title="Updates the AI, to be called every game tick." alt="" coords="5,31,141,57"/>
+<area shape="rect" id="node2" href="$class_enemy_a_i.html#a142695e29a54b5e271bb9f0efc1d4cc6" title="Finds the next destination." alt="" coords="213,5,375,32"/>
+<area shape="rect" id="node3" href="$class_enemy_a_i.html#a1e6345fbae3b1ccfb2c54172c497959c" title="Returns a boolean if the enemy has reached the destination." alt="" coords="189,56,399,83"/>
+</map>

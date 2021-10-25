@@ -1,0 +1,3 @@
+<map id="Gun" name="Gun">
+<area shape="rect" id="node1" title="Represents a gun to fire bullets and stores the individual bullet information." alt="" coords="5,5,148,317"/>
+</map>

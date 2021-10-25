@@ -1,6 +1,0 @@
-<map id="releaseKeys" name="releaseKeys">
-<area shape="rect" id="node1" title="Handles all the key events when the key is released." alt="" coords="5,56,100,83"/>
-<area shape="rect" id="node2" href="$class_camera.html#a9e107010377ad331277042d489c0b89c" title="Used to pass direction to move or rotate forwards or backwards (i.e. 1, &#45;1 or 0)." alt="" coords="148,5,291,32"/>
-<area shape="rect" id="node3" href="$class_camera.html#a61307840dd9543e39f29ae3bdd04a677" title="Used to pass direction to move or rotate left and right (i.e. 1, &#45;1 or 0)." alt="" coords="148,56,291,83"/>
-<area shape="rect" id="node4" href="$class_camera.html#a0af35a7c44ad231e950f859531ebdccf" title="Sets if the player is crouching." alt="" coords="151,107,287,133"/>
-</map>

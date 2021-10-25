@@ -1,0 +1,10 @@
+<map id="GM::GameMouseMove" name="GM::GameMouseMove">
+<area shape="rect" id="node1" title="Handles all the mouse movement in the game world." alt="" coords="5,56,160,83"/>
+<area shape="rect" id="node2" href="$class_player.html#ae5a3bcef2eda89370076f8fbce9e08b4" title="Getter for camera." alt="" coords="219,5,352,32"/>
+<area shape="rect" id="node3" href="$class_camera.html#a77058a5acc0ab9de6c96ed53e1759ccd" title="Use mouse to look around." alt="" coords="213,56,357,83"/>
+<area shape="rect" id="node7" href="$namespace_g_m.html#a34edd09585db50a115e131f36c96bf41" title="Handles deciding which option should be highlighted when the mouse is moved over it." alt="" coords="208,107,363,133"/>
+<area shape="rect" id="node4" href="$class_camera.html#a023cb3e9d92301d8132f338c7ef5be77" title="Calls the glLookAt function." alt="" coords="451,5,605,32"/>
+<area shape="rect" id="node6" href="$class_camera.html#a00e029028bce7b155cea07cb1b39b759" title="Helper function for rotation, calculates radians from degrees." alt="" coords="437,56,619,83"/>
+<area shape="rect" id="node5" href="$class_camera.html#ac5757a4349da2fbdce00a165ae9b0f87" title="Calculates how far down the player has crouched." alt="" coords="693,5,860,32"/>
+<area shape="rect" id="node8" href="$namespace_g_m.html#adf3cf6ef16cb9260b672c09d856c874d" title="Handles when the mouse is moved over the option paused menu." alt="" coords="411,107,645,133"/>
+</map>

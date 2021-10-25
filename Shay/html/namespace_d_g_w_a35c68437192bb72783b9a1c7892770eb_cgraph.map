@@ -1,0 +1,9 @@
+<map id="DGW::DisplayPauseMenuLeaderboard" name="DGW::DisplayPauseMenuLeaderboard">
+<area shape="rect" id="node1" title="Displays the leaderboard when the game is paused." alt="" coords="5,122,251,149"/>
+<area shape="rect" id="node2" href="$namespace_d_g_w.html#aca1865fd24435230ae352a7a5e8a968c" title="Displays individual leaderboard records." alt="" coords="299,5,527,47"/>
+<area shape="rect" id="node4" href="$namespace_d_g_w.html#a0af3794fa82a264abf9b43d9ba1e6af6" title="Renders a string onto the screen for a specific font." alt="" coords="575,67,753,94"/>
+<area shape="rect" id="node5" href="$class_textured_polygons.html#ae6b2615e41f9263aaafc9a7f1ed2b94c" title="Returns texture." alt="" coords="313,122,512,149"/>
+<area shape="rect" id="node6" href="$class_leaderboard.html#a21acdd57870e0ae18eb78e43ff5d1e60" title=" " alt="" coords="321,173,505,215"/>
+<area shape="rect" id="node7" href="$class_leaderboard.html#af519dab3ad0621b2ba974eb61cd5049e" title=" " alt="" coords="321,239,505,280"/>
+<area shape="rect" id="node3" href="$class_leaderboard.html#a4d36bcd33955570aa31578745cb2975e" title=" " alt="" coords="583,13,745,39"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="DGW::DisplayUpgradeMenu" name="DGW::DisplayUpgradeMenu">
+<area shape="rect" id="node1" title="Displays the upgrade menu options." alt="" coords="5,107,191,133"/>
+<area shape="rect" id="node2" href="$namespace_d_g_w.html#ad7af619c73f746fcfc0d6ba18d804c98" title="Displays individual options for the pause menu." alt="" coords="239,5,433,32"/>
+<area shape="rect" id="node3" href="$class_textured_polygons.html#ae6b2615e41f9263aaafc9a7f1ed2b94c" title="Returns texture." alt="" coords="481,31,680,57"/>
+<area shape="rect" id="node4" href="$class_player.html#a7b538d79f306b3d6ff2c5fab7bf089d8" title="Getter for skill points." alt="" coords="261,107,411,133"/>
+<area shape="rect" id="node5" href="$class_player.html#ad7767e47ca4912b91f1d79ecfca90122" title="Getter for upgrade options." alt="" coords="249,157,423,184"/>
+<area shape="rect" id="node6" href="$namespace_d_g_w.html#a0af3794fa82a264abf9b43d9ba1e6af6" title="Renders a string onto the screen for a specific font." alt="" coords="247,208,425,235"/>
+</map>

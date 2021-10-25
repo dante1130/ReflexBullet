@@ -1,0 +1,6 @@
+<map id="Enemy::Enemy" name="Enemy::Enemy">
+<area shape="rect" id="node1" title="Parameterized constructor." alt="" coords="5,31,117,57"/>
+<area shape="rect" id="node2" href="$class_enemy_a_i.html#ad03de08c4766125f68cf4dfd1978461c" title="Updates the AI, to be called every game tick." alt="" coords="165,31,301,57"/>
+<area shape="rect" id="node3" href="$class_enemy_a_i.html#a142695e29a54b5e271bb9f0efc1d4cc6" title="Finds the next destination." alt="" coords="373,5,535,32"/>
+<area shape="rect" id="node4" href="$class_enemy_a_i.html#a1e6345fbae3b1ccfb2c54172c497959c" title="Returns a boolean if the enemy has reached the destination." alt="" coords="349,56,559,83"/>
+</map>

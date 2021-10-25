@@ -1,0 +1,4 @@
+<map id="Enemy" name="Enemy">
+<area shape="rect" id="node1" title="Represents an enemy in the game world, extends from the BaseCharacter interface." alt="" coords="5,189,128,531"/>
+<area shape="rect" id="node2" href="$class_base_character.html" title="An interface for the characters of the game." alt="" coords="13,5,121,141"/>
+</map>

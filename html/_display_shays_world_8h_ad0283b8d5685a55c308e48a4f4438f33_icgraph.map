@@ -1,6 +1,0 @@
-<map id="DisplayPurplePosts" name="DisplayPurplePosts">
-<area shape="rect" id="node1" title="Displays the purple posts by the guild shop." alt="" coords="372,5,508,32"/>
-<area shape="rect" id="node2" href="$_display_shays_world_8h.html#a40dfd73349122d66f6debdac925aa1ed" title="Draws the backdrop (all images) (Calls all the draw functions)" alt="" coords="217,5,324,32"/>
-<area shape="rect" id="node3" href="$main_8cpp.html#a5d3fb9b91b5c167b70a1a0557e67f271" title="Handles all the display functions." alt="" coords="104,5,169,32"/>
-<area shape="rect" id="node4" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,5,56,32"/>
-</map>

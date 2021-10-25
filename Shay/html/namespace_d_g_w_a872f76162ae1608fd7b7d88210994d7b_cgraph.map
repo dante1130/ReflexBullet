@@ -1,0 +1,4 @@
+<map id="DGW::GetSize" name="DGW::GetSize">
+<area shape="rect" id="node1" title="Gets the window size." alt="" coords="5,5,115,32"/>
+<area shape="rect" id="node2" href="$class_u_i.html#a946fcfa7d9b4019068d188c9ca0b2ca0" title="Used to obtain size of screen." alt="" coords="163,5,293,32"/>
+</map>

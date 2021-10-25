@@ -1,0 +1,71 @@
+<map id="GM::GameFixedUpdateLoop" name="GM::GameFixedUpdateLoop">
+<area shape="rect" id="node1" title="If a fixed update loop for the game. This will handle all AI and other fixed update processes." alt="" coords="5,1051,192,1077"/>
+<area shape="rect" id="node2" href="$namespace_g_m.html#a2b0212f088ef02a5a4c0026c7431c343" title="Collision resolution between the available collision types." alt="" coords="476,404,672,431"/>
+<area shape="rect" id="node19" href="$namespace_g_m.html#aa2ea0684203071ed400a31a635e02c57" title="Updates by the game tick." alt="" coords="251,867,417,893"/>
+<area shape="rect" id="node65" href="$namespace_g_m.html#a3007b6082dc290a409b9393b1100f1ed" title="Handles the visual game startup." alt="" coords="269,1311,399,1337"/>
+<area shape="rect" id="node67" href="$namespace_g_m.html#a995d75d9835aa8c87bf190d69726d311" title="Handles moving the camera when the game is paused." alt="" coords="240,1235,428,1261"/>
+<area shape="rect" id="node3" href="$namespace_g_m.html#a0b76f306d7480fb7ce213cdf9cf4180e" title="Collision resolution for the boss&#39; bullets." alt="" coords="720,461,944,488"/>
+<area shape="rect" id="node15" href="$namespace_g_m.html#a40d2b55e8ae3986866c71fd48ea4bcb4" title="Collision resolution for the enemy&#39;s bullets." alt="" coords="745,395,919,437"/>
+<area shape="rect" id="node16" href="$namespace_g_m.html#a069f99eded084d5f72294d829e96797c" title="Collision resolution for the player&#39;s bullets." alt="" coords="747,277,917,318"/>
+<area shape="rect" id="node4" href="$class_gun.html#ab0f5e8b1ad3b0fccb2fbe1f5575ad103" title="Gets the bullet at an index." alt="" coords="1037,360,1137,387"/>
+<area shape="rect" id="node5" href="$class_collision.html#abb75a80ee1cb6bd5bd04098497c65523" title="Collision check between a point and a bounding sphere." alt="" coords="1028,613,1147,640"/>
+<area shape="rect" id="node6" href="$class_player.html#a7ab7075fc6cc341d4a003b10bf656dfe" title="Getter for bounding box." alt="" coords="1005,512,1170,539"/>
+<area shape="rect" id="node7" href="$class_bullet.html#a4930f603694a37d19d2c533fc4cec52e" title=" " alt="" coords="998,461,1177,488"/>
+<area shape="rect" id="node8" href="$class_bullet.html#a1b44b01864aae96db5c6b8660f934164" title="Getter for damage." alt="" coords="1021,157,1153,184"/>
+<area shape="rect" id="node9" href="$class_boss.html#a99bc725589303f529fb5bf0609cb9bc8" title="Returns gun object m_gun." alt="" coords="1035,765,1140,792"/>
+<area shape="rect" id="node10" href="$class_player.html#a497048a935a342ab6927d168e9e827c5" title="Getter for Gun." alt="" coords="1031,208,1143,235"/>
+<area shape="rect" id="node11" href="$class_player.html#a7da7faa7105424633ffb5bc022e14267" title="Getter for health." alt="" coords="1025,563,1150,589"/>
+<area shape="rect" id="node12" href="$class_audio.html#a51f596cbcc73699173d5e4ac3aef171f" title="Plays the sound based on the label of the sound effect." alt="" coords="1255,436,1382,463"/>
+<area shape="rect" id="node13" href="$class_gun.html#aa64058f56b209416e3a5e0bd65df090c" title="Removes a bullet from the bullets vector, used for when the bullet has collided." alt="" coords="1021,309,1154,336"/>
+<area shape="rect" id="node14" href="$class_player.html#a3b759e4b98a8218eb660f589cc1df667" title="Setter for health." alt="" coords="1025,259,1149,285"/>
+<area shape="rect" id="node17" href="$class_player.html#aac4705fd02a5bb9bddfe0af73c8e585a" title="Increments the number of bullet hits." alt="" coords="997,56,1177,83"/>
+<area shape="rect" id="node18" href="$class_player.html#abfcfbe17ed8613bfcebfd13bd8849a3c" title="Increments the number of bullet shot." alt="" coords="992,5,1183,32"/>
+<area shape="rect" id="node20" href="$class_player.html#a53aa16f4c66dd107a93aa6229919526a" title="Adds skill points by a certain amount." alt="" coords="498,456,650,483"/>
+<area shape="rect" id="node21" href="$class_player.html#ae5a3bcef2eda89370076f8fbce9e08b4" title="Getter for camera." alt="" coords="765,1424,899,1451"/>
+<area shape="rect" id="node22" href="$class_boss.html#a30fe3f121751b8a0cef2c084765c99b8" title="Returns the bosses health value." alt="" coords="515,507,633,533"/>
+<area shape="rect" id="node23" href="$class_camera.html#af01f8cd3c75ea3b9e578cfe0a95c9955" title="Getter for position, also includes the crouch depth." alt="" coords="761,1221,903,1248"/>
+<area shape="rect" id="node24" href="$struct_robot_enemies.html#a100187883d0e053d9901503f88d86d9b" title="Returns a boolean to check if all enemies are dead." alt="" coords="489,557,659,584"/>
+<area shape="rect" id="node25" href="$class_camera.html#a6d8682d38e8c8ac728d9ca39a78ac109" title="Handles all key movement for movement speed." alt="" coords="479,816,669,843"/>
+<area shape="rect" id="node38" href="$namespace_g_m.html#af011ff916b40f31e9dd54ee5c95a4dec" title="Pauses the game." alt="" coords="513,1272,635,1299"/>
+<area shape="rect" id="node42" href="$class_gun.html#a52e982a444229b9188efda0409c7abee" title="Removes all the bullets in the gun." alt="" coords="755,1120,909,1147"/>
+<area shape="rect" id="node43" href="$class_enemy.html#a48b543b73fb304dcc7ff49fdca73fd49" title="Setter for player position." alt="" coords="499,608,649,635"/>
+<area shape="rect" id="node45" href="$struct_robot_enemies.html#a671752e92f6e6d095bd3348eef4f30a5" title="Spawns enemies by specified amount." alt="" coords="497,713,651,740"/>
+<area shape="rect" id="node49" href="$class_player.html#a8ed94a1c681122c1e8d50bf4248a25fa" title="Updates the player, to be called every game tick." alt="" coords="520,1171,628,1197"/>
+<area shape="rect" id="node51" href="$class_boss.html#a1f7b8eb807ba0483814a85c2e167b8ab" title="Updates the bosses actions and phases." alt="" coords="523,975,625,1001"/>
+<area shape="rect" id="node26" href="$class_camera.html#ad9adf754f286b4b94efb08ad827fa878" title="Handles A and D key movement of player." alt="" coords="729,816,935,843"/>
+<area shape="rect" id="node35" href="$class_camera.html#a023cb3e9d92301d8132f338c7ef5be77" title="Calls the glLookAt function." alt="" coords="755,1019,909,1045"/>
+<area shape="rect" id="node37" href="$class_camera.html#af995c7d99ec7edec40d9c055d58f2440" title="Handles W and S key movement of player." alt="" coords="727,765,937,792"/>
+<area shape="rect" id="node27" href="$class_camera.html#a62b9c31a39202f116f3b9fd774ef42e3" title="Overloaded function for setting plain." alt="" coords="1022,715,1153,741"/>
+<area shape="rect" id="node28" href="$class_camera.html#a30269761b4c56d23c7ce423440982a36" title="Finds the area of a triangle between the players coordinates and points on plain." alt="" coords="1231,715,1407,741"/>
+<area shape="rect" id="node29" href="$class_plain_vector.html#a92239f01ea2788df42891c8bb2afc2f1" title="Get the ending X coordinates." alt="" coords="1457,677,1599,704"/>
+<area shape="rect" id="node30" href="$class_plain_vector.html#a74a26cc9230e7469bbd6d739ae873bd6" title="Returns the coordinate for coordiante 2 for the plain." alt="" coords="1461,753,1595,780"/>
+<area shape="rect" id="node31" href="$class_plain_vector.html#ab6a87390b9841ec5c3bce9e9df2acf7a" title="Returns the coordinate for coordiante 4 for the plain." alt="" coords="1461,816,1595,843"/>
+<area shape="rect" id="node32" href="$class_plain_vector.html#a953267bdf9dc9841c215d33df4f6bc57" title="Get the starting X coordinates." alt="" coords="1455,551,1601,577"/>
+<area shape="rect" id="node33" href="$class_plain_vector.html#ad51a40d46f2e0d49fd1b06fc8f3de459" title="Get the Type." alt="" coords="1245,563,1392,589"/>
+<area shape="rect" id="node34" href="$class_plain_vector.html#a063346c2f5a33de0ef90678dae6f578b" title="Return size of vector." alt="" coords="1257,613,1380,640"/>
+<area shape="rect" id="node36" href="$class_camera.html#ac5757a4349da2fbdce00a165ae9b0f87" title="Calculates how far down the player has crouched." alt="" coords="1004,1221,1171,1248"/>
+<area shape="rect" id="node39" href="$class_camera.html#a330fd9867330e296f95a2f099f6b2be1" title="Returns if the camera is crouched." alt="" coords="763,1373,901,1400"/>
+<area shape="rect" id="node40" href="$class_camera.html#a8ba9f236ce4db8d927ac047db91ebd0b" title="Getter for the lookAt vector." alt="" coords="770,1272,894,1299"/>
+<area shape="rect" id="node41" href="$class_camera.html#a0af35a7c44ad231e950f859531ebdccf" title="Sets if the player is crouching." alt="" coords="764,1323,900,1349"/>
+<area shape="rect" id="node44" href="$class_enemy_a_i.html#a256434f261794a43562fbd7cf4aeaec8" title="Setter for the player position." alt="" coords="751,512,913,539"/>
+<area shape="rect" id="node46" href="$class_enemy_a_i.html#a576dee0b7029de524c9526982db99feb" title="Gets a random free spot from the grid." alt="" coords="752,664,912,691"/>
+<area shape="rect" id="node47" href="$class_object3_d.html#a31de24cd9af87bc7303014f0ec9df2d9" title="Returns a vertex of index i." alt="" coords="761,715,903,741"/>
+<area shape="rect" id="node48" href="$class_object3_d.html#a15021c438e0366548ea2064f24b5f60d" title=" " alt="" coords="743,613,921,640"/>
+<area shape="rect" id="node50" href="$class_gun.html#a07f295e05059dd88b05c6ca3cfe49b72" title="Updates the bullets in the gun." alt="" coords="785,1171,879,1197"/>
+<area shape="rect" id="node52" href="$class_gun.html#a2fb8d8db083878b572812e2bea613221" title="Getter for is firing." alt="" coords="773,1069,891,1096"/>
+<area shape="rect" id="node53" href="$class_boss.html#a9311b012fcfe8885cf6267c111d5b0bd" title="Applies effects of phase onto boss." alt="" coords="767,917,897,944"/>
+<area shape="rect" id="node62" href="$class_boss.html#a06181e1870bc835e251d8b56556958f4" title="Changes the phase of boss every 15 seconds." alt="" coords="761,968,903,995"/>
+<area shape="rect" id="node54" href="$class_boss.html#ab9b1cce8d53fca890de220dd4e9ed5f3" title="Calculates laser&#45;beams length and animates accordingly." alt="" coords="1012,867,1163,893"/>
+<area shape="rect" id="node55" href="$class_boss.html#ac044f3276ab30234c3f60ceb347b956f" title="Returns the phase number of boss." alt="" coords="1028,1069,1147,1096"/>
+<area shape="rect" id="node56" href="$class_boss.html#a44dcedc5c6444fc64de8ef52662d522e" title="Returns the rotation vector of boss." alt="" coords="1023,917,1152,944"/>
+<area shape="rect" id="node57" href="$class_boss.html#af51d25db6b30d7653753477c05ab6b2f" title="Sets rotation of boss given a vector." alt="" coords="1023,968,1151,995"/>
+<area shape="rect" id="node58" href="$class_boss.html#a2550e9769190122474a2f16158497745" title="Sets players y rotation based on GLfloat parameter variable." alt="" coords="1019,1019,1156,1045"/>
+<area shape="rect" id="node59" href="$class_boss.html#a50bed0d11afefc6f5aa5d64b6fc7a7d2" title="Creates new bullet and calls m_gun.Shoot()." alt="" coords="1040,816,1135,843"/>
+<area shape="rect" id="node60" href="$class_gun.html#a652ace513ba9bf39a6e2af1493776d19" title="Getter for bullet velocity." alt="" coords="1241,867,1396,893"/>
+<area shape="rect" id="node61" href="$class_gun.html#aa1a3d5456fa08375cfc6c9e359c4bd3d" title="Adds a bullet into the bullets vector, used for when gun is shot." alt="" coords="1275,917,1363,944"/>
+<area shape="rect" id="node63" href="$class_gun.html#a1d20c591ded9c216ce38dbfe8d31eeae" title="Setter for firing delay." alt="" coords="1018,1171,1157,1197"/>
+<area shape="rect" id="node64" href="$class_boss.html#ac97a9558606cd7592a84a41835877b52" title="Sets phase of boss given a GLint." alt="" coords="1029,1120,1146,1147"/>
+<area shape="rect" id="node66" href="$namespace_g_m.html#a7865d8da944f015ba6322e7eeefe4e45" title="Handles reshaping the game window." alt="" coords="505,1475,643,1501"/>
+<area shape="rect" id="node68" href="$class_camera.html#a691fbf70afa377e8219deb0515c264c2" title="Sets the players camera location." alt="" coords="479,1373,669,1400"/>
+<area shape="rect" id="node69" href="$class_camera.html#a4d2821e43ae754a1e7359ca7e28419b4" title="Sets the cameras look at direction." alt="" coords="483,1095,665,1121"/>
+</map>

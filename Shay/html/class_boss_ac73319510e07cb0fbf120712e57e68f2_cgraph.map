@@ -1,0 +1,5 @@
+<map id="Boss::Animate" name="Boss::Animate">
+<area shape="rect" id="node1" title="Applies rotation and translation based on m_rotation and m_position. Also draws laser&#45;beam during pha..." alt="" coords="5,31,113,57"/>
+<area shape="rect" id="node2" href="$class_boss.html#ac044f3276ab30234c3f60ceb347b956f" title="Returns the phase number of boss." alt="" coords="201,5,320,32"/>
+<area shape="rect" id="node3" href="$class_textured_polygons.html#ae6b2615e41f9263aaafc9a7f1ed2b94c" title="Returns texture." alt="" coords="161,56,360,83"/>
+</map>

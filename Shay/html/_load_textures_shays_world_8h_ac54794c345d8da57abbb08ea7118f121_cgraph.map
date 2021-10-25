@@ -1,0 +1,12 @@
+<map id="CreateTextures" name="CreateTextures">
+<area shape="rect" id="node1" title="Loads and Creates all the textures for shays world." alt="" coords="5,198,116,225"/>
+<area shape="rect" id="node2" href="$class_textured_polygons.html#ac197b25a7152feed1499351f22446a45" title="Creates texture and set required values for texture mapping." alt="" coords="177,5,349,47"/>
+<area shape="rect" id="node3" href="$_load_textures_shays_world_8cpp.html#aeae6963944eeb7bccc5b5cbbe903c197" title="Deletes image from memory." alt="" coords="177,71,348,98"/>
+<area shape="rect" id="node4" href="$class_textured_polygons.html#af491c14a7711097065a61e8b54c95647" title="Loads a raw image file into memory." alt="" coords="409,223,615,250"/>
+<area shape="rect" id="node6" href="$_load_textures_shays_world_8cpp.html#aafea99714e24987e14f4c6cc2914e33d" title=" " alt="" coords="209,173,316,199"/>
+<area shape="rect" id="node7" href="$_load_textures_shays_world_8cpp.html#a258cf6bd2641adffdf57afc5bccd4c17" title=" " alt="" coords="209,223,316,250"/>
+<area shape="rect" id="node8" href="$_load_textures_shays_world_8cpp.html#ad80808ac168a357276da8e530430910f" title=" " alt="" coords="209,274,316,301"/>
+<area shape="rect" id="node9" href="$_load_textures_shays_world_8cpp.html#a0c9b5ceca695f170db4e69de19de7a1d" title=" " alt="" coords="209,325,316,351"/>
+<area shape="rect" id="node10" href="$class_textured_polygons.html#a172716856851bb2b34fc1a66fb0b0b92" title="Set the number of textures to be used." alt="" coords="164,376,361,417"/>
+<area shape="rect" id="node5" href="$class_textured_polygons.html#ae959f3a7a1522654a97ccec5c61a14d2" title="Returns image file." alt="" coords="663,216,849,257"/>
+</map>

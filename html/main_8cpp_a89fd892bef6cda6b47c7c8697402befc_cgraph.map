@@ -1,5 +1,0 @@
-<map id="doorFunction" name="doorFunction">
-<area shape="rect" id="node1" title="Determines if the sliding door should open or not." alt="" coords="5,31,103,57"/>
-<area shape="rect" id="node2" href="$class_camera.html#af8114c2a31f12a7adef5a10b76d89fff" title="Returns the z position of the camera." alt="" coords="151,5,264,32"/>
-<area shape="rect" id="node3" href="$class_camera.html#a6ae278c51ab44558d69d38b5ed3aedab" title="Returns the x position of the camera." alt="" coords="151,56,263,83"/>
-</map>

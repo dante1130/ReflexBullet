@@ -1,0 +1,5 @@
+<map id="LoadTextures4" name="LoadTextures4">
+<area shape="rect" id="node1" title=" " alt="" coords="5,13,112,39"/>
+<area shape="rect" id="node2" href="$class_textured_polygons.html#af491c14a7711097065a61e8b54c95647" title="Loads a raw image file into memory." alt="" coords="160,13,365,39"/>
+<area shape="rect" id="node3" href="$class_textured_polygons.html#ae959f3a7a1522654a97ccec5c61a14d2" title="Returns image file." alt="" coords="413,5,600,47"/>
+</map>

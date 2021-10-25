@@ -21,6 +21,8 @@ struct RobotEnemies
 	/// The obj to be used to display the enemies, also used to calculate the bounding boxes.
 	Object3D obj;
 
+
+
 	/// Vector of enemies. 
 	std::vector<Enemy> enemies;
 
@@ -28,9 +30,10 @@ struct RobotEnemies
 	 * @brief Spawns enemies by specified amount.
 	 * @param noOfEnemies int
 	 * @param playerPos glm::vec3
+	 * @param currentSize	- Number already spawned
 	 * @return void
 	 */
-	void Spawn(int noOfEnemies, glm::vec3 playerPos)
+	void Spawn(int noOfEnemies, glm::vec3 playerPos, int currentSize)
 	{
 		BoundingBox tempBBox(obj.GetVertex(0), obj.GetVertex(0));
 
@@ -52,7 +55,7 @@ struct RobotEnemies
 					 (position.y >= playerPos2D.y - 2 && position.y <= playerPos2D.y + 2));
 
 			enemies.push_back(Enemy(glm::vec3(position.x + 0.5, 0.75, position.y + 0.5)));
-			enemies[i].SetBBox(tempBBox);
+			enemies[currentSize + i].SetBBox(tempBBox);
 		}
 	}
 

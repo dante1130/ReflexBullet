@@ -1,0 +1,25 @@
+var struct_game_world_objects =
+[
+    [ "Bench", "struct_game_world_objects.html#a11e19c93adac6a23300f147f8217f451", null ],
+    [ "cashier", "struct_game_world_objects.html#a1dab4dbfff5800b42469c0bb8ed2c175", null ],
+    [ "ClawMachine", "struct_game_world_objects.html#a29e1a810456dedf80bd13d805578612a", null ],
+    [ "Counter", "struct_game_world_objects.html#a6b97c292fbb6d2403a2ba30a82bed6cd", null ],
+    [ "DisplayShelf", "struct_game_world_objects.html#a8e39e7835c2e7ecbd77acc9bea1568c8", null ],
+    [ "DuckGun", "struct_game_world_objects.html#a9d6bbf732f5c868d79d3f2e277bd4fa3", null ],
+    [ "DuckPerson", "struct_game_world_objects.html#a71ac380d71cce1fde0d2768049d37872", null ],
+    [ "LightOBJ", "struct_game_world_objects.html#a827aa5a3f0dd6f1d5db65426cb23ada4", null ],
+    [ "LightPlane", "struct_game_world_objects.html#af2776ff3dba756ce89fee65d59af1413", null ],
+    [ "s_Board", "struct_game_world_objects.html#ab00ccd1fcc5fff462b76d2074612744b", null ],
+    [ "s_Books", "struct_game_world_objects.html#a63b1961a714e7350a285403ed5323f18", null ],
+    [ "s_Box", "struct_game_world_objects.html#a191b0a1506d83c6d84de01498809094a", null ],
+    [ "s_Movies", "struct_game_world_objects.html#ad5739763169889d63ef5102545165392", null ],
+    [ "Shelf_1", "struct_game_world_objects.html#a3708cff8720d43dfa709401bcdc09416", null ],
+    [ "Shelf_Objects", "struct_game_world_objects.html#aea41d830b5626abd8e702f23c20d1625", null ],
+    [ "ShelfEnd", "struct_game_world_objects.html#a46380418fbe3dd04386a63f8c728db8f", null ],
+    [ "Sky", "struct_game_world_objects.html#ab53f28e12ea42ae82d864bb6e57ab628", null ],
+    [ "Speaker", "struct_game_world_objects.html#a90a55ad7021ef18a255749e448b7c399", null ],
+    [ "Table", "struct_game_world_objects.html#aa72e22e48e3ebbe182831b48a4c35828", null ],
+    [ "ToyStore", "struct_game_world_objects.html#ae40796e9abc55258248f2ca5200c0fce", null ],
+    [ "Train", "struct_game_world_objects.html#a84e50bdf1f933f53c0df969b3dd718a6", null ],
+    [ "TrainArea", "struct_game_world_objects.html#ae7f6f31318734453fad5e942c809b0e5", null ]
+];

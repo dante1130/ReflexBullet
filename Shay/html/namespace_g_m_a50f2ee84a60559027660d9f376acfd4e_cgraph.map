@@ -1,0 +1,48 @@
+<map id="GM::GameKeys" name="GM::GameKeys">
+<area shape="rect" id="node1" title="Handles all the key inputs for the game world." alt="" coords="5,701,121,728"/>
+<area shape="rect" id="node2" href="$class_player.html#ad817bde6a3fd4808f1d6babb3d3cb28f" title="Adds the bullet speed by a specified amount." alt="" coords="183,245,343,272"/>
+<area shape="rect" id="node5" href="$class_player.html#af4f727ff6cd5cb9a101873408f191dbd" title="Adds the movement speed by a specified amount." alt="" coords="184,397,341,424"/>
+<area shape="rect" id="node8" href="$class_player.html#a53aa16f4c66dd107a93aa6229919526a" title="Adds skill points by a certain amount." alt="" coords="187,296,339,323"/>
+<area shape="rect" id="node9" href="$namespace_g_m.html#a9471c0f42f3962548c99306b4d1536ff" title="Changes pillar collisions to half cover for the boss." alt="" coords="177,132,348,159"/>
+<area shape="rect" id="node15" href="$class_player.html#a5e1e0fef9ee42134e9bd1aa3d6e7b5d7" title="Decrease firing delay by a specified amount." alt="" coords="169,752,356,779"/>
+<area shape="rect" id="node18" href="$class_camera.html#a9e107010377ad331277042d489c0b89c" title="Used to pass direction to move or rotate forwards or backwards (i.e. 1, &#45;1 or 0)." alt="" coords="191,448,334,475"/>
+<area shape="rect" id="node19" href="$class_camera.html#a61307840dd9543e39f29ae3bdd04a677" title="Used to pass direction to move or rotate left and right (i.e. 1, &#45;1 or 0)." alt="" coords="191,499,334,525"/>
+<area shape="rect" id="node20" href="$namespace_g_m.html#a7865d8da944f015ba6322e7eeefe4e45" title="Handles reshaping the game window." alt="" coords="194,549,331,576"/>
+<area shape="rect" id="node21" href="$class_player.html#ae5a3bcef2eda89370076f8fbce9e08b4" title="Getter for camera." alt="" coords="665,1107,799,1133"/>
+<area shape="rect" id="node22" href="$class_player.html#a7da7faa7105424633ffb5bc022e14267" title="Getter for health." alt="" coords="200,651,325,677"/>
+<area shape="rect" id="node23" href="$_game_manager_8cpp.html#a8039c5cb364dbd5330993209d582bc06" title=" " alt="" coords="225,701,300,728"/>
+<area shape="rect" id="node24" href="$namespace_g_m.html#af011ff916b40f31e9dd54ee5c95a4dec" title="Pauses the game." alt="" coords="201,955,324,981"/>
+<area shape="rect" id="node28" href="$class_camera.html#a0af35a7c44ad231e950f859531ebdccf" title="Sets if the player is crouching." alt="" coords="431,1107,567,1133"/>
+<area shape="rect" id="node29" href="$namespace_g_m.html#a690aa3a2efd97dda614b70f579193580" title="Reads in the keyboard input to store into a string." alt="" coords="181,853,345,880"/>
+<area shape="rect" id="node30" href="$class_player.html#af002a656653cbc5d790b6677745b11f0" title="Resets the bullet speed." alt="" coords="177,347,348,373"/>
+<area shape="rect" id="node31" href="$class_player.html#a8efacbe0d3a41363e6591f0441d8f164" title="Resets the firing delay." alt="" coords="179,803,346,829"/>
+<area shape="rect" id="node32" href="$class_player.html#ac74e2f7bd2785036cc47deaebfb9d03d" title="Resets the movement speed." alt="" coords="179,600,347,627"/>
+<area shape="rect" id="node33" href="$class_player.html#a3b759e4b98a8218eb660f589cc1df667" title="Setter for health." alt="" coords="201,1056,325,1083"/>
+<area shape="rect" id="node34" href="$class_audio.html#a5b995115f4058f82762a01a3017fb0ae" title="Setter for music volume." alt="" coords="181,1107,344,1133"/>
+<area shape="rect" id="node35" href="$class_camera.html#af1b56a7aee4d2b0c38054e05c0553e51" title="Set step and rotation size." alt="" coords="177,1157,348,1184"/>
+<area shape="rect" id="node36" href="$namespace_g_m.html#aeadf906a8a1b7ca5ad5fce4600d6f38d" title="Unpauses the game." alt="" coords="194,1208,331,1235"/>
+<area shape="rect" id="node3" href="$class_gun.html#a652ace513ba9bf39a6e2af1493776d19" title="Getter for bullet velocity." alt="" coords="421,259,576,285"/>
+<area shape="rect" id="node4" href="$class_gun.html#abb03a5238f8a68d010bf4e4520f545cb" title="Setter for bullet velocity." alt="" coords="421,335,576,361"/>
+<area shape="rect" id="node6" href="$class_camera.html#af3014af0c3f1da025dec487bcaeb85db" title="Returns the movement speed." alt="" coords="417,397,580,424"/>
+<area shape="rect" id="node7" href="$class_camera.html#a86a5a6f374125bb58c6a97ba2d921a64" title="Set movement speed." alt="" coords="417,524,580,551"/>
+<area shape="rect" id="node10" href="$class_a_a_b_b_vector.html#a867af5c3801c8c611c083388d3cf0f1f" title="Gets the maximum extent." alt="" coords="423,107,574,133"/>
+<area shape="rect" id="node11" href="$class_a_a_b_b_vector.html#a406924fc68ccdd9a5898aa5994cc9684" title="Gets the maximum extent." alt="" coords="425,157,572,184"/>
+<area shape="rect" id="node12" href="$class_collision.html#aa050b00e13099c5d316071afe243a516" title="Gets the reference to the AABBvector of a quadrant." alt="" coords="422,208,575,235"/>
+<area shape="rect" id="node13" href="$class_a_a_b_b_vector.html#a9f0c29c0a98bed22280bfa913073eb2a" title="Set the values of the data at an index." alt="" coords="423,5,574,32"/>
+<area shape="rect" id="node14" href="$class_a_a_b_b_vector.html#a91f3f1ea946b9eb97042d8c6f48ae509" title="Return size of vector." alt="" coords="433,56,564,83"/>
+<area shape="rect" id="node16" href="$class_gun.html#a5c4c8973cd8916a13e4234171a76353c" title="Getter for firing delay." alt="" coords="429,752,569,779"/>
+<area shape="rect" id="node17" href="$class_gun.html#a1d20c591ded9c216ce38dbfe8d31eeae" title="Setter for firing delay." alt="" coords="429,803,568,829"/>
+<area shape="rect" id="node25" href="$class_camera.html#a330fd9867330e296f95a2f099f6b2be1" title="Returns if the camera is crouched." alt="" coords="430,1005,567,1032"/>
+<area shape="rect" id="node26" href="$class_camera.html#a8ba9f236ce4db8d927ac047db91ebd0b" title="Getter for the lookAt vector." alt="" coords="437,904,561,931"/>
+<area shape="rect" id="node27" href="$class_camera.html#af01f8cd3c75ea3b9e578cfe0a95c9955" title="Getter for position, also includes the crouch depth." alt="" coords="427,955,570,981"/>
+<area shape="rect" id="node37" href="$namespace_g_m.html#a768282a0b7fd30f27553a58dd9de49ec" title="Handles all the mouse movement in the game world." alt="" coords="421,1259,576,1285"/>
+<area shape="rect" id="node44" href="$class_player.html#a7b538d79f306b3d6ff2c5fab7bf089d8" title="Getter for skill points." alt="" coords="423,1360,574,1387"/>
+<area shape="rect" id="node45" href="$class_camera.html#a691fbf70afa377e8219deb0515c264c2" title="Sets the players camera location." alt="" coords="404,1208,593,1235"/>
+<area shape="rect" id="node46" href="$class_camera.html#a4d2821e43ae754a1e7359ca7e28419b4" title="Sets the cameras look at direction." alt="" coords="641,1309,823,1336"/>
+<area shape="rect" id="node38" href="$class_camera.html#a77058a5acc0ab9de6c96ed53e1759ccd" title="Use mouse to look around." alt="" coords="660,1259,804,1285"/>
+<area shape="rect" id="node42" href="$namespace_g_m.html#a34edd09585db50a115e131f36c96bf41" title="Handles deciding which option should be highlighted when the mouse is moved over it." alt="" coords="655,1208,809,1235"/>
+<area shape="rect" id="node39" href="$class_camera.html#a023cb3e9d92301d8132f338c7ef5be77" title="Calls the glLookAt function." alt="" coords="911,1309,1065,1336"/>
+<area shape="rect" id="node41" href="$class_camera.html#a00e029028bce7b155cea07cb1b39b759" title="Helper function for rotation, calculates radians from degrees." alt="" coords="897,1259,1079,1285"/>
+<area shape="rect" id="node40" href="$class_camera.html#ac5757a4349da2fbdce00a165ae9b0f87" title="Calculates how far down the player has crouched." alt="" coords="1153,1309,1320,1336"/>
+<area shape="rect" id="node43" href="$namespace_g_m.html#adf3cf6ef16cb9260b672c09d856c874d" title="Handles when the mouse is moved over the option paused menu." alt="" coords="871,1208,1105,1235"/>
+</map>

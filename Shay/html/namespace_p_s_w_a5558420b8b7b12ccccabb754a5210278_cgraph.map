@@ -1,0 +1,7 @@
+<map id="PSW::mouseMove" name="PSW::mouseMove">
+<area shape="rect" id="node1" title="Handles mouse movement." alt="" coords="5,31,136,57"/>
+<area shape="rect" id="node2" href="$class_camera.html#a77058a5acc0ab9de6c96ed53e1759ccd" title="Use mouse to look around." alt="" coords="184,31,328,57"/>
+<area shape="rect" id="node3" href="$class_camera.html#a023cb3e9d92301d8132f338c7ef5be77" title="Calls the glLookAt function." alt="" coords="391,5,544,32"/>
+<area shape="rect" id="node5" href="$class_camera.html#a00e029028bce7b155cea07cb1b39b759" title="Helper function for rotation, calculates radians from degrees." alt="" coords="376,56,559,83"/>
+<area shape="rect" id="node4" href="$class_camera.html#ac5757a4349da2fbdce00a165ae9b0f87" title="Calculates how far down the player has crouched." alt="" coords="607,5,773,32"/>
+</map>

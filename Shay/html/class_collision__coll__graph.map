@@ -1,0 +1,4 @@
+<map id="Collision" name="Collision">
+<area shape="rect" id="node1" title="Collision class using AABB Bounding boxes." alt="" coords="5,233,129,531"/>
+<area shape="rect" id="node2" href="$class_a_a_b_b_vector.html" title="Vector to store bounding box details." alt="" coords="9,5,125,171"/>
+</map>

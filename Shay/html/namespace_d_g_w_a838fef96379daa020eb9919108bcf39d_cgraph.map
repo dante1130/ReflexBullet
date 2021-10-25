@@ -1,0 +1,5 @@
+<map id="DGW::DisplayStartScreen" name="DGW::DisplayStartScreen">
+<area shape="rect" id="node1" title="Displays the start screen menu." alt="" coords="5,5,180,32"/>
+<area shape="rect" id="node2" href="$namespace_d_g_w.html#ad7af619c73f746fcfc0d6ba18d804c98" title="Displays individual options for the pause menu." alt="" coords="228,5,423,32"/>
+<area shape="rect" id="node3" href="$class_textured_polygons.html#ae6b2615e41f9263aaafc9a7f1ed2b94c" title="Returns texture." alt="" coords="471,5,669,32"/>
+</map>

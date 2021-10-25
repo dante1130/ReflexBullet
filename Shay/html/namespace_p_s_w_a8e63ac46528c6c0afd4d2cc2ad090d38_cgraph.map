@@ -1,0 +1,5 @@
+<map id="PSW::CreatePlainsExtendedArea" name="PSW::CreatePlainsExtendedArea">
+<area shape="rect" id="node1" title="Does all the plains for the extended area." alt="" coords="5,5,223,32"/>
+<area shape="rect" id="node2" href="$class_camera.html#ad99a8c3f5bc5388686681a7fbfeb1e43" title="Sets the co&#45;ordinate of each plain." alt="" coords="271,5,397,32"/>
+<area shape="rect" id="node3" href="$class_plain_vector.html#a145f83d2db56db9dff494d0f765b67c4" title="Pushes new plain into the vector." alt="" coords="445,5,572,32"/>
+</map>

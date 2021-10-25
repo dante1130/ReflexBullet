@@ -1,0 +1,4 @@
+<map id="Enemy::SetPlayerPos" name="Enemy::SetPlayerPos">
+<area shape="rect" id="node1" title="Setter for player position." alt="" coords="5,5,156,32"/>
+<area shape="rect" id="node2" href="$class_enemy_a_i.html#a256434f261794a43562fbd7cf4aeaec8" title="Setter for the player position." alt="" coords="204,5,367,32"/>
+</map>

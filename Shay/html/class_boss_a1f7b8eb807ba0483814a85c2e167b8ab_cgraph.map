@@ -1,0 +1,19 @@
+<map id="Boss::Update" name="Boss::Update">
+<area shape="rect" id="node1" title="Updates the bosses actions and phases." alt="" coords="5,284,107,311"/>
+<area shape="rect" id="node2" href="$class_gun.html#a2fb8d8db083878b572812e2bea613221" title="Getter for is firing." alt="" coords="173,132,291,159"/>
+<area shape="rect" id="node3" href="$class_boss.html#a9311b012fcfe8885cf6267c111d5b0bd" title="Applies effects of phase onto boss." alt="" coords="167,183,297,209"/>
+<area shape="rect" id="node12" href="$class_boss.html#a06181e1870bc835e251d8b56556958f4" title="Changes the phase of boss every 15 seconds." alt="" coords="161,284,303,311"/>
+<area shape="rect" id="node16" href="$class_gun.html#a52e982a444229b9188efda0409c7abee" title="Removes all the bullets in the gun." alt="" coords="155,335,309,361"/>
+<area shape="rect" id="node17" href="$class_gun.html#a07f295e05059dd88b05c6ca3cfe49b72" title="Updates the bullets in the gun." alt="" coords="185,385,279,412"/>
+<area shape="rect" id="node4" href="$class_boss.html#ab9b1cce8d53fca890de220dd4e9ed5f3" title="Calculates laser&#45;beams length and animates accordingly." alt="" coords="357,5,508,32"/>
+<area shape="rect" id="node5" href="$class_boss.html#ac044f3276ab30234c3f60ceb347b956f" title="Returns the phase number of boss." alt="" coords="373,259,492,285"/>
+<area shape="rect" id="node6" href="$class_boss.html#a44dcedc5c6444fc64de8ef52662d522e" title="Returns the rotation vector of boss." alt="" coords="368,56,497,83"/>
+<area shape="rect" id="node7" href="$class_boss.html#af51d25db6b30d7653753477c05ab6b2f" title="Sets rotation of boss given a vector." alt="" coords="369,107,497,133"/>
+<area shape="rect" id="node8" href="$class_boss.html#a2550e9769190122474a2f16158497745" title="Sets players y rotation based on GLfloat parameter variable." alt="" coords="364,157,501,184"/>
+<area shape="rect" id="node9" href="$class_boss.html#a50bed0d11afefc6f5aa5d64b6fc7a7d2" title="Creates new bullet and calls m_gun.Shoot()." alt="" coords="385,208,480,235"/>
+<area shape="rect" id="node10" href="$class_gun.html#a652ace513ba9bf39a6e2af1493776d19" title="Getter for bullet velocity." alt="" coords="556,183,711,209"/>
+<area shape="rect" id="node11" href="$class_gun.html#aa1a3d5456fa08375cfc6c9e359c4bd3d" title="Adds a bullet into the bullets vector, used for when gun is shot." alt="" coords="589,233,677,260"/>
+<area shape="rect" id="node13" href="$class_boss.html#a99bc725589303f529fb5bf0609cb9bc8" title="Returns gun object m_gun." alt="" coords="380,309,485,336"/>
+<area shape="rect" id="node14" href="$class_gun.html#a1d20c591ded9c216ce38dbfe8d31eeae" title="Setter for firing delay." alt="" coords="363,360,502,387"/>
+<area shape="rect" id="node15" href="$class_boss.html#ac97a9558606cd7592a84a41835877b52" title="Sets phase of boss given a GLint." alt="" coords="374,411,491,437"/>
+</map>

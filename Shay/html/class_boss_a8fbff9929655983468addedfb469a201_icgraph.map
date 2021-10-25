@@ -1,0 +1,4 @@
+<map id="Boss::SetLazerBeamSize" name="Boss::SetLazerBeamSize">
+<area shape="rect" id="node1" title="Sets laser&#45;beams size based on four GLfloat variables." alt="" coords="144,5,316,32"/>
+<area shape="rect" id="node2" href="$class_boss.html#aacce807c818f95067de3964aca814749" title="Constructor, takes in a position." alt="" coords="5,5,96,32"/>
+</map>

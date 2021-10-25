@@ -1,0 +1,5 @@
+<map id="Camera::AddAABB" name="Camera::AddAABB">
+<area shape="rect" id="node1" title="Adds a bounding box to check for collision." alt="" coords="5,5,140,32"/>
+<area shape="rect" id="node2" href="$class_collision.html#a582ec07565cb83e8a8f85652d08b4ee5" title="Sets the bounding box to the vector." alt="" coords="188,5,297,32"/>
+<area shape="rect" id="node3" href="$class_collision.html#aa050b00e13099c5d316071afe243a516" title="Gets the reference to the AABBvector of a quadrant." alt="" coords="345,5,499,32"/>
+</map>

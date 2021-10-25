@@ -1,0 +1,4 @@
+<map id="Camera::ClearAABB" name="Camera::ClearAABB">
+<area shape="rect" id="node1" title="Clears the AABB collision vector." alt="" coords="5,5,147,32"/>
+<area shape="rect" id="node2" href="$class_collision.html#a4ca5e04636edb48a791bfe909e5b93a1" title="Clears the vector." alt="" coords="195,5,304,32"/>
+</map>

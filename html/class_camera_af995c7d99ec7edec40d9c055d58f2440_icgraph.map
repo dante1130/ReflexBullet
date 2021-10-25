@@ -1,6 +1,0 @@
-<map id="Camera::WSKeyboardMovement" name="Camera::WSKeyboardMovement">
-<area shape="rect" id="node1" title="Handles W and S key movement of player." alt="" coords="480,5,691,32"/>
-<area shape="rect" id="node2" href="$class_camera.html#a6d8682d38e8c8ac728d9ca39a78ac109" title="Handles all key movement for movement speed." alt="" coords="243,5,432,32"/>
-<area shape="rect" id="node3" href="$main_8cpp.html#ac75e85cbe6943a3e71980ee212c2191f" title="Handles all the render steps for the program &#45; still needs work, barebones right now." alt="" coords="104,5,195,32"/>
-<area shape="rect" id="node4" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,5,56,32"/>
-</map>

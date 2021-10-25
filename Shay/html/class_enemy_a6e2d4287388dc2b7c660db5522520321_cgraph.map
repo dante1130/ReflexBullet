@@ -1,0 +1,12 @@
+<map id="Enemy::Update" name="Enemy::Update">
+<area shape="rect" id="node1" title="Updates by delta, to be called every frame." alt="" coords="5,183,117,209"/>
+<area shape="rect" id="node2" href="$class_enemy_a_i.html#ad03de08c4766125f68cf4dfd1978461c" title="Updates the AI, to be called every game tick." alt="" coords="185,56,321,83"/>
+<area shape="rect" id="node5" href="$class_enemy.html#a1cfd85c8c7cac6f389f98484ba10b329" title="Have the enemy enter into the dead state." alt="" coords="208,107,299,133"/>
+<area shape="rect" id="node7" href="$class_enemy_a_i.html#a33c759d21208c171e0dc930ddcb75ba9" title="Getter for the grid position of the destination." alt="" coords="176,157,331,184"/>
+<area shape="rect" id="node8" href="$class_enemy_a_i.html#a6f5e1fcdf4d2f17e15ff6ffde51e7767" title="Gets the boolean for if the enemy is moving." alt="" coords="176,208,331,235"/>
+<area shape="rect" id="node9" href="$class_enemy_a_i.html#a206f76e63c05406aad51e844bcbdeadb" title="Getter for the previous grid position of the enemy." alt="" coords="165,259,341,285"/>
+<area shape="rect" id="node10" href="$class_gun.html#a07f295e05059dd88b05c6ca3cfe49b72" title="Updates the bullets in the gun." alt="" coords="206,309,301,336"/>
+<area shape="rect" id="node3" href="$class_enemy_a_i.html#a142695e29a54b5e271bb9f0efc1d4cc6" title="Finds the next destination." alt="" coords="413,5,575,32"/>
+<area shape="rect" id="node4" href="$class_enemy_a_i.html#a1e6345fbae3b1ccfb2c54172c497959c" title="Returns a boolean if the enemy has reached the destination." alt="" coords="389,56,599,83"/>
+<area shape="rect" id="node6" href="$class_enemy_a_i.html#aa7fad4fa75f3fbf1e1c902cafeb58d6a" title="Changes the state of the EnemyAI to dead." alt="" coords="443,107,545,133"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="Boss" name="Boss">
+<area shape="rect" id="node1" title=" " alt="" coords="5,189,184,677"/>
+<area shape="rect" id="node2" href="$class_base_character.html" title="An interface for the characters of the game." alt="" coords="41,5,149,141"/>
+</map>
