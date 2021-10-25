@@ -601,12 +601,15 @@ void GM::GameKeys(unsigned char key, int x, int y)
 	case 27:
 		if (PMV.m_PausedMenuChoosen != 6)
 		{
+			bool pause = false;
+			if (PMV.m_PausedMenuChoosen == 0) { pause = true; }
+
 			if (PMV.m_PausedMenuChoosen == 4) { PMV.m_PausedOverStart = false; }
 			else { PMV.m_PausedOverStart = true; }
 			if (PMV.m_PausedMenuChoosen == 3) { PMV.m_UpgradeOverPaused = true; }
 			else { PMV.m_UpgradeOverPaused = false; }
 			PMV.m_PausedMenuChoosen = 5;
-			PauseGame();
+			if (pause) { PauseGame(); }
 		}
 
 		break;
@@ -736,6 +739,8 @@ void GM::ReadKeysForString(std::string &string, unsigned char &key, int maximum)
 
 void GM::PauseGame()
 {
+	if(PMV.m_PausedMenuChoosen)
+
 	//glutPassiveMotionFunc(NULL);
 	glutMotionFunc(NULL);
 	PMV.m_playerPos = player.GetCamera().GetPosition();
@@ -945,7 +950,7 @@ void GM::GameMouseClick(int button, int state, int x, int y)
 
 
 	}
-	else if (PMV.m_PausedMenuChoosen != 0)// && PMV.m_floatMoving == false)
+	else if (PMV.m_PausedMenuChoosen != 0 && PMV.m_floatMoving == false)
 	{
 		GameMouseClickOption(button, state, x, y);
 	}
@@ -1263,17 +1268,11 @@ void GM::RestartGame()
 {
 	PMV.m_ShowControls = true;
 
-	if (bossOn)
-	{
-		//GWO.ToyStore[0].Clear();
-		//ReadOBJMTL("data/object/gameObjects/ToyStore.obj", GWO.ToyStore[0]);
+	collision.Clear();
+	CreateGameBoundingBoxes();
 
-		collision.Clear();
-		CreateGameBoundingBoxes();
-
-		boss.SetHealth(boss.GetStartHealth());
-		bossOn = false;
-	}
+	boss.SetHealth(boss.GetStartHealth());
+	bossOn = false;
 
 	noOfSpawn = startingSpawnCount;
 	waveLevel = 1;
