@@ -382,6 +382,11 @@ namespace DGW
 	*/
 	void DisplayPerformanceMetrics();
 
+	/**
+	* @brief	Displays the duck gun
+	* @param	No param
+	* @return	Void
+	*/
 	void DisplayDuckGun();
 
 	/**
