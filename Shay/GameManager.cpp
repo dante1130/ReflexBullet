@@ -499,9 +499,9 @@ void GM::GameFixedUpdates(float delta)
 	{
 		boss.Update(delta);
 		//if (boss.GetIsFiring())
-			//Audio::PlaySound("bossShoot"); 
-		//if (boss.GetIsLaserFiring())
-			//Audio::PlaySound("laserAttack");
+		//	Audio::PlaySound("bossShoot"); 
+		if (boss.GetIsLaserFiring())
+			Audio::PlaySound("laserAttack");
 	}
 
 	// Lose condition
@@ -630,7 +630,6 @@ void GM::GameKeys(unsigned char key, int x, int y)
 		if (PMV.m_PausedMenuChoosen == 0) { PMV.m_PausedMenuChoosen = 1; }
 		else { PMV.m_PausedMenuChoosen = 0; }
 
-
 		if (PMV.m_PausedMenuChoosen == 1)
 		{
 			PauseGame();
@@ -689,6 +688,7 @@ void GM::GameKeys(unsigned char key, int x, int y)
 	case 'b':
 	case 'B':
 		bossOn = true;
+		ChangeToBossCover();
 		break;
 	case 'h':
 	case 'H':
@@ -746,6 +746,14 @@ void GM::PauseGame()
 	hudOn = false;
 	bossOn = false;
 	displayMap = false;
+
+	if (player.GetCamera().GetCrouch())
+	{
+		PMV.m_WasCrouching = true;
+		player.GetCamera().SetCrouch(false);
+	}
+	else
+		PMV.m_WasCrouching = false;
 }
 
 void GM::UnpauseGame()
@@ -756,6 +764,17 @@ void GM::UnpauseGame()
 	//glutPassiveMotionFunc(GameMouseMove);
 	glutMotionFunc(GameMouseMove);
 	PMV.m_floatMoving = false;
+
+	if (PMV.m_WasCrouching)
+	{
+		player.GetCamera().SetCrouch(true);
+		PMV.m_playerPos.y = PMV.m_playerPos.y - crouchDepth;
+	}
+	else
+		player.GetCamera().SetCrouch(false);
+
+	PMV.m_WasCrouching = false;
+
 	player.GetCamera().SetCameraLocation(PMV.m_playerPos.x, PMV.m_playerPos.y, PMV.m_playerPos.z);
 	player.GetCamera().SetCameraLookAt(PMV.m_playerLook);
 	lastUnpausedFrame = glutGet(GLUT_ELAPSED_TIME);
@@ -763,6 +782,7 @@ void GM::UnpauseGame()
 	if (player.GetSkillPoints() >= 10)
 		bossOn = true;
 	displayMap = true;
+
 }
 
 void GM::GameReleaseKeys(unsigned char key, int x, int y)
@@ -925,7 +945,7 @@ void GM::GameMouseClick(int button, int state, int x, int y)
 
 
 	}
-	else if (PMV.m_PausedMenuChoosen != 0 && PMV.m_floatMoving == false)
+	else if (PMV.m_PausedMenuChoosen != 0)// && PMV.m_floatMoving == false)
 	{
 		GameMouseClickOption(button, state, x, y);
 	}
@@ -1245,8 +1265,8 @@ void GM::RestartGame()
 
 	if (bossOn)
 	{
-		GWO.ToyStore[0].Clear();
-		ReadOBJMTL("data/object/gameObjects/ToyStore.obj", GWO.ToyStore[0]);
+		//GWO.ToyStore[0].Clear();
+		//ReadOBJMTL("data/object/gameObjects/ToyStore.obj", GWO.ToyStore[0]);
 
 		collision.Clear();
 		CreateGameBoundingBoxes();
