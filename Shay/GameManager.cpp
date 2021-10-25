@@ -872,7 +872,8 @@ void GM::MouseOverOption(int x, int y)
 	}
 
 	int max = 5;
-	if (PMV.m_PausedMenuChoosen == 4 || PMV.m_PausedMenuChoosen == 1) { max = 4; }
+	if (PMV.m_PausedMenuChoosen == 1) { max = 4; }
+	if (PMV.m_PausedMenuChoosen == 4) { max = 3; }
 	PMV.m_OptionHighlighted = 0;
 	for (int count = 0; count < max; count++)
 	{
@@ -1163,7 +1164,6 @@ void GM::MenuOptionChoosen(int option)
 		if (option == 1) { RestartGame(); }
 		else if (option == 2) { PMV.m_PausedMenuChoosen = 2; PMV.m_PausedOverStart = false; }
 		else if (option == 3) { PMV.m_PausedMenuChoosen = 5; }
-		else if (option == 4) { ExitGame(0); }
 	}
 	else if (PMV.m_PausedMenuChoosen == 5) //Credits
 	{
