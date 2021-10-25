@@ -45,7 +45,7 @@ var searchData=
   ['setworldz_1580',['SetWorldZ',['../class_collision.html#a6f39869c9da8a8860d01b7f8091ea0af',1,'Collision']]],
   ['shoot_1581',['Shoot',['../class_base_character.html#a4ac85370ddd3f005a1f315d0a819dad9',1,'BaseCharacter::Shoot()'],['../class_boss.html#a50bed0d11afefc6f5aa5d64b6fc7a7d2',1,'Boss::Shoot()'],['../class_enemy.html#a90c45acdddd5d1b601f193a6846dc171',1,'Enemy::Shoot()'],['../class_gun.html#aa1a3d5456fa08375cfc6c9e359c4bd3d',1,'Gun::Shoot()'],['../class_player.html#a0e0fe267a17131876c1bcc3492f9a990',1,'Player::Shoot()']]],
   ['size_1582',['Size',['../class_a_a_b_b_vector.html#a91f3f1ea946b9eb97042d8c6f48ae509',1,'AABBVector::Size()'],['../class_plain_vector.html#a063346c2f5a33de0ef90678dae6f578b',1,'PlainVector::Size()']]],
-  ['spawn_1583',['Spawn',['../struct_robot_enemies.html#a388fd15daae98a1f85298111ca9a2979',1,'RobotEnemies']]],
+  ['spawn_1583',['Spawn',['../struct_robot_enemies.html#a671752e92f6e6d095bd3348eef4f30a5',1,'RobotEnemies']]],
   ['spendskillpoint_1584',['SpendSkillPoint',['../class_player.html#a0af1651a604ce9b3c813c1dc644f1a95',1,'Player']]],
   ['storelodobj_1585',['StoreLODObj',['../namespace_g_m.html#a21ee250f903e23fa4cef388c6d802aa7',1,'GM']]],
   ['stringtoface_1586',['StringToFace',['../file_i_o_8cpp.html#a2a79af5082bb9f0c48e6f263ff2f1d8f',1,'StringToFace(const std::string &amp;str):&#160;fileIO.cpp'],['../file_i_o_8h.html#a2a79af5082bb9f0c48e6f263ff2f1d8f',1,'StringToFace(const std::string &amp;str):&#160;fileIO.cpp']]]

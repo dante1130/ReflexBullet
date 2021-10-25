@@ -23,6 +23,6 @@
 <area shape="rect" id="node25" href="$_display_shays_world_8h.html#a2234e9eff7ea365201bbdbe594305fb3" title="Sets the location for where to display every thing involving the roof (including beams)" alt="" coords="464,968,541,995"/>
 <area shape="rect" id="node26" href="$_display_shays_world_8h.html#aefaff786dac735e065d19b12f3c7704a" title="Sets location for where to display the map and welcome screen." alt="" coords="445,1019,560,1045"/>
 <area shape="rect" id="node4" href="$_display_shays_world_8h.html#a0c8e3bf7c765b84b2a66cd9a8fefbe5e" title="Creates display lists (numbers indicate list numbers) (calls all the display functions)" alt="" coords="248,512,372,539"/>
-<area shape="rect" id="node5" href="$namespace_p_s_w.html#ae5859174c46a5dd5bbf72ba610cf48d6" title="Initializes settings @prarm No param." alt="" coords="104,512,200,539"/>
+<area shape="rect" id="node5" href="$namespace_p_s_w.html#ae5859174c46a5dd5bbf72ba610cf48d6" title="Initializes settings." alt="" coords="104,512,200,539"/>
 <area shape="rect" id="node6" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,512,56,539"/>
 </map>

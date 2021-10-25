@@ -105,7 +105,7 @@ public:
 
 	/**
 	* @brief	Used diagonal plains (only flat implemented)
-	* @brief	tempType	- The type of plain implemented
+	* @param	tempType	- The type of plain implemented
 	* @param	t1			- First coordinate
 	* @param	t2			- Second coordinate
 	* @param	t3			- Third coordinate

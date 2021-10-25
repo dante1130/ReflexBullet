@@ -1,6 +1,6 @@
 <map id="Object3D::GetFaceVectorSize" name="Object3D::GetFaceVectorSize">
 <area shape="rect" id="node1" title="Allows access to the contents of faces vector." alt="" coords="1440,722,1639,749"/>
-<area shape="rect" id="node2" href="$class_object3_d.html#abea0f11f93b8ba4b0b0febc6cedbb05f" title=" " alt="" coords="1239,309,1353,335"/>
+<area shape="rect" id="node2" href="$class_object3_d.html#abea0f11f93b8ba4b0b0febc6cedbb05f" title="Clear function." alt="" coords="1239,309,1353,335"/>
 <area shape="rect" id="node3" href="$class_object3_d.html#aafc02adcfa4285b213af37376bb4ee3d" title="Displays the stored object based on the texture." alt="" coords="1213,359,1379,386"/>
 <area shape="rect" id="node17" href="$class_object3_d.html#ade144bd5a564803e6d6f579a5a96f7a2" title="Displays the stored object based on the texture. Adds vertex normals to allows for lighting." alt="" coords="1200,1044,1392,1085"/>
 <area shape="rect" id="node42" href="$class_object3_d.html#a73b016a1aa7eb3be3c49671f3054565d" title="Deconstructor." alt="" coords="1223,1110,1369,1137"/>

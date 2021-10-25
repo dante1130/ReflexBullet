@@ -6,7 +6,7 @@ glm::vec3 Enemy::m_playerPos;
 Enemy::Enemy()
 	: m_position(0.0f), m_moveSpeed(0.10f), m_isAlive(true), m_ai()
 {
-	m_gun = Gun(2.5, 4.5);
+	m_gun = Gun(2.5, 5);
 	m_health = 10;
 }
 
@@ -57,7 +57,7 @@ void Enemy::Shoot()
 	{
 		Bullet newBullet(m_position,
 						 glm::normalize(lookAt) * m_gun.GetBulletVelocity(),
-						 15);
+						 25);
 
 		m_gun.Shoot(newBullet);
 	}

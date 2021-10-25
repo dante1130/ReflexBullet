@@ -78,8 +78,8 @@ void LTGW::CreateTextures()
 	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/bossBody.raw", 1024, 1024);
 	tpGW.CreateTexture(BOSS, GWimage, 1024, 1024);
 
-	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/robotDummy.raw", 512, 512);
-	tpGW.CreateTexture(ROBOT, GWimage, 512, 512);
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/robotDummy.raw", 375, 375);
+	tpGW.CreateTexture(ROBOT, GWimage, 375, 375);
 
 	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/lazer.raw", 64, 64);
 	tpGW.CreateTexture(B_LAZER, GWimage, 64, 64);

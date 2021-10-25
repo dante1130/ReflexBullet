@@ -30,6 +30,7 @@ struct RobotEnemies
 	 * @brief Spawns enemies by specified amount.
 	 * @param noOfEnemies int
 	 * @param playerPos glm::vec3
+	 * @param currentSize	- Number already spawned
 	 * @return void
 	 */
 	void Spawn(int noOfEnemies, glm::vec3 playerPos, int currentSize)

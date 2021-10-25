@@ -103,54 +103,56 @@ $(document).ready(function(){initNavTree('_display_game_objects_8h_source.html',
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
 <div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="struct_robot_enemies.html#a1aa0608586be3e817b297bec2eb25058">   22</a></span>&#160;    <a class="code" href="class_object3_d.html">Object3D</a> <a class="code" href="struct_robot_enemies.html#a1aa0608586be3e817b297bec2eb25058">obj</a>;</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="struct_robot_enemies.html#a8e495fc212a13515357003374ee6434e">   25</a></span>&#160;    std::vector&lt;Enemy&gt; <a class="code" href="struct_robot_enemies.html#a8e495fc212a13515357003374ee6434e">enemies</a>;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="struct_robot_enemies.html#a388fd15daae98a1f85298111ca9a2979">   33</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="struct_robot_enemies.html#a388fd15daae98a1f85298111ca9a2979">Spawn</a>(<span class="keywordtype">int</span> noOfEnemies, glm::vec3 playerPos)</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    {</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <a class="code" href="struct_bounding_box.html">BoundingBox</a> tempBBox(<a class="code" href="struct_robot_enemies.html#a1aa0608586be3e817b297bec2eb25058">obj</a>.<a class="code" href="class_object3_d.html#a31de24cd9af87bc7303014f0ec9df2d9">GetVertex</a>(0), <a class="code" href="struct_robot_enemies.html#a1aa0608586be3e817b297bec2eb25058">obj</a>.<a class="code" href="class_object3_d.html#a31de24cd9af87bc7303014f0ec9df2d9">GetVertex</a>(0));</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="struct_robot_enemies.html#a1aa0608586be3e817b297bec2eb25058">obj</a>.<a class="code" href="class_object3_d.html#a15021c438e0366548ea2064f24b5f60d">GetVertexCount</a>(); ++i)</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        {</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            tempBBox.<a class="code" href="struct_bounding_box.html#ae409e066fc1f88d05be7c891237afb53">max</a> = glm::max(<a class="code" href="struct_robot_enemies.html#a1aa0608586be3e817b297bec2eb25058">obj</a>.<a class="code" href="class_object3_d.html#a31de24cd9af87bc7303014f0ec9df2d9">GetVertex</a>(i), tempBBox.<a class="code" href="struct_bounding_box.html#ae409e066fc1f88d05be7c891237afb53">max</a>);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            tempBBox.<a class="code" href="struct_bounding_box.html#a583cf7b69f46b2dc9796be1d78f0af82">min</a> = glm::min(<a class="code" href="struct_robot_enemies.html#a1aa0608586be3e817b297bec2eb25058">obj</a>.<a class="code" href="class_object3_d.html#a31de24cd9af87bc7303014f0ec9df2d9">GetVertex</a>(i), tempBBox.<a class="code" href="struct_bounding_box.html#a583cf7b69f46b2dc9796be1d78f0af82">min</a>);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        }</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; noOfEnemies; ++i)</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        {</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            glm::ivec2 position;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            glm::ivec2 playerPos2D = glm::ivec2(playerPos.x, playerPos.z);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            <span class="keywordflow">do</span> </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            {</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                position = <a class="code" href="class_enemy_a_i.html#a576dee0b7029de524c9526982db99feb">EnemyAI::GetRandFree</a>();</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            } <span class="keywordflow">while</span> ((position.x &gt;= playerPos2D.x - 2 &amp;&amp; position.x &lt;= playerPos2D.x + 2) &amp;&amp;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                     (position.y &gt;= playerPos2D.y - 2 &amp;&amp; position.y &lt;= playerPos2D.y + 2));</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            <a class="code" href="struct_robot_enemies.html#a8e495fc212a13515357003374ee6434e">enemies</a>.push_back(<a class="code" href="class_enemy.html">Enemy</a>(glm::vec3(position.x + 0.5, 0.75, position.y + 0.5)));</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <a class="code" href="struct_robot_enemies.html#a8e495fc212a13515357003374ee6434e">enemies</a>[i].SetBBox(tempBBox);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        }</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="struct_robot_enemies.html#a100187883d0e053d9901503f88d86d9b">   63</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="struct_robot_enemies.html#a100187883d0e053d9901503f88d86d9b">isAllDead</a>()</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    {</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordtype">int</span> aliveCount = std::count_if(<a class="code" href="struct_robot_enemies.html#a8e495fc212a13515357003374ee6434e">enemies</a>.begin(), <a class="code" href="struct_robot_enemies.html#a8e495fc212a13515357003374ee6434e">enemies</a>.end(), [](<a class="code" href="class_enemy.html">Enemy</a> enemy) {</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            return enemy.GetIsAlive();</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        });</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordflow">return</span> aliveCount == 0;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    }</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;};</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="namespace_d_g_o.html">   73</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_d_g_o.html">DGO</a></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;{</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespace_d_g_o.html#a2296844ba56c9954fd36a42276757ec0">DisplayEnemies</a>(<a class="code" href="struct_robot_enemies.html">RobotEnemies</a>&amp; <a class="code" href="_display_game_world_8cpp.html#a58887fce0071b96a15a942492bd9747c">robots</a>);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespace_d_g_o.html#a9648812efcb02f919683cbd02ec292b3">DisplayGunBullets</a>(<span class="keyword">const</span> <a class="code" href="class_gun.html">Gun</a>&amp; gun);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespace_d_g_o.html#a3631f20fe62afadbb771decb61b37ade">DisplayBullets</a>(<span class="keyword">const</span> <a class="code" href="class_bullet.html">Bullet</a>&amp; bullet);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="struct_robot_enemies.html#a8e495fc212a13515357003374ee6434e">   27</a></span>&#160;    std::vector&lt;Enemy&gt; <a class="code" href="struct_robot_enemies.html#a8e495fc212a13515357003374ee6434e">enemies</a>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="struct_robot_enemies.html#a671752e92f6e6d095bd3348eef4f30a5">   36</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="struct_robot_enemies.html#a671752e92f6e6d095bd3348eef4f30a5">Spawn</a>(<span class="keywordtype">int</span> noOfEnemies, glm::vec3 playerPos, <span class="keywordtype">int</span> currentSize)</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <a class="code" href="struct_bounding_box.html">BoundingBox</a> tempBBox(<a class="code" href="struct_robot_enemies.html#a1aa0608586be3e817b297bec2eb25058">obj</a>.<a class="code" href="class_object3_d.html#a31de24cd9af87bc7303014f0ec9df2d9">GetVertex</a>(0), <a class="code" href="struct_robot_enemies.html#a1aa0608586be3e817b297bec2eb25058">obj</a>.<a class="code" href="class_object3_d.html#a31de24cd9af87bc7303014f0ec9df2d9">GetVertex</a>(0));</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="struct_robot_enemies.html#a1aa0608586be3e817b297bec2eb25058">obj</a>.<a class="code" href="class_object3_d.html#a15021c438e0366548ea2064f24b5f60d">GetVertexCount</a>(); ++i)</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            tempBBox.<a class="code" href="struct_bounding_box.html#ae409e066fc1f88d05be7c891237afb53">max</a> = glm::max(<a class="code" href="struct_robot_enemies.html#a1aa0608586be3e817b297bec2eb25058">obj</a>.<a class="code" href="class_object3_d.html#a31de24cd9af87bc7303014f0ec9df2d9">GetVertex</a>(i), tempBBox.<a class="code" href="struct_bounding_box.html#ae409e066fc1f88d05be7c891237afb53">max</a>);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            tempBBox.<a class="code" href="struct_bounding_box.html#a583cf7b69f46b2dc9796be1d78f0af82">min</a> = glm::min(<a class="code" href="struct_robot_enemies.html#a1aa0608586be3e817b297bec2eb25058">obj</a>.<a class="code" href="class_object3_d.html#a31de24cd9af87bc7303014f0ec9df2d9">GetVertex</a>(i), tempBBox.<a class="code" href="struct_bounding_box.html#a583cf7b69f46b2dc9796be1d78f0af82">min</a>);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; noOfEnemies; ++i)</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            glm::ivec2 position;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            glm::ivec2 playerPos2D = glm::ivec2(playerPos.x, playerPos.z);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <span class="keywordflow">do</span> </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                position = <a class="code" href="class_enemy_a_i.html#a576dee0b7029de524c9526982db99feb">EnemyAI::GetRandFree</a>();</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            } <span class="keywordflow">while</span> ((position.x &gt;= playerPos2D.x - 2 &amp;&amp; position.x &lt;= playerPos2D.x + 2) &amp;&amp;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                     (position.y &gt;= playerPos2D.y - 2 &amp;&amp; position.y &lt;= playerPos2D.y + 2));</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <a class="code" href="struct_robot_enemies.html#a8e495fc212a13515357003374ee6434e">enemies</a>.push_back(<a class="code" href="class_enemy.html">Enemy</a>(glm::vec3(position.x + 0.5, 0.75, position.y + 0.5)));</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <a class="code" href="struct_robot_enemies.html#a8e495fc212a13515357003374ee6434e">enemies</a>[currentSize + i].SetBBox(tempBBox);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        }</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    }</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="struct_robot_enemies.html#a100187883d0e053d9901503f88d86d9b">   66</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="struct_robot_enemies.html#a100187883d0e053d9901503f88d86d9b">isAllDead</a>()</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordtype">int</span> aliveCount = std::count_if(<a class="code" href="struct_robot_enemies.html#a8e495fc212a13515357003374ee6434e">enemies</a>.begin(), <a class="code" href="struct_robot_enemies.html#a8e495fc212a13515357003374ee6434e">enemies</a>.end(), [](<a class="code" href="class_enemy.html">Enemy</a> enemy) {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            return enemy.GetIsAlive();</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        });</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">return</span> aliveCount == 0;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;};</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="namespace_d_g_o.html">   76</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_d_g_o.html">DGO</a></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;{</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespace_d_g_o.html#a2296844ba56c9954fd36a42276757ec0">DisplayEnemies</a>(<a class="code" href="struct_robot_enemies.html">RobotEnemies</a>&amp; <a class="code" href="_display_game_world_8cpp.html#a58887fce0071b96a15a942492bd9747c">robots</a>);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespace_d_g_o.html#a9648812efcb02f919683cbd02ec292b3">DisplayGunBullets</a>(<span class="keyword">const</span> <a class="code" href="class_gun.html">Gun</a>&amp; gun);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespace_d_g_o.html#a3631f20fe62afadbb771decb61b37ade">DisplayBullets</a>(<span class="keyword">const</span> <a class="code" href="class_bullet.html">Bullet</a>&amp; bullet);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;}</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="a_display_game_world_8cpp_html_a58887fce0071b96a15a942492bd9747c"><div class="ttname"><a href="_display_game_world_8cpp.html#a58887fce0071b96a15a942492bd9747c">robots</a></div><div class="ttdeci">RobotEnemies robots</div><div class="ttdef"><b>Definition:</b> <a href="_display_game_world_8cpp_source.html#l00007">DisplayGameWorld.cpp:7</a></div></div>
@@ -167,17 +169,17 @@ $(document).ready(function(){initNavTree('_display_game_objects_8h_source.html',
 <div class="ttc" id="aclass_enemy_a_i_html_a576dee0b7029de524c9526982db99feb"><div class="ttname"><a href="class_enemy_a_i.html#a576dee0b7029de524c9526982db99feb">EnemyAI::GetRandFree</a></div><div class="ttdeci">static const glm::ivec2 &amp; GetRandFree()</div><div class="ttdoc">Gets a random free spot from the grid.</div><div class="ttdef"><b>Definition:</b> <a href="_enemy_a_i_8cpp_source.html#l00231">EnemyAI.cpp:231</a></div></div>
 <div class="ttc" id="astruct_bounding_box_html"><div class="ttname"><a href="struct_bounding_box.html">BoundingBox</a></div><div class="ttdoc">Stores max and min values of co-ordinates.</div><div class="ttdef"><b>Definition:</b> <a href="_bounding_box_8h_source.html#l00010">BoundingBox.h:10</a></div></div>
 <div class="ttc" id="astruct_bounding_box_html_a583cf7b69f46b2dc9796be1d78f0af82"><div class="ttname"><a href="struct_bounding_box.html#a583cf7b69f46b2dc9796be1d78f0af82">BoundingBox::min</a></div><div class="ttdeci">glm::vec3 min</div><div class="ttdoc">Minimum extent.</div><div class="ttdef"><b>Definition:</b> <a href="_bounding_box_8h_source.html#l00015">BoundingBox.h:15</a></div></div>
-<div class="ttc" id="astruct_robot_enemies_html_a100187883d0e053d9901503f88d86d9b"><div class="ttname"><a href="struct_robot_enemies.html#a100187883d0e053d9901503f88d86d9b">RobotEnemies::isAllDead</a></div><div class="ttdeci">bool isAllDead()</div><div class="ttdoc">Returns a boolean to check if all enemies are dead.</div><div class="ttdef"><b>Definition:</b> <a href="_display_game_objects_8h_source.html#l00063">DisplayGameObjects.h:63</a></div></div>
+<div class="ttc" id="astruct_robot_enemies_html_a100187883d0e053d9901503f88d86d9b"><div class="ttname"><a href="struct_robot_enemies.html#a100187883d0e053d9901503f88d86d9b">RobotEnemies::isAllDead</a></div><div class="ttdeci">bool isAllDead()</div><div class="ttdoc">Returns a boolean to check if all enemies are dead.</div><div class="ttdef"><b>Definition:</b> <a href="_display_game_objects_8h_source.html#l00066">DisplayGameObjects.h:66</a></div></div>
 <div class="ttc" id="a_gun_8h_html"><div class="ttname"><a href="_gun_8h.html">Gun.h</a></div></div>
 <div class="ttc" id="anamespace_d_g_o_html_a2296844ba56c9954fd36a42276757ec0"><div class="ttname"><a href="namespace_d_g_o.html#a2296844ba56c9954fd36a42276757ec0">DGO::DisplayEnemies</a></div><div class="ttdeci">void DisplayEnemies(RobotEnemies &amp;robots)</div><div class="ttdoc">Displays the enemies from the RobotEnemies struct.</div><div class="ttdef"><b>Definition:</b> <a href="_display_game_objects_8cpp_source.html#l00003">DisplayGameObjects.cpp:3</a></div></div>
 <div class="ttc" id="a_player_8h_html"><div class="ttname"><a href="_player_8h.html">Player.h</a></div></div>
 <div class="ttc" id="aclass_enemy_html"><div class="ttname"><a href="class_enemy.html">Enemy</a></div><div class="ttdoc">Represents an enemy in the game world, extends from the BaseCharacter interface.</div><div class="ttdef"><b>Definition:</b> <a href="_enemy_8h_source.html#l00014">Enemy.h:14</a></div></div>
-<div class="ttc" id="astruct_robot_enemies_html_a388fd15daae98a1f85298111ca9a2979"><div class="ttname"><a href="struct_robot_enemies.html#a388fd15daae98a1f85298111ca9a2979">RobotEnemies::Spawn</a></div><div class="ttdeci">void Spawn(int noOfEnemies, glm::vec3 playerPos)</div><div class="ttdoc">Spawns enemies by specified amount.</div><div class="ttdef"><b>Definition:</b> <a href="_display_game_objects_8h_source.html#l00033">DisplayGameObjects.h:33</a></div></div>
+<div class="ttc" id="astruct_robot_enemies_html_a671752e92f6e6d095bd3348eef4f30a5"><div class="ttname"><a href="struct_robot_enemies.html#a671752e92f6e6d095bd3348eef4f30a5">RobotEnemies::Spawn</a></div><div class="ttdeci">void Spawn(int noOfEnemies, glm::vec3 playerPos, int currentSize)</div><div class="ttdoc">Spawns enemies by specified amount.</div><div class="ttdef"><b>Definition:</b> <a href="_display_game_objects_8h_source.html#l00036">DisplayGameObjects.h:36</a></div></div>
 <div class="ttc" id="a_object_8h_html"><div class="ttname"><a href="_object_8h.html">Object.h</a></div></div>
-<div class="ttc" id="astruct_robot_enemies_html_a8e495fc212a13515357003374ee6434e"><div class="ttname"><a href="struct_robot_enemies.html#a8e495fc212a13515357003374ee6434e">RobotEnemies::enemies</a></div><div class="ttdeci">std::vector&lt; Enemy &gt; enemies</div><div class="ttdoc">Vector of enemies.</div><div class="ttdef"><b>Definition:</b> <a href="_display_game_objects_8h_source.html#l00025">DisplayGameObjects.h:25</a></div></div>
+<div class="ttc" id="astruct_robot_enemies_html_a8e495fc212a13515357003374ee6434e"><div class="ttname"><a href="struct_robot_enemies.html#a8e495fc212a13515357003374ee6434e">RobotEnemies::enemies</a></div><div class="ttdeci">std::vector&lt; Enemy &gt; enemies</div><div class="ttdoc">Vector of enemies.</div><div class="ttdef"><b>Definition:</b> <a href="_display_game_objects_8h_source.html#l00027">DisplayGameObjects.h:27</a></div></div>
 <div class="ttc" id="aclass_object3_d_html"><div class="ttname"><a href="class_object3_d.html">Object3D</a></div><div class="ttdoc">A 3D object.</div><div class="ttdef"><b>Definition:</b> <a href="_object_8h_source.html#l00032">Object.h:32</a></div></div>
 <div class="ttc" id="adefines_g_w_8h_html"><div class="ttname"><a href="defines_g_w_8h.html">definesGW.h</a></div></div>
-<div class="ttc" id="anamespace_d_g_o_html"><div class="ttname"><a href="namespace_d_g_o.html">DGO</a></div><div class="ttdef"><b>Definition:</b> <a href="_display_game_objects_8h_source.html#l00073">DisplayGameObjects.h:73</a></div></div>
+<div class="ttc" id="anamespace_d_g_o_html"><div class="ttname"><a href="namespace_d_g_o.html">DGO</a></div><div class="ttdef"><b>Definition:</b> <a href="_display_game_objects_8h_source.html#l00076">DisplayGameObjects.h:76</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

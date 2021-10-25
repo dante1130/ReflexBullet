@@ -37,7 +37,7 @@ public:
 	Object3D(); 
 	/** @brief Deconstructor */
 	~Object3D();
-	/**@breif Clear function */
+	/**@brief Clear function */
 	void Clear();
 	/**
 	 * @brief Creates a vertex based of float parameters.
@@ -62,7 +62,7 @@ public:
 
 	/**
 	 * @brief Creates faces using FaceBase array.
-	 * @param face_arr [4] const FaceBase
+	 * @param face_temp	- Array of faces
 	 * @return void
 	 */
 	void AddFaces(const std::vector<FaceBase>& face_temp);

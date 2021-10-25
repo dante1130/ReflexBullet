@@ -214,7 +214,7 @@ private:
 	const GLfloat start_move_speed = 0.08;
 
 	/// Constant for player health decay.
-	const GLfloat start_health_decay = 0.1;
+	const GLfloat start_health_decay = 0.08;
 
 	/// Constant for player firing speed.
 	const GLfloat start_firing_speed = 1;
@@ -229,13 +229,14 @@ private:
 	const GLfloat max_bullet_speed = 10;
 
 	/// Constant for player max movement speed.
-	const GLfloat max_move_speed = 0.12;
+	const GLfloat max_move_speed = 0.13;
 
 	/// Constant for player max health decay.
 	const GLfloat max_health_decay = 0.05;
 
 	/// The camera class object.
 	Camera m_camera;
+
 
 	/// The bounding box of the player for collision detection.
 	BoundingBox m_bBox;

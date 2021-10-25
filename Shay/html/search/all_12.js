@@ -77,7 +77,7 @@ var searchData=
   ['sky_863',['Sky',['../struct_game_world_objects.html#ab53f28e12ea42ae82d864bb6e57ab628',1,'GameWorldObjects::Sky()'],['../defines_g_w_8h.html#a4e16df2259c8bf41bdb9315212120036',1,'SKY():&#160;definesGW.h']]],
   ['small_5ftable_864',['SMALL_TABLE',['../defines_8h.html#a7d1b47c942ad9c7e63edebec637327d6',1,'defines.h']]],
   ['smalltableobj_865',['SmallTableOBJ',['../_display_e_x_t_r_a_shays_world_8cpp.html#a6b30f3d29cf24125391267fe641ed5c7',1,'SmallTableOBJ():&#160;DisplayEXTRAShaysWorld.cpp'],['../_display_e_x_t_r_a_shays_world_8h.html#a6b30f3d29cf24125391267fe641ed5c7',1,'SmallTableOBJ():&#160;DisplayEXTRAShaysWorld.cpp']]],
-  ['spawn_866',['Spawn',['../struct_robot_enemies.html#a388fd15daae98a1f85298111ca9a2979',1,'RobotEnemies']]],
+  ['spawn_866',['Spawn',['../struct_robot_enemies.html#a671752e92f6e6d095bd3348eef4f30a5',1,'RobotEnemies']]],
   ['speaker_867',['Speaker',['../struct_game_world_objects.html#a90a55ad7021ef18a255749e448b7c399',1,'GameWorldObjects::Speaker()'],['../defines_g_w_8h.html#a4bcc3b404a32c5f8b5f0bcae9e6839f0',1,'SPEAKER():&#160;definesGW.h']]],
   ['spendskillpoint_868',['SpendSkillPoint',['../class_player.html#a0af1651a604ce9b3c813c1dc644f1a95',1,'Player']]],
   ['sta_5ftravel_869',['STA_TRAVEL',['../defines_8h.html#adee98955a13896e1ca82bb2b928bcf6a',1,'defines.h']]],
