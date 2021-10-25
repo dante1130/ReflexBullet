@@ -150,6 +150,8 @@ namespace DGW
 	/**
 	* @brief	Displays a shalf and its contents based on an object list
 	* @param	objectList	- An integer which specifies which object list to use
+	* @param	pos			- The players position
+	* @param	seed		- Used for randomness
 	* @return	Void
 	*/
 	void DisplayShelfContents(unsigned int objectList, int seed, glm::vec3 pos);
@@ -161,6 +163,10 @@ namespace DGW
 	* @param	xDirection	- specify 1 for positive x direction and -1 for negative (specify 0 if you don't want a cutoff or use overloaded method)
 	* @param	zPos		- Position of the cutoff for the z direction
 	* @param	zDirection	- specify 1 for positive z direction and -1 for negative (specify 0 if you don't want a cutoff or use overloaded method)
+	* @param	pos			- The players position
+	* @param	LOD			- Specifies the Level of Detail to use
+	* @param	obj			- Determines what to displays on the bottom shelf (boxes or boards)
+	* @param	seed		- Used for randomness
 	* @return	Void
 	*/
 	void DisplayShelfContents(unsigned int objectList, float xPos, int xDirection, float zPos, int zDirection, int seed, int obj, glm::vec3 pos, int LOD);
@@ -168,10 +174,7 @@ namespace DGW
 	/**
 	* @brief	Displays a shelf and its contents based on an object list and its constraints (constraints specify when the shelf contents should be displayed)
 	* @param	objectList	- An integer which specifies which object list to use
-	* @param	xPos		- Position of the cutoff for the x direction
-	* @param	xDirection	- specify 1 for positive x direction and -1 for negative (specify 0 if you don't want a cutoff or use overloaded method)
-	* @param	zPos		- Position of the cutoff for the z direction
-	* @param	zDirection	- specify 1 for positive z direction and -1 for negative (specify 0 if you don't want a cutoff or use overloaded method)
+	* @param	seed		- Used for randomness
 	* @param	ShelfCulling- If you want to cull the shelf too or keep drawing it
 	* @param	look		- The players look position
 	* @param	pos			- The players position
@@ -187,6 +190,7 @@ namespace DGW
 	* @param	xDirection	- specify 1 for positive x direction and -1 for negative (specify 0 if you don't want a cutoff or use overloaded method)
 	* @param	zPos		- Position of the cutoff for the z direction
 	* @param	zDirection	- specify 1 for positive z direction and -1 for negative (specify 0 if you don't want a cutoff or use overloaded method)
+	* @param	seed		- Used for randomness
 	* @param	ShelfCulling- If you want to cull the shelf too or keep drawing it
 	* @param	look		- The players look position
 	* @param	pos			- The players position
@@ -318,7 +322,10 @@ namespace DGW
 
 	/**
 	* @brief	Displays the individual tables and their objects as well as determining the LOD to use
-	* @param	No param
+	* @param	seed		- For randomness
+	* @param	rand		- To randomise more
+	* @param	playerPos	- The players position
+	* @param	tablePos	- The tables position
 	* @return	Void
 	*/
 	void DisplayIndividualTable(int seed, int rand, glm::vec3 playerPos, glm::vec3 tablePos);

@@ -17,7 +17,7 @@ namespace PSW
 {
 	/**
 	* @brief	Initializes settings
-	* @prarm	No param
+	* @param	No param
 	* @return	Void
 	*/
 	void myinit();

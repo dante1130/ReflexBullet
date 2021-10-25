@@ -203,7 +203,7 @@ var NAVTREEINDEX5 =
 "struct_robot_enemies.html":[2,0,26],
 "struct_robot_enemies.html#a100187883d0e053d9901503f88d86d9b":[2,0,26,0],
 "struct_robot_enemies.html#a1aa0608586be3e817b297bec2eb25058":[2,0,26,3],
-"struct_robot_enemies.html#a388fd15daae98a1f85298111ca9a2979":[2,0,26,1],
+"struct_robot_enemies.html#a671752e92f6e6d095bd3348eef4f30a5":[2,0,26,1],
 "struct_robot_enemies.html#a8e495fc212a13515357003374ee6434e":[2,0,26,2],
 "struct_shelf_objects_o_b_j.html":[2,0,27],
 "struct_shelf_objects_o_b_j.html#aa276dc0811d23143dea458f3b5363dde":[2,0,27,0],

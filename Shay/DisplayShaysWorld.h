@@ -22,7 +22,7 @@ void CreateTextureList();
 
 /**
 * @brief	Draws the backdrop (all images) (Calls all the draw functions)
-* @param	No param
+* @param	lightsOn	- If the lights are on
 * @return	Void
 */
 void DrawBackdrop(bool lightsOn);
@@ -202,14 +202,14 @@ void DrawRoof();
 /**
 * @brief	Sets the location for where to display the angled roof beam in the X axis
 *
-* @param	int listNo			- Where to store the coordiantes
-* @param	GLdouble xStart		- Location to start the beam along the x coordinate
-* @param	GLdouble yStart		- Location to start the beam along the y coordinate
-* @param	GLdouble x			- Location along x coordiante
-* @param	GLdouble y			- Location along y coordinate
-* @param	GLdouble z			- Location along z coordinate
-* @param	Gldouble beamSize	- Size of beam for texture mapping (meters)
-* @param	int listAdd			- Size of list of roof beams (number of roof beams)
+* @param	listNo			- Where to store the coordiantes
+* @param	xStart		- Location to start the beam along the x coordinate
+* @param	yStart		- Location to start the beam along the y coordinate
+* @param	x			- Location along x coordiante
+* @param	y			- Location along y coordinate
+* @param	z			- Location along z coordinate
+* @param	beamSize	- Size of beam for texture mapping (meters)
+* @param	listAdd			- Size of list of roof beams (number of roof beams)
 *
 * @return	Void
 */
@@ -218,14 +218,14 @@ void DrawAngledRoofBeamX(int listNo, GLdouble xStart, GLdouble yStart, GLdouble 
 /**
 * @brief	Sets the location for where to display the angled roof beam in the Z axis
 *
-* @param	int listNo			- Where to store the coordiantes
-* @param	GLdouble zStart		- Location to start the beam along the z coordinate
-* @param	GLdouble yStart		- Location to start the beam along the y coordinate
-* @param	GLdouble x			- Location along x coordiante
-* @param	GLdouble y			- Location along y coordinate
-* @param	GLdouble z			- Location along z coordinate
-* @param	Gldouble beamSize	- Size of beam for texture mapping (meters)
-* @param	int listAdd			- Size of list of roof beams (number of roof beams)
+* @param	listNo			- Where to store the coordiantes
+* @param	zStart		- Location to start the beam along the z coordinate
+* @param	yStart		- Location to start the beam along the y coordinate
+* @param	x			- Location along x coordiante
+* @param	y			- Location along y coordinate
+* @param	z			- Location along z coordinate
+* @param	beamSize	- Size of beam for texture mapping (meters)
+* @param	listAdd			- Size of list of roof beams (number of roof beams)
 *
 * @return	Void
 */

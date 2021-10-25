@@ -58,7 +58,7 @@ public:
 	/**
 	* @brief	Loads a music file based on a given path, and gives a label for the music.
 	* @param	musicPath const char*
-	* @param	soundName const char*
+	* @param	musicName const char*
 	* @return	void
 	*/
 	static void AddMusic(const char* musicPath, const char* musicName);

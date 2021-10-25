@@ -1,6 +1,6 @@
 <map id="DrawAboveWindowBlock" name="DrawAboveWindowBlock">
 <area shape="rect" id="node1" title="Sets the location for where to display blocks above windows and posts (the bits above 1st and 2nd flo..." alt="" coords="420,5,585,32"/>
 <area shape="rect" id="node2" href="$_display_shays_world_8h.html#a0c8e3bf7c765b84b2a66cd9a8fefbe5e" title="Creates display lists (numbers indicate list numbers) (calls all the display functions)" alt="" coords="248,5,372,32"/>
-<area shape="rect" id="node3" href="$namespace_p_s_w.html#ae5859174c46a5dd5bbf72ba610cf48d6" title="Initializes settings @prarm No param." alt="" coords="104,5,200,32"/>
+<area shape="rect" id="node3" href="$namespace_p_s_w.html#ae5859174c46a5dd5bbf72ba610cf48d6" title="Initializes settings." alt="" coords="104,5,200,32"/>
 <area shape="rect" id="node4" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,5,56,32"/>
 </map>

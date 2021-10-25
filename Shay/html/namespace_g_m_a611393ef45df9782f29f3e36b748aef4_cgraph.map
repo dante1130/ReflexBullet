@@ -16,7 +16,7 @@
 <area shape="rect" id="node23" href="$class_camera.html#a4d2821e43ae754a1e7359ca7e28419b4" title="Sets the cameras look at direction." alt="" coords="448,461,629,488"/>
 <area shape="rect" id="node26" href="$class_boss.html#a4f05d9aa90827551806c9f1c19226bd5" title="Sets the bosses health value equal to given_health." alt="" coords="230,867,347,893"/>
 <area shape="rect" id="node27" href="$class_player.html#a3b759e4b98a8218eb660f589cc1df667" title="Setter for health." alt="" coords="227,917,351,944"/>
-<area shape="rect" id="node28" href="$struct_robot_enemies.html#a388fd15daae98a1f85298111ca9a2979" title="Spawns enemies by specified amount." alt="" coords="211,968,366,995"/>
+<area shape="rect" id="node28" href="$struct_robot_enemies.html#a671752e92f6e6d095bd3348eef4f30a5" title="Spawns enemies by specified amount." alt="" coords="211,968,366,995"/>
 <area shape="rect" id="node32" href="$namespace_g_m.html#aeadf906a8a1b7ca5ad5fce4600d6f38d" title="Unpauses the game." alt="" coords="220,309,357,336"/>
 <area shape="rect" id="node5" href="$class_collision.html#a582ec07565cb83e8a8f85652d08b4ee5" title="Sets the bounding box to the vector." alt="" coords="484,5,593,32"/>
 <area shape="rect" id="node7" href="$class_camera.html#a83d0c61d60fff5ec332a98acfa0b8d0b" title="Setter for collision." alt="" coords="467,56,611,83"/>

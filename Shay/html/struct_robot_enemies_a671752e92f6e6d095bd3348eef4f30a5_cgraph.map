@@ -1,0 +1,6 @@
+<map id="RobotEnemies::Spawn" name="RobotEnemies::Spawn">
+<area shape="rect" id="node1" title="Spawns enemies by specified amount." alt="" coords="5,56,160,83"/>
+<area shape="rect" id="node2" href="$class_enemy_a_i.html#a576dee0b7029de524c9526982db99feb" title="Gets a random free spot from the grid." alt="" coords="217,5,377,32"/>
+<area shape="rect" id="node3" href="$class_object3_d.html#a31de24cd9af87bc7303014f0ec9df2d9" title="Returns a vertex of index i." alt="" coords="225,56,368,83"/>
+<area shape="rect" id="node4" href="$class_object3_d.html#a15021c438e0366548ea2064f24b5f60d" title=" " alt="" coords="208,107,385,133"/>
+</map>
