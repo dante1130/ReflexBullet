@@ -466,9 +466,8 @@ void GM::GameFixedUpdateLoop(int val)
 		lastUnpausedFrame = newElapsedTime;
 
 		GameFixedUpdates(delta);
+		GameCollisionResolution();
 	}
-
-	GameCollisionResolution();
 }
 
 void GM::GameFixedUpdates(float delta)
