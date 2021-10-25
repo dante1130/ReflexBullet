@@ -76,6 +76,11 @@ namespace GM
 	*/
 	void CreateGameBoundingBoxes();
 
+	/**
+	 * @brief	Changes pillar collisions to half cover for the boss
+	 * @param	No param
+	 * @return	void
+	 */
 	void ChangeToBossCover();
 
 	/**
@@ -248,8 +253,18 @@ namespace GM
 	*/
 	void RestartGame();
 
+	/**
+	* @brief	Progresses game to the next wave
+	* @param	No param
+	* @return	Void
+	*/
 	void ProgressGame();
 
+	/**
+	* @brief	Exits the game
+	* @param	No param
+	* @return	Void
+	*/
 	void ExitGame(int num);
 
 }
