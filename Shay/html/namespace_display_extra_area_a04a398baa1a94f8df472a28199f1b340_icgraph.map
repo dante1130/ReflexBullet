@@ -1,0 +1,7 @@
+<map id="DisplayExtraArea::DisplayLeftAreaOfStairs" name="DisplayExtraArea::DisplayLeftAreaOfStairs">
+<area shape="rect" id="node1" title="Displays the area left of the stairs." alt="" coords="701,5,876,47"/>
+<area shape="rect" id="node2" href="$namespace_display_extra_area.html#aebcc9fb6790b2b13a587e865a7efbe3e" title="Controls all the functions which display non blend objects." alt="" coords="479,5,653,47"/>
+<area shape="rect" id="node3" href="$namespace_display_extra_area.html#af8e74f483951f89b4d5d6159e110602f" title="Controls all the display functions in this file." alt="" coords="256,5,431,47"/>
+<area shape="rect" id="node4" href="$namespace_p_s_w.html#ac42adca9a07f41db2b12f62e6fad7d63" title="Handles all the display functions." alt="" coords="104,13,208,39"/>
+<area shape="rect" id="node5" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,13,56,39"/>
+</map>

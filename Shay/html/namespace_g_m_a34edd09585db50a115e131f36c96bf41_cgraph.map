@@ -1,0 +1,4 @@
+<map id="GM::MouseOverOption" name="GM::MouseOverOption">
+<area shape="rect" id="node1" title="Handles deciding which option should be highlighted when the mouse is moved over it." alt="" coords="5,5,160,32"/>
+<area shape="rect" id="node2" href="$namespace_g_m.html#adf3cf6ef16cb9260b672c09d856c874d" title="Handles when the mouse is moved over the option paused menu." alt="" coords="208,5,443,32"/>
+</map>

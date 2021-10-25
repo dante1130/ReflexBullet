@@ -1,0 +1,4 @@
+<map id="Boss::SetPosition" name="Boss::SetPosition">
+<area shape="rect" id="node1" title="Sets position of boss given a vector." alt="" coords="144,5,271,32"/>
+<area shape="rect" id="node2" href="$class_boss.html#aacce807c818f95067de3964aca814749" title="Constructor, takes in a position." alt="" coords="5,5,96,32"/>
+</map>

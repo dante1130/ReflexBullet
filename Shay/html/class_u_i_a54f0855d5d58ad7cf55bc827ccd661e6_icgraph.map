@@ -1,0 +1,4 @@
+<map id="UI::SetExtras" name="UI::SetExtras">
+<area shape="rect" id="node1" title="Sets specific values determined by the bars orientation." alt="" coords="108,5,208,32"/>
+<area shape="rect" id="node2" href="$class_u_i.html#adbd9782f7ba53bd5c0ac9be74d817fdc" title="Constructor for health bar UI." alt="" coords="5,5,60,32"/>
+</map>

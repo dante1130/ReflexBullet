@@ -1,0 +1,5 @@
+<map id="Lighting::LightingInit" name="Lighting::LightingInit">
+<area shape="rect" id="node1" title="Initialises the lighting properties." alt="" coords="5,31,143,57"/>
+<area shape="rect" id="node2" href="$namespace_lighting.html#a2b20c45242e47114534ef0039a927c03" title="Initialises individual lights." alt="" coords="200,5,320,32"/>
+<area shape="rect" id="node3" href="$namespace_lighting.html#a633eb8644029ee61375e1b6588a58571" title="Initialises some basic materials." alt="" coords="191,56,329,83"/>
+</map>

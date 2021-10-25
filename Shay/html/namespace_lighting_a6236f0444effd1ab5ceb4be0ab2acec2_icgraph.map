@@ -1,0 +1,8 @@
+<map id="Lighting::SetLight" name="Lighting::SetLight">
+<area shape="rect" id="node1" title="Re&#45;sets the location of a specific light." alt="" coords="905,13,1028,39"/>
+<area shape="rect" id="node2" href="$namespace_lighting.html#a9043f0e8a6f3787ac8a9a762a9c7469a" title="Updates all the lights in the scene." alt="" coords="696,13,857,39"/>
+<area shape="rect" id="node3" href="$namespace_d_g_w.html#a44a4b848e72b3ef6be67c00101efb485" title="Is the master function which handles all the displaying for the game world." alt="" coords="433,5,648,47"/>
+<area shape="rect" id="node4" href="$namespace_g_m.html#a4de584cdd6ff4f9f35e7de9a173eed8a" title="Initialises the game objects." alt="" coords="283,13,385,39"/>
+<area shape="rect" id="node5" href="$namespace_p_s_w.html#a748a46361b4d8570306aaacbcc5e464f" title="Handles all the render steps for the program &#45; still needs work, barebones right now." alt="" coords="104,13,235,39"/>
+<area shape="rect" id="node6" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,13,56,39"/>
+</map>

@@ -1,0 +1,30 @@
+<map id="GM::ProgressGame" name="GM::ProgressGame">
+<area shape="rect" id="node1" title="Progresses game to the next wave." alt="" coords="5,461,144,488"/>
+<area shape="rect" id="node2" href="$namespace_g_m.html#a9471c0f42f3962548c99306b4d1536ff" title="Changes pillar collisions to half cover for the boss." alt="" coords="192,132,363,159"/>
+<area shape="rect" id="node8" href="$class_player.html#ae5a3bcef2eda89370076f8fbce9e08b4" title="Getter for camera." alt="" coords="659,639,792,665"/>
+<area shape="rect" id="node9" href="$class_player.html#a497048a935a342ab6927d168e9e827c5" title="Getter for Gun." alt="" coords="221,335,333,361"/>
+<area shape="rect" id="node10" href="$class_camera.html#af01f8cd3c75ea3b9e578cfe0a95c9955" title="Getter for position, also includes the crouch depth." alt="" coords="206,385,349,412"/>
+<area shape="rect" id="node11" href="$class_gun.html#a52e982a444229b9188efda0409c7abee" title="Removes all the bullets in the gun." alt="" coords="200,436,355,463"/>
+<area shape="rect" id="node12" href="$class_camera.html#a691fbf70afa377e8219deb0515c264c2" title="Sets the players camera location." alt="" coords="411,537,600,564"/>
+<area shape="rect" id="node13" href="$class_camera.html#a4d2821e43ae754a1e7359ca7e28419b4" title="Sets the cameras look at direction." alt="" coords="415,487,596,513"/>
+<area shape="rect" id="node16" href="$class_player.html#a3b759e4b98a8218eb660f589cc1df667" title="Setter for health." alt="" coords="215,588,339,615"/>
+<area shape="rect" id="node17" href="$struct_robot_enemies.html#a388fd15daae98a1f85298111ca9a2979" title="Spawns enemies by specified amount." alt="" coords="200,284,355,311"/>
+<area shape="rect" id="node21" href="$namespace_g_m.html#aeadf906a8a1b7ca5ad5fce4600d6f38d" title="Unpauses the game." alt="" coords="209,639,346,665"/>
+<area shape="rect" id="node3" href="$class_a_a_b_b_vector.html#a867af5c3801c8c611c083388d3cf0f1f" title="Gets the maximum extent." alt="" coords="430,5,581,32"/>
+<area shape="rect" id="node4" href="$class_a_a_b_b_vector.html#a406924fc68ccdd9a5898aa5994cc9684" title="Gets the maximum extent." alt="" coords="432,56,579,83"/>
+<area shape="rect" id="node5" href="$class_collision.html#aa050b00e13099c5d316071afe243a516" title="Gets the reference to the AABBvector of a quadrant." alt="" coords="429,107,582,133"/>
+<area shape="rect" id="node6" href="$class_a_a_b_b_vector.html#a9f0c29c0a98bed22280bfa913073eb2a" title="Set the values of the data at an index." alt="" coords="430,157,581,184"/>
+<area shape="rect" id="node7" href="$class_a_a_b_b_vector.html#a91f3f1ea946b9eb97042d8c6f48ae509" title="Return size of vector." alt="" coords="440,208,571,235"/>
+<area shape="rect" id="node14" href="$class_camera.html#a023cb3e9d92301d8132f338c7ef5be77" title="Calls the glLookAt function." alt="" coords="891,487,1045,513"/>
+<area shape="rect" id="node15" href="$class_camera.html#ac5757a4349da2fbdce00a165ae9b0f87" title="Calculates how far down the player has crouched." alt="" coords="1133,487,1300,513"/>
+<area shape="rect" id="node18" href="$class_enemy_a_i.html#a576dee0b7029de524c9526982db99feb" title="Gets a random free spot from the grid." alt="" coords="425,259,585,285"/>
+<area shape="rect" id="node19" href="$class_object3_d.html#a31de24cd9af87bc7303014f0ec9df2d9" title="Returns a vertex of index i." alt="" coords="434,309,577,336"/>
+<area shape="rect" id="node20" href="$class_object3_d.html#a15021c438e0366548ea2064f24b5f60d" title=" " alt="" coords="417,360,594,387"/>
+<area shape="rect" id="node22" href="$namespace_g_m.html#a768282a0b7fd30f27553a58dd9de49ec" title="Handles all the mouse movement in the game world." alt="" coords="428,588,583,615"/>
+<area shape="rect" id="node27" href="$class_player.html#a7b538d79f306b3d6ff2c5fab7bf089d8" title="Getter for skill points." alt="" coords="430,689,581,716"/>
+<area shape="rect" id="node28" href="$class_camera.html#a0af35a7c44ad231e950f859531ebdccf" title="Sets if the player is crouching." alt="" coords="437,740,573,767"/>
+<area shape="rect" id="node23" href="$class_camera.html#a77058a5acc0ab9de6c96ed53e1759ccd" title="Use mouse to look around." alt="" coords="653,537,797,564"/>
+<area shape="rect" id="node25" href="$namespace_g_m.html#a34edd09585db50a115e131f36c96bf41" title="Handles deciding which option should be highlighted when the mouse is moved over it." alt="" coords="648,588,803,615"/>
+<area shape="rect" id="node24" href="$class_camera.html#a00e029028bce7b155cea07cb1b39b759" title="Helper function for rotation, calculates radians from degrees." alt="" coords="877,537,1059,564"/>
+<area shape="rect" id="node26" href="$namespace_g_m.html#adf3cf6ef16cb9260b672c09d856c874d" title="Handles when the mouse is moved over the option paused menu." alt="" coords="851,588,1085,615"/>
+</map>

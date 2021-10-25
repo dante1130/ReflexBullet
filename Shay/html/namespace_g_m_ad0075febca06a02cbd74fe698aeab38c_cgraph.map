@@ -1,0 +1,52 @@
+<map id="GM::MenuOptionChoosen" name="GM::MenuOptionChoosen">
+<area shape="rect" id="node1" title="Decides the action of a button for the menu." alt="" coords="5,1348,177,1374"/>
+<area shape="rect" id="node2" href="$class_player.html#ad817bde6a3fd4808f1d6babb3d3cb28f" title="Adds the bullet speed by a specified amount." alt="" coords="243,280,403,306"/>
+<area shape="rect" id="node5" href="$class_player.html#af4f727ff6cd5cb9a101873408f191dbd" title="Adds the movement speed by a specified amount." alt="" coords="245,1221,402,1248"/>
+<area shape="rect" id="node8" href="$class_player.html#a5e1e0fef9ee42134e9bd1aa3d6e7b5d7" title="Decrease firing delay by a specified amount." alt="" coords="230,1170,417,1197"/>
+<area shape="rect" id="node11" href="$class_player.html#abd91257e83fad8a565d6e6d8b25778c3" title="Decreases the health decay by a specified amount." alt="" coords="225,1272,421,1298"/>
+<area shape="rect" id="node12" href="$namespace_g_m.html#aa44a580927610ce37f1257ad98be08fa" title="Exits the game." alt="" coords="269,1322,378,1349"/>
+<area shape="rect" id="node13" href="$class_player.html#a583576614f952d4323bc4706b8821ed9" title="Getter for accuracy." alt="" coords="252,1373,395,1400"/>
+<area shape="rect" id="node14" href="$class_player.html#ae5a3bcef2eda89370076f8fbce9e08b4" title="Getter for camera." alt="" coords="975,452,1108,478"/>
+<area shape="rect" id="node15" href="$class_audio.html#a29957d4bdb1ac6245ef3b41a5d8d2fe5" title="Getter for the music volume." alt="" coords="242,1424,405,1450"/>
+<area shape="rect" id="node16" href="$class_audio.html#afe8c92c3d942e12c4053cd55ac64bf3a" title="Getter for the sfx volume." alt="" coords="250,1474,397,1501"/>
+<area shape="rect" id="node17" href="$class_player.html#a7b538d79f306b3d6ff2c5fab7bf089d8" title="Getter for skill points." alt="" coords="744,153,895,180"/>
+<area shape="rect" id="node18" href="$class_player.html#ad7767e47ca4912b91f1d79ecfca90122" title="Getter for upgrade options." alt="" coords="236,1525,411,1552"/>
+<area shape="rect" id="node19" href="$namespace_g_m.html#a3b439410ea3de3092eaddb9c980c1079" title="Progresses game to the next wave." alt="" coords="254,533,393,560"/>
+<area shape="rect" id="node28" href="$namespace_g_m.html#aeadf906a8a1b7ca5ad5fce4600d6f38d" title="Unpauses the game." alt="" coords="498,229,635,256"/>
+<area shape="rect" id="node31" href="$namespace_g_m.html#a611393ef45df9782f29f3e36b748aef4" title="Restarts the game." alt="" coords="259,1040,387,1066"/>
+<area shape="rect" id="node43" href="$class_audio.html#a5b995115f4058f82762a01a3017fb0ae" title="Setter for music volume." alt="" coords="242,1576,405,1602"/>
+<area shape="rect" id="node44" href="$class_leaderboard.html#af8ae122bd8b90daa6f79bd31f868ea8c" title=" " alt="" coords="242,1626,405,1653"/>
+<area shape="rect" id="node47" href="$class_camera.html#af1b56a7aee4d2b0c38054e05c0553e51" title="Set step and rotation size." alt="" coords="238,1677,409,1704"/>
+<area shape="rect" id="node48" href="$class_audio.html#acaf8ba4e2b8b001398d1826b63abad58" title="Setter for sfx volume." alt="" coords="250,1728,397,1754"/>
+<area shape="rect" id="node49" href="$class_player.html#a0af1651a604ce9b3c813c1dc644f1a95" title="Spend a skill point, decrements the skill point by 1." alt="" coords="244,1778,403,1805"/>
+<area shape="rect" id="node50" href="$file_i_o_8cpp.html#a167c2aa89db44bbf757c519b3cffe762" title=" " alt="" coords="251,1829,396,1856"/>
+<area shape="rect" id="node3" href="$class_gun.html#a652ace513ba9bf39a6e2af1493776d19" title="Getter for bullet velocity." alt="" coords="489,178,644,205"/>
+<area shape="rect" id="node4" href="$class_gun.html#abb03a5238f8a68d010bf4e4520f545cb" title="Setter for bullet velocity." alt="" coords="742,761,897,788"/>
+<area shape="rect" id="node6" href="$class_camera.html#af3014af0c3f1da025dec487bcaeb85db" title="Returns the movement speed." alt="" coords="485,1648,648,1674"/>
+<area shape="rect" id="node7" href="$class_camera.html#a86a5a6f374125bb58c6a97ba2d921a64" title="Set movement speed." alt="" coords="738,1546,901,1573"/>
+<area shape="rect" id="node9" href="$class_gun.html#a5c4c8973cd8916a13e4234171a76353c" title="Getter for firing delay." alt="" coords="497,1546,637,1573"/>
+<area shape="rect" id="node10" href="$class_gun.html#a1d20c591ded9c216ce38dbfe8d31eeae" title="Setter for firing delay." alt="" coords="750,1242,889,1269"/>
+<area shape="rect" id="node20" href="$namespace_g_m.html#a9471c0f42f3962548c99306b4d1536ff" title="Changes pillar collisions to half cover for the boss." alt="" coords="481,381,652,408"/>
+<area shape="rect" id="node21" href="$class_player.html#a497048a935a342ab6927d168e9e827c5" title="Getter for Gun." alt="" coords="511,432,623,458"/>
+<area shape="rect" id="node22" href="$class_camera.html#af01f8cd3c75ea3b9e578cfe0a95c9955" title="Getter for position, also includes the crouch depth." alt="" coords="495,634,638,661"/>
+<area shape="rect" id="node23" href="$class_gun.html#a52e982a444229b9188efda0409c7abee" title="Removes all the bullets in the gun." alt="" coords="489,482,644,509"/>
+<area shape="rect" id="node24" href="$class_camera.html#a691fbf70afa377e8219deb0515c264c2" title="Sets the players camera location." alt="" coords="725,369,914,396"/>
+<area shape="rect" id="node25" href="$class_camera.html#a4d2821e43ae754a1e7359ca7e28419b4" title="Sets the cameras look at direction." alt="" coords="729,533,910,560"/>
+<area shape="rect" id="node26" href="$class_player.html#a3b759e4b98a8218eb660f589cc1df667" title="Setter for health." alt="" coords="505,736,629,762"/>
+<area shape="rect" id="node27" href="$struct_robot_enemies.html#a388fd15daae98a1f85298111ca9a2979" title="Spawns enemies by specified amount." alt="" coords="489,685,644,712"/>
+<area shape="rect" id="node29" href="$namespace_g_m.html#a768282a0b7fd30f27553a58dd9de49ec" title="Handles all the mouse movement in the game world." alt="" coords="742,318,897,345"/>
+<area shape="rect" id="node30" href="$class_camera.html#a0af35a7c44ad231e950f859531ebdccf" title="Sets if the player is crouching." alt="" coords="751,217,887,244"/>
+<area shape="rect" id="node32" href="$class_collision.html#a4ca5e04636edb48a791bfe909e5b93a1" title="Clears the vector." alt="" coords="512,1344,621,1370"/>
+<area shape="rect" id="node33" href="$namespace_g_m.html#aed4bfe3e5ff611abc9bd5780b9aad44f" title="Creates AABB collisions for the world." alt="" coords="712,1394,927,1421"/>
+<area shape="rect" id="node34" href="$class_boss.html#a9a2c94aba3eaaa9100b56816ae8fce2e" title="Returns the starting health of boss." alt="" coords="493,938,640,965"/>
+<area shape="rect" id="node35" href="$class_player.html#a33e824ae4bbdd53a334fee399b823f64" title="Resets the bullets." alt="" coords="496,989,637,1016"/>
+<area shape="rect" id="node36" href="$class_player.html#af002a656653cbc5d790b6677745b11f0" title="Resets the bullet speed." alt="" coords="481,888,652,914"/>
+<area shape="rect" id="node37" href="$class_player.html#a8efacbe0d3a41363e6591f0441d8f164" title="Resets the firing delay." alt="" coords="483,1192,650,1218"/>
+<area shape="rect" id="node38" href="$class_player.html#a03653b143cea80a35c08cd72ca29545a" title="Resets the health decay." alt="" coords="479,1040,654,1066"/>
+<area shape="rect" id="node39" href="$class_player.html#ac74e2f7bd2785036cc47deaebfb9d03d" title="Resets the movement speed." alt="" coords="483,1496,651,1522"/>
+<area shape="rect" id="node40" href="$class_player.html#a934c61a356561c224ad0763a7428211b" title="Resets the skill points." alt="" coords="485,1141,648,1168"/>
+<area shape="rect" id="node41" href="$class_player.html#a89b060b226f1c0aa457e48e9e21fb3ef" title="Resets the upgrade options." alt="" coords="469,1242,664,1269"/>
+<area shape="rect" id="node42" href="$class_boss.html#a4f05d9aa90827551806c9f1c19226bd5" title="Sets the bosses health value equal to given_health." alt="" coords="508,1293,625,1320"/>
+<area shape="rect" id="node45" href="$class_leaderboard.html#ace00b0af83404af1de17a45c570efa21" title=" " alt="" coords="485,1699,648,1740"/>
+<area shape="rect" id="node46" href="$class_leaderboard.html#a2644471fb17b37a3ae76cfc33ef949a7" title=" " alt="" coords="471,1765,662,1792"/>
+</map>

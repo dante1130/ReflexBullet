@@ -1,0 +1,4 @@
+<map id="UI::UI" name="UI::UI">
+<area shape="rect" id="node1" title="Constructor for health bar UI." alt="" coords="5,5,60,32"/>
+<area shape="rect" id="node2" href="$class_u_i.html#a54f0855d5d58ad7cf55bc827ccd661e6" title="Sets specific values determined by the bars orientation." alt="" coords="108,5,208,32"/>
+</map>

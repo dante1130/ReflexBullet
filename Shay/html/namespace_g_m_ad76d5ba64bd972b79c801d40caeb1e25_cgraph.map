@@ -1,0 +1,7 @@
+<map id="GM::GameReleaseKeys" name="GM::GameReleaseKeys">
+<area shape="rect" id="node1" title="Handles all the released key inputs for the game world." alt="" coords="5,81,168,108"/>
+<area shape="rect" id="node2" href="$class_camera.html#a9e107010377ad331277042d489c0b89c" title="Used to pass direction to move or rotate forwards or backwards (i.e. 1, &#45;1 or 0)." alt="" coords="216,5,359,32"/>
+<area shape="rect" id="node3" href="$class_camera.html#a61307840dd9543e39f29ae3bdd04a677" title="Used to pass direction to move or rotate left and right (i.e. 1, &#45;1 or 0)." alt="" coords="216,56,359,83"/>
+<area shape="rect" id="node4" href="$class_player.html#ae5a3bcef2eda89370076f8fbce9e08b4" title="Getter for camera." alt="" coords="221,107,354,133"/>
+<area shape="rect" id="node5" href="$class_camera.html#a0af35a7c44ad231e950f859531ebdccf" title="Sets if the player is crouching." alt="" coords="219,157,355,184"/>
+</map>

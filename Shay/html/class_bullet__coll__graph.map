@@ -1,0 +1,4 @@
+<map id="Bullet" name="Bullet">
+<area shape="rect" id="node1" title="Represents a bullet." alt="" coords="5,175,164,413"/>
+<area shape="rect" id="node2" href="$struct_bounding_sphere.html" title="BoundingSphere collision type, represented by a center and a radius." alt="" coords="16,5,153,112"/>
+</map>

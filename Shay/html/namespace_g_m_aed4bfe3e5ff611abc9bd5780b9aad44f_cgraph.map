@@ -1,0 +1,7 @@
+<map id="GM::CreateGameBoundingBoxes" name="GM::CreateGameBoundingBoxes">
+<area shape="rect" id="node1" title="Creates AABB collisions for the world." alt="" coords="5,56,220,83"/>
+<area shape="rect" id="node2" href="$class_player.html#ae5a3bcef2eda89370076f8fbce9e08b4" title="Getter for camera." alt="" coords="273,5,407,32"/>
+<area shape="rect" id="node3" href="$class_collision.html#a582ec07565cb83e8a8f85652d08b4ee5" title="Sets the bounding box to the vector." alt="" coords="285,56,395,83"/>
+<area shape="rect" id="node5" href="$class_camera.html#a83d0c61d60fff5ec332a98acfa0b8d0b" title="Setter for collision." alt="" coords="268,107,412,133"/>
+<area shape="rect" id="node4" href="$class_collision.html#aa050b00e13099c5d316071afe243a516" title="Gets the reference to the AABBvector of a quadrant." alt="" coords="460,56,613,83"/>
+</map>

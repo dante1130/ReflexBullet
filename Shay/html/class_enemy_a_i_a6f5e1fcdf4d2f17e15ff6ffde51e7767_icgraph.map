@@ -1,0 +1,4 @@
+<map id="EnemyAI::GetIsMoving" name="EnemyAI::GetIsMoving">
+<area shape="rect" id="node1" title="Gets the boolean for if the enemy is moving." alt="" coords="165,5,320,32"/>
+<area shape="rect" id="node2" href="$class_enemy.html#a6e2d4287388dc2b7c660db5522520321" title="Updates by delta, to be called every frame." alt="" coords="5,5,117,32"/>
+</map>

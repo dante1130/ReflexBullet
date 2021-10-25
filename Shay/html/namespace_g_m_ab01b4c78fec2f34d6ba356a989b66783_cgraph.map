@@ -1,0 +1,11 @@
+<map id="GM::GameUpdateLoop" name="GM::GameUpdateLoop">
+<area shape="rect" id="node1" title="A non fixed update loop." alt="" coords="5,81,160,108"/>
+<area shape="rect" id="node2" href="$class_player.html#a497048a935a342ab6927d168e9e827c5" title="Getter for Gun." alt="" coords="215,5,327,32"/>
+<area shape="rect" id="node3" href="$class_gun.html#a2fb8d8db083878b572812e2bea613221" title="Getter for is firing." alt="" coords="213,56,330,83"/>
+<area shape="rect" id="node4" href="$class_audio.html#a51f596cbcc73699173d5e4ac3aef171f" title="Plays the sound based on the label of the sound effect." alt="" coords="208,107,335,133"/>
+<area shape="rect" id="node5" href="$class_player.html#a0e0fe267a17131876c1bcc3492f9a990" title="Shoots a bullet." alt="" coords="221,157,322,184"/>
+<area shape="rect" id="node6" href="$class_gun.html#a652ace513ba9bf39a6e2af1493776d19" title="Getter for bullet velocity." alt="" coords="383,81,537,108"/>
+<area shape="rect" id="node7" href="$class_camera.html#a8ba9f236ce4db8d927ac047db91ebd0b" title="Getter for the lookAt vector." alt="" coords="398,132,522,159"/>
+<area shape="rect" id="node8" href="$class_camera.html#af01f8cd3c75ea3b9e578cfe0a95c9955" title="Getter for position, also includes the crouch depth." alt="" coords="389,183,531,209"/>
+<area shape="rect" id="node9" href="$class_gun.html#aa1a3d5456fa08375cfc6c9e359c4bd3d" title="Adds a bullet into the bullets vector, used for when gun is shot." alt="" coords="416,233,504,260"/>
+</map>

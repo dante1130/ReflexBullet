@@ -1,0 +1,26 @@
+<map id="Camera::CrouchDistance" name="Camera::CrouchDistance">
+<area shape="rect" id="node1" title="Calculates how far down the player has crouched." alt="" coords="2469,260,2636,287"/>
+<area shape="rect" id="node2" href="$class_camera.html#a023cb3e9d92301d8132f338c7ef5be77" title="Calls the glLookAt function." alt="" coords="2268,260,2421,287"/>
+<area shape="rect" id="node3" href="$class_camera.html#a6d8682d38e8c8ac728d9ca39a78ac109" title="Handles all key movement for movement speed." alt="" coords="1839,309,2028,336"/>
+<area shape="rect" id="node9" href="$class_camera.html#a77058a5acc0ab9de6c96ed53e1759ccd" title="Use mouse to look around." alt="" coords="2076,95,2220,121"/>
+<area shape="rect" id="node21" href="$class_camera.html#a23d604f6eb495e4686665144d463a670" title="position the camera." alt="" coords="449,411,572,437"/>
+<area shape="rect" id="node23" href="$class_camera.html#a4d2821e43ae754a1e7359ca7e28419b4" title="Sets the cameras look at direction." alt="" coords="1843,208,2024,235"/>
+<area shape="rect" id="node4" href="$namespace_g_m.html#aa2ea0684203071ed400a31a635e02c57" title="Updates by the game tick." alt="" coords="1613,309,1780,336"/>
+<area shape="rect" id="node7" href="$namespace_p_s_w.html#a748a46361b4d8570306aaacbcc5e464f" title="Handles all the render steps for the program &#45; still needs work, barebones right now." alt="" coords="104,304,235,331"/>
+<area shape="rect" id="node5" href="$namespace_g_m.html#a239894ede0787099f0991b08049a7122" title="If a fixed update loop for the game. This will handle all AI and other fixed update processes." alt="" coords="1368,309,1555,336"/>
+<area shape="rect" id="node6" href="$namespace_g_m.html#a4de584cdd6ff4f9f35e7de9a173eed8a" title="Initialises the game objects." alt="" coords="283,284,385,311"/>
+<area shape="rect" id="node8" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,304,56,331"/>
+<area shape="rect" id="node10" href="$namespace_g_m.html#a768282a0b7fd30f27553a58dd9de49ec" title="Handles all the mouse movement in the game world." alt="" coords="1856,95,2011,121"/>
+<area shape="rect" id="node19" href="$namespace_p_s_w.html#a5558420b8b7b12ccccabb754a5210278" title="Handles mouse movement." alt="" coords="1631,5,1762,32"/>
+<area shape="rect" id="node11" href="$namespace_g_m.html#aeadf906a8a1b7ca5ad5fce4600d6f38d" title="Unpauses the game." alt="" coords="1628,107,1765,133"/>
+<area shape="rect" id="node12" href="$namespace_g_m.html#a50f2ee84a60559027660d9f376acfd4e" title="Handles all the key inputs for the game world." alt="" coords="930,124,1046,151"/>
+<area shape="rect" id="node13" href="$namespace_g_m.html#ad0075febca06a02cbd74fe698aeab38c" title="Decides the action of a button for the menu." alt="" coords="1148,208,1320,235"/>
+<area shape="rect" id="node17" href="$namespace_g_m.html#a3b439410ea3de3092eaddb9c980c1079" title="Progresses game to the next wave." alt="" coords="1392,208,1531,235"/>
+<area shape="rect" id="node18" href="$namespace_g_m.html#a611393ef45df9782f29f3e36b748aef4" title="Restarts the game." alt="" coords="1397,259,1525,285"/>
+<area shape="rect" id="node14" href="$namespace_g_m.html#a6208ff8e88020f18e0b1094ded7166fb" title="Handles when the mouse is clicked when the game is paused." alt="" coords="636,259,828,285"/>
+<area shape="rect" id="node16" href="$namespace_g_m.html#aadab86395febe3dc09183d51b8dd61ab" title="Handles when the mouse is clicked when the game is paused on the options menu." alt="" coords="876,193,1100,234"/>
+<area shape="rect" id="node15" href="$namespace_g_m.html#a2889fa0cda958c68427e36fb9c67598e" title="Handles when the mouse is clicked." alt="" coords="433,259,588,285"/>
+<area shape="rect" id="node20" href="$namespace_p_s_w.html#a2bdcbfd3a7b96a0ec63f9a4076e034eb" title="Handles all the key inputs." alt="" coords="1189,5,1279,32"/>
+<area shape="rect" id="node22" href="$namespace_p_s_w.html#ae5859174c46a5dd5bbf72ba610cf48d6" title="Initializes settings @prarm No param." alt="" coords="121,392,217,419"/>
+<area shape="rect" id="node24" href="$namespace_g_m.html#a995d75d9835aa8c87bf190d69726d311" title="Handles moving the camera when the game is paused." alt="" coords="1603,259,1791,285"/>
+</map>

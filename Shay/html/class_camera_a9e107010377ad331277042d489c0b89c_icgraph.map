@@ -1,0 +1,10 @@
+<map id="Camera::DirectionFB" name="Camera::DirectionFB">
+<area shape="rect" id="node1" title="Used to pass direction to move or rotate forwards or backwards (i.e. 1, &#45;1 or 0)." alt="" coords="647,81,789,108"/>
+<area shape="rect" id="node2" href="$namespace_g_m.html#a50f2ee84a60559027660d9f376acfd4e" title="Handles all the key inputs for the game world." alt="" coords="459,5,575,32"/>
+<area shape="rect" id="node6" href="$namespace_g_m.html#ad76d5ba64bd972b79c801d40caeb1e25" title="Handles all the released key inputs for the game world." alt="" coords="436,56,599,83"/>
+<area shape="rect" id="node7" href="$namespace_p_s_w.html#a2bdcbfd3a7b96a0ec63f9a4076e034eb" title="Handles all the key inputs." alt="" coords="292,107,381,133"/>
+<area shape="rect" id="node8" href="$namespace_p_s_w.html#a19ab9366480d6446c2ba0713fe3ffbae" title="Handles all the key events when the key is released." alt="" coords="104,157,237,184"/>
+<area shape="rect" id="node3" href="$namespace_g_m.html#a4de584cdd6ff4f9f35e7de9a173eed8a" title="Initialises the game objects." alt="" coords="285,56,388,83"/>
+<area shape="rect" id="node4" href="$namespace_p_s_w.html#a748a46361b4d8570306aaacbcc5e464f" title="Handles all the render steps for the program &#45; still needs work, barebones right now." alt="" coords="105,56,236,83"/>
+<area shape="rect" id="node5" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,107,56,133"/>
+</map>

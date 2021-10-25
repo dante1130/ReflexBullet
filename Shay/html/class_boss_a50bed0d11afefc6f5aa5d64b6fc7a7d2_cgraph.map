@@ -1,0 +1,5 @@
+<map id="Boss::Shoot" name="Boss::Shoot">
+<area shape="rect" id="node1" title="Creates new bullet and calls m_gun.Shoot()." alt="" coords="5,31,100,57"/>
+<area shape="rect" id="node2" href="$class_gun.html#a652ace513ba9bf39a6e2af1493776d19" title="Getter for bullet velocity." alt="" coords="148,5,303,32"/>
+<area shape="rect" id="node3" href="$class_gun.html#aa1a3d5456fa08375cfc6c9e359c4bd3d" title="Adds a bullet into the bullets vector, used for when gun is shot." alt="" coords="181,56,269,83"/>
+</map>

@@ -1,8 +1,0 @@
-<map id="DisplayExtraArea::LeftOfStairs4ROW" name="DisplayExtraArea::LeftOfStairs4ROW">
-<area shape="rect" id="node1" title="Draws the section left of the stairs for row 4." alt="" coords="885,5,1051,47"/>
-<area shape="rect" id="node2" href="$namespace_display_extra_area.html#a04a398baa1a94f8df472a28199f1b340" title="Displays the area left of the stairs." alt="" coords="663,5,837,47"/>
-<area shape="rect" id="node3" href="$namespace_display_extra_area.html#aebcc9fb6790b2b13a587e865a7efbe3e" title="Controls all the functions which display non blend objects." alt="" coords="440,5,615,47"/>
-<area shape="rect" id="node4" href="$namespace_display_extra_area.html#af8e74f483951f89b4d5d6159e110602f" title="Controls all the display functions in this file." alt="" coords="217,5,392,47"/>
-<area shape="rect" id="node5" href="$main_8cpp.html#a5d3fb9b91b5c167b70a1a0557e67f271" title="Handles all the display functions." alt="" coords="104,13,169,39"/>
-<area shape="rect" id="node6" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,13,56,39"/>
-</map>

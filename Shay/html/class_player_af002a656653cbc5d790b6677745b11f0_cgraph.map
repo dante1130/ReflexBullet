@@ -1,0 +1,4 @@
+<map id="Player::ResetBulletSpeed" name="Player::ResetBulletSpeed">
+<area shape="rect" id="node1" title="Resets the bullet speed." alt="" coords="5,5,176,32"/>
+<area shape="rect" id="node2" href="$class_gun.html#abb03a5238f8a68d010bf4e4520f545cb" title="Setter for bullet velocity." alt="" coords="224,5,379,32"/>
+</map>

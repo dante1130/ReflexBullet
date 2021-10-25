@@ -1,0 +1,7 @@
+<map id="Enemy" name="Enemy">
+<area shape="rect" id="node1" title="Represents an enemy in the game world, extends from the BaseCharacter interface." alt="" coords="175,843,298,1155"/>
+<area shape="rect" id="node2" href="$class_base_character.html" title="An interface for the characters of the game." alt="" coords="23,519,131,641"/>
+<area shape="rect" id="node3" href="$class_gun.html" title="Represents a gun to fire bullets and stores the individual bullet information." alt="" coords="5,5,148,317"/>
+<area shape="rect" id="node4" href="$class_enemy_a_i.html" title="Behaviour for the enemy, uses a Grid system to specify which character is occupying that grid spot." alt="" coords="155,380,319,780"/>
+<area shape="rect" id="node5" href="$struct_bounding_box.html" title="Stores max and min values of co&#45;ordinates." alt="" coords="343,527,461,633"/>
+</map>

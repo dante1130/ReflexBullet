@@ -1,0 +1,11 @@
+<map id="Boss::PhaseApply" name="Boss::PhaseApply">
+<area shape="rect" id="node1" title="Applies effects of phase onto boss." alt="" coords="5,132,136,159"/>
+<area shape="rect" id="node2" href="$class_boss.html#ab9b1cce8d53fca890de220dd4e9ed5f3" title="Calculates laser&#45;beams length and animates accordingly." alt="" coords="184,5,335,32"/>
+<area shape="rect" id="node3" href="$class_boss.html#ac044f3276ab30234c3f60ceb347b956f" title="Returns the phase number of boss." alt="" coords="200,56,319,83"/>
+<area shape="rect" id="node4" href="$class_boss.html#a44dcedc5c6444fc64de8ef52662d522e" title="Returns the rotation vector of boss." alt="" coords="195,107,324,133"/>
+<area shape="rect" id="node5" href="$class_boss.html#af51d25db6b30d7653753477c05ab6b2f" title="Sets rotation of boss given a vector." alt="" coords="195,157,323,184"/>
+<area shape="rect" id="node6" href="$class_boss.html#a2550e9769190122474a2f16158497745" title="Sets players y rotation based on GLfloat parameter variable." alt="" coords="191,208,328,235"/>
+<area shape="rect" id="node7" href="$class_boss.html#a50bed0d11afefc6f5aa5d64b6fc7a7d2" title="Creates new bullet and calls m_gun.Shoot()." alt="" coords="212,259,307,285"/>
+<area shape="rect" id="node8" href="$class_gun.html#a652ace513ba9bf39a6e2af1493776d19" title="Getter for bullet velocity." alt="" coords="383,233,537,260"/>
+<area shape="rect" id="node9" href="$class_gun.html#aa1a3d5456fa08375cfc6c9e359c4bd3d" title="Adds a bullet into the bullets vector, used for when gun is shot." alt="" coords="416,284,504,311"/>
+</map>

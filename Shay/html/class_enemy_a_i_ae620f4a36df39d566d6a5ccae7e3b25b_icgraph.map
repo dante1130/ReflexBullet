@@ -1,0 +1,4 @@
+<map id="EnemyAI::isPlayerInView" name="EnemyAI::isPlayerInView">
+<area shape="rect" id="node1" title="Returns a boolean if the player is in view of the enemy." alt="" coords="159,5,327,32"/>
+<area shape="rect" id="node2" href="$class_enemy.html#a90c45acdddd5d1b601f193a6846dc171" title="Shoots a bullet." alt="" coords="5,5,111,32"/>
+</map>

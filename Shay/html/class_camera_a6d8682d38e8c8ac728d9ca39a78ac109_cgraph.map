@@ -1,0 +1,17 @@
+<map id="Camera::KeyboardMovement" name="Camera::KeyboardMovement">
+<area shape="rect" id="node1" title="Handles all key movement for movement speed." alt="" coords="5,227,195,253"/>
+<area shape="rect" id="node2" href="$class_camera.html#ad9adf754f286b4b94efb08ad827fa878" title="Handles A and D key movement of player." alt="" coords="245,227,451,253"/>
+<area shape="rect" id="node13" href="$class_camera.html#a023cb3e9d92301d8132f338c7ef5be77" title="Calls the glLookAt function." alt="" coords="271,277,425,304"/>
+<area shape="rect" id="node15" href="$class_camera.html#af995c7d99ec7edec40d9c055d58f2440" title="Handles W and S key movement of player." alt="" coords="243,176,453,203"/>
+<area shape="rect" id="node3" href="$class_collision.html#abb75a80ee1cb6bd5bd04098497c65523" title="Collision check between a point and a bounding sphere." alt="" coords="525,227,644,253"/>
+<area shape="rect" id="node4" href="$class_camera.html#a62b9c31a39202f116f3b9fd774ef42e3" title="Overloaded function for setting plain." alt="" coords="519,176,650,203"/>
+<area shape="rect" id="node5" href="$class_camera.html#a30269761b4c56d23c7ce423440982a36" title="Finds the area of a triangle between the players coordinates and points on plain." alt="" coords="716,100,892,127"/>
+<area shape="rect" id="node6" href="$class_plain_vector.html#a92239f01ea2788df42891c8bb2afc2f1" title="Get the ending X coordinates." alt="" coords="943,5,1084,32"/>
+<area shape="rect" id="node7" href="$class_plain_vector.html#a74a26cc9230e7469bbd6d739ae873bd6" title="Returns the coordinate for coordiante 2 for the plain." alt="" coords="946,81,1081,108"/>
+<area shape="rect" id="node8" href="$class_plain_vector.html#ab6a87390b9841ec5c3bce9e9df2acf7a" title="Returns the coordinate for coordiante 4 for the plain." alt="" coords="946,144,1081,171"/>
+<area shape="rect" id="node9" href="$class_plain_vector.html#a953267bdf9dc9841c215d33df4f6bc57" title="Get the starting X coordinates." alt="" coords="940,201,1087,228"/>
+<area shape="rect" id="node10" href="$class_plain_vector.html#ad51a40d46f2e0d49fd1b06fc8f3de459" title="Get the Type." alt="" coords="731,252,877,279"/>
+<area shape="rect" id="node11" href="$class_audio.html#a51f596cbcc73699173d5e4ac3aef171f" title="Plays the sound based on the label of the sound effect." alt="" coords="741,303,867,329"/>
+<area shape="rect" id="node12" href="$class_plain_vector.html#a063346c2f5a33de0ef90678dae6f578b" title="Return size of vector." alt="" coords="743,353,865,380"/>
+<area shape="rect" id="node14" href="$class_camera.html#ac5757a4349da2fbdce00a165ae9b0f87" title="Calculates how far down the player has crouched." alt="" coords="501,277,668,304"/>
+</map>

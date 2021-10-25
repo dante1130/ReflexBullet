@@ -1,0 +1,33 @@
+<map id="DrawBackdrop" name="DrawBackdrop">
+<area shape="rect" id="node1" title="Draws the backdrop (all images) (Calls all the draw functions)" alt="" coords="5,639,112,665"/>
+<area shape="rect" id="node2" href="$_display_shays_world_8cpp.html#aa8cd6d1bc96097115cd520cf5aace8aa" title="Displays sections above windows and posts (the bits above the first floor and above the second floor)" alt="" coords="615,613,793,640"/>
+<area shape="rect" id="node4" href="$_display_shays_world_8cpp.html#acdbb08ea8e4f244da7667f8d4b446931" title="Displays the benches." alt="" coords="183,107,285,133"/>
+<area shape="rect" id="node14" href="$_display_shays_world_8cpp.html#aeca7ff199326c450f2610dda4db1a383" title="Displays the wall bricks." alt="" coords="653,715,755,741"/>
+<area shape="rect" id="node15" href="$_display_shays_world_8cpp.html#a3b5a2452d00ece9596afbd73289869df" title="Displays the chancellery window and door posts." alt="" coords="390,765,526,792"/>
+<area shape="rect" id="node16" href="$_display_shays_world_8cpp.html#ae920cd83ae83affb74f791fd82d56238" title="Displays the drainpipe and tuckshop serving counter." alt="" coords="645,816,763,843"/>
+<area shape="rect" id="node17" href="$_display_shays_world_8cpp.html#a9d353f4af09d7249821fea0d2efa0a3e" title="Displays the paving around the shop doorway." alt="" coords="393,867,523,893"/>
+<area shape="rect" id="node18" href="$_display_shays_world_8cpp.html#aecb18ee4ab174454e9f871580e957f70" title="Displays the door posts." alt="" coords="641,917,767,944"/>
+<area shape="rect" id="node19" href="$_display_shays_world_8cpp.html#aa4f2855878e58e20660a4b465fc6a5e1" title="Displays the enterence steps." alt="" coords="383,968,533,995"/>
+<area shape="rect" id="node20" href="$_display_shays_world_8cpp.html#aa5653c56c0532cbed082b5faecfbd4a7" title="Displays all the extra sections (signs etc)" alt="" coords="653,1019,755,1045"/>
+<area shape="rect" id="node21" href="$_display_shays_world_8cpp.html#af367155e48029aa7a2403c4be762dd51" title="Displays the grass area." alt="" coords="408,1069,508,1096"/>
+<area shape="rect" id="node22" href="$_display_shays_world_8cpp.html#a216b9249fef375124636403c3b1de0a4" title="Displays all the larger textures (windows, doors, etc)" alt="" coords="629,1120,779,1147"/>
+<area shape="rect" id="node23" href="$_display_shays_world_8cpp.html#ad2d5def0e7f72be3e0fc4c4d4bc04ba2" title="Displays the library posts." alt="" coords="389,259,527,285"/>
+<area shape="rect" id="node24" href="$_display_shays_world_8cpp.html#a8f6d994eb65c10f5d1b2b6331a73fc5f" title="Displays the lights." alt="" coords="408,208,508,235"/>
+<area shape="rect" id="node25" href="$_display_shays_world_8cpp.html#a188a1af620512db79422a43f11b554c2" title="Displays the main posts (ones closest to the grass)" alt="" coords="171,309,297,336"/>
+<area shape="rect" id="node26" href="$_display_shays_world_8cpp.html#a22a8ade3e5566ca3e55b429db32d5698" title="Displays the pavement." alt="" coords="173,360,295,387"/>
+<area shape="rect" id="node27" href="$_display_shays_world_8cpp.html#addee97da245df1d8036ff2fa6722dbcb" title="Displays the windows and door posts on the physical science building." alt="" coords="160,411,308,437"/>
+<area shape="rect" id="node28" href="$_display_shays_world_8cpp.html#ad0283b8d5685a55c308e48a4f4438f33" title="Displays the purple posts by the guild shop." alt="" coords="166,461,302,488"/>
+<area shape="rect" id="node29" href="$_display_shays_world_8cpp.html#abf4857443bedfa39dadaa43d3fe1b8f1" title="Displays the red posts by sta travel shop." alt="" coords="173,563,295,589"/>
+<area shape="rect" id="node30" href="$_display_shays_world_8cpp.html#a7e15fa0ab8f5cd3e2caac9722fad9c9e" title="Displays everything related to the roof." alt="" coords="189,512,279,539"/>
+<area shape="rect" id="node31" href="$_display_shays_world_8cpp.html#a933055b1e041a63674f3cae2d905c981" title="Displays the wall by the enterence." alt="" coords="169,664,299,691"/>
+<area shape="rect" id="node3" href="$class_textured_polygons.html#ae6b2615e41f9263aaafc9a7f1ed2b94c" title="Returns texture." alt="" coords="853,613,1052,640"/>
+<area shape="rect" id="node5" href="$namespace_d_g_w.html#a1dd42577af8695457888d3d23a4796b4" title="Displays individual objects on the benche." alt="" coords="356,56,560,83"/>
+<area shape="rect" id="node12" href="$class_player.html#ae5a3bcef2eda89370076f8fbce9e08b4" title="Getter for camera." alt="" coords="391,107,525,133"/>
+<area shape="rect" id="node13" href="$class_camera.html#af01f8cd3c75ea3b9e578cfe0a95c9955" title="Getter for position, also includes the crouch depth." alt="" coords="387,5,529,32"/>
+<area shape="rect" id="node6" href="$class_object3_d.html#ade144bd5a564803e6d6f579a5a96f7a2" title="Displays the stored object based on the texture. Adds vertex normals to allows for lighting." alt="" coords="608,91,800,133"/>
+<area shape="rect" id="node11" href="$namespace_d_g_w.html#a754c37863c57fe7e731e7b358a9638d9" title="&#39;Randomly&#39; generates a number based on two inputs" alt="" coords="625,40,783,67"/>
+<area shape="rect" id="node7" href="$class_object3_d.html#a27c48229baacb72a569744b2f3343c7a" title="Returns a texture coordinate of index i." alt="" coords="883,23,1022,49"/>
+<area shape="rect" id="node8" href="$class_object3_d.html#aaf3232b02c1666b005dfd89d46e6782a" title="Returns a set of vertex and coordinate pairs of index i." alt="" coords="885,73,1020,100"/>
+<area shape="rect" id="node9" href="$class_object3_d.html#a11d6a73b9d9999c276a1563a340f5349" title="Allows access to the contents of faces vector." alt="" coords="853,124,1052,151"/>
+<area shape="rect" id="node10" href="$class_object3_d.html#a66bde090d473596be613a851f55bc8af" title="Sets material property for a specific material." alt="" coords="848,175,1057,201"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="Player::AddBulletSpeed" name="Player::AddBulletSpeed">
+<area shape="rect" id="node1" title="Adds the bullet speed by a specified amount." alt="" coords="5,31,165,57"/>
+<area shape="rect" id="node2" href="$class_gun.html#a652ace513ba9bf39a6e2af1493776d19" title="Getter for bullet velocity." alt="" coords="213,5,368,32"/>
+<area shape="rect" id="node3" href="$class_gun.html#abb03a5238f8a68d010bf4e4520f545cb" title="Setter for bullet velocity." alt="" coords="213,56,368,83"/>
+</map>

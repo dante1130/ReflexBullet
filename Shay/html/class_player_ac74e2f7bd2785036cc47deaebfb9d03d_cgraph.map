@@ -1,0 +1,4 @@
+<map id="Player::ResetMoveSpeed" name="Player::ResetMoveSpeed">
+<area shape="rect" id="node1" title="Resets the movement speed." alt="" coords="5,5,173,32"/>
+<area shape="rect" id="node2" href="$class_camera.html#a86a5a6f374125bb58c6a97ba2d921a64" title="Set movement speed." alt="" coords="221,5,384,32"/>
+</map>

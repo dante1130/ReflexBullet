@@ -1,0 +1,5 @@
+<map id="Player::ResetBullets" name="Player::ResetBullets">
+<area shape="rect" id="node1" title="Resets the bullets." alt="" coords="5,31,147,57"/>
+<area shape="rect" id="node2" href="$class_gun.html#af912e9200dd5a86a0790e230fcdfcb3b" title="Returns the bullet count that is currently in the scene." alt="" coords="201,5,322,32"/>
+<area shape="rect" id="node3" href="$class_gun.html#aa64058f56b209416e3a5e0bd65df090c" title="Removes a bullet from the bullets vector, used for when the bullet has collided." alt="" coords="195,56,328,83"/>
+</map>

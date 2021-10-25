@@ -1,0 +1,7 @@
+<map id="DGW::DisplayVictoryScreen" name="DGW::DisplayVictoryScreen">
+<area shape="rect" id="node1" title="Displays the victory screen." alt="" coords="5,81,192,108"/>
+<area shape="rect" id="node2" href="$namespace_d_g_w.html#ad7af619c73f746fcfc0d6ba18d804c98" title="Displays individual options for the pause menu." alt="" coords="240,5,435,32"/>
+<area shape="rect" id="node3" href="$class_textured_polygons.html#ae6b2615e41f9263aaafc9a7f1ed2b94c" title="Returns texture." alt="" coords="483,31,681,57"/>
+<area shape="rect" id="node4" href="$class_player.html#a583576614f952d4323bc4706b8821ed9" title="Getter for accuracy." alt="" coords="266,107,409,133"/>
+<area shape="rect" id="node5" href="$namespace_d_g_w.html#a0af3794fa82a264abf9b43d9ba1e6af6" title="Renders a string onto the screen for a specific font." alt="" coords="248,157,427,184"/>
+</map>

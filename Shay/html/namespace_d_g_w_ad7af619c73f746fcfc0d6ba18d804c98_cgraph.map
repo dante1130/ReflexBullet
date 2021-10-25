@@ -1,0 +1,4 @@
+<map id="DGW::DisplayIndividualOption" name="DGW::DisplayIndividualOption">
+<area shape="rect" id="node1" title="Displays individual options for the pause menu." alt="" coords="5,5,200,32"/>
+<area shape="rect" id="node2" href="$class_textured_polygons.html#ae6b2615e41f9263aaafc9a7f1ed2b94c" title="Returns texture." alt="" coords="248,5,447,32"/>
+</map>

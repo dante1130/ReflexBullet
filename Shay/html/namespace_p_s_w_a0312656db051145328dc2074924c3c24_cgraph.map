@@ -1,0 +1,8 @@
+<map id="PSW::CreateBoundingBoxes" name="PSW::CreateBoundingBoxes">
+<area shape="rect" id="node1" title="Creates bounding boxes for collision detection." alt="" coords="5,34,196,60"/>
+<area shape="rect" id="node2" href="$class_camera.html#a4f195c7ba6e002a5c98880c19c434a49" title="Adds a bounding box to check for collision." alt="" coords="483,34,617,60"/>
+<area shape="rect" id="node5" href="$namespace_p_s_w.html#a8a85b0f10a9767c11ced26234df8ad25" title="Does all the bounding boxes for the extended area." alt="" coords="244,26,435,68"/>
+<area shape="rect" id="node6" href="$namespace_p_s_w.html#a16185544bbf90bd2c748a2d90c59d984" title="Creates bounding boxes for pillars." alt="" coords="244,92,435,133"/>
+<area shape="rect" id="node3" href="$class_collision.html#a582ec07565cb83e8a8f85652d08b4ee5" title="Sets the bounding box to the vector." alt="" coords="665,34,775,60"/>
+<area shape="rect" id="node4" href="$class_collision.html#aa050b00e13099c5d316071afe243a516" title="Gets the reference to the AABBvector of a quadrant." alt="" coords="823,34,976,60"/>
+</map>

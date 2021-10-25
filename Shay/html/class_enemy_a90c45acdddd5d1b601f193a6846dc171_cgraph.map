@@ -1,0 +1,6 @@
+<map id="Enemy::Shoot" name="Enemy::Shoot">
+<area shape="rect" id="node1" title="Shoots a bullet." alt="" coords="5,56,111,83"/>
+<area shape="rect" id="node2" href="$class_gun.html#a652ace513ba9bf39a6e2af1493776d19" title="Getter for bullet velocity." alt="" coords="165,5,320,32"/>
+<area shape="rect" id="node3" href="$class_enemy_a_i.html#ae620f4a36df39d566d6a5ccae7e3b25b" title="Returns a boolean if the player is in view of the enemy." alt="" coords="159,56,327,83"/>
+<area shape="rect" id="node4" href="$class_gun.html#aa1a3d5456fa08375cfc6c9e359c4bd3d" title="Adds a bullet into the bullets vector, used for when gun is shot." alt="" coords="199,107,287,133"/>
+</map>

@@ -1,0 +1,52 @@
+<map id="DGW::DisplayGameWorldMasterFunction" name="DGW::DisplayGameWorldMasterFunction">
+<area shape="rect" id="node1" title="Is the master function which handles all the displaying for the game world." alt="" coords="5,1283,220,1325"/>
+<area shape="rect" id="node2" href="$_boss_area_8cpp.html#ac6344a06aa467294f75db2faf1531f00" title=" " alt="" coords="344,657,413,684"/>
+<area shape="rect" id="node5" href="$class_player.html#a497048a935a342ab6927d168e9e827c5" title="Getter for Gun." alt="" coords="843,88,955,115"/>
+<area shape="rect" id="node6" href="$class_boss.html#a30fe3f121751b8a0cef2c084765c99b8" title="Returns the bosses health value." alt="" coords="839,227,958,253"/>
+<area shape="rect" id="node7" href="$class_player.html#a7da7faa7105424633ffb5bc022e14267" title="Getter for health." alt="" coords="836,151,961,177"/>
+<area shape="rect" id="node9" href="$class_object3_d.html#ade144bd5a564803e6d6f579a5a96f7a2" title="Displays the stored object based on the texture. Adds vertex normals to allows for lighting." alt="" coords="803,1131,995,1173"/>
+<area shape="rect" id="node21" href="$namespace_d_g_w.html#a745f9998dc59c1aea832a5ae6e20555f" title="Displays different animations." alt="" coords="297,1595,460,1621"/>
+<area shape="rect" id="node22" href="$namespace_d_g_w.html#a8fcdf7d0d34a37601fb5351905671d1d" title="Displays the area around the train (tracks, etc.)" alt="" coords="538,1544,741,1571"/>
+<area shape="rect" id="node23" href="$namespace_d_g_w.html#a326e256c951c385bf80e54d76f5b553f" title="Displays the benches." alt="" coords="307,1139,450,1165"/>
+<area shape="rect" id="node25" href="$namespace_d_g_w.html#ad4051278e5355a1a2954d01305a5191f" title="Displays the cachier." alt="" coords="304,1189,453,1216"/>
+<area shape="rect" id="node26" href="$namespace_d_g_w.html#a76609a654ce3c3de2b3825802bc59f8b" title="Displays the claw machines." alt="" coords="548,1595,731,1621"/>
+<area shape="rect" id="node27" href="$namespace_d_g_w.html#aad0768e4c4f6e18fb87b7832809dda00" title="Displays the controls for the game." alt="" coords="822,303,975,329"/>
+<area shape="rect" id="node28" href="$namespace_d_g_w.html#a6526d22bc50cb384ee9847814a77f9dc" title="Displays the display shelves." alt="" coords="543,1645,736,1672"/>
+<area shape="rect" id="node29" href="$namespace_d_g_w.html#a9f0a43e5d34a6c38c422f7b20ae11e40" title="Displays the duck gun." alt="" coords="299,1341,458,1368"/>
+<area shape="rect" id="node32" href="$namespace_d_g_o.html#a2296844ba56c9954fd36a42276757ec0" title="Displays the enemies from the RobotEnemies struct." alt="" coords="563,1696,716,1723"/>
+<area shape="rect" id="node33" href="$namespace_d_g_o.html#a9648812efcb02f919683cbd02ec292b3" title="Displays all the bullets in the gun." alt="" coords="295,24,462,51"/>
+<area shape="rect" id="node35" href="$namespace_d_g_w.html#af3e15a8b6a74be1f819d486a7cb707bf" title="Displays the lights." alt="" coords="569,885,709,912"/>
+<area shape="rect" id="node36" href="$class_enemy_a_i.html#ac5ee8f6fb5936f0b58c91fec793b7f6e" title="Displays the map for the AI." alt="" coords="303,1645,454,1672"/>
+<area shape="rect" id="node37" href="$namespace_d_g_w.html#a848621cf9f69c28bf49f7d51cba48f75" title="Displays the pause menu options." alt="" coords="789,379,1008,405"/>
+<area shape="rect" id="node38" href="$namespace_d_g_w.html#a6d87e31d614d73a46ab7eeca225e0c63" title="Displays the games current performance metrics." alt="" coords="268,1696,489,1723"/>
+<area shape="rect" id="node39" href="$namespace_d_g_w.html#a23e58ae76db42a0641cede59e22013a2" title="Displays the plane holding the light." alt="" coords="282,936,475,963"/>
+<area shape="rect" id="node40" href="$namespace_d_g_w.html#a7c146aa34312da8420d2a32fa69b2d22" title="Displays the shelf ends at the back middle of the store." alt="" coords="300,987,457,1013"/>
+<area shape="rect" id="node41" href="$namespace_d_g_w.html#a5b066babd46ee38cd9e7780c5adb5691" title="Displays the shelves around the game world." alt="" coords="303,1291,454,1317"/>
+<area shape="rect" id="node42" href="$namespace_d_g_w.html#aff8372cf500e75eea50ada2973c50e32" title="Displays the speakers placed around the toy store." alt="" coords="299,1037,459,1064"/>
+<area shape="rect" id="node43" href="$namespace_d_g_w.html#ae98846ff806eeecc54830590c64c7fdd" title="Displays the tables." alt="" coords="307,1240,450,1267"/>
+<area shape="rect" id="node44" href="$class_enemy_a_i.html#ad0174a5b9e660267759a5e70cb30e1c1" title="Displays the wireframe, used for debugging." alt="" coords="286,1747,471,1773"/>
+<area shape="rect" id="node45" href="$class_u_i.html#a146f0158563ba7ac38ff497e4ca86d52" title="Constructor for health bar UI." alt="" coords="329,1797,428,1824"/>
+<area shape="rect" id="node46" href="$class_boss.html#a99bc725589303f529fb5bf0609cb9bc8" title="Returns gun object m_gun." alt="" coords="326,1848,431,1875"/>
+<area shape="rect" id="node47" href="$class_player.html#ae7b57a94bbd6aceb84ed1bf6be184580" title="Getter for start health." alt="" coords="302,1899,455,1925"/>
+<area shape="rect" id="node48" href="$class_boss.html#a9a2c94aba3eaaa9100b56816ae8fce2e" title="Returns the starting health of boss." alt="" coords="305,1949,452,1976"/>
+<area shape="rect" id="node49" href="$struct_robot_enemies.html#a100187883d0e053d9901503f88d86d9b" title="Returns a boolean to check if all enemies are dead." alt="" coords="293,2000,464,2027"/>
+<area shape="rect" id="node50" href="$namespace_lighting.html#a9043f0e8a6f3787ac8a9a762a9c7469a" title="Updates all the lights in the scene." alt="" coords="298,2051,459,2077"/>
+<area shape="rect" id="node3" href="$_boss_area_8cpp.html#a4df00a9e3eefa23f9e58218e3d87ca5b" title=" " alt="" coords="582,176,697,203"/>
+<area shape="rect" id="node8" href="$_boss_area_8cpp.html#a03b6a83c6a159c9d3d81e32670d28295" title=" " alt="" coords="599,835,680,861"/>
+<area shape="rect" id="node11" href="$class_player.html#ae5a3bcef2eda89370076f8fbce9e08b4" title="Getter for camera." alt="" coords="573,1240,706,1267"/>
+<area shape="rect" id="node12" href="$class_camera.html#a330fd9867330e296f95a2f099f6b2be1" title="Returns if the camera is crouched." alt="" coords="571,632,708,659"/>
+<area shape="rect" id="node13" href="$class_player.html#afcf91ea7b8dbed24a495feb8344f77f8" title="Getter for if the player is hit by the boss laser." alt="" coords="571,683,707,709"/>
+<area shape="rect" id="node14" href="$class_boss.html#ac044f3276ab30234c3f60ceb347b956f" title="Returns the phase number of boss." alt="" coords="580,733,699,760"/>
+<area shape="rect" id="node15" href="$class_camera.html#af01f8cd3c75ea3b9e578cfe0a95c9955" title="Getter for position, also includes the crouch depth." alt="" coords="568,1291,711,1317"/>
+<area shape="rect" id="node16" href="$class_boss.html#a44dcedc5c6444fc64de8ef52662d522e" title="Returns the rotation vector of boss." alt="" coords="575,784,704,811"/>
+<area shape="rect" id="node17" href="$class_boss.html#a2196ed5dc2aeb7532e1f64fc81c3418a" title="Detects whether player has collided with laser beam and returns as a boolean." alt="" coords="569,429,710,456"/>
+<area shape="rect" id="node18" href="$class_player.html#a4ee471ae11b814feb469cbec7d07415e" title="Setter for if the player is hit by the laser." alt="" coords="572,480,707,507"/>
+<area shape="rect" id="node19" href="$class_boss.html#a832aa22658ed6cabee94674a97bfd2c0" title=" " alt="" coords="557,531,721,557"/>
+<area shape="rect" id="node20" href="$class_boss.html#a09db5744a3eca2da5ff058c8dc7cfd4d" title="Uses the players location to calculate rotation to always be facing player." alt="" coords="575,581,704,608"/>
+<area shape="rect" id="node4" href="$class_gun.html#ab0f5e8b1ad3b0fccb2fbe1f5575ad103" title="Gets the bullet at an index." alt="" coords="849,5,949,32"/>
+<area shape="rect" id="node10" href="$class_textured_polygons.html#ae6b2615e41f9263aaafc9a7f1ed2b94c" title="Returns texture." alt="" coords="1056,379,1255,405"/>
+<area shape="rect" id="node24" href="$namespace_d_g_w.html#a1dd42577af8695457888d3d23a4796b4" title="Displays individual objects on the benche." alt="" coords="537,1139,741,1165"/>
+<area shape="rect" id="node30" href="$class_camera.html#a83696828ff7b7e740fc907857f513642" title="Getter for pitch." alt="" coords="576,1493,703,1520"/>
+<area shape="rect" id="node31" href="$class_camera.html#ae3fab1e2d2cc7f4affcc328ecca32f00" title="Getter for yaw." alt="" coords="579,1443,700,1469"/>
+<area shape="rect" id="node34" href="$class_gun.html#af912e9200dd5a86a0790e230fcdfcb3b" title="Returns the bullet count that is currently in the scene." alt="" coords="579,24,700,51"/>
+</map>

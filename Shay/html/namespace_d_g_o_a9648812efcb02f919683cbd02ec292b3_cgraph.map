@@ -1,0 +1,7 @@
+<map id="DGO::DisplayGunBullets" name="DGO::DisplayGunBullets">
+<area shape="rect" id="node1" title="Displays all the bullets in the gun." alt="" coords="5,56,172,83"/>
+<area shape="rect" id="node2" href="$class_gun.html#ab0f5e8b1ad3b0fccb2fbe1f5575ad103" title="Gets the bullet at an index." alt="" coords="241,5,341,32"/>
+<area shape="rect" id="node3" href="$class_gun.html#af912e9200dd5a86a0790e230fcdfcb3b" title="Returns the bullet count that is currently in the scene." alt="" coords="231,56,352,83"/>
+<area shape="rect" id="node4" href="$namespace_d_g_o.html#a3631f20fe62afadbb771decb61b37ade" title="Displays the bullet." alt="" coords="220,107,363,133"/>
+<area shape="rect" id="node5" href="$class_bullet.html#aeb09bcbdf076d7cacf57646d0b0e9313" title="Getter for position." alt="" coords="411,107,541,133"/>
+</map>

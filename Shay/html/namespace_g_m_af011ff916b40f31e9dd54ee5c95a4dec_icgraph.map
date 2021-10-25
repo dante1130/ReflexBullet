@@ -1,0 +1,9 @@
+<map id="GM::PauseGame" name="GM::PauseGame">
+<area shape="rect" id="node1" title="Pauses the game." alt="" coords="883,56,1005,83"/>
+<area shape="rect" id="node2" href="$namespace_g_m.html#aa2ea0684203071ed400a31a635e02c57" title="Updates by the game tick." alt="" coords="668,5,835,32"/>
+<area shape="rect" id="node4" href="$namespace_g_m.html#a4de584cdd6ff4f9f35e7de9a173eed8a" title="Initialises the game objects." alt="" coords="283,56,385,83"/>
+<area shape="rect" id="node7" href="$namespace_g_m.html#a50f2ee84a60559027660d9f376acfd4e" title="Handles all the key inputs for the game world." alt="" coords="469,107,585,133"/>
+<area shape="rect" id="node3" href="$namespace_g_m.html#a239894ede0787099f0991b08049a7122" title="If a fixed update loop for the game. This will handle all AI and other fixed update processes." alt="" coords="433,5,620,32"/>
+<area shape="rect" id="node5" href="$namespace_p_s_w.html#a748a46361b4d8570306aaacbcc5e464f" title="Handles all the render steps for the program &#45; still needs work, barebones right now." alt="" coords="104,56,235,83"/>
+<area shape="rect" id="node6" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,56,56,83"/>
+</map>

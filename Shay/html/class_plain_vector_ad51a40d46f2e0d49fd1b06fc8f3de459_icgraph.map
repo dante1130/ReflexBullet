@@ -1,0 +1,12 @@
+<map id="PlainVector::GetType" name="PlainVector::GetType">
+<area shape="rect" id="node1" title="Get the Type." alt="" coords="1557,31,1704,57"/>
+<area shape="rect" id="node2" href="$class_camera.html#a62b9c31a39202f116f3b9fd774ef42e3" title="Overloaded function for setting plain." alt="" coords="1379,31,1509,57"/>
+<area shape="rect" id="node3" href="$class_camera.html#ad9adf754f286b4b94efb08ad827fa878" title="Handles A and D key movement of player." alt="" coords="1122,5,1329,32"/>
+<area shape="rect" id="node10" href="$class_camera.html#af995c7d99ec7edec40d9c055d58f2440" title="Handles W and S key movement of player." alt="" coords="1120,56,1331,83"/>
+<area shape="rect" id="node4" href="$class_camera.html#a6d8682d38e8c8ac728d9ca39a78ac109" title="Handles all key movement for movement speed." alt="" coords="883,31,1072,57"/>
+<area shape="rect" id="node5" href="$namespace_g_m.html#aa2ea0684203071ed400a31a635e02c57" title="Updates by the game tick." alt="" coords="668,5,835,32"/>
+<area shape="rect" id="node8" href="$namespace_p_s_w.html#a748a46361b4d8570306aaacbcc5e464f" title="Handles all the render steps for the program &#45; still needs work, barebones right now." alt="" coords="104,31,235,57"/>
+<area shape="rect" id="node6" href="$namespace_g_m.html#a239894ede0787099f0991b08049a7122" title="If a fixed update loop for the game. This will handle all AI and other fixed update processes." alt="" coords="433,5,620,32"/>
+<area shape="rect" id="node7" href="$namespace_g_m.html#a4de584cdd6ff4f9f35e7de9a173eed8a" title="Initialises the game objects." alt="" coords="283,5,385,32"/>
+<area shape="rect" id="node9" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,31,56,57"/>
+</map>

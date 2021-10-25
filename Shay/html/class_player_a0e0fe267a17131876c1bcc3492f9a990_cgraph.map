@@ -1,0 +1,7 @@
+<map id="Player::Shoot" name="Player::Shoot">
+<area shape="rect" id="node1" title="Shoots a bullet." alt="" coords="5,81,107,108"/>
+<area shape="rect" id="node2" href="$class_gun.html#a652ace513ba9bf39a6e2af1493776d19" title="Getter for bullet velocity." alt="" coords="155,5,309,32"/>
+<area shape="rect" id="node3" href="$class_camera.html#a8ba9f236ce4db8d927ac047db91ebd0b" title="Getter for the lookAt vector." alt="" coords="170,56,294,83"/>
+<area shape="rect" id="node4" href="$class_camera.html#af01f8cd3c75ea3b9e578cfe0a95c9955" title="Getter for position, also includes the crouch depth." alt="" coords="161,107,303,133"/>
+<area shape="rect" id="node5" href="$class_gun.html#aa1a3d5456fa08375cfc6c9e359c4bd3d" title="Adds a bullet into the bullets vector, used for when gun is shot." alt="" coords="188,157,276,184"/>
+</map>

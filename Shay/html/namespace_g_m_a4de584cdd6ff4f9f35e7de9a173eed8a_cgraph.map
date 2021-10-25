@@ -1,0 +1,52 @@
+<map id="GM::GameInit" name="GM::GameInit">
+<area shape="rect" id="node1" title="Initialises the game objects." alt="" coords="5,1399,108,1425"/>
+<area shape="rect" id="node2" href="$class_audio.html#a626ba3b594c23737771eecc5d74125f7" title="Loads a music file based on a given path, and gives a label for the music." alt="" coords="203,229,324,256"/>
+<area shape="rect" id="node3" href="$class_audio.html#a1b8fb974611c389e285d6fe7ec615462" title="Loads a .wav file based on a given path, and gives a label for the sound." alt="" coords="202,280,325,307"/>
+<area shape="rect" id="node4" href="$class_camera.html#a1a5f9fcbe1f5d99e48f34b2ab9994e0b" title="Clears the AABB collision vector." alt="" coords="193,331,334,357"/>
+<area shape="rect" id="node6" href="$namespace_g_m.html#aed4bfe3e5ff611abc9bd5780b9aad44f" title="Creates AABB collisions for the world." alt="" coords="156,381,371,408"/>
+<area shape="rect" id="node7" href="$class_player.html#ae5a3bcef2eda89370076f8fbce9e08b4" title="Getter for camera." alt="" coords="717,993,851,1020"/>
+<area shape="rect" id="node10" href="$namespace_l_t_g_w.html#a2764772923c6dcf9185e5093e11b2f8c" title="Creates the textures for the game world." alt="" coords="186,1373,341,1400"/>
+<area shape="rect" id="node15" href="$namespace_d_g_w.html#a44a4b848e72b3ef6be67c00101efb485" title="Is the master function which handles all the displaying for the game world." alt="" coords="156,606,371,647"/>
+<area shape="rect" id="node32" href="$namespace_g_m.html#a239894ede0787099f0991b08049a7122" title="If a fixed update loop for the game. This will handle all AI and other fixed update processes." alt="" coords="170,1424,357,1451"/>
+<area shape="rect" id="node33" href="$namespace_g_m.html#a50f2ee84a60559027660d9f376acfd4e" title="Handles all the key inputs for the game world." alt="" coords="205,1221,321,1248"/>
+<area shape="rect" id="node34" href="$namespace_g_m.html#a7865d8da944f015ba6322e7eeefe4e45" title="Handles reshaping the game window." alt="" coords="461,1272,598,1299"/>
+<area shape="rect" id="node35" href="$namespace_g_m.html#af011ff916b40f31e9dd54ee5c95a4dec" title="Pauses the game." alt="" coords="468,1171,591,1197"/>
+<area shape="rect" id="node36" href="$class_camera.html#af1b56a7aee4d2b0c38054e05c0553e51" title="Set step and rotation size." alt="" coords="444,1323,615,1349"/>
+<area shape="rect" id="node37" href="$namespace_g_m.html#a2889fa0cda958c68427e36fb9c67598e" title="Handles when the mouse is clicked." alt="" coords="186,1475,341,1501"/>
+<area shape="rect" id="node38" href="$namespace_g_m.html#a768282a0b7fd30f27553a58dd9de49ec" title="Handles all the mouse movement in the game world." alt="" coords="186,1069,341,1096"/>
+<area shape="rect" id="node39" href="$namespace_g_m.html#ad76d5ba64bd972b79c801d40caeb1e25" title="Handles all the released key inputs for the game world." alt="" coords="182,1120,345,1147"/>
+<area shape="rect" id="node40" href="$namespace_g_m.html#ab01b4c78fec2f34d6ba356a989b66783" title="A non fixed update loop." alt="" coords="186,1525,341,1552"/>
+<area shape="rect" id="node41" href="$namespace_d_g_w.html#a872f76162ae1608fd7b7d88210994d7b" title="Gets the window size." alt="" coords="209,1576,318,1603"/>
+<area shape="rect" id="node42" href="$namespace_lighting.html#a97585c5488dbaf6f6437de4eeec4fa2f" title="Initialises the lighting properties." alt="" coords="195,1627,332,1653"/>
+<area shape="rect" id="node43" href="$namespace_g_m.html#af4e14f9333873e3c40b07bb8470eedb4" title="Loads in Animation." alt="" coords="195,1677,332,1704"/>
+<area shape="rect" id="node44" href="$namespace_g_m.html#af80edf5763363ed9e2cac0040628a172" title="Loads in game object files." alt="" coords="173,1728,353,1755"/>
+<area shape="rect" id="node45" href="$class_audio.html#a22cbbb8548b682eb36d741a9979099cf" title="Getter for the sfx volume." alt="" coords="182,1779,345,1805"/>
+<area shape="rect" id="node46" href="$class_camera.html#a23d604f6eb495e4686665144d463a670" title="position the camera." alt="" coords="202,1829,325,1856"/>
+<area shape="rect" id="node47" href="$file_i_o_8cpp.html#aa48d86250875207b0d69be4e942b5289" title=" " alt="" coords="191,1880,335,1907"/>
+<area shape="rect" id="node48" href="$class_camera.html#ac30f63cf32fc10a18745364c613bc969" title="Sets the maximum crouch depth of the player." alt="" coords="167,1931,360,1973"/>
+<area shape="rect" id="node49" href="$class_camera.html#a86a5a6f374125bb58c6a97ba2d921a64" title="Set movement speed." alt="" coords="182,1997,345,2024"/>
+<area shape="rect" id="node50" href="$class_camera.html#a32f72b80b7aaf7a1623dc68239bd446b" title="Set the co&#45;ordinates of the world." alt="" coords="164,2048,363,2075"/>
+<area shape="rect" id="node5" href="$class_collision.html#a4ca5e04636edb48a791bfe909e5b93a1" title="Clears the vector." alt="" coords="475,5,584,32"/>
+<area shape="rect" id="node8" href="$class_collision.html#a582ec07565cb83e8a8f85652d08b4ee5" title="Sets the bounding box to the vector." alt="" coords="475,107,584,133"/>
+<area shape="rect" id="node9" href="$class_camera.html#a83d0c61d60fff5ec332a98acfa0b8d0b" title="Setter for collision." alt="" coords="457,56,601,83"/>
+<area shape="rect" id="node11" href="$class_textured_polygons.html#ac197b25a7152feed1499351f22446a45" title="Creates texture and set required values for texture mapping." alt="" coords="443,1439,615,1481"/>
+<area shape="rect" id="node12" href="$namespace_l_t_g_w.html#a83e47897b9860fe514f4bc0611cccf5f" title="Deletes image from memory." alt="" coords="421,1505,637,1532"/>
+<area shape="rect" id="node13" href="$class_textured_polygons.html#af491c14a7711097065a61e8b54c95647" title="Loads a raw image file into memory." alt="" coords="427,1556,632,1583"/>
+<area shape="rect" id="node14" href="$class_textured_polygons.html#a172716856851bb2b34fc1a66fb0b0b92" title="Set the number of textures to be used." alt="" coords="431,1374,628,1415"/>
+<area shape="rect" id="node16" href="$_boss_area_8cpp.html#ac6344a06aa467294f75db2faf1531f00" title=" " alt="" coords="495,917,564,944"/>
+<area shape="rect" id="node17" href="$namespace_d_g_w.html#a745f9998dc59c1aea832a5ae6e20555f" title="Displays different animations." alt="" coords="448,664,611,691"/>
+<area shape="rect" id="node18" href="$namespace_d_g_w.html#a8fcdf7d0d34a37601fb5351905671d1d" title="Displays the area around the train (tracks, etc.)" alt="" coords="428,309,631,336"/>
+<area shape="rect" id="node19" href="$class_object3_d.html#ade144bd5a564803e6d6f579a5a96f7a2" title="Displays the stored object based on the texture. Adds vertex normals to allows for lighting." alt="" coords="688,378,880,419"/>
+<area shape="rect" id="node20" href="$namespace_d_g_w.html#a326e256c951c385bf80e54d76f5b553f" title="Displays the benches." alt="" coords="458,968,601,995"/>
+<area shape="rect" id="node21" href="$namespace_d_g_w.html#ad4051278e5355a1a2954d01305a5191f" title="Displays the cachier." alt="" coords="455,613,604,640"/>
+<area shape="rect" id="node22" href="$namespace_d_g_w.html#a76609a654ce3c3de2b3825802bc59f8b" title="Displays the claw machines." alt="" coords="438,360,621,387"/>
+<area shape="rect" id="node23" href="$namespace_d_g_w.html#aad0768e4c4f6e18fb87b7832809dda00" title="Displays the controls for the game." alt="" coords="453,715,606,741"/>
+<area shape="rect" id="node24" href="$namespace_d_g_w.html#a6526d22bc50cb384ee9847814a77f9dc" title="Displays the display shelves." alt="" coords="433,411,626,437"/>
+<area shape="rect" id="node25" href="$namespace_d_g_w.html#a9f0a43e5d34a6c38c422f7b20ae11e40" title="Displays the duck gun." alt="" coords="450,563,609,589"/>
+<area shape="rect" id="node26" href="$namespace_d_g_o.html#a2296844ba56c9954fd36a42276757ec0" title="Displays the enemies from the RobotEnemies struct." alt="" coords="453,461,606,488"/>
+<area shape="rect" id="node27" href="$namespace_d_g_o.html#a9648812efcb02f919683cbd02ec292b3" title="Displays all the bullets in the gun." alt="" coords="446,765,613,792"/>
+<area shape="rect" id="node28" href="$namespace_d_g_w.html#af3e15a8b6a74be1f819d486a7cb707bf" title="Displays the lights." alt="" coords="459,157,599,184"/>
+<area shape="rect" id="node29" href="$class_enemy_a_i.html#ac5ee8f6fb5936f0b58c91fec793b7f6e" title="Displays the map for the AI." alt="" coords="454,816,605,843"/>
+<area shape="rect" id="node30" href="$namespace_d_g_w.html#a848621cf9f69c28bf49f7d51cba48f75" title="Displays the pause menu options." alt="" coords="420,867,639,893"/>
+<area shape="rect" id="node31" href="$namespace_d_g_w.html#a6d87e31d614d73a46ab7eeca225e0c63" title="Displays the games current performance metrics." alt="" coords="419,512,640,539"/>
+</map>

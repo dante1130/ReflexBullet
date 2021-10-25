@@ -1,0 +1,6 @@
+<map id="DisplayChancPosts" name="DisplayChancPosts">
+<area shape="rect" id="node1" title="Displays the chancellery window and door posts." alt="" coords="411,5,547,32"/>
+<area shape="rect" id="node2" href="$_display_shays_world_8h.html#a40dfd73349122d66f6debdac925aa1ed" title="Draws the backdrop (all images) (Calls all the draw functions)" alt="" coords="256,5,363,32"/>
+<area shape="rect" id="node3" href="$namespace_p_s_w.html#ac42adca9a07f41db2b12f62e6fad7d63" title="Handles all the display functions." alt="" coords="104,5,208,32"/>
+<area shape="rect" id="node4" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,5,56,32"/>
+</map>

@@ -1,0 +1,13 @@
+<map id="GM::EnemyBulletCollisionResolution" name="GM::EnemyBulletCollisionResolution">
+<area shape="rect" id="node1" title="Collision resolution for the enemy&#39;s bullets." alt="" coords="5,226,180,267"/>
+<area shape="rect" id="node2" href="$class_gun.html#ab0f5e8b1ad3b0fccb2fbe1f5575ad103" title="Gets the bullet at an index." alt="" coords="267,5,367,32"/>
+<area shape="rect" id="node3" href="$class_collision.html#abb75a80ee1cb6bd5bd04098497c65523" title="Collision check between a point and a bounding sphere." alt="" coords="258,56,377,83"/>
+<area shape="rect" id="node4" href="$class_player.html#a7ab7075fc6cc341d4a003b10bf656dfe" title="Getter for bounding box." alt="" coords="235,107,400,133"/>
+<area shape="rect" id="node5" href="$class_bullet.html#a4930f603694a37d19d2c533fc4cec52e" title=" " alt="" coords="228,157,407,184"/>
+<area shape="rect" id="node6" href="$class_bullet.html#a1b44b01864aae96db5c6b8660f934164" title="Getter for damage." alt="" coords="251,208,383,235"/>
+<area shape="rect" id="node7" href="$class_player.html#a497048a935a342ab6927d168e9e827c5" title="Getter for Gun." alt="" coords="261,259,373,285"/>
+<area shape="rect" id="node8" href="$class_player.html#a7da7faa7105424633ffb5bc022e14267" title="Getter for health." alt="" coords="255,309,380,336"/>
+<area shape="rect" id="node9" href="$class_audio.html#a51f596cbcc73699173d5e4ac3aef171f" title="Plays the sound based on the label of the sound effect." alt="" coords="254,360,381,387"/>
+<area shape="rect" id="node10" href="$class_gun.html#aa64058f56b209416e3a5e0bd65df090c" title="Removes a bullet from the bullets vector, used for when the bullet has collided." alt="" coords="251,411,384,437"/>
+<area shape="rect" id="node11" href="$class_player.html#a3b759e4b98a8218eb660f589cc1df667" title="Setter for health." alt="" coords="255,461,379,488"/>
+</map>

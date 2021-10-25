@@ -1,0 +1,5 @@
+<map id="Player::AddMoveSpeed" name="Player::AddMoveSpeed">
+<area shape="rect" id="node1" title="Adds the movement speed by a specified amount." alt="" coords="5,31,163,57"/>
+<area shape="rect" id="node2" href="$class_camera.html#af3014af0c3f1da025dec487bcaeb85db" title="Returns the movement speed." alt="" coords="211,5,373,32"/>
+<area shape="rect" id="node3" href="$class_camera.html#a86a5a6f374125bb58c6a97ba2d921a64" title="Set movement speed." alt="" coords="211,56,373,83"/>
+</map>

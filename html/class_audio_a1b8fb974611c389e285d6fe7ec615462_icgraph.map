@@ -1,4 +1,0 @@
-<map id="Audio::AddSound" name="Audio::AddSound">
-<area shape="rect" id="node1" title="Loads a .wav file based on a given path, and gives a label for the sound." alt="" coords="173,5,296,32"/>
-<area shape="rect" id="node2" href="$class_camera.html#a01f94c3543f56ede7af49dc778f19331" title="Default constructor." alt="" coords="5,5,125,32"/>
-</map>

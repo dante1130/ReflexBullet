@@ -1,0 +1,13 @@
+<map id="GM::LoadAnimationFrame" name="GM::LoadAnimationFrame">
+<area shape="rect" id="node1" title="Loads in an Animation frame." alt="" coords="5,212,180,239"/>
+<area shape="rect" id="node2" href="$file_i_o_8cpp.html#ade49629f63bf746df80c6e31b0eba037" title="Reads file and stores values inside Object3D obj." alt="" coords="289,187,377,213"/>
+<area shape="rect" id="node11" href="$class_object3_d.html#a71cf26c202141202848555d53fd46162" title="Assigns which material the object uses." alt="" coords="228,237,437,264"/>
+<area shape="rect" id="node3" href="$class_object3_d.html#a6f2641eb26562f7d1e2935afb2c35fa3" title="Creates a texture coordinate based of float parameters." alt="" coords="537,5,679,32"/>
+<area shape="rect" id="node4" href="$class_object3_d.html#aabda6fb93bccc732e30ce3b74f2d87e0" title="Creates faces using FaceBase array." alt="" coords="537,56,679,83"/>
+<area shape="rect" id="node5" href="$class_object3_d.html#a5f9c46e360a1a8b85cab02ab90582150" title="Creates a vertex based of float parameters." alt="" coords="535,107,681,133"/>
+<area shape="rect" id="node6" href="$class_object3_d.html#a7617c94ba42175db1b3a242e1bbc0db4" title="Stores the vertex normals." alt="" coords="515,157,701,184"/>
+<area shape="rect" id="node7" href="$class_object3_d.html#a08fdd60647d27452ece55995fd7c1187" title="Checks their is the same number of vertex normals to vertices." alt="" coords="485,209,731,250"/>
+<area shape="rect" id="node8" href="$class_object3_d.html#a6e947a7111d859d3cdab8aee67b7dafb" title="Assigns an object an mtl file name." alt="" coords="527,275,689,301"/>
+<area shape="rect" id="node9" href="$class_object3_d.html#a9b5cc19b3ef68259b4eb6eb965a48d6d" title="Saves the texture name to program." alt="" coords="517,325,699,352"/>
+<area shape="rect" id="node10" href="$file_i_o_8cpp.html#a2a79af5082bb9f0c48e6f263ff2f1d8f" title="Converts combined v and vt string into values." alt="" coords="559,376,657,403"/>
+</map>

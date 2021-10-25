@@ -1,8 +1,0 @@
-<map id="PlainVector::Push" name="PlainVector::Push">
-<area shape="rect" id="node1" title="Pushes new plain into the vector." alt="" coords="755,5,881,32"/>
-<area shape="rect" id="node2" href="$class_camera.html#ad99a8c3f5bc5388686681a7fbfeb1e43" title="Sets the co&#45;ordinate of each plain." alt="" coords="580,5,707,32"/>
-<area shape="rect" id="node3" href="$main_8cpp.html#a6cf23cd46360f21b30b53b359d9d297f" title="Creates different plains (used for setting the players y coordinate)" alt="" coords="209,5,305,32"/>
-<area shape="rect" id="node6" href="$main_8cpp.html#ad60cd567da650b4a7bc3eeaff237c3e2" title="Does all the plains for the extended area." alt="" coords="353,31,532,57"/>
-<area shape="rect" id="node4" href="$main_8cpp.html#a8264fa9a7444ab4805520c3d018b6623" title="Initializes settings @prarm No param." alt="" coords="104,5,161,32"/>
-<area shape="rect" id="node5" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,5,56,32"/>
-</map>

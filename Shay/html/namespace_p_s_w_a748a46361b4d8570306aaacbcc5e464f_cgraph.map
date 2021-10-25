@@ -1,0 +1,52 @@
+<map id="PSW::RenderLoop" name="PSW::RenderLoop">
+<area shape="rect" id="node1" title="Handles all the render steps for the program &#45; still needs work, barebones right now." alt="" coords="5,1076,136,1103"/>
+<area shape="rect" id="node2" href="$namespace_p_s_w.html#a8a5858f33585b2d6c2f3753ae83ecdbf" title="Determines if the sliding door should open or not." alt="" coords="211,31,347,57"/>
+<area shape="rect" id="node5" href="$namespace_g_m.html#a4de584cdd6ff4f9f35e7de9a173eed8a" title="Initialises the game objects." alt="" coords="227,1076,330,1103"/>
+<area shape="rect" id="node46" href="$namespace_p_s_w.html#aabbac81d6c9355882cb6b0338f1200e9" title="Checks if the player should be moved to the game world." alt="" coords="198,81,359,108"/>
+<area shape="rect" id="node47" href="$class_camera.html#a6d8682d38e8c8ac728d9ca39a78ac109" title="Handles all key movement for movement speed." alt="" coords="184,1776,373,1803"/>
+<area shape="rect" id="node50" href="$namespace_p_s_w.html#af928b1217ba204a44890f2c818acb734" title="Reshapes the window when the use tries to." alt="" coords="225,1827,332,1853"/>
+<area shape="rect" id="node3" href="$class_camera.html#af8114c2a31f12a7adef5a10b76d89fff" title="Returns the z position of the camera." alt="" coords="472,5,585,32"/>
+<area shape="rect" id="node4" href="$class_camera.html#a6ae278c51ab44558d69d38b5ed3aedab" title="Returns the x position of the camera." alt="" coords="473,56,585,83"/>
+<area shape="rect" id="node6" href="$class_audio.html#a626ba3b594c23737771eecc5d74125f7" title="Loads a music file based on a given path, and gives a label for the music." alt="" coords="468,107,589,133"/>
+<area shape="rect" id="node7" href="$class_audio.html#a1b8fb974611c389e285d6fe7ec615462" title="Loads a .wav file based on a given path, and gives a label for the sound." alt="" coords="467,157,590,184"/>
+<area shape="rect" id="node8" href="$class_camera.html#a1a5f9fcbe1f5d99e48f34b2ab9994e0b" title="Clears the AABB collision vector." alt="" coords="458,208,599,235"/>
+<area shape="rect" id="node10" href="$namespace_g_m.html#aed4bfe3e5ff611abc9bd5780b9aad44f" title="Creates AABB collisions for the world." alt="" coords="421,259,636,285"/>
+<area shape="rect" id="node11" href="$class_player.html#ae5a3bcef2eda89370076f8fbce9e08b4" title="Getter for camera." alt="" coords="948,797,1081,824"/>
+<area shape="rect" id="node14" href="$namespace_l_t_g_w.html#a2764772923c6dcf9185e5093e11b2f8c" title="Creates the textures for the game world." alt="" coords="451,477,606,504"/>
+<area shape="rect" id="node19" href="$namespace_d_g_w.html#a44a4b848e72b3ef6be67c00101efb485" title="Is the master function which handles all the displaying for the game world." alt="" coords="421,731,636,773"/>
+<area shape="rect" id="node26" href="$namespace_g_m.html#a239894ede0787099f0991b08049a7122" title="If a fixed update loop for the game. This will handle all AI and other fixed update processes." alt="" coords="435,797,622,824"/>
+<area shape="rect" id="node27" href="$namespace_g_m.html#a50f2ee84a60559027660d9f376acfd4e" title="Handles all the key inputs for the game world." alt="" coords="471,899,587,925"/>
+<area shape="rect" id="node28" href="$namespace_g_m.html#a7865d8da944f015ba6322e7eeefe4e45" title="Handles reshaping the game window." alt="" coords="723,899,861,925"/>
+<area shape="rect" id="node29" href="$namespace_g_m.html#af011ff916b40f31e9dd54ee5c95a4dec" title="Pauses the game." alt="" coords="731,1000,853,1027"/>
+<area shape="rect" id="node30" href="$class_camera.html#af1b56a7aee4d2b0c38054e05c0553e51" title="Set step and rotation size." alt="" coords="707,1051,877,1077"/>
+<area shape="rect" id="node31" href="$namespace_g_m.html#a2889fa0cda958c68427e36fb9c67598e" title="Handles when the mouse is clicked." alt="" coords="451,1051,606,1077"/>
+<area shape="rect" id="node32" href="$namespace_g_m.html#a768282a0b7fd30f27553a58dd9de49ec" title="Handles all the mouse movement in the game world." alt="" coords="715,1101,869,1128"/>
+<area shape="rect" id="node33" href="$namespace_g_m.html#ad76d5ba64bd972b79c801d40caeb1e25" title="Handles all the released key inputs for the game world." alt="" coords="711,1152,873,1179"/>
+<area shape="rect" id="node34" href="$namespace_g_m.html#ab01b4c78fec2f34d6ba356a989b66783" title="A non fixed update loop." alt="" coords="451,1203,606,1229"/>
+<area shape="rect" id="node35" href="$namespace_d_g_w.html#a872f76162ae1608fd7b7d88210994d7b" title="Gets the window size." alt="" coords="474,1253,583,1280"/>
+<area shape="rect" id="node36" href="$namespace_lighting.html#a97585c5488dbaf6f6437de4eeec4fa2f" title="Initialises the lighting properties." alt="" coords="460,1304,597,1331"/>
+<area shape="rect" id="node37" href="$namespace_g_m.html#af4e14f9333873e3c40b07bb8470eedb4" title="Loads in Animation." alt="" coords="460,1355,597,1381"/>
+<area shape="rect" id="node38" href="$namespace_g_m.html#af80edf5763363ed9e2cac0040628a172" title="Loads in game object files." alt="" coords="439,1405,619,1432"/>
+<area shape="rect" id="node39" href="$class_audio.html#a22cbbb8548b682eb36d741a9979099cf" title="Getter for the sfx volume." alt="" coords="447,1456,610,1483"/>
+<area shape="rect" id="node40" href="$class_camera.html#a23d604f6eb495e4686665144d463a670" title="position the camera." alt="" coords="467,1507,590,1533"/>
+<area shape="rect" id="node42" href="$file_i_o_8cpp.html#aa48d86250875207b0d69be4e942b5289" title=" " alt="" coords="457,1557,601,1584"/>
+<area shape="rect" id="node43" href="$class_camera.html#ac30f63cf32fc10a18745364c613bc969" title="Sets the maximum crouch depth of the player." alt="" coords="432,1609,625,1650"/>
+<area shape="rect" id="node44" href="$class_camera.html#a86a5a6f374125bb58c6a97ba2d921a64" title="Set movement speed." alt="" coords="447,1675,610,1701"/>
+<area shape="rect" id="node45" href="$class_camera.html#a32f72b80b7aaf7a1623dc68239bd446b" title="Set the co&#45;ordinates of the world." alt="" coords="429,1725,628,1752"/>
+<area shape="rect" id="node9" href="$class_collision.html#a4ca5e04636edb48a791bfe909e5b93a1" title="Clears the vector." alt="" coords="737,107,847,133"/>
+<area shape="rect" id="node12" href="$class_collision.html#a582ec07565cb83e8a8f85652d08b4ee5" title="Sets the bounding box to the vector." alt="" coords="737,208,847,235"/>
+<area shape="rect" id="node13" href="$class_camera.html#a83d0c61d60fff5ec332a98acfa0b8d0b" title="Setter for collision." alt="" coords="720,259,864,285"/>
+<area shape="rect" id="node15" href="$class_textured_polygons.html#ac197b25a7152feed1499351f22446a45" title="Creates texture and set required values for texture mapping." alt="" coords="706,361,878,402"/>
+<area shape="rect" id="node16" href="$namespace_l_t_g_w.html#a83e47897b9860fe514f4bc0611cccf5f" title="Deletes image from memory." alt="" coords="684,427,900,453"/>
+<area shape="rect" id="node17" href="$class_textured_polygons.html#af491c14a7711097065a61e8b54c95647" title="Loads a raw image file into memory." alt="" coords="689,477,895,504"/>
+<area shape="rect" id="node18" href="$class_textured_polygons.html#a172716856851bb2b34fc1a66fb0b0b92" title="Set the number of textures to be used." alt="" coords="693,529,891,570"/>
+<area shape="rect" id="node20" href="$_boss_area_8cpp.html#ac6344a06aa467294f75db2faf1531f00" title=" " alt="" coords="757,595,827,621"/>
+<area shape="rect" id="node21" href="$namespace_d_g_w.html#a745f9998dc59c1aea832a5ae6e20555f" title="Displays different animations." alt="" coords="711,645,873,672"/>
+<area shape="rect" id="node22" href="$namespace_d_g_w.html#a8fcdf7d0d34a37601fb5351905671d1d" title="Displays the area around the train (tracks, etc.)" alt="" coords="691,696,893,723"/>
+<area shape="rect" id="node23" href="$namespace_d_g_w.html#a326e256c951c385bf80e54d76f5b553f" title="Displays the benches." alt="" coords="721,747,863,773"/>
+<area shape="rect" id="node24" href="$namespace_d_g_w.html#ad4051278e5355a1a2954d01305a5191f" title="Displays the cachier." alt="" coords="717,797,867,824"/>
+<area shape="rect" id="node25" href="$namespace_d_g_w.html#a76609a654ce3c3de2b3825802bc59f8b" title="Displays the claw machines." alt="" coords="701,848,883,875"/>
+<area shape="rect" id="node41" href="$class_camera.html#a023cb3e9d92301d8132f338c7ef5be77" title="Calls the glLookAt function." alt="" coords="715,1641,869,1668"/>
+<area shape="rect" id="node48" href="$class_camera.html#ad9adf754f286b4b94efb08ad827fa878" title="Handles A and D key movement of player." alt="" coords="425,1827,632,1853"/>
+<area shape="rect" id="node49" href="$class_camera.html#af995c7d99ec7edec40d9c055d58f2440" title="Handles W and S key movement of player." alt="" coords="423,1877,634,1904"/>
+</map>

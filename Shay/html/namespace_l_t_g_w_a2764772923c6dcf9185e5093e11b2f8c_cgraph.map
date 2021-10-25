@@ -1,0 +1,8 @@
+<map id="LTGW::CreateTextures" name="LTGW::CreateTextures">
+<area shape="rect" id="node1" title="Creates the textures for the game world." alt="" coords="5,97,160,123"/>
+<area shape="rect" id="node2" href="$class_textured_polygons.html#ac197b25a7152feed1499351f22446a45" title="Creates texture and set required values for texture mapping." alt="" coords="230,5,402,47"/>
+<area shape="rect" id="node3" href="$namespace_l_t_g_w.html#a83e47897b9860fe514f4bc0611cccf5f" title="Deletes image from memory." alt="" coords="208,71,424,98"/>
+<area shape="rect" id="node4" href="$class_textured_polygons.html#af491c14a7711097065a61e8b54c95647" title="Loads a raw image file into memory." alt="" coords="213,122,419,149"/>
+<area shape="rect" id="node6" href="$class_textured_polygons.html#a172716856851bb2b34fc1a66fb0b0b92" title="Set the number of textures to be used." alt="" coords="217,173,415,215"/>
+<area shape="rect" id="node5" href="$class_textured_polygons.html#ae959f3a7a1522654a97ccec5c61a14d2" title="Returns image file." alt="" coords="472,115,659,156"/>
+</map>
