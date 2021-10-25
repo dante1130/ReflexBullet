@@ -90,10 +90,25 @@ namespace GM
 	 */
 	void GameCollisionResolution();
 
+	/**
+	 * @brief	Collision resolution for the player's bullets.
+	 * @param	No param
+	 * @return	void 
+	 */
 	void PlayerBulletCollisionResolution();
 
+	/**
+	 * @brief	Collision resolution for the enemy's bullets.
+	 * @param	No param
+	 * @return	void
+	 */
 	void EnemyBulletCollisionResolution();
 
+	/**
+	 * @brief	Collision resolution for the boss' bullets.
+	 * @param	No param
+	 * @return	void
+	 */
 	void BossBulletCollisionResolution();
 
 	/**
@@ -103,6 +118,11 @@ namespace GM
 	*/
 	void GameFixedUpdateLoop(int val);
 
+	/**
+	 * @brief	Updates by the game tick.
+	 * @param	delta float
+	 * @return	void
+	 */
 	void GameFixedUpdates(float delta);
 
 	/**
