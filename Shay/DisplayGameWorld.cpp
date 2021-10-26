@@ -37,8 +37,11 @@ void DGW::DisplayGameWorldMasterFunction()
 
 	glPushMatrix();
 	glScalef(-1, 1, 1);
+	if ((GLint)gameRunTime % 2000 >= 1000)
+		GWO.ToyStore[2].DisplayObjectWithLighting(DUCK_NEON_1);
+	else
+		GWO.ToyStore[2].DisplayObjectWithLighting(DUCK_NEON_2);
 	GWO.ToyStore[0].DisplayObjectWithLighting(TOY_STORE);
-	GWO.ToyStore[2].DisplayObjectWithLighting(DUCK_NEON_2);
 	if (bossOn == false) { GWO.ToyStore[1].DisplayObjectWithLighting(TOY_STORE); };
 	GWO.Counter.DisplayObjectWithLighting(TOY_STORE);
 	glPopMatrix();
