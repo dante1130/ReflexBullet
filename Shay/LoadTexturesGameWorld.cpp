@@ -87,11 +87,11 @@ void LTGW::CreateTextures()
 	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/roofThing.raw", 256, 256);
 	tpGW.CreateTexture(B_PIVOT, GWimage, 256, 256);
 
-	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/duckneon1.raw", 1280, 720);
-	tpGW.CreateTexture(DUCK_NEON_1, GWimage, 1280, 720);
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/duckneon1.raw", 500, 281);
+	tpGW.CreateTexture(DUCK_NEON_1, GWimage, 500, 281);
 
-	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/duckneon2.raw", 1280, 720);
-	tpGW.CreateTexture(DUCK_NEON_2, GWimage, 1280, 720);
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/duckneon2.raw", 500, 281);
+	tpGW.CreateTexture(DUCK_NEON_2, GWimage, 500, 281);
 
 	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/Paused.raw", 400, 100);
 	tpGW.CreateTexture(T_PAUSED, GWimage, 400, 100);
