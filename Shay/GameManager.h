@@ -265,7 +265,7 @@ namespace GM
 	* @param	No param
 	* @return	Void
 	*/
-	void PausedFloatingPosition();
+	void PausedFloatingPosition(); 
 
 	/**
 	* @brief	Restarts the game
@@ -287,7 +287,6 @@ namespace GM
 	* @return	Void
 	*/
 	void ExitGame(int num);
-
 }
 
 #endif

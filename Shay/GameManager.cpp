@@ -8,10 +8,12 @@ int waveLevel = 1;
 bool isLeftMouse = false;
 
 bool ActiveGameWorld = false;
-float gameWorldMovementSpeed = 0.06;
-float camRotateSpeed = 1;
-float zFar = 0.001;
 bool Starting = true;
+bool announcerPlaying = false;
+int announcerChannel = -1;
+float zFar = 0.001;
+float gameWorldMovementSpeed = 0.06;
+float camRotateSpeed = 0.5;
 float delta, count = 0;
 float elapsedTime = glutGet(GLUT_ELAPSED_TIME);
 
@@ -481,27 +483,40 @@ void GM::GameFixedUpdateLoop(int val)
 		GameFixedUpdates(delta);
 		GameCollisionResolution();
 	}
-	if ((int)elapsedTime % 500 == 0) // Every time elapsed time has no remainders when divided by 500, do the next part
+
+	if (announcerPlaying && !Audio::IsChannelPlaying(announcerChannel)) 
+		announcerPlaying = false;
+
+	if (!announcerPlaying)
 	{
-		//1 in 3 chance to play a random announcer line
-		int randnum = rand() % (12 - 1 + 1) + 1;
-		switch (randnum)
+		// Every time elapsed time has no remainders when divided by 500, do the next part
+		if ((int)elapsedTime % 500 == 0)
 		{
-		case 3:
-			Audio::PlaySound("announcer1");
-			break;
-		case 6:
-			Audio::PlaySound("announcer2");
-			break;
-		case 9:
-			Audio::PlaySound("announcer3");
-			break;
-		case 12:
-			Audio::PlaySound("announcer4");
-			break;
+			//1 in 3 chance to play a random announcer line
+			int randnum = rand() % (12 - 1 + 1) + 1;
+
+			switch (randnum)
+			{
+			case 3:
+				announcerChannel = Audio::PlaySound("announcer1");
+				announcerPlaying = true;
+				break;
+			case 6:
+				announcerChannel = Audio::PlaySound("announcer2");
+				announcerPlaying = true;
+				break;
+			case 9:
+				announcerChannel = Audio::PlaySound("announcer3");
+				announcerPlaying = true;
+				break;
+			case 12:
+				announcerChannel = Audio::PlaySound("announcer4");
+				announcerPlaying = true;
+				break;
+			}
 		}
 	}
-	
+
 }
 
 void GM::GameFixedUpdates(float delta)
@@ -568,6 +583,7 @@ void GM::GameFixedUpdates(float delta)
 
 		player.AddSkillPoints(waveLevel);
 		++waveLevel;
+
 		int randnum = rand() % (4 - 1 + 1) + 1;
 		switch (randnum)
 		{

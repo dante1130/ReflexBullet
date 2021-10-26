@@ -66,16 +66,16 @@ public:
 	/**
 	* @brief	Plays the sound based on the label of the sound effect.
 	* @param	soundName const char*
-	* @return	void
+	* @return	int - Channel being played on
 	*/
-	static void PlaySound(const char* soundName);
+	static int PlaySound(const char* soundName);
 
 	/**
 	* @brief	Plays the music based on the label of the music effect.
 	* @param	musicName const char*
-	* @return	void
+	* @return	int - Channel being played on
 	*/
-	static void PlayMusic(const char* musicName);
+	static int PlayMusic(const char* musicName);
 
 	/**
 	 * @brief	Getter for the sfx volume.
@@ -97,6 +97,13 @@ public:
 	 * @return  void
 	 */
 	static void SetMusicVolume(int volume);
+
+	/**
+	 * @brief	Boolean to check if a specified channel is playing.
+	 * @param	volume int
+	 * @return  bool
+	 */
+	static bool IsChannelPlaying(int channel);
 
 private:
 	/// Sounds stored as values into a map, key is a string that contains the label.
