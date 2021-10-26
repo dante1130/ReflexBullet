@@ -86,8 +86,9 @@ void GM::GameInit(int w, int h)
 
 void GM::LoadGameObjectFiles()
 {
-	ReadOBJMTL("data/object/gameObjects/ToyStore.obj", GWO.ToyStore[0]);
+	ReadOBJMTL("data/object/gameObjects/ToyShopBase.obj", GWO.ToyStore[0]);
 	ReadOBJMTL("data/object/gameObjects/ToyShopPillars.obj", GWO.ToyStore[1]);
+	ReadOBJMTL("data/object/gameObjects/ToyShopSign.obj", GWO.ToyStore[2]);
 	ReadOBJMTL("data/object/gameObjects/Shelf_1.obj", GWO.Shelf_1);
 	ReadOBJMTL("data/object/gameObjects/s_Box.obj", GWO.s_Box);
 	ReadOBJMTL("data/object/gameObjects/s_Movies.obj", GWO.s_Movies);

@@ -87,6 +87,12 @@ void LTGW::CreateTextures()
 	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/roofThing.raw", 256, 256);
 	tpGW.CreateTexture(B_PIVOT, GWimage, 256, 256);
 
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/duckneon1.raw", 1280, 720);
+	tpGW.CreateTexture(DUCK_NEON_1, GWimage, 1280, 720);
+
+	GWimage = tpGW.LoadTexture("data/object/GameObjects/GameObjectTextures/duckneon2.raw", 1280, 720);
+	tpGW.CreateTexture(DUCK_NEON_2, GWimage, 1280, 720);
+
 	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/Paused.raw", 400, 100);
 	tpGW.CreateTexture(T_PAUSED, GWimage, 400, 100);
 
@@ -232,9 +238,7 @@ void LTGW::CreateTextures()
 	GWimage = tpGW.LoadTexture("data/GameSeperateTextures/GameControls.raw", 641, 635);
 	tpGW.CreateTexture(T_GAME_CONTROLS, GWimage, 641, 635);
 
-
-
-
+	
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 

@@ -88,8 +88,10 @@ constexpr auto S_HOUSE					= 73;
 constexpr auto B_PIVOT					= 74;
 
 constexpr auto T_GAME_CONTROLS			= 75;
+constexpr auto DUCK_NEON_1				= 76;
+constexpr auto DUCK_NEON_2				= 77;
 
-//NEXT 76
-constexpr auto GWTEXTURE_END = 80;
+//NEXT 78
+constexpr auto GWTEXTURE_END = 85;
 
 #endif

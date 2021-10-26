@@ -35,7 +35,7 @@ struct AnimationOBJ
 struct GameWorldObjects
 {
 	Object3D Shelf_1;
-	Object3D ToyStore[2];
+	Object3D ToyStore[3];
 	Object3D s_Box;
 	Object3D s_Movies;
 	Object3D s_Books;

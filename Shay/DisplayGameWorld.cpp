@@ -42,6 +42,11 @@ void DGW::DisplayGameWorldMasterFunction()
 	GWO.Counter.DisplayObjectWithLighting(TOY_STORE);
 	glPopMatrix();
 
+	glPushMatrix();
+	glScalef(-1, 1, 1);
+	GWO.ToyStore[2].DisplayObjectWithLighting(DUCK_NEON_2);
+	glPopMatrix();
+
 	if (performanceMetric) DisplayPerformanceMetrics();
 	if (wireFrame) EnemyAI::DisplayWireframe();
 	if (displayMap) EnemyAI::DisplayMap();
