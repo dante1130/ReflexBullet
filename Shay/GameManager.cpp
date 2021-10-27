@@ -10,7 +10,12 @@ bool isLeftMouse = false;
 bool ActiveGameWorld = false;
 bool Starting = true;
 bool announcerPlaying = false;
+bool cashierPlaying = false;
 int announcerChannel = -1;
+int cashierChannel = -1;
+bool gameConditionPlaying = false;
+int gameConditionChannel = -1;
+bool beginPlay = true; // Do this only once per game start (to play the vocieline once)
 float zFar = 0.001;
 float gameWorldMovementSpeed = 0.06;
 float camRotateSpeed = 0.5;
@@ -34,7 +39,25 @@ void GM::GameInit(int w, int h)
 	Audio::AddSound("music/lasershot.wav", "enemyShoot"); //unused for now
 	Audio::AddSound("music/bossShoot.wav", "bossShoot");//unused for now
 	Audio::AddSound("music/laser.wav", "laserAttack"); //unused for now
-	Audio::AddSound("music/hurtSound.wav", "playerHurt"); 
+	//Audio::AddSound("music/hurtSound.wav", "playerHurt"); 
+	Audio::AddSound("music/playerHurt1.wav", "playerHurt1");
+	Audio::AddSound("music/playerHurt2.wav", "playerHurt2");
+	Audio::AddSound("music/playerHurt3.wav", "playerHurt3");
+	Audio::AddSound("music/playerHurt4.wav", "playerHurt4");
+	Audio::AddSound("music/playerHurt5.wav", "playerHurt5");
+	Audio::AddSound("music/playerHurt6.wav", "playerHurt6");
+	Audio::AddSound("music/gameDefeat1.wav", "gameDefeat1");
+	Audio::AddSound("music/gameDefeat2.wav", "gameDefeat2");
+	Audio::AddSound("music/gameDefeat3.wav", "gameDefeat3");
+	Audio::AddSound("music/gameDefeat4.wav", "gameDefeat4");
+	Audio::AddSound("music/gameVictory1.wav", "gameVictory1");
+	Audio::AddSound("music/gameVictory2.wav", "gameVictory2");
+	Audio::AddSound("music/gameVictory3.wav", "gameVictory3");
+	Audio::AddSound("music/gameVictory4.wav", "gameVictory4");
+	Audio::AddSound("music/newGamePlay1.wav", "newGamePlay1");
+	Audio::AddSound("music/newGamePlay2.wav", "newGamePlay2");
+	Audio::AddSound("music/newGamePlay3.wav", "newGamePlay3");
+	Audio::AddSound("music/newGamePlay4.wav", "newGamePlay4");
 	Audio::AddSound("music/bulletExplosion.wav", "bulletCollide");
 	Audio::AddSound("music/deathSound.wav", "deathSound");
 	Audio::AddSound("music/menuHover.wav", "menuHover");
@@ -395,7 +418,29 @@ void GM::EnemyBulletCollisionResolution()
 			else if (Collision::Collide(player.GetBoundingBox(),
 										enemyBullet.GetBoundingSphere()))
 			{
-				Audio::PlaySound("playerHurt");
+				int randnum = rand() % (6 - 1 + 1) + 1;
+				switch (randnum)
+				{
+				case 1:
+					Audio::PlaySound("playerHurt1");
+					break;
+				case 2:
+					Audio::PlaySound("playerHurt2");
+					break;
+				case 3:
+					Audio::PlaySound("playerHurt3");
+					break;
+				case 4:
+					Audio::PlaySound("playerHurt4");
+					break;
+				case 5:
+					Audio::PlaySound("playerHurt5");
+					break;
+				case 6:
+					Audio::PlaySound("playerHurt6");
+					break;
+				}
+				
 				player.SetHealth(player.GetHealth() - enemyBullet.GetDamage());
 				enemy.GetGun().RemoveBullet(i);
 			}
@@ -475,7 +520,7 @@ void GM::GameFixedUpdateLoop(int val)
 		PausedFloatingPosition();
 	else if (Starting)
 		GameStartUp();
-	else if (PMV.m_ShowControls == false)
+	else if (PMV.m_ShowControls == false) //Controls at the start
 	{
 		gameRunTime += newElapsedTime - lastUnpausedFrame;
 		lastUnpausedFrame = newElapsedTime;
@@ -483,16 +528,47 @@ void GM::GameFixedUpdateLoop(int val)
 		GameFixedUpdates(delta);
 		GameCollisionResolution();
 	}
+	if (PMV.m_ShowControls && beginPlay) //Play the new game controls audio
+	{
+		beginPlay = false;
+		int randnum = rand() % (4 - 1 + 1) + 1;
+
+		switch (randnum)
+		{
+		case 1:
+			cashierChannel = Audio::PlaySound("newGamePlay1");
+			cashierPlaying = true;
+			break;
+		case 2:
+			cashierChannel = Audio::PlaySound("newGamePlay2");
+			cashierPlaying = true;
+			break;
+		case 3:
+			cashierChannel = Audio::PlaySound("newGamePlay3");
+			cashierPlaying = true;
+			break;
+		case 4:
+			cashierChannel = Audio::PlaySound("newGamePlay4");
+			cashierPlaying = true;
+			break;
+		}
+	}
 
 	if (announcerPlaying && !Audio::IsChannelPlaying(announcerChannel)) 
 		announcerPlaying = false;
 
+	if (gameConditionPlaying && !(PMV.m_PausedMenuChoosen == 6 || PMV.m_PausedMenuChoosen == 7)) //General sanity check for the game to see if the win/loss condition is active
+	{
+		Audio::StopChannelPlaying(gameConditionChannel);
+		gameConditionChannel = -1;
+		gameConditionPlaying = false;
+	}
 	if (!announcerPlaying)
 	{
 		// Every time elapsed time has no remainders when divided by 500, do the next part
-		if ((int)elapsedTime % 500 == 0)
+		if ((int)elapsedTime % 500 == 0 && PMV.m_PausedMenuChoosen == 0 && !PMV.m_ShowControls) //Don't play when game is paused and/or the game has the controls showing
 		{
-			//1 in 3 chance to play a random announcer line
+			//1 in 3 chance to play a random announcer line (so it doesn't play all the time)
 			int randnum = rand() % (12 - 1 + 1) + 1;
 
 			switch (randnum)
@@ -562,6 +638,27 @@ void GM::GameFixedUpdates(float delta)
 	{
 		// Display game over screen
 		PMV.m_PausedMenuChoosen = 6;
+		int randnum = rand() % (4 - 1 + 1) + 1;
+		switch (randnum)
+		{
+		case 1:
+			gameConditionChannel = Audio::PlaySound("gameDefeat1");
+			gameConditionPlaying = true;
+			break;
+		case 2:
+			gameConditionChannel = Audio::PlaySound("gameDefeat2");
+			gameConditionPlaying = true;
+			break;
+		case 3:
+			gameConditionChannel = Audio::PlaySound("gameDefeat3");
+			gameConditionPlaying = true;
+			break;
+		case 4:
+			gameConditionChannel = Audio::PlaySound("gameDefeat4");
+			gameConditionPlaying = true;
+			break;
+		}
+
 		PauseGame();
 	}
 	// Victory condition
@@ -573,6 +670,26 @@ void GM::GameFixedUpdates(float delta)
 
 			// Display victory screen
 			PMV.m_PausedMenuChoosen = 7;
+			int randnum = rand() % (4 - 1 + 1) + 1;
+			switch (randnum)
+			{
+			case 1:
+				gameConditionChannel = Audio::PlaySound("gameVictory1");
+				gameConditionPlaying = true;
+				break;
+			case 2:
+				gameConditionChannel = Audio::PlaySound("gameVictory2");
+				gameConditionPlaying = true;
+				break;
+			case 3:
+				gameConditionChannel = Audio::PlaySound("gameVictory3");
+				gameConditionPlaying = true;
+				break;
+			case 4:
+				gameConditionChannel = Audio::PlaySound("gameVictory4");
+				gameConditionPlaying = true;
+				break;
+			}
 			PauseGame();
 		}	
 	}
@@ -583,21 +700,36 @@ void GM::GameFixedUpdates(float delta)
 
 		player.AddSkillPoints(waveLevel);
 		++waveLevel;
-
+		if (announcerPlaying)
+		{
+			Audio::StopChannelPlayingFade(announcerChannel, 1000);
+			announcerChannel = -1;
+			announcerPlaying = false;
+		}
+		if (gameConditionPlaying)
+		{
+			Audio::StopChannelPlaying(gameConditionChannel);
+			gameConditionChannel = -1;
+			gameConditionPlaying = false;
+		}
 		int randnum = rand() % (4 - 1 + 1) + 1;
 		switch (randnum)
 		{
 		case 1:
-			Audio::PlaySound("cashier1");
+			cashierChannel = Audio::PlaySound("cashier1");
+			cashierPlaying = true;
 			break;
 		case 2:
-			Audio::PlaySound("cashier2");
+			cashierChannel = Audio::PlaySound("cashier2");
+			cashierPlaying = true;
 			break;
 		case 3:
-			Audio::PlaySound("cashier3");
+			cashierChannel = Audio::PlaySound("cashier3");
+			cashierPlaying = true;
 			break;
 		case 4:
-			Audio::PlaySound("cashier4");
+			cashierChannel = Audio::PlaySound("cashier4");
+			cashierPlaying = true;
 			break;
 		}
 
@@ -694,6 +826,11 @@ void GM::GameKeys(unsigned char key, int x, int y)
 			Starting = false;
 			glClearColor(0.5, 0.5, 0.5, 1);
 			GameReshape(glutGet(GLUT_WINDOW_WIDTH), glutGet(GLUT_WINDOW_HEIGHT));
+			if (cashierPlaying)
+			{
+				Audio::StopChannelPlayingFade(cashierChannel, 1000);
+				cashierChannel = -1;
+			}
 		}
 		break;
 	case 'p':
@@ -1221,6 +1358,11 @@ void GM::MenuOptionChoosen(int option)
 
 		if (option == 5)
 		{
+			if (cashierPlaying || Audio::IsChannelPlaying(cashierChannel))
+			{
+				Audio::StopChannelPlayingFade(cashierChannel, 1500);
+				cashierPlaying = false;
+			}
 			if (player.GetSkillPoints() >= 10)
 			{
 				//go to boss level

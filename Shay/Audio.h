@@ -100,10 +100,24 @@ public:
 
 	/**
 	 * @brief	Boolean to check if a specified channel is playing.
-	 * @param	volume int
+	 * @param	channel int
 	 * @return  bool
 	 */
 	static bool IsChannelPlaying(int channel);
+
+	/**
+	 * @brief	Stop the current audio channel from playing. Only stops if audio is playing from that channel
+	 * @param	channel int
+	 * @return  void
+	 */
+	static void StopChannelPlaying(int channel);
+
+	/**
+	 * @brief	Fades out the current audio channel from playing. Only fades out if audio is playing from that channel
+	 * @param	channel int, milliseconds int
+	 * @return  void
+	 */
+	static void StopChannelPlayingFade(int channel, int milliseconds);
 
 private:
 	/// Sounds stored as values into a map, key is a string that contains the label.

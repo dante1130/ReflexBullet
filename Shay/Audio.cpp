@@ -105,3 +105,19 @@ bool Audio::IsChannelPlaying(int channel)
 {
 	return Mix_Playing(channel);
 }
+
+void Audio::StopChannelPlaying(int channel)
+{
+	if (Mix_Playing(channel))
+	{
+		Mix_HaltChannel(channel);
+	}
+}
+
+void Audio::StopChannelPlayingFade(int channel, int milliseconds)
+{
+	if (Mix_Playing(channel))
+	{
+		Mix_FadeOutChannel(channel,milliseconds);
+	}
+}
