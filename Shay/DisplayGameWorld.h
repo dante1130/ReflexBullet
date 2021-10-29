@@ -170,7 +170,7 @@ namespace DGW
 	* @return	Void
 	*/
 	void DisplayShelfContents(unsigned int objectList, float xPos, int xDirection, float zPos, int zDirection, int seed, int obj, glm::vec3 pos, int LOD);
-
+	
 	/**
 	* @brief	Displays a shelf and its contents based on an object list and its constraints (constraints specify when the shelf contents should be displayed)
 	* @param	objectList	- An integer which specifies which object list to use
