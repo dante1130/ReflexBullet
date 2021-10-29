@@ -6,22 +6,25 @@ Spencer
 370
 Test Subject #1
 77.1
-404
+403.819
 AANGDREW
 84.42
-344
+344.496
 WeSpeedRunningBois
 84.34
-289
+289.441
 Brocolli
 89.88
-296
+295.903
 Very Cool!
 89.89
-287
+286.769
 Nathan
 78.78
-343
+343.605
 PotatoDesu
 84.4512
-433
+433.195
+Florian
+94.1798
+265.661
