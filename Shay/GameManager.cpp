@@ -1487,6 +1487,8 @@ void GM::RestartGame()
 	CreateGameBoundingBoxes();
 
 	boss.SetHealth(boss.GetStartHealth());
+	boss.SetPhase(1);
+	player.SetLazerHit(false);
 	bossOn = false;
 
 	noOfSpawn = startingSpawnCount;
