@@ -1,0 +1,13 @@
+#
+.vs/
+out/
+
+*.json
+*.cpp.obj
+*.exe
+*.ilk
+*.manifest
+*.rc
+*.res
+.ninja_deps
+.ninja_log
