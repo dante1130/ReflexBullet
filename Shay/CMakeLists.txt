@@ -3,7 +3,32 @@
 #
 cmake_minimum_required (VERSION 3.8)
 
-# Add source to this project's executable.
-add_executable (Shay "main.cpp" "AABB.cpp" "AABBLinkedList.cpp" "AABBNode.cpp" "camera.cpp" "cameraMap.cpp" "collision.cpp" "EasySound.cpp" "PlainLinkedList.cpp" "PlainNode.cpp" "Sound.cpp" "SoundTime.cpp" "texturedPolygons.cpp")
+# Add source files to this project
+file(GLOB SOURCE_FILES *.cpp)
 
-# TODO: Add tests and install targets if needed.
+# Add header files to this project
+file(GLOB HEADER_FILES *.h)
+
+add_executable(Shay ${HEADER_FILES} ${SOURCE_FILES})
+
+add_custom_command(TARGET Shay PRE_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy_directory
+                    ${PROJECT_SOURCE_DIR}/dlls 
+                    ${CMAKE_CURRENT_BINARY_DIR})
+
+add_custom_command(TARGET Shay PRE_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy_directory
+                    ${PROJECT_SOURCE_DIR}/Shay/data 
+                    ${CMAKE_CURRENT_BINARY_DIR}/data)
+
+add_custom_command(TARGET Shay PRE_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy_directory
+                    ${PROJECT_SOURCE_DIR}/Shay/sounds 
+                    ${CMAKE_CURRENT_BINARY_DIR}/sounds)
+
+# MSVC compiler flags
+target_compile_options(${PROJECT_NAME} PUBLIC $<$<CXX_COMPILER_ID:MSVC>:/W4>)
+
+target_link_libraries(Shay ${PROJECT_SOURCE_DIR}/lib/x86/SDL2.lib)
+target_link_libraries(Shay ${PROJECT_SOURCE_DIR}/lib/x86/SDL2main.lib)
+target_link_libraries(Shay ${PROJECT_SOURCE_DIR}/lib/x86/glut32.lib)

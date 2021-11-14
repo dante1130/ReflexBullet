@@ -7,3 +7,6 @@ project ("Shay")
 
 # Include sub-projects.
 add_subdirectory ("Shay")
+
+target_include_directories(Shay PUBLIC
+						   "${PROJECT_SOURCE_DIR}/include/")
