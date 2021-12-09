@@ -9,7 +9,7 @@ file(GLOB SOURCE_FILES *.cpp)
 # Add header files to this project
 file(GLOB HEADER_FILES *.h)
 
-add_executable(Shay ${HEADER_FILES} ${SOURCE_FILES} "LoadTexturesGameWorld.h" "LoadTexturesGameWorld.cpp" "definesGW.h" "Leaderboards.h" "Leaderboards.cpp" "UI.h" "UI.cpp" "Boss.h" "Boss.cpp" "BossArea.h" "BossArea.cpp")
+add_executable(Shay ${HEADER_FILES} ${SOURCE_FILES} "LoadTexturesGameWorld.h" "LoadTexturesGameWorld.cpp" "definesGW.h" "Leaderboards.h" "Leaderboards.cpp" "UI.h" "UI.cpp" "Boss.h" "Boss.cpp" "BossArea.h" "BossArea.cpp" "AStar.cpp" "AStart.h" "AStartInterface.cpp" "AStartInterface.h")
 
 add_custom_command(TARGET Shay PRE_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
