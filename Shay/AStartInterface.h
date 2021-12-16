@@ -3,14 +3,20 @@
 
 #include "AStart.h"
 
+#include <vector>
 
 class AStar
 {
 	public:
 
 
-
 	private:
+
+		/// <summary>
+		/// A 2D vector which is used to store the grid as 0 - free and 1's - not free
+		/// </summary>
+		std::vector<std::vector<int>> grid;
+
 		/// <summary>
 		/// [0] - horizontal movement cost
 		/// [1] - diagonal movement cost
@@ -25,6 +31,11 @@ class AStar
 		/// </summary>
 		float heuristicsCostScale;
 
+		/// <summary>
+		/// gridSize[0] - X size
+		/// gridSize[1] - Y size
+		/// 		/// </summary>
+		int gridSize[2];
 };
 
 #endif
