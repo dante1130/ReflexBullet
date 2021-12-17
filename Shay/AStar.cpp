@@ -11,26 +11,115 @@ std::vector<std::vector<DistanceNode>> aStar::aStarSearch(std::vector<std::vecto
 	//Init grid used to store path
 	std::vector<std::vector<DistanceNode>> distanceGrid;
 
-	//Init grid default values
-	InitDefaultGrid(distanceGrid, gridSize);
+	//Init grid default values & starting node
+	InitDefaultGrid(distanceGrid, gridSize, start);
 
 	//Make sure nodes are available
 	if (IsDestination(start, goal) == true) throw (ALREADY_AT_DESTINATION);
 
-	if (ValidPosition(start, gridSize[0], gridSize[1]) == false) throw (START_OUT_OF_BOUNDS);
-	if (ValidPosition(goal, gridSize[0], gridSize[1]) == false) throw (GOAL_OUT_OF_BOUNDS);
+	if (ValidPosition(start, gridSize[1], gridSize[0]) == false) throw (START_OUT_OF_BOUNDS);
+	if (ValidPosition(goal, gridSize[1], gridSize[0]) == false) throw (GOAL_OUT_OF_BOUNDS);
 	
 	if (CellNotBlocked(start, grid) == false) throw (START_BLOCKED);
 	if (CellNotBlocked(goal, grid) == false) throw (GOAL_BLOCKED);
 
+	//Nodes which need to be checked for a shorter path
+	std::vector<DistanceNode> nodesToCheck;
 
+	//The nodes which have been already processed - set them to default false
+	std::vector<std::vector<bool>> nodesChecked;
+	for (int count = 0; count < gridSize[0]; count++)
+	{
+		for (int countTwo = 0; countTwo < gridSize[1]; countTwo++)
+		{
+			nodesChecked[count].push_back(false);
+		}
+	}
 
+	//Initialise nodeToCheck with inital node
+	DistanceNode tempDistanceNode;
+	tempDistanceNode.parentNode.x = start.x;
+	tempDistanceNode.parentNode.y = start.y;
+	tempDistanceNode.f = 0;
 
+	nodesToCheck.push_back(tempDistanceNode);
+
+	//If destination has been reached
+	bool pathFound = false;
+
+	DistanceNode distanceNodeChoosen, toAdd;
+	int smallestIndex;
+	node pos;
+	int i = start.x, j = start.y;
+	float gNew, hNew, fNew;
+
+	while (!nodesToCheck.empty() && pathFound == false)
+	{
+		//Finds smallest nodes in nodesToCheck and removes it from list and processes it
+		smallestIndex = FindLowestCost(nodesToCheck);
+		distanceNodeChoosen = nodesToCheck[smallestIndex];
+		nodesToCheck.erase(nodesToCheck.begin() + smallestIndex);
+
+		nodesChecked[distanceNodeChoosen.parentNode.y][distanceNodeChoosen.parentNode.x] = true;
+
+		//Processes all nodes next to the choosen node which was found above
+		for (int y = -1; y < 2; y++)
+		{
+			for (int x = -1; x < 2; x++)
+			{
+				if (y == 0 && x == 0) { continue; }
+
+				if (movementCost[2] == 0) //Do not use diagonal if movementCost[2] == 0
+				{
+					if (y != 0 && x != 0) { continue; }
+				}
+
+				pos.x = i + x;
+				pos.y = j + y;
+				if (!ValidPosition(pos, gridSize[1], gridSize[0])) { continue; }
+
+				if (IsDestination(pos, goal))
+				{
+					pathFound = true;
+					distanceGrid[pos.y][pos.x].parentNode.x = i;
+					distanceGrid[pos.y][pos.x].parentNode.y = j;
+					break;
+				}
+				else if (nodesChecked[pos.y][pos.x] == false && CellNotBlocked(pos, grid))
+				{
+					if (y != 0 && x != 0) { gNew = distanceGrid[i][j].g + movementCost[1]; } //diagonal movement exact
+					else { gNew = distanceGrid[i][j].g + movementCost[0]; } //non-diagonal movement exact
+					
+					if (movementCost[2] == 0) { hNew = DiagonalHeuristic(movementCost[0], movementCost[1], pos, goal); } //diagonal movement estimate
+					else { hNew = ManhattanHeuristic(movementCost[0], pos, goal); } //non-diagonal movement estimate
+
+					fNew = gNew + (heuristicsCostScale * hNew);
+
+					if (distanceGrid[pos.y][pos.x].f == baseCost || distanceGrid[pos.y][pos.x].f > fNew)
+					{
+						toAdd.parentNode.x = pos.x;
+						toAdd.parentNode.y = pos.y;
+						toAdd.f = fNew;
+						nodesToCheck.push_back(toAdd);
+
+						distanceGrid[pos.y][pos.x].f = fNew;
+						distanceGrid[pos.y][pos.x].h = hNew;
+						distanceGrid[pos.y][pos.x].g = gNew;
+						distanceGrid[pos.y][pos.x].parentNode.x = i;
+						distanceGrid[pos.y][pos.x].parentNode.y = j;
+					}
+				}
+			}
+			if (pathFound) { break; }
+		}
+	}
+
+	if (pathFound == false) throw (NO_PATH_FOUND);
 
 	return distanceGrid;
 }
 
-void aStar::InitDefaultGrid(std::vector<std::vector<DistanceNode>>& distanceGrid, const int gridSize[2])
+void aStar::InitDefaultGrid(std::vector<std::vector<DistanceNode>>& distanceGrid, const int gridSize[2], const node start)
 {
 	DistanceNode defaultDistanceNode;
 	defaultDistanceNode.parentNode.x = baseParent;
@@ -46,6 +135,12 @@ void aStar::InitDefaultGrid(std::vector<std::vector<DistanceNode>>& distanceGrid
 			distanceGrid[count].push_back(defaultDistanceNode);
 		}
 	}
+
+	distanceGrid[start.y][start.x].parentNode.x = start.x;
+	distanceGrid[start.y][start.x].parentNode.y = start.y;
+	distanceGrid[start.y][start.x].f = 0;
+	distanceGrid[start.y][start.x].g = 0;
+	distanceGrid[start.y][start.x].h = 0;
 
 	return;
 }
@@ -76,6 +171,19 @@ float aStar::DiagonalHeuristic(const float movementCostManhattan, const float mo
 //////////////////////////////////
 //UTILITY FUNCTIONS///////////////
 //////////////////////////////////
+int aStar::FindLowestCost(std::vector<DistanceNode> &nodesToCheck)
+{
+	int size = nodesToCheck.size();
+	int smallest = 0;
+
+	for (int count = 1; count < size; count++)
+	{
+		if (nodesToCheck[smallest].f > nodesToCheck[count].f) smallest = count;
+	}
+
+	return smallest;
+}
+
 bool aStar::IsDestination(const node pos, node goal)
 {
 	if (pos.x == goal.x && pos.y == goal.y)
@@ -98,7 +206,7 @@ bool aStar::ValidPosition(node pos, int xSize, int ySize)
 
 bool aStar::CellNotBlocked(node pos, const std::vector<std::vector<int>> &grid)
 {
-	if (grid[pos.x][pos.y] == 0) return true;
+	if (grid[pos.y][pos.x] == 0) return true;
 	
 	return false;
 }

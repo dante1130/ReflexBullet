@@ -13,7 +13,8 @@ enum AStarExceptions
 	START_OUT_OF_BOUNDS,
 	GOAL_OUT_OF_BOUNDS,
 	START_BLOCKED,
-	GOAL_BLOCKED
+	GOAL_BLOCKED,
+	NO_PATH_FOUND
 };
 
 
@@ -77,10 +78,11 @@ namespace aStar
 	* 
 	* @param	&grid		- The grid
 	* @param	gridSize	- The size of the grid
+	* @param	start		- The starting position node
 	*
 	* @return	Void
 	*/
-	void InitDefaultGrid(std::vector<std::vector<DistanceNode>> &grid, const int gridSize[2]);
+	void InitDefaultGrid(std::vector<std::vector<DistanceNode>> &grid, const int gridSize[2], const node start);
 
 
 
@@ -137,6 +139,16 @@ namespace aStar
 	* @return	true if not blocked else false
 	*/
 	bool CellNotBlocked(node pos, const std::vector<std::vector<int>> &grid);
+
+
+	/**
+	* @brief	Finds the nodes with the smallest distance cost and processes it
+	*
+	* @param	nodesToCheck	- A 2D vector which stores all the nodes that need to be processed
+	* 
+	* @return	int				- A value of the index with the lowest cost
+	*/
+	int FindLowestCost(std::vector<DistanceNode>& nodesToCheck);
 
 }
 

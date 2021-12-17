@@ -32,8 +32,8 @@ class AStar
 		float heuristicsCostScale;
 
 		/// <summary>
-		/// gridSize[0] - X size
-		/// gridSize[1] - Y size
+		/// gridSize[0] - Y size
+		/// gridSize[1] - X size
 		/// 		/// </summary>
 		int gridSize[2];
 };
