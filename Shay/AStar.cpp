@@ -1,4 +1,4 @@
-#include "AStart.h"
+#include "AStar.h"
 
 #define baseParent -1
 #define baseCost 9999999999
@@ -28,12 +28,14 @@ std::vector<std::vector<DistanceNode>> aStar::aStarSearch(std::vector<std::vecto
 
 	//The nodes which have been already processed - set them to default false
 	std::vector<std::vector<bool>> nodesChecked;
+	std::vector<bool> row;
+	for (int count = 0; count < gridSize[1]; count++)
+	{
+		row.push_back(false);
+	}
 	for (int count = 0; count < gridSize[0]; count++)
 	{
-		for (int countTwo = 0; countTwo < gridSize[1]; countTwo++)
-		{
-			nodesChecked[count].push_back(false);
-		}
+		nodesChecked.push_back(row);
 	}
 
 	//Initialise nodeToCheck with inital node
@@ -53,14 +55,23 @@ std::vector<std::vector<DistanceNode>> aStar::aStarSearch(std::vector<std::vecto
 	int i = start.x, j = start.y;
 	float gNew, hNew, fNew;
 
+	std::cout << "Movement Cost: " << movementCost[0] << ' ' << movementCost[1] << ' ' << movementCost[2] << std::endl;
+
 	while (!nodesToCheck.empty() && pathFound == false)
 	{
+
 		//Finds smallest nodes in nodesToCheck and removes it from list and processes it
 		smallestIndex = FindLowestCost(nodesToCheck);
 		distanceNodeChoosen = nodesToCheck[smallestIndex];
+		
+		std::cout << "\n==ParentNode " << distanceNodeChoosen.parentNode.y << " " << distanceNodeChoosen.parentNode.x << std::endl;
+
 		nodesToCheck.erase(nodesToCheck.begin() + smallestIndex);
 
 		nodesChecked[distanceNodeChoosen.parentNode.y][distanceNodeChoosen.parentNode.x] = true;
+
+		i = distanceNodeChoosen.parentNode.x;
+		j = distanceNodeChoosen.parentNode.y;
 
 		//Processes all nodes next to the choosen node which was found above
 		for (int y = -1; y < 2; y++)
@@ -76,7 +87,9 @@ std::vector<std::vector<DistanceNode>> aStar::aStarSearch(std::vector<std::vecto
 
 				pos.x = i + x;
 				pos.y = j + y;
+				
 				if (!ValidPosition(pos, gridSize[1], gridSize[0])) { continue; }
+				std::cout << "POS" << pos.y << ' ' << pos.x << ' ';
 
 				if (IsDestination(pos, goal))
 				{
@@ -87,13 +100,15 @@ std::vector<std::vector<DistanceNode>> aStar::aStarSearch(std::vector<std::vecto
 				}
 				else if (nodesChecked[pos.y][pos.x] == false && CellNotBlocked(pos, grid))
 				{
-					if (y != 0 && x != 0) { gNew = distanceGrid[i][j].g + movementCost[1]; } //diagonal movement exact
-					else { gNew = distanceGrid[i][j].g + movementCost[0]; } //non-diagonal movement exact
+
+					if (y != 0 && x != 0) { gNew = distanceGrid[j][i].g + movementCost[1]; } //diagonal movement exact
+					else { gNew = distanceGrid[j][i].g + movementCost[0]; } //non-diagonal movement exact
 					
-					if (movementCost[2] == 0) { hNew = DiagonalHeuristic(movementCost[0], movementCost[1], pos, goal); } //diagonal movement estimate
+					if (movementCost[2] == 1) { hNew = DiagonalHeuristic(movementCost[0], movementCost[1], pos, goal); } //diagonal movement estimate
 					else { hNew = ManhattanHeuristic(movementCost[0], pos, goal); } //non-diagonal movement estimate
 
 					fNew = gNew + (heuristicsCostScale * hNew);
+					std::cout << " gNew: " << gNew << " - hNew: " << hNew << " - fNew: " << fNew << std::endl;
 
 					if (distanceGrid[pos.y][pos.x].f == baseCost || distanceGrid[pos.y][pos.x].f > fNew)
 					{
@@ -128,12 +143,14 @@ void aStar::InitDefaultGrid(std::vector<std::vector<DistanceNode>>& distanceGrid
 	defaultDistanceNode.g = baseCost;
 	defaultDistanceNode.h = baseCost;
 
+	std::vector<DistanceNode> row;
+	for (int count = 0; count < gridSize[1]; count++)
+	{
+		row.push_back(defaultDistanceNode);
+	}
 	for (int count = 0; count < gridSize[0]; count++)
 	{
-		for (int countTwo = 0; countTwo < gridSize[1]; countTwo++)
-		{
-			distanceGrid[count].push_back(defaultDistanceNode);
-		}
+		distanceGrid.push_back(row);
 	}
 
 	distanceGrid[start.y][start.x].parentNode.x = start.x;
@@ -198,8 +215,8 @@ bool aStar::IsDestination(const node pos, node goal)
 
 bool aStar::ValidPosition(node pos, int xSize, int ySize)
 {
-	if (pos.x > xSize || pos.x < 0) return false;
-	if (pos.y > ySize || pos.y < 0) return false;
+	if (pos.x >= xSize || pos.x < 0) return false;
+	if (pos.y >= ySize || pos.y < 0) return false;
 
 	return true;
 }

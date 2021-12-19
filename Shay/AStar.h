@@ -3,6 +3,7 @@
 
 #include <math.h>
 #include <vector>
+#include <iostream>
 
 //NEED TO IMPLEMENT
 bool ValidMove();
@@ -14,7 +15,8 @@ enum AStarExceptions
 	GOAL_OUT_OF_BOUNDS,
 	START_BLOCKED,
 	GOAL_BLOCKED,
-	NO_PATH_FOUND
+	NO_PATH_FOUND,
+	NO_PATH_BELOW_LIMIT
 };
 
 
