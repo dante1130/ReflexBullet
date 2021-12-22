@@ -12,6 +12,15 @@ class AStar
 	public:
 
 		/**
+		* @brief	Default constructor
+		* 
+		* @param	No param
+		* 
+		* @return	No return
+		*/
+		AStar();
+
+		/**
 		* @brief	Uses a* to find a path to the destination
 		*
 		* @param xStart	- The starting xLocation (side to side)
@@ -21,7 +30,7 @@ class AStar
 		*
 		* @return	Void
 		*/
-		std::vector<std::vector<DistanceNode>> findPath(int xStart, int yStart, int xEnd, int yEnd);
+		std::vector<std::vector<DistanceNode>> findPath(int xStart, int yStart, int xEnd, int yEnd) throw (AStarExceptions);
 
 		/**
 		* @brief	Sets the grid to be used
@@ -71,7 +80,7 @@ class AStar
 		void setAllowDiagonalMovement(bool allow);
 
 		/**
-		* @brief
+		* @brief	Sets the cost of the estimated distance
 		*
 		* @param	val		- The heuristicCostScale (larger values means faster but less chance to get best path)
 		*
@@ -79,16 +88,25 @@ class AStar
 		*/
 		bool setHeuristicsCostScale(float val);
 
-	private:
+		/**
+		* @brief	Sets the max distance allowed before the algorithm will terminate
+		*
+		* @param	val		- The max distance
+		*
+		* @return	bool	- If it was successful
+		*/
+		bool setMaxDistance(float val);
 
 		/**
 		* brief		Prints the possible exceptions
-		* 
+		*
 		* @param	val	- the value of the exception
 		*
 		* @return	Void
 		*/
 		void printAstarException(int val);
+
+	private:
 
 		/**
 		* @brief	Sets the size of the grid in the x direction
@@ -132,6 +150,11 @@ class AStar
 		/// gridSize[1] - X size
 		/// 		/// </summary>
 		int gridSize[2];
+
+		/// <summary>
+		/// The max distance allowed till the algorithm exits
+		/// </summary>
+		float maxDistance;
 };
 
 #endif

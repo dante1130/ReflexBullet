@@ -6,7 +6,7 @@
 //////////////////////////////////
 //OPERATION FUNCTIONS/////////////
 //////////////////////////////////
-std::vector<std::vector<DistanceNode>> aStar::aStarSearch(std::vector<std::vector<int>> grid, const float movementCost[3], const float heuristicsCostScale, const int gridSize[2], const node start, const node goal) throw (AStarExceptions)
+std::vector<std::vector<DistanceNode>> aStar::aStarSearch(std::vector<std::vector<int>> grid, const float movementCost[3], const float heuristicsCostScale, const int gridSize[2], const node start, const node goal, const float maxDistance) throw (AStarExceptions)
 {
 	//Init grid used to store path
 	std::vector<std::vector<DistanceNode>> distanceGrid;
@@ -55,7 +55,7 @@ std::vector<std::vector<DistanceNode>> aStar::aStarSearch(std::vector<std::vecto
 	int i = start.x, j = start.y;
 	float gNew, hNew, fNew;
 
-	std::cout << "Movement Cost: " << movementCost[0] << ' ' << movementCost[1] << ' ' << movementCost[2] << std::endl;
+	//std::cout << "Movement Cost: " << movementCost[0] << ' ' << movementCost[1] << ' ' << movementCost[2] << std::endl;
 
 	while (!nodesToCheck.empty() && pathFound == false)
 	{
@@ -64,7 +64,8 @@ std::vector<std::vector<DistanceNode>> aStar::aStarSearch(std::vector<std::vecto
 		smallestIndex = FindLowestCost(nodesToCheck);
 		distanceNodeChoosen = nodesToCheck[smallestIndex];
 		
-		std::cout << "\n==ParentNode " << distanceNodeChoosen.parentNode.y << " " << distanceNodeChoosen.parentNode.x << std::endl;
+		if (distanceNodeChoosen.f > maxDistance) { throw(MAX_DISTANCE_REACHED); }
+		//std::cout << "\n==ParentNode " << distanceNodeChoosen.parentNode.y << " " << distanceNodeChoosen.parentNode.x << std::endl;
 
 		nodesToCheck.erase(nodesToCheck.begin() + smallestIndex);
 
@@ -89,7 +90,7 @@ std::vector<std::vector<DistanceNode>> aStar::aStarSearch(std::vector<std::vecto
 				pos.y = j + y;
 				
 				if (!ValidPosition(pos, gridSize[1], gridSize[0])) { continue; }
-				std::cout << "POS" << pos.y << ' ' << pos.x << ' ';
+				//std::cout << "POS" << pos.y << ' ' << pos.x << ' ';
 
 				if (IsDestination(pos, goal))
 				{
@@ -108,7 +109,7 @@ std::vector<std::vector<DistanceNode>> aStar::aStarSearch(std::vector<std::vecto
 					else { hNew = ManhattanHeuristic(movementCost[0], pos, goal); } //non-diagonal movement estimate
 
 					fNew = gNew + (heuristicsCostScale * hNew);
-					std::cout << " gNew: " << gNew << " - hNew: " << hNew << " - fNew: " << fNew << std::endl;
+					//std::cout << " gNew: " << gNew << " - hNew: " << hNew << " - fNew: " << fNew << std::endl;
 
 					if (distanceGrid[pos.y][pos.x].f == baseCost || distanceGrid[pos.y][pos.x].f > fNew)
 					{

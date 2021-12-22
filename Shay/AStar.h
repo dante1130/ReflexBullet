@@ -3,10 +3,6 @@
 
 #include <math.h>
 #include <vector>
-#include <iostream>
-
-//NEED TO IMPLEMENT
-bool ValidMove();
 
 enum AStarExceptions
 {
@@ -16,7 +12,8 @@ enum AStarExceptions
 	START_BLOCKED,
 	GOAL_BLOCKED,
 	NO_PATH_FOUND,
-	NO_PATH_BELOW_LIMIT
+	NO_PATH_BELOW_LIMIT,
+	MAX_DISTANCE_REACHED
 };
 
 
@@ -68,12 +65,13 @@ namespace aStar
 	* @param	gridSize			- The size of the grid [0] - x size, [1] - y size
 	* @param	start				- The starting position
 	* @param	goal				- The goal position
+	* @param	maxDistance			- The max distance the path can be
 	*
 	* @throws	AStarException
 	*
 	* @return	An 2D distance node array to the grid size which has the path.
 	*/
-	std::vector<std::vector<DistanceNode>> aStarSearch(const std::vector<std::vector<int>> grid, const float movementCost[3], const float heuristicsCostScale, const int gridSize[2], const node start, const node goal) throw (AStarExceptions);
+	std::vector<std::vector<DistanceNode>> aStarSearch(const std::vector<std::vector<int>> grid, const float movementCost[3], const float heuristicsCostScale, const int gridSize[2], const node start, const node goal, const float maxDistance) throw (AStarExceptions);
 
 	/**
 	* @brief	Sets up the inital grid with default values

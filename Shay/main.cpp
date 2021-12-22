@@ -23,10 +23,11 @@ int main(int argc, char** argv)
 
 	AStar level;
 	std::vector<std::vector<DistanceNode>> result;
-	level.setAllowDiagonalMovement(true);
+	level.setAllowDiagonalMovement(false);
 	level.setHeuristicsCostScale(1.2);
 	level.setNonDiagonalMovementCost(1);
 	level.setDiagonalMovementCost(1.414);
+	level.setMaxDistance(1000);
 
 	std::vector<std::vector<int>> grid;
 	std::vector<int> row;
@@ -44,20 +45,26 @@ int main(int argc, char** argv)
 	std::cout << grid.size() << std::endl;
 	std::cout << grid[0].size() << std::endl;
 
-	grid[0][2] = 1;
-	grid[1][1] = 1;
-	grid[1][3] = 1;
-	grid[1][2] = 1;
-	grid[2][2] = 1;
+	grid[0][6] = 1;
+	grid[1][6] = 1;
+	grid[2][6] = 1;
+	grid[3][6] = 1;
+	grid[4][6] = 1;
+	grid[5][6] = 1;
+	grid[6][6] = 1;
+	grid[6][5] = 1;
+	grid[6][4] = 1;
+	grid[6][3] = 1;
+	grid[6][2] = 1;
 
 
 	level.setGrid(grid);
 
 	node end, start;
 	start.x = 0;
-	start.y = 0;
-	end.x = 3;
-	end.y = 0;
+	start.y = 2;
+	end.x = 11;
+	end.y = 2;
 	int temp;
 	
 
@@ -65,8 +72,15 @@ int main(int argc, char** argv)
 	std::vector<node> path;
 	node tempNode = end;
 
-	result = level.findPath(start.x, start.y, end.x, end.y);
-
+	try
+	{
+		result = level.findPath(start.x, start.y, end.x, end.y);
+	}
+	catch (AStarExceptions error)
+	{
+		level.printAstarException(error);
+		return 1;
+	}
 
 	for (int count = 0; count < ySize; count++)
 	{

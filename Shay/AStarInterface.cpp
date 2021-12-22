@@ -1,6 +1,21 @@
 #include "AStarInterface.h"
 
-std::vector<std::vector<DistanceNode>> AStar::findPath(int xStart, int yStart, int xEnd, int yEnd)
+AStar::AStar()
+{
+	movementCosts[0] = 1;
+	movementCosts[1] = 1.414;
+	movementCosts[2] = 0;
+
+	heuristicsCostScale = 1.2;
+
+	maxDistance = 1000;
+
+	gridSize[0] = 0;
+	gridSize[1] = 0;
+
+}
+
+std::vector<std::vector<DistanceNode>> AStar::findPath(int xStart, int yStart, int xEnd, int yEnd) throw (AStarExceptions)
 {
 	node start, end;
 	start.x = xStart;
@@ -10,16 +25,8 @@ std::vector<std::vector<DistanceNode>> AStar::findPath(int xStart, int yStart, i
 
 	std::vector<std::vector<DistanceNode>> path;
 
-	try
-	{
-		path = aStar::aStarSearch(grid, movementCosts, heuristicsCostScale, gridSize, start, end);
-	}
-	catch (AStarExceptions error)
-	{
-		printAstarException(error);
-	}
-
-
+	path = aStar::aStarSearch(grid, movementCosts, heuristicsCostScale, gridSize, start, end, maxDistance);
+	
 	return path;
 }
 
@@ -55,6 +62,9 @@ void AStar::printAstarException(int val)
 	case NO_PATH_BELOW_LIMIT:
 		std::cout << "EXCEPTION: No path below limit" << std::endl;
 		break;
+	case MAX_DISTANCE_REACHED:
+		std::cout << "EXCEPTION: Max distance reached" << std::endl;
+		break;
 	default:
 		std::cout << "EXCEPTION: Undocumented exception (" << val << "): Check AStar.h for more detail" << std::endl;
 	}
@@ -69,6 +79,7 @@ bool AStar::setGrid(std::vector<std::vector<int>> newGrid)
 	gridSize[0] = grid.size();
 	gridSize[1] = grid[0].size();
 
+	/*
 	for (int count = 0; count < gridSize[0]; count++)
 	{
 		for (int countTwo = 0; countTwo < gridSize[1]; countTwo++)
@@ -77,6 +88,7 @@ bool AStar::setGrid(std::vector<std::vector<int>> newGrid)
 		}
 		std::cout << std::endl;
 	}
+	*/
 
 	return false;
 }
@@ -101,6 +113,7 @@ bool AStar::setGrid(int **newGrid, int xSize, int ySize)
 	gridSize[0] = ySize;
 	gridSize[1] = xSize;
 
+	/*
 	for (int count = 0; count < gridSize[0]; count++)
 	{
 		for (int countTwo = 0; countTwo < gridSize[1]; countTwo++)
@@ -109,7 +122,7 @@ bool AStar::setGrid(int **newGrid, int xSize, int ySize)
 		}
 		std::cout << std::endl;
 	}
-
+	*/
 
 	return true;
 }
@@ -190,6 +203,19 @@ bool AStar::setGridSizeY(int ySize)
 	}
 
 	gridSize[0] = ySize;
+
+	return true;
+}
+
+bool AStar::setMaxDistance(float val)
+{
+	if (val < 1)
+	{
+		maxDistance = 1;
+		return false;
+	}
+
+	maxDistance = val;
 
 	return true;
 }
