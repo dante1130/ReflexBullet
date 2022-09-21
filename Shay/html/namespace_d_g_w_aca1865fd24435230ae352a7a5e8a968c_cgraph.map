@@ -1,0 +1,5 @@
+<map id="DGW::DisplayIndividualLeaderboardRecord" name="DGW::DisplayIndividualLeaderboardRecord">
+<area shape="rect" id="node1" title="Displays individual leaderboard records." alt="" coords="5,23,233,65"/>
+<area shape="rect" id="node2" href="$class_leaderboard.html#a4d36bcd33955570aa31578745cb2975e" title=" " alt="" coords="289,5,452,32"/>
+<area shape="rect" id="node3" href="$namespace_d_g_w.html#a0af3794fa82a264abf9b43d9ba1e6af6" title="Renders a string onto the screen for a specific font." alt="" coords="281,56,460,83"/>
+</map>

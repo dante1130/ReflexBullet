@@ -1,9 +1,0 @@
-<map id="DisplayExtraArea::DisplaySmallTable" name="DisplayExtraArea::DisplaySmallTable">
-<area shape="rect" id="node1" title="Contains all the display functions for small tables." alt="" coords="5,99,180,141"/>
-<area shape="rect" id="node2" href="$class_object3_d.html#aafc02adcfa4285b213af37376bb4ee3d" title="Displays the stored object based on the texture." alt="" coords="228,107,393,133"/>
-<area shape="rect" id="node3" href="$class_object3_d.html#a27c48229baacb72a569744b2f3343c7a" title="Returns a texture coordinate of index i." alt="" coords="471,5,610,32"/>
-<area shape="rect" id="node4" href="$class_object3_d.html#a725817c0c258500e6ffbb4b673548a59" title="Returns a set of vertex and coordinate pairs of index i." alt="" coords="473,56,608,83"/>
-<area shape="rect" id="node5" href="$class_object3_d.html#acd0fc96befbaf65afb59c74b4586188c" title="Allows access to the contents of faces vector." alt="" coords="455,107,627,133"/>
-<area shape="rect" id="node6" href="$class_textured_polygons.html#ae6b2615e41f9263aaafc9a7f1ed2b94c" title="Returns texture." alt="" coords="441,157,640,184"/>
-<area shape="rect" id="node7" href="$class_object3_d.html#a31de24cd9af87bc7303014f0ec9df2d9" title="Returns a vertex of index i." alt="" coords="469,208,612,235"/>
-</map>

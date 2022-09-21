@@ -1,0 +1,3 @@
+<map id="EnemyAI" name="EnemyAI">
+<area shape="rect" id="node1" title="Behaviour for the enemy, uses a Grid system to specify which character is occupying that grid spot." alt="" coords="5,5,169,405"/>
+</map>

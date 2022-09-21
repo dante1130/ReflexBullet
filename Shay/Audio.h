@@ -1,8 +1,10 @@
 #ifndef AUDIO_H
 #define AUDIO_H
 
-#include "../include/SDL.h"
-#include "../include/SDL_mixer.h"
+#include <SDL.h>
+#include <iostream> // debugging purposes
+#include <SDL_mixer.h>
+#include <glm/vec3.hpp>
 #include <string>
 #include <map>
 
@@ -11,10 +13,9 @@
 * @author	Andrew Ho
 * @brief	Plays sound effects and music.
 * 
-* Audio player using SDL_Mixer, can be used to play load .wav files
-* and play them.
+* Encapsulated audio player using SDL_Mixer, can be used to play load sound files
+* and play them as an sfx or music.
 * 
-* Future implementations include playing music.
 */
 class Audio
 {
@@ -35,27 +36,104 @@ public:
 	~Audio();
 
 	/**
+	 * @brief	Getter for the sfx volume.
+	 * @return	int
+	 */
+	static int GetSfxVolume();
+
+	/**
+	 * @brief	Getter for the music volume.
+	 * @return	int
+	 */
+	static int GetMusicVolume();
+	
+	/**
 	* @brief	Loads a .wav file based on a given path, and gives a label for the sound.
-	* @param	soundPath - sound path
-	* @param	soundName - sound name
+	* @param	soundPath const char*
+	* @param	soundName const char*
 	* @return	void
 	*/
-	void AddSound(const char* soundPath, const char* soundName);
+	static void AddSound(const char* soundPath, const char* soundName);
+
+	/**
+	* @brief	Loads a music file based on a given path, and gives a label for the music.
+	* @param	musicPath const char*
+	* @param	musicName const char*
+	* @return	void
+	*/
+	static void AddMusic(const char* musicPath, const char* musicName);
 
 	/**
 	* @brief	Plays the sound based on the label of the sound effect.
-	* @param	soundName - sound name
-	* @return	void
+	* @param	soundName const char*
+	* @return	int - Channel being played on
 	*/
-	void PlaySound(const char* soundName);
+	static int PlaySound(const char* soundName);
+
+	/**
+	* @brief	Plays the music based on the label of the music effect.
+	* @param	musicName const char*
+	* @return	int - Channel being played on
+	*/
+	static int PlayMusic(const char* musicName);
+
+	/**
+	 * @brief	Getter for the sfx volume.
+	 * @param	musicName const char*
+	 * @return	void
+	 */
+	static void PlayMusicFadeIn(const char* musicName);
+
+	/**
+	 * @brief	Setter for sfx volume.
+	 * @param	volume int
+	 * @return  void
+	 */
+	static void SetSfxVolume(int volume);
+
+	/**
+	 * @brief	Setter for music volume.
+	 * @param	volume int
+	 * @return  void
+	 */
+	static void SetMusicVolume(int volume);
+
+	/**
+	 * @brief	Boolean to check if a specified channel is playing.
+	 * @param	channel int
+	 * @return  bool
+	 */
+	static bool IsChannelPlaying(int channel);
+
+	/**
+	 * @brief	Stop the current audio channel from playing. Only stops if audio is playing from that channel
+	 * @param	channel int
+	 * @return  void
+	 */
+	static void StopChannelPlaying(int channel);
+
+	/**
+	 * @brief	Fades out the current audio channel from playing. Only fades out if audio is playing from that channel
+	 * @param	channel int, milliseconds int
+	 * @return  void
+	 */
+	static void StopChannelPlayingFade(int channel, int milliseconds);
 
 private:
 	/// Sounds stored as values into a map, key is a string that contains the label.
-	std::map<std::string, Mix_Chunk*> m_sounds;
+	static std::map<std::string, Mix_Chunk*> m_sounds;
 
-	// Not used for now.
 	/// Music stored as values into a map, key is a string that contains the label.
-	// std::map<std::string, Mix_Music*> m_music;
+	static std::map<std::string, Mix_Music*> m_music;
+
+	/// The sfx volume.
+	static int m_sfxVolume;
+
+	/// The music volume.
+	static int m_musicVolume;
+
+	/// Position of which the sound should be played
+	glm::vec3 m_soundPos;
 };
 
 #endif

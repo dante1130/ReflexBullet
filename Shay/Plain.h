@@ -10,8 +10,8 @@
 
 //--------------------------------------------------------------------------------------
 
-#include "../include/glm/vec3.hpp"
-#include "../include/GL/glut.h"
+#include <glm/vec3.hpp>
+#include <GL/glut.h>
 /**
  * @struct Plain
  * @brief A struct that stores information about a plain.

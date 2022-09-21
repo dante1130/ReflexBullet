@@ -1,7 +1,0 @@
-<map id="Camera::degreesToRadians" name="Camera::degreesToRadians">
-<area shape="rect" id="node1" title="Helper function for rotation, calculates radians from degrees." alt="" coords="533,5,716,32"/>
-<area shape="rect" id="node2" href="$class_camera.html#a77058a5acc0ab9de6c96ed53e1759ccd" title="Use mouse to look around." alt="" coords="341,5,485,32"/>
-<area shape="rect" id="node3" href="$main_8cpp.html#ad98e38d016ad1258ee8592beffa21c93" title="Handles mouse movement." alt="" coords="203,5,293,32"/>
-<area shape="rect" id="node4" href="$main_8cpp.html#a5828243a546dac120bbeb4679ac4d828" title="Handles all the key inputs." alt="" coords="104,5,155,32"/>
-<area shape="rect" id="node5" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,5,56,32"/>
-</map>

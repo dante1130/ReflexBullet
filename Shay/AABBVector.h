@@ -35,6 +35,12 @@ public:
 	//----------------------------------------------------------------------------------
 
 	/**
+	 * @brief Clears the vector.
+	 * @return void
+	 */
+	void Clear();
+
+	/**
 	 * @brief Add a bounding box
 	 * @param max const glm::dvec3&
 	 * @param min const glm::dvec3&

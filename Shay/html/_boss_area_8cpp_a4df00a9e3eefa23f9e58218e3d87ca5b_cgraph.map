@@ -1,0 +1,14 @@
+<map id="CollisionChecks" name="CollisionChecks">
+<area shape="rect" id="node1" title=" " alt="" coords="5,259,120,285"/>
+<area shape="rect" id="node2" href="$class_gun.html#ab0f5e8b1ad3b0fccb2fbe1f5575ad103" title="Gets the bullet at an index." alt="" coords="213,5,313,32"/>
+<area shape="rect" id="node3" href="$class_collision.html#abb75a80ee1cb6bd5bd04098497c65523" title="Collision check between a point and a bounding sphere." alt="" coords="204,56,323,83"/>
+<area shape="rect" id="node4" href="$class_bullet.html#a4930f603694a37d19d2c533fc4cec52e" title=" " alt="" coords="174,107,353,133"/>
+<area shape="rect" id="node5" href="$class_player.html#a497048a935a342ab6927d168e9e827c5" title="Getter for Gun." alt="" coords="207,157,319,184"/>
+<area shape="rect" id="node6" href="$class_boss.html#a30fe3f121751b8a0cef2c084765c99b8" title="Returns the bosses health value." alt="" coords="204,208,323,235"/>
+<area shape="rect" id="node7" href="$class_player.html#a7da7faa7105424633ffb5bc022e14267" title="Getter for health." alt="" coords="201,259,326,285"/>
+<area shape="rect" id="node8" href="$class_player.html#aac4705fd02a5bb9bddfe0af73c8e585a" title="Increments the number of bullet hits." alt="" coords="173,309,353,336"/>
+<area shape="rect" id="node9" href="$class_player.html#abfcfbe17ed8613bfcebfd13bd8849a3c" title="Increments the number of bullet shot." alt="" coords="168,360,359,387"/>
+<area shape="rect" id="node10" href="$class_gun.html#aa64058f56b209416e3a5e0bd65df090c" title="Removes a bullet from the bullets vector, used for when the bullet has collided." alt="" coords="197,411,330,437"/>
+<area shape="rect" id="node11" href="$class_boss.html#a4f05d9aa90827551806c9f1c19226bd5" title="Sets the bosses health value equal to given_health." alt="" coords="205,461,322,488"/>
+<area shape="rect" id="node12" href="$class_player.html#a3b759e4b98a8218eb660f589cc1df667" title="Setter for health." alt="" coords="201,512,325,539"/>
+</map>

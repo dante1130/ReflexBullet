@@ -1,7 +1,0 @@
-<map id="Object3D::SetTextureName" name="Object3D::SetTextureName">
-<area shape="rect" id="node1" title="Saves the texture name to program." alt="" coords="488,5,669,32"/>
-<area shape="rect" id="node2" href="$file_i_o_8h.html#ade49629f63bf746df80c6e31b0eba037" title="Reads file and stores values inside Object3D obj." alt="" coords="352,5,440,32"/>
-<area shape="rect" id="node3" href="$main_8cpp.html#a22f28b4be812e3d8247f375d4004ff62" title="Loads obj files from data/objects." alt="" coords="209,5,304,32"/>
-<area shape="rect" id="node4" href="$main_8cpp.html#a8264fa9a7444ab4805520c3d018b6623" title="Initializes settings @prarm No param." alt="" coords="104,5,161,32"/>
-<area shape="rect" id="node5" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,5,56,32"/>
-</map>

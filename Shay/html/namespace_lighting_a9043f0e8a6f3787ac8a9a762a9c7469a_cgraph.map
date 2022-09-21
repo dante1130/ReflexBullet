@@ -1,0 +1,4 @@
+<map id="Lighting::UpdateLighting" name="Lighting::UpdateLighting">
+<area shape="rect" id="node1" title="Updates all the lights in the scene." alt="" coords="5,5,167,32"/>
+<area shape="rect" id="node2" href="$namespace_lighting.html#a6236f0444effd1ab5ceb4be0ab2acec2" title="Re&#45;sets the location of a specific light." alt="" coords="215,5,337,32"/>
+</map>

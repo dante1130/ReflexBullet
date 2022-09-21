@@ -1,0 +1,20 @@
+<map id="Gun::GetBulletVelocity" name="Gun::GetBulletVelocity">
+<area shape="rect" id="node1" title="Getter for bullet velocity." alt="" coords="1608,199,1763,225"/>
+<area shape="rect" id="node2" href="$class_player.html#ad817bde6a3fd4808f1d6babb3d3cb28f" title="Adds the bullet speed by a specified amount." alt="" coords="1400,100,1560,127"/>
+<area shape="rect" id="node11" href="$class_boss.html#a50bed0d11afefc6f5aa5d64b6fc7a7d2" title="Creates new bullet and calls m_gun.Shoot()." alt="" coords="1433,173,1527,200"/>
+<area shape="rect" id="node16" href="$class_player.html#a0e0fe267a17131876c1bcc3492f9a990" title="Shoots a bullet." alt="" coords="1215,224,1317,251"/>
+<area shape="rect" id="node18" href="$class_enemy.html#a90c45acdddd5d1b601f193a6846dc171" title="Shoots a bullet." alt="" coords="1427,275,1533,301"/>
+<area shape="rect" id="node3" href="$namespace_g_m.html#a50f2ee84a60559027660d9f376acfd4e" title="Handles all the key inputs for the game world." alt="" coords="962,5,1078,32"/>
+<area shape="rect" id="node7" href="$namespace_g_m.html#ad0075febca06a02cbd74fe698aeab38c" title="Decides the action of a button for the menu." alt="" coords="1180,100,1352,127"/>
+<area shape="rect" id="node4" href="$namespace_g_m.html#a4de584cdd6ff4f9f35e7de9a173eed8a" title="Initialises the game objects." alt="" coords="283,145,385,172"/>
+<area shape="rect" id="node5" href="$namespace_p_s_w.html#a748a46361b4d8570306aaacbcc5e464f" title="Handles all the render steps for the program &#45; still needs work, barebones right now." alt="" coords="104,145,235,172"/>
+<area shape="rect" id="node6" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,145,56,172"/>
+<area shape="rect" id="node8" href="$namespace_g_m.html#a6208ff8e88020f18e0b1094ded7166fb" title="Handles when the mouse is clicked when the game is paused." alt="" coords="668,115,860,141"/>
+<area shape="rect" id="node10" href="$namespace_g_m.html#aadab86395febe3dc09183d51b8dd61ab" title="Handles when the mouse is clicked when the game is paused on the options menu." alt="" coords="908,107,1132,149"/>
+<area shape="rect" id="node9" href="$namespace_g_m.html#a2889fa0cda958c68427e36fb9c67598e" title="Handles when the mouse is clicked." alt="" coords="449,119,604,145"/>
+<area shape="rect" id="node12" href="$class_boss.html#a9311b012fcfe8885cf6267c111d5b0bd" title="Applies effects of phase onto boss." alt="" coords="1201,173,1331,200"/>
+<area shape="rect" id="node13" href="$class_boss.html#a1f7b8eb807ba0483814a85c2e167b8ab" title="Updates the bosses actions and phases." alt="" coords="969,173,1071,200"/>
+<area shape="rect" id="node14" href="$namespace_g_m.html#aa2ea0684203071ed400a31a635e02c57" title="Updates by the game tick." alt="" coords="681,172,847,199"/>
+<area shape="rect" id="node15" href="$namespace_g_m.html#a239894ede0787099f0991b08049a7122" title="If a fixed update loop for the game. This will handle all AI and other fixed update processes." alt="" coords="433,171,620,197"/>
+<area shape="rect" id="node17" href="$namespace_g_m.html#ab01b4c78fec2f34d6ba356a989b66783" title="A non fixed update loop." alt="" coords="687,224,841,251"/>
+</map>

@@ -1,0 +1,10 @@
+<map id="Gun::GetIsFiring" name="Gun::GetIsFiring">
+<area shape="rect" id="node1" title="Getter for is firing." alt="" coords="1032,31,1149,57"/>
+<area shape="rect" id="node2" href="$namespace_g_m.html#ab01b4c78fec2f34d6ba356a989b66783" title="A non fixed update loop." alt="" coords="674,5,829,32"/>
+<area shape="rect" id="node6" href="$class_boss.html#a1f7b8eb807ba0483814a85c2e167b8ab" title="Updates the bosses actions and phases." alt="" coords="883,56,984,83"/>
+<area shape="rect" id="node3" href="$namespace_g_m.html#a4de584cdd6ff4f9f35e7de9a173eed8a" title="Initialises the game objects." alt="" coords="283,31,385,57"/>
+<area shape="rect" id="node4" href="$namespace_p_s_w.html#a748a46361b4d8570306aaacbcc5e464f" title="Handles all the render steps for the program &#45; still needs work, barebones right now." alt="" coords="104,31,235,57"/>
+<area shape="rect" id="node5" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,31,56,57"/>
+<area shape="rect" id="node7" href="$namespace_g_m.html#aa2ea0684203071ed400a31a635e02c57" title="Updates by the game tick." alt="" coords="668,56,835,83"/>
+<area shape="rect" id="node8" href="$namespace_g_m.html#a239894ede0787099f0991b08049a7122" title="If a fixed update loop for the game. This will handle all AI and other fixed update processes." alt="" coords="433,56,620,83"/>
+</map>

@@ -1,0 +1,12 @@
+<map id="Player::IncrementBulletShots" name="Player::IncrementBulletShots">
+<area shape="rect" id="node1" title="Increments the number of bullet shot." alt="" coords="1159,42,1349,69"/>
+<area shape="rect" id="node2" href="$_boss_area_8h.html#a4df00a9e3eefa23f9e58218e3d87ca5b" title=" " alt="" coords="968,13,1083,39"/>
+<area shape="rect" id="node8" href="$namespace_g_m.html#a069f99eded084d5f72294d829e96797c" title="Collision resolution for the player&#39;s bullets." alt="" coords="940,64,1111,105"/>
+<area shape="rect" id="node3" href="$_boss_area_8h.html#ac6344a06aa467294f75db2faf1531f00" title=" " alt="" coords="759,13,829,39"/>
+<area shape="rect" id="node4" href="$namespace_d_g_w.html#a44a4b848e72b3ef6be67c00101efb485" title="Is the master function which handles all the displaying for the game world." alt="" coords="433,5,648,47"/>
+<area shape="rect" id="node5" href="$namespace_g_m.html#a4de584cdd6ff4f9f35e7de9a173eed8a" title="Initialises the game objects." alt="" coords="283,42,385,69"/>
+<area shape="rect" id="node6" href="$namespace_p_s_w.html#a748a46361b4d8570306aaacbcc5e464f" title="Handles all the render steps for the program &#45; still needs work, barebones right now." alt="" coords="104,42,235,69"/>
+<area shape="rect" id="node7" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,42,56,69"/>
+<area shape="rect" id="node9" href="$namespace_g_m.html#a2b0212f088ef02a5a4c0026c7431c343" title="Collision resolution between the available collision types." alt="" coords="696,71,892,98"/>
+<area shape="rect" id="node10" href="$namespace_g_m.html#a239894ede0787099f0991b08049a7122" title="If a fixed update loop for the game. This will handle all AI and other fixed update processes." alt="" coords="447,71,634,98"/>
+</map>

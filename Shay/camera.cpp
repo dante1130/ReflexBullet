@@ -40,7 +40,7 @@ Camera::Camera()
 	m_collisionDetectionOn = true;
 
 	// sound objects
-	m_audio.AddSound("sounds/step.wav", "stairstep");
+	Audio::AddSound("sounds/step.wav", "stairstep");
 }
 
 //--------------------------------------------------------------------------------------
@@ -63,35 +63,6 @@ void Camera::ResetXYZ()
 
 void Camera::KeyboardMovement()
 {
-	bool shift = false;
-	bool crouch = false;
-	
-
-	/*
-	if (GetKeyState(VK_LSHIFT) & 0x80) { shift = true; }
-	
-	//uses #include <Windows.h>
-	if (GetKeyState('W') & 0x80 && !(GetKeyState('S') & 0x80))
-	{
-		WSKeyboardMovement(true, shift);
-	}
-
-	if (GetKeyState('S') & 0x80 && !(GetKeyState('W') & 0x80))
-	{
-		WSKeyboardMovement(false, shift);
-	}
-
-	if (GetKeyState('A') & 0x80 && !(GetKeyState('D') & 0x80))
-	{
-		ADKeyboardMovement(true, shift);
-	}
-
-	if (GetKeyState('D') & 0x80 && !(GetKeyState('A') & 0x80))
-	{
-		ADKeyboardMovement(false, shift);
-	}
-	*/
-
 	WSKeyboardMovement();
 	ADKeyboardMovement();
 	
@@ -101,6 +72,16 @@ void Camera::KeyboardMovement()
 void Camera::AddAABB(const glm::vec3& max, const glm::vec3& min)
 {
 	m_colDetect.Push(max, min);
+}
+
+void Camera::ClearAABB()
+{
+	m_colDetect.Clear();
+}
+
+void Camera::SetCollision(const Collision& collision)
+{
+	m_colDetect = collision;
 }
 
 void Camera::SetRotateSpeed(const GLdouble& tempSpeed)
@@ -116,6 +97,11 @@ void Camera::SetMoveSpeed(const GLdouble& tempSpeed)
 void Camera::SetCollisionDetectionOn(bool tempCol)
 {
 	m_collisionDetectionOn = tempCol;
+}
+
+bool Camera::GetCrouch()
+{
+	return crouch;
 }
 
 void Camera::WSKeyboardMovement()
@@ -178,17 +164,6 @@ void Camera::ADKeyboardMovement()
 
 	//Makes sure that the camera object is on the right y height
 	SetPlains(xMove, zMove);
-	/*
-	//Checks if player can move in direction based on AABB
-	if (!(m_colDetect.Collide(glm::dvec3(m_pos.x + xMove, m_pos.y + m_lookK.y, m_pos.z + zMove))))
-	{
-		m_pos.x += xMove;
-		m_pos.z += zMove;
-
-		//Makes sure that the camera object is on the right y height
-		SetPlains(xMove, zMove);
-	}
-	*/
 }
 
 //--------------------------------------------------------------------------------------
@@ -238,7 +213,7 @@ void Camera::DirectionLR(int const & tempMove)
 }
 
 //--------------------------------------------------------------------------------------
-// Not used but allows up and don movement
+// Not used but allows up and down movement
 void Camera::DirectionUD(int const & tempMove)
 {
 	m_deltaMoveUD = tempMove;
@@ -266,8 +241,8 @@ void Camera::MouseMove(int x, int y)
 	m_prev.y = y;
 
 	// updates the rotation angle
-	m_rotateAngleLR += m_deltaAngleLR;
-	m_rotateAngleUD += m_deltaAngleUD;
+	m_rotateAngleLR += m_deltaAngleLR * m_rotateSpeed;
+	m_rotateAngleUD += m_deltaAngleUD * m_rotateSpeed;
 
 	// clamps between rotation angles of 89 and -89
 	if (m_rotateAngleUD > 89.0f)
@@ -430,6 +405,31 @@ GLdouble Camera::AreaPlainTriangle(int edgeNo, int i)
 	return abs(plainStart.z * plainEnd.x - plainStart.x * plainEnd.z);
 }
 
+glm::vec3 Camera::GetPosition() const
+{
+	return glm::vec3(m_pos.x, m_pos.y + crouchDepth, m_pos.z);
+}
+
+GLdouble Camera::GetMoveSpeed() const
+{
+	return m_moveSpeed;
+}
+
+glm::vec3 Camera::GetLook() const
+{
+	return m_look;
+}
+
+GLdouble Camera::GetPitch() const
+{
+	return m_rotateAngleUD;
+}
+
+GLdouble Camera::GetYaw() const
+{
+	return m_rotateAngleLR;
+}
+
 GLdouble Camera::GetLR() const
 {
 	return m_pos.x;
@@ -454,6 +454,7 @@ void Camera::Position (const glm::vec3& tempPos, const GLdouble& tempAngle)
 	
 	m_pos = tempPos;
 
+	
 	// rotate to correct angle
 	m_rotateAngleLR = tempAngle * (PI / 180);
 	m_look.x = sin(m_rotateAngleLR);
@@ -462,7 +463,7 @@ void Camera::Position (const glm::vec3& tempPos, const GLdouble& tempAngle)
 	m_lookK.z = -cos(m_rotateAngleLR + (float) PI/2.0);
 	m_rotateAngleUD = 0.0;
 	m_deltaAngleUD = 0.0;
-
+	
 	// redisplay
 	callGLLookAt();
 }
@@ -479,16 +480,20 @@ void Camera::CrouchDistance()
 	if (crouch && crouchDepth == -210) return;
 	if (!crouch && crouchDepth == 0) return;
 
-	float change = CROUCH_DEPTH * ((float)(glutGet(GLUT_ELAPSED_TIME) - crouchTime) / CROUCH_SPEED);
+	float change = maxCrouchDepth * ((float)(glutGet(GLUT_ELAPSED_TIME) - crouchTime) / CROUCH_SPEED);
 	if (!crouch) change *= -1;
 
 	crouchDepth = crouchDepth + change;
 	crouchTime = glutGet(GLUT_ELAPSED_TIME);
 
-	if (crouchDepth < -210) crouchDepth = -210;
+	if (crouchDepth < maxCrouchDepth) crouchDepth = maxCrouchDepth;
 	if (crouchDepth > 0) crouchDepth = 0;
 }
 
+void Camera::SetMaximumCrouchDepth(float max)
+{
+	maxCrouchDepth = max;
+}
 
 //----------------------------------------------------------------------------------------
 //  Redisplay new camera view
@@ -497,9 +502,9 @@ void Camera::callGLLookAt()
 {
 	glLoadIdentity();
 	CrouchDistance();
-	gluLookAt(m_pos.x, m_pos.y + crouchDepth, m_pos.z, m_pos.x + m_look.x,	// Eye
-			  m_pos.y + m_look.y + crouchDepth, m_pos.z + m_look.z,			// Look at
-			  0, 1, 0);														// Up
+	gluLookAt(m_pos.x, m_pos.y + crouchDepth, m_pos.z, // Eye
+			  m_pos.x + m_look.x, m_pos.y + m_look.y + crouchDepth, m_pos.z + m_look.z, // Look at
+			  0, 1, 0);	 // Up
 }
 
 //--------------------------------------------------------------------------------------
@@ -552,10 +557,20 @@ void Camera::AddPlain(const GLint tempType, const glm::vec3& t1, const glm::vec3
 	m_plain.Push(tempType, t1, t2, t3, t4);
 }
 
-
 void Camera::SetCameraLocation(float x, float y, float z)
 {
 	m_pos.x = x;
 	m_pos.y = y;
 	m_pos.z = z;
+}
+
+void Camera::SetCameraLookAt(glm::vec3& look)
+{
+	m_look = look;
+	callGLLookAt();
+}
+
+float Camera::GetCameraRotateSpeed()
+{
+	return m_rotateSpeed;
 }

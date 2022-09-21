@@ -1,0 +1,4 @@
+<map id="UI::DisplayBar" name="UI::DisplayBar">
+<area shape="rect" id="node1" title="Displays health bar on&#45;screen." alt="" coords="5,5,111,32"/>
+<area shape="rect" id="node2" href="$class_textured_polygons.html#ae6b2615e41f9263aaafc9a7f1ed2b94c" title="Returns texture." alt="" coords="159,5,357,32"/>
+</map>

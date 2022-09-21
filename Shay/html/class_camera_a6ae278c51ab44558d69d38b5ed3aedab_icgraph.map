@@ -1,0 +1,9 @@
+<map id="Camera::GetLR" name="Camera::GetLR">
+<area shape="rect" id="node1" title="Returns the x position of the camera." alt="" coords="492,51,604,78"/>
+<area shape="rect" id="node2" href="$namespace_p_s_w.html#ac42adca9a07f41db2b12f62e6fad7d63" title="Handles all the display functions." alt="" coords="117,26,221,53"/>
+<area shape="rect" id="node4" href="$class_camera.html#adc12edf020e48254432214200f8e63c3" title="Display map." alt="" coords="292,26,435,53"/>
+<area shape="rect" id="node5" href="$namespace_p_s_w.html#a8a5858f33585b2d6c2f3753ae83ecdbf" title="Determines if the sliding door should open or not." alt="" coords="295,77,431,103"/>
+<area shape="rect" id="node7" href="$namespace_p_s_w.html#aabbac81d6c9355882cb6b0338f1200e9" title="Checks if the player should be moved to the game world." alt="" coords="283,127,444,154"/>
+<area shape="rect" id="node3" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,51,56,78"/>
+<area shape="rect" id="node6" href="$namespace_p_s_w.html#a748a46361b4d8570306aaacbcc5e464f" title="Handles all the render steps for the program &#45; still needs work, barebones right now." alt="" coords="104,77,235,103"/>
+</map>

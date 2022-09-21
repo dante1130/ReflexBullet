@@ -1,0 +1,4 @@
+<map id="BaseCharacter" name="BaseCharacter">
+<area shape="rect" id="node1" title="An interface for the characters of the game." alt="" coords="23,380,131,501"/>
+<area shape="rect" id="node2" href="$class_gun.html" title="Represents a gun to fire bullets and stores the individual bullet information." alt="" coords="5,5,148,317"/>
+</map>

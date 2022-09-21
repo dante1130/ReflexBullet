@@ -1,0 +1,9 @@
+<map id="DisplayLights" name="DisplayLights">
+<area shape="rect" id="node1" title="Displays the lights." alt="" coords="5,152,105,179"/>
+<area shape="rect" id="node2" href="$class_object3_d.html#ade144bd5a564803e6d6f579a5a96f7a2" title="Displays the stored object based on the texture. Adds vertex normals to allows for lighting." alt="" coords="153,110,345,151"/>
+<area shape="rect" id="node6" href="$class_textured_polygons.html#ae6b2615e41f9263aaafc9a7f1ed2b94c" title="Returns texture." alt="" coords="399,208,597,235"/>
+<area shape="rect" id="node3" href="$class_object3_d.html#a27c48229baacb72a569744b2f3343c7a" title="Returns a texture coordinate of index i." alt="" coords="429,5,567,32"/>
+<area shape="rect" id="node4" href="$class_object3_d.html#aaf3232b02c1666b005dfd89d46e6782a" title="Returns a set of vertex and coordinate pairs of index i." alt="" coords="431,56,565,83"/>
+<area shape="rect" id="node5" href="$class_object3_d.html#a11d6a73b9d9999c276a1563a340f5349" title="Allows access to the contents of faces vector." alt="" coords="399,107,597,133"/>
+<area shape="rect" id="node7" href="$class_object3_d.html#a66bde090d473596be613a851f55bc8af" title="Sets material property for a specific material." alt="" coords="393,157,603,184"/>
+</map>

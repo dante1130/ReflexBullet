@@ -1,6 +1,0 @@
-<map id="Camera::SetCrouch" name="Camera::SetCrouch">
-<area shape="rect" id="node1" title="Sets if the player is crouching." alt="" coords="247,31,383,57"/>
-<area shape="rect" id="node2" href="$main_8cpp.html#a5828243a546dac120bbeb4679ac4d828" title="Handles all the key inputs." alt="" coords="126,5,177,32"/>
-<area shape="rect" id="node4" href="$main_8cpp.html#afe803587002217240c9f183634c9aba9" title="Handles all the key events when the key is released." alt="" coords="104,56,199,83"/>
-<area shape="rect" id="node3" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,31,56,57"/>
-</map>

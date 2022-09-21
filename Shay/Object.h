@@ -4,10 +4,12 @@
 #include <string>
 #include <vector>
 #include <array>
-#include "../include/glm/vec2.hpp"
-#include "../include/glm/vec3.hpp"
-#include "../include/gl/glut.h"
+#include <glm/vec2.hpp>
+#include <glm/vec3.hpp>
 #include "LoadTexturesShaysWorld.h"
+#include "Lighting.h"
+#include "LoadTexturesGameWorld.h"
+#include <gl/glut.h>
 
 /**
  * @struct FaceBase
@@ -16,7 +18,7 @@
 struct FaceBase
 {
 	/// stores vertices/texture coordinate position from .obj file
-	int v, vt; 
+	int v, vt, vn; 
 };
 
 /**
@@ -35,7 +37,8 @@ public:
 	Object3D(); 
 	/** @brief Deconstructor */
 	~Object3D();
-
+	/**@brief Clear function */
+	void Clear();
 	/**
 	 * @brief Creates a vertex based of float parameters.
 	 * @param vertex glm::vec3
@@ -49,13 +52,20 @@ public:
 	 * @return void
 	 */
 	void AddCoord(const glm::vec2& coord); 
+	
+	/**
+	* @brief	Stores the vertex normals
+	* @param	vn	- Vertex normal
+	* @return	Void
+	*/
+	void AddVertexNormal(const glm::vec3& vn);
 
 	/**
 	 * @brief Creates faces using FaceBase array.
-	 * @param face_arr [4] const FaceBase
+	 * @param face_temp	- Array of faces
 	 * @return void
 	 */
-	void AddFaces(const FaceBase face_arr[4]); 
+	void AddFaces(const std::vector<FaceBase>& face_temp);
 
 	/**
 	 * @brief Saves the texture name to program.
@@ -63,6 +73,36 @@ public:
 	 * @return void
 	 */
 	void SetTextureName(const std::string& fileName); 
+
+	/**
+	* @brief	Assigns an object an mtl file name
+	* @param	mtlName	- The name of the mtl file
+	* @return	Void
+	*/
+	void SetMTLName(const std::string& mtlName);
+
+	/**
+	* @brief	Returns the mrl file name associated with the object
+	* @param	No param
+	* @return	string&	- THe MTL file name
+	*/
+	const std::string& GetMTLName();
+
+	/**
+	* @brief	Assigns which material the object uses
+	* @param	location	- The location in the material array that the object uses
+	* @return	Void
+	*/
+	void SetMTLArrayLocation(int location);
+
+	/**
+	* @brief	Used to find the material properties for an object
+	* @param	No param
+	* @return	int		- returns an index for a material array which references the materials properties
+	*/
+	int GetMTLArrayLocation();
+
+	GLint GetVertexCount() const;
 
 	/**
 	 * @brief Returns a vertex of index i.
@@ -79,11 +119,19 @@ public:
 	const glm::vec2& GetCoord(unsigned i) const; 
 
 	/**
+	 * @brief	Returns a vertex normal coordinate of index i
+	 * @param	i				- The index you want to get the normal from
+	 * @return const glm::vec3&	- The normal vector
+	 */
+	const glm::vec3& GetVertexNormal(unsigned i) const;
+
+
+	/**
 	 * @brief Returns a set of vertex and coordinate pairs of index i.
 	 * @param i unsigned
 	 * @return const std::array<Facebase, 4>&
 	 */
-	const std::array<FaceBase, 4>& GetFace(unsigned i) const;
+	const std::vector<FaceBase>& GetFace(unsigned i) const;
 
 	/**
 	 * @brief Returns the name of the texture file.
@@ -92,39 +140,55 @@ public:
 	const std::string& GetName() const;
 
 	/**
-	 * @brief Allows access to the contents of vertices vector.
-	 * @return const std::vector<glm::vec3>&
-	 */
-	const std::vector<glm::vec3>& GetVertexVector() const; 
-
-	/**
-	 * @brief Allows access to the contents of texCoord vector.
-	 * @return const std::vector<glm::vec2>&
-	 */
-	const std::vector<glm::vec2>& GetCoordVector() const;
-
-	/**
-	 * @brief Allows access to the contents of faces vector.
-	 * @return const std::vector<std::array<Facebase,4>>&
-	 */
-	const std::vector<std::array<FaceBase, 4>>& GetFaceVector() const;
-
-	/**
 	* @brief	Displays the stored object based on the texture
 	* @param	textureID	- The define value of the texture
 	* @return	Void
 	*/
 	void DisplayObject(int textureID);
 
+	/**
+	* @brief	Displays the stored object based on the texture. Adds vertex normals to allows for lighting
+	* @param	textureID	- The define value of the texture
+	* @return	Void
+	*/
+	void DisplayObjectWithLighting(int textureID);
+
+	/**
+	* @brief	Checks their is the same number of vertex normals to vertices
+	* @param	No param
+	* @return	bool	- true if failed read, false if success
+	*/
+	bool CheckVertexSizeGreaterThanOrEqualVertexNormalSize();
+
 private:
+	/**
+	 * @brief Allows access to the contents of faces vector.
+	 * @return const std::vector<std::array<Facebase,4>>&
+	 */
+	const unsigned GetFaceVectorSize() const;
+
+	/**
+	* @brief	Sets material property for a specific material
+	* @param	index	- Used to reference a material vector
+	* @return	Void
+	*/
+	static void SetMaterialProperties(int index);
+
+
 	/// stores the vertices
 	std::vector<glm::vec3> vertices; 
 	/// stores the texture coordinates
 	std::vector<glm::vec2> texCoord; 
+	/// stores the vertex normals
+	std::vector<glm::vec3> vertexNormals;
 	/// saves the links to v and vt for faces
-	std::vector<std::array<FaceBase, 4>> faces; 
+	std::vector<std::vector<FaceBase>> faces; 
 	/// stores image name (and extension)
 	std::string textureFile; 
+	/// The name of the mtl file (for material properties for lighting)
+	std::string mtlFile;
+	/// Points to the index of the material properties of the object
+	int mtlLoc;
 };
 
 #endif

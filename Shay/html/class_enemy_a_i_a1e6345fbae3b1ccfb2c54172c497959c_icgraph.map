@@ -1,0 +1,6 @@
+<map id="EnemyAI::isDestinationReached" name="EnemyAI::isDestinationReached">
+<area shape="rect" id="node1" title="Returns a boolean if the enemy has reached the destination." alt="" coords="349,31,559,57"/>
+<area shape="rect" id="node2" href="$class_enemy_a_i.html#ad03de08c4766125f68cf4dfd1978461c" title="Updates the AI, to be called every game tick." alt="" coords="165,31,301,57"/>
+<area shape="rect" id="node3" href="$class_enemy.html#a22af0a2768ce70b3d08f3b5e12d593f1" title="Parameterized constructor." alt="" coords="5,5,117,32"/>
+<area shape="rect" id="node4" href="$class_enemy.html#a6e2d4287388dc2b7c660db5522520321" title="Updates by delta, to be called every frame." alt="" coords="5,56,117,83"/>
+</map>

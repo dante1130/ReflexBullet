@@ -1,0 +1,5 @@
+<map id="DGW::DisplayDefeatScreen" name="DGW::DisplayDefeatScreen">
+<area shape="rect" id="node1" title="Displays the defeat screen." alt="" coords="5,5,188,32"/>
+<area shape="rect" id="node2" href="$namespace_d_g_w.html#ad7af619c73f746fcfc0d6ba18d804c98" title="Displays individual options for the pause menu." alt="" coords="236,5,431,32"/>
+<area shape="rect" id="node3" href="$class_textured_polygons.html#ae6b2615e41f9263aaafc9a7f1ed2b94c" title="Returns texture." alt="" coords="479,5,677,32"/>
+</map>

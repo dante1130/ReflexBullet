@@ -1,0 +1,10 @@
+<map id="DGW::DisplayOptionsMenu" name="DGW::DisplayOptionsMenu">
+<area shape="rect" id="node1" title="Displays the options menu." alt="" coords="5,157,188,184"/>
+<area shape="rect" id="node2" href="$namespace_d_g_w.html#ad7af619c73f746fcfc0d6ba18d804c98" title="Displays individual options for the pause menu." alt="" coords="247,5,441,32"/>
+<area shape="rect" id="node3" href="$class_textured_polygons.html#ae6b2615e41f9263aaafc9a7f1ed2b94c" title="Returns texture." alt="" coords="500,31,699,57"/>
+<area shape="rect" id="node4" href="$class_player.html#ae5a3bcef2eda89370076f8fbce9e08b4" title="Getter for camera." alt="" coords="277,107,411,133"/>
+<area shape="rect" id="node5" href="$class_camera.html#a18458dc21ec52fff7dd7eef6a6b27b58" title="Returns the cameras rotate speed." alt="" coords="236,157,452,184"/>
+<area shape="rect" id="node6" href="$class_audio.html#a29957d4bdb1ac6245ef3b41a5d8d2fe5" title="Getter for the music volume." alt="" coords="263,208,425,235"/>
+<area shape="rect" id="node7" href="$class_audio.html#afe8c92c3d942e12c4053cd55ac64bf3a" title="Getter for the sfx volume." alt="" coords="271,259,417,285"/>
+<area shape="rect" id="node8" href="$namespace_d_g_w.html#a0af3794fa82a264abf9b43d9ba1e6af6" title="Renders a string onto the screen for a specific font." alt="" coords="255,309,433,336"/>
+</map>

@@ -1,0 +1,14 @@
+<map id="Gun::Shoot" name="Gun::Shoot">
+<area shape="rect" id="node1" title="Adds a bullet into the bullets vector, used for when gun is shot." alt="" coords="1417,56,1505,83"/>
+<area shape="rect" id="node2" href="$class_boss.html#a50bed0d11afefc6f5aa5d64b6fc7a7d2" title="Creates new bullet and calls m_gun.Shoot()." alt="" coords="1269,5,1364,32"/>
+<area shape="rect" id="node10" href="$class_player.html#a0e0fe267a17131876c1bcc3492f9a990" title="Shoots a bullet." alt="" coords="1100,56,1201,83"/>
+<area shape="rect" id="node12" href="$class_enemy.html#a90c45acdddd5d1b601f193a6846dc171" title="Shoots a bullet." alt="" coords="1264,107,1369,133"/>
+<area shape="rect" id="node3" href="$class_boss.html#a9311b012fcfe8885cf6267c111d5b0bd" title="Applies effects of phase onto boss." alt="" coords="1085,5,1216,32"/>
+<area shape="rect" id="node4" href="$class_boss.html#a1f7b8eb807ba0483814a85c2e167b8ab" title="Updates the bosses actions and phases." alt="" coords="909,5,1011,32"/>
+<area shape="rect" id="node5" href="$namespace_g_m.html#aa2ea0684203071ed400a31a635e02c57" title="Updates by the game tick." alt="" coords="668,5,835,32"/>
+<area shape="rect" id="node6" href="$namespace_g_m.html#a239894ede0787099f0991b08049a7122" title="If a fixed update loop for the game. This will handle all AI and other fixed update processes." alt="" coords="433,5,620,32"/>
+<area shape="rect" id="node7" href="$namespace_g_m.html#a4de584cdd6ff4f9f35e7de9a173eed8a" title="Initialises the game objects." alt="" coords="283,31,385,57"/>
+<area shape="rect" id="node8" href="$namespace_p_s_w.html#a748a46361b4d8570306aaacbcc5e464f" title="Handles all the render steps for the program &#45; still needs work, barebones right now." alt="" coords="104,31,235,57"/>
+<area shape="rect" id="node9" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,31,56,57"/>
+<area shape="rect" id="node11" href="$namespace_g_m.html#ab01b4c78fec2f34d6ba356a989b66783" title="A non fixed update loop." alt="" coords="883,56,1037,83"/>
+</map>

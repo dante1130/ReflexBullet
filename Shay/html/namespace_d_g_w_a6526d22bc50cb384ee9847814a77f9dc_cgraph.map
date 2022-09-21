@@ -1,0 +1,9 @@
+<map id="DGW::DisplayDisplayShelves" name="DGW::DisplayDisplayShelves">
+<area shape="rect" id="node1" title="Displays the display shelves." alt="" coords="5,107,199,133"/>
+<area shape="rect" id="node2" href="$class_object3_d.html#ade144bd5a564803e6d6f579a5a96f7a2" title="Displays the stored object based on the texture. Adds vertex normals to allows for lighting." alt="" coords="247,99,439,141"/>
+<area shape="rect" id="node3" href="$class_object3_d.html#a27c48229baacb72a569744b2f3343c7a" title="Returns a texture coordinate of index i." alt="" coords="522,5,661,32"/>
+<area shape="rect" id="node4" href="$class_object3_d.html#aaf3232b02c1666b005dfd89d46e6782a" title="Returns a set of vertex and coordinate pairs of index i." alt="" coords="524,56,659,83"/>
+<area shape="rect" id="node5" href="$class_object3_d.html#a11d6a73b9d9999c276a1563a340f5349" title="Allows access to the contents of faces vector." alt="" coords="492,107,691,133"/>
+<area shape="rect" id="node6" href="$class_textured_polygons.html#ae6b2615e41f9263aaafc9a7f1ed2b94c" title="Returns texture." alt="" coords="492,157,691,184"/>
+<area shape="rect" id="node7" href="$class_object3_d.html#a66bde090d473596be613a851f55bc8af" title="Sets material property for a specific material." alt="" coords="487,208,696,235"/>
+</map>

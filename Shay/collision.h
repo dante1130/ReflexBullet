@@ -9,7 +9,9 @@
 
 //--------------------------------------------------------------------------------------
 
+#include <glm/common.hpp>
 #include "AABBVector.h"
+#include "BoundingSphere.h"
 
 //--------------------------------------------------------------------------------------
 
@@ -26,12 +28,25 @@ public:
 	Collision();
 
 	/**
+	 * @brief Clears the vector.
+	 * @return void
+	 */
+	void Clear();
+
+	/**
 	* @brief	Sets the bounding box to the vector
 	* @param	max	- The maximum coordinate of the bounding box
 	* @param	min	- The minimum coordinate of the bounding box
 	* @return	Void
 	*/
 	void Push(const glm::vec3& max, const glm::vec3& min);
+
+	/**
+	 * @brief	Gets the reference to the AABBvector of a quadrant.
+	 * @param	index int
+	 * @return	AABBVector&
+	 */
+	AABBVector& GetQuadrant(int index);
 
 	//----------------------------------------------------------------------------------
 	//  Set Methods
@@ -56,6 +71,45 @@ public:
 	//----------------------------------------------------------------------------------
 
 	/**
+	 * @brief Collision check between a point and a bounding sphere.
+	 * @param point const glm::vec3&
+	 * @param bSphere const BoundingSphere&
+	 * @return bool
+	 */
+	static bool Collide(const glm::vec3& point, const BoundingSphere& bSphere);
+	
+	/**
+	 * @brief Collision check between a bounding box and a bounding sphere.
+	 * @param bBox const BoundingBox&
+	 * @param bSphere const BoundingSphere&
+	 * @return bool
+	 */
+	static bool Collide(const BoundingBox& bBox, const BoundingSphere& bSphere);
+
+	/**
+	 * @brief Collision check between a bounding boxes.
+	 * @param bBox1 const BoundingBox&
+	 * @param bBox2 const BoundingBox&
+	 * @return bool
+	 */
+	static bool Collide(const BoundingBox& bBox1, const BoundingBox& bBox2);
+
+	/**
+	 * @brief Collision check between a bounding spheres.
+	 * @param bSphere1 const BoundingSphere&
+	 * @param bSphere2 const BoundingSphere&
+	 * @return bool
+	 */
+	static bool Collide(const BoundingSphere& bSphere1, const BoundingSphere& bSphere2);
+
+	/**
+	 * @brief Collision checks for the AABB quadrants with the bounding sphere.
+	 * @param bSphere const BoundingSphere&
+	 * @return bool
+	 */
+	bool Collide(const BoundingSphere& bSphere);
+
+	/**
 	 * @brief Returns TRUE if a collision occurred.
 	 * @param end const glm::dvec3&
 	 * @return bool
@@ -69,6 +123,14 @@ private:
 
 	/// stores world co-ordinates
 	double m_worldSizeX, m_worldSizeZ;
+
+	/**
+	 * @brief Checks if collision occured with a boundingSphere.
+	 * @param index int
+	 * @param bSphere const BoundingSphere&
+	 * @return bool
+	 */
+	bool CheckCollision(int index, const BoundingSphere& bSphere);
 
 	/**
 	 * @brief Checks if collision occurred (called from Collide).

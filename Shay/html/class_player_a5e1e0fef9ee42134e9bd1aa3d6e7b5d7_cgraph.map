@@ -1,0 +1,5 @@
+<map id="Player::DecreaseFiringDelay" name="Player::DecreaseFiringDelay">
+<area shape="rect" id="node1" title="Decrease firing delay by a specified amount." alt="" coords="5,31,192,57"/>
+<area shape="rect" id="node2" href="$class_gun.html#a5c4c8973cd8916a13e4234171a76353c" title="Getter for firing delay." alt="" coords="240,5,380,32"/>
+<area shape="rect" id="node3" href="$class_gun.html#a1d20c591ded9c216ce38dbfe8d31eeae" title="Setter for firing delay." alt="" coords="241,56,379,83"/>
+</map>

@@ -1,8 +1,0 @@
-<map id="Camera::GetLR" name="Camera::GetLR">
-<area shape="rect" id="node1" title="Returns the x position of the camera." alt="" coords="433,23,545,50"/>
-<area shape="rect" id="node2" href="$main_8cpp.html#a5d3fb9b91b5c167b70a1a0557e67f271" title="Handles all the display functions." alt="" coords="117,23,182,50"/>
-<area shape="rect" id="node4" href="$class_camera.html#adc12edf020e48254432214200f8e63c3" title="Display map." alt="" coords="243,23,385,50"/>
-<area shape="rect" id="node5" href="$main_8cpp.html#a89fd892bef6cda6b47c7c8697402befc" title="Determines if the sliding door should open or not." alt="" coords="265,74,363,101"/>
-<area shape="rect" id="node3" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,49,56,75"/>
-<area shape="rect" id="node6" href="$main_8cpp.html#ac75e85cbe6943a3e71980ee212c2191f" title="Handles all the render steps for the program &#45; still needs work, barebones right now." alt="" coords="104,74,195,101"/>
-</map>

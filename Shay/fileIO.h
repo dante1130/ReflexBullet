@@ -3,6 +3,8 @@
 #define FILEIO_H
 
 #include "Object.h"
+#include "Lighting.h"
+#include "Leaderboards.h"
 
 
 #include <sstream>
@@ -24,5 +26,14 @@ void readObjFile(const std::string& fileName, Object3D& obj);
  *
  */
 FaceBase StringToFace(const std::string& str);
+
+
+void ReadOBJMTL(const std::string& fileName, Object3D& obj);
+
+void ReadMTLFile(const std::string& fileName, Object3D& obj);
+
+void ReadLeaderboardFile(const std::string& fileName, Leaderboard& lb);
+
+void WriteLeaderboardFile(const std::string& fileName, Leaderboard& lb);
 
 #endif

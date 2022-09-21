@@ -1,0 +1,72 @@
+<map id="PSW::myinit" name="PSW::myinit">
+<area shape="rect" id="node1" title="Initializes settings." alt="" coords="5,1555,101,1582"/>
+<area shape="rect" id="node2" href="$namespace_p_s_w.html#a0312656db051145328dc2074924c3c24" title="Creates bounding boxes for collision detection." alt="" coords="162,107,353,134"/>
+<area shape="rect" id="node8" href="$namespace_p_s_w.html#af613c542d5f442067256dac440827cfa" title="Creates different plains (used for setting the players y coordinate)" alt="" coords="190,238,325,265"/>
+<area shape="rect" id="node12" href="$_display_shays_world_8cpp.html#a0c8e3bf7c765b84b2a66cd9a8fefbe5e" title="Creates display lists (numbers indicate list numbers) (calls all the display functions)" alt="" coords="195,825,319,851"/>
+<area shape="rect" id="node44" href="$namespace_l_t_g_w.html#a2764772923c6dcf9185e5093e11b2f8c" title="Creates the textures for the game world." alt="" coords="180,1454,335,1481"/>
+<area shape="rect" id="node50" href="$namespace_p_s_w.html#af93c9560af05000701d618a374c3ba09" title="Loads obj files from data/objects." alt="" coords="191,1505,324,1531"/>
+<area shape="rect" id="node60" href="$class_camera.html#a23d604f6eb495e4686665144d463a670" title="position the camera." alt="" coords="196,1555,319,1582"/>
+<area shape="rect" id="node64" href="$class_camera.html#ac307afcac552d5c1af84e17120668979" title="Set collision detection (TRUE = on)." alt="" coords="149,1606,365,1633"/>
+<area shape="rect" id="node65" href="$class_camera.html#ac30f63cf32fc10a18745364c613bc969" title="Sets the maximum crouch depth of the player." alt="" coords="161,1657,354,1699"/>
+<area shape="rect" id="node66" href="$class_camera.html#a86a5a6f374125bb58c6a97ba2d921a64" title="Set movement speed." alt="" coords="176,1723,339,1750"/>
+<area shape="rect" id="node67" href="$class_camera.html#af1b56a7aee4d2b0c38054e05c0553e51" title="Set step and rotation size." alt="" coords="172,1774,343,1801"/>
+<area shape="rect" id="node68" href="$class_camera.html#a32f72b80b7aaf7a1623dc68239bd446b" title="Set the co&#45;ordinates of the world." alt="" coords="158,1825,357,1851"/>
+<area shape="rect" id="node3" href="$class_camera.html#a4f195c7ba6e002a5c98880c19c434a49" title="Adds a bounding box to check for collision." alt="" coords="734,78,869,105"/>
+<area shape="rect" id="node6" href="$namespace_p_s_w.html#a8a85b0f10a9767c11ced26234df8ad25" title="Does all the bounding boxes for the extended area." alt="" coords="427,5,617,47"/>
+<area shape="rect" id="node7" href="$namespace_p_s_w.html#a16185544bbf90bd2c748a2d90c59d984" title="Creates bounding boxes for pillars." alt="" coords="427,71,617,112"/>
+<area shape="rect" id="node4" href="$class_collision.html#a582ec07565cb83e8a8f85652d08b4ee5" title="Sets the bounding box to the vector." alt="" coords="1003,78,1113,105"/>
+<area shape="rect" id="node5" href="$class_collision.html#aa050b00e13099c5d316071afe243a516" title="Gets the reference to the AABBvector of a quadrant." alt="" coords="1192,78,1345,105"/>
+<area shape="rect" id="node9" href="$class_camera.html#ad99a8c3f5bc5388686681a7fbfeb1e43" title="Sets the co&#45;ordinate of each plain." alt="" coords="738,185,865,211"/>
+<area shape="rect" id="node11" href="$namespace_p_s_w.html#a8e63ac46528c6c0afd4d2cc2ad090d38" title="Does all the plains for the extended area." alt="" coords="413,238,631,265"/>
+<area shape="rect" id="node10" href="$class_plain_vector.html#a145f83d2db56db9dff494d0f765b67c4" title="Pushes new plain into the vector." alt="" coords="995,185,1121,211"/>
+<area shape="rect" id="node13" href="$_display_shays_world_8cpp.html#a01e06eed52c63f0e2235773cf53790b1" title="Sets the location for where to display blocks above windows and posts (the bits above 1st and 2nd flo..." alt="" coords="439,799,605,826"/>
+<area shape="rect" id="node18" href="$_display_shays_world_8cpp.html#a8a8bda68350f32da8ec35a58264cc2f2" title="Sets the location for where to display the benches." alt="" coords="478,850,566,877"/>
+<area shape="rect" id="node19" href="$_display_shays_world_8cpp.html#aeba093f3f408c98e1e6b19e0d2ec776f" title="Sets the location for where to display the wall bricks." alt="" coords="478,394,566,421"/>
+<area shape="rect" id="node21" href="$_display_shays_world_8cpp.html#ac85f6bb2755f0f4240a22ca708e62d59" title="Sets the location for where to display the chanc posts." alt="" coords="461,901,583,927"/>
+<area shape="rect" id="node22" href="$_display_shays_world_8cpp.html#a8d3f937f7670e188c632f00a1c3eb4fc" title="Sets location for where to display various cylinders (drainpipe and tuckstop counter)" alt="" coords="469,951,575,978"/>
+<area shape="rect" id="node23" href="$_display_shays_world_8cpp.html#a4c2c0d2c5ec187eab216c4f71561f3ca" title="Sets the location for where to display the door paving (believe around shop)" alt="" coords="464,1002,580,1029"/>
+<area shape="rect" id="node24" href="$_display_shays_world_8cpp.html#a68c65dfc8421ca333a466d9c06707e60" title="Sets the location for where to display the door posts." alt="" coords="466,1053,578,1079"/>
+<area shape="rect" id="node25" href="$_display_shays_world_8cpp.html#a789090901cc8a58eb8c82bd5ae5b2f6f" title="Sets the location for where to display the entrance steps." alt="" coords="453,1103,591,1130"/>
+<area shape="rect" id="node26" href="$_display_shays_world_8cpp.html#ae3621ca1936302aff614561ca3e98ba4" title="Sets the location for where to display all extra textures (signs etc)" alt="" coords="477,1255,567,1282"/>
+<area shape="rect" id="node29" href="$_display_shays_world_8cpp.html#a5cfc0e1a6befcb997b31aeb74cff5b24" title="Sets the location for where to display the grass area." alt="" coords="479,1306,565,1333"/>
+<area shape="rect" id="node30" href="$_display_shays_world_8cpp.html#a2e4468fa24959cfa401c98b3bb35f2ff" title="Sets the location for where to display larger textures (windows &amp; doors, etc)" alt="" coords="453,343,591,370"/>
+<area shape="rect" id="node32" href="$_display_shays_world_8cpp.html#aae6f0b30873fd5a5ab7e234ac50ef76a" title="Sets the location for where to display the librarys posts." alt="" coords="460,1154,584,1181"/>
+<area shape="rect" id="node33" href="$_display_shays_world_8cpp.html#a4b9363811783571b9cd12a4ed0a88446" title="Sets the location for where to display the lights." alt="" coords="479,445,565,471"/>
+<area shape="rect" id="node34" href="$_display_shays_world_8cpp.html#a7e94995d7022e4f3daf12a6f5d36ba9c" title="Sets the location for where to display the main posts (ones closest to the grass)" alt="" coords="465,495,579,522"/>
+<area shape="rect" id="node35" href="$_display_shays_world_8cpp.html#adc7ad632689995464a6eed54b4adbbd0" title="Sets location for where to display the map and welcome screen." alt="" coords="473,546,571,573"/>
+<area shape="rect" id="node36" href="$_display_shays_world_8cpp.html#a78b76ba919310a35d8bec7352df1597d" title="Sets the location for where to display the pavement." alt="" coords="468,597,576,623"/>
+<area shape="rect" id="node37" href="$_display_shays_world_8cpp.html#a96c27bd3994a411c6eefb383a6c8fccd" title="Sets the location for where to display the physical sciences posts." alt="" coords="455,647,589,674"/>
+<area shape="rect" id="node38" href="$_display_shays_world_8cpp.html#a9d09aa9a67f755ae16fdcf5f37a16b83" title="Sets the location for where to display the purple posts by guild shop." alt="" coords="461,698,583,725"/>
+<area shape="rect" id="node39" href="$_display_shays_world_8cpp.html#aac6e408945214f82238126ce68cd97f4" title="Sets the location for where to display the red posts by sta travel shop." alt="" coords="468,749,576,775"/>
+<area shape="rect" id="node40" href="$_display_shays_world_8cpp.html#a2234e9eff7ea365201bbdbe594305fb3" title="Sets the location for where to display every thing involving the roof (including beams)" alt="" coords="483,293,561,319"/>
+<area shape="rect" id="node43" href="$_display_shays_world_8cpp.html#aefaff786dac735e065d19b12f3c7704a" title="Sets location for where to display the map and welcome screen." alt="" coords="465,1205,579,1231"/>
+<area shape="rect" id="node14" href="$class_textured_polygons.html#a4b21cfdd9a38b6026bc1f0e8bd2455a1" title="Calls function to creates display list to contain image." alt="" coords="715,792,887,833"/>
+<area shape="rect" id="node15" href="$class_textured_polygons.html#a037ef33a71ce33954a49b378b3aad197" title="Creates display list to contain image on X Y axis." alt="" coords="972,857,1144,899"/>
+<area shape="rect" id="node16" href="$class_textured_polygons.html#afcc97491bf1cbbe22e91bc7e4c476ac3" title="Creates display list to contain image on X Z axis." alt="" coords="972,727,1144,768"/>
+<area shape="rect" id="node17" href="$class_textured_polygons.html#ad5beba21ad65ebbd1c8228924b56e49b" title="Creates display list to contain image on Y Z axis." alt="" coords="972,792,1144,833"/>
+<area shape="rect" id="node20" href="$class_textured_polygons.html#af5b832e3512d14a5f69f98707fe9c14e" title="Used to create display lists where image is larger than world scale on XY axis." alt="" coords="715,403,887,444"/>
+<area shape="rect" id="node27" href="$class_textured_polygons.html#a60c92fd32d48dc25bb93badc44ed2d01" title="Used to create display lists where image is on an angle." alt="" coords="715,1223,887,1264"/>
+<area shape="rect" id="node28" href="$class_textured_polygons.html#adc5387d4097428836d56ea8b3f66e61d" title="Called from CreateAngledPolygon determine how images are displayed." alt="" coords="972,1223,1144,1264"/>
+<area shape="rect" id="node31" href="$class_textured_polygons.html#af3a7080054a94bd1d237c1e8afe7c394" title="Used to create display lists where image is larger than world scale on YZ axis." alt="" coords="715,337,887,379"/>
+<area shape="rect" id="node41" href="$_display_shays_world_8cpp.html#a5279ebf8a2e8ece7d02549ad97a727ed" title="Sets the location for where to display the angled roof beam in the X axis." alt="" coords="722,235,881,262"/>
+<area shape="rect" id="node42" href="$_display_shays_world_8cpp.html#aba7dabe4c75b3810a8b65fd7db293f3d" title="Sets the location for where to display the angled roof beam in the Z axis." alt="" coords="722,286,881,313"/>
+<area shape="rect" id="node45" href="$class_textured_polygons.html#ac197b25a7152feed1499351f22446a45" title="Creates texture and set required values for texture mapping." alt="" coords="436,1524,608,1565"/>
+<area shape="rect" id="node46" href="$namespace_l_t_g_w.html#a83e47897b9860fe514f4bc0611cccf5f" title="Deletes image from memory." alt="" coords="414,1357,630,1383"/>
+<area shape="rect" id="node47" href="$class_textured_polygons.html#af491c14a7711097065a61e8b54c95647" title="Loads a raw image file into memory." alt="" coords="419,1407,625,1434"/>
+<area shape="rect" id="node49" href="$class_textured_polygons.html#a172716856851bb2b34fc1a66fb0b0b92" title="Set the number of textures to be used." alt="" coords="423,1459,621,1500"/>
+<area shape="rect" id="node48" href="$class_textured_polygons.html#ae959f3a7a1522654a97ccec5c61a14d2" title="Returns image file." alt="" coords="708,1347,895,1388"/>
+<area shape="rect" id="node51" href="$file_i_o_8cpp.html#ade49629f63bf746df80c6e31b0eba037" title="Reads file and stores values inside Object3D obj." alt="" coords="478,1590,566,1617"/>
+<area shape="rect" id="node52" href="$class_object3_d.html#a6f2641eb26562f7d1e2935afb2c35fa3" title="Creates a texture coordinate based of float parameters." alt="" coords="731,1514,872,1541"/>
+<area shape="rect" id="node53" href="$class_object3_d.html#aabda6fb93bccc732e30ce3b74f2d87e0" title="Creates faces using FaceBase array." alt="" coords="730,1565,873,1591"/>
+<area shape="rect" id="node54" href="$class_object3_d.html#a5f9c46e360a1a8b85cab02ab90582150" title="Creates a vertex based of float parameters." alt="" coords="729,1615,874,1642"/>
+<area shape="rect" id="node55" href="$class_object3_d.html#a7617c94ba42175db1b3a242e1bbc0db4" title="Stores the vertex normals." alt="" coords="708,1666,895,1693"/>
+<area shape="rect" id="node56" href="$class_object3_d.html#a08fdd60647d27452ece55995fd7c1187" title="Checks their is the same number of vertex normals to vertices." alt="" coords="679,1717,924,1759"/>
+<area shape="rect" id="node57" href="$class_object3_d.html#a6e947a7111d859d3cdab8aee67b7dafb" title="Assigns an object an mtl file name." alt="" coords="720,1783,883,1810"/>
+<area shape="rect" id="node58" href="$class_object3_d.html#a9b5cc19b3ef68259b4eb6eb965a48d6d" title="Saves the texture name to program." alt="" coords="711,1413,892,1439"/>
+<area shape="rect" id="node59" href="$file_i_o_8cpp.html#a2a79af5082bb9f0c48e6f263ff2f1d8f" title="Converts combined v and vt string into values." alt="" coords="752,1463,851,1490"/>
+<area shape="rect" id="node61" href="$class_camera.html#a023cb3e9d92301d8132f338c7ef5be77" title="Calls the glLookAt function." alt="" coords="445,1703,599,1730"/>
+<area shape="rect" id="node63" href="$class_camera.html#a11d15ac81e6fbe74c1dd09e342be3e9c" title="Resets the camera. return void." alt="" coords="456,1641,588,1667"/>
+<area shape="rect" id="node62" href="$class_camera.html#ac5757a4349da2fbdce00a165ae9b0f87" title="Calculates how far down the player has crouched." alt="" coords="718,1834,885,1861"/>
+<area shape="rect" id="node69" href="$class_collision.html#af053c5af75487ad9562a936ec8e6a158" title="Sets the actual world co&#45;ordinates X." alt="" coords="452,1851,592,1878"/>
+<area shape="rect" id="node70" href="$class_collision.html#a6f39869c9da8a8860d01b7f8091ea0af" title="Sets the actual world co&#45;ordinates Z." alt="" coords="452,1801,592,1827"/>
+</map>

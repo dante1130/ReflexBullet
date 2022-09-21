@@ -1,0 +1,12 @@
+<map id="Player" name="Player">
+<area shape="rect" id="node1" title="Represents the player, extended from the BaseCharacter." alt="" coords="326,1159,475,1529"/>
+<area shape="rect" id="node2" href="$class_base_character.html" title="An interface for the characters of the game." alt="" coords="100,791,208,913"/>
+<area shape="rect" id="node3" href="$class_gun.html" title="Represents a gun to fire bullets and stores the individual bullet information." alt="" coords="5,233,148,545"/>
+<area shape="rect" id="node4" href="$class_camera.html" title="The camera class, handles the perspective and the movement." alt="" coords="309,608,492,1096"/>
+<area shape="rect" id="node5" href="$class_audio.html" title="Plays sound effects and music." alt="" coords="172,248,315,531"/>
+<area shape="rect" id="node6" href="$class_collision.html" title="Collision class using AABB Bounding boxes." alt="" coords="339,241,463,538"/>
+<area shape="rect" id="node7" href="$class_a_a_b_b_vector.html" title="Vector to store bounding box details." alt="" coords="343,5,459,171"/>
+<area shape="rect" id="node8" href="$class_camera_map.html" title="Provides methods that display a 2D map and welcome screen." alt="" coords="487,329,669,450"/>
+<area shape="rect" id="node9" href="$class_plain_vector.html" title="A vector to store Plain." alt="" coords="693,285,802,494"/>
+<area shape="rect" id="node10" href="$struct_bounding_box.html" title="Stores max and min values of co&#45;ordinates." alt="" coords="516,799,635,905"/>
+</map>

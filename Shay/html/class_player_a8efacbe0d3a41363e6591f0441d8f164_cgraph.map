@@ -1,0 +1,4 @@
+<map id="Player::ResetFiringDelay" name="Player::ResetFiringDelay">
+<area shape="rect" id="node1" title="Resets the firing delay." alt="" coords="5,5,172,32"/>
+<area shape="rect" id="node2" href="$class_gun.html#a1d20c591ded9c216ce38dbfe8d31eeae" title="Setter for firing delay." alt="" coords="220,5,359,32"/>
+</map>

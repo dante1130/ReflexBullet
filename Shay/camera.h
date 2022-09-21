@@ -8,20 +8,23 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
+#include <cmath>
+#include <glm/vec2.hpp>
+#include <glm/vec3.hpp>
+
 #include "collision.h"
 #include "cameraMap.h"
 #include "PlainVector.h"
 #include "Audio.h"
 #include "defines.h"
-
-#include <iostream>
-#include <cmath>
-#include "../include/gl/glut.h"
-#include "../include/glm/vec2.hpp"
-#include "../include/glm/vec3.hpp"
+#include <GL/glut.h>
 
 //--------------------------------------------------------------------------------------
 
+/**
+ * @class Camera
+ * @brief The camera class, handles the perspective and the movement.
+ */
 class Camera
 {
 public:
@@ -45,17 +48,21 @@ public:
 	void AddAABB(const glm::vec3& max, const glm::vec3& min);
 
 	/**
-	 * @brief Prints the x, y and z values to console, used for debugging.
+	 * @brief Clears the AABB collision vector.
 	 * @return void
 	 */
-	void PrintPos()
-	{
-		std::cout << m_pos.x << " " << m_pos.y << " " << m_pos.z << std::endl;
-	}
+	void ClearAABB();
 	
 	//----------------------------------------------------------------------------------
 	//  Set Methods
 	//----------------------------------------------------------------------------------
+
+	/**
+	 * @brief Setter for collision.
+	 * @param collision const Collision&
+	 * @return void
+	 */
+	void SetCollision(const Collision& collision);
 
 	/**
 	 * @brief Set step and rotation size.
@@ -98,7 +105,7 @@ public:
 
 	/**
 	* @brief	Used diagonal plains (only flat implemented)
-	* @brief	tempType	- The type of plain implemented
+	* @param	tempType	- The type of plain implemented
 	* @param	t1			- First coordinate
 	* @param	t2			- Second coordinate
 	* @param	t3			- Third coordinate
@@ -110,6 +117,36 @@ public:
 	//----------------------------------------------------------------------------------
 	//  Get Methods
 	//----------------------------------------------------------------------------------
+
+	/**
+	 * @brief Getter for position, also includes the crouch depth.
+	 * @return glm::vec3
+	 */
+	glm::vec3 GetPosition() const;
+
+	/**
+	 * @brief Returns the movement speed.
+	 * @return GLdouble
+	 */
+	GLdouble GetMoveSpeed() const;
+
+	/**
+	 * @brief Getter for the lookAt vector.
+	 * @return glm::vec3
+	 */
+	glm::vec3 GetLook() const;
+
+	/**
+	 * @brief Getter for pitch.
+	 * @return GLdouble
+	 */
+	GLdouble GetPitch() const;
+
+	/**
+	 * @brief Getter for yaw.
+	 * @return GLdouble
+	 */
+	GLdouble GetYaw() const;
 
 	/**
 	 * @brief Returns the x position of the camera.
@@ -200,6 +237,13 @@ public:
 	void SetCrouch(bool setCrouch);
 
 	/**
+	* @brief	Sets the maximum crouch depth of the player
+	* @param	max	- The Maximum distance you can crouch
+	* @return	Void
+	*/
+	void SetMaximumCrouchDepth(float max);
+
+	/**
 	* @brief	Sets the players camera location
 	* @param	x	- X coordinate
 	* @param	y	- Y coordinate
@@ -207,6 +251,27 @@ public:
 	* @return	Void
 	*/
 	void SetCameraLocation(float x, float y, float z);
+
+	/**
+	* @brief	Sets the cameras look at direction
+	* @param	look - The new look at direction
+	* @return	Void
+	*/
+	void SetCameraLookAt(glm::vec3& look);
+
+	/**
+	* @brief	Returns the cameras rotate speed
+	* @param	No param
+	* @return	float	- The cameras rotate speed
+	*/
+	float GetCameraRotateSpeed();
+
+	/**
+	* @brief	Returns if the camera is crouched
+	* @param	No param
+	* @return	bool	- if camera is crouched
+	*/
+	bool GetCrouch();
 
 private:
 	/// Initialize values for first run for m_prev if true
@@ -216,6 +281,8 @@ private:
 	bool crouch;
 	/// The current crouch depth
 	GLdouble crouchDepth;
+	/// The maximum crouch depth
+	GLdouble maxCrouchDepth;
 	/// When the function was last called
 	long crouchTime; 
 
@@ -229,6 +296,7 @@ private:
 	GLdouble m_plainHeight;
 
 	// rotation variables
+
 	/// Previous mouse position.
 	glm::ivec2 m_prev; 
 	/// yaw.
@@ -237,6 +305,7 @@ private:
 	GLdouble m_rotateAngleUD, m_deltaAngleUD;
 
 	// movement variables
+
 	/// The position.
 	glm::dvec3 m_pos;
 		
@@ -245,13 +314,12 @@ private:
 
 	/// The center or where to look at.
 	glm::dvec3 m_look;
-	glm::dvec3 m_lookK; // I don't know what this is yet.
+	glm::dvec3 m_lookK;
 	/// Delta for movement.
 	GLdouble m_deltaMoveLR, m_deltaMoveFB, m_deltaMoveUD;
 	/// Direction of where the player is going.
 	GLdouble m_direction;
 
-	// Movement speed (step size)
 	/// Speed of which the camera rotates.
 	GLdouble m_rotateSpeed;
 	/// Movement speed.

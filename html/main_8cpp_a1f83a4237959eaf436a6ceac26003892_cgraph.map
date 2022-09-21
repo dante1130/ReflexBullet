@@ -1,9 +1,0 @@
-<map id="CreateBoundingBoxes" name="CreateBoundingBoxes">
-<area shape="rect" id="node1" title="Creates bounding boxes for collision detection." alt="" coords="5,26,156,52"/>
-<area shape="rect" id="node2" href="$class_camera.html#a4f195c7ba6e002a5c98880c19c434a49" title="Adds a bounding box to check for collision." alt="" coords="485,26,620,52"/>
-<area shape="rect" id="node6" href="$main_8cpp.html#a545b44557e01e49115dccaf6a07dd035" title="Does all the bounding boxes for the extended area." alt="" coords="204,26,437,52"/>
-<area shape="rect" id="node7" href="$main_8cpp.html#aec88241b48ffc39bba3c0c777844a206" title="Creates bounding boxes for pillars." alt="" coords="231,76,411,103"/>
-<area shape="rect" id="node3" href="$class_collision.html#a582ec07565cb83e8a8f85652d08b4ee5" title="Sets the bounding box to the vector." alt="" coords="668,26,777,52"/>
-<area shape="rect" id="node4" href="$class_collision.html#a675848ff0b0d76a8ec131b155d561400" title="Gets the quadrant &#45; used for efficiency of bounding boxes." alt="" coords="825,26,979,52"/>
-<area shape="rect" id="node5" href="$class_a_a_b_b_vector.html#a89b24c4d7cb9a6a34ed117ab823a3b33" title="Add a bounding box." alt="" coords="1027,26,1161,52"/>
-</map>

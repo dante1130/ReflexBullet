@@ -1,0 +1,13 @@
+<map id="Camera::ADKeyboardMovement" name="Camera::ADKeyboardMovement">
+<area shape="rect" id="node1" title="Handles A and D key movement of player." alt="" coords="5,151,212,177"/>
+<area shape="rect" id="node2" href="$class_collision.html#abb75a80ee1cb6bd5bd04098497c65523" title="Collision check between a point and a bounding sphere." alt="" coords="266,125,385,152"/>
+<area shape="rect" id="node3" href="$class_camera.html#a62b9c31a39202f116f3b9fd774ef42e3" title="Overloaded function for setting plain." alt="" coords="260,176,391,203"/>
+<area shape="rect" id="node4" href="$class_camera.html#a30269761b4c56d23c7ce423440982a36" title="Finds the area of a triangle between the players coordinates and points on plain." alt="" coords="439,100,615,127"/>
+<area shape="rect" id="node5" href="$class_plain_vector.html#a92239f01ea2788df42891c8bb2afc2f1" title="Get the ending X coordinates." alt="" coords="665,5,807,32"/>
+<area shape="rect" id="node6" href="$class_plain_vector.html#a74a26cc9230e7469bbd6d739ae873bd6" title="Returns the coordinate for coordiante 2 for the plain." alt="" coords="669,68,803,95"/>
+<area shape="rect" id="node7" href="$class_plain_vector.html#ab6a87390b9841ec5c3bce9e9df2acf7a" title="Returns the coordinate for coordiante 4 for the plain." alt="" coords="669,144,803,171"/>
+<area shape="rect" id="node8" href="$class_plain_vector.html#a953267bdf9dc9841c215d33df4f6bc57" title="Get the starting X coordinates." alt="" coords="663,195,809,221"/>
+<area shape="rect" id="node9" href="$class_plain_vector.html#ad51a40d46f2e0d49fd1b06fc8f3de459" title="Get the Type." alt="" coords="453,252,600,279"/>
+<area shape="rect" id="node10" href="$class_audio.html#a51f596cbcc73699173d5e4ac3aef171f" title="Plays the sound based on the label of the sound effect." alt="" coords="463,303,590,329"/>
+<area shape="rect" id="node11" href="$class_plain_vector.html#a063346c2f5a33de0ef90678dae6f578b" title="Return size of vector." alt="" coords="465,353,588,380"/>
+</map>

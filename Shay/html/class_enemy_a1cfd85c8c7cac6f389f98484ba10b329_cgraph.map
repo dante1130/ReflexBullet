@@ -1,0 +1,4 @@
+<map id="Enemy::Die" name="Enemy::Die">
+<area shape="rect" id="node1" title="Have the enemy enter into the dead state." alt="" coords="5,5,96,32"/>
+<area shape="rect" id="node2" href="$class_enemy_a_i.html#aa7fad4fa75f3fbf1e1c902cafeb58d6a" title="Changes the state of the EnemyAI to dead." alt="" coords="144,5,247,32"/>
+</map>

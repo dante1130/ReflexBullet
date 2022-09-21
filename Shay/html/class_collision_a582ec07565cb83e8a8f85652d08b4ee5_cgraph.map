@@ -1,0 +1,4 @@
+<map id="Collision::Push" name="Collision::Push">
+<area shape="rect" id="node1" title="Sets the bounding box to the vector." alt="" coords="5,5,115,32"/>
+<area shape="rect" id="node2" href="$class_collision.html#aa050b00e13099c5d316071afe243a516" title="Gets the reference to the AABBvector of a quadrant." alt="" coords="163,5,316,32"/>
+</map>

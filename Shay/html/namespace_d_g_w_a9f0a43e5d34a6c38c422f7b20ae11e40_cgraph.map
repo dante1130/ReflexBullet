@@ -1,0 +1,13 @@
+<map id="DGW::DisplayDuckGun" name="DGW::DisplayDuckGun">
+<area shape="rect" id="node1" title="Displays the duck gun." alt="" coords="5,216,164,243"/>
+<area shape="rect" id="node2" href="$class_object3_d.html#ade144bd5a564803e6d6f579a5a96f7a2" title="Displays the stored object based on the texture. Adds vertex normals to allows for lighting." alt="" coords="212,99,404,141"/>
+<area shape="rect" id="node8" href="$class_player.html#ae5a3bcef2eda89370076f8fbce9e08b4" title="Getter for camera." alt="" coords="241,165,375,192"/>
+<area shape="rect" id="node9" href="$class_camera.html#a83696828ff7b7e740fc907857f513642" title="Getter for pitch." alt="" coords="245,216,371,243"/>
+<area shape="rect" id="node10" href="$class_camera.html#af01f8cd3c75ea3b9e578cfe0a95c9955" title="Getter for position, also includes the crouch depth." alt="" coords="237,267,379,293"/>
+<area shape="rect" id="node11" href="$class_camera.html#ae3fab1e2d2cc7f4affcc328ecca32f00" title="Getter for yaw." alt="" coords="247,317,369,344"/>
+<area shape="rect" id="node3" href="$class_object3_d.html#a27c48229baacb72a569744b2f3343c7a" title="Returns a texture coordinate of index i." alt="" coords="487,5,626,32"/>
+<area shape="rect" id="node4" href="$class_object3_d.html#aaf3232b02c1666b005dfd89d46e6782a" title="Returns a set of vertex and coordinate pairs of index i." alt="" coords="489,56,624,83"/>
+<area shape="rect" id="node5" href="$class_object3_d.html#a11d6a73b9d9999c276a1563a340f5349" title="Allows access to the contents of faces vector." alt="" coords="457,107,656,133"/>
+<area shape="rect" id="node6" href="$class_textured_polygons.html#ae6b2615e41f9263aaafc9a7f1ed2b94c" title="Returns texture." alt="" coords="457,157,656,184"/>
+<area shape="rect" id="node7" href="$class_object3_d.html#a66bde090d473596be613a851f55bc8af" title="Sets material property for a specific material." alt="" coords="452,208,661,235"/>
+</map>

@@ -1,6 +1,0 @@
-<map id="DeleteImageFromMemory" name="DeleteImageFromMemory">
-<area shape="rect" id="node1" title="Delete raw image and clear memory." alt="" coords="368,5,539,32"/>
-<area shape="rect" id="node2" href="$_load_textures_shays_world_8h.html#ac54794c345d8da57abbb08ea7118f121" title="Loads and Creates all the textures for shays world." alt="" coords="209,5,320,32"/>
-<area shape="rect" id="node3" href="$main_8cpp.html#a8264fa9a7444ab4805520c3d018b6623" title="Initializes settings @prarm No param." alt="" coords="104,5,161,32"/>
-<area shape="rect" id="node4" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,5,56,32"/>
-</map>

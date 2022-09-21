@@ -1,0 +1,13 @@
+<map id="Boss::GetGun" name="Boss::GetGun">
+<area shape="rect" id="node1" title="Returns gun object m_gun." alt="" coords="1447,70,1552,97"/>
+<area shape="rect" id="node2" href="$namespace_g_m.html#a0b76f306d7480fb7ce213cdf9cf4180e" title="Collision resolution for the boss&#39; bullets." alt="" coords="1175,95,1399,122"/>
+<area shape="rect" id="node8" href="$namespace_d_g_w.html#a44a4b848e72b3ef6be67c00101efb485" title="Is the master function which handles all the displaying for the game world." alt="" coords="912,147,1127,188"/>
+<area shape="rect" id="node9" href="$namespace_g_m.html#aa2ea0684203071ed400a31a635e02c57" title="Updates by the game tick." alt="" coords="683,45,849,71"/>
+<area shape="rect" id="node10" href="$class_boss.html#a06181e1870bc835e251d8b56556958f4" title="Changes the phase of boss every 15 seconds." alt="" coords="1216,45,1357,71"/>
+<area shape="rect" id="node3" href="$namespace_g_m.html#a2b0212f088ef02a5a4c0026c7431c343" title="Collision resolution between the available collision types." alt="" coords="668,95,864,122"/>
+<area shape="rect" id="node4" href="$namespace_g_m.html#a239894ede0787099f0991b08049a7122" title="If a fixed update loop for the game. This will handle all AI and other fixed update processes." alt="" coords="433,95,620,122"/>
+<area shape="rect" id="node5" href="$namespace_g_m.html#a4de584cdd6ff4f9f35e7de9a173eed8a" title="Initialises the game objects." alt="" coords="283,123,385,150"/>
+<area shape="rect" id="node6" href="$namespace_p_s_w.html#a748a46361b4d8570306aaacbcc5e464f" title="Handles all the render steps for the program &#45; still needs work, barebones right now." alt="" coords="104,123,235,150"/>
+<area shape="rect" id="node7" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,123,56,150"/>
+<area shape="rect" id="node11" href="$class_boss.html#a1f7b8eb807ba0483814a85c2e167b8ab" title="Updates the bosses actions and phases." alt="" coords="969,45,1070,71"/>
+</map>

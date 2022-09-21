@@ -1,0 +1,14 @@
+<map id="Gun::BulletCount" name="Gun::BulletCount">
+<area shape="rect" id="node1" title="Returns the bullet count that is currently in the scene." alt="" coords="1801,42,1923,69"/>
+<area shape="rect" id="node2" href="$namespace_d_g_o.html#a9648812efcb02f919683cbd02ec292b3" title="Displays all the bullets in the gun." alt="" coords="1587,15,1753,42"/>
+<area shape="rect" id="node7" href="$class_player.html#a33e824ae4bbdd53a334fee399b823f64" title="Resets the bullets." alt="" coords="1599,67,1741,94"/>
+<area shape="rect" id="node3" href="$namespace_d_g_w.html#a44a4b848e72b3ef6be67c00101efb485" title="Is the master function which handles all the displaying for the game world." alt="" coords="1148,5,1363,47"/>
+<area shape="rect" id="node4" href="$namespace_g_m.html#a4de584cdd6ff4f9f35e7de9a173eed8a" title="Initialises the game objects." alt="" coords="283,38,385,65"/>
+<area shape="rect" id="node5" href="$namespace_p_s_w.html#a748a46361b4d8570306aaacbcc5e464f" title="Handles all the render steps for the program &#45; still needs work, barebones right now." alt="" coords="104,38,235,65"/>
+<area shape="rect" id="node6" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function." alt="" coords="5,38,56,65"/>
+<area shape="rect" id="node8" href="$namespace_g_m.html#a611393ef45df9782f29f3e36b748aef4" title="Restarts the game." alt="" coords="1411,71,1539,98"/>
+<area shape="rect" id="node9" href="$namespace_g_m.html#ad0075febca06a02cbd74fe698aeab38c" title="Decides the action of a button for the menu." alt="" coords="1169,71,1341,98"/>
+<area shape="rect" id="node10" href="$namespace_g_m.html#a6208ff8e88020f18e0b1094ded7166fb" title="Handles when the mouse is clicked when the game is paused." alt="" coords="636,63,828,90"/>
+<area shape="rect" id="node12" href="$namespace_g_m.html#aadab86395febe3dc09183d51b8dd61ab" title="Handles when the mouse is clicked when the game is paused on the options menu." alt="" coords="876,115,1100,156"/>
+<area shape="rect" id="node11" href="$namespace_g_m.html#a2889fa0cda958c68427e36fb9c67598e" title="Handles when the mouse is clicked." alt="" coords="433,63,588,90"/>
+</map>

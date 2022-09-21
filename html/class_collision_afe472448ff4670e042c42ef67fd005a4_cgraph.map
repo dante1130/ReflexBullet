@@ -1,8 +1,0 @@
-<map id="Collision::Collide" name="Collision::Collide">
-<area shape="rect" id="node1" title="Returns TRUE if a collision occurred." alt="" coords="5,81,124,108"/>
-<area shape="rect" id="node2" href="$class_collision.html#a2bea1336791a4fae3b672b883c47e1ce" title="Checks if collision occurred (called from Collide)." alt="" coords="172,56,337,83"/>
-<area shape="rect" id="node6" href="$class_collision.html#aea8004fbf48b79b5db7b784688b23788" title="Default constructor." alt="" coords="191,107,319,133"/>
-<area shape="rect" id="node3" href="$class_a_a_b_b_vector.html#a867af5c3801c8c611c083388d3cf0f1f" title="Gets the maximum extent." alt="" coords="385,5,536,32"/>
-<area shape="rect" id="node4" href="$class_a_a_b_b_vector.html#a406924fc68ccdd9a5898aa5994cc9684" title="Gets the maximum extent." alt="" coords="387,56,534,83"/>
-<area shape="rect" id="node5" href="$class_a_a_b_b_vector.html#a91f3f1ea946b9eb97042d8c6f48ae509" title="Return size of vector." alt="" coords="395,107,526,133"/>
-</map>
